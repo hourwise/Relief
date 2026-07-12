@@ -1,0 +1,372 @@
+{
+  "app": {
+    "name": "Relief",
+    "tagline": "Find Comfort, Find Relief",
+    "version": "Relief v1.0.0",
+    "description": "Helping you find safe, clean facilities"
+  },
+  "auth": {
+    "signIn": {
+      "title": "Sign In",
+      "emailLabel": "Email",
+      "emailPlaceholder": "your@email.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "button": "Sign In",
+      "orContinueWith": "or continue with",
+      "google": "Continue with Google",
+      "apple": "Continue with Apple",
+      "failed": "Sign In Failed",
+      "errorRequired": "Please enter your email and password"
+    },
+    "signOut": {
+      "title": "Sign Out",
+      "message": "Are you sure you want to sign out?",
+      "cancel": "Cancel",
+      "confirm": "Sign Out"
+    },
+    "notSignedIn": {
+      "title": "Not signed in",
+      "description": "Sign in to access your favourites, saved profiles and more"
+    }
+  },
+  "navigation": {
+    "map": "Map",
+    "nearby": "Nearby",
+    "favourites": "Favourites",
+    "profile": "Profile",
+    "facilityDetails": "Facility Details",
+    "addFacility": "Add Facility"
+  },
+  "map": {
+    "placeholder": "Map View",
+    "facilitiesNearby": "{{count}} facilities nearby",
+    "enableLocation": "Enable location to see nearby facilities",
+    "searchPlaceholder": "Search town or postcode...",
+    "needOneNow": "Need One Now",
+    "needOneNowSubtext": "Find closest facility",
+    "closestFacility": "Closest Facility",
+    "walkingTime": "Walking: ~{{minutes}} mins",
+    "open": "Open",
+    "closed": "Closed",
+    "noFacilitiesFound": "No facilities found nearby",
+    "getDirections": "Get Directions",
+    "locationRequired": "Location Required",
+    "locationExplanation": "Relief needs your location to find nearby facilities. Please enable location access in Settings.",
+    "openSettings": "Open Settings",
+    "cancel": "Cancel",
+    "tapForDetails": "Tap for details...",
+    "facilitiesCount": "{{count}} facilities nearby"
+  },
+  "facility": {
+    "open24h": "Open 24h",
+    "seeHours": "See hours",
+    "free": "Free",
+    "paid": "Paid",
+    "verified": "Verified {{date}}",
+    "overallScore": "Overall Score",
+    "ratings": {
+      "cleanliness": "Cleanliness",
+      "privacy": "Privacy",
+      "accessibility": "Accessibility",
+      "safety": "Safety",
+      "noise": "Noise",
+      "environment": "Environment"
+    },
+    "amenities": "Amenities",
+    "accessNotes": "Access Notes",
+    "getDirections": "Get Directions",
+    "directions": {
+      "googleMaps": "Google Maps",
+      "appleMaps": "Apple Maps",
+      "waze": "Waze"
+    },
+    "notFound": "Facility not found",
+    "badges": {
+      "accessible": "Accessible",
+      "disabledAccess": "Disabled Access",
+      "babyChanging": "Baby Changing",
+      "familyRoom": "Family Room",
+      "genderNeutral": "Gender Neutral",
+      "singleOccupancy": "Single Occupancy",
+      "hours24": "24 Hours"
+    }
+  },
+  "list": {
+    "sortNearest": "Nearest",
+    "sortTopRated": "Top Rated",
+    "empty": "No facilities found nearby",
+    "distance": "{{distance}} mi",
+    "free": "Free",
+    "paid": "Paid",
+    "open": "Open",
+    "closed": "Closed"
+  },
+  "profile": {
+    "accessLevel": "Access Level",
+    "freeTier": "Free Tier",
+    "upgradeDescription": "Upgrade to Plus for route planning, offline maps, AI recommendations and more.",
+    "seePlans": "See Plans",
+    "badges": "Badges",
+    "badgePlaceholder": "Contribute to the community to earn badges",
+    "about": "About",
+    "userName": "{{name}}",
+    "userEmail": "{{email}}"
+  },
+  "emergency": {
+    "title": "Need One Now",
+    "subtext": "Find closest facility",
+    "closestFacility": "Closest Facility",
+    "walkingTime": "Walking: ~{{minutes}} mins",
+    "open": "Open",
+    "closed": "Closed",
+    "score": "★ {{score}}",
+    "noFacilities": "No facilities found nearby",
+    "getDirections": "Get Directions"
+  },
+  "filters": {
+    "openNow": "Open now",
+    "free": "Free",
+    "accessible": "Accessible",
+    "disabledAccess": "Disabled access",
+    "babyChanging": "Baby changing",
+    "familyRoom": "Family room",
+    "genderNeutral": "Gender neutral",
+    "singleOccupancy": "Single occupancy",
+    "hours24": "24 hour",
+    "highlyRated": "Highly rated",
+    "waterRefillStation": "Water refill station",
+    "showerFacility": "Shower facility",
+    "breastfeedingRoom": "Breastfeeding room",
+    "restArea": "Rest area",
+    "changingPlace": "Changing Place",
+    "evCharging": "EV charging",
+    "picnicArea": "Picnic area"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "submit": "Submit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "done": "Done"
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "network": "Unable to connect. Please check your internet connection.",
+    "locationDenied": "Location permission denied",
+    "locationFailed": "Failed to get current location",
+    "locationPermissionFailed": "Failed to request location permission",
+    "auth": {
+      "googleFailed": "Google Sign In Failed",
+      "appleFailed": "Apple Sign In Failed",
+      "emailFailed": "Sign In Failed",
+      "oauthCancelled": "OAuth cancelled",
+      "oauthFailed": "Failed to complete OAuth"
+    },
+    "facility": {
+      "fetchFailed": "Error fetching facilities",
+      "searchFailed": "Error searching facilities",
+      "notFound": "Facility not found"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "pushTokenFailed": "Push notification permission denied",
+    "deviceRequired": "Push notifications require a physical device"
+  },
+  "location": {
+    "share": {
+      "what3words": "What3Words",
+      "plusCodes": "Plus Codes",
+      "coordinates": "Coordinates",
+      "copyW3W": "Copy W3W address",
+      "copyCoords": "Copy coordinates",
+      "sendToContact": "Send location to contact",
+      "emergencyCard": "Emergency location card"
+    }
+  },
+  "monetisation": {
+    "basicAccess": {
+      "title": "Basic Access",
+      "price": "£1.99 Lifetime",
+      "includes": "Maps, Search, Ratings, Directions, Community updates, Favourites"
+    },
+    "plus": {
+      "title": "Plus Subscription",
+      "priceMonthly": "£1.99/month",
+      "priceYearly": "£14.99/year",
+      "includes": "Route planner, Offline maps, AI recommendations, Saved profiles, Travel support, Europe expansion, Smart alerts"
+    },
+    "restore": "Restore Purchases",
+    "upgrade": "See Plans"
+  },
+  "badges": {
+    "explorer": "Explorer",
+    "communityHero": "Community Hero",
+    "accessibilityChampion": "Accessibility Champion",
+    "familyHelper": "Family Helper"
+  },
+  "community": {
+    "addFacility": "Add Facility",
+    "uploadPhotos": "Upload Photos",
+    "reportClosure": "Report Closure",
+    "correctInfo": "Correct Information",
+    "addAccessCodes": "Add Access Codes",
+    "addNotes": "Add Notes",
+    "reportPhoto": "Report this photo",
+    "reportReview": "Report this review",
+    "submission": {
+      "title": "Add a Facility",
+      "subtitle": "Help others by adding a facility. Your submission will be reviewed before going live.",
+      "name": "Facility Name",
+      "address": "Address",
+      "postcode": "Postcode",
+      "town": "Town/City",
+      "accessNotes": "Access Notes",
+      "free": "Free to use",
+      "priceNote": "Price Note",
+      "amenities": "Amenities",
+      "additionalNotes": "Additional Notes",
+      "accessCodes": "Access Codes (if any)",
+      "submissionNotes": "Submission Notes",
+      "reviewSubmit": "Review & Submit",
+      "success": "Your facility has been submitted for review.",
+      "nextAmenities": "Next: Amenities",
+      "mySubmissions": "My Submissions",
+      "status": {
+        "pending": "Pending Review",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      }
+    },
+    "report": {
+      "title": "Report Facility Issue",
+      "subtitle": "Help others by reporting current issues. Reports expire automatically.",
+      "selectType": "What's the issue?",
+      "notes": "Additional Notes",
+      "submit": "Submit Report",
+      "success": "Thank you for your report.",
+      "activeReports": "Active Reports",
+      "expiresAt": "Expires: {{time}}",
+      "types": {
+        "closed": "Closed",
+        "outOfOrder": "Out of Order",
+        "cleaning": "Cleaning",
+        "busy": "Busy",
+        "noWater": "No Water",
+        "refurbishment": "Refurbishment"
+      }
+    },
+    "correctInfo": {
+      "title": "Correct Information",
+      "subtitle": "Your correction will be reviewed before being applied.",
+      "selectField": "Which field needs correcting?",
+      "currentValue": "Current Value",
+      "correctValue": "Correct Value",
+      "notes": "Additional Notes",
+      "submit": "Submit Correction",
+      "success": "Your correction has been submitted for review."
+    },
+    "accessCodes": {
+      "title": "Access Codes",
+      "addCode": "Add Access Code",
+      "code": "Code",
+      "description": "Description",
+      "save": "Save Code",
+      "noCodes": "No access codes yet"
+    }
+  },
+  "savedProfiles": {
+    "ibs": "IBS Mode",
+    "family": "Family Mode",
+    "accessibility": "Accessibility Mode",
+    "pregnancy": "Pregnancy Mode",
+    "neurodivergent": "Neurodivergent Mode",
+    "elderly": "Elderly Mode"
+  },
+  "routePlanning": {
+    "title": "Route Planning",
+    "comfortStop": "Suggested comfort stop in {{distance}} miles",
+    "from": "From",
+    "to": "To",
+    "planRoute": "Plan Route"
+  },
+  "offline": {
+    "downloadRegion": "Download Region",
+    "downloaded": "Downloaded",
+    "downloadFailed": "Download failed"
+  },
+  "aiRecommendations": {
+    "title": "AI Recommendations",
+    "subtitle": "Facilities matched to your needs using smart scoring",
+    "noProfiles": "No saved profiles yet",
+    "noProfilesDescription": "Create a saved profile first to get personalised facility recommendations.",
+    "locationRequired": "Location required",
+    "locationDescription": "Enable location services to get recommendations for nearby facilities.",
+    "loading": "Analysing facilities...",
+    "error": "Failed to load recommendations. Please try again.",
+    "retry": "Retry",
+    "createProfile": "Create Profile",
+    "usingProfile": "Using profile:",
+    "recommendedFacilities": "Recommended Facilities ({{count}})",
+    "scoredBasedOn": "Scored based on your \"{{name}}\" preferences",
+    "excellentMatch": "Excellent match",
+    "goodMatch": "Good match",
+    "fairMatch": "Fair match",
+    "lowMatch": "Low match",
+    "matches": "Matches:",
+    "scoreBreakdown": "Score breakdown:",
+    "preferences": "Preferences",
+    "rating": "Rating",
+    "distance": "Distance",
+    "open": "Open",
+    "noMatching": "No matching facilities",
+    "noMatchingDescription": "No facilities found nearby that match your \"{{name}}\" preferences. Try expanding your search area or adjusting your profile.",
+    "more": "+{{count}} more"
+  },
+  "predictiveSuggestions": {
+    "title": "Predictive Suggestions",
+    "subtitle": "Find the next suitable facility ahead in your direction of travel",
+    "directionOfTravel": "Direction of travel:",
+    "scanning": "Scanning ahead...",
+    "error": "Failed to load predictions. Please try again.",
+    "facilitiesAhead": "Facilities to the {{direction}}",
+    "nextFacilitiesMatching": "Next facilities matching your \"{{name}}\" preferences",
+    "noFacilitiesAhead": "No facilities ahead",
+    "noFacilitiesDescription": "No suitable facilities found {{direction}} of your current location matching \"{{name}}\" preferences.",
+    "tryAnotherDirection": "Try Another Direction",
+    "openNow": "Open now",
+    "open24h": "Open 24h",
+    "checkHours": "Check hours",
+    "free": "Free",
+    "minWalk": "~{{minutes}} min walk"
+  },
+  "admin": {
+    "approveFacility": "Approve Facility",
+    "rejectFacility": "Reject Facility",
+    "editFacility": "Edit Facility",
+    "removePhoto": "Remove Photo",
+    "removeReview": "Remove Review",
+    "markResolved": "Mark Report Resolved"
+  },
+  "gdpr": {
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "accountDeletion": "Delete Account",
+    "dataExport": "Export My Data",
+    "deleteReview": "Delete Review",
+    "deletePhoto": "Delete Photo",
+    "contactEmail": "Contact for privacy requests",
+    "marketingConsent": "I agree to receive marketing emails"
+  }
+}

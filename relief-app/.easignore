@@ -1,0 +1,62 @@
+# ============================================================
+# Project "Relief" — EAS Build Ignore
+# Prevents accidental secret leakage during EAS Builds
+# ============================================================
+
+# Dependencies
+node_modules/
+
+# Environment variables — NEVER upload .env files to EAS
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Expo build artifacts
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Native builds
+android/
+ios/
+.kotlin/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Metro
+.metro-health-check*
+
+# Debug logs
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# macOS
+.DS_Store
+*.pem
+
+# TypeScript
+*.tsbuildinfo
+
+# Supabase — migrations are handled separately
+supabase/
+
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.github/
+.vscode/
+.idea/
+
+# Documentation & planning
+PLAN.md
+*.md

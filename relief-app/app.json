@@ -1,0 +1,60 @@
+{
+  "expo": {
+    "name": "Relief",
+    "slug": "relief-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "scheme": "relief",
+    "splash": {
+      "backgroundColor": "#F8FAFC",
+      "resizeMode": "contain"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.relief.app",
+      "config": {
+        "googleMapsApiKey": "$EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN"
+      },
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Relief needs your location to find nearby facilities.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Relief needs your location to find nearby facilities."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#F8FAFC",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.relief.app",
+      "config": {
+        "googleMaps": {
+          "apiKey": "$EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN"
+        }
+      },
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-location",
+      "expo-notifications",
+      "expo-secure-store",
+      "expo-auth-session",
+      "expo-web-browser"
+    ],
+    "extra": {
+      "supabaseUrl": "$EXPO_PUBLIC_SUPABASE_URL",
+      "supabaseAnonKey": "$EXPO_PUBLIC_SUPABASE_ANON_KEY",
+      "mapboxAccessToken": "$EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN"
+    }
+  }
+}
