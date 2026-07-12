@@ -1,32 +1,12 @@
-# Project "Placename" — Agent Plan & Progress
+# Plan superseded
 
-## App Overview
-React Native + Expo mobile app for finding safe, clean, and suitable toilet facilities. Backend powered by Supabase.
+This file has been superseded by the documentation in `docs/`.
 
----
-
-## Phase 0: Project Scaffolding & Base Setup
-
-- [x] **0.1** Initialize Expo project with TypeScript
-- [x] **0.2** Configure ESLint, Prettier, and project structure
-- [x] **0.3** Install core dependencies (React Navigation, Supabase client, Mapbox, etc.)
-- [x] **0.4** Set up Supabase project and initial schema (migrations)
-- [x] **0.5** Create theme system (colors, fonts, typography) from roadmap design language
-- [x] **0.6** Set up environment variables (.env, .env.example)
-- [x] **0.7** Create reusable UI component library (Button, Card, Input, Badge)
-- [x] **0.8** Set up navigation structure (AuthStack, MainTab)
-- [x] **0.9** Create base screen templates (Login, Map, List, FacilityDetail, Profile)
-- [x] **0.10** Configure Expo Notifications
-
----
-
-## Phase 1: MVP — UK Launch
-
-### Authentication
-- [x] **1.1** Email login screen and logic
-- [x] **1.2** Google OAuth login
-- [x] **1.3** Apple OAuth login
-- [x] **1.4** Session management and auth state persistence
+See:
+- **Current state:** `docs/CURRENT_STATE.md`
+- **Roadmap:** `docs/ROADMAP.md`
+- **Architecture:** `docs/ARCHITECTURE.md`
+- **Documentation index:** `docs/README.md`
 
 ### Map & List Screens
 - [x] **1.5** Current location permission and detection
