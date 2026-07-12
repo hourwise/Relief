@@ -1,0 +1,17 @@
+# Root .gitignore — Project "Relief"
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Dependencies
+node_modules/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+logs/
