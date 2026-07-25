@@ -1,7 +1,7 @@
 # Relief — Proposed Data Model
 
 > **Status: Proposed — not yet deployed.**  
-> No Supabase project exists. These tables, views, RPCs, storage buckets, and Edge Functions are inferred from TypeScript types, service queries, and SQL migration files. Fields marked `TBD` are not yet defined in any source file.
+> A development Supabase project and schema push are user-reported as of 2026-07-25, but this document has not been independently verified against the remote database. These tables, views, RPCs, storage buckets, and Edge Functions are inferred from TypeScript types, service queries, and SQL migration files. Fields marked `TBD` are not yet defined in any source file.
 
 ---
 
@@ -13,7 +13,7 @@
 
 **Referencing code:** `services/facilities.ts`, `services/routePlanning.ts`, `services/offlineMaps.ts`, `services/aiRecommendations.ts`, `services/notificationAlerts.ts`, `types/index.ts`
 
-**Migration:** `supabase/migrations/001_initial_schema.sql` — exists, not deployed
+**Migration:** `supabase/migrations/001_initial_schema.sql` — exists locally; schema push user-reported, remote verification pending
 
 | Column | Type | Notes |
 |--------|------|-------|

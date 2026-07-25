@@ -1,7 +1,7 @@
 # Relief — Accounts and Environment Setup Register
 
-**Last updated:** 2026-07-12  
-**Status:** No accounts or services are currently configured. All are pending.
+**Last updated:** 2026-07-25  
+**Status:** Development Supabase and Android Google Maps setup are in progress; end-to-end app verification is pending.
 
 This document records every external service the project requires, its purpose, current state, and setup dependencies. It contains **no secrets, keys, or credentials** — only placeholders and classifications.
 
@@ -24,7 +24,7 @@ This document records every external service the project requires, its purpose, 
 | Item | Detail |
 |------|--------|
 | **Purpose** | Backend: Postgres database, Auth, Storage, Edge Functions |
-| **Current state** | BLOCKED — no project created |
+| **Current state** | BACKEND-DEPENDENT — development project connected and schemas pushed per user report; app workflows not yet smoke-tested |
 | **Intended owner** | Project email |
 | **Environments needed** | Development, Staging, Production (separate projects recommended) |
 | **Setup dependencies** | Project email |
@@ -61,16 +61,16 @@ This document records every external service the project requires, its purpose, 
 | Item | Detail |
 |------|--------|
 | **Purpose** | Map display, geocoding, potentially directions |
-| **Current state** | BLOCKED — provider not confirmed (see D01) |
-| **Current code default** | Google Maps via `react-native-maps` |
+| **Current state** | BACKEND-DEPENDENT — Google Maps selected for Android MVP; Android SDK key present locally; build smoke test pending |
+| **Current code default** | Google Maps via `react-native-maps` on Android; iOS default provider for now |
 | **Intended owner** | Project email |
-| **Setup dependencies** | D01 decision; billing account |
-| **Docs** | Google Maps: `https://developers.google.com/maps`; Mapbox: `https://docs.mapbox.com/` |
+| **Setup dependencies** | Billing-enabled Google Cloud project; Android Maps SDK enabled; API key restricted to Android package/SHA-1 |
+| **Docs** | Google Maps: `https://developers.google.com/maps` |
 
 **Variables:**
 | Variable | Classification | Notes |
 |----------|---------------|-------|
-| `EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN` (current name) | Public (client bundle) | Confusingly named — used for Google Maps API key in `app.json`. Rename to match provider. |
+| `EXPO_PUBLIC_GOOGLE_MAPS_API_KEY` | Public (client/build config) | Android Maps SDK API key consumed by `app.config.js`. Restrict in Google Cloud to Android apps and Maps SDK for Android only. |
 
 ---
 
@@ -208,15 +208,15 @@ This document records every external service the project requires, its purpose, 
 
 ## Environment Variable Catalogue
 
-Based on variables found in `src/utils/env.ts`, `app.json`, `.env.example`, and service files.
+Based on variables found in `src/utils/env.ts`, `app.json`, `app.config.js`, `.env.example`, and service files.
 
 ### Present in repository
 
 | Variable | Where Used | Classification | Status |
 |----------|-----------|---------------|--------|
-| `EXPO_PUBLIC_SUPABASE_URL` | `env.ts`, `app.json` | Public | Placeholder in `.env.example` |
-| `EXPO_PUBLIC_SUPABASE_ANON_KEY` | `env.ts`, `app.json` | Public | Placeholder in `.env.example` |
-| `EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN` | `env.ts`, `app.json` | Public | Placeholder in `.env.example`; misleading name |
+| `EXPO_PUBLIC_SUPABASE_URL` | `env.ts`, `app.config.js` | Public | Placeholder in `.env.example`; local `.env` key name present |
+| `EXPO_PUBLIC_SUPABASE_ANON_KEY` | `env.ts`, `app.config.js` | Public | Placeholder in `.env.example`; local `.env` key name present |
+| `EXPO_PUBLIC_GOOGLE_MAPS_API_KEY` | `env.ts`, `app.config.js` | Public | Android Maps SDK key; placeholder in `.env.example`; local `.env` key name present |
 | `EXPO_PUBLIC_REVENUECAT_API_KEY_IOS` | `revenuecat.ts` | Public | Placeholder in `.env.example` |
 | `EXPO_PUBLIC_REVENUECAT_API_KEY_ANDROID` | `revenuecat.ts` | Public | Placeholder in `.env.example` |
 | `EXPO_PUBLIC_W3W_API_KEY` | `locationSharing.ts` | Public | Not in `.env.example` |
@@ -227,6 +227,6 @@ Based on variables found in `src/utils/env.ts`, `app.json`, `.env.example`, and 
 |----------|-------------|---------------|
 | `SUPABASE_SERVICE_ROLE_KEY` | Edge Functions | **Server-only secret** |
 | RevenueCat webhook shared secret | `revenuecat-webhook` Edge Function | **Server-only secret** |
-| Google Maps API key (if provider confirmed) | `app.json` | Public (rename from current MAPBOX variable) |
+| Google Maps iOS API key | `app.config.js` future config | Public | Deferred until iOS Google Maps is intentionally enabled |
 | Push notification credentials (FCM/APNs) | Push server / Edge Function | **Server-only secret** |
 | Sentry DSN | Error monitoring | Public (client bundle) |

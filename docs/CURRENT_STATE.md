@@ -1,8 +1,8 @@
 # Relief — Current State Assessment
 
-**Last verified:** 2026-07-12  
-**Verification method:** Full repository audit — all source files, configuration, migrations, and documentation read  
-**TypeScript check:** Run (`npx tsc --noEmit`) — 11 errors, all in Supabase Deno Edge Functions (expected, Deno runtime not available)  
+**Last verified:** 2026-07-25  
+**Verification method:** Targeted configuration/documentation update after user-reported Supabase schema push and Android Google Maps SDK key setup; app smoke testing still pending  
+**TypeScript check:** Not rerun in this pass; previous run (`npx tsc --noEmit`) showed 11 errors, all in Supabase Deno Edge Functions (expected, Deno runtime not available)  
 **Build check:** Not run (no EAS/local build configured)  
 **Test suite:** Not run (no test scripts exist)
 
@@ -10,9 +10,9 @@
 
 ## Executive Summary
 
-Relief is a **frontend-heavy prototype** built with React Native and Expo SDK 56. The application has 18 screens, 13 service modules, comprehensive UI components, and a well-structured navigation system. Four Supabase SQL migration files define the intended database schema.
+Relief is a **frontend-heavy prototype** built with React Native and Expo SDK 56. The application has 18 screens, 13 service modules, comprehensive UI components, and a well-structured navigation system. Four Supabase SQL migration files define the intended database schema, and the development Supabase schema push is user-reported but not yet app-verified.
 
-**No backend is connected.** Supabase, mapping services, RevenueCat, what3words, notifications infrastructure, storage, moderation pipeline, and all other external services are not configured. The application cannot function as a usable product without a backend.
+Backend setup has started. Supabase development URL/anon key names are present locally, and Android Google Maps SDK configuration is now aligned through Expo app config to `EXPO_PUBLIC_GOOGLE_MAPS_API_KEY`. RevenueCat, what3words, notifications infrastructure, storage, moderation pipeline, and most other external services are still not configured. The application is not yet VERIFIED end-to-end.
 
 The codebase demonstrates a clear product vision and substantial implementation effort, but the gap between the UI code and a working end-to-end product is significant.
 
@@ -33,7 +33,7 @@ The codebase demonstrates a clear product vision and substantial implementation 
 | **Testing** | None — no test scripts, no test files, no CI configuration |
 | **Linting/formatting** | None — no ESLint, Prettier, or formatting scripts configured |
 | **CI/CD** | None — no EAS Build/Submit pipeline, no GitHub Actions |
-| **Environment config** | Template only — `.env.example` exists, no `.env` file, no startup validation |
+| **Environment config** | Development `.env` exists locally; `.env.example` documents expected public variables; no startup validation |
 
 ---
 
@@ -66,20 +66,20 @@ The codebase demonstrates a clear product vision and substantial implementation 
 
 | Component | Status | Detail |
 |-----------|--------|--------|
-| Supabase project | BLOCKED | No project created or connected |
-| Database tables | PLANNED | 4 migration files exist but are not deployed |
-| Row Level Security | PLANNED | RLS policies defined in migrations but not applied |
-| Auth (email/OAuth) | BACKEND-DEPENDENT | Code calls Supabase Auth; no project to authenticate against |
+| Supabase project | BACKEND-DEPENDENT | Development project connected per user report; app workflows not yet smoke-tested |
+| Database tables | BACKEND-DEPENDENT | Schemas amended and pushed per user report; seed data and client queries not yet verified |
+| Row Level Security | BACKEND-DEPENDENT | RLS policies defined in migrations and user-reported pushed; behaviour not yet verified |
+| Auth (email/OAuth) | BACKEND-DEPENDENT | Code calls Supabase Auth; configured project needs smoke testing |
 | Storage buckets | PLANNED | Code references `facility-photos` bucket; bucket does not exist |
 | Edge Functions | PLANNED | 2 Deno functions written; not deployed |
-| Anon key | BLOCKED | No key; defaults to empty string in `env.ts` |
+| Anon key | BACKEND-DEPENDENT | Key name present in local `.env`; value not read; client initialisation needs smoke testing |
 | Service role key | BLOCKED | Not present in codebase (correct) |
 
 ### External services
 
 | Service | Status | Detail |
 |---------|--------|--------|
-| Map provider | BACKEND-DEPENDENT | `react-native-maps` with `PROVIDER_GOOGLE`; no API key configured |
+| Map provider | BACKEND-DEPENDENT | Google Maps selected for Android MVP; Android SDK API key name present in local `.env`; Android build smoke test pending; iOS Google Maps not configured |
 | RevenueCat | BLOCKED | No API keys; falls through to "mock mode" console warning |
 | what3words | MOCKED | Returns simulated words when no API key; fallback words are deterministic from coordinates |
 | Plus Codes | CLIENT LOGIC IMPLEMENTED | Simplified client-side algorithm; unknown accuracy vs official library |
@@ -122,15 +122,15 @@ From `src/utils/env.ts`:
 
 ## Current Blockers
 
-1. **No Supabase project** — Blocks all data operations, authentication, storage, and edge functions
-2. **No mapping API key** — Blocks map rendering and geocoding
-3. **No RevenueCat configuration** — Blocks monetisation
-4. **Auth-gated navigation** — Contradicts "no login required for basic search" policy
-5. **No seed data** — No facility data exists for any geography
-6. **No moderation pipeline** — Photo uploads lack EXIF stripping and face blurring
+1. **Supabase smoke testing pending** — Development project/schema are user-reported connected, but app reads/auth/storage workflows are not VERIFIED
+2. **Auth-gated navigation** — Contradicts "no login required for basic search" policy
+3. **No verified seed data** — Facility discovery cannot be trusted until one launch area is populated and checked
+4. **No RevenueCat configuration** — Blocks monetisation
+5. **No storage bucket/media pipeline** — Photo uploads lack bucket setup, EXIF stripping, and face blurring
+6. **No moderation pipeline** — Community submissions cannot be reviewed safely
 7. **what3words simulation** — Returns fake location codes (safety risk)
 8. **No testing infrastructure** — No way to verify correctness
-9. **Undecided map provider** — Google Maps vs Mapbox name confusion in config
+9. **iOS map configuration deferred** — Current Google Maps setup is Android-only for development
 
 ---
 
@@ -150,12 +150,11 @@ From `src/utils/env.ts`:
 
 ## Safe Next Action
 
-**Complete the decisions in `docs/DECISIONS_NEEDED.md`** before any implementation, starting with:
+**Run the first backend/map smoke test on Android**, starting with:
 
-1. Confirm map provider (Google Maps via `react-native-maps` is the current implementation)
-2. Decide whether urgent discovery must work without authentication
-3. Create a Supabase project for development
-4. Apply existing migrations to a development database
-5. Load seed data for a single UK town
-6. Add a `.env` file with development values
-7. Verify the map renders with real coordinates and a valid API key
+1. Verify Expo config resolves the Android Google Maps SDK key for a development build
+2. Load seed data for a single UK town
+3. Replace/mock-bypass the hardcoded list data with Supabase reads for the smoke path
+4. Verify map pins render with real coordinates from Supabase
+5. Verify "Need One Now" can find the nearest seeded facility
+6. Decide and implement unauthenticated access for basic emergency discovery

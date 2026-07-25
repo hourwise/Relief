@@ -1,6 +1,6 @@
 # Relief — Decisions Needed
 
-**Last updated:** 2026-07-12  
+**Last updated:** 2026-07-25  
 **Status:** All decisions are open unless marked resolved.
 
 Decisions are ordered by blocker level. A decision at BLOCKER level must be resolved before the next implementation phase can proceed.
@@ -9,21 +9,21 @@ Decisions are ordered by blocker level. A decision at BLOCKER level must be reso
 
 ## BLOCKER — Cannot proceed without resolution
 
-### D01: Mapping Provider
+### D01: Mapping Provider — RESOLVED
 
-**Context:** The codebase uses `react-native-maps` with `PROVIDER_GOOGLE` (Google Maps). The environment variable is named `EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN`. The `app.json` maps this token into the `googleMapsApiKey` field. The README and design docs reference Mapbox.
+**Context:** The codebase uses `react-native-maps` with `PROVIDER_GOOGLE` (Google Maps). The previous environment variable was named `EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN`, and `app.json` mapped it into Google Maps fields.
 
 **Options:**
 - **A) Google Maps** — Already the code default. Requires Google Cloud billing account. Different pricing model. `react-native-maps` supports it natively.
 - **B) Mapbox** — Would require switching to `@rnmapbox/maps` or Mapbox GL. Different pricing/packaging. Stronger privacy reputation.
 - **C) Apple Maps (iOS) + Google Maps (Android)** — Platform-native approach using `react-native-maps` default providers.
 
-**Recommendation:** Option A (Google Maps) — least code change. Rename env variable to `EXPO_PUBLIC_GOOGLE_MAPS_API_KEY`. Update all references.
+**Decision:** Option A for Android MVP development. Use Google Maps via `react-native-maps` on Android with `EXPO_PUBLIC_GOOGLE_MAPS_API_KEY`. iOS remains on the default provider for now; iOS Google Maps is deferred until an iOS key is intentionally configured.
 
-**Consequences:** Google Cloud account required. Pricing based on Maps API usage. Privacy considerations for location data sent to Google.
+**Consequences:** Google Cloud billing-enabled project is required even during development. Keep only Maps SDK for Android enabled for now; do not enable Geocoding, Places, Routes, or Directions until explicitly needed. Restrict the key to the Android package/SHA-1 pair.
 
-**Blocker level:** BLOCKER  
-**Owner:** TBD
+**Blocker level:** RESOLVED  
+**Owner:** Project owner
 
 ---
 
@@ -231,7 +231,7 @@ Decisions are ordered by blocker level. A decision at BLOCKER level must be reso
 
 | ID | Decision | Blocker Level | Status |
 |----|----------|---------------|--------|
-| D01 | Mapping provider | BLOCKER | Open |
+| D01 | Mapping provider | RESOLVED | Google Maps SDK for Android MVP development |
 | D02 | Unauthenticated access | BLOCKER | Open |
 | D03 | Launch geography | BLOCKER | Open |
 | D04 | Seed data source | BLOCKER | Open |

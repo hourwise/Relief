@@ -25,4 +25,4 @@ Before any implementation work on this project, you MUST read these documents in
 7. **Update documentation** when implementation status changes — especially `CURRENT_STATE.md` and `FEATURE_MATRIX.md`.
 8. **Consult Expo SDK v56 docs** at the URL above before changing Expo APIs.
 9. **Use the status vocabulary** from `docs/README.md` (VERIFIED, UI IMPLEMENTED, MOCKED, BACKEND-DEPENDENT, BLOCKED, PLANNED, DEFERRED). Never use "Complete", "Built", or "✅" unless a feature is genuinely VERIFIED end-to-end.
-10. **This is a pre-backend prototype.** No Supabase project, mapping API key, RevenueCat account, or any external service is connected. Do not write code that assumes otherwise.
+10. **This is a partially connected prototype.** Development Supabase and Android Google Maps setup may exist, but workflows are not VERIFIED end-to-end. RevenueCat, what3words, notifications, storage, moderation, and production services are not connected. Do not write code that assumes unverified services work.

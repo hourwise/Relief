@@ -1,7 +1,7 @@
 # Relief — Feature Matrix
 
-**Last verified:** 2026-07-12  
-**Verification method:** Source code audit of all files under `relief-app/src/`
+**Last verified:** 2026-07-25  
+**Verification method:** Targeted source/config audit for Supabase and Android Google Maps setup; app smoke testing still pending
 
 Each feature is assessed against the current repository, not against plans or intentions.
 
@@ -11,10 +11,10 @@ Each feature is assessed against the current repository, not against plans or in
 
 | Feature | Surface | Files | Data Source | Backend Dependency | Status | Evidence | Risk | Next Step |
 |---------|---------|-------|-------------|-------------------|--------|----------|------|-----------|
-| Map view with pins | MapScreen | `screens/MapScreen.tsx` | Supabase `facilities` table | Supabase | BACKEND-DEPENDENT | `fetchNearbyFacilities()` calls Supabase; uses `PROVIDER_GOOGLE` | Cannot render without Supabase project and API key | Create Supabase project; add seed data |
+| Map view with pins | MapScreen | `screens/MapScreen.tsx` | Supabase `facilities` table | Supabase + Android Google Maps SDK | BACKEND-DEPENDENT | `fetchNearbyFacilities()` calls Supabase; Android uses `PROVIDER_GOOGLE`; `app.config.js` expects `EXPO_PUBLIC_GOOGLE_MAPS_API_KEY` | Android key and Supabase setup are user-reported; map/data path not yet smoke-tested | Load seed data; run Android build smoke test |
 | Map clustering | MapScreen | `screens/MapScreen.tsx` | Client-side calculation | None | CLIENT LOGIC IMPLEMENTED | `clusterFacilities()` groups by coordinate proximity | Grid-based, not true pixel-distance clustering | Test with real data densities |
 | List view | ListScreen | `screens/ListScreen.tsx` | Hardcoded array `MOCK_FACILITIES` | None | MOCKED | 3 Liverpool facilities hardcoded; no Supabase query | Shows fake data; no distance sorting | Replace with Supabase query when backend available |
-| Search by town/postcode | MapScreen | `screens/MapScreen.tsx` | Supabase `facilities` table | Supabase | BACKEND-DEPENDENT | `searchFacilities()` queries Supabase | Cannot search without backend | Implement after Supabase connection |
+| Search by town/postcode | MapScreen | `screens/MapScreen.tsx` | Supabase `facilities` table | Supabase | BACKEND-DEPENDENT | `searchFacilities()` queries Supabase | Requires seeded data and verified Supabase reads | Smoke test after seed data |
 | Facility detail | FacilityDetailScreen | `screens/FacilityDetailScreen.tsx` | Passed via navigation params | Supabase (for photos, reports) | UI IMPLEMENTED | Screen renders detail layout | Unknown if all fields display correctly | Verify with real facility data |
 | "Need One Now" emergency | MapScreen | `screens/MapScreen.tsx` | Supabase `facilities` table | Supabase | BACKEND-DEPENDENT | `fetchClosestFacility()` + `estimateWalkingTime()` | **Cannot be accessed without login** — auth gate blocks unauthenticated users | Fix auth gate; allow unauthenticated emergency access |
 | Directions deep links | FacilityDetailScreen | `screens/FacilityDetailScreen.tsx` | Platform maps URLs | Google/Apple/Waze apps | UI IMPLEMENTED | Deep-link buttons exist | Requires maps app installed | Test on device |
@@ -45,8 +45,8 @@ Each feature is assessed against the current repository, not against plans or in
 
 | Feature | Surface | Files | Data Source | Backend Dependency | Status | Evidence | Risk | Next Step |
 |---------|---------|-------|-------------|-------------------|--------|----------|------|-----------|
-| Email sign-in | LoginScreen | `screens/LoginScreen.tsx`, `services/auth.ts` | Supabase Auth | Supabase Auth | BACKEND-DEPENDENT | `signInWithPassword()` calls Supabase | Cannot authenticate without Supabase project | Create Supabase project; enable email auth |
-| Google OAuth | LoginScreen | `screens/LoginScreen.tsx`, `services/auth.ts` | Supabase Auth + Google | Supabase Auth, Google Cloud | BACKEND-DEPENDENT | `signInWithOAuth('google')` with WebBrowser flow | Requires Google Cloud project + Supabase config | Configure after Supabase project exists |
+| Email sign-in | LoginScreen | `screens/LoginScreen.tsx`, `services/auth.ts` | Supabase Auth | Supabase Auth | BACKEND-DEPENDENT | `signInWithPassword()` calls Supabase | Supabase project is user-reported connected; Auth settings not yet smoke-tested | Enable/verify email auth |
+| Google OAuth | LoginScreen | `screens/LoginScreen.tsx`, `services/auth.ts` | Supabase Auth + Google | Supabase Auth, Google Cloud OAuth | BACKEND-DEPENDENT | `signInWithOAuth('google')` with WebBrowser flow | Requires Google OAuth configuration separate from Android Maps SDK key | Configure only after email auth/basic browse path is verified |
 | Apple OAuth | LoginScreen | `screens/LoginScreen.tsx`, `services/auth.ts` | Supabase Auth + Apple | Supabase Auth, Apple Developer | BACKEND-DEPENDENT | `signInWithOAuth('apple')` with WebBrowser flow | Requires Apple Developer account | Configure for iOS |
 | Session persistence | AppNavigator | `navigation/AppNavigator.tsx`, `services/auth.ts` | Supabase Auth | Supabase Auth | BACKEND-DEPENDENT | `onAuthStateChange()` listener + `persistSession: true` | Session may not restore without Supabase | Verify after Supabase connection |
 | Auth gate (blocks unauthenticated) | AppNavigator | `navigation/AppNavigator.tsx` | Supabase Auth | Supabase Auth | UI IMPLEMENTED | Root navigator shows LoginScreen when no session | **Blocks urgent access for unauthenticated users** | Add unauthenticated browse path |

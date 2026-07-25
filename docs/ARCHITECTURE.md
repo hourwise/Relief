@@ -1,12 +1,12 @@
 # Relief — Architecture
 
-**Last updated:** 2026-07-12
+**Last updated:** 2026-07-25
 
 ---
 
 ## Current Architecture (As-Is)
 
-The application is a **standalone React Native + Expo frontend** with no connected backend services.
+The application is a **React Native + Expo frontend** with development backend setup in progress. Supabase schema deployment and Android Google Maps key setup are user-reported, but the app workflows are not yet VERIFIED end-to-end.
 
 ```mermaid
 graph TD
@@ -32,19 +32,19 @@ graph TD
         ASYNC --> LKV[(AsyncStorage KV)]
     end
 
-    subgraph "External — NOT CONNECTED ❌"
-        SUPABASE[Supabase]
-        MAPS[Mapping Service]
-        RCAT[RevenueCat]
-        W3W[what3words]
+    subgraph "External — PARTIALLY CONNECTED / NOT VERIFIED"
+        SUPABASE[Supabase dev]
+        MAPS[Google Maps Android SDK]
+        RCAT[RevenueCat not configured]
+        W3W[what3words not configured]
     end
 
     NAV --> AUTH_GATE
     AUTH_GATE -->|authenticated| SCRNS
     AUTH_GATE -->|unauthenticated| LOGIN[LoginScreen]
     SCRNS --> SVCS
-    SVCS -.->|all calls fail| SUPABASE
-    SVCS -.->|no key| MAPS
+    SVCS -.->|pending smoke test| SUPABASE
+    SCRNS -.->|Android map display pending build test| MAPS
     SVCS -.->|no key| RCAT
     SVCS -.->|simulated| W3W
 ```
@@ -58,8 +58,8 @@ graph TD
 | **Navigation** | React Navigation 7 | Native stack + bottom tabs; auth-gated root |
 | **State** | React Context (Filters, Subscription) + local state | No global state library |
 | **Persistence** | AsyncStorage (alert prefs), expo-sqlite (offline data), expo-secure-store | No encrypted remote storage |
-| **Mapping** | `react-native-maps` with `PROVIDER_GOOGLE` | Google Maps provider; Mapbox token variable name used in config |
-| **Auth** | Supabase Auth client (`@supabase/supabase-js`) | Client initialised with empty-string fallbacks |
+| **Mapping** | `react-native-maps` with `PROVIDER_GOOGLE` on Android | Google Maps selected for Android MVP; `EXPO_PUBLIC_GOOGLE_MAPS_API_KEY` is the expected env var; iOS remains default provider for now |
+| **Auth** | Supabase Auth client (`@supabase/supabase-js`) | Development Supabase URL/anon key are expected in `.env`; auth workflow pending smoke test |
 | **Payments** | RevenueCat SDK (`react-native-purchases`) | Falls to console warning without API keys |
 | **i18n** | i18next + react-i18next | English only; structure ready for expansion |
 | **Fonts** | Inter + Plus Jakarta Sans (Google Fonts) | Loaded via `expo-font` |
@@ -90,8 +90,8 @@ RootNavigator
 
 | Service | Primary Dependency | Current Behaviour |
 |---------|-------------------|-------------------|
-| `supabase.ts` | Supabase client | Initialised with empty URL/key; all queries will fail |
-| `auth.ts` | Supabase Auth | Calls fail without Supabase project |
+| `supabase.ts` | Supabase client | Uses `EXPO_PUBLIC_SUPABASE_URL` and `EXPO_PUBLIC_SUPABASE_ANON_KEY`; development project connection is user-reported, not yet app-verified |
+| `auth.ts` | Supabase Auth | Calls Supabase Auth; workflow pending smoke test |
 | `facilities.ts` | Supabase | Queries `facilities` table with spatial + filter constraints |
 | `community.ts` | Supabase Auth + Storage | Submission, photo upload, report, correction operations |
 | `favourites.ts` | Supabase | CRUD on `favourites` table |
@@ -180,21 +180,21 @@ graph TD
 
 | Component | Technology | Purpose | Status |
 |-----------|-----------|---------|--------|
-| **Mobile Client** | React Native + Expo | User-facing application | ✅ UI implemented |
-| **Supabase Auth** | Supabase Auth (GoTrue) | Email, Google, Apple authentication | 🔜 Proposed |
-| **Postgres + PostGIS** | Supabase Postgres | Spatial facility data, user data, moderation queues | 🔜 Proposed |
-| **Row Level Security** | Supabase RLS | Per-table access control | 🔜 Proposed (policies in migrations) |
-| **Supabase Storage** | S3-compatible | Photo uploads, user content | 🔜 Proposed |
-| **Edge Functions** | Deno (Supabase) | Report expiry, RevenueCat webhook, media processing | 🔜 Proposed (code written) |
-| **Mapping Provider** | Google Maps (via `react-native-maps`) | Map display, geocoding | 🔜 Proposed (provider decided in code; config name mismatch) |
-| **Routing Provider** | TBD | Road-aware route calculation | 🔜 Proposed (not yet selected) |
-| **RevenueCat** | RevenueCat SDK + webhook | Subscription management, server-side validation | 🔜 Proposed (code written) |
-| **what3words** | W3W API | Coordinate-to-words conversion | 🔜 Proposed (optional) |
-| **Push Notifications** | Expo Push + FCM/APNs | Background alerts | 🔜 Proposed |
-| **Media Processing** | Edge Function + external service | EXIF stripping, face blurring, moderation | 🔜 Proposed |
-| **Admin Dashboard** | Web app (TBD) | Moderation, user management, analytics | 🔜 Proposed |
-| **CI/CD** | EAS Build + Submit | Build, test, deploy pipeline | 🔜 Proposed |
-| **Monitoring** | Sentry/PostHog | Error tracking, analytics | 🔜 Proposed |
+| **Mobile Client** | React Native + Expo | User-facing application | UI IMPLEMENTED |
+| **Supabase Auth** | Supabase Auth (GoTrue) | Email, Google, Apple authentication | BACKEND-DEPENDENT — smoke test pending |
+| **Postgres + PostGIS** | Supabase Postgres | Spatial facility data, user data, moderation queues | BACKEND-DEPENDENT — schema push user-reported |
+| **Row Level Security** | Supabase RLS | Per-table access control | BACKEND-DEPENDENT — policy behaviour not verified |
+| **Supabase Storage** | S3-compatible | Photo uploads, user content | PLANNED |
+| **Edge Functions** | Deno (Supabase) | Report expiry, RevenueCat webhook, media processing | PLANNED — code written |
+| **Mapping Provider** | Google Maps (via `react-native-maps`) | Android map display | BACKEND-DEPENDENT — Android key configured locally; build smoke test pending |
+| **Routing Provider** | TBD | Road-aware route calculation | PLANNED |
+| **RevenueCat** | RevenueCat SDK + webhook | Subscription management, server-side validation | PLANNED — code written |
+| **what3words** | W3W API | Coordinate-to-words conversion | DEFERRED |
+| **Push Notifications** | Expo Push + FCM/APNs | Background alerts | PLANNED |
+| **Media Processing** | Edge Function + external service | EXIF stripping, face blurring, moderation | PLANNED |
+| **Admin Dashboard** | Web app (TBD) | Moderation, user management, analytics | PLANNED |
+| **CI/CD** | EAS Build + Submit | Build, test, deploy pipeline | PLANNED |
+| **Monitoring** | Sentry/PostHog | Error tracking, analytics | PLANNED |
 
 ### Target Environments
 
@@ -210,9 +210,9 @@ graph TD
 
 See `docs/DECISIONS_NEEDED.md` for full decision log. Critical architecture decisions:
 
-1. **Mapping provider** — Code uses Google Maps via `react-native-maps`; config variable named `MAPBOX_ACCESS_TOKEN`. Clarify and align.
-2. **Routing provider** — No road-routing service selected. Route planner currently uses straight-line Haversine.
-3. **Geocoding** — Currently uses facilities table lookup. Needs a proper geocoding API.
-4. **Photo processing** — EXIF stripping and face blurring architecture not designed.
-5. **Admin panel** — No technology or hosting decision made.
-6. **Environment separation** — Development, staging, production Supabase projects needed.
+1. **Routing provider** — No road-routing service selected. Route planner currently uses straight-line Haversine.
+2. **Geocoding** — Currently uses facilities table lookup. Avoid paid geocoding APIs until explicitly needed.
+3. **Photo processing** — EXIF stripping and face blurring architecture not designed.
+4. **Admin panel** — No technology or hosting decision made.
+5. **Environment separation** — Development Supabase exists per user report; staging and production separation still needed.
+6. **Unauthenticated urgent access** — Basic "Need One Now" discovery still requires a navigation decision and implementation.

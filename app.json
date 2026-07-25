@@ -14,9 +14,6 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.relief.app",
-      "config": {
-        "googleMapsApiKey": "$EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN"
-      },
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "Relief needs your location to find nearby facilities.",
         "NSLocationAlwaysAndWhenInUseUsageDescription": "Relief needs your location to find nearby facilities."
@@ -31,11 +28,6 @@
       },
       "predictiveBackGestureEnabled": false,
       "package": "com.relief.app",
-      "config": {
-        "googleMaps": {
-          "apiKey": "$EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN"
-        }
-      },
       "permissions": [
         "ACCESS_FINE_LOCATION",
         "ACCESS_COARSE_LOCATION"
@@ -53,8 +45,7 @@
     ],
     "extra": {
       "supabaseUrl": "$EXPO_PUBLIC_SUPABASE_URL",
-      "supabaseAnonKey": "$EXPO_PUBLIC_SUPABASE_ANON_KEY",
-      "mapboxAccessToken": "$EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN"
+      "supabaseAnonKey": "$EXPO_PUBLIC_SUPABASE_ANON_KEY"
     }
   }
 }

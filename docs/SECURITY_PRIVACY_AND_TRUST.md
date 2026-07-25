@@ -66,14 +66,14 @@ RevenueCat ─── webhook ─── Supabase Edge Function (entitlement sync)
 
 | Requirement | Current State |
 |-------------|---------------|
-| RLS on every table | 🔶 DEFINED IN MIGRATIONS — not deployed |
-| Default deny-all | 🔶 DEFINED IN MIGRATIONS — not deployed |
-| Users edit own data only | 🔶 DEFINED IN MIGRATIONS — not deployed |
-| Public facility data read-only | 🔶 DEFINED IN MIGRATIONS — not deployed |
-| Facility creation → moderation queue | 🔶 DEFINED IN MIGRATIONS — not deployed |
-| Admin actions via service_role only | 🔶 DEFINED IN MIGRATIONS — not deployed |
+| RLS on every table | BACKEND-DEPENDENT — defined in migrations; schema push user-reported; behaviour not verified |
+| Default deny-all | BACKEND-DEPENDENT — defined in migrations; schema push user-reported; behaviour not verified |
+| Users edit own data only | BACKEND-DEPENDENT — defined in migrations; schema push user-reported; behaviour not verified |
+| Public facility data read-only | BACKEND-DEPENDENT — defined in migrations; schema push user-reported; behaviour not verified |
+| Facility creation → moderation queue | BACKEND-DEPENDENT — defined in migrations; schema push user-reported; behaviour not verified |
+| Admin actions via service_role only | BACKEND-DEPENDENT — defined in migrations; schema push user-reported; behaviour not verified |
 
-**Evidence:** Migration files contain RLS policy definitions. See `supabase/migrations/`.
+**Evidence:** Migration files contain RLS policy definitions. See `supabase/migrations/`. Remote policy behaviour still needs Supabase smoke tests.
 
 ---
 
