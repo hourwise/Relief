@@ -2,5 +2,9 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true
-  }
+  },
+  "exclude": [
+    "React Native App UI (1)",
+    "supabase/functions"
+  ]
 }

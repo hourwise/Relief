@@ -10,7 +10,8 @@ import { ClusterMarker, FacilityMarker, FilterChip, PrimaryButton, SelectedFacil
 import { borderRadius, colors, mapOverlaySurface, shadows, spacing, typography } from '../theme';
 import { useLocation } from '../hooks/useLocation';
 import { useFilters } from '../context/FiltersContext';
-import { estimateWalkingTime, fetchClosestFacility, fetchViewportFacilities, searchFacilities } from '../services/facilities';
+import { fetchClosestFacility, fetchViewportFacilities, searchFacilities } from '../services/facilities';
+import { estimateWalkingTime } from '../utils/walkingTime';
 import { getOpenStatus } from '../utils/openingHours';
 import type { Facility, MapStackParamList } from '../types';
 
@@ -94,8 +95,18 @@ export const MapScreen: React.FC = () => {
     const region = { latitude: location.latitude, longitude: location.longitude, latitudeDelta: LATITUDE_DELTA, longitudeDelta: LONGITUDE_DELTA };
     setCurrentRegion(region);
     setMapInitialized(true);
-    loadFacilitiesForRegion(region);
-  }, [loadFacilitiesForRegion, location, mapInitialized]);
+  }, [location, mapInitialized]);
+
+  // A filter change should refresh the current viewport without requiring a
+  // map pan. Region changes themselves remain on the existing debounce path.
+  useEffect(() => {
+    if (!mapInitialized) return;
+    inFlightRef.current = true;
+    setLoading(true);
+    loadFacilitiesForRegion(currentRegion);
+    // currentRegion is deliberately read from the render that changed the
+    // filters; adding it here would bypass region-change debouncing.
+  }, [activeFilterCount, filters, loadFacilitiesForRegion, mapInitialized]);
 
   useEffect(() => () => { if (debounceRef.current) clearTimeout(debounceRef.current); }, []);
 

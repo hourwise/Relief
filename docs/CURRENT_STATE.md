@@ -2,9 +2,9 @@
 
 **Last verified:** 2026-07-25  
 **Verification method:** Full UK facility import completed (15,584 facilities from Toilet Map UK); database records verified; app smoke testing still pending  
-**TypeScript check:** Not rerun in this pass; previous run (`npx tsc --noEmit`) showed 11 errors, all in Supabase Deno Edge Functions (expected, Deno runtime not available)  
-**Build check:** Not run (no EAS/local build configured)  
-**Test suite:** Not run (no test scripts exist)
+**TypeScript check:** `npx tsc --noEmit` passed for the Expo app on 2026-07-25. The configuration explicitly excludes the supplied Vite-only visual reference and Deno-only Edge Functions from the React Native project check.
+**Build check:** Android prebuild completed on 2026-07-25. `npm run android` initially lacked `JAVA_HOME`; a retry with Android Studio's bundled JDK exceeded the local command timeout, so no Android build/install is VERIFIED.
+**Test suite:** `__tests__/estimateWalkingTime.test.ts` (10 assertions) and `__tests__/onboardingPreferences.test.ts` (2 assertions) passed via `tsx` on 2026-07-25; no package test script or CI exists.
 
 ---
 
@@ -44,10 +44,12 @@ The codebase demonstrates a clear product vision and substantial implementation 
 | Component | Status | Evidence |
 |-----------|--------|----------|
 | Login screen UI | UI IMPLEMENTED | `LoginScreen.tsx` — email, Google, Apple buttons rendered |
-| Map screen with markers | UI IMPLEMENTED | `MapScreen.tsx` — MapView with PROVIDER_GOOGLE, clustering, emergency button; PostGIS nearest-facility RPC wired |
+| Map screen with markers | UI IMPLEMENTED — BACKEND-DEPENDENT | `MapScreen.tsx` — real `MapView` with viewport loading, clustering, redesigned native markers, quick filters and emergency control; PostGIS nearest-facility RPC wired; Android rendering not yet smoke-tested |
 | List screen | BACKEND-DEPENDENT | `ListScreen.tsx` — Supabase query exists; 15,584 UK facilities now in database; needs client-side verification |
-| Facility detail screen | UI IMPLEMENTED | `FacilityDetailScreen.tsx` — detail layout exists |
-| Profile screen | UI IMPLEMENTED | `ProfileScreen.tsx` — user info, badges, sign-out |
+| Facility detail screen | UI IMPLEMENTED — BACKEND-DEPENDENT | `FacilityDetailScreen.tsx` — real facility fields, tri-state hours/cost, verification, reporting and coordinate directions rendered; device/data smoke test pending |
+| First-run onboarding | UI IMPLEMENTED — BACKEND-DEPENDENT | `OnboardingScreen.tsx` gates the first authenticated launch using user-scoped AsyncStorage completion; applies selected filters only; auth flow not smoke-tested |
+| Startup splash and welcome | UI IMPLEMENTED | Expo splash config plugin plus a separate native welcome layer; requires a native rebuild and release-build visual check |
+| Profile and About Relief | UI IMPLEMENTED | `ProfileScreen.tsx` retains existing actions and links to `AboutReliefScreen.tsx`, which shows the poster as standalone artwork |
 | Favourites screen | UI IMPLEMENTED | `FavouritesScreen.tsx` — list with empty state |
 | All premium screens | UI IMPLEMENTED | RoutePlanning, OfflineMaps, SavedProfiles, etc. |
 

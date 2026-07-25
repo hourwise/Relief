@@ -54,8 +54,8 @@ export const StartupWelcome: React.FC<StartupWelcomeProps> = ({ startupReady, on
 };
 
 const styles = StyleSheet.create({
-  root: { ...StyleSheet.absoluteFillObject, zIndex: 100, backgroundColor: colors.primary },
-  overlay: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(16, 66, 54, 0.34)' },
+  root: { ...StyleSheet.absoluteFill, zIndex: 100, backgroundColor: colors.primary },
+  overlay: { ...StyleSheet.absoluteFill, backgroundColor: 'rgba(16, 66, 54, 0.34)' },
   touchLayer: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: spacing['3xl'] },
   content: { alignItems: 'center', width: '100%' },
   logoCircle: { width: 104, height: 104, borderRadius: borderRadius.full, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.16)', borderWidth: 1.5, borderColor: 'rgba(255,255,255,0.48)', marginBottom: spacing['2xl'] },

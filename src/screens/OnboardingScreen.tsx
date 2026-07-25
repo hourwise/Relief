@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
+import { Pressable, SafeAreaView, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 import { ReliefLogo, PrimaryButton, ScreenBackground, SoftCard, WatercolorMapBackdrop } from '../components';
 import { useFilters } from '../context/FiltersContext';
-import { borderRadius, colors, spacing, typography } from '../theme';
-import { completeOnboarding, selectedOnboardingFilters } from '../utils/onboarding';
+import { borderRadius, colors, spacing, touchTargets, typography } from '../theme';
+import { completeOnboarding } from '../utils/onboarding';
+import { selectedOnboardingFilters } from '../utils/onboardingPreferences';
 
 interface OnboardingScreenProps { userId: string; onFinished: () => void; }
 
@@ -61,7 +62,7 @@ export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ userId, onFi
             <PreferenceRow label="Baby changing needed" description="Show facilities with baby-changing information." value={babyChanging} onChange={setBabyChanging} />
             <PreferenceRow label="Gender-neutral facilities" description="Show facilities with gender-neutral information." value={genderNeutral} onChange={setGenderNeutral} />
             <PrimaryButton title="Explore Nearby" onPress={() => finish(true)} loading={saving} style={styles.exploreButton} />
-            <Text accessibilityRole="button" accessibilityLabel="Skip preferences for now" onPress={() => finish(false)} style={styles.skip}>Skip for now</Text>
+            <Pressable accessibilityRole="button" accessibilityLabel="Skip preferences for now" onPress={() => finish(false)} style={styles.skip}><Text style={styles.skipText}>Skip for now</Text></Pressable>
           </SoftCard>
         </ScrollView>
       </SafeAreaView>
@@ -85,5 +86,6 @@ const styles = StyleSheet.create({
   preferenceTitle: { ...typography.label, color: colors.textPrimary },
   preferenceDescription: { ...typography.caption, color: colors.textSecondary, marginTop: 2 },
   exploreButton: { marginTop: spacing['2xl'] },
-  skip: { ...typography.buttonSmall, minHeight: 44, textAlign: 'center', textAlignVertical: 'center', color: colors.textSecondary, marginTop: spacing.sm },
+  skip: { minHeight: touchTargets.minimum, alignItems: 'center', justifyContent: 'center', marginTop: spacing.sm },
+  skipText: { ...typography.buttonSmall, color: colors.textSecondary },
 });

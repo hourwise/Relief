@@ -5,7 +5,7 @@
 // Or simply review for correctness — no framework required.
 // ============================================================
 
-import { estimateWalkingTime } from '../src/services/facilities';
+import { estimateWalkingTime } from '../src/utils/walkingTime';
 
 let passed = 0;
 let failed = 0;
