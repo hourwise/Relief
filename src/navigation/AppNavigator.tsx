@@ -28,7 +28,9 @@ import {
   LocationSharingScreen,
   AIRecommendationsScreen,
   PredictiveSuggestionsScreen,
+  OnboardingScreen,
 } from '../screens';
+import { hasCompletedOnboarding } from '../utils/onboarding';
 import { onAuthStateChange, getCurrentSession } from '../services/auth';
 import type {
   RootStackParamList,
@@ -170,6 +172,22 @@ const MainNavigator: React.FC = () => (
   </Tab.Navigator>
 );
 
+const AuthenticatedEntry: React.FC<{ userId: string }> = ({ userId }) => {
+  const [checkingOnboarding, setCheckingOnboarding] = useState(true);
+  const [showOnboarding, setShowOnboarding] = useState(false);
+
+  useEffect(() => {
+    hasCompletedOnboarding(userId)
+      .then((completed) => setShowOnboarding(!completed))
+      .catch(() => setShowOnboarding(false))
+      .finally(() => setCheckingOnboarding(false));
+  }, [userId]);
+
+  if (checkingOnboarding) return <View style={styles.loadingContainer} />;
+  if (showOnboarding) return <OnboardingScreen userId={userId} onFinished={() => setShowOnboarding(false)} />;
+  return <MainNavigator />;
+};
+
 // Root Navigator
 interface AppNavigatorProps {
   onStartupResolved?: () => void;
@@ -177,12 +195,16 @@ interface AppNavigatorProps {
 
 export const AppNavigator: React.FC<AppNavigatorProps> = ({ onStartupResolved }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userId, setUserId] = useState<string | null>(null);
   const [initializing, setInitializing] = useState(true);
 
   useEffect(() => {
     // Check for existing session on mount
     getCurrentSession()
-      .then((session) => setIsAuthenticated(!!session))
+      .then((session) => {
+        setIsAuthenticated(!!session);
+        setUserId(session?.user.id ?? null);
+      })
       .finally(() => {
         setInitializing(false);
         onStartupResolved?.();
@@ -191,6 +213,7 @@ export const AppNavigator: React.FC<AppNavigatorProps> = ({ onStartupResolved })
     // Listen for auth state changes
     const subscription = onAuthStateChange((session) => {
       setIsAuthenticated(!!session);
+      setUserId(session?.user.id ?? null);
     });
 
     return () => {
@@ -211,7 +234,9 @@ export const AppNavigator: React.FC<AppNavigatorProps> = ({ onStartupResolved })
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
         {isAuthenticated ? (
           <>
-            <RootStack.Screen name="Main" component={MainNavigator} />
+            <RootStack.Screen name="Main">
+              {() => <AuthenticatedEntry userId={userId ?? 'authenticated'} />}
+            </RootStack.Screen>
             <RootStack.Screen
               name="AIRecommendations"
               component={AIRecommendationsScreen}

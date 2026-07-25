@@ -21,3 +21,4 @@ export { LocationSharingScreen } from './LocationSharingScreen';
 export { PaywallScreen } from './PaywallScreen';
 export { AIRecommendationsScreen } from './AIRecommendationsScreen';
 export { PredictiveSuggestionsScreen } from './PredictiveSuggestionsScreen';
+export { OnboardingScreen } from './OnboardingScreen';
