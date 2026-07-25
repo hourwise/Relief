@@ -17,6 +17,15 @@ module.exports = ({ config }) => ({
   plugins: [
     ...(config.plugins || []),
     [
+      'expo-splash-screen',
+      {
+        backgroundColor: '#F3F8F5',
+        image: './assets/branding/relief-splash-mark.png',
+        imageWidth: 120,
+        resizeMode: 'contain',
+      },
+    ],
+    [
       'react-native-maps',
       {
         androidGoogleMapsApiKey: googleMapsApiKey,

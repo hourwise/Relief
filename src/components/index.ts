@@ -21,3 +21,4 @@ export { PrimaryButton } from './PrimaryButton';
 export { UrgentButton } from './UrgentButton';
 export { SectionHeader } from './SectionHeader';
 export { EmptyValue } from './EmptyValue';
+export { WatercolorMapBackdrop } from './WatercolorMapBackdrop';

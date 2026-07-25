@@ -171,16 +171,22 @@ const MainNavigator: React.FC = () => (
 );
 
 // Root Navigator
-export const AppNavigator: React.FC = () => {
+interface AppNavigatorProps {
+  onStartupResolved?: () => void;
+}
+
+export const AppNavigator: React.FC<AppNavigatorProps> = ({ onStartupResolved }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [initializing, setInitializing] = useState(true);
 
   useEffect(() => {
     // Check for existing session on mount
-    getCurrentSession().then((session) => {
-      setIsAuthenticated(!!session);
-      setInitializing(false);
-    });
+    getCurrentSession()
+      .then((session) => setIsAuthenticated(!!session))
+      .finally(() => {
+        setInitializing(false);
+        onStartupResolved?.();
+      });
 
     // Listen for auth state changes
     const subscription = onAuthStateChange((session) => {
@@ -190,7 +196,7 @@ export const AppNavigator: React.FC = () => {
     return () => {
       subscription?.subscription.unsubscribe();
     };
-  }, []);
+  }, [onStartupResolved]);
 
   if (initializing) {
     return (
