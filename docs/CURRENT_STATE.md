@@ -28,7 +28,7 @@ The codebase demonstrates a clear product vision and substantial implementation 
 | **Navigation** | Implemented — React Navigation 7 with auth-gated root, 4-tab main navigator, map stack |
 | **Theme system** | Implemented — colours, typography, spacing tokens consistent with design system |
 | **i18n infrastructure** | Implemented — i18next with English locale, nested key structure |
-| **Database schema** | Designed — 4 migration files + trust model/provenance tables; 15,584 UK facilities imported with source tracking; enriched from Toilet Map UK raw_data (access_notes, opening hours, accessibility flags); field-level provenance tracking |
+| **Database schema** | Designed — 4 migration files + trust model/provenance tables; 15,584 UK facilities imported with source tracking; enriched from Toilet Map UK raw_data (access_notes, opening hours, accessibility flags); field-level provenance tracking; PostGIS enabled with geography(Point, 4326) generated column and GiST spatial index; find_nearest_facilities RPC for server-side nearest lookup |
 | **Edge Functions** | Written — 2 Deno functions (expire-reports, revenuecat-webhook) |
 | **Testing** | None — no test scripts, no test files, no CI configuration |
 | **Linting/formatting** | None — no ESLint, Prettier, or formatting scripts configured |
@@ -44,7 +44,7 @@ The codebase demonstrates a clear product vision and substantial implementation 
 | Component | Status | Evidence |
 |-----------|--------|----------|
 | Login screen UI | UI IMPLEMENTED | `LoginScreen.tsx` — email, Google, Apple buttons rendered |
-| Map screen with markers | UI IMPLEMENTED | `MapScreen.tsx` — MapView with PROVIDER_GOOGLE, clustering, emergency button |
+| Map screen with markers | UI IMPLEMENTED | `MapScreen.tsx` — MapView with PROVIDER_GOOGLE, clustering, emergency button; PostGIS nearest-facility RPC wired |
 | List screen | BACKEND-DEPENDENT | `ListScreen.tsx` — Supabase query exists; 15,584 UK facilities now in database; needs client-side verification |
 | Facility detail screen | UI IMPLEMENTED | `FacilityDetailScreen.tsx` — detail layout exists |
 | Profile screen | UI IMPLEMENTED | `ProfileScreen.tsx` — user info, badges, sign-out |

@@ -20,7 +20,7 @@
 | `id` | UUID PK | |
 | `name` | TEXT NOT NULL | |
 | `address` | TEXT NOT NULL | |
-| `latitude` | DOUBLE PRECISION | Spatial queries use bounding box; PostGIS not yet used |
+| `latitude` | DOUBLE PRECISION | Spatial queries use PostGIS geography column (generated from lat/lng) |
 | `longitude` | DOUBLE PRECISION | |
 | `postcode` | TEXT NOT NULL | Indexed |
 | `town` | TEXT NOT NULL | Indexed |
@@ -267,6 +267,7 @@
 | Function | Purpose | Referenced In | Migration |
 |----------|---------|---------------|-----------|
 | `expire_temporary_reports()` | Marks reports past expiry as expired | `supabase/functions/expire-reports/index.ts` | TBD — not yet in migrations |
+| `find_nearest_facilities(user_latitude, user_longitude, search_radius_metres, result_limit)` | Server-side PostGIS nearest-facility lookup using ST_DWithin/ST_Distance with GiST index; returns facility fields + distance_metres | `services/facilities.ts` (`fetchClosestFacility`) | `20260725_postgis_nearest_facility_rpc.sql` |
 
 ---
 
@@ -278,7 +279,7 @@ None currently defined or referenced.
 
 ## Open Questions
 
-1. Should spatial queries use PostGIS instead of bounding-box latitude/longitude comparisons?
+1. ~~Should spatial queries use PostGIS instead of bounding-box latitude/longitude comparisons?~~ **RESOLVED** — PostGIS enabled; `location geography(Point, 4326)` generated column with GiST index; `find_nearest_facilities` RPC implemented.
 2. Where is `is_picnic_area` defined? Referenced in types but not in migration 001.
 3. What is the exact list of facility type booleans? Types and migrations may differ.
 4. Should `access_codes` be publicly viewable to all authenticated users?

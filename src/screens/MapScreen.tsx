@@ -30,7 +30,7 @@ import {
   searchFacilities,
 } from '../services/facilities';
 import { getOpenStatus } from '../utils/openingHours';
-import type { Facility, MapStackParamList } from '../types';
+import type { Facility, NearestFacilityResult, MapStackParamList } from '../types';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const { width, height } = Dimensions.get('window');
@@ -208,24 +208,19 @@ export const MapScreen: React.FC = () => {
       return;
     }
     setShowEmergency(true);
-    const closest = await fetchClosestFacility(
+    const result = await fetchClosestFacility(
       location.latitude,
       location.longitude,
     );
-    if (closest) {
-      setEmergencyFacility(closest);
-      const time = estimateWalkingTime(
-        location.latitude,
-        location.longitude,
-        closest.latitude,
-        closest.longitude,
-      );
+    if (result) {
+      setEmergencyFacility(result.facility);
+      const time = estimateWalkingTime(result.distance_metres);
       setWalkingTime(time);
       if (mapRef.current) {
         mapRef.current.animateToRegion(
           {
-            latitude: closest.latitude,
-            longitude: closest.longitude,
+            latitude: result.facility.latitude,
+            longitude: result.facility.longitude,
             latitudeDelta: 0.02,
             longitudeDelta: 0.02 * ASPECT_RATIO,
           },

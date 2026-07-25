@@ -237,6 +237,12 @@ export type ProfileStackParamList = {
   PredictiveSuggestions: undefined;
 };
 
+// --- Nearest Facility (from PostGIS RPC) ---
+export interface NearestFacilityResult {
+  facility: Facility;
+  distance_metres: number;
+}
+
 // --- Filters ---
 export interface FacilityFilters {
   open_now: boolean;

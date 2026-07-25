@@ -3,7 +3,7 @@
 // ============================================================
 
 import { supabase } from './supabase';
-import type { Facility, FacilityFilters } from '../types';
+import type { Facility, FacilityFilters, NearestFacilityResult } from '../types';
 
 const VIEWPORT_LIMIT = 500;
 
@@ -190,59 +190,154 @@ export async function searchFacilities(
 }
 
 /**
- * Get the closest facility to a given location (for emergency mode).
+ * Get the closest facility to a given location using PostGIS RPC.
+ * Uses controlled radius expansion: 5 km → 10 km → 25 km.
  */
 export async function fetchClosestFacility(
   latitude: number,
   longitude: number,
-): Promise<Facility | null> {
-  const { facilities } = await fetchNearbyFacilities(
-    latitude,
-    longitude,
-    5,
-    undefined,
-  );
+): Promise<NearestFacilityResult | null> {
+  const radii = [5000, 10000, 25000];
 
-  if (facilities.length === 0) return null;
+  for (const radius of radii) {
+    const { data, error } = await supabase.rpc('find_nearest_facilities', {
+      user_latitude: latitude,
+      user_longitude: longitude,
+      search_radius_metres: radius,
+      result_limit: 1,
+    });
 
-  // Sort by approximate distance (simple Euclidean)
-  const sorted = facilities.sort((a, b) => {
-    const distA = Math.sqrt(
-      Math.pow(a.latitude - latitude, 2) +
-        Math.pow(a.longitude - longitude, 2),
-    );
-    const distB = Math.sqrt(
-      Math.pow(b.latitude - latitude, 2) +
-        Math.pow(b.longitude - longitude, 2),
-    );
-    return distA - distB;
-  });
+    if (error) {
+      console.error(
+        `Error finding nearest facility (radius ${radius}m):`,
+        error.message || error,
+      );
+      // Continue to wider radius on transient errors
+      continue;
+    }
 
-  return sorted[0];
+    if (data && data.length > 0) {
+      const row = data[0];
+      const facility: Facility = {
+        id: row.facility_id,
+        name: row.name,
+        address: row.address,
+        latitude: row.latitude,
+        longitude: row.longitude,
+        postcode: row.postcode,
+        town: row.town,
+        country: row.country,
+        photos: row.photos ?? [],
+        open_hours: row.open_hours,
+        is_free: row.is_free,
+        price_note: row.price_note,
+        access_notes: row.access_notes ?? '',
+        last_verified_at: row.last_verified_at,
+        is_accessible: row.is_accessible,
+        is_disabled_access: row.is_disabled_access,
+        has_baby_changing: row.has_baby_changing,
+        has_family_room: row.has_family_room,
+        is_gender_neutral: row.is_gender_neutral,
+        is_single_occupancy: row.is_single_occupancy,
+        is_24h: row.is_24h,
+        is_single_room: row.is_single_room,
+        has_floor_to_ceiling_cubicles: row.has_floor_to_ceiling_cubicles,
+        is_quiet: row.is_quiet,
+        has_wheelchair_access: row.has_wheelchair_access,
+        requires_radar_key: row.requires_radar_key,
+        has_adult_changing_place: row.has_adult_changing_place,
+        has_lift: row.has_lift,
+        has_grab_rails: row.has_grab_rails,
+        has_baby_changing_inside: row.has_baby_changing_inside,
+        has_separate_changing_room: row.has_separate_changing_room,
+        has_family_toilet: row.has_family_toilet,
+        has_pram_access: row.has_pram_access,
+        has_soap: row.has_soap,
+        has_paper_towels: row.has_paper_towels,
+        has_hand_dryer: row.has_hand_dryer,
+        has_mirror: row.has_mirror,
+        has_shelf: row.has_shelf,
+        has_hooks: row.has_hooks,
+        has_sanitary_bins: row.has_sanitary_bins,
+        has_free_period_products: row.has_free_period_products,
+        has_drinking_water: row.has_drinking_water,
+        noise_level: row.noise_level,
+        temperature: row.temperature,
+        lighting: row.lighting,
+        smell: row.smell,
+        has_staff_nearby: row.has_staff_nearby,
+        has_cctv: row.has_cctv,
+        is_women_friendly: row.is_women_friendly,
+        is_family_friendly: row.is_family_friendly,
+        is_water_refill_station: row.is_water_refill_station,
+        is_shower_facility: row.is_shower_facility,
+        is_breastfeeding_room: row.is_breastfeeding_room,
+        is_rest_area: row.is_rest_area,
+        is_changing_place: row.is_changing_place,
+        is_ev_charging: row.is_ev_charging,
+        is_picnic_area: row.is_picnic_area,
+        overall_score: row.overall_score ?? 0,
+        cleanliness_rating: row.cleanliness_rating,
+        privacy_rating: row.privacy_rating,
+        accessibility_rating: row.accessibility_rating,
+        safety_rating: row.safety_rating,
+        noise_rating: row.noise_rating,
+        environment_rating: row.environment_rating,
+        publication_status: row.publication_status,
+        verification_status: row.verification_status,
+        last_community_confirmed_at: row.last_community_confirmed_at,
+        last_staff_verified_at: row.last_staff_verified_at,
+        created_at: row.created_at,
+        updated_at: row.updated_at,
+        created_by: row.created_by,
+        is_verified: row.is_verified ?? false,
+      };
+
+      return {
+        facility,
+        distance_metres: row.distance_metres,
+      };
+    }
+  }
+
+  // No facility found within any radius
+  return null;
 }
 
 /**
- * Calculate approximate walking time in minutes (assuming 5 km/h pace).
+ * Calculate approximate walking time in minutes (assuming 5 km/h).
+ *
+ * Accepts either:
+ *   - distanceMetres (number) — from PostGIS RPC distance_metres
+ *   - (fromLat, fromLng, toLat, toLng) — legacy coordinate-based Haversine
  */
 export function estimateWalkingTime(
-  fromLat: number,
-  fromLng: number,
-  toLat: number,
-  toLng: number,
+  distanceMetresOrFromLat: number,
+  fromLng?: number,
+  toLat?: number,
+  toLng?: number,
 ): number {
-  const R = 6371; // Earth's radius in km
-  const dLat = ((toLat - fromLat) * Math.PI) / 180;
-  const dLng = ((toLng - fromLng) * Math.PI) / 180;
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos((fromLat * Math.PI) / 180) *
-      Math.cos((toLat * Math.PI) / 180) *
-      Math.sin(dLng / 2) *
-      Math.sin(dLng / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const distanceKm = R * c;
+  let metres: number;
 
-  // Walking speed ~5 km/h
-  const walkingMinutes = Math.round((distanceKm / 5) * 60);
+  if (fromLng !== undefined && toLat !== undefined && toLng !== undefined) {
+    // Legacy 4-arg Haversine path
+    const fromLat = distanceMetresOrFromLat;
+    const R = 6371;
+    const dLat = ((toLat - fromLat) * Math.PI) / 180;
+    const dLng = ((toLng - fromLng) * Math.PI) / 180;
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos((fromLat * Math.PI) / 180) *
+        Math.cos((toLat * Math.PI) / 180) *
+        Math.sin(dLng / 2) *
+        Math.sin(dLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    metres = R * c * 1000;
+  } else {
+    // Single-arg: distance in metres from PostGIS
+    metres = distanceMetresOrFromLat;
+  }
+
+  const walkingMinutes = Math.round((metres / 1000 / 5) * 60);
   return Math.max(1, walkingMinutes);
 }
