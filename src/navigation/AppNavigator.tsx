@@ -114,13 +114,7 @@ const MapStackNavigator: React.FC = () => (
     <MapStack.Screen
       name="AdvancedFilters"
       component={AdvancedFiltersScreen}
-      options={{
-        headerShown: true,
-        headerTitle: 'Advanced Filters',
-        headerStyle: styles.header,
-        headerTitleStyle: styles.headerTitle,
-        headerTintColor: colors.textPrimary,
-      }}
+      options={{ headerShown: false }}
     />
   </MapStack.Navigator>
 );

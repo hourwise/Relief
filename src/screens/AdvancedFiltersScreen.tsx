@@ -1,464 +1,81 @@
-// ============================================================
-// Project "Relief" — Advanced Filters Screen (Phase 3)
-// Collapsible sections: Privacy, Accessibility, Baby, Equipment,
-// Environment, Safety, Minimum Rating
-// ============================================================
-
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Switch,
-  TouchableOpacity,
-} from 'react-native';
-import { colors, typography, spacing, borderRadius } from '../theme';
-import { Button } from '../components';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { useFilters } from '../context/FiltersContext';
+import { Pressable, SafeAreaView, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
+import { ArrowLeft, ChevronDown, ChevronRight, RotateCcw } from 'lucide-react-native';
+import { useNavigation } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { FacilityFilters } from '../types';
+import { PrimaryButton, ScreenBackground, SoftCard } from '../components';
+import { useFilters } from '../context/FiltersContext';
+import { borderRadius, colors, spacing, touchTargets, typography } from '../theme';
 
-// ── Filter section definitions ──
-
-interface ToggleFilter {
-  key: keyof FacilityFilters;
-  label: string;
-  icon: string;
-}
-
-interface SectionDef {
-  title: string;
-  icon: string;
-  filters: ToggleFilter[];
-}
+interface ToggleFilter { key: keyof FacilityFilters; label: string; description?: string; }
+interface SectionDef { title: string; filters: ToggleFilter[]; }
 
 const FILTER_SECTIONS: SectionDef[] = [
-  {
-    title: 'Privacy',
-    icon: '🛡️',
-    filters: [
-      { key: 'is_single_room', label: 'Single Room', icon: '🚪' },
-      { key: 'has_floor_to_ceiling_cubicles', label: 'Floor-to-ceiling cubicles', icon: '🧱' },
-      { key: 'is_quiet', label: 'Quiet', icon: '🔇' },
-      { key: 'is_gender_neutral', label: 'Gender Neutral', icon: '⚧️' },
-    ],
-  },
-  {
-    title: 'Accessibility',
-    icon: '♿',
-    filters: [
-      { key: 'has_wheelchair_access', label: 'Wheelchair Access', icon: '♿' },
-      { key: 'requires_radar_key', label: 'RADAR Key', icon: '🔑' },
-      { key: 'has_adult_changing_place', label: 'Adult Changing Place', icon: '🛋️' },
-      { key: 'has_lift', label: 'Lift', icon: '🛗' },
-      { key: 'has_grab_rails', label: 'Grab Rails', icon: '📐' },
-    ],
-  },
-  {
-    title: 'Baby Facilities',
-    icon: '🍼',
-    filters: [
-      { key: 'has_baby_changing_inside', label: 'Changing Inside Room', icon: '🚼' },
-      { key: 'has_separate_changing_room', label: 'Separate Changing Room', icon: '🚻' },
-      { key: 'has_family_toilet', label: 'Family Toilet', icon: '👨‍👩‍👧‍👧' },
-      { key: 'has_pram_access', label: 'Pram Access', icon: '🛒' },
-    ],
-  },
-  {
-    title: 'Equipment',
-    icon: '🧴',
-    filters: [
-      { key: 'has_soap', label: 'Soap', icon: '🧼' },
-      { key: 'has_paper_towels', label: 'Paper Towels', icon: '🧻' },
-      { key: 'has_hand_dryer', label: 'Hand Dryer', icon: '💨' },
-      { key: 'has_mirror', label: 'Mirror', icon: '🪞' },
-      { key: 'has_shelf', label: 'Shelf', icon: '📦' },
-      { key: 'has_hooks', label: 'Hooks', icon: '🪝' },
-      { key: 'has_sanitary_bins', label: 'Sanitary Bins', icon: '🗑️' },
-      { key: 'has_free_period_products', label: 'Free Period Products', icon: '🩸' },
-      { key: 'has_drinking_water', label: 'Drinking Water', icon: '🚰' },
-    ],
-  },
-  {
-    title: 'Environment',
-    icon: '🌿',
-    filters: [
-      { key: 'is_quiet', label: 'Quiet', icon: '🔇' },
-    ],
-  },
-  {
-    title: 'Safety',
-    icon: '🛡️',
-    filters: [
-      { key: 'has_staff_nearby', label: 'Staff Nearby', icon: '👥' },
-      { key: 'has_cctv', label: 'CCTV', icon: '📹' },
-      { key: 'is_women_friendly', label: 'Women Friendly', icon: '👩' },
-      { key: 'is_family_friendly', label: 'Family Friendly', icon: '👨‍👩‍👧‍👦' },
-    ],
-  },
-  {
-    title: 'Facility Types',
-    icon: '🏗️',
-    filters: [
-      { key: 'is_water_refill_station', label: 'Water Refill Station', icon: '🚰' },
-      { key: 'is_shower_facility', label: 'Shower Facility', icon: '🚿' },
-      { key: 'is_breastfeeding_room', label: 'Breastfeeding Room', icon: '🤱' },
-      { key: 'is_rest_area', label: 'Rest Area', icon: '🛋️' },
-      { key: 'is_changing_place', label: 'Changing Place', icon: '♿' },
-      { key: 'is_ev_charging', label: 'EV Charging', icon: '⚡' },
-      { key: 'is_picnic_area', label: 'Picnic Area', icon: '🧺' },
-    ],
-  },
+  { title: 'Privacy', filters: [{ key: 'is_single_room', label: 'Single room' }, { key: 'has_floor_to_ceiling_cubicles', label: 'Floor-to-ceiling cubicles' }, { key: 'is_quiet', label: 'Quiet' }, { key: 'is_gender_neutral', label: 'Gender-neutral' }] },
+  { title: 'Accessibility', filters: [{ key: 'is_accessible', label: 'Accessible' }, { key: 'has_wheelchair_access', label: 'Wheelchair access' }, { key: 'requires_radar_key', label: 'RADAR Key' }, { key: 'has_adult_changing_place', label: 'Adult changing place' }, { key: 'has_lift', label: 'Lift' }, { key: 'has_grab_rails', label: 'Grab rails' }] },
+  { title: 'Baby and family', filters: [{ key: 'has_baby_changing', label: 'Baby changing' }, { key: 'has_baby_changing_inside', label: 'Changing inside the room' }, { key: 'has_separate_changing_room', label: 'Separate changing room' }, { key: 'has_family_room', label: 'Family room' }, { key: 'has_family_toilet', label: 'Family toilet' }, { key: 'has_pram_access', label: 'Pram access' }] },
+  { title: 'Equipment', filters: [{ key: 'has_soap', label: 'Soap' }, { key: 'has_paper_towels', label: 'Paper towels' }, { key: 'has_hand_dryer', label: 'Hand dryer' }, { key: 'has_mirror', label: 'Mirror' }, { key: 'has_shelf', label: 'Shelf' }, { key: 'has_hooks', label: 'Hooks' }, { key: 'has_sanitary_bins', label: 'Sanitary bins' }, { key: 'has_free_period_products', label: 'Free period products' }, { key: 'has_drinking_water', label: 'Drinking water' }] },
+  { title: 'Safety and setting', filters: [{ key: 'has_staff_nearby', label: 'Staff nearby' }, { key: 'has_cctv', label: 'CCTV' }, { key: 'is_women_friendly', label: 'Women-friendly' }, { key: 'is_family_friendly', label: 'Family-friendly' }] },
+  { title: 'Other facility types', filters: [{ key: 'is_water_refill_station', label: 'Water refill station' }, { key: 'is_shower_facility', label: 'Shower facility' }, { key: 'is_breastfeeding_room', label: 'Breastfeeding room' }, { key: 'is_rest_area', label: 'Rest area' }, { key: 'is_changing_place', label: 'Changing Place' }, { key: 'is_ev_charging', label: 'EV charging' }, { key: 'is_picnic_area', label: 'Picnic area' }] },
 ];
 
-// ── Collapsible Section Component ──
-const FilterSection: React.FC<{
-  section: SectionDef;
-  filters: Partial<FacilityFilters>;
-  onToggle: (key: keyof FacilityFilters) => void;
-}> = ({ section, filters, onToggle }) => {
+const activeCountFor = (filters: Partial<FacilityFilters>) => Object.entries(filters).filter(([key, value]) => key === 'min_rating' ? (value as number) > 0 : value === true).length;
+
+const FilterSection: React.FC<{ section: SectionDef; filters: Partial<FacilityFilters>; onToggle: (key: keyof FacilityFilters) => void }> = ({ section, filters, onToggle }) => {
   const [expanded, setExpanded] = useState(true);
-
-  const activeCount = section.filters.filter(
-    (f) => filters[f.key] === true,
-  ).length;
-
-  return (
-    <View style={styles.section}>
-      <TouchableOpacity
-        style={styles.sectionHeader}
-        onPress={() => setExpanded(!expanded)}
-        activeOpacity={0.7}
-      >
-        <View style={styles.sectionHeaderLeft}>
-          <Text style={styles.sectionIcon}>{section.icon}</Text>
-          <Text style={styles.sectionTitle}>{section.title}</Text>
-          {activeCount > 0 && (
-            <View style={styles.activeCountBadge}>
-              <Text style={styles.activeCountText}>{activeCount}</Text>
-            </View>
-          )}
-        </View>
-        <Text style={styles.expandIcon}>{expanded ? '▼' : '▶'}</Text>
-      </TouchableOpacity>
-
-      {expanded && (
-        <View style={styles.sectionContent}>
-          {section.filters.map((filter) => (
-            <View key={filter.key} style={styles.filterRow}>
-              <View style={styles.filterLabel}>
-                <Text style={styles.filterIcon}>{filter.icon}</Text>
-                <Text style={styles.filterText}>{filter.label}</Text>
-              </View>
-              <Switch
-                value={filters[filter.key] === true}
-                onValueChange={() => onToggle(filter.key)}
-                trackColor={{ true: colors.primaryLight, false: colors.gray200 }}
-                thumbColor={
-                  filters[filter.key] === true ? colors.primary : colors.gray400
-                }
-              />
-            </View>
-          ))}
-        </View>
-      )}
-    </View>
-  );
+  const count = section.filters.filter((item) => filters[item.key] === true).length;
+  return <SoftCard style={styles.section}>
+    <Pressable accessibilityRole="button" accessibilityLabel={`${section.title}, ${expanded ? 'expanded' : 'collapsed'}`} onPress={() => setExpanded((value) => !value)} style={styles.sectionHeader}>
+      <View style={styles.sectionTitleRow}><Text style={styles.sectionTitle}>{section.title}</Text>{count ? <View style={styles.count}><Text style={styles.countText}>{count}</Text></View> : null}</View>
+      {expanded ? <ChevronDown color={colors.textSecondary} size={20} /> : <ChevronRight color={colors.textSecondary} size={20} />}
+    </Pressable>
+    {expanded ? <View>{section.filters.map((filter) => {
+      const value = filters[filter.key] === true;
+      return <View key={filter.key} style={styles.filterRow}><View style={styles.filterCopy}><Text style={styles.filterTitle}>{filter.label}</Text>{filter.description ? <Text style={styles.filterDescription}>{filter.description}</Text> : null}</View><Switch accessibilityLabel={filter.label} accessibilityState={{ checked: value }} value={value} onValueChange={() => onToggle(filter.key)} trackColor={{ false: colors.gray200, true: colors.primaryLight }} thumbColor={value ? colors.primary : colors.white} /></View>;
+    })}</View> : null}
+  </SoftCard>;
 };
 
-// ── Rating Selector ──
-const RatingSelector: React.FC<{
-  value: number;
-  onChange: (val: number) => void;
-}> = ({ value, onChange }) => {
-  const ratings = [0, 1, 2, 3, 4, 5];
-  return (
-    <View style={styles.ratingContainer}>
-      <Text style={styles.ratingLabel}>Minimum Rating</Text>
-      <View style={styles.ratingStars}>
-        {ratings.map((r) => (
-          <TouchableOpacity
-            key={r}
-            onPress={() => onChange(r)}
-            style={[
-              styles.ratingStar,
-              value >= r && r > 0 && styles.ratingStarActive,
-              value === r && styles.ratingStarSelected,
-            ]}
-          >
-            <Text
-              style={[
-                styles.ratingStarText,
-                value >= r && r > 0 && styles.ratingStarTextActive,
-              ]}
-            >
-              {r === 0 ? 'Any' : r}
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </View>
-    </View>
-  );
-};
-
-// ── Main Screen Component ──
 export const AdvancedFiltersScreen: React.FC = () => {
-  const navigation = useNavigation<NavigationProp<any>>();
-  const { filters: contextFilters, setFilters: setContextFilters } = useFilters();
-
-  const [localFilters, setLocalFilters] = useState<Partial<FacilityFilters>>({
-    ...contextFilters,
+  const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
+  const { filters: savedFilters, setFilters } = useFilters();
+  const [draft, setDraft] = useState<Partial<FacilityFilters>>({ ...savedFilters });
+  const activeCount = activeCountFor(draft);
+  const toggleFilter = (key: keyof FacilityFilters) => setDraft((previous) => {
+    if (previous[key] === true) {
+      const next = { ...previous };
+      delete next[key];
+      return next;
+    }
+    return { ...previous, [key]: true } as Partial<FacilityFilters>;
+  });
+  const setRating = (min_rating: number) => setDraft((previous) => {
+    const next = { ...previous };
+    if (!min_rating) delete next.min_rating; else next.min_rating = min_rating;
+    return next;
   });
 
-  const toggleFilter = (key: keyof FacilityFilters) => {
-    setLocalFilters((prev) => ({
-      ...prev,
-      [key]: prev[key] === true ? false : true,
-    }));
-  };
-
-  const setMinRating = (val: number) => {
-    setLocalFilters((prev) => ({
-      ...prev,
-      min_rating: val,
-    }));
-  };
-
-  const clearAll = () => {
-    setLocalFilters({});
-  };
-
-  const activeCount = Object.entries(localFilters).filter(
-    ([key, val]) => {
-      if (key === 'min_rating') return (val as number) > 0;
-      return val === true;
-    },
-  ).length;
-
-  const handleApply = () => {
-    setContextFilters(localFilters);
-    navigation.goBack();
-  };
-
-  return (
-    <View style={styles.container}>
-      {/* Header */}
+  return <ScreenBackground>
+    <SafeAreaView style={styles.safeArea}>
       <View style={styles.header}>
-        <View>
-          <Text style={styles.headerTitle}>Advanced Filters</Text>
-          <Text style={styles.headerSubtitle}>
-            {activeCount > 0
-              ? `${activeCount} filter${activeCount !== 1 ? 's' : ''} active`
-              : 'No filters applied'}
-          </Text>
-        </View>
-        {activeCount > 0 && (
-          <TouchableOpacity onPress={clearAll}>
-            <Text style={styles.clearText}>Clear All</Text>
-          </TouchableOpacity>
-        )}
+        <Pressable accessibilityRole="button" accessibilityLabel="Back" onPress={() => navigation.goBack()} style={styles.backButton}><ArrowLeft size={22} color={colors.textPrimary} /></Pressable>
+        <View style={styles.headerCopy}><Text style={styles.headerTitle}>Filters</Text><Text style={styles.headerSubtitle}>{activeCount ? `${activeCount} active filter${activeCount === 1 ? '' : 's'}` : 'No filters applied'}</Text></View>
+        <Pressable accessibilityRole="button" accessibilityLabel="Reset filters" disabled={!activeCount} onPress={() => setDraft({})} style={[styles.reset, !activeCount && styles.resetDisabled]}><RotateCcw size={17} color={colors.primary} /><Text style={styles.resetText}>Reset</Text></Pressable>
       </View>
-
-      <ScrollView
-        style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
-        {/* Rating */}
-        <RatingSelector
-          value={localFilters.min_rating || 0}
-          onChange={setMinRating}
-        />
-
-        {/* Sections */}
-        {FILTER_SECTIONS.map((section) => (
-          <FilterSection
-            key={section.title}
-            section={section}
-            filters={localFilters}
-            onToggle={toggleFilter}
-          />
-        ))}
+      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+        <SoftCard style={styles.notice}><Text style={styles.noticeTitle}>Use confirmed details</Text><Text style={styles.noticeText}>Filters include facilities only when that detail is confirmed. Missing information is not treated as “no”.</Text></SoftCard>
+        <SoftCard style={styles.ratingCard}><Text style={styles.ratingTitle}>Minimum community rating</Text><View style={styles.ratings}>{[0, 1, 2, 3, 4, 5].map((rating) => { const selected = (draft.min_rating || 0) === rating; return <Pressable key={rating} accessibilityRole="button" accessibilityState={{ selected }} accessibilityLabel={rating ? `Minimum rating ${rating}` : 'Any rating'} onPress={() => setRating(rating)} style={[styles.ratingOption, selected && styles.ratingSelected]}><Text style={[styles.ratingText, selected && styles.ratingTextSelected]}>{rating || 'Any'}</Text></Pressable>; })}</View></SoftCard>
+        {FILTER_SECTIONS.map((section) => <FilterSection key={section.title} section={section} filters={draft} onToggle={toggleFilter} />)}
       </ScrollView>
-
-      {/* Bottom Action */}
-      <View style={styles.bottomBar}>
-        <Button
-          title={`Apply Filters${activeCount > 0 ? ` (${activeCount})` : ''}`}
-          onPress={handleApply}
-          fullWidth
-          size="lg"
-        />
-      </View>
-    </View>
-  );
+      <View style={[styles.footer, { paddingBottom: Math.max(spacing.lg, insets.bottom + spacing.sm) }]}><PrimaryButton title={activeCount ? `Apply Filters (${activeCount})` : 'Apply Filters'} onPress={() => { setFilters(draft); navigation.goBack(); }} /></View>
+    </SafeAreaView>
+  </ScreenBackground>;
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    padding: spacing.lg,
-    paddingBottom: spacing.md,
-    backgroundColor: colors.white,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.border,
-  },
-  headerTitle: {
-    fontFamily: 'PlusJakartaSans_600SemiBold',
-    fontSize: 24,
-    fontWeight: '600',
-    color: colors.textPrimary,
-  },
-  headerSubtitle: {
-    fontFamily: 'Inter_400Regular',
-    fontSize: 14,
-    color: colors.textSecondary,
-    marginTop: 2,
-  },
-  clearText: {
-    fontFamily: 'Inter_600SemiBold',
-    fontSize: 14,
-    fontWeight: '600',
-    color: colors.primary,
-  },
-  scrollView: {
-    flex: 1,
-  },
-  scrollContent: {
-    padding: spacing.lg,
-    paddingBottom: spacing['6xl'],
-  },
-  // Rating
-  ratingContainer: {
-    backgroundColor: colors.white,
-    borderRadius: borderRadius['2xl'],
-    padding: spacing.lg,
-    marginBottom: spacing.md,
-  },
-  ratingLabel: {
-    fontFamily: 'PlusJakartaSans_600SemiBold',
-    fontSize: 17,
-    fontWeight: '600',
-    color: colors.textPrimary,
-    marginBottom: spacing.md,
-  },
-  ratingStars: {
-    flexDirection: 'row',
-    gap: spacing.sm,
-    justifyContent: 'center',
-  },
-  ratingStar: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    backgroundColor: colors.gray100,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 2,
-    borderColor: 'transparent',
-  },
-  ratingStarActive: {
-    backgroundColor: colors.tealSoft,
-    borderColor: colors.primary,
-  },
-  ratingStarSelected: {
-    borderColor: colors.primary,
-    backgroundColor: colors.primary,
-  },
-  ratingStarText: {
-    fontFamily: 'Inter_600SemiBold',
-    fontSize: 14,
-    fontWeight: '600',
-    color: colors.textMuted,
-  },
-  ratingStarTextActive: {
-    color: colors.primary,
-  },
-  // Section
-  section: {
-    backgroundColor: colors.white,
-    borderRadius: borderRadius['2xl'],
-    marginBottom: spacing.sm,
-    overflow: 'hidden',
-  },
-  sectionHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: spacing.lg,
-  },
-  sectionHeaderLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacing.sm,
-  },
-  sectionIcon: {
-    fontSize: 20,
-  },
-  sectionTitle: {
-    fontFamily: 'PlusJakartaSans_600SemiBold',
-    fontSize: 17,
-    fontWeight: '600',
-    color: colors.textPrimary,
-  },
-  activeCountBadge: {
-    backgroundColor: colors.primary,
-    borderRadius: 10,
-    width: 20,
-    height: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  activeCountText: {
-    fontFamily: 'Inter_600SemiBold',
-    fontSize: 11,
-    fontWeight: '600',
-    color: colors.white,
-  },
-  expandIcon: {
-    fontSize: 14,
-    color: colors.textMuted,
-  },
-  sectionContent: {
-    paddingHorizontal: spacing.lg,
-    paddingBottom: spacing.md,
-  },
-  filterRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: spacing.sm,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.gray100,
-  },
-  filterLabel: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacing.sm,
-    flex: 1,
-  },
-  filterIcon: {
-    fontSize: 18,
-  },
-  filterText: {
-    fontFamily: 'Inter_400Regular',
-    fontSize: 15,
-    color: colors.textPrimary,
-    flex: 1,
-  },
-  // Bottom
-  bottomBar: {
-    padding: spacing.lg,
-    paddingBottom: spacing['3xl'],
-    backgroundColor: colors.white,
-    borderTopWidth: 1,
-    borderTopColor: colors.border,
-  },
+  safeArea: { flex: 1 }, header: { minHeight: 68, flexDirection: 'row', alignItems: 'center', paddingHorizontal: spacing.lg, backgroundColor: colors.white, borderBottomWidth: 1, borderBottomColor: colors.borderLight }, backButton: { minWidth: touchTargets.minimum, minHeight: touchTargets.minimum, alignItems: 'center', justifyContent: 'center', marginRight: spacing.sm }, headerCopy: { flex: 1 }, headerTitle: { ...typography.h3, color: colors.textPrimary }, headerSubtitle: { ...typography.caption, color: colors.textSecondary, marginTop: 1 }, reset: { minHeight: touchTargets.minimum, flexDirection: 'row', gap: 5, alignItems: 'center', justifyContent: 'center', paddingHorizontal: spacing.sm }, resetDisabled: { opacity: 0.45 }, resetText: { ...typography.buttonSmall, color: colors.primary },
+  content: { padding: spacing.lg, paddingBottom: spacing['5xl'] }, notice: { backgroundColor: colors.secondarySurface, marginBottom: spacing.md }, noticeTitle: { ...typography.label, color: colors.primary }, noticeText: { ...typography.bodySmall, color: colors.textSecondary, marginTop: 3 }, ratingCard: { marginBottom: spacing.md }, ratingTitle: { ...typography.h4, color: colors.textPrimary }, ratings: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm, marginTop: spacing.md }, ratingOption: { minWidth: 48, minHeight: touchTargets.minimum, borderRadius: borderRadius.full, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 11, backgroundColor: colors.gray100, borderWidth: 1, borderColor: colors.border }, ratingSelected: { backgroundColor: colors.primary, borderColor: colors.primary }, ratingText: { ...typography.buttonSmall, color: colors.textSecondary }, ratingTextSelected: { color: colors.white },
+  section: { marginBottom: spacing.sm, padding: 0, overflow: 'hidden' }, sectionHeader: { minHeight: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: spacing.lg }, sectionTitleRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm }, sectionTitle: { ...typography.h4, color: colors.textPrimary }, count: { minWidth: 20, height: 20, borderRadius: 10, paddingHorizontal: 4, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.primary }, countText: { ...typography.caption, color: colors.white, fontFamily: 'PlusJakartaSans_700Bold' }, filterRow: { minHeight: 64, flexDirection: 'row', alignItems: 'center', paddingHorizontal: spacing.lg, borderTopWidth: 1, borderTopColor: colors.borderLight }, filterCopy: { flex: 1, paddingRight: spacing.md }, filterTitle: { ...typography.label, color: colors.textPrimary }, filterDescription: { ...typography.caption, color: colors.textSecondary, marginTop: 2 }, footer: { paddingHorizontal: spacing.lg, paddingTop: spacing.md, backgroundColor: colors.white, borderTopWidth: 1, borderTopColor: colors.border },
 });
