@@ -1,29 +1,22 @@
-// ============================================================
-// Project "Relief" — Facility Detail Screen
-// ============================================================
-
-import React, { useState, useEffect } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Linking,
-  ActivityIndicator,
-  Platform,
-  Alert,
-} from 'react-native';
-import { useRoute, useNavigation, RouteProp, NavigationProp } from '@react-navigation/native';
-import { colors, typography, spacing, borderRadius, shadows } from '../theme';
-import { Card, Badge, Button } from '../components';
-import { fetchFacilityById } from '../services/facilities';
-import { getActiveReports } from '../services/community';
-import { getOpenStatus } from '../utils/openingHours';
-import type { Facility, MapStackParamList } from '../types';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, Alert, Linking, Platform, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ArrowLeft, Flag, MapPin, Navigation, Pencil, Star } from 'lucide-react-native';
+import { NavigationProp, RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import type { TemporaryReport } from '../types/community';
+import type { Facility, MapStackParamList } from '../types';
+import { EmptyValue, PrimaryButton, ScreenBackground, SectionHeader, SoftCard, StatusBadge, VerificationBadge } from '../components';
+import { getActiveReports } from '../services/community';
+import { fetchFacilityById } from '../services/facilities';
+import { getOpenStatus } from '../utils/openingHours';
+import { borderRadius, colors, spacing, touchTargets, typography } from '../theme';
 
 type FacilityDetailRouteProp = RouteProp<MapStackParamList, 'FacilityDetail'>;
+
+const amenityLabels: Array<[keyof Facility, string]> = [
+  ['is_accessible', 'Accessible'], ['is_disabled_access', 'Disabled access'], ['has_wheelchair_access', 'Wheelchair access'], ['requires_radar_key', 'RADAR Key'], ['has_adult_changing_place', 'Adult changing place'], ['has_grab_rails', 'Grab rails'], ['has_baby_changing', 'Baby changing'], ['has_family_room', 'Family room'], ['is_gender_neutral', 'Gender-neutral'], ['is_single_occupancy', 'Single occupancy'], ['is_24h', 'Open 24 hours'],
+];
+
+const RatingRow: React.FC<{ label: string; value: number | null }> = ({ label, value }) => value == null ? null : <View style={styles.ratingRow}><Text style={styles.ratingLabel}>{label}</Text><Text style={styles.ratingValue}><Star size={14} color={colors.amber} fill={colors.amber} /> {value.toFixed(1)}</Text></View>;
 
 export const FacilityDetailScreen: React.FC = () => {
   const route = useRoute<FacilityDetailRouteProp>();
@@ -34,386 +27,75 @@ export const FacilityDetailScreen: React.FC = () => {
   const [activeReports, setActiveReports] = useState<TemporaryReport[]>([]);
 
   useEffect(() => {
-    loadFacility();
-    loadReports();
-  }, [facilityId]);
-
-  const loadFacility = async () => {
     setLoading(true);
-    const data = await fetchFacilityById(facilityId);
-    setFacility(data);
-    setLoading(false);
-  };
-
-  const loadReports = async () => {
-    const reports = await getActiveReports(facilityId);
-    setActiveReports(reports);
-  };
+    fetchFacilityById(facilityId).then(setFacility).finally(() => setLoading(false));
+    getActiveReports(facilityId).then(setActiveReports);
+  }, [facilityId]);
 
   const openMaps = async (provider: 'google' | 'apple' | 'waze') => {
     if (!facility) return;
-    const { latitude, longitude } = facility;
-
-    let url: string;
-
-    switch (provider) {
-      case 'google':
-        url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
-          `${latitude},${longitude}`,
-        )}&travelmode=walking&dir_action=navigate`;
-        break;
-      case 'apple':
-        if (Platform.OS !== 'ios') {
-          Alert.alert('Apple Maps', 'Apple Maps is only available on iOS.');
-          return;
-        }
-        url = `maps://app?daddr=${latitude},${longitude}&dirflg=w`;
-        break;
-      case 'waze':
-        url = `https://waze.com/ul?ll=${latitude},${longitude}&navigate=yes`;
-        break;
-      default:
-        return;
-    }
-
+    const coordinates = `${facility.latitude},${facility.longitude}`;
+    const url = provider === 'google'
+      ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(coordinates)}&travelmode=walking&dir_action=navigate`
+      : provider === 'apple'
+        ? `maps://app?daddr=${coordinates}&dirflg=w`
+        : `https://waze.com/ul?ll=${coordinates}&navigate=yes`;
+    if (provider === 'apple' && Platform.OS !== 'ios') { Alert.alert('Apple Maps', 'Apple Maps is only available on iOS.'); return; }
     try {
-      const supported = await Linking.canOpenURL(url);
-      if (supported) {
-        await Linking.openURL(url);
-      } else {
-        Alert.alert(
-          'Cannot open map',
-          `No map application found to open directions to ${facility.name}.`,
-        );
-      }
-    } catch (error) {
-      Alert.alert(
-        'Error',
-        `Unable to open directions. Please check that a map app is installed.`,
-      );
-    }
+      if (await Linking.canOpenURL(url)) await Linking.openURL(url);
+      else Alert.alert('Cannot open map', `No map application was found for directions to ${facility.name}.`);
+    } catch { Alert.alert('Directions unavailable', 'Please check that a map app is installed.'); }
   };
 
-  if (loading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color={colors.primary} />
-      </View>
-    );
-  }
+  if (loading) return <ScreenBackground><View style={styles.loading}><ActivityIndicator size="large" color={colors.primary} /></View></ScreenBackground>;
+  if (!facility) return <ScreenBackground><SafeAreaView style={styles.notFound}><Text style={styles.notFoundTitle}>Facility not found</Text><Pressable accessibilityRole="button" onPress={() => navigation.goBack()} style={styles.backTextButton}><Text style={styles.backText}>Go back</Text></Pressable></SafeAreaView></ScreenBackground>;
 
-  if (!facility) {
-    return (
-      <View style={styles.loadingContainer}>
-        <Text style={styles.errorText}>Facility not found</Text>
-      </View>
-    );
-  }
+  const openStatus = getOpenStatus(facility);
+  const cost = facility.is_free === true ? 'Free' : facility.is_free === false ? (facility.price_note || 'Paid') : 'Cost unknown';
+  const amenities = amenityLabels.filter(([key]) => facility[key] === true).map(([, label]) => label);
+  const hasRatings = facility.overall_score > 0 || [facility.cleanliness_rating, facility.privacy_rating, facility.accessibility_rating, facility.safety_rating, facility.noise_rating, facility.environment_rating].some((value) => value != null);
 
-  return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      {/* Active Reports Warning */}
-      {activeReports.length > 0 && (
-        <Card variant="outlined" style={styles.reportWarning}>
-          <Text style={styles.reportWarningTitle}>⚠ Active Reports</Text>
-          {activeReports.map((report) => (
-            <Text key={report.id} style={styles.reportWarningItem}>
-              {report.type}: {report.notes || 'No details'}
-            </Text>
-          ))}
-        </Card>
-      )}
+  return <ScreenBackground>
+    <SafeAreaView style={styles.safeArea}>
+      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+        <View style={styles.topBar}><Pressable accessibilityRole="button" accessibilityLabel="Back" onPress={() => navigation.goBack()} style={styles.backButton}><ArrowLeft color={colors.textPrimary} size={23} /></Pressable><Text style={styles.topLabel}>Facility details</Text></View>
+        <SoftCard style={styles.locationHeader}>
+          <View style={styles.locationIcon}><MapPin color={colors.primary} size={28} /></View>
+          <View style={styles.locationCopy}><Text style={styles.locationKicker}>FACILITY LOCATION</Text><Text style={styles.locationText} numberOfLines={2}>{facility.town || facility.address || 'Location information unavailable'}</Text></View>
+        </SoftCard>
 
-      {/* Header */}
-      <Card variant="elevated" style={styles.headerCard}>
-        <View style={styles.headerRow}>
-          <Text style={styles.name}>{facility.name}</Text>
-          {facility.is_24h ? (
-            <Badge label="Open 24h" variant="success" />
-          ) : (
-            <Badge
-              label={
-                getOpenStatus(facility) === 'open'
-                  ? 'Open now'
-                  : getOpenStatus(facility) === 'closed'
-                  ? 'Closed'
-                  : 'Hours unknown'
-              }
-              variant={
-                getOpenStatus(facility) === 'open'
-                  ? 'success'
-                  : getOpenStatus(facility) === 'closed'
-                  ? 'error'
-                  : 'info'
-              }
-            />
-          )}
-        </View>
-        <Text style={styles.address}>{facility.town || facility.address}</Text>
-        <View style={styles.priceRow}>
-          <Text style={styles.price}>
-            {facility.is_free === true
-              ? 'Free'
-              : facility.is_free === false
-              ? facility.price_note || 'Paid'
-              : 'Cost unknown'}
-          </Text>
-          <Text style={styles.verified}>
-            {facility.last_verified_at
-              ? `Verified ${new Date(facility.last_verified_at).toLocaleDateString()}`
-              : 'Source imported'}
-          </Text>
-        </View>
-        {facility.verification_status === 'source_imported' && (
-          <View style={styles.sourceLabel}>
-            <Text style={styles.sourceLabelText}>
-              Source: Toilet Map UK — not yet confirmed by the Relief community
-            </Text>
-          </View>
-        )}
-      </Card>
+        {activeReports.length ? <SoftCard style={styles.warning}><Text style={styles.warningTitle}>Recent community reports</Text>{activeReports.map((report) => <Text key={report.id} style={styles.warningText}>{report.type}: {report.notes || 'No details provided'}</Text>)}</SoftCard> : null}
 
-      {/* Rating */}
-      <Card variant="outlined" style={styles.section}>
-        <Text style={styles.sectionTitle}>Overall Score</Text>
-        <Text style={styles.overallScore}>
-          ★ {facility.overall_score.toFixed(1)}
-        </Text>
-        <View style={styles.ratingsGrid}>
-          {[
-            { label: 'Cleanliness', value: facility.cleanliness_rating },
-            { label: 'Privacy', value: facility.privacy_rating },
-            { label: 'Accessibility', value: facility.accessibility_rating },
-            { label: 'Safety', value: facility.safety_rating },
-            { label: 'Noise', value: facility.noise_rating },
-            { label: 'Environment', value: facility.environment_rating },
-          ].map((rating) => (
-            <View key={rating.label} style={styles.ratingItem}>
-              <Text style={styles.ratingLabel}>{rating.label}</Text>
-              <Text style={styles.ratingValue}>★ {rating.value != null ? rating.value.toFixed(1) : '—'}</Text>
-            </View>
-          ))}
-        </View>
-      </Card>
+        <View style={styles.hero}><View style={styles.heroCopy}><Text style={styles.name}>{facility.name}</Text><Text style={styles.address}>{facility.address || facility.town || 'Address unavailable'}</Text></View><StatusBadge status={openStatus} /></View>
+        <View style={styles.metaBadges}><View style={styles.costBadge}><Text style={styles.costText}>{cost}</Text></View><VerificationBadge status={facility.verification_status} /></View>
+        {facility.last_verified_at ? <Text style={styles.verifiedDate}>Last verified {new Date(facility.last_verified_at).toLocaleDateString()}</Text> : null}
 
-      {/* Amenities */}
-      <Card variant="outlined" style={styles.section}>
-        <Text style={styles.sectionTitle}>Amenities</Text>
-        <View style={styles.amenitiesGrid}>
-          {facility.is_accessible && (
-            <Badge label="Accessible" variant="success" size="sm" />
-          )}
-          {facility.is_disabled_access && (
-            <Badge label="Disabled Access" variant="success" size="sm" />
-          )}
-          {facility.has_baby_changing && (
-            <Badge label="Baby Changing" variant="success" size="sm" />
-          )}
-          {facility.has_family_room && (
-            <Badge label="Family Room" variant="success" size="sm" />
-          )}
-          {facility.is_gender_neutral && (
-            <Badge label="Gender Neutral" variant="success" size="sm" />
-          )}
-          {facility.is_single_occupancy && (
-            <Badge label="Single Occupancy" variant="success" size="sm" />
-          )}
-          {facility.is_24h && (
-            <Badge label="24 Hours" variant="success" size="sm" />
-          )}
-        </View>
-      </Card>
+        <SoftCard style={styles.section}><SectionHeader title="Accessibility and amenities" />
+          {amenities.length ? <View style={styles.chips}>{amenities.map((amenity) => <View key={amenity} style={styles.chip}><Text style={styles.chipText}>{amenity}</Text></View>)}</View> : <EmptyValue>Access information unavailable</EmptyValue>}
+        </SoftCard>
 
-      {/* Access Notes */}
-      {facility.access_notes ? (
-        <Card variant="outlined" style={styles.section}>
-          <Text style={styles.sectionTitle}>Access Notes</Text>
-          <Text style={styles.accessNotes}>{facility.access_notes}</Text>
-        </Card>
-      ) : null}
+        <SoftCard style={styles.section}><SectionHeader title="Access notes" />
+          {facility.access_notes?.trim() ? <Text style={styles.notes}>{facility.access_notes}</Text> : <EmptyValue>Access information unavailable</EmptyValue>}
+        </SoftCard>
 
-      {/* Directions */}
-      <Card variant="outlined" style={styles.section}>
-        <Text style={styles.sectionTitle}>Get Directions</Text>
-        <View style={styles.directionsRow}>
-          <Button
-            title="Google Maps"
-            onPress={() => openMaps('google')}
-            size="sm"
-            variant="outline"
-          />
-          {Platform.OS === 'ios' && (
-            <Button
-              title="Apple Maps"
-              onPress={() => openMaps('apple')}
-              size="sm"
-              variant="outline"
-            />
-          )}
-          <Button
-            title="Waze"
-            onPress={() => openMaps('waze')}
-            size="sm"
-            variant="outline"
-          />
-        </View>
-      </Card>
+        <SoftCard style={styles.section}><SectionHeader title="Community ratings" />
+          {hasRatings ? <><View style={styles.scoreRow}><Text style={styles.score}>{facility.overall_score.toFixed(1)}</Text><View><Text style={styles.scoreCaption}>Overall score</Text><Text style={styles.scoreDetail}>Community rating data</Text></View></View><RatingRow label="Cleanliness" value={facility.cleanliness_rating} /><RatingRow label="Privacy" value={facility.privacy_rating} /><RatingRow label="Accessibility" value={facility.accessibility_rating} /><RatingRow label="Safety" value={facility.safety_rating} /><RatingRow label="Noise" value={facility.noise_rating} /><RatingRow label="Environment" value={facility.environment_rating} /></> : <EmptyValue>No community ratings yet</EmptyValue>}
+        </SoftCard>
 
-      {/* Community Actions */}
-      <Card variant="outlined" style={styles.section}>
-        <Text style={styles.sectionTitle}>Help Improve This Facility</Text>
-        <View style={styles.communityActions}>
-          <Button
-            title="Report Issue"
-            onPress={() => navigation.navigate('ReportFacility', { facilityId })}
-            size="sm"
-            variant="outline"
-            style={styles.communityButton}
-          />
-          <Button
-            title="Correct Info"
-            onPress={() => navigation.navigate('CorrectInfo', { facilityId })}
-            size="sm"
-            variant="outline"
-            style={styles.communityButton}
-          />
-        </View>
-      </Card>
-    </ScrollView>
-  );
+        <SoftCard style={styles.section}><SectionHeader title="Photos" />{facility.photos?.length ? <Text style={styles.photoNote}>{facility.photos.length} photo{facility.photos.length === 1 ? '' : 's'} available</Text> : <EmptyValue>No photos yet</EmptyValue>}</SoftCard>
+
+        <SoftCard style={styles.section}><SectionHeader title="Directions" detail="Walking times are approximate. Directions use the facility’s exact coordinates." /><PrimaryButton title="Get directions" onPress={() => openMaps('google')} /><View style={styles.secondaryDirections}>{Platform.OS === 'ios' ? <Pressable accessibilityRole="button" onPress={() => openMaps('apple')} style={styles.directionOption}><Navigation size={17} color={colors.primary} /><Text style={styles.directionOptionText}>Apple Maps</Text></Pressable> : null}<Pressable accessibilityRole="button" onPress={() => openMaps('waze')} style={styles.directionOption}><Navigation size={17} color={colors.primary} /><Text style={styles.directionOptionText}>Waze</Text></Pressable></View></SoftCard>
+
+        <SoftCard style={styles.section}><SectionHeader title="Help keep details accurate" detail="Community updates are reviewed before publication." /><Pressable accessibilityRole="button" accessibilityLabel="Report Issue" onPress={() => navigation.navigate('ReportFacility', { facilityId })} style={styles.actionRow}><Flag size={19} color={colors.urgent} /><Text style={styles.actionText}>Report Issue</Text></Pressable><Pressable accessibilityRole="button" accessibilityLabel="Correct or Update Details" onPress={() => navigation.navigate('CorrectInfo', { facilityId })} style={[styles.actionRow, styles.lastAction]}><Pencil size={19} color={colors.primary} /><Text style={styles.actionText}>Correct or Update Details</Text></Pressable></SoftCard>
+      </ScrollView>
+    </SafeAreaView>
+  </ScreenBackground>;
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-  content: {
-    padding: spacing.lg,
-    paddingBottom: spacing['6xl'],
-  },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.background,
-  },
-  errorText: {
-    ...typography.body,
-    color: colors.textMuted,
-  },
-  reportWarning: {
-    marginBottom: spacing.lg,
-    backgroundColor: '#FEF3C7',
-    borderColor: colors.warning,
-  },
-  reportWarningTitle: {
-    ...typography.h4,
-    color: colors.textPrimary,
-    marginBottom: spacing.xs,
-  },
-  reportWarningItem: {
-    ...typography.bodySmall,
-    color: colors.textSecondary,
-    marginBottom: 2,
-  },
-  headerCard: {
-    marginBottom: spacing.lg,
-  },
-  headerRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    marginBottom: spacing.sm,
-  },
-  name: {
-    ...typography.h2,
-    color: colors.textPrimary,
-    flex: 1,
-    marginRight: spacing.sm,
-  },
-  address: {
-    ...typography.body,
-    color: colors.textSecondary,
-    marginBottom: spacing.sm,
-  },
-  priceRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  price: {
-    ...typography.label,
-    color: colors.primary,
-  },
-  verified: {
-    ...typography.caption,
-    color: colors.textMuted,
-  },
-  sourceLabel: {
-    marginTop: spacing.sm,
-    paddingVertical: spacing.xs,
-    paddingHorizontal: spacing.sm,
-    backgroundColor: colors.gray100,
-    borderRadius: 8,
-  },
-  sourceLabelText: {
-    ...typography.caption,
-    color: colors.textSecondary,
-    fontStyle: 'italic',
-  },
-  section: {
-    marginBottom: spacing.lg,
-  },
-  sectionTitle: {
-    ...typography.h4,
-    color: colors.textPrimary,
-    marginBottom: spacing.md,
-  },
-  overallScore: {
-    ...typography.h1,
-    color: colors.warning,
-    textAlign: 'center',
-    marginBottom: spacing.lg,
-  },
-  ratingsGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: spacing.md,
-  },
-  ratingItem: {
-    width: '45%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  ratingLabel: {
-    ...typography.bodySmall,
-    color: colors.textSecondary,
-  },
-  ratingValue: {
-    ...typography.bodySmall,
-    color: colors.warning,
-    fontWeight: '600',
-  },
-  amenitiesGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: spacing.sm,
-  },
-  accessNotes: {
-    ...typography.body,
-    color: colors.textPrimary,
-  },
-  directionsRow: {
-    flexDirection: 'row',
-    gap: spacing.sm,
-  },
-  communityActions: {
-    flexDirection: 'row',
-    gap: spacing.sm,
-  },
-  communityButton: {
-    flex: 1,
-  },
+  safeArea: { flex: 1 }, content: { padding: spacing.lg, paddingBottom: spacing['6xl'] }, loading: { flex: 1, alignItems: 'center', justifyContent: 'center' }, notFound: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: spacing['2xl'] }, notFoundTitle: { ...typography.h3, color: colors.textPrimary }, backTextButton: { minHeight: touchTargets.minimum, justifyContent: 'center', marginTop: spacing.md }, backText: { ...typography.buttonSmall, color: colors.primary },
+  topBar: { minHeight: touchTargets.minimum, flexDirection: 'row', alignItems: 'center', marginBottom: spacing.md }, backButton: { width: touchTargets.minimum, height: touchTargets.minimum, borderRadius: borderRadius.full, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.white, marginRight: spacing.sm }, topLabel: { ...typography.buttonSmall, color: colors.textSecondary },
+  locationHeader: { flexDirection: 'row', alignItems: 'center', backgroundColor: colors.secondarySurface, marginBottom: spacing.lg }, locationIcon: { width: 52, height: 52, borderRadius: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.white, marginRight: spacing.md }, locationCopy: { flex: 1 }, locationKicker: { ...typography.caption, color: colors.primary, fontFamily: 'PlusJakartaSans_700Bold', letterSpacing: 0.9 }, locationText: { ...typography.bodySmall, color: colors.textPrimary, marginTop: 2 },
+  warning: { backgroundColor: '#FFF4D9', marginBottom: spacing.lg }, warningTitle: { ...typography.label, color: colors.textPrimary, marginBottom: spacing.xs }, warningText: { ...typography.bodySmall, color: colors.textSecondary, marginTop: 2 }, hero: { flexDirection: 'row', alignItems: 'flex-start' }, heroCopy: { flex: 1, paddingRight: spacing.md }, name: { ...typography.h1, color: colors.textPrimary }, address: { ...typography.bodySmall, color: colors.textSecondary, marginTop: spacing.xs }, metaBadges: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm, marginTop: spacing.md }, costBadge: { borderRadius: borderRadius.full, backgroundColor: '#FFF4D9', paddingVertical: 5, paddingHorizontal: 10 }, costText: { ...typography.caption, color: '#8C5A0C', fontFamily: 'PlusJakartaSans_600SemiBold' }, verifiedDate: { ...typography.caption, color: colors.textMuted, marginTop: spacing.sm, marginBottom: spacing.lg },
+  section: { marginBottom: spacing.md }, chips: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm }, chip: { borderRadius: borderRadius.full, backgroundColor: colors.secondarySurface, paddingVertical: 6, paddingHorizontal: 10 }, chipText: { ...typography.caption, color: colors.primary, fontFamily: 'PlusJakartaSans_600SemiBold' }, notes: { ...typography.bodySmall, color: colors.textPrimary, lineHeight: 22 }, scoreRow: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.lg }, score: { ...typography.score, color: colors.primary, marginRight: spacing.md }, scoreCaption: { ...typography.label, color: colors.textPrimary }, scoreDetail: { ...typography.caption, color: colors.textSecondary, marginTop: 2 }, ratingRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', minHeight: 35, borderTopWidth: 1, borderTopColor: colors.borderLight }, ratingLabel: { ...typography.bodySmall, color: colors.textSecondary }, ratingValue: { ...typography.label, color: colors.textPrimary, flexDirection: 'row', alignItems: 'center' }, photoNote: { ...typography.bodySmall, color: colors.textSecondary }, secondaryDirections: { flexDirection: 'row', marginTop: spacing.sm, gap: spacing.sm }, directionOption: { minHeight: touchTargets.minimum, flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: spacing.md }, directionOptionText: { ...typography.buttonSmall, color: colors.primary }, actionRow: { minHeight: 52, flexDirection: 'row', alignItems: 'center', gap: spacing.md, borderTopWidth: 1, borderTopColor: colors.borderLight, marginTop: spacing.sm }, lastAction: { marginTop: 0 }, actionText: { ...typography.buttonSmall, color: colors.textPrimary },
 });

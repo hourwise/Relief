@@ -70,13 +70,7 @@ const MapStackNavigator: React.FC = () => (
     <MapStack.Screen
       name="FacilityDetail"
       component={FacilityDetailScreen}
-      options={{
-        headerShown: true,
-        headerTitle: 'Facility Details',
-        headerStyle: styles.header,
-        headerTitleStyle: styles.headerTitle,
-        headerTintColor: colors.textPrimary,
-      }}
+      options={{ headerShown: false }}
     />
     <MapStack.Screen
       name="AddFacility"
