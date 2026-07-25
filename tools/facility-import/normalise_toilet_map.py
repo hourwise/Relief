@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Normalise Toilet Map UK GeoJSON into a CSV for staging import."""
+"""Normalise Toilet Map UK CSV into a standardised CSV for staging import."""
 
 import csv
 import json
@@ -7,119 +7,113 @@ import sys
 from pathlib import Path
 
 
-def parse_opening_hours(properties: dict) -> dict | None:
-    """Best-effort parse of opening hours from Toilet Map properties."""
-    raw = properties.get("openingHours") or properties.get("opening_hours")
-    if not raw:
+def to_bool(val: str):
+    """Convert Toilet Map string booleans. Empty/unknown → None."""
+    if not val or val.strip() == "":
         return None
-
-    days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
-    hours: dict = {}
-
-    if isinstance(raw, str):
-        # Simple "Mo-Fr 08:00-18:00; Sa 09:00-13:00" style
-        for part in raw.split(";"):
-            part = part.strip()
-            if not part:
-                continue
-            # Very rough parse — just store the raw string per day
-            for day in days:
-                if day[:2].lower() in part.lower() or day[:3].lower() in part.lower():
-                    hours[day] = part.strip()
-        if hours:
-            return hours
-
-    if isinstance(raw, dict):
-        return raw
-
+    s = val.strip().lower()
+    if s in ("yes", "true", "1"):
+        return True
+    if s in ("no", "false", "0"):
+        return False
     return None
 
 
-def normalise(feature: dict) -> dict | None:
-    """Convert a single GeoJSON feature to a normalised row dict."""
-    props = feature.get("properties", {})
-    geom = feature.get("geometry", {})
+def parse_areas(val: str) -> str:
+    """Extract town name from the areas JSON field."""
+    if not val or val.strip() == "":
+        return ""
+    try:
+        areas = json.loads(val)
+        if isinstance(areas, dict):
+            return areas.get("name", "")
+        if isinstance(areas, list) and areas:
+            return areas[0].get("name", "")
+    except (json.JSONDecodeError, TypeError):
+        pass
+    return ""
 
-    source_id = props.get("id") or props.get("ref") or props.get("osmId")
+
+def normalise_row(row: dict) -> dict | None:
+    """Convert a single Toilet Map CSV row to a normalised row dict."""
+    source_id = row.get("id", "").strip()
     if not source_id:
         return None
 
-    coords = geom.get("coordinates", [None, None])
-    lng = coords[0] if len(coords) > 0 else None
-    lat = coords[1] if len(coords) > 1 else None
-
-    if lat is None or lng is None:
+    # Skip inactive facilities
+    if to_bool(row.get("active", "")) is False:
         return None
 
-    # UK bounding box sanity check (rough)
+    try:
+        lat = float(row["latitude"])
+        lng = float(row["longitude"])
+    except (ValueError, TypeError, KeyError):
+        return None
+
+    # UK bounding box check
     if not (49.0 <= lat <= 61.0 and -9.0 <= lng <= 2.0):
         return None
 
-    name = props.get("name") or props.get("title") or "Unknown"
-    address_parts = [
-        props.get("street"),
-        props.get("addressLocality"),
-        props.get("addressRegion"),
-    ]
-    address = ", ".join(p for p in address_parts if p) or ""
+    name = row.get("name", "").strip() or "Unnamed Toilet"
 
-    def to_bool(val):
-        if val is None:
-            return None
-        if isinstance(val, bool):
-            return val
-        s = str(val).lower().strip()
-        if s in ("yes", "true", "1"):
-            return True
-        if s in ("no", "false", "0"):
-            return False
-        return None
+    # Build address from available fields
+    address_parts = []
+    if name and name != "Unnamed Toilet":
+        address_parts.append(name)
+    postcode = row.get("geohash", "").strip()  # Toilet Map doesn't provide postcodes directly
+    town = parse_areas(row.get("areas", ""))
+
+    # Parse opening_times if present
+    opening_hours = None
+    raw_hours = row.get("opening_times", "").strip()
+    if raw_hours:
+        try:
+            opening_hours = json.loads(raw_hours)
+        except (json.JSONDecodeError, TypeError):
+            opening_hours = {"raw": raw_hours}
 
     return {
-        "source_record_id": str(source_id),
+        "source_record_id": source_id,
         "name": name,
         "latitude": round(lat, 6),
         "longitude": round(lng, 6),
-        "address": address,
-        "postcode": props.get("postalCode") or props.get("postcode") or "",
-        "town": props.get("addressLocality") or props.get("town") or "",
-        "is_accessible": to_bool(props.get("accessible") or props.get("wheelchair")),
-        "has_baby_changing": to_bool(props.get("babyChanging")),
-        "requires_radar_key": to_bool(props.get("radarKey")),
-        "is_free": to_bool(props.get("free")),
-        "opening_hours": parse_opening_hours(props),
-        "source_updated_at": props.get("dateModified") or props.get("lastVerified"),
-        "raw_data": props,
+        "address": ", ".join(filter(None, address_parts)) or "",
+        "postcode": postcode,
+        "town": town,
+        "is_accessible": to_bool(row.get("accessible", "")),
+        "has_baby_changing": to_bool(row.get("baby_change", "")),
+        "requires_radar_key": to_bool(row.get("radar", "")),
+        "is_free": to_bool(row.get("no_payment", "")),  # inverted: no_payment=true → is_free=true
+        "opening_hours": opening_hours,
+        "source_updated_at": row.get("updated_at", "").strip() or None,
+        "raw_data": row,
     }
 
 
 def normalise_file(input_path: Path, output_path: Path) -> int:
-    """Normalise a GeoJSON file to CSV. Returns row count."""
-    with open(input_path) as f:
-        geojson = json.load(f)
-
-    features = geojson.get("features", [])
-    if not features:
-        print("No features found in input file.")
-        return 0
-
+    """Normalise a Toilet Map CSV file. Returns row count."""
     rows = []
     skipped = 0
-    for feature in features:
-        row = normalise(feature)
-        if row:
-            rows.append(row)
-        else:
-            skipped += 1
+
+    with open(input_path, newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for i, row in enumerate(reader):
+            out = normalise_row(row)
+            if out:
+                rows.append(out)
+            else:
+                skipped += 1
 
     if not rows:
         print("No valid rows after normalisation.")
         return 0
 
-    fieldnames = list(rows[0].keys())
-    # Move raw_data to end and serialise as JSON string
-    fieldnames.remove("raw_data")
-    fieldnames.append("raw_data")
+    fieldnames = [
+        "source_record_id", "name", "latitude", "longitude",
+        "address", "postcode", "town",
+        "is_accessible", "has_baby_changing", "requires_radar_key", "is_free",
+        "opening_hours", "source_updated_at", "raw_data",
+    ]
 
     with open(output_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -130,12 +124,12 @@ def normalise_file(input_path: Path, output_path: Path) -> int:
             out["opening_hours"] = json.dumps(out.get("opening_hours") or {})
             writer.writerow(out)
 
-    print(f"Normalised {len(rows)} rows ({skipped} skipped) → {output_path}")
+    print(f"Normalised {len(rows)} rows ({skipped} skipped) -> {output_path}")
     return len(rows)
 
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        print("Usage: normalise_toilet_map.py <input.geojson> <output.csv>")
+        print("Usage: normalise_toilet_map.py <input.csv> <output.csv>")
         sys.exit(1)
     normalise_file(Path(sys.argv[1]), Path(sys.argv[2]))

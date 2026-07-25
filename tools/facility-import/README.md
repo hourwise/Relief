@@ -54,8 +54,10 @@ download → normalise → staging table → validate → upsert facilities → 
 
 | Variable | Purpose |
 |----------|---------|
-| `SUPABASE_DB_URL` | PostgreSQL connection string (use the direct DB URL, not the REST API) |
+| `SUPABASE_DB_URL` | PostgreSQL Direct connection string from Supabase Dashboard > Settings > Database > Connection string > URI (port 5432). Falls back to Session Pooler if IPv6 is unavailable. Do NOT use Transaction Pooler (port 6543). |
 | `SUPABASE_SERVICE_ROLE_KEY` | Reserved for future use; currently all writes go through PostgreSQL |
+
+**Important:** `SUPABASE_DB_URL` is a server-side secret. It must never appear in Expo client code or be prefixed with `EXPO_PUBLIC_`.
 
 ## Database Tables Used
 

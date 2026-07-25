@@ -11,22 +11,23 @@ Usage:
 import argparse
 import csv
 import hashlib
+import json
 import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 import psycopg2
+import psycopg2.extras
 from dotenv import load_dotenv
 
 load_dotenv()
 
 DB_URL = os.getenv("SUPABASE_DB_URL")
 SOURCE_NAME = "Toilet Map UK"
-SOURCE_LICENCE = "OGL-3.0"
+SOURCE_LICENCE = "CC-BY-4.0"
 BATCH_SIZE = 500
 
-# Liverpool bounding box (rough)
 LIVERPOOL_LAT_MIN = 53.3
 LIVERPOOL_LAT_MAX = 53.5
 LIVERPOOL_LNG_MIN = -3.0
@@ -35,7 +36,7 @@ LIVERPOOL_LNG_MAX = -2.8
 
 def get_connection():
     if not DB_URL:
-        print("ERROR: SUPABASE_DB_URL not set. See .env.example")
+        print("ERROR: SUPABASE_DB_URL not set. See .env")
         sys.exit(1)
     return psycopg2.connect(DB_URL)
 
@@ -44,7 +45,39 @@ def compute_checksum(file_path: Path) -> str:
     return hashlib.sha256(file_path.read_bytes()).hexdigest()
 
 
-def validate_row(row: dict, row_num: int) -> list[str]:
+def nullable_bool(val):
+    if val is None or str(val).strip() == "":
+        return None
+    s = str(val).strip().lower()
+    if s in ("true", "1", "yes"):
+        return True
+    if s in ("false", "0", "no"):
+        return False
+    return None
+
+
+def nullable_str(val):
+    if val is None or str(val).strip() == "":
+        return None
+    return str(val).strip()
+
+
+def safe_json(val):
+    """Ensure val is a valid JSON string for JSONB columns."""
+    if val is None:
+        return None
+    if isinstance(val, (list, dict)):
+        return json.dumps(val)
+    if isinstance(val, str) and val.strip():
+        try:
+            json.loads(val)
+            return val
+        except (json.JSONDecodeError, TypeError):
+            return None
+    return None
+
+
+def validate_row(row, row_num):
     errors = []
     if not row.get("source_record_id"):
         errors.append("missing source_record_id")
@@ -57,6 +90,42 @@ def validate_row(row: dict, row_num: int) -> list[str]:
     if not (49.0 <= lat <= 61.0 and -9.0 <= lng <= 2.0):
         errors.append(f"coordinates outside UK: {lat},{lng}")
     return errors
+
+
+def prepare_row(row):
+    """Convert a CSV row dict into a tuple for staging insert."""
+    opening_hours_str = None
+    if row.get("opening_hours"):
+        try:
+            opening_hours_str = json.dumps(json.loads(row["opening_hours"]))
+        except Exception:
+            opening_hours_str = row["opening_hours"]
+
+    raw_data_str = row.get("raw_data") or "{}"
+
+    return (
+        row["source_record_id"],
+        nullable_str(row.get("name")),
+        float(row["latitude"]),
+        float(row["longitude"]),
+        nullable_str(row.get("address")),
+        nullable_str(row.get("postcode")),
+        nullable_str(row.get("town")),
+        nullable_bool(row.get("is_accessible")),
+        nullable_bool(row.get("has_baby_changing")),
+        nullable_bool(row.get("requires_radar_key")),
+        nullable_bool(row.get("is_free")),
+        opening_hours_str,
+        nullable_str(row.get("source_updated_at")),
+        raw_data_str,
+    )
+
+
+STAGING_COLS = (
+    "source_record_id", "name", "latitude", "longitude",
+    "address", "postcode", "town", "is_accessible", "has_baby_changing",
+    "requires_radar_key", "is_free", "opening_hours", "source_updated_at", "raw_data",
+)
 
 
 def run_import(args):
@@ -74,14 +143,12 @@ def run_import(args):
     print(f"Dry run: {dry_run}")
     print(f"Liverpool only: {liverpool_only}")
 
-    # Read all rows
     with open(file_path, newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         all_rows = list(reader)
 
     print(f"Rows read: {len(all_rows)}")
 
-    # Filter to Liverpool if requested
     if liverpool_only:
         filtered = []
         for row in all_rows:
@@ -96,7 +163,6 @@ def run_import(args):
         all_rows = filtered
         print(f"Rows after Liverpool filter: {len(all_rows)}")
 
-    # Validate
     valid_rows = []
     quarantined = []
     for i, row in enumerate(all_rows):
@@ -113,10 +179,9 @@ def run_import(args):
             print(f"  Row {row.get('source_record_id', '?')}: {errs}")
 
     if dry_run:
-        print("\n=== DRY RUN — no database changes ===")
+        print("\n=== DRY RUN - no database changes ===")
         print(f"Would insert/update: {len(valid_rows)} facilities")
         print(f"Would quarantine: {len(quarantined)} rows")
-        # Show sample
         for row in valid_rows[:5]:
             print(f"  {row.get('name', '?')} ({row.get('postcode', '?')})")
         if len(valid_rows) > 5:
@@ -140,90 +205,144 @@ def run_import(args):
         run_id = cur.fetchone()[0]
         print(f"Import run ID: {run_id}")
 
-        # 2. Clear staging table for this run
-        cur.execute("DELETE FROM toilet_map_import_staging WHERE import_run_id = %s", (run_id,))
+        # 2. Load valid rows into staging using batch insert
+        staging_tuples = [prepare_row(row) for row in valid_rows]
 
-        # 3. Load valid rows into staging
-        staging_inserts = 0
-        for row in valid_rows:
-            opening_hours = None
-            if row.get("opening_hours"):
-                try:
-                    import json
-                    opening_hours = json.dumps(json.loads(row["opening_hours"]))
-                except Exception:
-                    opening_hours = row["opening_hours"]
+        insert_query = f"""
+            INSERT INTO toilet_map_import_staging
+               (import_run_id, {', '.join(STAGING_COLS)})
+               VALUES %s
+        """
+        staging_args = [(run_id,) + t for t in staging_tuples]
+        psycopg2.extras.execute_values(cur, insert_query, staging_args, page_size=BATCH_SIZE)
+        print(f"Staged: {len(staging_tuples)} rows")
 
-            raw_data = None
-            if row.get("raw_data"):
-                try:
-                    import json
-                    raw_data = row["raw_data"]
-                except Exception:
-                    raw_data = "{}"
-
-            cur.execute(
-                """INSERT INTO toilet_map_import_staging
-                   (import_run_id, source_record_id, name, latitude, longitude,
-                    address, postcode, town, is_accessible, has_baby_changing,
-                    requires_radar_key, is_free, opening_hours, source_updated_at, raw_data)
-                   VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s::jsonb, %s, %s::jsonb)""",
-                (
-                    run_id,
-                    row["source_record_id"],
-                    row.get("name"),
-                    float(row["latitude"]),
-                    float(row["longitude"]),
-                    row.get("address", ""),
-                    row.get("postcode", ""),
-                    row.get("town", ""),
-                    row.get("is_accessible"),
-                    row.get("has_baby_changing"),
-                    row.get("requires_radar_key"),
-                    row.get("is_free"),
-                    opening_hours,
-                    row.get("source_updated_at"),
-                    raw_data,
-                ),
-            )
-            staging_inserts += 1
-
-        print(f"Staged: {staging_inserts} rows")
-
-        # 4. Upsert from staging into facilities + facility_sources
-        inserted = 0
-        updated = 0
-        unchanged = 0
-
+        # 3. Read staging rows back
         cur.execute(
-            """SELECT source_record_id, name, latitude, longitude, address, postcode, town,
-                      is_accessible, has_baby_changing, requires_radar_key, is_free,
-                      opening_hours, source_updated_at, raw_data
-               FROM toilet_map_import_staging
-               WHERE import_run_id = %s""",
+            f"""SELECT source_record_id, name, latitude, longitude, address, postcode, town,
+                       is_accessible, has_baby_changing, requires_radar_key, is_free,
+                       opening_hours, source_updated_at, raw_data
+                FROM toilet_map_import_staging
+                WHERE import_run_id = %s""",
             (run_id,),
         )
-
         staging_rows = cur.fetchall()
         col_names = [desc[0] for desc in cur.description]
 
+        # 4. Find which source_record_ids already exist
+        source_ids = [dict(zip(col_names, r))["source_record_id"] for r in staging_rows]
+        cur.execute(
+            """SELECT source_record_id, facility_id FROM facility_sources
+               WHERE source_name = %s AND source_record_id = ANY(%s) AND is_current = true""",
+            (SOURCE_NAME, source_ids),
+        )
+        existing_map = dict(cur.fetchall())  # source_record_id -> facility_id
+
+        # Separate into new vs existing
+        new_rows = []
+        update_rows = []
         for staging_row in staging_rows:
             row_dict = dict(zip(col_names, staging_row))
-            source_record_id = row_dict["source_record_id"]
+            oh = row_dict["opening_hours"]
+            if isinstance(oh, (list, dict)):
+                oh = json.dumps(oh)
+            row_dict["opening_hours"] = oh
 
-            # Check if facility_sources already has this source record
-            cur.execute(
-                """SELECT fs.facility_id, f.id
-                   FROM facility_sources fs
-                   JOIN facilities f ON f.id = fs.facility_id
-                   WHERE fs.source_name = %s AND fs.source_record_id = %s AND fs.is_current = true""",
-                (SOURCE_NAME, source_record_id),
+            rd = row_dict["raw_data"]
+            if isinstance(rd, (list, dict)):
+                rd = json.dumps(rd)
+            row_dict["raw_data"] = rd
+
+            if row_dict["source_record_id"] in existing_map:
+                row_dict["_facility_id"] = existing_map[row_dict["source_record_id"]]
+                update_rows.append(row_dict)
+            else:
+                new_rows.append(row_dict)
+
+        print(f"New facilities: {len(new_rows)}, Existing to update: {len(update_rows)}")
+
+        # 5. Batch INSERT new facilities
+        inserted = 0
+        if new_rows:
+            # Build batch inserts with source_record_id in VALUES so we can map back
+            insert_template = """(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s::jsonb, 'published', 'source_imported', false)"""
+
+            new_source_to_facility = {}
+            for i in range(0, len(new_rows), BATCH_SIZE):
+                batch = new_rows[i:i + BATCH_SIZE]
+                facility_values = []
+                for r in batch:
+                    facility_values.append((
+                        r["name"] or "Unnamed Toilet",
+                        r["address"] or "",
+                        r["latitude"],
+                        r["longitude"],
+                        r["postcode"] or "",
+                        r["town"] or "",
+                        r["is_accessible"],
+                        r["has_baby_changing"],
+                        r["requires_radar_key"],
+                        r["is_free"],
+                        safe_json(r["opening_hours"]),
+                    ))
+
+                facility_insert_query = """
+                    INSERT INTO facilities
+                       (name, address, latitude, longitude, postcode, town,
+                        is_accessible, has_baby_changing, requires_radar_key, is_free,
+                        open_hours, publication_status, verification_status, is_verified)
+                    VALUES %s
+                    RETURNING id, name
+                """
+                psycopg2.extras.execute_values(
+                    cur, facility_insert_query, facility_values,
+                    page_size=BATCH_SIZE,
+                    template=insert_template,
+                )
+                returned = cur.fetchall()
+                for (fid, fname) in returned:
+                    for r in batch:
+                        if (r["name"] or "Unnamed Toilet") == fname and r["source_record_id"] not in new_source_to_facility:
+                            new_source_to_facility[r["source_record_id"]] = fid
+                            break
+
+            inserted = len(new_source_to_facility)
+            print(f"Inserted {inserted} facilities, mapped {len(new_source_to_facility)} source IDs")
+
+            # Batch INSERT facility_sources for new facilities
+            source_values = []
+            now_iso = datetime.now(timezone.utc).isoformat()
+            for r in new_rows:
+                fid = new_source_to_facility.get(r["source_record_id"])
+                if fid:
+                    source_values.append((
+                        fid,
+                        run_id,
+                        SOURCE_NAME,
+                        r["source_record_id"],
+                        SOURCE_LICENCE,
+                        r["source_updated_at"] or now_iso,
+                        safe_json(r["raw_data"]),
+                    ))
+
+            source_insert_query = """
+                INSERT INTO facility_sources
+                   (facility_id, import_run_id, source_name, source_record_id,
+                    source_licence, source_updated_at, raw_data)
+                VALUES %s
+            """
+            psycopg2.extras.execute_values(
+                cur, source_insert_query, source_values,
+                page_size=BATCH_SIZE,
+                template="(%s, %s, %s, %s, %s, %s, %s::jsonb)",
             )
-            existing = cur.fetchone()
 
-            if existing:
-                facility_id = existing[0]
-                # Update facility if source is newer
+        # 6. Batch UPDATE existing facilities
+        updated = 0
+        unchanged = 0
+        if update_rows:
+            now_iso = datetime.now(timezone.utc).isoformat()
+            for r in update_rows:
                 cur.execute(
                     """UPDATE facilities SET
                          name = %s, address = %s, postcode = %s, town = %s,
@@ -235,17 +354,17 @@ def run_import(args):
                        WHERE id = %s
                        AND (updated_at < %s OR updated_at IS NULL)""",
                     (
-                        row_dict["name"],
-                        row_dict["address"],
-                        row_dict["postcode"],
-                        row_dict["town"],
-                        row_dict["is_accessible"],
-                        row_dict["has_baby_changing"],
-                        row_dict["requires_radar_key"],
-                        row_dict["is_free"],
-                        row_dict["opening_hours"],
-                        facility_id,
-                        row_dict["source_updated_at"] or datetime.now(timezone.utc).isoformat(),
+                        r["name"],
+                        r["address"],
+                        r["postcode"],
+                        r["town"],
+                        r["is_accessible"],
+                        r["has_baby_changing"],
+                        r["requires_radar_key"],
+                        r["is_free"],
+                        safe_json(r["opening_hours"]),
+                        r["_facility_id"],
+                        r["source_updated_at"] or now_iso,
                     ),
                 )
                 if cur.rowcount > 0:
@@ -253,57 +372,15 @@ def run_import(args):
                 else:
                     unchanged += 1
 
-                # Update facility_sources last_seen_at
-                cur.execute(
-                    """UPDATE facility_sources SET last_seen_at = NOW()
-                       WHERE source_name = %s AND source_record_id = %s""",
-                    (SOURCE_NAME, source_record_id),
-                )
-            else:
-                # New facility
-                cur.execute(
-                    """INSERT INTO facilities
-                       (name, address, latitude, longitude, postcode, town,
-                        is_accessible, has_baby_changing, requires_radar_key, is_free,
-                        open_hours, publication_status, verification_status, is_verified)
-                       VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s::jsonb,
-                               'published', 'source_imported', false)
-                       RETURNING id""",
-                    (
-                        row_dict["name"],
-                        row_dict["address"],
-                        row_dict["latitude"],
-                        row_dict["longitude"],
-                        row_dict["postcode"],
-                        row_dict["town"],
-                        row_dict["is_accessible"],
-                        row_dict["has_baby_changing"],
-                        row_dict["requires_radar_key"],
-                        row_dict["is_free"],
-                        row_dict["opening_hours"],
-                    ),
-                )
-                facility_id = cur.fetchone()[0]
-                inserted += 1
+            # Update facility_sources last_seen_at for existing
+            existing_source_ids = [r["source_record_id"] for r in update_rows]
+            cur.execute(
+                """UPDATE facility_sources SET last_seen_at = NOW()
+                   WHERE source_name = %s AND source_record_id = ANY(%s)""",
+                (SOURCE_NAME, existing_source_ids),
+            )
 
-                # Create facility_source record
-                cur.execute(
-                    """INSERT INTO facility_sources
-                       (facility_id, import_run_id, source_name, source_record_id,
-                        source_licence, source_updated_at, raw_data)
-                       VALUES (%s, %s, %s, %s, %s, %s, %s::jsonb)""",
-                    (
-                        facility_id,
-                        run_id,
-                        SOURCE_NAME,
-                        source_record_id,
-                        SOURCE_LICENCE,
-                        row_dict["source_updated_at"],
-                        row_dict["raw_data"],
-                    ),
-                )
-
-        # 5. Mark old source records as stale
+        # 7. Mark stale source records
         cur.execute(
             """UPDATE facility_sources SET is_current = false
                WHERE source_name = %s
@@ -313,7 +390,6 @@ def run_import(args):
         )
         marked_stale = cur.rowcount
 
-        # Also mark facilities that weren't seen in this import as stale
         cur.execute(
             """UPDATE facilities SET verification_status = 'stale'
                WHERE verification_status = 'source_imported'
@@ -325,7 +401,7 @@ def run_import(args):
         )
         facilities_marked_stale = cur.rowcount
 
-        # 6. Complete import_runs record
+        # 8. Complete import_runs record
         cur.execute(
             """UPDATE import_runs SET
                status = 'completed',
@@ -349,7 +425,6 @@ def run_import(args):
 
     except Exception as e:
         conn.rollback()
-        # Mark run as failed
         try:
             cur.execute(
                 "UPDATE import_runs SET status = 'failed', error_summary = %s, completed_at = NOW() WHERE id = %s",

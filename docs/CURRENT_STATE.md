@@ -1,7 +1,7 @@
 # Relief — Current State Assessment
 
 **Last verified:** 2026-07-25  
-**Verification method:** Targeted configuration/documentation update after user-reported Supabase schema push and Android Google Maps SDK key setup; app smoke testing still pending  
+**Verification method:** Full UK facility import completed (15,584 facilities from Toilet Map UK); database records verified; app smoke testing still pending  
 **TypeScript check:** Not rerun in this pass; previous run (`npx tsc --noEmit`) showed 11 errors, all in Supabase Deno Edge Functions (expected, Deno runtime not available)  
 **Build check:** Not run (no EAS/local build configured)  
 **Test suite:** Not run (no test scripts exist)
@@ -28,7 +28,7 @@ The codebase demonstrates a clear product vision and substantial implementation 
 | **Navigation** | Implemented — React Navigation 7 with auth-gated root, 4-tab main navigator, map stack |
 | **Theme system** | Implemented — colours, typography, spacing tokens consistent with design system |
 | **i18n infrastructure** | Implemented — i18next with English locale, nested key structure |
-| **Database schema** | Designed — 4 migration files covering facilities, community, premium, monetisation tables |
+| **Database schema** | Designed — 4 migration files + trust model/provenance tables; 15,584 UK facilities imported with source tracking |
 | **Edge Functions** | Written — 2 Deno functions (expire-reports, revenuecat-webhook) |
 | **Testing** | None — no test scripts, no test files, no CI configuration |
 | **Linting/formatting** | None — no ESLint, Prettier, or formatting scripts configured |
@@ -45,7 +45,7 @@ The codebase demonstrates a clear product vision and substantial implementation 
 |-----------|--------|----------|
 | Login screen UI | UI IMPLEMENTED | `LoginScreen.tsx` — email, Google, Apple buttons rendered |
 | Map screen with markers | UI IMPLEMENTED | `MapScreen.tsx` — MapView with PROVIDER_GOOGLE, clustering, emergency button |
-| List screen | MOCKED | `ListScreen.tsx` — 3 hardcoded Liverpool facilities, no Supabase query |
+| List screen | BACKEND-DEPENDENT | `ListScreen.tsx` — Supabase query exists; 15,584 UK facilities now in database; needs client-side verification |
 | Facility detail screen | UI IMPLEMENTED | `FacilityDetailScreen.tsx` — detail layout exists |
 | Profile screen | UI IMPLEMENTED | `ProfileScreen.tsx` — user info, badges, sign-out |
 | Favourites screen | UI IMPLEMENTED | `FavouritesScreen.tsx` — list with empty state |
@@ -124,7 +124,7 @@ From `src/utils/env.ts`:
 
 1. **Supabase smoke testing pending** — Development project/schema are user-reported connected, but app reads/auth/storage workflows are not VERIFIED
 2. **Auth-gated navigation** — Contradicts "no login required for basic search" policy
-3. **No verified seed data** — Facility discovery cannot be trusted until one launch area is populated and checked
+3. ~~No verified seed data~~ **SEED DATA IMPORTED** — 15,584 UK public toilet facilities imported from Toilet Map UK (CC-BY-4.0); 104 in Liverpool test area; verified in Supabase with source provenance tracking
 4. **No RevenueCat configuration** — Blocks monetisation
 5. **No storage bucket/media pipeline** — Photo uploads lack bucket setup, EXIF stripping, and face blurring
 6. **No moderation pipeline** — Community submissions cannot be reviewed safely
@@ -150,10 +150,10 @@ From `src/utils/env.ts`:
 
 ## Safe Next Action
 
-**Run the first backend/map smoke test on Android**, starting with:
+**Run the first end-to-end smoke test on Android**, starting with:
 
 1. Verify Expo config resolves the Android Google Maps SDK key for a development build
-2. Load seed data for a single UK town
+2. ~~Load seed data for a single UK town~~ **DONE** — 15,584 UK facilities in Supabase (104 Liverpool, full UK)
 3. Replace/mock-bypass the hardcoded list data with Supabase reads for the smoke path
 4. Verify map pins render with real coordinates from Supabase
 5. Verify "Need One Now" can find the nearest seeded facility

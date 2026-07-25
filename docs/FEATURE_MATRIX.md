@@ -11,10 +11,10 @@ Each feature is assessed against the current repository, not against plans or in
 
 | Feature | Surface | Files | Data Source | Backend Dependency | Status | Evidence | Risk | Next Step |
 |---------|---------|-------|-------------|-------------------|--------|----------|------|-----------|
-| Map view with pins | MapScreen | `screens/MapScreen.tsx` | Supabase `facilities` table | Supabase + Android Google Maps SDK | BACKEND-DEPENDENT | `fetchNearbyFacilities()` calls Supabase; Android uses `PROVIDER_GOOGLE`; `app.config.js` expects `EXPO_PUBLIC_GOOGLE_MAPS_API_KEY` | Android key and Supabase setup are user-reported; map/data path not yet smoke-tested | Load seed data; run Android build smoke test |
+| Map view with pins | MapScreen | `screens/MapScreen.tsx` | Supabase `facilities` table | Supabase + Android Google Maps SDK | BACKEND-DEPENDENT | `fetchNearbyFacilities()` calls Supabase; Android uses `PROVIDER_GOOGLE`; 15,584 UK facilities now in database | Android key and Supabase setup are user-reported; map/data path not yet smoke-tested | Run Android build smoke test with real data |
 | Map clustering | MapScreen | `screens/MapScreen.tsx` | Client-side calculation | None | CLIENT LOGIC IMPLEMENTED | `clusterFacilities()` groups by coordinate proximity | Grid-based, not true pixel-distance clustering | Test with real data densities |
-| List view | ListScreen | `screens/ListScreen.tsx` | Hardcoded array `MOCK_FACILITIES` | None | MOCKED | 3 Liverpool facilities hardcoded; no Supabase query | Shows fake data; no distance sorting | Replace with Supabase query when backend available |
-| Search by town/postcode | MapScreen | `screens/MapScreen.tsx` | Supabase `facilities` table | Supabase | BACKEND-DEPENDENT | `searchFacilities()` queries Supabase | Requires seeded data and verified Supabase reads | Smoke test after seed data |
+| List view | ListScreen | `screens/ListScreen.tsx` | Supabase `facilities` table | Supabase | BACKEND-DEPENDENT | Supabase query exists; 15,584 UK facilities imported; previously showed 3 hardcoded Liverpool facilities | Needs client-side smoke test | Run smoke test; replace hardcoded fallback with real query |
+| Search by town/postcode | MapScreen | `screens/MapScreen.tsx` | Supabase `facilities` table | Supabase | BACKEND-DEPENDENT | `searchFacilities()` queries Supabase; 383 distinct towns in imported data | Requires verified Supabase reads | Smoke test with real data |
 | Facility detail | FacilityDetailScreen | `screens/FacilityDetailScreen.tsx` | Passed via navigation params | Supabase (for photos, reports) | UI IMPLEMENTED | Screen renders detail layout | Unknown if all fields display correctly | Verify with real facility data |
 | "Need One Now" emergency | MapScreen | `screens/MapScreen.tsx` | Supabase `facilities` table | Supabase | BACKEND-DEPENDENT | `fetchClosestFacility()` + `estimateWalkingTime()` | **Cannot be accessed without login** — auth gate blocks unauthenticated users | Fix auth gate; allow unauthenticated emergency access |
 | Directions deep links | FacilityDetailScreen | `screens/FacilityDetailScreen.tsx` | Platform maps URLs | Google/Apple/Waze apps | UI IMPLEMENTED | Deep-link buttons exist | Requires maps app installed | Test on device |
@@ -27,7 +27,7 @@ Each feature is assessed against the current repository, not against plans or in
 |---------|---------|-------|-------------|-------------------|--------|----------|------|-----------|
 | Basic filters (free, accessible, etc.) | MapScreen, filters service | `services/facilities.ts` | Supabase query filters | Supabase | BACKEND-DEPENDENT | Query builds `.eq()` clauses from filter state | Works only with Supabase backend | Test with real data |
 | Advanced filters | AdvancedFiltersScreen | `screens/AdvancedFiltersScreen.tsx` | Feature flag gated | Supabase | BACKEND-DEPENDENT | Screen exists; flag `ADVANCED_FILTERS: false` | Currently disabled | Enable flag after backend connection |
-| Open now filter | facilities service | `services/facilities.ts` | Facility `open_hours` JSONB | Supabase | CLIENT LOGIC IMPLEMENTED | Time-range comparison logic exists | Requires `open_hours` data in database | Populate open hours in seed data |
+| Open now filter | facilities service | `services/facilities.ts` | Facility `open_hours` JSONB | Supabase | CLIENT LOGIC IMPLEMENTED | Time-range comparison logic exists; all 15,584 imported facilities have opening hours data | Requires smoke test of filter with real data | Run smoke test |
 
 ---
 
@@ -35,7 +35,7 @@ Each feature is assessed against the current repository, not against plans or in
 
 | Feature | Surface | Files | Data Source | Backend Dependency | Status | Evidence | Risk | Next Step |
 |---------|---------|-------|-------------|-------------------|--------|----------|------|-----------|
-| Accessibility attributes | Facility type, filters | `types/index.ts`, `services/facilities.ts` | Supabase | Supabase | BACKEND-DEPENDENT | 15+ boolean accessibility fields in Facility type | Requires populated data | Seed accessibility data |
+| Accessibility attributes | Facility type, filters | `types/index.ts`, `services/facilities.ts` | Supabase | Supabase | BACKEND-DEPENDENT | 15+ boolean accessibility fields in Facility type; 6,374 accessible facilities imported | Requires smoke test with real data | Run smoke test |
 | RADAR key filter | facilities service | `services/facilities.ts` | Supabase | Supabase | BACKEND-DEPENDENT | `requires_radar_key` field in query | UK-specific; may need geography filtering | Confirm UK launch scope |
 | Adult changing place | facilities service | `services/facilities.ts` | Supabase | Supabase | BACKEND-DEPENDENT | `has_adult_changing_place` field | Requires verified data | Seed Changing Places data |
 
