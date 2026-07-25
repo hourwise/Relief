@@ -13,6 +13,7 @@ import {
   FlatList,
   ActivityIndicator,
   Dimensions,
+  Linking,
   Platform,
 } from 'react-native';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
@@ -23,11 +24,12 @@ import { Button, Card } from '../components';
 import { useLocation } from '../hooks/useLocation';
 import { useFilters } from '../context/FiltersContext';
 import {
-  fetchNearbyFacilities,
+  fetchViewportFacilities,
   fetchClosestFacility,
   estimateWalkingTime,
   searchFacilities,
 } from '../services/facilities';
+import { getOpenStatus } from '../utils/openingHours';
 import type { Facility, MapStackParamList } from '../types';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
@@ -36,8 +38,8 @@ const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-// Cluster radius in pixels
 const CLUSTER_RADIUS = 60;
+const DEBOUNCE_MS = 400;
 
 type MapNavigationProp = NativeStackNavigationProp<MapStackParamList, 'MapView'>;
 
@@ -49,10 +51,6 @@ interface Cluster {
   facilities: Facility[];
 }
 
-/**
- * Simple grid-based clustering algorithm.
- * Groups nearby markers into clusters based on coordinate proximity.
- */
 function clusterFacilities(
   facilities: Facility[],
   region: {
@@ -99,19 +97,20 @@ function clusterFacilities(
         clusterFacilities.reduce((s, f) => s + f.longitude, 0) /
         clusterFacilities.length;
 
+      // Stable cluster ID from sorted member IDs
+      const sortedIds = clusterFacilities.map((f) => f.id).sort();
       clusters.push({
-        id: `cluster-${clusterFacilities[0].id}`,
+        id: `cluster-${sortedIds[0]}-${sortedIds.length}`,
         latitude: avgLat,
         longitude: avgLng,
         count: clusterFacilities.length,
         facilities: clusterFacilities,
       });
     } else {
-      // Keep as individual facility (returned as-is via the marker rendering)
       clusters.push({
-        id: `single-${clusterFacilities[0].id}`,
-        latitude: clusterFacilities[0].latitude,
-        longitude: clusterFacilities[0].longitude,
+        id: `single-${facility.id}`,
+        latitude: facility.latitude,
+        longitude: facility.longitude,
         count: 1,
         facilities: clusterFacilities,
       });
@@ -127,6 +126,7 @@ export const MapScreen: React.FC = () => {
   const mapRef = useRef<MapView>(null);
   const { location, loading: locationLoading, refreshLocation } = useLocation();
   const { filters, activeFilterCount } = useFilters();
+
   const [facilities, setFacilities] = useState<Facility[]>([]);
   const [loading, setLoading] = useState(false);
   const [showEmergency, setShowEmergency] = useState(false);
@@ -145,34 +145,62 @@ export const MapScreen: React.FC = () => {
   });
   const [mapInitialized, setMapInitialized] = useState(false);
 
-  // Move location update to happen before region so we always have facilities
+  // Monotonically increasing request ID for stale-response protection
+  const requestIdRef = useRef(0);
+  // Debounce timer
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Track whether a network request is in flight
+  const inFlightRef = useRef(false);
+
+  // Initial load when location arrives
   useEffect(() => {
     if (location && !mapInitialized) {
-      setCurrentRegion({
+      const region = {
         latitude: location.latitude,
         longitude: location.longitude,
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA,
-      });
+      };
+      setCurrentRegion(region);
       setMapInitialized(true);
-      loadFacilities();
+      loadFacilitiesForRegion(region);
     }
   }, [location]);
 
-  const loadFacilities = async (overrideLocation?: { latitude: number; longitude: number }) => {
-    const loc = overrideLocation || location;
-    if (!loc) return;
-    setLoading(true);
-    const hasActiveFilters = activeFilterCount > 0;
-    const { facilities: nearby } = await fetchNearbyFacilities(
-      loc.latitude,
-      loc.longitude,
-      10,
-      hasActiveFilters ? filters : undefined,
-    );
-    setFacilities(nearby);
-    setLoading(false);
-  };
+  const loadFacilitiesForRegion = useCallback(
+    async (region: {
+      latitude: number;
+      longitude: number;
+      latitudeDelta: number;
+      longitudeDelta: number;
+    }) => {
+      const myRequestId = ++requestIdRef.current;
+
+      const minLat = region.latitude - region.latitudeDelta / 2;
+      const maxLat = region.latitude + region.latitudeDelta / 2;
+      const minLng = region.longitude - region.longitudeDelta / 2;
+      const maxLng = region.longitude + region.longitudeDelta / 2;
+
+      const hasActiveFilters = activeFilterCount > 0;
+      const result = await fetchViewportFacilities(
+        {
+          minLatitude: minLat,
+          maxLatitude: maxLat,
+          minLongitude: minLng,
+          maxLongitude: maxLng,
+        },
+        hasActiveFilters ? filters : undefined,
+      );
+
+      // Ignore stale responses — only apply if this is the latest request
+      if (myRequestId < requestIdRef.current) return;
+
+      setFacilities(result.facilities);
+      setLoading(false);
+      inFlightRef.current = false;
+    },
+    [activeFilterCount, filters],
+  );
 
   const handleEmergencyPress = async () => {
     if (!location) {
@@ -194,12 +222,15 @@ export const MapScreen: React.FC = () => {
       );
       setWalkingTime(time);
       if (mapRef.current) {
-        mapRef.current.animateToRegion({
-          latitude: closest.latitude,
-          longitude: closest.longitude,
-          latitudeDelta: 0.02,
-          longitudeDelta: 0.02 * ASPECT_RATIO,
-        }, 500);
+        mapRef.current.animateToRegion(
+          {
+            latitude: closest.latitude,
+            longitude: closest.longitude,
+            latitudeDelta: 0.02,
+            longitudeDelta: 0.02 * ASPECT_RATIO,
+          },
+          500,
+        );
       }
     }
   };
@@ -217,78 +248,83 @@ export const MapScreen: React.FC = () => {
     setSelectedFacility(facility);
   }, []);
 
-  const handleCalloutPress = useCallback((facility: Facility) => {
-    navigation.navigate('FacilityDetail', { facilityId: facility.id });
-  }, [navigation]);
+  const handleCalloutPress = useCallback(
+    (facility: Facility) => {
+      navigation.navigate('FacilityDetail', { facilityId: facility.id });
+    },
+    [navigation],
+  );
 
   const handleSearchResultPress = useCallback((facility: Facility) => {
     setShowSearch(false);
     setSearchQuery('');
     if (mapRef.current) {
-      mapRef.current.animateToRegion({
-        latitude: facility.latitude,
-        longitude: facility.longitude,
-        latitudeDelta: 0.02,
-        longitudeDelta: 0.02 * ASPECT_RATIO,
-      }, 500);
+      mapRef.current.animateToRegion(
+        {
+          latitude: facility.latitude,
+          longitude: facility.longitude,
+          latitudeDelta: 0.02,
+          longitudeDelta: 0.02 * ASPECT_RATIO,
+        },
+        500,
+      );
     }
     setSelectedFacility(facility);
   }, []);
 
-  const handleRegionChangeComplete = useCallback(async (newRegion: any) => {
-    setCurrentRegion(newRegion);
-    const { latitude, longitude } = newRegion;
-    const { facilities: nearby } = await fetchNearbyFacilities(
-      latitude,
-      longitude,
-      10,
-    );
-    setFacilities(nearby);
-  }, []);
+  // Debounced region change — does NOT clear existing markers
+  const handleRegionChangeComplete = useCallback(
+    (newRegion: any) => {
+      setCurrentRegion(newRegion);
 
-  const handleClusterPress = useCallback((cluster: Cluster) => {
-    // Zoom in to show individual markers within the cluster
-    if (mapRef.current) {
-      mapRef.current.animateToRegion({
-        latitude: cluster.latitude,
-        longitude: cluster.longitude,
-        latitudeDelta: currentRegion.latitudeDelta / 3,
-        longitudeDelta: currentRegion.longitudeDelta / 3,
-      }, 500);
-    }
-  }, [currentRegion]);
+      if (debounceRef.current) {
+        clearTimeout(debounceRef.current);
+      }
 
-  const isOpenNow = (facility: Facility): boolean => {
-    if (facility.is_24h) return true;
-    if (!facility.open_hours) return false;
-    const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-    const today = days[new Date().getDay()];
-    const hours = facility.open_hours[today];
-    if (!hours) return false;
-    const now = new Date();
-    const [openH, openM] = hours.open.split(':').map(Number);
-    const [closeH, closeM] = hours.close.split(':').map(Number);
-    const openMinutes = openH * 60 + openM;
-    const closeMinutes = closeH * 60 + closeM;
-    const nowMinutes = now.getHours() * 60 + now.getMinutes();
-    return nowMinutes >= openMinutes && nowMinutes <= closeMinutes;
-  };
+      debounceRef.current = setTimeout(() => {
+        if (!inFlightRef.current) {
+          inFlightRef.current = true;
+          setLoading(true);
+          loadFacilitiesForRegion(newRegion);
+        }
+      }, DEBOUNCE_MS);
+    },
+    [loadFacilitiesForRegion],
+  );
+
+  const handleClusterPress = useCallback(
+    (cluster: Cluster) => {
+      if (mapRef.current) {
+        mapRef.current.animateToRegion(
+          {
+            latitude: cluster.latitude,
+            longitude: cluster.longitude,
+            latitudeDelta: currentRegion.latitudeDelta / 3,
+            longitudeDelta: currentRegion.longitudeDelta / 3,
+          },
+          500,
+        );
+      }
+    },
+    [currentRegion],
+  );
 
   const getMarkerColor = (facility: Facility): string => {
-    if (facility.is_accessible || facility.has_wheelchair_access) return colors.mapPinAccessible;
-    if (facility.has_baby_changing || facility.has_family_room) return colors.mapPinFamily;
+    if (facility.is_accessible || facility.has_wheelchair_access)
+      return colors.mapPinAccessible;
+    if (facility.has_baby_changing || facility.has_family_room)
+      return colors.mapPinFamily;
     return colors.mapPinDefault;
   };
 
-  // Type guard for cluster
   const isCluster = (item: Facility | Cluster): item is Cluster => {
     return 'count' in item && (item as Cluster).count > 1;
   };
 
-  // Compute clusters from facilities
+  // Clustering is memoised on facilities only — region changes don't
+  // re-cluster until new data arrives (no flickering).
   const markers = React.useMemo<(Facility | Cluster)[]>(() => {
     const clusters = clusterFacilities(facilities, currentRegion);
-    // Return only multi-facility clusters and single-facility non-clustered items
     return clusters.map((c: Cluster) => {
       if (c.count === 1) {
         return c.facilities[0];
@@ -297,9 +333,27 @@ export const MapScreen: React.FC = () => {
     });
   }, [facilities, currentRegion]);
 
+  const renderCalloutStatus = (facility: Facility) => {
+    const status = getOpenStatus(facility);
+    const label =
+      status === 'open'
+        ? t('map.open')
+        : status === 'closed'
+        ? t('map.closed')
+        : t('map.hoursUnknown', { defaultValue: 'Hours unknown' });
+    const color =
+      status === 'open'
+        ? colors.success
+        : status === 'closed'
+        ? colors.error
+        : colors.textMuted;
+    return (
+      <Text style={[styles.calloutStatus, { color }]}>{label}</Text>
+    );
+  };
+
   return (
     <View style={styles.container}>
-      {/* Interactive Map */}
       {locationLoading && !mapInitialized ? (
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color={colors.primary} />
@@ -321,7 +375,6 @@ export const MapScreen: React.FC = () => {
           provider={Platform.OS === 'android' ? PROVIDER_GOOGLE : undefined}
         >
           {markers.map((item) => {
-            // Render cluster
             if (isCluster(item)) {
               return (
                 <Marker
@@ -340,7 +393,6 @@ export const MapScreen: React.FC = () => {
               );
             }
 
-            // Render individual facility marker
             const facility = item;
             return (
               <Marker
@@ -359,30 +411,18 @@ export const MapScreen: React.FC = () => {
                       {facility.name}
                     </Text>
                     <Text style={styles.calloutAddress} numberOfLines={1}>
-                      {facility.address}
+                      {facility.town || facility.address}
                     </Text>
                     <View style={styles.calloutRow}>
-                      <Text style={styles.calloutScore}>
-                        ★ {facility.overall_score.toFixed(1)}
-                      </Text>
-                      <Text
-                        style={[
-                          styles.calloutStatus,
-                          {
-                            color: isOpenNow(facility)
-                              ? colors.success
-                              : colors.error,
-                          },
-                        ]}
-                      >
-                        {isOpenNow(facility) ? t('map.open') : t('map.closed')}
-                      </Text>
+                      {renderCalloutStatus(facility)}
+                      {facility.is_free !== undefined && (
+                        <Text style={styles.calloutPrice}>
+                          {facility.is_free
+                            ? t('facility.free')
+                            : t('facility.paid')}
+                        </Text>
+                      )}
                     </View>
-                    {facility.is_free !== undefined && (
-                      <Text style={styles.calloutPrice}>
-                        {facility.is_free ? t('facility.free') : t('facility.paid')}
-                      </Text>
-                    )}
                     <Text style={styles.calloutAction}>
                       {t('map.tapForDetails')}
                     </Text>
@@ -394,7 +434,7 @@ export const MapScreen: React.FC = () => {
         </MapView>
       )}
 
-      {/* Loading Overlay */}
+      {/* Loading Overlay — does NOT remove markers */}
       {loading && (
         <View style={styles.loadingOverlay}>
           <ActivityIndicator size="small" color={colors.primary} />
@@ -432,23 +472,7 @@ export const MapScreen: React.FC = () => {
                 {t('map.walkingTime', { minutes: walkingTime })}
               </Text>
               <View style={styles.emergencyCardRow}>
-                <Text
-                  style={[
-                    styles.emergencyCardStatus,
-                    {
-                      color: isOpenNow(emergencyFacility)
-                        ? colors.success
-                        : colors.error,
-                    },
-                  ]}
-                >
-                  {isOpenNow(emergencyFacility)
-                    ? t('map.open')
-                    : t('map.closed')}
-                </Text>
-                <Text style={styles.emergencyCardScore}>
-                  ★ {emergencyFacility.overall_score.toFixed(1)}
-                </Text>
+                {renderCalloutStatus(emergencyFacility)}
               </View>
             </>
           ) : (
@@ -459,7 +483,11 @@ export const MapScreen: React.FC = () => {
           <View style={styles.emergencyCardActions}>
             <Button
               title={t('map.getDirections')}
-              onPress={() => {}}
+              onPress={() => {
+                if (!emergencyFacility) return;
+                const url = `https://www.google.com/maps/dir/?api=1&destination=${emergencyFacility.latitude},${emergencyFacility.longitude}&travelmode=walking&dir_action=navigate`;
+                Linking.openURL(url);
+              }}
               size="sm"
               style={styles.emergencyCardButton}
             />
@@ -502,7 +530,10 @@ export const MapScreen: React.FC = () => {
 
       {/* Filter Button */}
       <TouchableOpacity
-        style={[styles.filterButton, activeFilterCount > 0 && styles.filterButtonActive]}
+        style={[
+          styles.filterButton,
+          activeFilterCount > 0 && styles.filterButtonActive,
+        ]}
         onPress={() => navigation.navigate('AdvancedFilters')}
         activeOpacity={0.7}
       >
@@ -533,11 +564,11 @@ export const MapScreen: React.FC = () => {
                   onPress={() => handleSearchResultPress(item)}
                 >
                   <Text style={styles.searchResultName}>{item.name}</Text>
-                  <Text style={styles.searchResultAddress}>{item.address}</Text>
+                  <Text style={styles.searchResultAddress}>
+                    {item.town || item.address}
+                  </Text>
                   <View style={styles.searchResultMeta}>
-                    <Text style={styles.searchResultScore}>
-                      ★ {item.overall_score.toFixed(1)}
-                    </Text>
+                    {renderCalloutStatus(item)}
                     <Text style={styles.searchResultDistance}>
                       {item.town}
                     </Text>
@@ -548,9 +579,7 @@ export const MapScreen: React.FC = () => {
               keyboardShouldPersistTaps="handled"
             />
           ) : (
-            <Text style={styles.searchNoResults}>
-              {t('list.empty')}
-            </Text>
+            <Text style={styles.searchNoResults}>{t('list.empty')}</Text>
           )}
         </View>
       )}
@@ -614,11 +643,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: spacing.xs,
   },
-  calloutScore: {
-    ...typography.caption,
-    color: colors.textPrimary,
-    fontWeight: '600',
-  },
   calloutStatus: {
     ...typography.caption,
     fontWeight: '600',
@@ -626,7 +650,6 @@ const styles = StyleSheet.create({
   calloutPrice: {
     ...typography.caption,
     color: colors.textSecondary,
-    marginTop: 2,
   },
   calloutAction: {
     ...typography.caption,
@@ -634,7 +657,6 @@ const styles = StyleSheet.create({
     marginTop: spacing.xs,
     fontStyle: 'italic',
   },
-  // Cluster circle marker
   clusterCircle: {
     width: 40,
     height: 40,
@@ -662,7 +684,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     includeFontPadding: false,
   },
-  // Emergency button
   emergencyButton: {
     position: 'absolute',
     bottom: 120,
@@ -684,7 +705,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 2,
   },
-  // Emergency card
   emergencyCard: {
     position: 'absolute',
     bottom: 120,
@@ -711,13 +731,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: spacing.sm,
   },
-  emergencyCardStatus: {
-    ...typography.bodySmall,
-  },
-  emergencyCardScore: {
-    ...typography.bodySmall,
-    color: colors.textSecondary,
-  },
   emergencyCardActions: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -735,7 +748,6 @@ const styles = StyleSheet.create({
     ...typography.bodySmall,
     color: colors.textSecondary,
   },
-  // Search bar
   searchBar: {
     position: 'absolute',
     top: 60,
@@ -761,7 +773,6 @@ const styles = StyleSheet.create({
     ...typography.bodySmall,
     color: colors.textMuted,
   },
-  // Search results
   searchResults: {
     position: 'absolute',
     top: 110,
@@ -796,11 +807,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: spacing.xs,
   },
-  searchResultScore: {
-    ...typography.caption,
-    color: colors.textPrimary,
-    fontWeight: '600',
-  },
   searchResultDistance: {
     ...typography.caption,
     color: colors.textSecondary,
@@ -814,7 +820,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: spacing.lg,
   },
-  // Filter button
   filterButton: {
     position: 'absolute',
     top: 115,
@@ -855,7 +860,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: colors.white,
   },
-  // Facility count badge
   facilityCountBadge: {
     position: 'absolute',
     top: 110,

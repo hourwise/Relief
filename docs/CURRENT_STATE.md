@@ -28,7 +28,7 @@ The codebase demonstrates a clear product vision and substantial implementation 
 | **Navigation** | Implemented — React Navigation 7 with auth-gated root, 4-tab main navigator, map stack |
 | **Theme system** | Implemented — colours, typography, spacing tokens consistent with design system |
 | **i18n infrastructure** | Implemented — i18next with English locale, nested key structure |
-| **Database schema** | Designed — 4 migration files + trust model/provenance tables; 15,584 UK facilities imported with source tracking |
+| **Database schema** | Designed — 4 migration files + trust model/provenance tables; 15,584 UK facilities imported with source tracking; enriched from Toilet Map UK raw_data (access_notes, opening hours, accessibility flags); field-level provenance tracking |
 | **Edge Functions** | Written — 2 Deno functions (expire-reports, revenuecat-webhook) |
 | **Testing** | None — no test scripts, no test files, no CI configuration |
 | **Linting/formatting** | None — no ESLint, Prettier, or formatting scripts configured |
@@ -124,7 +124,7 @@ From `src/utils/env.ts`:
 
 1. **Supabase smoke testing pending** — Development project/schema are user-reported connected, but app reads/auth/storage workflows are not VERIFIED
 2. **Auth-gated navigation** — Contradicts "no login required for basic search" policy
-3. ~~No verified seed data~~ **SEED DATA IMPORTED** — 15,584 UK public toilet facilities imported from Toilet Map UK (CC-BY-4.0); 104 in Liverpool test area; verified in Supabase with source provenance tracking
+3. ~~No verified seed data~~ **SEED DATA IMPORTED** — 15,584 UK public toilet facilities imported from Toilet Map UK (CC-BY-4.0); enriched with access_notes (7,202), price_note (1,315), last_verified_at (2,219), is_24h (984), is_gender_neutral (3,888), has_staff_nearby (4,534), is_family_friendly (2,765), is_single_occupancy (101); field-level provenance tracking enabled
 4. **No RevenueCat configuration** — Blocks monetisation
 5. **No storage bucket/media pipeline** — Photo uploads lack bucket setup, EXIF stripping, and face blurring
 6. **No moderation pipeline** — Community submissions cannot be reviewed safely

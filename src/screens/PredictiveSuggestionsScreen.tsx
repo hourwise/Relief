@@ -20,6 +20,7 @@ import { Card, Button } from '../components';
 import { useLocation } from '../hooks/useLocation';
 import { getSavedProfiles } from '../services/profiles';
 import { getPredictiveSuggestions } from '../services/aiRecommendations';
+import { getOpenStatus } from '../utils/openingHours';
 import type { PredictiveSuggestion } from '../services/aiRecommendations';
 import type { SavedProfile, ProfileStackParamList } from '../types';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -321,7 +322,7 @@ export const PredictiveSuggestionsScreen: React.FC = () => {
 
                 {/* Open status */}
                 <View style={styles.statusRow}>
-                  {isOpenNow(suggestion.facility) ? (
+                  {getOpenStatus(suggestion.facility) === 'open' ? (
                     <View style={styles.openBadge}>
                       <Text style={styles.openBadgeText}>Open now</Text>
                     </View>
@@ -331,7 +332,11 @@ export const PredictiveSuggestionsScreen: React.FC = () => {
                     </View>
                   ) : (
                     <View style={styles.closedBadge}>
-                      <Text style={styles.closedBadgeText}>Check hours</Text>
+                      <Text style={styles.closedBadgeText}>
+                        {getOpenStatus(suggestion.facility) === 'closed'
+                          ? 'Closed'
+                          : 'Hours unknown'}
+                      </Text>
                     </View>
                   )}
                   {suggestion.facility.is_free && (
@@ -366,25 +371,6 @@ export const PredictiveSuggestionsScreen: React.FC = () => {
     </ScrollView>
   );
 };
-
-/**
- * Check if a facility is currently open.
- */
-function isOpenNow(facility: { is_24h: boolean | null; open_hours: Record<string, { open: string; close: string } | null> | null }): boolean {
-  if (facility.is_24h) return true;
-  if (!facility.open_hours) return false;
-  const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-  const today = days[new Date().getDay()];
-  const hours = facility.open_hours[today];
-  if (!hours) return false;
-  const now = new Date();
-  const [openH, openM] = hours.open.split(':').map(Number);
-  const [closeH, closeM] = hours.close.split(':').map(Number);
-  const openMinutes = openH * 60 + openM;
-  const closeMinutes = closeH * 60 + closeM;
-  const nowMinutes = now.getHours() * 60 + now.getMinutes();
-  return nowMinutes >= openMinutes && nowMinutes <= closeMinutes;
-}
 
 // ─── Styles ──────────────────────────────────────────────────
 

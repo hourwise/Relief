@@ -11,12 +11,15 @@ import {
   TouchableOpacity,
   Linking,
   ActivityIndicator,
+  Platform,
+  Alert,
 } from 'react-native';
 import { useRoute, useNavigation, RouteProp, NavigationProp } from '@react-navigation/native';
 import { colors, typography, spacing, borderRadius, shadows } from '../theme';
 import { Card, Badge, Button } from '../components';
 import { fetchFacilityById } from '../services/facilities';
 import { getActiveReports } from '../services/community';
+import { getOpenStatus } from '../utils/openingHours';
 import type { Facility, MapStackParamList } from '../types';
 import type { TemporaryReport } from '../types/community';
 
@@ -47,20 +50,47 @@ export const FacilityDetailScreen: React.FC = () => {
     setActiveReports(reports);
   };
 
-  const openMaps = (provider: 'google' | 'apple' | 'waze') => {
+  const openMaps = async (provider: 'google' | 'apple' | 'waze') => {
     if (!facility) return;
     const { latitude, longitude } = facility;
-    const encodedAddress = encodeURIComponent(facility.address);
+
+    let url: string;
+
     switch (provider) {
       case 'google':
-        Linking.openURL(`https://maps.google.com/?q=${encodedAddress}`);
+        url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+          `${latitude},${longitude}`,
+        )}&travelmode=walking&dir_action=navigate`;
         break;
       case 'apple':
-        Linking.openURL(`maps://app?daddr=${latitude},${longitude}`);
+        if (Platform.OS !== 'ios') {
+          Alert.alert('Apple Maps', 'Apple Maps is only available on iOS.');
+          return;
+        }
+        url = `maps://app?daddr=${latitude},${longitude}&dirflg=w`;
         break;
       case 'waze':
-        Linking.openURL(`https://waze.com/ul?ll=${latitude},${longitude}&navigate=yes`);
+        url = `https://waze.com/ul?ll=${latitude},${longitude}&navigate=yes`;
         break;
+      default:
+        return;
+    }
+
+    try {
+      const supported = await Linking.canOpenURL(url);
+      if (supported) {
+        await Linking.openURL(url);
+      } else {
+        Alert.alert(
+          'Cannot open map',
+          `No map application found to open directions to ${facility.name}.`,
+        );
+      }
+    } catch (error) {
+      Alert.alert(
+        'Error',
+        `Unable to open directions. Please check that a map app is installed.`,
+      );
     }
   };
 
@@ -98,12 +128,28 @@ export const FacilityDetailScreen: React.FC = () => {
       <Card variant="elevated" style={styles.headerCard}>
         <View style={styles.headerRow}>
           <Text style={styles.name}>{facility.name}</Text>
-          <Badge
-            label={facility.is_24h ? 'Open 24h' : 'See hours'}
-            variant={facility.is_24h ? 'success' : 'info'}
-          />
+          {facility.is_24h ? (
+            <Badge label="Open 24h" variant="success" />
+          ) : (
+            <Badge
+              label={
+                getOpenStatus(facility) === 'open'
+                  ? 'Open now'
+                  : getOpenStatus(facility) === 'closed'
+                  ? 'Closed'
+                  : 'Hours unknown'
+              }
+              variant={
+                getOpenStatus(facility) === 'open'
+                  ? 'success'
+                  : getOpenStatus(facility) === 'closed'
+                  ? 'error'
+                  : 'info'
+              }
+            />
+          )}
         </View>
-        <Text style={styles.address}>{facility.address}</Text>
+        <Text style={styles.address}>{facility.town || facility.address}</Text>
         <View style={styles.priceRow}>
           <Text style={styles.price}>
             {facility.is_free === true
@@ -196,12 +242,14 @@ export const FacilityDetailScreen: React.FC = () => {
             size="sm"
             variant="outline"
           />
-          <Button
-            title="Apple Maps"
-            onPress={() => openMaps('apple')}
-            size="sm"
-            variant="outline"
-          />
+          {Platform.OS === 'ios' && (
+            <Button
+              title="Apple Maps"
+              onPress={() => openMaps('apple')}
+              size="sm"
+              variant="outline"
+            />
+          )}
           <Button
             title="Waze"
             onPress={() => openMaps('waze')}

@@ -6,6 +6,8 @@ import json
 import sys
 from pathlib import Path
 
+DAY_KEYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+
 
 def to_bool(val: str):
     """Convert Toilet Map string booleans. Empty/unknown → None."""
@@ -34,6 +36,39 @@ def parse_areas(val: str) -> str:
     return ""
 
 
+def transform_opening_hours(raw_hours):
+    """Transform the7-element Mon-Sun array into a weekday-keyed object.
+
+    Toilet Map format: [["09:00","17:00"], ..., ["09:00","17:00"]]
+    Index 0 = Monday, index 6 = Sunday.
+
+    Output: {"monday": {"open": "09:00", "close": "17:00"}, ...}
+    Empty sub-array [] means closed that day → null.
+    Missing or malformed data → key omitted (unknown, not closed).
+    """
+    if not isinstance(raw_hours, list) or len(raw_hours) != 7:
+        return None
+
+    result = {}
+    for i, day_key in enumerate(DAY_KEYS):
+        entry = raw_hours[i]
+        if not isinstance(entry, list) or len(entry) < 2:
+            # Empty array or malformed → closed
+            result[day_key] = None
+            continue
+
+        open_time = str(entry[0]).strip()
+        close_time = str(entry[1]).strip()
+
+        if not open_time or not close_time:
+            result[day_key] = None
+            continue
+
+        result[day_key] = {"open": open_time, "close": close_time}
+
+    return result
+
+
 def normalise_row(row: dict) -> dict | None:
     """Convert a single Toilet Map CSV row to a normalised row dict."""
     source_id = row.get("id", "").strip()
@@ -56,34 +91,34 @@ def normalise_row(row: dict) -> dict | None:
 
     name = row.get("name", "").strip() or "Unnamed Toilet"
 
-    # Build address from available fields
-    address_parts = []
-    if name and name != "Unnamed Toilet":
-        address_parts.append(name)
-    postcode = row.get("geohash", "").strip()  # Toilet Map doesn't provide postcodes directly
+    # Do NOT use geohash as postcode — Toilet Map doesn't provide postcodes
+    postcode = None
+
+    # Do NOT use facility name as address — use town only
     town = parse_areas(row.get("areas", ""))
 
-    # Parse opening_times if present
+    # Parse opening_times and transform to weekday-keyed object
     opening_hours = None
     raw_hours = row.get("opening_times", "").strip()
     if raw_hours:
         try:
-            opening_hours = json.loads(raw_hours)
+            parsed = json.loads(raw_hours)
+            opening_hours = transform_opening_hours(parsed)
         except (json.JSONDecodeError, TypeError):
-            opening_hours = {"raw": raw_hours}
+            opening_hours = None
 
     return {
         "source_record_id": source_id,
         "name": name,
         "latitude": round(lat, 6),
         "longitude": round(lng, 6),
-        "address": ", ".join(filter(None, address_parts)) or "",
+        "address": town or "",
         "postcode": postcode,
         "town": town,
         "is_accessible": to_bool(row.get("accessible", "")),
         "has_baby_changing": to_bool(row.get("baby_change", "")),
         "requires_radar_key": to_bool(row.get("radar", "")),
-        "is_free": to_bool(row.get("no_payment", "")),  # inverted: no_payment=true → is_free=true
+        "is_free": to_bool(row.get("no_payment", "")),
         "opening_hours": opening_hours,
         "source_updated_at": row.get("updated_at", "").strip() or None,
         "raw_data": row,

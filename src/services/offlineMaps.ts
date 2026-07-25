@@ -190,8 +190,8 @@ export async function searchOfflineFacilities(
     for (const row of rows as any[]) {
       const facility: Facility = JSON.parse(row.data);
       if (
-        facility.town.toLowerCase().includes(query.toLowerCase()) ||
-        facility.postcode.toLowerCase().includes(query.toLowerCase()) ||
+        facility.town?.toLowerCase().includes(query.toLowerCase()) ||
+        facility.postcode?.toLowerCase().includes(query.toLowerCase()) ||
         facility.name.toLowerCase().includes(query.toLowerCase())
       ) {
         results.push(facility);

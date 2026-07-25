@@ -6,11 +6,11 @@
 export interface Facility {
   id: string;
   name: string;
-  address: string;
+  address: string | null;
   latitude: number;
   longitude: number;
-  postcode: string;
-  town: string;
+  postcode: string | null;
+  town: string | null;
   country: string;
 
   // Details
