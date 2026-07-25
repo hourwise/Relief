@@ -201,6 +201,7 @@ export type RootStackParamList = {
   Paywall: undefined;
   AIRecommendations: undefined;
   PredictiveSuggestions: undefined;
+  AboutRelief: undefined;
 };
 
 export type AuthStackParamList = {

@@ -22,3 +22,4 @@ export { PaywallScreen } from './PaywallScreen';
 export { AIRecommendationsScreen } from './AIRecommendationsScreen';
 export { PredictiveSuggestionsScreen } from './PredictiveSuggestionsScreen';
 export { OnboardingScreen } from './OnboardingScreen';
+export { AboutReliefScreen } from './AboutReliefScreen';

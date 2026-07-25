@@ -29,6 +29,7 @@ import {
   AIRecommendationsScreen,
   PredictiveSuggestionsScreen,
   OnboardingScreen,
+  AboutReliefScreen,
 } from '../screens';
 import { hasCompletedOnboarding } from '../utils/onboarding';
 import { onAuthStateChange, getCurrentSession } from '../services/auth';
@@ -249,6 +250,7 @@ export const AppNavigator: React.FC<AppNavigatorProps> = ({ onStartupResolved })
                 presentation: 'modal',
               }}
             />
+            <RootStack.Screen name="AboutRelief" component={AboutReliefScreen} options={{ headerShown: false }} />
           </>
         ) : (
           <RootStack.Screen name="Auth" component={AuthNavigator} />

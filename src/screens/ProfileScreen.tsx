@@ -232,6 +232,14 @@ export const ProfileScreen: React.FC = () => {
         <Text style={styles.sectionTitle}>About</Text>
         <Text style={styles.appInfo}>Relief v1.0.0</Text>
         <Text style={styles.appInfo}>Helping you find safe, clean facilities</Text>
+        <Button
+          title="About Relief"
+          onPress={() => navigation.navigate('AboutRelief')}
+          variant="outline"
+          fullWidth
+          size="sm"
+          style={styles.aboutButton}
+        />
       </Card>
     </ScrollView>
   );
@@ -322,5 +330,8 @@ const styles = StyleSheet.create({
     ...typography.bodySmall,
     color: colors.textSecondary,
     marginBottom: spacing.xs,
+  },
+  aboutButton: {
+    marginTop: spacing.sm,
   },
 });
