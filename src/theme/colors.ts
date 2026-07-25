@@ -1,56 +1,58 @@
-// ============================================================
-// Project "Relief" — Color Palette
-// Design System: Calm, Premium, Reassuring, Compassionate
-// Inspired by Studio Ghibli warmth, watercolor textures
-// ============================================================
-
+/**
+ * Relief's native palette. Legacy aliases keep the existing feature surfaces
+ * on one source of truth while their layouts are refreshed.
+ */
 export const colors = {
-  // Brand
-  background: '#F8FAFC',   // Off-white/Slate-50 (Main background)
-  primary: '#0F766E',      // Deep Teal (Buttons, Headers)
-  primaryLight: '#14B8A6', // Secondary Teal (Accents, Glows)
-  success: '#10B981',      // Emerald (Open facilities)
-  warning: '#F59E0B',      // Amber (Urgent/Closing soon)
-  error: '#EF4444',        // Red (Closed/Broken)
-  tealSoft: '#F0FDFA',     // Teal-50 (Icon backgrounds)
+  primary: '#1A6B5C',
+  primaryLight: '#2D8A77',
+  sage: '#6CA08E',
+  mintSurface: '#F3F8F5',
+  secondarySurface: '#EBF3EF',
+  amber: '#F4C453',
+  urgent: '#E75F51',
+  charcoal: '#212C28',
+  muted: '#63736C',
+  white: '#FFFFFF',
+  transparent: 'transparent',
 
-  // Neutrals
-  white: '#FFFFFF',        // Card backgrounds
-  black: '#0F172A',        // Slate-900
-  gray50: '#F8FAFC',
-  gray100: '#F1F5F9',
-  gray200: '#E2E8F0',
-  gray300: '#CBD5E1',
-  gray400: '#94A3B8',
-  gray500: '#64748B',      // Slate-500 (Body text)
-  gray600: '#475569',
-  gray700: '#334155',
-  gray800: '#1E293B',
-  gray900: '#0F172A',      // Slate-900 (Headings)
-
-  // Semantic
-  textPrimary: '#0F172A',  // Slate-900 (Headings)
-  textSecondary: '#64748B', // Slate-500 (Body text)
-  textMuted: '#94A3B8',
-  textOnPrimary: '#FFFFFF',
-  border: '#E2E8F0',
-  borderLight: '#F1F5F9',
+  background: '#F3F8F5',
   cardBackground: '#FFFFFF',
-  overlay: 'rgba(0, 0, 0, 0.5)',
-  glassBackground: 'rgba(255, 255, 255, 0.8)', // Glassmorphism
+  tealSoft: '#EBF3EF',
+  textPrimary: '#212C28',
+  textSecondary: '#63736C',
+  textMuted: '#7A8982',
+  textOnPrimary: '#FFFFFF',
+  border: '#D8E6DF',
+  borderLight: '#E8F0EC',
+  overlay: 'rgba(22, 73, 62, 0.30)',
+  glassBackground: 'rgba(255, 255, 255, 0.94)',
+  mapOverlay: 'rgba(255, 255, 255, 0.92)',
 
-  // Rating colors
-  ratingHigh: '#10B981',
-  ratingMedium: '#F59E0B',
-  ratingLow: '#EF4444',
+  success: '#1A6B5C',
+  warning: '#C88418',
+  error: '#E75F51',
+  ratingHigh: '#1A6B5C',
+  ratingMedium: '#C88418',
+  ratingLow: '#E75F51',
 
-  // Map
-  mapPinDefault: '#0F766E',
-  mapPinSelected: '#14B8A6',
-  mapPinAccessible: '#3B82F6',
-  mapPinFamily: '#EC4899',
-  mapCluster: '#0F766E',
-  mapPinGlow: '#14B8A6',   // Glow color for pins
+  mapPinDefault: '#1A6B5C',
+  mapPinSelected: '#F4C453',
+  mapPinAccessible: '#1A6B5C',
+  mapPinFamily: '#6CA08E',
+  mapCluster: '#1A6B5C',
+  mapPinGlow: 'rgba(45, 138, 119, 0.34)',
+
+  black: '#212C28',
+  gray50: '#F8FBF9',
+  gray100: '#F0F5F2',
+  gray200: '#E2ECE7',
+  gray300: '#CDDAD4',
+  gray400: '#AABAB2',
+  gray500: '#63736C',
+  gray600: '#506058',
+  gray700: '#384740',
+  gray800: '#2B3732',
+  gray900: '#212C28',
 } as const;
 
 export type ColorKey = keyof typeof colors;
