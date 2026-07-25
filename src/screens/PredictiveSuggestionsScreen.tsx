@@ -370,7 +370,7 @@ export const PredictiveSuggestionsScreen: React.FC = () => {
 /**
  * Check if a facility is currently open.
  */
-function isOpenNow(facility: { is_24h: boolean; open_hours: Record<string, { open: string; close: string } | null> | null }): boolean {
+function isOpenNow(facility: { is_24h: boolean | null; open_hours: Record<string, { open: string; close: string } | null> | null }): boolean {
   if (facility.is_24h) return true;
   if (!facility.open_hours) return false;
   const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];

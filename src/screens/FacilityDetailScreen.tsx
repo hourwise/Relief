@@ -106,12 +106,25 @@ export const FacilityDetailScreen: React.FC = () => {
         <Text style={styles.address}>{facility.address}</Text>
         <View style={styles.priceRow}>
           <Text style={styles.price}>
-            {facility.is_free ? 'Free' : facility.price_note || 'Paid'}
+            {facility.is_free === true
+              ? 'Free'
+              : facility.is_free === false
+              ? facility.price_note || 'Paid'
+              : 'Cost unknown'}
           </Text>
           <Text style={styles.verified}>
-            Verified {new Date(facility.last_verified_at).toLocaleDateString()}
+            {facility.last_verified_at
+              ? `Verified ${new Date(facility.last_verified_at).toLocaleDateString()}`
+              : 'Source imported'}
           </Text>
         </View>
+        {facility.verification_status === 'source_imported' && (
+          <View style={styles.sourceLabel}>
+            <Text style={styles.sourceLabelText}>
+              Source: Toilet Map UK — not yet confirmed by the Relief community
+            </Text>
+          </View>
+        )}
       </Card>
 
       {/* Rating */}
@@ -131,7 +144,7 @@ export const FacilityDetailScreen: React.FC = () => {
           ].map((rating) => (
             <View key={rating.label} style={styles.ratingItem}>
               <Text style={styles.ratingLabel}>{rating.label}</Text>
-              <Text style={styles.ratingValue}>★ {rating.value.toFixed(1)}</Text>
+              <Text style={styles.ratingValue}>★ {rating.value != null ? rating.value.toFixed(1) : '—'}</Text>
             </View>
           ))}
         </View>
@@ -288,6 +301,18 @@ const styles = StyleSheet.create({
   verified: {
     ...typography.caption,
     color: colors.textMuted,
+  },
+  sourceLabel: {
+    marginTop: spacing.sm,
+    paddingVertical: spacing.xs,
+    paddingHorizontal: spacing.sm,
+    backgroundColor: colors.gray100,
+    borderRadius: 8,
+  },
+  sourceLabelText: {
+    ...typography.caption,
+    color: colors.textSecondary,
+    fontStyle: 'italic',
   },
   section: {
     marginBottom: spacing.lg,

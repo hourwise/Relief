@@ -19,12 +19,17 @@ const redirectUri = __DEV__
 // Email / Password
 // ============================================================
 
-export async function signUpWithEmail(email: string, password: string) {
+export async function signUpWithEmail(
+  email: string,
+  password: string,
+  name?: string,
+) {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
       emailRedirectTo: redirectUri,
+      data: name ? { full_name: name } : undefined,
     },
   });
   return { data, error };

@@ -1,5 +1,5 @@
 // ============================================================
-// Project "Relief" — Login Screen
+// Project "Relief" — Register Screen
 // Tagline: Find Comfort, Find Relief
 // ============================================================
 
@@ -18,38 +18,53 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { colors, typography, spacing } from '../theme';
 import { Button, Input, Card } from '../components';
-import { signInWithEmail, signInWithGoogle } from '../services/auth';
+import { signUpWithEmail } from '../services/auth';
 import type { AuthStackParamList } from '../types';
 
-type LoginScreenNavProp = NativeStackNavigationProp<
+type RegisterScreenNavProp = NativeStackNavigationProp<
   AuthStackParamList,
-  'Login'
+  'Register'
 >;
 
-export const LoginScreen: React.FC = () => {
-  const navigation = useNavigation<LoginScreenNavProp>();
+export const RegisterScreen: React.FC = () => {
+  const navigation = useNavigation<RegisterScreenNavProp>();
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleEmailLogin = async () => {
-    if (!email.trim() || !password.trim()) {
-      Alert.alert('Error', 'Please enter your email and password');
+  const handleRegister = async () => {
+    if (!name.trim()) {
+      Alert.alert('Error', 'Please enter your name');
       return;
     }
-    setLoading(true);
-    const { error } = await signInWithEmail(email.trim(), password);
-    if (error) {
-      Alert.alert('Sign In Failed', error.message);
+    if (!email.trim()) {
+      Alert.alert('Error', 'Please enter your email');
+      return;
     }
-    setLoading(false);
-  };
+    if (password.length < 6) {
+      Alert.alert('Error', 'Password must be at least 6 characters');
+      return;
+    }
+    if (password !== confirmPassword) {
+      Alert.alert('Error', 'Passwords do not match');
+      return;
+    }
 
-  const handleGoogleLogin = async () => {
     setLoading(true);
-    const { error } = await signInWithGoogle();
+    const { error } = await signUpWithEmail(
+      email.trim(),
+      password,
+      name.trim(),
+    );
     if (error) {
-      Alert.alert('Google Sign In Failed', error.message);
+      Alert.alert('Registration Failed', error.message);
+    } else {
+      Alert.alert(
+        'Check Your Email',
+        'We sent a confirmation link to verify your account.',
+      );
     }
     setLoading(false);
   };
@@ -71,7 +86,16 @@ export const LoginScreen: React.FC = () => {
         </View>
 
         <Card variant="elevated" style={styles.card}>
-          <Text style={styles.cardTitle}>Sign In</Text>
+          <Text style={styles.cardTitle}>Create Account</Text>
+
+          <Input
+            label="Name"
+            placeholder="Your name"
+            value={name}
+            onChangeText={setName}
+            autoCapitalize="words"
+            autoComplete="name"
+          />
 
           <Input
             label="Email"
@@ -85,54 +109,38 @@ export const LoginScreen: React.FC = () => {
 
           <Input
             label="Password"
-            placeholder="Enter your password"
+            placeholder="At least 6 characters"
             value={password}
             onChangeText={setPassword}
             secureTextEntry
             autoCapitalize="none"
           />
 
+          <Input
+            label="Confirm Password"
+            placeholder="Re-enter your password"
+            value={confirmPassword}
+            onChangeText={setConfirmPassword}
+            secureTextEntry
+            autoCapitalize="none"
+          />
+
           <Button
-            title="Sign In"
-            onPress={handleEmailLogin}
+            title="Create Account"
+            onPress={handleRegister}
             loading={loading}
             fullWidth
             size="lg"
           />
-
-          <View style={styles.divider}>
-            <View style={styles.dividerLine} />
-            <Text style={styles.dividerText}>or continue with</Text>
-            <View style={styles.dividerLine} />
-          </View>
-
-          <Button
-            title="Continue with Google"
-            onPress={handleGoogleLogin}
-            variant="outline"
-            fullWidth
-            style={styles.socialButton}
-          />
-
-          {Platform.OS === 'ios' && (
-            <Button
-              title="Continue with Apple"
-              onPress={() => {}}
-              variant="outline"
-              fullWidth
-              style={styles.socialButton}
-              disabled
-            />
-          )}
         </Card>
 
         <TouchableOpacity
-          style={styles.signupLink}
-          onPress={() => navigation.navigate('Register')}
+          style={styles.loginLink}
+          onPress={() => navigation.goBack()}
         >
-          <Text style={styles.signupLinkText}>
-            Don't have an account?{' '}
-            <Text style={styles.signupLinkBold}>Sign Up</Text>
+          <Text style={styles.loginLinkText}>
+            Already have an account?{' '}
+            <Text style={styles.loginLinkBold}>Sign In</Text>
           </Text>
         </TouchableOpacity>
       </ScrollView>
@@ -172,33 +180,15 @@ const styles = StyleSheet.create({
     color: colors.textPrimary,
     marginBottom: spacing.xl,
   },
-  divider: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: spacing.xl,
-  },
-  dividerLine: {
-    flex: 1,
-    height: 1,
-    backgroundColor: colors.border,
-  },
-  dividerText: {
-    ...typography.caption,
-    color: colors.textMuted,
-    marginHorizontal: spacing.md,
-  },
-  socialButton: {
-    marginBottom: spacing.md,
-  },
-  signupLink: {
+  loginLink: {
     marginTop: spacing.xl,
     alignItems: 'center',
   },
-  signupLinkText: {
+  loginLinkText: {
     ...typography.body,
     color: colors.textSecondary,
   },
-  signupLinkBold: {
+  loginLinkBold: {
     color: colors.primary,
     fontWeight: '600',
   },

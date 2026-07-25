@@ -28,7 +28,7 @@ export async function fetchNearbyFacilities(
     .lte('latitude', latitude + latDelta)
     .gte('longitude', longitude - lngDelta)
     .lte('longitude', longitude + lngDelta)
-    .eq('is_verified', true)
+    .eq('publication_status', 'published')
     .order('overall_score', { ascending: false })
     .range(page * FACILITIES_PER_PAGE, (page + 1) * FACILITIES_PER_PAGE - 1);
 
@@ -217,7 +217,7 @@ export async function searchFacilities(
     .from('facilities')
     .select('*')
     .or(`town.ilike.${searchTerm},postcode.ilike.${searchTerm}`)
-    .eq('is_verified', true)
+    .eq('publication_status', 'published')
     .order('overall_score', { ascending: false })
     .limit(20);
 

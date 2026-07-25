@@ -3,6 +3,7 @@
 // ============================================================
 
 export { LoginScreen } from './LoginScreen';
+export { RegisterScreen } from './RegisterScreen';
 export { MapScreen } from './MapScreen';
 export { ListScreen } from './ListScreen';
 export { FacilityDetailScreen } from './FacilityDetailScreen';

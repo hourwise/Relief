@@ -8,14 +8,12 @@ import { colors, typography, spacing } from '../theme';
 import { Card, Button } from '../components';
 import { getCurrentUser, signOut } from '../services/auth';
 import { getUserBadges } from '../services/community';
-import { useSubscription } from '../context/SubscriptionContext';
 import type { User } from '@supabase/supabase-js';
 import type { Badge } from '../types/community';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 
 export const ProfileScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp<any>>();
-  const { tier, isActive, isBasicAccess, isPlusSubscriber, isLifetime, expiresAt } = useSubscription();
   const [user, setUser] = useState<User | null>(null);
   const [badges, setBadges] = useState<Badge[]>([]);
   const [loading, setLoading] = useState(false);
@@ -223,40 +221,10 @@ export const ProfileScreen: React.FC = () => {
       {/* Access Level */}
       <Card variant="outlined" style={styles.section}>
         <Text style={styles.sectionTitle}>Access Level</Text>
-        {isPlusSubscriber ? (
-          <>
-            <Text style={styles.accessLevel}>Plus</Text>
-            <Text style={styles.sectionDescription}>
-              {isLifetime
-                ? 'Lifetime access — thank you for your support!'
-                : expiresAt
-                ? `Active until ${new Date(expiresAt).toLocaleDateString()}`
-                : 'Active subscription'}
-            </Text>
-          </>
-        ) : isBasicAccess ? (
-          <>
-            <Text style={styles.accessLevel}>Basic Access</Text>
-            <Text style={styles.sectionDescription}>
-              Lifetime access — thank you for your support!
-            </Text>
-          </>
-        ) : (
-          <>
-            <Text style={styles.accessLevel}>Free Tier</Text>
-            <Text style={styles.sectionDescription}>
-              Upgrade to Plus for route planning, offline maps, AI recommendations
-              and more.
-            </Text>
-            <Button
-              title="See Plans"
-              onPress={() => navigation.navigate('Paywall')}
-              variant="outline"
-              fullWidth
-              style={styles.upgradeButton}
-            />
-          </>
-        )}
+        <Text style={styles.accessLevel}>Free Tier</Text>
+        <Text style={styles.sectionDescription}>
+          All features are currently unlocked during testing.
+        </Text>
       </Card>
 
       {/* App Info */}
@@ -325,9 +293,6 @@ const styles = StyleSheet.create({
     ...typography.h2,
     color: colors.primary,
     marginBottom: spacing.xs,
-  },
-  upgradeButton: {
-    marginTop: spacing.sm,
   },
   badgesList: {
     gap: spacing.sm,

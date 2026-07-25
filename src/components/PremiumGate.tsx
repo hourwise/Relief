@@ -71,6 +71,9 @@ export const PremiumGate: React.FC<PremiumGateProps> = ({
   const { isFeatureLocked, loading } = useSubscription();
   const navigation = useNavigation<NavigationProp<any>>();
 
+  // RevenueCat disabled during testing — always render children
+  return <>{children}</>;
+
   const locked = isFeatureLocked(feature);
 
   if (loading) {

@@ -11,6 +11,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { colors, typography } from '../theme';
 import {
   LoginScreen,
+  RegisterScreen,
   MapScreen,
   ListScreen,
   FacilityDetailScreen,
@@ -25,7 +26,6 @@ import {
   OfflineMapsScreen,
   NotificationAlertsScreen,
   LocationSharingScreen,
-  PaywallScreen,
   AIRecommendationsScreen,
   PredictiveSuggestionsScreen,
 } from '../screens';
@@ -127,6 +127,7 @@ const MapStackNavigator: React.FC = () => (
 const AuthNavigator: React.FC = () => (
   <AuthStack.Navigator screenOptions={{ headerShown: false }}>
     <AuthStack.Screen name="Login" component={LoginScreen} />
+    <AuthStack.Screen name="Register" component={RegisterScreen} />
   </AuthStack.Navigator>
 );
 
@@ -205,18 +206,6 @@ export const AppNavigator: React.FC = () => {
         {isAuthenticated ? (
           <>
             <RootStack.Screen name="Main" component={MainNavigator} />
-            <RootStack.Screen
-              name="Paywall"
-              component={PaywallScreen}
-              options={{
-                headerShown: true,
-                headerTitle: 'Upgrade',
-                headerStyle: styles.header,
-                headerTitleStyle: styles.headerTitle,
-                headerTintColor: colors.textPrimary,
-                presentation: 'modal',
-              }}
-            />
             <RootStack.Screen
               name="AIRecommendations"
               component={AIRecommendationsScreen}

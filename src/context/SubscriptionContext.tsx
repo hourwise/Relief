@@ -1,6 +1,9 @@
 // ============================================================
 // Project "Relief" — Subscription Context (4.19)
 // Caches entitlements locally for graceful offline use
+//
+// RevenueCat DISABLED during testing — all features unlocked,
+// free tier defaults, no purchases or entitlement checks.
 // ============================================================
 
 import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react';
@@ -275,45 +278,24 @@ export const SubscriptionProvider: React.FC<{ children: React.ReactNode }> = ({ 
   }, []);
 
   // Check if a feature is locked behind a paywall
-  const isFeatureLocked = useCallback((feature: PremiumFeature): boolean => {
-    const requiredTier = FEATURE_TIER_MAP[feature];
-
-    // 'free' features are never locked
-    if (requiredTier === 'free') return false;
-
-    // Basic features: basic tier or above
-    if (requiredTier === 'basic') {
-      return !state.isBasicAccess && !state.isPlusSubscriber;
-    }
-
-    // Plus features: only plus tier
-    if (requiredTier === 'plus') {
-      return !state.isPlusSubscriber;
-    }
-
-    return true;
-  }, [state]);
+  // RevenueCat disabled during testing — nothing is locked
+  const isFeatureLocked = useCallback((_feature: PremiumFeature): boolean => {
+    return false;
+  }, []);
 
   // Initialise on mount
+  // RevenueCat disabled during testing — skip init, use free tier
   useEffect(() => {
     if (initialisedRef.current) return;
     initialisedRef.current = true;
-
-    const init = async () => {
-      await initRevenueCat();
-      await refreshEntitlements();
-    };
-
-    init();
-  }, [refreshEntitlements]);
+    setState({ ...defaultState, loading: false, initialised: true });
+  }, []);
 
   // Listen for auth changes to re-sync
+  // RevenueCat disabled during testing — skip identifyUser
   useEffect(() => {
     const subscription = onAuthStateChange(async (session) => {
-      if (session?.user) {
-        await identifyUser(session.user.id);
-        await refreshEntitlements();
-      } else {
+      if (!session?.user) {
         await signOutAndReset();
       }
     });
@@ -321,7 +303,7 @@ export const SubscriptionProvider: React.FC<{ children: React.ReactNode }> = ({ 
     return () => {
       subscription?.subscription.unsubscribe();
     };
-  }, [refreshEntitlements, signOutAndReset]);
+  }, [signOutAndReset]);
 
   const value: SubscriptionContextValue = {
     ...state,

@@ -16,84 +16,96 @@ export interface Facility {
   // Details
   photos: string[];
   open_hours: OpenHours | null;
-  is_free: boolean;
+  is_free: boolean | null;
   price_note?: string;
   access_notes: string;
-  last_verified_at: string;
+  last_verified_at: string | null;
 
-  // Amenities
-  is_accessible: boolean;
-  is_disabled_access: boolean;
-  has_baby_changing: boolean;
-  has_family_room: boolean;
-  is_gender_neutral: boolean;
-  is_single_occupancy: boolean;
-  is_24h: boolean;
+  // Amenities — nullable: true=yes, false=no, null=unknown
+  is_accessible: boolean | null;
+  is_disabled_access: boolean | null;
+  has_baby_changing: boolean | null;
+  has_family_room: boolean | null;
+  is_gender_neutral: boolean | null;
+  is_single_occupancy: boolean | null;
+  is_24h: boolean | null;
 
   // Privacy
-  is_single_room: boolean;
-  has_floor_to_ceiling_cubicles: boolean;
-  is_quiet: boolean;
+  is_single_room: boolean | null;
+  has_floor_to_ceiling_cubicles: boolean | null;
+  is_quiet: boolean | null;
 
   // Accessibility
-  has_wheelchair_access: boolean;
-  requires_radar_key: boolean;
-  has_adult_changing_place: boolean;
-  has_lift: boolean;
-  has_grab_rails: boolean;
+  has_wheelchair_access: boolean | null;
+  requires_radar_key: boolean | null;
+  has_adult_changing_place: boolean | null;
+  has_lift: boolean | null;
+  has_grab_rails: boolean | null;
 
   // Baby
-  has_baby_changing_inside: boolean;
-  has_separate_changing_room: boolean;
-  has_family_toilet: boolean;
-  has_pram_access: boolean;
+  has_baby_changing_inside: boolean | null;
+  has_separate_changing_room: boolean | null;
+  has_family_toilet: boolean | null;
+  has_pram_access: boolean | null;
 
   // Equipment
-  has_soap: boolean;
-  has_paper_towels: boolean;
-  has_hand_dryer: boolean;
-  has_mirror: boolean;
-  has_shelf: boolean;
-  has_hooks: boolean;
-  has_sanitary_bins: boolean;
-  has_free_period_products: boolean;
-  has_drinking_water: boolean;
+  has_soap: boolean | null;
+  has_paper_towels: boolean | null;
+  has_hand_dryer: boolean | null;
+  has_mirror: boolean | null;
+  has_shelf: boolean | null;
+  has_hooks: boolean | null;
+  has_sanitary_bins: boolean | null;
+  has_free_period_products: boolean | null;
+  has_drinking_water: boolean | null;
 
   // Environment
-  noise_level: 1 | 2 | 3 | 4 | 5;
-  temperature: 1 | 2 | 3 | 4 | 5;
-  lighting: 1 | 2 | 3 | 4 | 5;
-  smell: 1 | 2 | 3 | 4 | 5;
+  noise_level: number | null;
+  temperature: number | null;
+  lighting: number | null;
+  smell: number | null;
 
   // Safety
-  has_staff_nearby: boolean;
-  has_cctv: boolean;
-  is_women_friendly: boolean;
-  is_family_friendly: boolean;
+  has_staff_nearby: boolean | null;
+  has_cctv: boolean | null;
+  is_women_friendly: boolean | null;
+  is_family_friendly: boolean | null;
 
   // Facility Types
-  is_water_refill_station: boolean;
-  is_shower_facility: boolean;
-  is_breastfeeding_room: boolean;
-  is_rest_area: boolean;
-  is_changing_place: boolean;
-  is_ev_charging: boolean;
-  is_picnic_area: boolean;
+  is_water_refill_station: boolean | null;
+  is_shower_facility: boolean | null;
+  is_breastfeeding_room: boolean | null;
+  is_rest_area: boolean | null;
+  is_changing_place: boolean | null;
+  is_ev_charging: boolean | null;
+  is_picnic_area: boolean | null;
 
   // Ratings
   overall_score: number;
-  cleanliness_rating: number;
-  privacy_rating: number;
-  accessibility_rating: number;
-  safety_rating: number;
-  noise_rating: number;
-  environment_rating: number;
+  cleanliness_rating: number | null;
+  privacy_rating: number | null;
+  accessibility_rating: number | null;
+  safety_rating: number | null;
+  noise_rating: number | null;
+  environment_rating: number | null;
+
+  // Trust model
+  publication_status: 'published' | 'hidden' | 'under_review' | 'removed';
+  verification_status:
+    | 'source_imported'
+    | 'source_verified'
+    | 'community_confirmed'
+    | 'staff_verified'
+    | 'disputed'
+    | 'stale';
+  last_community_confirmed_at: string | null;
+  last_staff_verified_at: string | null;
 
   // Metadata
   created_at: string;
   updated_at: string;
   created_by: string | null;
-  is_verified: boolean;
+  is_verified: boolean; // legacy field, kept for backward compat
 }
 
 export interface OpenHours {
