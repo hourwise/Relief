@@ -1,162 +1,141 @@
 # Relief — Current State Assessment
 
-**Last verified:** 2026-07-25  
-**Verification method:** Full UK facility import completed (15,584 facilities from Toilet Map UK); database records verified; app smoke testing still pending  
-**TypeScript check:** `npx tsc --noEmit` passed for the Expo app on 2026-07-25. The configuration explicitly excludes the supplied Vite-only visual reference and Deno-only Edge Functions from the React Native project check.
-**Build check:** Android prebuild completed on 2026-07-25. `npm run android` initially lacked `JAVA_HOME`; a retry with Android Studio's bundled JDK exceeded the local command timeout, so no Android build/install is VERIFIED.
-**Test suite:** `__tests__/estimateWalkingTime.test.ts` (10 assertions) and `__tests__/onboardingPreferences.test.ts` (2 assertions) passed via `tsx` on 2026-07-25; no package test script or CI exists.
+**Last verified:** 2026-08-06
+**Branch:** `claude/android-apk-stabilisation` (cut from `feat/figma-ui-refresh`)
+**Verification method:** Live Supabase project queried directly (PostgreSQL 17.6) via `psql` and the anonymous REST endpoint; repository quality gates run locally. **No Android build has been installed or opened.**
+
+| Check | Command | Result |
+|-------|---------|--------|
+| Node | `node --version` | v24.12.0 |
+| Install | `npm ci` | Passed — 583 packages |
+| Expo doctor | `npx expo-doctor` | **21/21 checks passed** |
+| TypeScript | `npx tsc --noEmit` | **0 errors** |
+| Tests | `npm test` | **6 files, 149 assertions, all passing** |
+| Public config | `npx expo config --type public` | Resolves; `com.relief.app`, SDK 56.0.0 |
+| Android prebuild | `npx expo prebuild --platform android --clean` | Succeeded |
+| APK build | `eas build -p android --profile preview` | **NOT RUN** — no EAS project linked |
+| Android smoke test | 22 required checks | **NOT RUN** — see `ANDROID_SMOKE_TEST.md` |
 
 ---
 
 ## Executive Summary
 
-Relief is a **frontend-heavy prototype** built with React Native and Expo SDK 56. The application has 18 screens, 13 service modules, comprehensive UI components, and a well-structured navigation system. Four Supabase SQL migration files define the intended database schema, and the development Supabase schema push is user-reported but not yet app-verified.
+Relief is a React Native / Expo SDK 56 application whose **core discovery journey is now wired to live data end to end at the service layer**, and whose most urgent feature — "Need One Now" — has been repaired and verified against the live database.
 
-Backend setup has started. Supabase development URL/anon key names are present locally, and Android Google Maps SDK configuration is now aligned through Expo app config to `EXPO_PUBLIC_GOOGLE_MAPS_API_KEY`. RevenueCat, what3words, notifications infrastructure, storage, moderation pipeline, and most other external services are still not configured. The application is not yet VERIFIED end-to-end.
+What changed in this pass: the nearest-facility RPC was broken and is now fixed and verified; the database schema is now recorded in git for the first time; the mocked Nearby list is gone; discovery no longer requires an account; and the map's viewport loading no longer drops the user's latest pan.
 
-The codebase demonstrates a clear product vision and substantial implementation effort, but the gap between the UI code and a working end-to-end product is significant.
-
----
-
-## Repository Maturity
-
-| Aspect | Assessment |
-|--------|-----------|
-| **Code organisation** | Well-structured — clear separation of screens, services, components, theme, types |
-| **TypeScript coverage** | Full — all application code is TypeScript with strict mode enabled |
-| **Component library** | Implemented — Button, Card, Input, Badge, AnimatedPin, PremiumGate |
-| **Navigation** | Implemented — React Navigation 7 with auth-gated root, 4-tab main navigator, map stack |
-| **Theme system** | Implemented — colours, typography, spacing tokens consistent with design system |
-| **i18n infrastructure** | Implemented — i18next with English locale, nested key structure |
-| **Database schema** | Designed — 4 migration files + trust model/provenance tables; 15,584 UK facilities imported with source tracking; enriched from Toilet Map UK raw_data (access_notes, opening hours, accessibility flags); field-level provenance tracking; PostGIS enabled with geography(Point, 4326) generated column and GiST spatial index; find_nearest_facilities RPC for server-side nearest lookup |
-| **Edge Functions** | Written — 2 Deno functions (expire-reports, revenuecat-webhook) |
-| **Testing** | None — no test scripts, no test files, no CI configuration |
-| **Linting/formatting** | None — no ESLint, Prettier, or formatting scripts configured |
-| **CI/CD** | None — no EAS Build/Submit pipeline, no GitHub Actions |
-| **Environment config** | Development `.env` exists locally; `.env.example` documents expected public variables; no startup validation |
+What has **not** changed: no APK has been built, installed or opened, so nothing in this document may be read as "the app works on a device". The status of every on-device behaviour is unverified.
 
 ---
 
-## Actual Frontend State
+## Database — VERIFIED
 
-### What works (UI-only, no backend)
+The live Supabase project was queried directly on 2026-08-06.
 
-| Component | Status | Evidence |
-|-----------|--------|----------|
-| Login screen UI | UI IMPLEMENTED | `LoginScreen.tsx` — email, Google, Apple buttons rendered |
-| Map screen with markers | UI IMPLEMENTED — BACKEND-DEPENDENT | `MapScreen.tsx` — real `MapView` with viewport loading, clustering, redesigned native markers, quick filters and emergency control; PostGIS nearest-facility RPC wired; Android rendering not yet smoke-tested |
-| List screen | BACKEND-DEPENDENT | `ListScreen.tsx` — Supabase query exists; 15,584 UK facilities now in database; needs client-side verification |
-| Facility detail screen | UI IMPLEMENTED — BACKEND-DEPENDENT | `FacilityDetailScreen.tsx` — real facility fields, tri-state hours/cost, verification, reporting and coordinate directions rendered; device/data smoke test pending |
-| First-run onboarding | UI IMPLEMENTED — BACKEND-DEPENDENT | `OnboardingScreen.tsx` gates the first authenticated launch using user-scoped AsyncStorage completion; applies selected filters only; auth flow not smoke-tested |
-| Startup splash and welcome | UI IMPLEMENTED | Expo splash config plugin plus a separate native welcome layer; requires a native rebuild and release-build visual check |
-| Profile and About Relief | UI IMPLEMENTED | `ProfileScreen.tsx` retains existing actions and links to `AboutReliefScreen.tsx`, which shows the poster as standalone artwork |
-| Favourites screen | UI IMPLEMENTED | `FavouritesScreen.tsx` — list with empty state |
-| All premium screens | UI IMPLEMENTED | RoutePlanning, OfflineMaps, SavedProfiles, etc. |
+| Item | Status | Evidence |
+|------|--------|----------|
+| Schema recorded in git | VERIFIED | **`supabase/` was previously listed in `.gitignore`, so GitHub contained no record of the database at all.** Now tracked, with `supabase/migrations/20260806000000_live_schema_baseline.sql` exported by `pg_dump --schema-only --schema=public` from the running database |
+| Facility data | VERIFIED | 15,584 rows, all `publication_status = 'published'`, all with a non-null PostGIS `location` |
+| Liverpool coverage | VERIFIED | **76** published facilities with `town` matching Liverpool (an earlier revision of this document claimed 104; that figure was wrong) |
+| Anonymous read | VERIFIED | Published facilities readable with the anon key over REST |
+| PostGIS | VERIFIED | `geography(Point,4326)` generated column plus `facilities_location_gix` GiST index |
+| `find_nearest_facilities` RPC | **VERIFIED (repaired)** | See below |
 
-### Navigation structure
+### The RPC defect and its repair
 
-- **Root:** Auth check → LoginScreen (unauthenticated) or MainNavigator (authenticated)
-- **Tabs:** Map, List (Nearby), Favourites, Profile — **4 tabs**, not the 3-tab maximum specified in the accessibility policy
-- **Map stack:** MapView → FacilityDetail, AddFacility, ReportFacility, CorrectInfo, AdvancedFilters
-- **Critical finding:** There is **no unauthenticated path** to the map or "Need One Now" functionality. Users must sign in before reaching any facility discovery.
+The live function declared and selected six columns that do not exist on `facilities`:
+`is_water_refill_station`, `is_shower_facility`, `is_breastfeeding_room`, `is_rest_area`, `is_changing_place`, `is_ev_charging`.
+
+Every call failed at plan time with `42703 column f.is_water_refill_station does not exist`, which is what broke "Need One Now".
+
+`supabase/migrations/20260806000100_repair_find_nearest_facilities.sql` replaces the function with a narrow, stable projection (id, name, address, coordinates, town, postcode, opening hours, free/paid, primary accessibility, overall score, verification status, distance in metres). **It has been applied to the live project.** Verification, both in-database and through the anonymous REST path the app uses:
+
+```
+find_nearest_facilities(53.4084, -2.9916, 5000, 1)
+  → Moorfields, Liverpool, 162 m — HTTP 200, no PostgreSQL error
+```
+
+`is_picnic_area` does exist in the live schema and is retained on the table and as a filter.
+
+The seven original hand-written migrations no longer describe the live database and have been moved to `supabase/legacy_migrations/` as history only.
 
 ---
 
-## Backend and External Service State
+## Application — code complete, device-unverified
 
-### Supabase
+| Area | Status | Detail |
+|------|--------|--------|
+| Schema/type reconciliation | VERIFIED (compile-time) | `Facility` and `FacilityFilters` are **derived** from generated types in `src/types/database.types.ts`. `FILTERABLE_BOOLEAN_COLUMNS` uses `satisfies`, so naming a column the database lacks is now a compile error rather than a runtime 42703 |
+| Generated types | VERIFIED | Generated from live `pg_catalog` by `tools/generate-database-types.mjs` (`npm run gen:types`). `supabase gen types` needs Docker, which is unavailable on this machine |
+| Invalid advanced filters | REMOVED | The six phantom filters are gone from the UI and from the client query map. A regression test asserts they cannot be offered or sent |
+| Mocked Nearby list | REMOVED | `MOCK_FACILITIES` and `ListScreen.tsx` deleted |
+| Shared Find experience | UI IMPLEMENTED — device-unverified | `FindScreen` + `useFindExperience` give the map and list one shared source of location, facilities, search, filters, loading/error state and selection. Map/List segmented switch |
+| Map viewport loading | UI IMPLEMENTED — device-unverified | Latest-request-wins via a request sequence plus a queued newest region. The previous code skipped fetches while a request was in flight *and* left `inFlightRef` stuck `true` on its early-return path, which could stall loading permanently |
+| Runtime error states | UI IMPLEMENTED — device-unverified | Distinct states for initial location loading, facility loading, permission denied, location unavailable, query failure, no facilities in area, and nearest-RPC failure. A failed query never renders as "no facilities found" |
+| Guest discovery | UI IMPLEMENTED — device-unverified | Root navigator renders the app with or without a session. Policy centralised in `src/utils/guestAccess.ts` and covered by 68 assertions. Authentication is requested only for favourites, submissions, corrections, reports and account settings |
+| Onboarding | UI IMPLEMENTED — device-unverified | Stored against a guest key when signed out, migrated to the user on sign-in |
+| Navigation | UI IMPLEMENTED — device-unverified | Three tabs (Find, Favourites, Profile) with Lucide icons. Unfinished features removed from Profile; a static audit confirms no reachable button targets an unregistered route |
+| Facility detail | UI IMPLEMENTED — device-unverified | Redesign preserved. The Lucide `Star` SVG is no longer nested inside a `<Text>` (a native view inside `Text` does not lay out reliably on Android). Nullable `overall_score` handled. Reports and corrections require authentication |
+| Directions | UI IMPLEMENTED — **untested on device** | Coordinate deep links to Google Maps and Waze |
+| Native splash / StartupWelcome | UI IMPLEMENTED — **untested on device** | Preserved from the UI branch; needs a release-build visual check |
 
-| Component | Status | Detail |
-|-----------|--------|--------|
-| Supabase project | BACKEND-DEPENDENT | Development project connected per user report; app workflows not yet smoke-tested |
-| Database tables | BACKEND-DEPENDENT | Schemas amended and pushed per user report; seed data and client queries not yet verified |
-| Row Level Security | BACKEND-DEPENDENT | RLS policies defined in migrations and user-reported pushed; behaviour not yet verified |
-| Auth (email/OAuth) | BACKEND-DEPENDENT | Code calls Supabase Auth; configured project needs smoke testing |
-| Storage buckets | PLANNED | Code references `facility-photos` bucket; bucket does not exist |
-| Edge Functions | PLANNED | 2 Deno functions written; not deployed |
-| Anon key | BACKEND-DEPENDENT | Key name present in local `.env`; value not read; client initialisation needs smoke testing |
-| Service role key | BLOCKED | Not present in codebase (correct) |
+### Test coverage
 
-### External services
+`npm test` runs 6 files without a device or database:
+
+| File | Assertions | Covers |
+|------|-----------|--------|
+| `distance.test.ts` | 18 | Distance calculation and metres/kilometres formatting; asserts no output uses miles; cross-checked against the PostGIS 162.08 m result |
+| `facilityQuery.test.ts` | 40 | Filter-to-database-column mapping and nearest-facility result mapping, including that the six phantom columns cannot be filtered and that unusable rows are rejected rather than defaulted |
+| `facilitySort.test.ts` | 11 | List sorting, with null and zero ratings sinking rather than ranking first |
+| `guestAccess.test.ts` | 68 | Guest navigation decisions across the whole discovery journey |
+| `estimateWalkingTime.test.ts` | 10 | Walking-time calculation |
+| `onboardingPreferences.test.ts` | 2 | Onboarding preference selection |
+
+---
+
+## External services
 
 | Service | Status | Detail |
 |---------|--------|--------|
-| Map provider | BACKEND-DEPENDENT | Google Maps selected for Android MVP; Android SDK API key name present in local `.env`; Android build smoke test pending; iOS Google Maps not configured |
-| RevenueCat | BLOCKED | No API keys; falls through to "mock mode" console warning |
-| what3words | MOCKED | Returns simulated words when no API key; fallback words are deterministic from coordinates |
-| Plus Codes | CLIENT LOGIC IMPLEMENTED | Simplified client-side algorithm; unknown accuracy vs official library |
-| Notifications | BACKEND-DEPENDENT | `expo-notifications` configured; push token registration code exists; no push server |
-| Photo processing | PLANNED | `photo_moderation` table references `exif_stripped` and `faces_blurred` fields; no processing pipeline exists |
-| Image moderation | PLANNED | Moderation queue schema exists; no integration with moderation service |
-| Directions | UI IMPLEMENTED | Deep-link buttons exist; would open Google/Apple/Waze if tapped |
-| Geocoding | BACKEND-DEPENDENT | Route planner uses facilities table for geocoding; no geocoding API configured |
+| Supabase | VERIFIED for reads | Anonymous reads of published facilities and the repaired RPC both confirmed against the live project. Auth, storage and Edge Functions remain unverified |
+| Google Maps (Android) | BACKEND-DEPENDENT | Key resolves through `app.config.js`; the prebuilt `AndroidManifest.xml` carries `com.google.android.geo.API_KEY` exactly once. **Key restrictions in Google Cloud Console are unverified** — package, signing SHA-1 and Maps SDK enablement all still need checking |
+| EAS Build | PLANNED | `eas.json` defines an installable internal `preview` APK profile. No `projectId` is linked and the Expo login has two accounts, so no build has been started |
+| RevenueCat | BLOCKED | No keys; paywall screens unrouted in the preview build |
+| what3words | MOCKED — hidden | Returns simulated words. Location sharing is unrouted in the preview build |
+| Notifications | BACKEND-DEPENDENT — hidden | No push server; alerts unrouted in the preview build |
+| Photo upload / moderation | PLANNED — hidden | No bucket, no processing pipeline |
 
 ---
 
-## Known Mocks, Fallbacks, and Approximations
+## Feature flags
 
-| Feature | Approximation | Risk |
-|---------|---------------|------|
-| List screen data | 3 hardcoded Liverpool facilities | Cannot demonstrate real data |
-| what3words | Deterministic simulated words from coordinate hash | **User safety risk** — simulated words are not real locations |
-| Plus Codes | Simplified client-side algorithm | May not match official Open Location Code specification |
-| Route planning | Haversine straight-line distance; 80 km/h assumed speed | Not road-aware; unsuitable for navigation |
-| "Offline maps" | Downloads facility JSON records only, not map tiles | Name is misleading; no offline map rendering |
-| "AI recommendations" | Deterministic weighted scoring algorithm | Not AI; feature flag `AI: false` confirms this |
-| Alerts | Local foreground polling with in-memory cooldown | Not background; lost on app restart |
-| Photo uploads | Sets `exif_stripped: false, faces_blurred: false` in moderation queue | No processing occurs; privacy obligations unmet |
+From `src/utils/env.ts` — unchanged this pass:
 
----
+| Flag | Value |
+|------|-------|
+| `COMMUNITY` | `true` |
+| `ADVANCED_FILTERS` | `false` |
+| `PREMIUM` | `false` |
+| `AI` | `false` |
+| `EUROPE` | `false` |
 
-## Feature Flag Status
-
-From `src/utils/env.ts`:
-
-| Flag | Value | Effect |
-|------|-------|--------|
-| `COMMUNITY` | `true` | Community features enabled in UI |
-| `ADVANCED_FILTERS` | `false` | Advanced filter screens may not render |
-| `PREMIUM` | `false` | Premium features gated |
-| `AI` | `false` | AI-branded features disabled |
-| `EUROPE` | `false` | Europe expansion disabled |
+Hidden-but-retained screens (AI recommendations, predictive suggestions, route planning, offline maps, notification alerts, location sharing, saved profiles, paywall) still exist in `src/screens/` and compile, but are **not registered in the navigator**, so they are unreachable.
 
 ---
 
-## Current Blockers
+## Current blockers
 
-1. **Supabase smoke testing pending** — Development project/schema are user-reported connected, but app reads/auth/storage workflows are not VERIFIED
-2. **Auth-gated navigation** — Contradicts "no login required for basic search" policy
-3. ~~No verified seed data~~ **SEED DATA IMPORTED** — 15,584 UK public toilet facilities imported from Toilet Map UK (CC-BY-4.0); enriched with access_notes (7,202), price_note (1,315), last_verified_at (2,219), is_24h (984), is_gender_neutral (3,888), has_staff_nearby (4,534), is_family_friendly (2,765), is_single_occupancy (101); field-level provenance tracking enabled
-4. **No RevenueCat configuration** — Blocks monetisation
-5. **No storage bucket/media pipeline** — Photo uploads lack bucket setup, EXIF stripping, and face blurring
-6. **No moderation pipeline** — Community submissions cannot be reviewed safely
-7. **what3words simulation** — Returns fake location codes (safety risk)
-8. **No testing infrastructure** — No way to verify correctness
-9. **iOS map configuration deferred** — Current Google Maps setup is Android-only for development
+1. **No APK has been built, installed or opened.** This is the single largest gap. The emulator cannot start on the development machine: the hypervisor check passes, but the userdata partition needs 7,372 MB and `C:` has ~4–5 GB free (99% full). A physical device is the intended route.
+2. **EAS project not linked.** Needs `eas init`, a decision on which Expo account owns it (`hourwiseeu` or `pcgsoft`), and the three `EXPO_PUBLIC_*` values added as `preview` environment variables.
+3. **Google Maps key restrictions unverified.** Requires Google Cloud Console access. Note the Expo template signs `release` with the **debug** keystore, so a local release APK's SHA-1 differs from an EAS build's.
+4. **Auth flows unverified.** Sign-in, registration and OAuth have not been exercised against the live project.
+5. **Storage, moderation, notifications, RevenueCat** remain unconfigured; the features that depend on them are hidden rather than finished.
+6. **No linting** configured (ESLint/Prettier still absent).
+7. **No CI.** The quality gates exist as npm scripts but nothing runs them automatically.
 
 ---
 
-## Checks Run and Not Run
+## Safe next action
 
-| Check | Status | Result |
-|-------|--------|--------|
-| TypeScript (`tsc --noEmit`) | Run | 11 errors in Deno Edge Functions only (expected); 0 errors in app code |
-| ESLint | Not run | No ESLint configured |
-| Prettier | Not run | No Prettier configured |
-| Unit tests | Not run | No test scripts or test files exist |
-| Build (EAS) | Not run | No EAS configuration |
-| Expo start | Not run | Would fail without `.env` file |
-| Dependency audit | Not run | No audit script |
-
----
-
-## Safe Next Action
-
-**Run the first end-to-end smoke test on Android**, starting with:
-
-1. Verify Expo config resolves the Android Google Maps SDK key for a development build
-2. ~~Load seed data for a single UK town~~ **DONE** — 15,584 UK facilities in Supabase (104 Liverpool, full UK)
-3. Replace/mock-bypass the hardcoded list data with Supabase reads for the smoke path
-4. Verify map pins render with real coordinates from Supabase
-5. Verify "Need One Now" can find the nearest seeded facility
-6. Decide and implement unauthenticated access for basic emergency discovery
+Build and install the preview APK on a physical Android device, then work through `docs/ANDROID_SMOKE_TEST.md` and record real results. Pay particular attention to check 16 — that a nearest-facility RPC failure surfaces as a retryable error and never as "no facilities found" — since that is the specific misdiagnosis this pass set out to eliminate.
