@@ -16,7 +16,7 @@ import { colors, typography, spacing, borderRadius } from '../theme';
 import { Button } from '../components';
 import { submitCorrection } from '../services/community';
 import { useRoute, useNavigation, NavigationProp, RouteProp } from '@react-navigation/native';
-import type { MapStackParamList } from '../types';
+import type { FindStackParamList } from '../types';
 
 const COMMON_FIELDS = [
   { key: 'name', label: 'Name' },
@@ -33,7 +33,7 @@ const COMMON_FIELDS = [
 ];
 
 export const CorrectInfoScreen: React.FC = () => {
-  const route = useRoute<RouteProp<MapStackParamList, 'CorrectInfo'>>();
+  const route = useRoute<RouteProp<FindStackParamList, 'CorrectInfo'>>();
   const navigation = useNavigation<NavigationProp<any>>();
   const { facilityId } = route.params;
 

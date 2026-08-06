@@ -17,7 +17,7 @@ import { colors, typography, spacing, borderRadius } from '../theme';
 import { Button, Card } from '../components';
 import { submitTemporaryReport, getActiveReports, resolveOwnReport } from '../services/community';
 import { useRoute, useNavigation, NavigationProp, RouteProp } from '@react-navigation/native';
-import type { MapStackParamList } from '../types';
+import type { FindStackParamList } from '../types';
 import type { TemporaryReport } from '../types/community';
 
 type ReportType = TemporaryReport['type'];
@@ -32,7 +32,7 @@ const REPORT_TYPES: { type: ReportType; label: string; icon: string; description
 ];
 
 export const ReportFacilityScreen: React.FC = () => {
-  const route = useRoute<RouteProp<MapStackParamList, 'ReportFacility'>>();
+  const route = useRoute<RouteProp<FindStackParamList, 'ReportFacility'>>();
   const navigation = useNavigation<NavigationProp<any>>();
   const { facilityId } = route.params;
 
