@@ -6,7 +6,11 @@ import { borderRadius, colors, spacing, touchTargets, typography } from '../them
 import { completeOnboarding } from '../utils/onboarding';
 import { selectedOnboardingFilters } from '../utils/onboardingPreferences';
 
-interface OnboardingScreenProps { userId: string; onFinished: () => void; }
+/**
+ * `storageKey` is the user id when signed in, or the guest scope when not.
+ * Onboarding never requires an account.
+ */
+interface OnboardingScreenProps { storageKey: string; onFinished: () => void; }
 
 interface PreferenceRowProps { label: string; description: string; value: boolean; onChange: (next: boolean) => void; }
 const PreferenceRow: React.FC<PreferenceRowProps> = ({ label, description, value, onChange }) => (
@@ -27,7 +31,7 @@ const PreferenceRow: React.FC<PreferenceRowProps> = ({ label, description, value
   </View>
 );
 
-export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ userId, onFinished }) => {
+export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ storageKey, onFinished }) => {
   const { filters, setFilters } = useFilters();
   const [radar, setRadar] = useState(false);
   const [babyChanging, setBabyChanging] = useState(false);
@@ -40,7 +44,7 @@ export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ userId, onFi
       // Merge true selections only. Existing values are never reset to false.
       setFilters({ ...filters, ...selectedOnboardingFilters({ radar, babyChanging, genderNeutral }) });
     }
-    await completeOnboarding(userId);
+    await completeOnboarding(storageKey);
     onFinished();
   };
 

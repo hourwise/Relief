@@ -1,66 +1,108 @@
 // ============================================================
-// Project "Relief" — Favourites Screen (4.3)
-// Lists favourite facilities, chains, and routes
+// Project "Relief" — Favourites Screen
+// ============================================================
+// Favourites are account-dependent, so this is one of the few
+// places that legitimately asks for sign-in. It explains why and
+// makes clear that finding a facility never requires an account.
 // ============================================================
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  TouchableOpacity,
   ActivityIndicator,
   Alert,
+  FlatList,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
-import { colors, typography, spacing, borderRadius } from '../theme';
-import { Card, Button, Badge } from '../components';
-import {
-  getFavouriteFacilities,
-  removeFavourite,
-} from '../services/favourites';
-import { useNavigation, NavigationProp, useFocusEffect } from '@react-navigation/native';
-import type { Facility } from '../types';
+import { Heart, Star } from 'lucide-react-native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import type { NavigationProp } from '@react-navigation/native';
+import { colors, spacing, touchTargets, typography } from '../theme';
+import { PrimaryButton, SoftCard, StateNotice, StatusBadge } from '../components';
+import { getFavouriteFacilities, removeFavourite } from '../services/favourites';
+import { getOpenStatus } from '../utils/openingHours';
+import { useAuth } from '../context/AuthContext';
+import { signInReason } from '../utils/guestAccess';
+import type { Facility, MainTabParamList, RootStackParamList } from '../types';
+
+type FavouritesNavigation = NavigationProp<RootStackParamList & MainTabParamList>;
 
 export const FavouritesScreen: React.FC = () => {
-  const navigation = useNavigation<NavigationProp<any>>();
+  const navigation = useNavigation<FavouritesNavigation>();
+  const { isAuthenticated } = useAuth();
   const [facilities, setFacilities] = useState<Facility[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const loadFavourites = useCallback(async () => {
+    if (!isAuthenticated) {
+      setFacilities([]);
+      setLoading(false);
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      setFacilities(await getFavouriteFacilities());
+    } catch {
+      setError('Your favourites could not be loaded.');
+    } finally {
+      setLoading(false);
+    }
+  }, [isAuthenticated]);
 
   useFocusEffect(
     useCallback(() => {
       loadFavourites();
-    }, []),
+    }, [loadFavourites]),
   );
 
-  const loadFavourites = async () => {
-    setLoading(true);
-    const data = await getFavouriteFacilities();
-    setFacilities(data);
-    setLoading(false);
-  };
+  // FacilityDetail lives in the Find tab's stack, so it must be addressed
+  // through that tab. Navigating to it directly from here would be an
+  // unhandled action.
+  const openFacility = (facility: Facility) =>
+    navigation.navigate('Find', {
+      screen: 'FacilityDetail',
+      params: { facilityId: facility.id },
+    } as never);
 
   const handleRemove = (facility: Facility) => {
-    Alert.alert(
-      'Remove Favourite',
-      `Remove "${facility.name}" from your favourites?`,
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Remove',
-          style: 'destructive',
-          onPress: async () => {
-            await removeFavourite(facility.id);
-            loadFavourites();
-          },
+    Alert.alert('Remove favourite', `Remove “${facility.name}” from your favourites?`, [
+      { text: 'Cancel', style: 'cancel' },
+      {
+        text: 'Remove',
+        style: 'destructive',
+        onPress: async () => {
+          await removeFavourite(facility.id);
+          loadFavourites();
         },
-      ],
-    );
+      },
+    ]);
   };
 
-  const handleFacilityPress = (facility: Facility) => {
-    navigation.navigate('FacilityDetail', { facilityId: facility.id });
-  };
+  if (!isAuthenticated) {
+    return (
+      <View style={styles.centered}>
+        <View style={styles.emptyIcon}>
+          <Heart size={34} color={colors.primary} />
+        </View>
+        <Text style={styles.emptyTitle}>Save your regular places</Text>
+        <Text style={styles.emptySubtitle}>
+          {signInReason('view_favourites')} Finding a facility never needs an account —
+          only saving one does.
+        </Text>
+        <PrimaryButton
+          title="Sign in"
+          onPress={() =>
+            navigation.navigate('Auth', { reason: signInReason('view_favourites') })
+          }
+          style={styles.signIn}
+        />
+      </View>
+    );
+  }
 
   if (loading) {
     return (
@@ -70,13 +112,29 @@ export const FavouritesScreen: React.FC = () => {
     );
   }
 
+  if (error) {
+    return (
+      <View style={styles.noticeWrap}>
+        <StateNotice
+          tone="problem"
+          title="Favourites could not be loaded"
+          detail={error}
+          actionLabel="Try again"
+          onAction={loadFavourites}
+        />
+      </View>
+    );
+  }
+
   if (facilities.length === 0) {
     return (
       <View style={styles.centered}>
-        <Text style={styles.emptyIcon}>⭐</Text>
-        <Text style={styles.emptyTitle}>No Favourites Yet</Text>
+        <View style={styles.emptyIcon}>
+          <Heart size={34} color={colors.primary} />
+        </View>
+        <Text style={styles.emptyTitle}>No favourites yet</Text>
         <Text style={styles.emptySubtitle}>
-          Tap the star icon on any facility to save it here for quick access.
+          Save a facility from its details screen to keep it here for quick access.
         </Text>
       </View>
     );
@@ -88,45 +146,54 @@ export const FavouritesScreen: React.FC = () => {
         data={facilities}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.listContent}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => handleFacilityPress(item)}
-            activeOpacity={0.7}
-          >
-            <Card variant="outlined" style={styles.facilityCard}>
-              <View style={styles.facilityHeader}>
-                <View style={styles.facilityInfo}>
-                  <Text style={styles.facilityName}>{item.name}</Text>
-                  <Text style={styles.facilityAddress}>{item.address}</Text>
+        showsVerticalScrollIndicator={false}
+        renderItem={({ item }) => {
+          const score = item.overall_score ?? 0;
+          return (
+            <SoftCard
+              onPress={() => openFacility(item)}
+              accessibilityLabel={`View details for ${item.name}`}
+              style={styles.card}
+            >
+              <View style={styles.cardHeader}>
+                <View style={styles.cardCopy}>
+                  <Text style={styles.name} numberOfLines={2}>
+                    {item.name}
+                  </Text>
+                  <Text style={styles.address} numberOfLines={1}>
+                    {item.address || item.town || 'Location unavailable'}
+                  </Text>
                 </View>
-                <TouchableOpacity
+                <Pressable
+                  accessibilityRole="button"
+                  accessibilityLabel={`Remove ${item.name} from favourites`}
                   onPress={() => handleRemove(item)}
                   style={styles.removeButton}
                 >
-                  <Text style={styles.removeIcon}>★</Text>
-                </TouchableOpacity>
+                  <Heart size={22} color={colors.urgent} fill={colors.urgent} />
+                </Pressable>
               </View>
-              <View style={styles.facilityMeta}>
-                <Badge
-                  label={`★ ${item.overall_score.toFixed(1)}`}
-                  variant="success"
-                  size="sm"
-                />
-                <Text style={styles.facilityTown}>{item.town}</Text>
+              <View style={styles.metaRow}>
+                <StatusBadge status={getOpenStatus(item)} />
+                {score > 0 ? (
+                  <View style={styles.scoreRow}>
+                    <Star size={13} color={colors.amber} fill={colors.amber} />
+                    <Text style={styles.score}>{score.toFixed(1)}</Text>
+                  </View>
+                ) : (
+                  <Text style={styles.unrated}>Not yet rated</Text>
+                )}
               </View>
-            </Card>
-          </TouchableOpacity>
-        )}
+            </SoftCard>
+          );
+        }}
       />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
+  container: { flex: 1, backgroundColor: colors.background },
   centered: {
     flex: 1,
     justifyContent: 'center',
@@ -134,67 +201,47 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     padding: spacing['2xl'],
   },
-  listContent: {
-    padding: spacing.lg,
-    paddingBottom: spacing['6xl'],
-  },
+  noticeWrap: { flex: 1, backgroundColor: colors.background, padding: spacing.lg },
+  listContent: { padding: spacing.lg, paddingBottom: spacing['6xl'] },
   emptyIcon: {
-    fontSize: 48,
-    marginBottom: spacing.md,
+    width: 68,
+    height: 68,
+    borderRadius: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.secondarySurface,
+    marginBottom: spacing.lg,
   },
-  emptyTitle: {
-    fontFamily: 'PlusJakartaSans_600SemiBold',
-    fontSize: 20,
-    fontWeight: '600',
-    color: colors.textPrimary,
-    marginBottom: spacing.xs,
-  },
+  emptyTitle: { ...typography.h3, color: colors.textPrimary, marginBottom: spacing.xs },
   emptySubtitle: {
-    fontFamily: 'Inter_400Regular',
-    fontSize: 15,
+    ...typography.bodySmall,
     color: colors.textSecondary,
     textAlign: 'center',
     lineHeight: 22,
   },
-  facilityCard: {
-    marginBottom: spacing.md,
-  },
-  facilityHeader: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    marginBottom: spacing.sm,
-  },
-  facilityInfo: {
-    flex: 1,
-    marginRight: spacing.sm,
-  },
-  facilityName: {
-    fontFamily: 'Inter_600SemiBold',
-    fontSize: 16,
-    fontWeight: '600',
-    color: colors.textPrimary,
-    marginBottom: 2,
-  },
-  facilityAddress: {
-    fontFamily: 'Inter_400Regular',
-    fontSize: 13,
-    color: colors.textSecondary,
-  },
+  signIn: { marginTop: spacing['2xl'], alignSelf: 'stretch' },
+  card: { marginBottom: spacing.md },
+  cardHeader: { flexDirection: 'row', alignItems: 'flex-start' },
+  cardCopy: { flex: 1, paddingRight: spacing.sm },
+  name: { ...typography.h4, color: colors.textPrimary },
+  address: { ...typography.bodySmall, color: colors.textSecondary, marginTop: 3 },
   removeButton: {
-    padding: spacing.xs,
+    minWidth: touchTargets.minimum,
+    minHeight: touchTargets.minimum,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  removeIcon: {
-    fontSize: 24,
-    color: colors.warning,
-  },
-  facilityMeta: {
+  metaRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: spacing.sm,
+    gap: spacing.md,
+    marginTop: spacing.sm,
   },
-  facilityTown: {
-    fontFamily: 'Inter_400Regular',
-    fontSize: 12,
-    color: colors.textMuted,
+  scoreRow: { flexDirection: 'row', alignItems: 'center', gap: 4 },
+  score: {
+    ...typography.bodySmall,
+    color: colors.textPrimary,
+    fontFamily: 'PlusJakartaSans_600SemiBold',
   },
+  unrated: { ...typography.caption, color: colors.textMuted },
 });

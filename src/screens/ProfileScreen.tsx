@@ -1,337 +1,155 @@
 // ============================================================
 // Project "Relief" — Profile Screen
 // ============================================================
+// Every action here is checked against a registered route. The
+// preview build hides features that are not finished rather than
+// offering buttons that navigate nowhere:
+//
+//   AI recommendations, predictive suggestions, route planning,
+//   offline maps, notification alerts, what3words/location
+//   sharing, saved profiles, purchases and paywalls, photo
+//   uploads, community badges, community management.
+//
+// Their screens still exist in src/screens/ but are not routed.
+// About Relief is kept.
+// ============================================================
 
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native';
-import { colors, typography, spacing } from '../theme';
-import { Card, Button } from '../components';
-import { getCurrentUser, signOut } from '../services/auth';
-import { getUserBadges } from '../services/community';
+import React, { useCallback, useState } from 'react';
+import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import type { NavigationProp } from '@react-navigation/native';
 import type { User } from '@supabase/supabase-js';
-import type { Badge } from '../types/community';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { colors, spacing, typography } from '../theme';
+import { Button, SoftCard } from '../components';
+import { getCurrentUser, signOut } from '../services/auth';
+import { useAuth } from '../context/AuthContext';
+import { signInReason } from '../utils/guestAccess';
+import type { RootStackParamList } from '../types';
 
 export const ProfileScreen: React.FC = () => {
-  const navigation = useNavigation<NavigationProp<any>>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const { isAuthenticated } = useAuth();
   const [user, setUser] = useState<User | null>(null);
-  const [badges, setBadges] = useState<Badge[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [signingOut, setSigningOut] = useState(false);
 
-  useEffect(() => {
-    loadUser();
-    loadBadges();
-  }, []);
-
-  const loadUser = async () => {
-    const currentUser = await getCurrentUser();
-    setUser(currentUser);
-  };
-
-  const loadBadges = async () => {
-    const userBadges = await getUserBadges();
-    setBadges(userBadges);
-  };
+  useFocusEffect(
+    useCallback(() => {
+      let cancelled = false;
+      if (!isAuthenticated) {
+        setUser(null);
+        return;
+      }
+      getCurrentUser()
+        .then((current) => {
+          if (!cancelled) setUser(current);
+        })
+        .catch(() => {
+          if (!cancelled) setUser(null);
+        });
+      return () => {
+        cancelled = true;
+      };
+    }, [isAuthenticated]),
+  );
 
   const handleSignOut = () => {
-    Alert.alert('Sign Out', 'Are you sure you want to sign out?', [
+    Alert.alert('Sign out', 'Are you sure you want to sign out?', [
       { text: 'Cancel', style: 'cancel' },
       {
-        text: 'Sign Out',
+        text: 'Sign out',
         style: 'destructive',
         onPress: async () => {
-          setLoading(true);
+          setSigningOut(true);
           await signOut();
-          setLoading(false);
+          setSigningOut(false);
         },
       },
     ]);
   };
 
-  const badgeIcons: Record<string, string> = {
-    explorer: '🌍',
-    community_hero: '🦸',
-    accessibility_champion: '♿',
-    family_helper: '👨‍👩‍👧‍👧',
-  };
-
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      {/* User Info */}
-      <Card variant="elevated" style={styles.profileCard}>
-        <View style={styles.avatar}>
-          <Text style={styles.avatarText}>👤</Text>
-        </View>
-        {user ? (
+      <SoftCard style={styles.profileCard}>
+        {isAuthenticated && user ? (
           <>
             <Text style={styles.userName}>
-              {user.user_metadata?.full_name || user.email || 'User'}
+              {user.user_metadata?.full_name || user.email || 'Signed in'}
             </Text>
-            <Text style={styles.userEmail}>{user.email}</Text>
+            {user.email ? <Text style={styles.userMeta}>{user.email}</Text> : null}
             <Button
               title="Sign Out"
               onPress={handleSignOut}
               variant="outline"
-              loading={loading}
+              loading={signingOut}
               fullWidth
-              style={styles.signOutButton}
+              style={styles.actionButton}
             />
           </>
         ) : (
           <>
-            <Text style={styles.userName}>Not signed in</Text>
-            <Text style={styles.userEmail}>
-              Sign in to access your favourites, saved profiles and more
+            <Text style={styles.userName}>Browsing as a guest</Text>
+            <Text style={styles.userMeta}>
+              Finding facilities, searching and getting directions never require an
+              account. {signInReason('save_favourite')}
             </Text>
+            <Button
+              title="Sign In"
+              onPress={() =>
+                navigation.navigate('Auth', {
+                  reason: signInReason('account_settings'),
+                })
+              }
+              variant="outline"
+              fullWidth
+              style={styles.actionButton}
+            />
           </>
         )}
-      </Card>
+      </SoftCard>
 
-      {/* AI Recommendations */}
-      <Card variant="outlined" style={styles.section}>
-        <Text style={styles.sectionTitle}>AI Recommendations</Text>
-        <Text style={styles.sectionDescription}>
-          Smart facility recommendations matched to your saved profiles and preferences.
-        </Text>
-        <Button
-          title="Get Recommendations"
-          onPress={() => navigation.navigate('AIRecommendations')}
-          variant="outline"
-          fullWidth
-          size="sm"
-        />
-      </Card>
-
-      {/* Predictive Suggestions */}
-      <Card variant="outlined" style={styles.section}>
-        <Text style={styles.sectionTitle}>Predictive Suggestions</Text>
-        <Text style={styles.sectionDescription}>
-          Find the next suitable facility ahead in your direction of travel.
-        </Text>
-        <Button
-          title="Look Ahead"
-          onPress={() => navigation.navigate('PredictiveSuggestions')}
-          variant="outline"
-          fullWidth
-          size="sm"
-        />
-      </Card>
-
-      {/* Route Planning */}
-      <Card variant="outlined" style={styles.section}>
-        <Text style={styles.sectionTitle}>Route Planning</Text>
-        <Text style={styles.sectionDescription}>
-          Plan a journey with comfort stops every 60-90 minutes.
-        </Text>
-        <Button
-          title="Plan a Route"
-          onPress={() => navigation.navigate('RoutePlanning')}
-          variant="outline"
-          fullWidth
-          size="sm"
-        />
-      </Card>
-
-      {/* Offline Maps */}
-      <Card variant="outlined" style={styles.section}>
-        <Text style={styles.sectionTitle}>Offline Maps</Text>
-        <Text style={styles.sectionDescription}>
-          Download facility data for offline use when you don't have internet.
-        </Text>
-        <Button
-          title="Manage Offline Maps"
-          onPress={() => navigation.navigate('OfflineMaps')}
-          variant="outline"
-          fullWidth
-          size="sm"
-        />
-      </Card>
-
-      {/* Notification Alerts */}
-      <Card variant="outlined" style={styles.section}>
-        <Text style={styles.sectionTitle}>Notification Alerts</Text>
-        <Text style={styles.sectionDescription}>
-          Get notified about closures and updates for your favourite facilities.
-        </Text>
-        <Button
-          title="Manage Alerts"
-          onPress={() => navigation.navigate('NotificationAlerts')}
-          variant="outline"
-          fullWidth
-          size="sm"
-        />
-      </Card>
-
-      {/* Location Sharing */}
-      <Card variant="outlined" style={styles.section}>
-        <Text style={styles.sectionTitle}>Location Sharing</Text>
-        <Text style={styles.sectionDescription}>
-          Share your location via What3Words, Plus Codes, or emergency card.
-        </Text>
-        <Button
-          title="Share Location"
-          onPress={() => navigation.navigate('LocationSharing')}
-          variant="outline"
-          fullWidth
-          size="sm"
-        />
-      </Card>
-
-      {/* Saved Profiles */}
-      <Card variant="outlined" style={styles.section}>
-        <Text style={styles.sectionTitle}>Saved Profiles</Text>
-        <Text style={styles.sectionDescription}>
-          Create preference profiles to quickly filter facilities.
-        </Text>
-        <Button
-          title="Manage Profiles"
-          onPress={() => navigation.navigate('SavedProfiles')}
-          variant="outline"
-          fullWidth
-          size="sm"
-        />
-      </Card>
-
-      {/* Badges */}
-      <Card variant="outlined" style={styles.section}>
-        <Text style={styles.sectionTitle}>Badges</Text>
-        {badges.length > 0 ? (
-          <View style={styles.badgesList}>
-            {badges.map((badge) => (
-              <View key={badge.id} style={styles.badgeItem}>
-                <Text style={styles.badgeIcon}>
-                  {badgeIcons[badge.badge_type] || '🏅'}
-                </Text>
-                <View style={styles.badgeInfo}>
-                  <Text style={styles.badgeName}>
-                    {badge.badge_type.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())}
-                  </Text>
-                  <Text style={styles.badgeSource}>{badge.source}</Text>
-                </View>
-              </View>
-            ))}
-          </View>
-        ) : (
-          <Text style={styles.sectionDescription}>
-            Contribute to the community to earn badges
-          </Text>
-        )}
-      </Card>
-
-      {/* Access Level */}
-      <Card variant="outlined" style={styles.section}>
-        <Text style={styles.sectionTitle}>Access Level</Text>
-        <Text style={styles.accessLevel}>Free Tier</Text>
-        <Text style={styles.sectionDescription}>
-          All features are currently unlocked during testing.
-        </Text>
-      </Card>
-
-      {/* App Info */}
-      <Card variant="outlined" style={styles.section}>
+      <SoftCard style={styles.section}>
         <Text style={styles.sectionTitle}>About</Text>
-        <Text style={styles.appInfo}>Relief v1.0.0</Text>
-        <Text style={styles.appInfo}>Helping you find safe, clean facilities</Text>
+        <Text style={styles.sectionDescription}>
+          Relief v1.0.0 — helping you find safe, clean facilities.
+        </Text>
         <Button
           title="About Relief"
           onPress={() => navigation.navigate('AboutRelief')}
           variant="outline"
           fullWidth
           size="sm"
-          style={styles.aboutButton}
+          style={styles.actionButton}
         />
-      </Card>
+      </SoftCard>
+
+      <SoftCard style={styles.section}>
+        <Text style={styles.sectionTitle}>This is a preview build</Text>
+        <Text style={styles.sectionDescription}>
+          Route planning, offline maps, alerts, location sharing, saved profiles and
+          community badges are still in development and are hidden until they work
+          end to end. Facility data comes from the live database.
+        </Text>
+      </SoftCard>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-  content: {
-    padding: spacing.lg,
-    paddingBottom: spacing['6xl'],
-  },
-  profileCard: {
-    alignItems: 'center',
-    marginBottom: spacing.lg,
-  },
-  avatar: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    backgroundColor: colors.gray100,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: spacing.md,
-  },
-  avatarText: {
-    fontSize: 36,
-  },
-  userName: {
-    ...typography.h3,
-    color: colors.textPrimary,
-    marginBottom: spacing.xs,
-  },
-  userEmail: {
+  container: { flex: 1, backgroundColor: colors.background },
+  content: { padding: spacing.lg, paddingBottom: spacing['6xl'] },
+  profileCard: { alignItems: 'flex-start', marginBottom: spacing.lg },
+  userName: { ...typography.h3, color: colors.textPrimary, marginBottom: spacing.xs },
+  userMeta: {
     ...typography.bodySmall,
     color: colors.textSecondary,
-    textAlign: 'center',
-    marginBottom: spacing.lg,
+    lineHeight: 21,
   },
-  signOutButton: {
-    marginTop: spacing.sm,
-  },
-  section: {
-    marginBottom: spacing.lg,
-  },
-  sectionTitle: {
-    ...typography.h4,
-    color: colors.textPrimary,
-    marginBottom: spacing.sm,
-  },
+  section: { marginBottom: spacing.lg },
+  sectionTitle: { ...typography.h4, color: colors.textPrimary, marginBottom: spacing.xs },
   sectionDescription: {
     ...typography.bodySmall,
     color: colors.textSecondary,
-    marginBottom: spacing.md,
+    lineHeight: 21,
   },
-  accessLevel: {
-    ...typography.h2,
-    color: colors.primary,
-    marginBottom: spacing.xs,
-  },
-  badgesList: {
-    gap: spacing.sm,
-  },
-  badgeItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: spacing.xs,
-  },
-  badgeIcon: {
-    fontSize: 24,
-    marginRight: spacing.md,
-  },
-  badgeInfo: {
-    flex: 1,
-  },
-  badgeName: {
-    ...typography.bodySmall,
-    color: colors.textPrimary,
-    fontWeight: '600',
-  },
-  badgeSource: {
-    ...typography.caption,
-    color: colors.textSecondary,
-  },
-  appInfo: {
-    ...typography.bodySmall,
-    color: colors.textSecondary,
-    marginBottom: spacing.xs,
-  },
-  aboutButton: {
-    marginTop: spacing.sm,
-  },
+  actionButton: { marginTop: spacing.md },
 });

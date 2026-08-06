@@ -3,7 +3,7 @@
 // Tagline: Find Comfort, Find Relief
 // ============================================================
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -14,11 +14,13 @@ import {
   Alert,
   TouchableOpacity,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import type { RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { colors, typography, spacing } from '../theme';
+import { colors, typography, spacing, touchTargets } from '../theme';
 import { Button, Input, Card } from '../components';
 import { signInWithEmail, signInWithGoogle } from '../services/auth';
+import { useAuth } from '../context/AuthContext';
 import type { AuthStackParamList } from '../types';
 
 type LoginScreenNavProp = NativeStackNavigationProp<
@@ -28,9 +30,18 @@ type LoginScreenNavProp = NativeStackNavigationProp<
 
 export const LoginScreen: React.FC = () => {
   const navigation = useNavigation<LoginScreenNavProp>();
+  const route = useRoute<RouteProp<AuthStackParamList, 'Login'>>();
+  const { isAuthenticated } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // This screen is a modal raised over the app, not a gate in front of it.
+  // Once a session exists its job is done, so it closes itself and returns the
+  // user to whatever they were doing.
+  useEffect(() => {
+    if (isAuthenticated && navigation.canGoBack()) navigation.goBack();
+  }, [isAuthenticated, navigation]);
 
   const handleEmailLogin = async () => {
     if (!email.trim() || !password.trim()) {
@@ -72,6 +83,12 @@ export const LoginScreen: React.FC = () => {
 
         <Card variant="elevated" style={styles.card}>
           <Text style={styles.cardTitle}>Sign In</Text>
+
+          {/* Why we are asking. A guest who arrived here from a specific action
+              should not have to guess what triggered it. */}
+          {route.params?.reason ? (
+            <Text style={styles.reason}>{route.params.reason}</Text>
+          ) : null}
 
           <Input
             label="Email"
@@ -135,6 +152,19 @@ export const LoginScreen: React.FC = () => {
             <Text style={styles.signupLinkBold}>Sign Up</Text>
           </Text>
         </TouchableOpacity>
+
+        {/* Signing in is always optional: finding a facility does not need an
+            account, so there must be a way back out. */}
+        {navigation.canGoBack() ? (
+          <TouchableOpacity
+            accessibilityRole="button"
+            accessibilityLabel="Continue without an account"
+            style={styles.guestLink}
+            onPress={() => navigation.goBack()}
+          >
+            <Text style={styles.guestLinkText}>Continue without an account</Text>
+          </TouchableOpacity>
+        ) : null}
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -172,6 +202,13 @@ const styles = StyleSheet.create({
     color: colors.textPrimary,
     marginBottom: spacing.xl,
   },
+  reason: {
+    ...typography.bodySmall,
+    color: colors.textSecondary,
+    marginTop: -spacing.md,
+    marginBottom: spacing.xl,
+    lineHeight: 21,
+  },
   divider: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -201,5 +238,15 @@ const styles = StyleSheet.create({
   signupLinkBold: {
     color: colors.primary,
     fontWeight: '600',
+  },
+  guestLink: {
+    minHeight: touchTargets.minimum,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: spacing.md,
+  },
+  guestLinkText: {
+    ...typography.buttonSmall,
+    color: colors.textSecondary,
   },
 });

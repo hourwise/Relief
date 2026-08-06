@@ -2,119 +2,95 @@
 // Project "Relief" — App Navigator
 // Tagline: Find Comfort, Find Relief
 // ============================================================
+// Discovery is NOT behind authentication. The root renders the
+// main app whether or not a session exists; sign-in is a modal
+// raised only when an account-dependent action is attempted.
+//
+// The previous structure rendered the Auth stack as the entire
+// root for signed-out users, so nobody could reach the map or
+// "Need One Now" without registering first.
+// ============================================================
 
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text, StyleSheet } from 'react-native';
+import { Heart, Search, User } from 'lucide-react-native';
 import { colors, typography } from '../theme';
 import {
   LoginScreen,
   RegisterScreen,
-  MapScreen,
-  ListScreen,
+  FindScreen,
   FacilityDetailScreen,
   ProfileScreen,
   AddFacilityScreen,
   ReportFacilityScreen,
   CorrectInfoScreen,
   AdvancedFiltersScreen,
-  SavedProfilesScreen,
   FavouritesScreen,
-  RoutePlanningScreen,
-  OfflineMapsScreen,
-  NotificationAlertsScreen,
-  LocationSharingScreen,
-  AIRecommendationsScreen,
-  PredictiveSuggestionsScreen,
   OnboardingScreen,
   AboutReliefScreen,
 } from '../screens';
-import { hasCompletedOnboarding } from '../utils/onboarding';
+import {
+  hasCompletedOnboarding,
+  GUEST_ONBOARDING_KEY,
+  migrateGuestOnboarding,
+} from '../utils/onboarding';
 import { onAuthStateChange, getCurrentSession } from '../services/auth';
+import { AuthContext } from '../context/AuthContext';
 import type {
   RootStackParamList,
   AuthStackParamList,
   MainTabParamList,
-  MapStackParamList,
+  FindStackParamList,
 } from '../types';
-import { Session } from '@supabase/supabase-js';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const AuthStack = createNativeStackNavigator<AuthStackParamList>();
 const Tab = createBottomTabNavigator<MainTabParamList>();
-const MapStack = createNativeStackNavigator<MapStackParamList>();
+const FindStack = createNativeStackNavigator<FindStackParamList>();
 
-// Simple tab icon component (replace with vector icons later)
-const TabIcon: React.FC<{ label: string; focused: boolean }> = ({
-  label,
-  focused,
-}) => {
-  const icons: Record<string, string> = {
-    Map: '🗺️',
-    List: '📋',
-    Favourites: '⭐',
-    Profile: '👤',
-  };
-  return (
-    <Text style={{ fontSize: 22, opacity: focused ? 1 : 0.5 }}>
-      {icons[label] || '●'}
-    </Text>
-  );
-};
+const modalHeader = (title: string) => ({
+  headerShown: true,
+  headerTitle: title,
+  headerStyle: styles.header,
+  headerTitleStyle: styles.headerTitle,
+  headerTintColor: colors.textPrimary,
+});
 
-// Map stack navigator (for Map -> FacilityDetail navigation)
-const MapStackNavigator: React.FC = () => (
-  <MapStack.Navigator screenOptions={{ headerShown: false }}>
-    <MapStack.Screen name="MapView" component={MapScreen} />
-    <MapStack.Screen
-      name="FacilityDetail"
-      component={FacilityDetailScreen}
-      options={{ headerShown: false }}
-    />
-    <MapStack.Screen
+/**
+ * The Find tab's stack. Facility detail and the filter sheet are reachable
+ * without a session; AddFacility, ReportFacility and CorrectInfo are registered
+ * here but only ever navigated to after an auth check at the call site.
+ */
+const FindStackNavigator: React.FC = () => (
+  <FindStack.Navigator screenOptions={{ headerShown: false }}>
+    <FindStack.Screen name="FindHome" component={FindScreen} />
+    <FindStack.Screen name="FacilityDetail" component={FacilityDetailScreen} />
+    <FindStack.Screen
       name="AddFacility"
       component={AddFacilityScreen}
-      options={{
-        headerShown: true,
-        headerTitle: 'Add Facility',
-        headerStyle: styles.header,
-        headerTitleStyle: styles.headerTitle,
-        headerTintColor: colors.textPrimary,
-      }}
+      options={modalHeader('Add Facility')}
     />
-    <MapStack.Screen
+    <FindStack.Screen
       name="ReportFacility"
       component={ReportFacilityScreen}
-      options={{
-        headerShown: true,
-        headerTitle: 'Report Issue',
-        headerStyle: styles.header,
-        headerTitleStyle: styles.headerTitle,
-        headerTintColor: colors.textPrimary,
-      }}
+      options={modalHeader('Report Issue')}
     />
-    <MapStack.Screen
+    <FindStack.Screen
       name="CorrectInfo"
       component={CorrectInfoScreen}
-      options={{
-        headerShown: true,
-        headerTitle: 'Correct Info',
-        headerStyle: styles.header,
-        headerTitleStyle: styles.headerTitle,
-        headerTintColor: colors.textPrimary,
-      }}
+      options={modalHeader('Correct Info')}
     />
-    <MapStack.Screen
+    <FindStack.Screen
       name="AdvancedFilters"
       component={AdvancedFiltersScreen}
       options={{ headerShown: false }}
     />
-  </MapStack.Navigator>
+  </FindStack.Navigator>
 );
 
-// Auth Navigator
 const AuthNavigator: React.FC = () => (
   <AuthStack.Navigator screenOptions={{ headerShown: false }}>
     <AuthStack.Screen name="Login" component={LoginScreen} />
@@ -122,13 +98,13 @@ const AuthNavigator: React.FC = () => (
   </AuthStack.Navigator>
 );
 
-// Main Tab Navigator
+/**
+ * Three tabs, per the accessibility policy's maximum. "Nearby" is gone as a
+ * separate tab because the list is now a view inside Find.
+ */
 const MainNavigator: React.FC = () => (
   <Tab.Navigator
-    screenOptions={({ route }) => ({
-      tabBarIcon: ({ focused }) => (
-        <TabIcon label={route.name} focused={focused} />
-      ),
+    screenOptions={{
       tabBarActiveTintColor: colors.primary,
       tabBarInactiveTintColor: colors.gray400,
       tabBarStyle: styles.tabBar,
@@ -136,79 +112,113 @@ const MainNavigator: React.FC = () => (
       headerStyle: styles.header,
       headerTitleStyle: styles.headerTitle,
       headerTintColor: colors.textPrimary,
-    })}
+    }}
   >
     <Tab.Screen
-      name="Map"
-      component={MapStackNavigator}
-      options={{ title: 'Map', headerShown: false }}
-    />
-    <Tab.Screen
-      name="List"
-      component={ListScreen}
-      options={{ title: 'Nearby' }}
+      name="Find"
+      component={FindStackNavigator}
+      options={{
+        title: 'Find',
+        headerShown: false,
+        tabBarIcon: ({ color, size }) => <Search color={color} size={size} />,
+      }}
     />
     <Tab.Screen
       name="Favourites"
       component={FavouritesScreen}
-      options={{ title: 'Favourites' }}
+      options={{
+        title: 'Favourites',
+        tabBarIcon: ({ color, size }) => <Heart color={color} size={size} />,
+      }}
     />
     <Tab.Screen
       name="Profile"
       component={ProfileScreen}
-      options={{ title: 'Profile' }}
+      options={{
+        title: 'Profile',
+        tabBarIcon: ({ color, size }) => <User color={color} size={size} />,
+      }}
     />
   </Tab.Navigator>
 );
 
-const AuthenticatedEntry: React.FC<{ userId: string }> = ({ userId }) => {
-  const [checkingOnboarding, setCheckingOnboarding] = useState(true);
+/**
+ * First-run preferences.
+ *
+ * Onboarding is stored against a guest key when there is no session, so it does
+ * not force account creation before discovery. On sign-in the guest record is
+ * migrated to the user, so a guest who later registers is not asked twice.
+ */
+const MainEntry: React.FC<{ userId: string | null }> = ({ userId }) => {
+  const storageKey = userId ?? GUEST_ONBOARDING_KEY;
+  const [checking, setChecking] = useState(true);
   const [showOnboarding, setShowOnboarding] = useState(false);
 
   useEffect(() => {
-    hasCompletedOnboarding(userId)
-      .then((completed) => setShowOnboarding(!completed))
-      .catch(() => setShowOnboarding(false))
-      .finally(() => setCheckingOnboarding(false));
-  }, [userId]);
+    let cancelled = false;
+    hasCompletedOnboarding(storageKey)
+      .then((completed) => {
+        if (!cancelled) setShowOnboarding(!completed);
+      })
+      .catch(() => {
+        // Never block discovery because storage failed.
+        if (!cancelled) setShowOnboarding(false);
+      })
+      .finally(() => {
+        if (!cancelled) setChecking(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [storageKey]);
 
-  if (checkingOnboarding) return <View style={styles.loadingContainer} />;
-  if (showOnboarding) return <OnboardingScreen userId={userId} onFinished={() => setShowOnboarding(false)} />;
+  if (checking) return <View style={styles.loadingContainer} />;
+
+  if (showOnboarding) {
+    return (
+      <OnboardingScreen
+        storageKey={storageKey}
+        onFinished={() => setShowOnboarding(false)}
+      />
+    );
+  }
+
   return <MainNavigator />;
 };
 
-// Root Navigator
 interface AppNavigatorProps {
   onStartupResolved?: () => void;
 }
 
 export const AppNavigator: React.FC<AppNavigatorProps> = ({ onStartupResolved }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
   const [initializing, setInitializing] = useState(true);
 
   useEffect(() => {
-    // Check for existing session on mount
     getCurrentSession()
-      .then((session) => {
-        setIsAuthenticated(!!session);
-        setUserId(session?.user.id ?? null);
-      })
+      .then((session) => setUserId(session?.user.id ?? null))
+      .catch(() => setUserId(null))
       .finally(() => {
         setInitializing(false);
         onStartupResolved?.();
       });
 
-    // Listen for auth state changes
     const subscription = onAuthStateChange((session) => {
-      setIsAuthenticated(!!session);
-      setUserId(session?.user.id ?? null);
+      const nextUserId = session?.user.id ?? null;
+      setUserId(nextUserId);
+      // Carry any preferences chosen as a guest over to the new account.
+      if (nextUserId) {
+        migrateGuestOnboarding(nextUserId).catch(() => undefined);
+      }
     });
 
-    return () => {
-      subscription?.subscription.unsubscribe();
-    };
+    return () => subscription?.subscription.unsubscribe();
   }, [onStartupResolved]);
+
+  const authValue = useMemo(
+    () => ({ userId, isAuthenticated: userId !== null }),
+    [userId],
+  );
 
   if (initializing) {
     return (
@@ -219,44 +229,23 @@ export const AppNavigator: React.FC<AppNavigatorProps> = ({ onStartupResolved })
   }
 
   return (
-    <NavigationContainer>
-      <RootStack.Navigator screenOptions={{ headerShown: false }}>
-        {isAuthenticated ? (
-          <>
-            <RootStack.Screen name="Main">
-              {() => <AuthenticatedEntry userId={userId ?? 'authenticated'} />}
-            </RootStack.Screen>
-            <RootStack.Screen
-              name="AIRecommendations"
-              component={AIRecommendationsScreen}
-              options={{
-                headerShown: true,
-                headerTitle: 'AI Recommendations',
-                headerStyle: styles.header,
-                headerTitleStyle: styles.headerTitle,
-                headerTintColor: colors.textPrimary,
-                presentation: 'modal',
-              }}
-            />
-            <RootStack.Screen
-              name="PredictiveSuggestions"
-              component={PredictiveSuggestionsScreen}
-              options={{
-                headerShown: true,
-                headerTitle: 'Predictive Suggestions',
-                headerStyle: styles.header,
-                headerTitleStyle: styles.headerTitle,
-                headerTintColor: colors.textPrimary,
-                presentation: 'modal',
-              }}
-            />
-            <RootStack.Screen name="AboutRelief" component={AboutReliefScreen} options={{ headerShown: false }} />
-          </>
-        ) : (
-          <RootStack.Screen name="Auth" component={AuthNavigator} />
-        )}
-      </RootStack.Navigator>
-    </NavigationContainer>
+    <AuthContext.Provider value={authValue}>
+      <NavigationContainer>
+        <RootStack.Navigator screenOptions={{ headerShown: false }}>
+          {/* Always available, session or not. */}
+          <RootStack.Screen name="Main">
+            {() => <MainEntry userId={userId} />}
+          </RootStack.Screen>
+          {/* Raised on demand for account-dependent actions only. */}
+          <RootStack.Screen
+            name="Auth"
+            component={AuthNavigator}
+            options={{ presentation: 'modal' }}
+          />
+          <RootStack.Screen name="AboutRelief" component={AboutReliefScreen} />
+        </RootStack.Navigator>
+      </NavigationContainer>
+    </AuthContext.Provider>
   );
 };
 
