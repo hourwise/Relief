@@ -35,7 +35,8 @@
     "plugins": [
       "expo-location",
       "expo-notifications",
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-web-browser"
     ],
     "extra": {
       "supabaseUrl": "$EXPO_PUBLIC_SUPABASE_URL",
