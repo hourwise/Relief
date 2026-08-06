@@ -4,8 +4,9 @@
 
 export { LoginScreen } from './LoginScreen';
 export { RegisterScreen } from './RegisterScreen';
-export { MapScreen } from './MapScreen';
-export { ListScreen } from './ListScreen';
+// MapScreen and ListScreen were merged into FindScreen: the map and the list
+// are two views of one search and must not hold separate state.
+export { FindScreen } from './FindScreen';
 export { FacilityDetailScreen } from './FacilityDetailScreen';
 export { ProfileScreen } from './ProfileScreen';
 export { AddFacilityScreen } from './AddFacilityScreen';

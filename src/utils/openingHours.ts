@@ -2,9 +2,22 @@
 // Project "Relief" — Opening Hours Utilities
 // ============================================================
 
-import type { Facility } from '../types';
+import type { OpenHours } from '../types';
 
 export type OpenStatus = 'open' | 'closed' | 'unknown';
+
+/**
+ * The minimum needed to judge opening status.
+ *
+ * Accepting a shape rather than a full `Facility` lets the narrow
+ * find_nearest_facilities() response use this too. That response carries no
+ * `is_24h`, so it is optional — absent means "not known to be 24h", which
+ * correctly falls through to the opening-hours check.
+ */
+export interface OpeningHoursSource {
+  is_24h?: boolean | null;
+  open_hours: OpenHours | null;
+}
 
 const DAY_NAMES = [
   'sunday', 'monday', 'tuesday', 'wednesday',
@@ -29,7 +42,7 @@ function parseTime(time: string): number | null {
  *
  * Returns 'unknown' when hours data is missing or today's entry is null.
  */
-export function getOpenStatus(facility: Facility): OpenStatus {
+export function getOpenStatus(facility: OpeningHoursSource): OpenStatus {
   if (facility.is_24h) return 'open';
   if (!facility.open_hours) return 'unknown';
 
@@ -63,6 +76,6 @@ export function getOpenStatus(facility: Facility): OpenStatus {
  * Legacy boolean helper — returns true only for 'open'.
  * Prefer getOpenStatus() for UI that can show all three states.
  */
-export function isOpenNow(facility: Facility): boolean {
+export function isOpenNow(facility: OpeningHoursSource): boolean {
   return getOpenStatus(facility) === 'open';
 }
