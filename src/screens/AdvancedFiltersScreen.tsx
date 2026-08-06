@@ -17,7 +17,13 @@ const FILTER_SECTIONS: SectionDef[] = [
   { title: 'Baby and family', filters: [{ key: 'has_baby_changing', label: 'Baby changing' }, { key: 'has_baby_changing_inside', label: 'Changing inside the room' }, { key: 'has_separate_changing_room', label: 'Separate changing room' }, { key: 'has_family_room', label: 'Family room' }, { key: 'has_family_toilet', label: 'Family toilet' }, { key: 'has_pram_access', label: 'Pram access' }] },
   { title: 'Equipment', filters: [{ key: 'has_soap', label: 'Soap' }, { key: 'has_paper_towels', label: 'Paper towels' }, { key: 'has_hand_dryer', label: 'Hand dryer' }, { key: 'has_mirror', label: 'Mirror' }, { key: 'has_shelf', label: 'Shelf' }, { key: 'has_hooks', label: 'Hooks' }, { key: 'has_sanitary_bins', label: 'Sanitary bins' }, { key: 'has_free_period_products', label: 'Free period products' }, { key: 'has_drinking_water', label: 'Drinking water' }] },
   { title: 'Safety and setting', filters: [{ key: 'has_staff_nearby', label: 'Staff nearby' }, { key: 'has_cctv', label: 'CCTV' }, { key: 'is_women_friendly', label: 'Women-friendly' }, { key: 'is_family_friendly', label: 'Family-friendly' }] },
-  { title: 'Other facility types', filters: [{ key: 'is_water_refill_station', label: 'Water refill station' }, { key: 'is_shower_facility', label: 'Shower facility' }, { key: 'is_breastfeeding_room', label: 'Breastfeeding room' }, { key: 'is_rest_area', label: 'Rest area' }, { key: 'is_changing_place', label: 'Changing Place' }, { key: 'is_ev_charging', label: 'EV charging' }, { key: 'is_picnic_area', label: 'Picnic area' }] },
+  // Water refill station, shower facility, breastfeeding room, rest area,
+  // Changing Place and EV charging are deliberately absent: the live schema has
+  // no such columns, so offering them produced filters that silently matched
+  // nothing (and, in the nearest-facility RPC, a hard 42703 failure). They can
+  // return once the columns are deliberately introduced and populated.
+  // is_picnic_area does exist and is kept.
+  { title: 'Other facility types', filters: [{ key: 'is_picnic_area', label: 'Picnic area' }] },
 ];
 
 const activeCountFor = (filters: Partial<FacilityFilters>) => Object.entries(filters).filter(([key, value]) => key === 'min_rating' ? (value as number) > 0 : value === true).length;
