@@ -22,15 +22,18 @@ import { useLocation } from '../hooks/useLocation';
 import { getSavedProfiles } from '../services/profiles';
 import { getSmartRecommendations, getRecommendationsForProfile } from '../services/aiRecommendations';
 import type { RecommendationScore } from '../services/aiRecommendations';
-import type { SavedProfile, ProfileStackParamList } from '../types';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { SavedProfile } from '../types';
+import type { ParamListBase, NavigationProp } from '@react-navigation/native';
 
-type ProfileNavProp = NativeStackNavigationProp<ProfileStackParamList, 'AIRecommendations'>;
+// NOT REGISTERED in the preview navigator. The AI feature is hidden until it
+// works end to end (FEATURES.AI is false), so this screen is unreachable and
+// has no typed parent stack.
+type ProfileNavProp = NavigationProp<ParamListBase>;
 
 export const AIRecommendationsScreen: React.FC = () => {
   const { t } = useTranslation();
   const navigation = useNavigation<ProfileNavProp>();
-  const { location, loading: locationLoading } = useLocation();
+  const { location, initialising: locationLoading } = useLocation();
 
   const [profiles, setProfiles] = useState<SavedProfile[]>([]);
   const [selectedProfile, setSelectedProfile] = useState<SavedProfile | null>(null);
@@ -258,7 +261,7 @@ export const AIRecommendationsScreen: React.FC = () => {
                   </Text>
                   <View style={styles.facilityMeta}>
                     <Text style={styles.facilityRating}>
-                      ★ {rec.facility.overall_score.toFixed(1)}
+                      ★ {(rec.facility.overall_score ?? 0).toFixed(1)}
                     </Text>
                     <Text style={styles.facilityDistance}>
                       {rec.facility.town}

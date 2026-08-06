@@ -183,7 +183,7 @@ export function formatRouteSummary(plan: RoutePlan): string {
     const arrivalMins = stop.estimatedArrivalMinutes % 60;
     summary += `Stop ${i + 1}: ${stop.facility.name}\n`;
     summary += `  📍 ${stop.facility.address}\n`;
-    summary += `  ⏱ Arrive ~${arrivalHours}h ${arrivalMins}m | ★ ${stop.facility.overall_score.toFixed(1)}\n`;
+    summary += `  ⏱ Arrive ~${arrivalHours}h ${arrivalMins}m | ★ ${(stop.facility.overall_score ?? 0).toFixed(1)}\n`;
   });
 
   return summary;

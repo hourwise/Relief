@@ -149,7 +149,7 @@ function scorePreferenceMatch(
  * Maps 1-5 star rating to 0-100.
  */
 function scoreRating(facility: Facility): number {
-  return Math.round((facility.overall_score / 5) * 100);
+  return Math.round(((facility.overall_score ?? 0) / 5) * 100);
 }
 
 /**
@@ -250,12 +250,11 @@ export async function getSmartRecommendations(
     // so we handle it in scoring instead.
   }
 
-  const { facilities } = await fetchNearbyFacilities(
-    latitude,
-    longitude,
-    radiusKm,
-    filters,
-  );
+  const nearby = await fetchNearbyFacilities(latitude, longitude, radiusKm, filters);
+  // A failed query yields no recommendations rather than being scored as an
+  // empty result set.
+  if (!nearby.ok) return [];
+  const { facilities } = nearby.data;
 
   if (facilities.length === 0) return [];
 
@@ -325,12 +324,14 @@ export async function getPredictiveSuggestions(
   const aheadLng = currentLng + lngOffset;
 
   // Fetch facilities near the ahead point
-  const { facilities } = await fetchNearbyFacilities(
+  const nearby = await fetchNearbyFacilities(
     aheadLat,
     aheadLng,
     lookAheadRadius * 0.6, // Search within 60% of look-ahead radius
     preferences.min_rating > 0 ? { min_rating: preferences.min_rating } : undefined,
   );
+  if (!nearby.ok) return [];
+  const { facilities } = nearby.data;
 
   if (facilities.length === 0) return [];
 
@@ -353,7 +354,7 @@ export async function getPredictiveSuggestions(
     let reason = '';
     if (matches.length > 0) {
       reason = `${matches.slice(0, 2).join(' and ')} facility ahead`;
-    } else if (facility.overall_score >= 4) {
+    } else if ((facility.overall_score ?? 0) >= 4) {
       reason = 'Highly rated facility ahead';
     } else {
       reason = 'Facility available ahead';

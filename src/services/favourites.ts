@@ -75,7 +75,7 @@ export async function addFavourite(
     .select('id')
     .eq('user_id', userData.user.id)
     .eq('facility_id', facilityId)
-    .single();
+    .maybeSingle();
 
   if (existing) {
     return { success: false, error: 'Already in favourites' };
@@ -133,7 +133,7 @@ export async function isFavourite(
     .select('id')
     .eq('user_id', userData.user.id)
     .eq('facility_id', facilityId)
-    .single();
+    .maybeSingle();
 
   return !!data;
 }

@@ -31,7 +31,7 @@ import { useNavigation, NavigationProp } from '@react-navigation/native';
 
 export const LocationSharingScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp<any>>();
-  const { location, loading: locationLoading, refreshLocation } = useLocation();
+  const { location, initialising: locationLoading, refreshLocation } = useLocation();
   const [w3w, setW3w] = useState<string | null>(null);
   const [plusCode, setPlusCode] = useState<string | null>(null);
   const [loadingW3W, setLoadingW3W] = useState(false);

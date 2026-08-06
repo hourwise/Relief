@@ -201,7 +201,7 @@ export const RoutePlanningScreen: React.FC = () => {
                   <View style={styles.stopMetaItem}>
                     <Text style={styles.stopMetaLabel}>Rating</Text>
                     <Text style={styles.stopMetaValue}>
-                      ★ {stop.facility.overall_score.toFixed(1)}
+                      ★ {(stop.facility.overall_score ?? 0).toFixed(1)}
                     </Text>
                   </View>
                   <View style={styles.stopMetaItem}>
