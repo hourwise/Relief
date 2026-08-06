@@ -50,8 +50,11 @@ logs/
 google-services.json
 GoogleService-Info.plist
 
-# supabase migrations (handled separately)
-supabase/
+# Supabase: migrations, functions and the live schema baseline ARE tracked.
+# Only local CLI state and secrets are ignored.
+supabase/.branches/
+supabase/.temp/
+supabase/.env
 
 # typescript
 *.tsbuildinfo
