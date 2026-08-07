@@ -75,14 +75,30 @@ function applyFilters(query: any, filters: Partial<FacilityFilters>): any {
   return q;
 }
 
+/**
+ * Turn a backend error into something worth showing a user.
+ *
+ * Raw errors are logged but never surfaced: on a real device the network
+ * failure read
+ *   "fetch failed: java.net.UnknownHostException: Unable to resolve host
+ *    <project>.supabase.co: No address associated with hostname"
+ * which tells the user nothing and leaks the backend hostname into the UI.
+ */
 function describeError(error: { message?: string; code?: string } | null): string {
-  if (!error) return 'Unknown error';
+  if (!error) return 'Something went wrong. Please try again.';
+
   if (error.code === '42703' || error.code === '42883') {
-    // Schema/RPC drift — worth naming explicitly so it is not mistaken for a
-    // network problem during triage.
+    // Schema/RPC drift — named distinctly so it is not mistaken for a network
+    // problem during triage.
     return 'The facility service is out of date. Please update the app.';
   }
-  return error.message || 'Could not reach the facility service.';
+
+  const raw = error.message ?? '';
+  if (/network|fetch failed|unknownhost|unable to resolve host|timeout|timed out|econn/i.test(raw)) {
+    return 'No connection. Check your internet and try again.';
+  }
+
+  return 'Could not reach the facility service. Please try again.';
 }
 
 /**

@@ -23,7 +23,7 @@ const amenityLabels: Array<[keyof Facility, string]> = [
  * react-native-svg elements are native views: inside a Text they do not
  * participate in text layout and render unreliably on Android.
  */
-const RatingRow: React.FC<{ label: string; value: number | null }> = ({ label, value }) => value == null ? null : (
+const RatingRow: React.FC<{ label: string; value: number | null }> = ({ label, value }) => !value ? null : (
   <View style={styles.ratingRow}>
     <Text style={styles.ratingLabel}>{label}</Text>
     <View style={styles.ratingValueRow}>
@@ -109,7 +109,11 @@ export const FacilityDetailScreen: React.FC = () => {
   const cost = facility.is_free === true ? 'Free' : facility.is_free === false ? (facility.price_note || 'Paid') : 'Cost unknown';
   const amenities = amenityLabels.filter(([key]) => facility[key] === true).map(([, label]) => label);
   const overallScore = facility.overall_score ?? 0;
-  const hasRatings = overallScore > 0 || [facility.cleanliness_rating, facility.privacy_rating, facility.accessibility_rating, facility.safety_rating, facility.noise_rating, facility.environment_rating].some((value) => value != null);
+  // The imported UK dataset stores 0 rather than null for unrated facilities,
+  // so "not null" is not the same as "rated". Treating 0 as a rating showed
+  // "0.0" with stars here while the list correctly said "Not yet rated" for the
+  // very same facility — and presented an unrated place as a zero-scored one.
+  const hasRatings = overallScore > 0 || [facility.cleanliness_rating, facility.privacy_rating, facility.accessibility_rating, facility.safety_rating, facility.noise_rating, facility.environment_rating].some((value) => (value ?? 0) > 0);
 
   return <ScreenBackground>
     <SafeAreaView style={styles.safeArea}>

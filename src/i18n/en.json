@@ -40,7 +40,6 @@
   },
   "map": {
     "placeholder": "Map View",
-    "facilitiesNearby": "{{count}} facilities nearby",
     "enableLocation": "Enable location to see nearby facilities",
     "searchPlaceholder": "Search town or postcode...",
     "needOneNow": "Need One Now",
@@ -56,7 +55,9 @@
     "openSettings": "Open Settings",
     "cancel": "Cancel",
     "tapForDetails": "Tap for details...",
-    "facilitiesCount": "{{count}} facilities nearby"
+    "facilitiesCount": "{{count}} facilities nearby",
+    "facilitiesNearby_one": "{{count}} facility nearby",
+    "facilitiesNearby_other": "{{count}} facilities nearby"
   },
   "facility": {
     "open24h": "Open 24h",
@@ -220,7 +221,16 @@
     "addFacility": "Add Facility",
     "uploadPhotos": "Upload Photos",
     "reportClosure": "Report Closure",
-    "correctInfo": "Correct Information",
+    "correctInfo": {
+      "title": "Correct Information",
+      "subtitle": "Your correction will be reviewed before being applied.",
+      "selectField": "Which field needs correcting?",
+      "currentValue": "Current Value",
+      "correctValue": "Correct Value",
+      "notes": "Additional Notes",
+      "submit": "Submit Correction",
+      "success": "Your correction has been submitted for review."
+    },
     "addAccessCodes": "Add Access Codes",
     "addNotes": "Add Notes",
     "reportPhoto": "Report this photo",
@@ -266,16 +276,6 @@
         "noWater": "No Water",
         "refurbishment": "Refurbishment"
       }
-    },
-    "correctInfo": {
-      "title": "Correct Information",
-      "subtitle": "Your correction will be reviewed before being applied.",
-      "selectField": "Which field needs correcting?",
-      "currentValue": "Current Value",
-      "correctValue": "Correct Value",
-      "notes": "Additional Notes",
-      "submit": "Submit Correction",
-      "success": "Your correction has been submitted for review."
     },
     "accessCodes": {
       "title": "Access Codes",

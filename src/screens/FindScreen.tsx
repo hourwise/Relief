@@ -627,6 +627,9 @@ const styles = StyleSheet.create({
     maxHeight: 310,
     padding: spacing.sm,
     zIndex: 30,
+    // SoftCard's glass fill is legible over map tiles but not over the list,
+    // where the rows behind bled through and made results unreadable.
+    backgroundColor: colors.white,
   },
   searchResultItem: {
     padding: spacing.md,
