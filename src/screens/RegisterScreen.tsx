@@ -19,6 +19,11 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { colors, typography, spacing } from '../theme';
 import { Button, Input, Card } from '../components';
 import { signUpWithEmail } from '../services/auth';
+import {
+  describeAuthError,
+  isPlausibleEmail,
+  MIN_PASSWORD_LENGTH,
+} from '../utils/authErrors';
 import type { AuthStackParamList } from '../types';
 
 type RegisterScreenNavProp = NativeStackNavigationProp<
@@ -36,37 +41,52 @@ export const RegisterScreen: React.FC = () => {
 
   const handleRegister = async () => {
     if (!name.trim()) {
-      Alert.alert('Error', 'Please enter your name');
+      Alert.alert('Almost there', 'Please enter your name.');
       return;
     }
-    if (!email.trim()) {
-      Alert.alert('Error', 'Please enter your email');
+    if (!isPlausibleEmail(email)) {
+      Alert.alert('Check your email', 'That email address does not look valid.');
       return;
     }
-    if (password.length < 6) {
-      Alert.alert('Error', 'Password must be at least 6 characters');
+    if (password.length < MIN_PASSWORD_LENGTH) {
+      Alert.alert(
+        'Choose a longer password',
+        `Please use at least ${MIN_PASSWORD_LENGTH} characters.`,
+      );
       return;
     }
     if (password !== confirmPassword) {
-      Alert.alert('Error', 'Passwords do not match');
+      Alert.alert('Passwords do not match', 'Please re-enter the same password.');
       return;
     }
 
     setLoading(true);
-    const { error } = await signUpWithEmail(
+    const { data, error } = await signUpWithEmail(
       email.trim(),
       password,
       name.trim(),
     );
-    if (error) {
-      Alert.alert('Registration Failed', error.message);
-    } else {
-      Alert.alert(
-        'Check Your Email',
-        'We sent a confirmation link to verify your account.',
-      );
-    }
     setLoading(false);
+
+    if (error) {
+      Alert.alert('Could not create account', describeAuthError(error, 'sign_up'));
+      return;
+    }
+
+    // The outcome is read from the response rather than assumed. This screen
+    // used to claim a confirmation email had been sent no matter what, which
+    // would be a lie if the project ever enables auto-confirm — the user would
+    // sit waiting for an email that was never going to arrive.
+    if (data?.session) {
+      // Already signed in; the auth listener closes this stack.
+      return;
+    }
+
+    Alert.alert(
+      'Check your email',
+      `We have sent a confirmation link to ${email.trim()}. Open it to finish creating your account, then come back and sign in.`,
+      [{ text: 'OK', onPress: () => navigation.goBack() }],
+    );
   };
 
   return (

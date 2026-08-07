@@ -329,6 +329,95 @@ offered again once ingestion or community contributions populate them.
   and the report form so the two cannot drift, with a de-slugging fallback for a
   type the client does not yet know about.
 
+## Pre-merge authentication gate (2026-08-07)
+
+Audit of the live Supabase auth configuration plus a device pass. The live
+settings were read from `GET /auth/v1/settings` — **read-only, nothing was
+changed to make a test pass.**
+
+```
+mailer_autoconfirm : false      -> email confirmation IS required
+disable_signup     : false
+external.email     : true
+external.google    : false      -> Google OAuth is NOT configured
+(every other provider also false)
+```
+
+### Implementation audit
+
+| Area | State |
+|------|-------|
+| Guest use | **VERIFIED** — discovery needs no account; unchanged by this pass |
+| Email/password sign-up | Implemented (`signUpWithEmail`), with `full_name` metadata and `emailRedirectTo: relief://auth/callback` |
+| Email verification | **Required** by the project. The link is verified server-side, so an account can be confirmed without the app handling the callback |
+| Email/password sign-in | Implemented (`signInWithPassword`) |
+| Session restoration | **VERIFIED on device** — session survived a cold launch *and* an APK reinstall |
+| Sign-out | **VERIFIED on device** — returns to the guest-capable app, not trapped on Login |
+| Google OAuth | Code exists, but the provider is **disabled in Supabase**. See blockers below |
+| Password reset | **NOT IMPLEMENTED** — no `resetPasswordForEmail`, no "Forgot password?" link anywhere |
+| Onboarding vs new accounts | Guest completion migrates to the user id, awaited before the check (13 assertions in `onboardingMigration.test.ts`) |
+| Deep-link handling | The `relief` scheme **is** registered in `AndroidManifest.xml`, but there is **no JS handler** (`getInitialURL` / `Linking` listener / navigation `linking` config) to consume `relief://auth/callback` |
+
+### VERIFIED on device (rebuilt APK)
+
+- Guest launches straight into Find; Find needs no login.
+- Session restoration across cold start and reinstall.
+- Sign-out returns to guest mode; Profile switches to "Browsing as a guest".
+- Google sign-in **no longer appears** on the Sign In screen, along with its
+  "or continue with" divider.
+- Empty-field validation reads "Almost there — Please enter your email and
+  password."
+- 0 fatal exceptions in logcat.
+
+### BLOCKED — external setup required
+
+**1. New-account creation could not be completed here.**
+Creating an account requires entering an email and a password, which this
+assistant does not do. The flow is ready to test; it needs a human to type the
+credentials. Because `mailer_autoconfirm` is false, expect: sign-up succeeds →
+**no session** → "Check your email" → click the link → return to the app → sign
+in normally. Baseline before testing: `auth.users = 1`.
+
+> Supabase deliberately returns **success** when signing up with an email that
+> already exists (anti-enumeration). The app therefore shows "Check your email"
+> in that case rather than "already registered" — expected behaviour, not a bug.
+
+**2. Google OAuth — not usable. Every item below is required:**
+
+- [ ] Google Cloud project with **OAuth consent screen** configured.
+- [ ] **Web** OAuth client ID + secret (Supabase exchanges the code server-side).
+- [ ] **Android** OAuth client ID for package `com.relief.app`, registered
+      against the SHA-1 of *every* certificate that must work:
+      - local debug-signed release: `84:91:66:28:20:F6:70:39:B9:8E:83:A8:4A:2D:86:68:CF:7B:B1:BE`
+      - a future EAS build uses a **different** EAS-managed certificate
+      - a Play-distributed build uses the **Play App Signing** certificate
+- [ ] Google **enabled** in Supabase → Authentication → Providers, with that
+      client ID and secret.
+- [ ] `relief://auth/callback` added to Supabase's **Redirect URLs** allow-list.
+- [ ] A **deep-link handler in the app** to complete the callback — this does
+      not exist yet and is app work, not configuration.
+- [ ] Then flip `AUTH_PROVIDERS.GOOGLE` to `true` in `src/utils/env.ts`.
+
+Until all of those are done the button stays hidden, which is the truthful
+state: it could only ever have failed.
+
+**3. Email verification mailbox / SMTP.** The project uses Supabase's built-in
+mailer, which is rate-limited and intended for development. A real sending
+domain is needed before external testers sign up.
+
+### NOT TESTED
+
+- New-account creation end to end (see above).
+- Email confirmation link click-through.
+- Google OAuth on device — deliberately not simulated or faked.
+- Password reset — the feature does not exist.
+- Apple sign-in — iOS only; this is an Android build.
+- Wrong-password, duplicate-email and malformed-email **on device**. The
+  mapping is covered by 67 assertions in `__tests__/authErrors.test.ts`,
+  including that no raw Supabase text or backend hostname can reach the user,
+  but the alerts themselves were not triggered on the handset because doing so
+  requires typing credentials.
+
 ## Defects found by this run
 
 Six were found during the guest run and a seventh during the signed-in run. All

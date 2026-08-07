@@ -11,7 +11,7 @@
 | Expo doctor | `npx expo-doctor` | **21/21 checks passed** |
 | Lint | `npm run lint` | **0 errors**, 92 warnings (ESLint + Prettier now configured) |
 | TypeScript | `npx tsc --noEmit` | **0 errors** |
-| Tests | `npm test` | **9 files, 386 assertions, all passing** |
+| Tests | `npm test` | **10 files, 453 assertions, all passing** |
 | Public config | `npx expo config --type public` | Resolves; `com.relief.app`, SDK 56.0.0 |
 | Android prebuild | `npx expo prebuild --platform android --clean` | Succeeded |
 | APK build (local) | `gradlew assembleRelease -PreactNativeArchitectures=arm64-v8a` | **BUILD SUCCESSFUL** — `app-release.apk`, 48.8 MB, arm64-v8a, JS bundle embedded |
@@ -19,6 +19,7 @@
 | Android smoke test | 22 required checks | **22/22 PASS** on a physical S24 Ultra — see `ANDROID_SMOKE_TEST.md` |
 | Find UX acceptance test | 20 checks | **20/20 PASS** after the filter, viewport and locate-control pass |
 | Signed-in journey | favourites, reports, corrections, sign-out | **PASS**, with database writes confirmed over `psql` and test rows removed afterwards |
+| Pre-merge auth gate | audit + device pass | Guest, sign-in, session restoration and sign-out **VERIFIED**; new-account creation and Google OAuth **BLOCKED** on external setup — see `ANDROID_SMOKE_TEST.md` |
 
 ---
 
@@ -142,16 +143,18 @@ Hidden-but-retained screens (AI recommendations, predictive suggestions, route p
 
 ## Current blockers
 
-1. **Registration and OAuth are unverified.** Sign-in with an existing email account was exercised end to end, including favourites, report and correction writes. Creating a new account and the Google sign-in path were not.
-2. **EAS project not linked.** Needs `eas init`, a decision on which Expo account owns it (`hourwiseeu` or `pcgsoft`), and the three `EXPO_PUBLIC_*` values added as `preview` environment variables. The APK under test was built locally instead.
-3. **Local APK is debug-signed.** The Expo template signs `release` with the debug keystore (SHA-1 `84:91:66:28:20:F6:70:39:B9:8E:83:A8:4A:2D:86:68:CF:7B:B1:BE`). Fine for an internal preview, not a release artifact, and an EAS build will present a different certificate to the Maps key.
-4. **Google Maps key restrictions not inspected.** Tiles render on this device, so the key works for the debug certificate and Maps SDK for Android is enabled — but the Cloud Console restriction list was not reviewed.
-5. **Quality gates were run under Node 24.12.0**, while the EAS image uses Node 22. `.nvmrc`, `.node-version` and `engines` now pin 22; re-run `npm ci && npm run verify && npx expo-doctor` under Node 22 before the first EAS build.
-6. **9 published facilities have unusable names** (two characters or fewer, or no alphanumerics) from the Toilet Map UK import — one renders as `]` in search results. A data cleanup, not an app defect.
-7. **Storage, moderation, notifications, RevenueCat** remain unconfigured; the features that depend on them are hidden rather than finished.
-8. **Lint warnings and unrouted-screen debt.** ESLint reports 0 errors but 92 warnings, mostly unused variables inside hidden features. The unrouted screens keep their React Compiler violations as scoped warnings and must be cleared — or those screens deleted — before any of them is registered again. Prettier is configured but has deliberately **not** been run repo-wide, so that a reformat does not bury real changes.
-9. **No CI.** The quality gates exist as npm scripts but nothing runs them automatically.
-10. **Machine-level `GRADLE_USER_HOME` is misconfigured** — it points inside a scoop-managed Gradle install of a different version, which prevented any Gradle build until overridden. Android Studio inherits this. See `ANDROID_SMOKE_TEST.md`.
+1. **New-account creation is unverified.** Sign-in with an existing account is verified end to end. Creating an account requires typing an email and password, which the assistant does not do — a human must run that path. The live project has `mailer_autoconfirm: false`, so a new sign-up yields no session until the emailed link is opened.
+2. **Google OAuth is not configured.** `GET /auth/v1/settings` reports `google: false`, so the provider cannot work at all. The button is now hidden behind `AUTH_PROVIDERS.GOOGLE` rather than failing in front of users. Enabling it needs Google Cloud credentials, SHA-1 registration, Supabase provider setup, a redirect allow-list entry, **and** an app-side deep-link handler that does not yet exist.
+3. **Password reset does not exist.** There is no `resetPasswordForEmail` and no "Forgot password?" link, so a user who forgets their password cannot recover the account in-app.
+4. **EAS project not linked.** Needs `eas init`, a decision on which Expo account owns it (`hourwiseeu` or `pcgsoft`), and the three `EXPO_PUBLIC_*` values added as `preview` environment variables. The APK under test was built locally instead.
+5. **Local APK is debug-signed.** The Expo template signs `release` with the debug keystore (SHA-1 `84:91:66:28:20:F6:70:39:B9:8E:83:A8:4A:2D:86:68:CF:7B:B1:BE`). Fine for an internal preview, not a release artifact, and an EAS build will present a different certificate to the Maps key.
+6. **Google Maps key restrictions not inspected.** Tiles render on this device, so the key works for the debug certificate and Maps SDK for Android is enabled — but the Cloud Console restriction list was not reviewed.
+7. **Quality gates were run under Node 24.12.0**, while the EAS image uses Node 22. `.nvmrc`, `.node-version` and `engines` now pin 22; re-run `npm ci && npm run verify && npx expo-doctor` under Node 22 before the first EAS build.
+8. **9 published facilities have unusable names** (two characters or fewer, or no alphanumerics) from the Toilet Map UK import — one renders as `]` in search results. A data cleanup, not an app defect.
+9. **Storage, moderation, notifications, RevenueCat** remain unconfigured; the features that depend on them are hidden rather than finished.
+10. **Lint warnings and unrouted-screen debt.** ESLint reports 0 errors but 92 warnings, mostly unused variables inside hidden features. The unrouted screens keep their React Compiler violations as scoped warnings and must be cleared — or those screens deleted — before any of them is registered again. Prettier is configured but has deliberately **not** been run repo-wide, so that a reformat does not bury real changes.
+11. **No CI.** The quality gates exist as npm scripts but nothing runs them automatically.
+12. **Machine-level `GRADLE_USER_HOME` is misconfigured** — it points inside a scoop-managed Gradle install of a different version, which prevented any Gradle build until overridden. Android Studio inherits this. See `ANDROID_SMOKE_TEST.md`.
 
 ---
 

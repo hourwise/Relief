@@ -19,8 +19,10 @@ import type { RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { colors, typography, spacing, touchTargets } from '../theme';
 import { Button, Input, Card } from '../components';
-import { signInWithEmail, signInWithGoogle } from '../services/auth';
+import { signInWithApple, signInWithEmail, signInWithGoogle } from '../services/auth';
 import { useAuth } from '../context/AuthContext';
+import { AUTH_PROVIDERS } from '../utils/env';
+import { describeAuthError, isPlausibleEmail } from '../utils/authErrors';
 import type { AuthStackParamList } from '../types';
 
 type LoginScreenNavProp = NativeStackNavigationProp<
@@ -45,13 +47,28 @@ export const LoginScreen: React.FC = () => {
 
   const handleEmailLogin = async () => {
     if (!email.trim() || !password.trim()) {
-      Alert.alert('Error', 'Please enter your email and password');
+      Alert.alert('Almost there', 'Please enter your email and password.');
+      return;
+    }
+    if (!isPlausibleEmail(email)) {
+      Alert.alert('Check your email', 'That email address does not look valid.');
       return;
     }
     setLoading(true);
     const { error } = await signInWithEmail(email.trim(), password);
     if (error) {
-      Alert.alert('Sign In Failed', error.message);
+      // Mapped, never raw: Supabase text is written for developers and can
+      // include the backend hostname on network failures.
+      Alert.alert('Sign in failed', describeAuthError(error, 'sign_in'));
+    }
+    setLoading(false);
+  };
+
+  const handleAppleLogin = async () => {
+    setLoading(true);
+    const { error } = await signInWithApple();
+    if (error) {
+      Alert.alert('Sign in failed', describeAuthError(error, 'sign_in'));
     }
     setLoading(false);
   };
@@ -60,7 +77,7 @@ export const LoginScreen: React.FC = () => {
     setLoading(true);
     const { error } = await signInWithGoogle();
     if (error) {
-      Alert.alert('Google Sign In Failed', error.message);
+      Alert.alert('Sign in failed', describeAuthError(error, 'sign_in'));
     }
     setLoading(false);
   };
@@ -117,30 +134,39 @@ export const LoginScreen: React.FC = () => {
             size="lg"
           />
 
-          <View style={styles.divider}>
-            <View style={styles.dividerLine} />
-            <Text style={styles.dividerText}>or continue with</Text>
-            <View style={styles.dividerLine} />
-          </View>
+          {/* Social sign-in appears only when the provider is actually usable.
+              Google is disabled in the live Supabase project, so the button
+              could only ever fail — an unfinished feature must not present
+              itself as a working one. See AUTH_PROVIDERS in utils/env.ts. */}
+          {AUTH_PROVIDERS.GOOGLE || (AUTH_PROVIDERS.APPLE && Platform.OS === 'ios') ? (
+            <>
+              <View style={styles.divider}>
+                <View style={styles.dividerLine} />
+                <Text style={styles.dividerText}>or continue with</Text>
+                <View style={styles.dividerLine} />
+              </View>
 
-          <Button
-            title="Continue with Google"
-            onPress={handleGoogleLogin}
-            variant="outline"
-            fullWidth
-            style={styles.socialButton}
-          />
+              {AUTH_PROVIDERS.GOOGLE ? (
+                <Button
+                  title="Continue with Google"
+                  onPress={handleGoogleLogin}
+                  variant="outline"
+                  fullWidth
+                  style={styles.socialButton}
+                />
+              ) : null}
 
-          {Platform.OS === 'ios' && (
-            <Button
-              title="Continue with Apple"
-              onPress={() => {}}
-              variant="outline"
-              fullWidth
-              style={styles.socialButton}
-              disabled
-            />
-          )}
+              {AUTH_PROVIDERS.APPLE && Platform.OS === 'ios' ? (
+                <Button
+                  title="Continue with Apple"
+                  onPress={handleAppleLogin}
+                  variant="outline"
+                  fullWidth
+                  style={styles.socialButton}
+                />
+              ) : null}
+            </>
+          ) : null}
         </Card>
 
         <TouchableOpacity
