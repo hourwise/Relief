@@ -10,12 +10,13 @@
 | Install | `npm ci` | Passed — 583 packages |
 | Expo doctor | `npx expo-doctor` | **21/21 checks passed** |
 | TypeScript | `npx tsc --noEmit` | **0 errors** |
-| Tests | `npm test` | **6 files, 149 assertions, all passing** |
+| Tests | `npm test` | **7 files, 162 assertions, all passing** |
 | Public config | `npx expo config --type public` | Resolves; `com.relief.app`, SDK 56.0.0 |
 | Android prebuild | `npx expo prebuild --platform android --clean` | Succeeded |
 | APK build (local) | `gradlew assembleRelease -PreactNativeArchitectures=arm64-v8a` | **BUILD SUCCESSFUL** — `app-release.apk`, 48.8 MB, arm64-v8a, JS bundle embedded |
 | APK build (EAS) | `eas build -p android --profile preview` | **NOT RUN** — no EAS project linked |
 | Android smoke test | 22 required checks | **22/22 PASS** on a physical S24 Ultra — see `ANDROID_SMOKE_TEST.md` |
+| Signed-in journey | favourites, reports, corrections, sign-out | **PASS**, with database writes confirmed over `psql` and test rows removed afterwards |
 
 ---
 
@@ -25,15 +26,15 @@ Relief is a React Native / Expo SDK 56 application whose **core discovery journe
 
 What changed in this pass: the nearest-facility RPC was broken and is now fixed and verified; the database schema is now recorded in git for the first time; the mocked Nearby list is gone; discovery no longer requires an account; and the map's viewport loading no longer drops the user's latest pan.
 
-A release APK has now been built, installed on a physical Samsung Galaxy S24 Ultra and driven through all 22 required smoke checks with no Metro or development server running. All 22 pass. Six defects were found in the process and fixed — most importantly, the map never actually moved to the user location, so it showed the startup fallback while data loaded for somewhere else.
+A release APK has now been built, installed on a physical Samsung Galaxy S24 Ultra and driven through all 22 required smoke checks with no Metro or development server running. All 22 pass, as does a full signed-in journey covering favourites, reports, corrections and sign-out, with every database write confirmed over `psql`. Seven defects were found in the process and fixed — most importantly, the map never actually moved to the user location, so it showed the startup fallback while data loaded for somewhere else.
 
-What is still **not** verified: every check was performed as a guest, so no signed-in journey has been exercised; no EAS build exists; and the Google Maps key restrictions in Cloud Console have not been inspected.
+What is still **not** verified: account creation and Google OAuth (sign-in with an existing account was exercised); no EAS build exists; and the Google Maps key restrictions in Cloud Console have not been inspected.
 
 ---
 
 ## Database — VERIFIED
 
-The live Supabase project was queried directly on 2026-08-06.
+The live Supabase project was queried directly on 2026-08-06 and again on 2026-08-07.
 
 | Item | Status | Evidence |
 |------|--------|----------|
@@ -64,7 +65,7 @@ The seven original hand-written migrations no longer describe the live database 
 
 ---
 
-## Application — VERIFIED on device (as a guest)
+## Application — VERIFIED on device
 
 | Area | Status | Detail |
 |------|--------|--------|
@@ -76,15 +77,15 @@ The seven original hand-written migrations no longer describe the live database 
 | Map viewport loading | VERIFIED on device | Latest-request-wins via a request sequence plus a queued newest region. The previous code skipped fetches while a request was in flight *and* left `inFlightRef` stuck `true` on its early-return path, which could stall loading permanently |
 | Runtime error states | VERIFIED on device | Distinct states for initial location loading, facility loading, permission denied, location unavailable, query failure, no facilities in area, and nearest-RPC failure. A failed query never renders as "no facilities found" |
 | Guest discovery | VERIFIED on device | Root navigator renders the app with or without a session. Policy centralised in `src/utils/guestAccess.ts` and covered by 68 assertions. Authentication is requested only for favourites, submissions, corrections, reports and account settings |
-| Onboarding | VERIFIED on device | Stored against a guest key when signed out, migrated to the user on sign-in |
+| Onboarding | VERIFIED on device | Stored against a guest key when signed out and migrated on sign-in. The migration is awaited before the completion check — doing it in the auth listener raced that check and re-prompted a guest who had already finished |
 | Navigation | VERIFIED on device | Three tabs (Find, Favourites, Profile) with Lucide icons. Unfinished features removed from Profile; a static audit confirms no reachable button targets an unregistered route |
 | Facility detail | VERIFIED on device | Redesign preserved. The Lucide `Star` SVG is no longer nested inside a `<Text>` (a native view inside `Text` does not lay out reliably on Android). Nullable `overall_score` handled. Reports and corrections require authentication |
 | Directions | VERIFIED on device | Coordinate deep links to Google Maps and Waze |
-| Native splash / StartupWelcome | VERIFIED on device | Preserved from the UI branch; needs a release-build visual check |
+| Native splash / StartupWelcome | VERIFIED on device | Mint splash with the Relief mark, no white flash; welcome layer dismisses and does not reappear |
 
 ### Test coverage
 
-`npm test` runs 6 files without a device or database:
+`npm test` runs 7 files without a device or database:
 
 | File | Assertions | Covers |
 |------|-----------|--------|
@@ -94,6 +95,7 @@ The seven original hand-written migrations no longer describe the live database 
 | `guestAccess.test.ts` | 68 | Guest navigation decisions across the whole discovery journey |
 | `estimateWalkingTime.test.ts` | 10 | Walking-time calculation |
 | `onboardingPreferences.test.ts` | 2 | Onboarding preference selection |
+| `onboardingMigration.test.ts` | 13 | Guest→user onboarding migration over an in-memory AsyncStorage, including the ordering contract whose violation re-prompted signed-in users |
 
 ---
 
@@ -129,7 +131,7 @@ Hidden-but-retained screens (AI recommendations, predictive suggestions, route p
 
 ## Current blockers
 
-1. **No signed-in journey has been verified.** The whole smoke test ran as a guest. Sign-in, registration and OAuth are unexercised, so favourite persistence and report/correction submission are only verified as far as the auth gate that intercepts them.
+1. **Registration and OAuth are unverified.** Sign-in with an existing email account was exercised end to end, including favourites, report and correction writes. Creating a new account and the Google sign-in path were not.
 2. **EAS project not linked.** Needs `eas init`, a decision on which Expo account owns it (`hourwiseeu` or `pcgsoft`), and the three `EXPO_PUBLIC_*` values added as `preview` environment variables. The APK under test was built locally instead.
 3. **Local APK is debug-signed.** The Expo template signs `release` with the debug keystore (SHA-1 `84:91:66:28:20:F6:70:39:B9:8E:83:A8:4A:2D:86:68:CF:7B:B1:BE`). Fine for an internal preview, not a release artifact, and an EAS build will present a different certificate to the Maps key.
 4. **Google Maps key restrictions not inspected.** Tiles render on this device, so the key works for the debug certificate and Maps SDK for Android is enabled — but the Cloud Console restriction list was not reviewed.
@@ -144,6 +146,4 @@ Hidden-but-retained screens (AI recommendations, predictive suggestions, route p
 
 ## Safe next action
 
-Verify a **signed-in** journey on the device: sign in, save a favourite, confirm it persists in Favourites across a restart, and submit a correction and a report. That is the largest remaining gap, and it is the half of the auth policy the guest smoke test could not reach.
-
-After that, and only if a shareable build is wanted: `eas init` against the chosen Expo account, add the three `EXPO_PUBLIC_*` values as `preview` environment variables, register the EAS keystore's SHA-1 on the Maps key, and run `eas build -p android --profile preview`. Re-run the quality gates under Node 22 first.
+Exercise account **creation** and Google OAuth on the device — the two auth paths still unverified. Then, if a shareable build is wanted: `eas init` against the chosen Expo account, add the three `EXPO_PUBLIC_*` values as `preview` environment variables, register the EAS keystore's SHA-1 on the Maps key, and run `eas build -p android --profile preview`. Re-run the quality gates under Node 22 first.

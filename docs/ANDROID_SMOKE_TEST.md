@@ -1,6 +1,6 @@
 # Android Preview Smoke Test
 
-**Status: EXECUTED — 22 of 22 checks PASS.**
+**Status: EXECUTED — 22 of 22 guest checks PASS, plus a full signed-in journey.**
 
 **Build under test:** local release APK, `app-release.apk` (48.8 MB),
 `com.relief.app` versionCode 1 / versionName 1.0.0, targetSdk 36, `arm64-v8a`,
@@ -12,8 +12,8 @@ Android 16, physical, over USB.
 before each cold launch. All launches reported `LaunchState: COLD`.
 **Fatal exceptions in logcat:** 0.
 
-Six defects were found and fixed during this run; the results below are from the
-final build with all six in place. See "Defects found" at the end.
+Seven defects were found and fixed during this run; the results below are from
+the final build with all seven in place. See "Defects found" at the end.
 
 > Signing caveat: this APK is signed with the **debug** keystore, because the
 > Expo template's `release` buildType does that by default. It is valid for an
@@ -29,7 +29,7 @@ final build with all six in place. See "Defects found" at the end.
 | EAS build | Not run. No `projectId` is linked, and the Expo login has two accounts (`hourwiseeu`, `pcgsoft`), so project ownership is an unmade decision. The local APK above was used instead. |
 | Google Maps key restrictions | Tiles render on this device, so the key works for the debug certificate. The Cloud Console configuration itself was not inspected — see below. |
 | Emulator | Never used. It cannot start on this machine, but **not** for the reason assumed: the log passes the hypervisor check (`Ok: Hypervisor compatibility to run avd: Pixel_7_Pro are met`) and then fails on disk — `FATAL │ Not enough space to create userdata partition. Available: 4949.80 MB … need 7372.80 MB`, with `C:` at 98–99% full. Freeing ~3 GB or pointing `ANDROID_AVD_HOME` at `D:` should unblock it. Not needed now that a physical device works. |
-| Signed-in journeys | Every check below was performed **as a guest**. Sign-in, registration and OAuth were not exercised, so favourite persistence, report submission and correction submission are unverified beyond the point where the auth gate correctly intercepts them. |
+| Registration / OAuth | Sign-in with an existing email account was verified (see the signed-in section). **Creating a new account** and the Google OAuth path were not exercised. |
 
 ---
 
@@ -170,9 +170,49 @@ adb install -r android/app/build/outputs/apk/release/app-release.apk
 
 ---
 
+## Signed-in journey — EXECUTED, all PASS
+
+Run after the 22 guest checks, on the same device and build, signing in with an
+existing email account. Database writes were confirmed directly over `psql`, not
+just by the UI's own success message. Baseline before the run was
+`favourites=0, temporary_reports=0, correction_requests=0`, so every row
+observed came from this test.
+
+| Check | Result | Evidence |
+|-------|--------|----------|
+| Sign-in produces a session | **PASS** | `auth.users.last_sign_in_at` updated; active refresh tokens present. |
+| Guest onboarding is not repeated after sign-in | **PASS** (after fix) | Initially onboarding reappeared on sign-in — a race, since the migration was fired from the auth listener without being awaited. After the fix, a cold launch went straight to Find. |
+| Profile shows the signed-in identity | **PASS** | Display name and email shown, with Sign Out, in place of "Browsing as a guest". |
+| Favourite writes to the database | **PASS** | Heart on facility detail created one `favourites` row for the correct facility with `user_id` populated, and no sign-in prompt. |
+| Favourites tab lists it | **PASS** | Listed with a filled heart, "Open now" and "Not yet rated". |
+| Favourites survive a cold restart | **PASS** | Force-stop + cold relaunch: session persisted (no re-login) and the favourite was still listed. |
+| Cross-tab navigation into the facility | **PASS** | Tapping the favourite opened FacilityDetail with the **Find** tab active, confirming the `navigate('Find', { screen: … })` indirection works. |
+| Report submission | **PASS** | "Report Issue" opened with no gate. Submitting "Busy" created one `temporary_reports` row: `type=busy`, `user_id` set, `expires_at` exactly 1 hour after `created_at`, matching the per-type `durationHours: 1`. |
+| Report read-back | **PASS** | The facility detail then showed an amber "Recent community reports — busy" banner, so the write→read round trip works. |
+| Correction submission | **PASS** | "Correct or Update Details" opened with no gate. Submitting created one `correction_requests` row: `field=other`, `status=pending` (queued for review, not auto-applied), `user_id` set, correct facility. |
+| Sign out returns the guest state | **PASS** | Favourites reverted to the "Save your regular places / Sign in" prompt; no crash; onboarding did **not** re-appear, because the guest completion record is deliberately retained. |
+| No crashes across the whole signed-in run | **PASS** | 0 fatal exceptions in logcat. |
+
+**Test data was removed afterwards.** The favourite, report and correction rows
+created above were deleted, returning the database to its baseline
+(`favourites=0, temporary_reports=0, correction_requests=0`). The report and
+correction concerned a real facility, so leaving them would have meant
+publishing invented information about a real place.
+
+### Signed-in observations (not fixed)
+
+- On the report screen, the **selected** issue card keeps dark text on the dark
+  green fill, which is poor contrast. The correction screen gets this right
+  (white on green). Worth aligning.
+- Both submission screens show a success dialog but stay on the completed form
+  with the selection still active, so the same report can be submitted twice.
+  They should dismiss back to the facility.
+- The report banner prints the raw enum (`busy:`) rather than a friendly label.
+
 ## Defects found by this run
 
-All six were fixed and the results above are from the rebuilt APK.
+Six were found during the guest run and a seventh during the signed-in run. All
+were fixed, and the results above are from the rebuilt APK.
 
 | # | Defect | Why it mattered |
 |---|--------|-----------------|
@@ -182,6 +222,7 @@ All six were fixed and the results above are from the rebuilt APK.
 | 4 | **Search results were unreadable in List view.** | The overlay used `SoftCard`'s translucent glass fill; fine over map tiles, but over the list the rows behind bled through and the first result was illegible. |
 | 5 | **"1 facilities nearby".** | The count string had no plural forms. |
 | 6 | **Gradle could not build at all** — see the JDK and `GRADLE_USER_HOME` notes above. | Not app code, but it blocked producing an APK entirely. |
+| 7 | **Onboarding reappeared on sign-in.** The guest→user migration was fired from the auth listener without being awaited, racing the onboarding check. | A guest who had already set their preferences was asked to do it again the moment they signed in — the exact friction the guest storage key exists to avoid. `MainEntry` now awaits the migration immediately before checking, and `__tests__/onboardingMigration.test.ts` pins the ordering. |
 
 ## Data-quality finding (not an app defect)
 
