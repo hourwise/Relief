@@ -156,21 +156,30 @@ const MainEntry: React.FC<{ userId: string | null }> = ({ userId }) => {
 
   useEffect(() => {
     let cancelled = false;
-    hasCompletedOnboarding(storageKey)
-      .then((completed) => {
+
+    // The migration is awaited HERE, immediately before the check, rather than
+    // being fired from the auth listener. Doing it there raced this effect: the
+    // new user id arrived, this re-ran under the user's key, and found nothing
+    // written yet — so a guest who had already completed onboarding was asked
+    // again the moment they signed in. Owning both steps in one place removes
+    // any dependence on which callback happens to run first.
+    (async () => {
+      try {
+        if (userId) await migrateGuestOnboarding(userId);
+        const completed = await hasCompletedOnboarding(storageKey);
         if (!cancelled) setShowOnboarding(!completed);
-      })
-      .catch(() => {
+      } catch {
         // Never block discovery because storage failed.
         if (!cancelled) setShowOnboarding(false);
-      })
-      .finally(() => {
+      } finally {
         if (!cancelled) setChecking(false);
-      });
+      }
+    })();
+
     return () => {
       cancelled = true;
     };
-  }, [storageKey]);
+  }, [storageKey, userId]);
 
   if (checking) return <View style={styles.loadingContainer} />;
 
@@ -203,13 +212,10 @@ export const AppNavigator: React.FC<AppNavigatorProps> = ({ onStartupResolved })
         onStartupResolved?.();
       });
 
+    // Migration is deliberately NOT done here — MainEntry awaits it before
+    // checking onboarding, so there is no ordering race between the two.
     const subscription = onAuthStateChange((session) => {
-      const nextUserId = session?.user.id ?? null;
-      setUserId(nextUserId);
-      // Carry any preferences chosen as a guest over to the new account.
-      if (nextUserId) {
-        migrateGuestOnboarding(nextUserId).catch(() => undefined);
-      }
+      setUserId(session?.user.id ?? null);
     });
 
     return () => subscription?.subscription.unsubscribe();
