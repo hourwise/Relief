@@ -1,21 +1,35 @@
 # Android Preview Smoke Test
 
-**Status: NOT EXECUTED.**
-**Build under test:** none yet — no APK has been installed or opened.
+**Status: EXECUTED — 22 of 22 checks PASS.**
 
-This document is the smoke-test *procedure* with its pass criteria. Every result
-column below reads `NOT RUN`. Nothing here may be reported as passing until it
-has actually been performed on a device and the result recorded with evidence.
+**Build under test:** local release APK, `app-release.apk` (48.8 MB),
+`com.relief.app` versionCode 1 / versionName 1.0.0, targetSdk 36, `arm64-v8a`,
+containing `assets/index.android.bundle` (6.4 MB).
+**Device:** Samsung Galaxy S24 Ultra (`SM_S928B`, serial `R5CX13MZ2YF`),
+Android 16, physical, over USB.
+**Date:** 2026-08-07.
+**Metro:** not running at any point — nothing listening on port 8081, verified
+before each cold launch. All launches reported `LaunchState: COLD`.
+**Fatal exceptions in logcat:** 0.
+
+Six defects were found and fixed during this run; the results below are from the
+final build with all six in place. See "Defects found" at the end.
+
+> Signing caveat: this APK is signed with the **debug** keystore, because the
+> Expo template's `release` buildType does that by default. It is valid for an
+> internal preview but is not a release-signed artifact, and an EAS build will
+> have a different certificate. See "Google Maps key verification".
 
 ---
 
-## Why it has not been run
+## Still outstanding
 
-| Blocker | Detail |
-|---------|--------|
-| No emulator | The Android emulator cannot start on the development machine. The emulator log passes the hypervisor check (`Ok: Hypervisor compatibility to run avd: Pixel_7_Pro are met`) but then fails: `FATAL │ Not enough space to create userdata partition. Available: 4949.80 MB … need 7372.80 MB`. `C:` is 99% full (4.1 GB free of 223 GB). Freeing ~3 GB, or relocating the AVD directory to `D:` via `ANDROID_AVD_HOME`, should unblock it. |
-| No physical device | No device was attached during this work. The maintainer plans to connect one through Android Studio. |
-| No EAS project | `eas build -p android --profile preview` cannot run: no `projectId` is linked, and the Expo login has two accounts (`hourwiseeu`, `pcgsoft`). See "Producing the APK" below. |
+| Item | Detail |
+|------|--------|
+| EAS build | Not run. No `projectId` is linked, and the Expo login has two accounts (`hourwiseeu`, `pcgsoft`), so project ownership is an unmade decision. The local APK above was used instead. |
+| Google Maps key restrictions | Tiles render on this device, so the key works for the debug certificate. The Cloud Console configuration itself was not inspected — see below. |
+| Emulator | Never used. It cannot start on this machine, but **not** for the reason assumed: the log passes the hypervisor check (`Ok: Hypervisor compatibility to run avd: Pixel_7_Pro are met`) and then fails on disk — `FATAL │ Not enough space to create userdata partition. Available: 4949.80 MB … need 7372.80 MB`, with `C:` at 98–99% full. Freeing ~3 GB or pointing `ANDROID_AVD_HOME` at `D:` should unblock it. Not needed now that a physical device works. |
+| Signed-in journeys | Every check below was performed **as a guest**. Sign-in, registration and OAuth were not exercised, so favourite persistence, report submission and correction submission are unverified beyond the point where the auth gate correctly intercepts them. |
 
 ---
 
@@ -104,6 +118,43 @@ Remove-Item -Recurse -Force .gradle -ErrorAction SilentlyContinue
 .\gradlew assembleRelease -PreactNativeArchitectures=arm64-v8a --no-daemon --stacktrace
 ```
 
+### Override `GRADLE_USER_HOME` — this machine's is broken
+
+This machine sets, globally:
+
+```
+GRADLE_USER_HOME=C:\Users\USER\scoop\apps\gradle\current\.gradle
+```
+
+`current` is a scoop symlink to a **different** Gradle version (9.6.1) than the
+wrapper the project uses (9.3.1), and scoop repoints it on every upgrade. With
+Gradle's user home living inside another version's install directory, the Kotlin
+DSL classpath came out wrong and the build failed while merely *compiling*
+`node_modules/@react-native/gradle-plugin/settings.gradle.kts`:
+
+```
+Unresolved reference 'plugins'.
+Unresolved reference 'id'.
+```
+
+That error names the `plugins` keyword itself, which is the tell: the settings
+script was being compiled without the Settings API on its classpath, not
+mis-written. Clearing `~/.gradle` caches does nothing, because that is not the
+directory in use.
+
+Override it to the standard location:
+
+```powershell
+$env:GRADLE_USER_HOME = "C:\Users\USER\.gradle"
+```
+
+Android Studio inherits the broken environment variable, so set this before
+launching it, or fix the machine-level variable. Expect a first build after the
+change to re-download dependencies (~1.5 GB into `C:`, which is nearly full).
+
+With JDK 17, a single ABI and a corrected `GRADLE_USER_HOME`, a clean build took
+**53m 30s**; incremental rebuilds took **3m 29s** and **8m 38s**.
+
 > **Signing caveat.** The Expo template signs the `release` buildType with the
 > **debug** keystore (`android/app/build.gradle`: `release { signingConfig
 > signingConfigs.debug }`). A local release APK is therefore debug-signed, with
@@ -119,7 +170,52 @@ adb install -r android/app/build/outputs/apk/release/app-release.apk
 
 ---
 
-## Google Maps key verification — OUTSTANDING
+## Defects found by this run
+
+All six were fixed and the results above are from the rebuilt APK.
+
+| # | Defect | Why it mattered |
+|---|--------|-----------------|
+| 1 | **The map never moved to the user's location.** `MapView` consumes only `initialRegion`, so updating the hook's `region` recorded the intent without moving the camera. | The map sat on the London startup fallback while facilities were fetched for the user's real position — the badge said "2 facilities nearby" about somewhere else, and none of those markers were on screen. Fixed with a single `cameraTarget` that every programmatic move publishes. |
+| 2 | **Network errors leaked a raw exception.** | Offline, the card showed `java.net.UnknownHostException: Unable to resolve host "<project>.supabase.co"` — meaningless to a user, and it published the backend hostname on screen. |
+| 3 | **Unrated facilities were shown as zero-rated** on the detail screen. | The dataset stores `0`, not `null`, for "no ratings", so the "is it rated?" test passed and the screen showed "0.0" with stars — while the list said "Not yet rated" for the same facility. |
+| 4 | **Search results were unreadable in List view.** | The overlay used `SoftCard`'s translucent glass fill; fine over map tiles, but over the list the rows behind bled through and the first result was illegible. |
+| 5 | **"1 facilities nearby".** | The count string had no plural forms. |
+| 6 | **Gradle could not build at all** — see the JDK and `GRADLE_USER_HOME` notes above. | Not app code, but it blocked producing an APK entirely. |
+
+## Data-quality finding (not an app defect)
+
+The first Liverpool search result renders as `]`. That is faithful rendering of
+real data: the row's `name` is literally `]` (length 1). **9 of the 15,584
+published facilities** have a name of two characters or fewer, or no
+alphanumeric characters at all:
+
+```sql
+SELECT count(*) FROM facilities
+WHERE publication_status = 'published'
+  AND (length(trim(name)) <= 2 OR name ~ '^[^a-zA-Z0-9]+$');
+```
+
+These came in with the Toilet Map UK import. Worth cleaning at source, or
+falling back to a placeholder when a name carries no information — but the fix
+belongs in the data or in an explicit presentation rule, not in silently
+filtering facilities out of results.
+
+## Cosmetic observations (not fixed)
+
+- The map renders in a dark style, following the device theme, which sits oddly
+  against the light app chrome. Decide deliberately whether to pin a light map
+  style.
+- In List view the floating "Need One Now" button overlaps the row beneath it.
+  Expected for a floating action button, but it can obscure a row's status
+  badge.
+
+## Google Maps key verification — PARTIALLY OUTSTANDING
+
+Tiles rendered on this device with the debug-signed APK, which demonstrates the
+key is accepted for that certificate and that Maps SDK for Android is enabled.
+The Cloud Console configuration itself was **not** inspected, and the following
+still need confirming by hand:
 
 Cannot be checked from this repository; it lives in Google Cloud Console. Confirm
 all three before trusting a "tiles render" result:
@@ -140,30 +236,30 @@ If tiles fail to render, capture `adb logcat | grep -i "Google Maps\|Authorizati
 
 Record PASS/FAIL plus evidence (screenshot filename, or the logcat line) for each.
 
-| # | Check | Pass criterion | Result |
-|---|-------|----------------|--------|
-| 1 | Native splash appears correctly | Mint `#F3F8F5` background with the Relief mark, no white flash, no stretched artwork | NOT RUN |
-| 2 | StartupWelcome exits correctly | Welcome layer dismisses itself once startup resolves and does not reappear | NOT RUN |
-| 3 | Signed-out user reaches Find without registering | From cold start with no session, the Find screen is reachable; no login wall | NOT RUN |
-| 4 | Permission-granted path works | Granting location centres the map on the user and loads facilities | NOT RUN |
-| 5 | Permission-denied path does not crash | Denying shows "Location is turned off" with an "Allow location" action; map and search still usable | NOT RUN |
-| 6 | Google map tiles render | Real Google tiles, not a grey grid (see key verification above) | NOT RUN |
-| 7 | Real facility markers appear | Markers correspond to live Supabase rows, not fixtures | NOT RUN |
-| 8 | Map panning loads the newest viewport | After rapid consecutive pans, the **final** visible region's facilities are shown; loading indicator clears | NOT RUN |
-| 9 | Map/List toggle works | Switching preserves location, filters, search and selection; no refetch of a different result set | NOT RUN |
-| 10 | List contains no mocked facilities | No "Central Station Toilets", "City Library Facilities" or "Shopping Centre"; `MOCK_FACILITIES` is deleted from the codebase | NOT RUN |
-| 11 | Nearest sorting works | Ascending distance; unknown distances last | NOT RUN |
-| 12 | Rating sorting works | Descending score; null and 0 scores last, shown as "Not yet rated" | NOT RUN |
-| 13 | Search returns a known Liverpool result | Searching "Liverpool" returns live rows (76 published facilities have `town` matching Liverpool) | NOT RUN |
-| 14 | Filters using real columns work | Toggling e.g. Free / Accessible / Picnic area changes results and returns no error | NOT RUN |
-| 15 | "Need One Now" returns a real facility | Returns a facility with distance and walking time. Verified in-database already: from 53.4084, -2.9916 the answer is Moorfields, Liverpool, 162 m | NOT RUN |
-| 16 | RPC failure produces a retryable error, not "no facilities" | Force a failure and confirm "We could not complete the search" with **Try again** — never "Nothing found within 25 km" | NOT RUN |
-| 17 | Facility details load from Supabase | Real name, address, amenities, verification badge; unknown values read "unavailable", never "no" | NOT RUN |
-| 18 | Directions open on Android | "Get directions" opens Google Maps at the facility's coordinates | NOT RUN |
-| 19 | Guest attempting to favourite is prompted to sign in | Heart on facility detail raises "Sign in required" with a specific reason and a dismissible prompt | NOT RUN |
-| 20 | Offline/network-loss behaviour is understandable | In airplane mode: a stated error with **Try again**, never an empty map presented as "no facilities" | NOT RUN |
-| 21 | No visible button produces an unhandled navigation action | Every reachable control either acts or explains itself. Static audit done (see below); needs confirming by hand | NOT RUN |
-| 22 | Installed APK restarts without Metro | Force-stop, ensure no dev server is running, relaunch: app starts and loads data | NOT RUN |
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | Native splash appears correctly | **PASS** | Cold launch shows the mint `#F3F8F5` surface with the Relief mark; no white flash, no stretched artwork. `TotalTime: 381–398 ms`. |
+| 2 | StartupWelcome exits correctly | **PASS** | Welcome layer dismisses itself once startup resolves and does not reappear on subsequent cold launches. |
+| 3 | Signed-out user reaches Find without registering | **PASS** | Fresh install, no session: onboarding → "Explore Nearby" → Find. No login wall anywhere. Onboarding stored against the guest key and did **not** reappear after later cold launches. |
+| 4 | Permission-granted path works | **PASS** | Map recentres on the user (Wirral), blue user dot visible, facilities load for that region. |
+| 5 | Permission-denied path does not crash | **PASS** | Permission revoked via `pm revoke` + `appops deny`, then "Don't allow" on the dialog. App stayed alive (`pidof` non-empty), **0 fatal exceptions**. Shows "Location is turned off — Relief works without it…" with an **Allow location** action, and the fallback viewport still loaded facilities, so search and browsing remain usable. |
+| 6 | Google map tiles render | **PASS** | Real Google tiles with labels and the Google attribution, both in London (fallback) and Wirral. Not a grey grid. |
+| 7 | Real facility markers appear | **PASS** | Green `FacilityMarker` pins matching live Supabase rows; clustering confirmed in London (counts 2–11 in cluster bubbles). |
+| 8 | Map panning loads the newest viewport | **PASS** | Five rapid consecutive swipes moved the map from London to Kent; facilities for the **final** region (Halstead / Knockholt / Badgers Mount) loaded and the loading state cleared. No stale result won, no stalled load. |
+| 9 | Map/List toggle works | **PASS** | Switching preserved location, facilities, filters, search text, sort and the open nearest-facility card. Same facility, same 1.8 km, same "Open now" in both views — one query, two presentations. |
+| 10 | List contains no mocked facilities | **PASS** | Live Wirral and Liverpool rows only. No "Central Station Toilets", "City Library Facilities" or "Shopping Centre"; `MOCK_FACILITIES` and `ListScreen.tsx` are deleted from the codebase. |
+| 11 | Nearest sorting works | **PASS** | Ascending distance, rendered in km (1.7 km, 2.8 km, 4.5 km). No miles anywhere. |
+| 12 | Rating sorting works | **PASS** | "Top rated" with an all-unrated set falls back to alphabetical (Cherry Tree Centre, Leasowe Common, Tam 'O' Shanter Farm, Wallasey…), and each row reads "Not yet rated" rather than 0 stars — unrated sinks, it is not ranked as zero. |
+| 13 | Search returns a known Liverpool result | **PASS** | "Liverpool" returned live rows including Toxteth Library and Unnamed Toilet, each labelled Liverpool with "Hours unknown". |
+| 14 | Filters using real columns work | **PASS** | "Free" chip active → `Filters (1)` badge, results refetched, every row "Free". No 42703 or other error. |
+| 15 | "Need One Now" returns a real facility | **PASS** | As a guest: **Tam 'O' Shanter Farm, Boundary Road — 1.8 km away · approx. 21 min walk · Free · Open now**, urgent marker centred. This is the journey that previously failed outright with `42703`. |
+| 16 | RPC failure produces a retryable error, not "no facilities" | **PASS** | With Wi-Fi *and* mobile data disabled (`ping` → "Network is unreachable"), the card read "We could not complete the search" with **Try again**, and the already-loaded list was preserved rather than blanked. It never said "Nothing found within 25 km". |
+| 17 | Facility details load from Supabase | **PASS** | Real record: name, town Wirral, "Open now", cost "Free", verification "Source imported", amenities RADAR Key + Baby changing. Unknown values read "Access information unavailable", never "no". Rating icons render correctly beside their values (the `Star`-inside-`Text` fix). |
+| 18 | Directions open on Android | **PASS** | "Get directions" launched Google Maps in walking navigation to the facility (32 min walk). `topResumedActivity=com.google.android.apps.maps/com.google.android.maps.MapsActivity`. |
+| 19 | Guest attempting to favourite is prompted to sign in | **PASS** | Heart on facility detail raised "Sign in required — Sign in to save favourites to your account." with **NOT NOW** / **SIGN IN**; dismissible, and dismissing left the user where they were. |
+| 20 | Offline/network-loss behaviour is understandable | **PASS** (after fix) | Initially leaked a raw `UnknownHostException` including the Supabase hostname. Now reads "No connection. Check your internet and try again." with **Try again**. Note: on Samsung, airplane mode alone leaves Wi-Fi on — `svc wifi disable` + `svc data disable` is required to test this properly. |
+| 21 | No visible button produces an unhandled navigation action | **PASS** | Profile exposes exactly three things: Sign In (→ Auth modal), About Relief (→ registered route), and a non-interactive "This is a preview build" note. No AI, route planning, offline maps, alerts, location sharing, saved profiles, badges or paywall entry points. Corroborated by the static route audit below. |
+| 22 | Installed APK restarts without Metro | **PASS** | Nothing listening on 8081 at any point. Repeated `am force-stop` + cold relaunch: app starts, recentres, and loads live data. JS is served from the bundled `assets/index.android.bundle`. |
 
 ### How to force the item 16 failure
 

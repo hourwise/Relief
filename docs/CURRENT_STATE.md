@@ -1,8 +1,8 @@
 # Relief — Current State Assessment
 
-**Last verified:** 2026-08-06
+**Last verified:** 2026-08-07
 **Branch:** `claude/android-apk-stabilisation` (cut from `feat/figma-ui-refresh`)
-**Verification method:** Live Supabase project queried directly (PostgreSQL 17.6) via `psql` and the anonymous REST endpoint; repository quality gates run locally. **No Android build has been installed or opened.**
+**Verification method:** Live Supabase project queried directly (PostgreSQL 17.6) via `psql` and the anonymous REST endpoint; repository quality gates run locally; **release APK built, installed and driven on a physical Samsung Galaxy S24 Ultra with no Metro running.**
 
 | Check | Command | Result |
 |-------|---------|--------|
@@ -13,8 +13,9 @@
 | Tests | `npm test` | **6 files, 149 assertions, all passing** |
 | Public config | `npx expo config --type public` | Resolves; `com.relief.app`, SDK 56.0.0 |
 | Android prebuild | `npx expo prebuild --platform android --clean` | Succeeded |
-| APK build | `eas build -p android --profile preview` | **NOT RUN** — no EAS project linked |
-| Android smoke test | 22 required checks | **NOT RUN** — see `ANDROID_SMOKE_TEST.md` |
+| APK build (local) | `gradlew assembleRelease -PreactNativeArchitectures=arm64-v8a` | **BUILD SUCCESSFUL** — `app-release.apk`, 48.8 MB, arm64-v8a, JS bundle embedded |
+| APK build (EAS) | `eas build -p android --profile preview` | **NOT RUN** — no EAS project linked |
+| Android smoke test | 22 required checks | **22/22 PASS** on a physical S24 Ultra — see `ANDROID_SMOKE_TEST.md` |
 
 ---
 
@@ -24,7 +25,9 @@ Relief is a React Native / Expo SDK 56 application whose **core discovery journe
 
 What changed in this pass: the nearest-facility RPC was broken and is now fixed and verified; the database schema is now recorded in git for the first time; the mocked Nearby list is gone; discovery no longer requires an account; and the map's viewport loading no longer drops the user's latest pan.
 
-What has **not** changed: no APK has been built, installed or opened, so nothing in this document may be read as "the app works on a device". The status of every on-device behaviour is unverified.
+A release APK has now been built, installed on a physical Samsung Galaxy S24 Ultra and driven through all 22 required smoke checks with no Metro or development server running. All 22 pass. Six defects were found in the process and fixed — most importantly, the map never actually moved to the user location, so it showed the startup fallback while data loaded for somewhere else.
+
+What is still **not** verified: every check was performed as a guest, so no signed-in journey has been exercised; no EAS build exists; and the Google Maps key restrictions in Cloud Console have not been inspected.
 
 ---
 
@@ -61,7 +64,7 @@ The seven original hand-written migrations no longer describe the live database 
 
 ---
 
-## Application — code complete, device-unverified
+## Application — VERIFIED on device (as a guest)
 
 | Area | Status | Detail |
 |------|--------|--------|
@@ -69,15 +72,15 @@ The seven original hand-written migrations no longer describe the live database 
 | Generated types | VERIFIED | Generated from live `pg_catalog` by `tools/generate-database-types.mjs` (`npm run gen:types`). `supabase gen types` needs Docker, which is unavailable on this machine |
 | Invalid advanced filters | REMOVED | The six phantom filters are gone from the UI and from the client query map. A regression test asserts they cannot be offered or sent |
 | Mocked Nearby list | REMOVED | `MOCK_FACILITIES` and `ListScreen.tsx` deleted |
-| Shared Find experience | UI IMPLEMENTED — device-unverified | `FindScreen` + `useFindExperience` give the map and list one shared source of location, facilities, search, filters, loading/error state and selection. Map/List segmented switch |
-| Map viewport loading | UI IMPLEMENTED — device-unverified | Latest-request-wins via a request sequence plus a queued newest region. The previous code skipped fetches while a request was in flight *and* left `inFlightRef` stuck `true` on its early-return path, which could stall loading permanently |
-| Runtime error states | UI IMPLEMENTED — device-unverified | Distinct states for initial location loading, facility loading, permission denied, location unavailable, query failure, no facilities in area, and nearest-RPC failure. A failed query never renders as "no facilities found" |
-| Guest discovery | UI IMPLEMENTED — device-unverified | Root navigator renders the app with or without a session. Policy centralised in `src/utils/guestAccess.ts` and covered by 68 assertions. Authentication is requested only for favourites, submissions, corrections, reports and account settings |
-| Onboarding | UI IMPLEMENTED — device-unverified | Stored against a guest key when signed out, migrated to the user on sign-in |
-| Navigation | UI IMPLEMENTED — device-unverified | Three tabs (Find, Favourites, Profile) with Lucide icons. Unfinished features removed from Profile; a static audit confirms no reachable button targets an unregistered route |
-| Facility detail | UI IMPLEMENTED — device-unverified | Redesign preserved. The Lucide `Star` SVG is no longer nested inside a `<Text>` (a native view inside `Text` does not lay out reliably on Android). Nullable `overall_score` handled. Reports and corrections require authentication |
-| Directions | UI IMPLEMENTED — **untested on device** | Coordinate deep links to Google Maps and Waze |
-| Native splash / StartupWelcome | UI IMPLEMENTED — **untested on device** | Preserved from the UI branch; needs a release-build visual check |
+| Shared Find experience | VERIFIED on device | `FindScreen` + `useFindExperience` give the map and list one shared source of location, facilities, search, filters, loading/error state and selection. Map/List segmented switch |
+| Map viewport loading | VERIFIED on device | Latest-request-wins via a request sequence plus a queued newest region. The previous code skipped fetches while a request was in flight *and* left `inFlightRef` stuck `true` on its early-return path, which could stall loading permanently |
+| Runtime error states | VERIFIED on device | Distinct states for initial location loading, facility loading, permission denied, location unavailable, query failure, no facilities in area, and nearest-RPC failure. A failed query never renders as "no facilities found" |
+| Guest discovery | VERIFIED on device | Root navigator renders the app with or without a session. Policy centralised in `src/utils/guestAccess.ts` and covered by 68 assertions. Authentication is requested only for favourites, submissions, corrections, reports and account settings |
+| Onboarding | VERIFIED on device | Stored against a guest key when signed out, migrated to the user on sign-in |
+| Navigation | VERIFIED on device | Three tabs (Find, Favourites, Profile) with Lucide icons. Unfinished features removed from Profile; a static audit confirms no reachable button targets an unregistered route |
+| Facility detail | VERIFIED on device | Redesign preserved. The Lucide `Star` SVG is no longer nested inside a `<Text>` (a native view inside `Text` does not lay out reliably on Android). Nullable `overall_score` handled. Reports and corrections require authentication |
+| Directions | VERIFIED on device | Coordinate deep links to Google Maps and Waze |
+| Native splash / StartupWelcome | VERIFIED on device | Preserved from the UI branch; needs a release-build visual check |
 
 ### Test coverage
 
@@ -126,16 +129,21 @@ Hidden-but-retained screens (AI recommendations, predictive suggestions, route p
 
 ## Current blockers
 
-1. **No APK has been built, installed or opened.** This is the single largest gap. The emulator cannot start on the development machine: the hypervisor check passes, but the userdata partition needs 7,372 MB and `C:` has ~4–5 GB free (99% full). A physical device is the intended route.
-2. **EAS project not linked.** Needs `eas init`, a decision on which Expo account owns it (`hourwiseeu` or `pcgsoft`), and the three `EXPO_PUBLIC_*` values added as `preview` environment variables.
-3. **Google Maps key restrictions unverified.** Requires Google Cloud Console access. Note the Expo template signs `release` with the **debug** keystore, so a local release APK's SHA-1 differs from an EAS build's.
-4. **Auth flows unverified.** Sign-in, registration and OAuth have not been exercised against the live project.
-5. **Storage, moderation, notifications, RevenueCat** remain unconfigured; the features that depend on them are hidden rather than finished.
-6. **No linting** configured (ESLint/Prettier still absent).
-7. **No CI.** The quality gates exist as npm scripts but nothing runs them automatically.
+1. **No signed-in journey has been verified.** The whole smoke test ran as a guest. Sign-in, registration and OAuth are unexercised, so favourite persistence and report/correction submission are only verified as far as the auth gate that intercepts them.
+2. **EAS project not linked.** Needs `eas init`, a decision on which Expo account owns it (`hourwiseeu` or `pcgsoft`), and the three `EXPO_PUBLIC_*` values added as `preview` environment variables. The APK under test was built locally instead.
+3. **Local APK is debug-signed.** The Expo template signs `release` with the debug keystore (SHA-1 `84:91:66:28:20:F6:70:39:B9:8E:83:A8:4A:2D:86:68:CF:7B:B1:BE`). Fine for an internal preview, not a release artifact, and an EAS build will present a different certificate to the Maps key.
+4. **Google Maps key restrictions not inspected.** Tiles render on this device, so the key works for the debug certificate and Maps SDK for Android is enabled — but the Cloud Console restriction list was not reviewed.
+5. **Quality gates were run under Node 24.12.0**, while the EAS image uses Node 22. `.nvmrc`, `.node-version` and `engines` now pin 22; re-run `npm ci && npm run verify && npx expo-doctor` under Node 22 before the first EAS build.
+6. **9 published facilities have unusable names** (two characters or fewer, or no alphanumerics) from the Toilet Map UK import — one renders as `]` in search results. A data cleanup, not an app defect.
+7. **Storage, moderation, notifications, RevenueCat** remain unconfigured; the features that depend on them are hidden rather than finished.
+8. **No linting** configured (ESLint/Prettier still absent).
+9. **No CI.** The quality gates exist as npm scripts but nothing runs them automatically.
+10. **Machine-level `GRADLE_USER_HOME` is misconfigured** — it points inside a scoop-managed Gradle install of a different version, which prevented any Gradle build until overridden. Android Studio inherits this. See `ANDROID_SMOKE_TEST.md`.
 
 ---
 
 ## Safe next action
 
-Build and install the preview APK on a physical Android device, then work through `docs/ANDROID_SMOKE_TEST.md` and record real results. Pay particular attention to check 16 — that a nearest-facility RPC failure surfaces as a retryable error and never as "no facilities found" — since that is the specific misdiagnosis this pass set out to eliminate.
+Verify a **signed-in** journey on the device: sign in, save a favourite, confirm it persists in Favourites across a restart, and submit a correction and a report. That is the largest remaining gap, and it is the half of the auth policy the guest smoke test could not reach.
+
+After that, and only if a shareable build is wanted: `eas init` against the chosen Expo account, add the three `EXPO_PUBLIC_*` values as `preview` environment variables, register the EAS keystore's SHA-1 on the Maps key, and run `eas build -p android --profile preview`. Re-run the quality gates under Node 22 first.
