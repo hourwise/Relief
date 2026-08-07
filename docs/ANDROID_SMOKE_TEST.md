@@ -21,6 +21,20 @@ has actually been performed on a device and the result recorded with evidence.
 
 ## Producing the APK
 
+### Node version
+
+The Expo SDK 56 EAS build image runs **Node 22**, so local checks should be run
+under Node 22 before trusting them as a predictor of an EAS build. `.nvmrc` and
+`.node-version` pin `22.22.2`, and `package.json` declares
+`engines.node: ">=22.0.0 <25.0.0"`.
+
+The gates recorded in `CURRENT_STATE.md` were run under Node **24.12.0**. They
+should be re-run under Node 22 before the first EAS build:
+
+```bash
+node --version && npm ci && npm run verify && npx expo-doctor
+```
+
 ### Option A — EAS preview build (the profile `eas.json` defines)
 
 Requires decisions only the project owner can make:
@@ -45,14 +59,50 @@ npx expo prebuild --platform android --clean
 ```
 
 ```bash
-cd android && ./gradlew assembleRelease
+cd android && ./gradlew assembleRelease -PreactNativeArchitectures=arm64-v8a --no-daemon
 ```
 
 Output: `android/app/build/outputs/apk/release/app-release.apk`.
 
-Set `JAVA_HOME` to `C:\Program Files\Android\Android Studio\jbr` and
-`ANDROID_HOME` to `%LOCALAPPDATA%\Android\Sdk` first; neither is set globally on
-the development machine.
+### Use JDK 17 — not Android Studio's bundled JBR
+
+Neither `JAVA_HOME` nor `ANDROID_HOME` is set globally on the development
+machine. Set them first:
+
+```powershell
+$env:JAVA_HOME = "C:\Program Files\Microsoft\jdk-17.0.17.10-hotspot"
+$env:ANDROID_HOME = "$env:LOCALAPPDATA\Android\Sdk"
+$env:Path = "$env:JAVA_HOME\bin;$env:ANDROID_HOME\platform-tools;$env:Path"
+java -version
+```
+
+`java -version` must report **17**, not 25.
+
+> **Android Studio's bundled JBR is JDK 25 and will fail this build.** Under it,
+> AGP's native configure tasks abort with
+> `Execution failed for task ':react-native-screens:configureCMakeRelWithDebInfo[arm64-v8a]' > WARNING: A restricted method in java.lang.System has been called`
+> (and the same for `react-native-worklets`), because JDK 25 enforces
+> restricted native access. React Native and the Expo SDK 56 EAS image both
+> target Java 17.
+>
+> In Android Studio, set this explicitly: **Settings → Build, Execution,
+> Deployment → Build Tools → Gradle → Gradle JDK → JDK 17**. The IDE otherwise
+> defaults to its own JBR and reproduces the failure.
+
+Build **only `arm64-v8a`** unless you need the others. The default
+`reactNativeArchitectures=armeabi-v7a,arm64-v8a,x86,x86_64` compiles four ABIs,
+which on this machine took 18 minutes and crashed a Gradle worker daemon
+(`Failed to run Gradle Worker Daemon`). A modern physical device — including the
+S24 Ultra used for this test — is arm64.
+
+If a CMake failure survives the JDK switch:
+
+```powershell
+.\gradlew --stop
+.\gradlew clean
+Remove-Item -Recurse -Force .gradle -ErrorAction SilentlyContinue
+.\gradlew assembleRelease -PreactNativeArchitectures=arm64-v8a --no-daemon --stacktrace
+```
 
 > **Signing caveat.** The Expo template signs the `release` buildType with the
 > **debug** keystore (`android/app/build.gradle`: `release { signingConfig
@@ -118,14 +168,37 @@ Record PASS/FAIL plus evidence (screenshot filename, or the logcat line) for eac
 ### How to force the item 16 failure
 
 Item 16 is the one most easily faked by a passing-looking screen, so exercise it
-deliberately. Temporarily break the RPC in a scratch branch:
+deliberately.
 
-```sql
-ALTER FUNCTION find_nearest_facilities(double precision, double precision, integer, integer) RENAME TO find_nearest_facilities_disabled;
+> **Never rename or drop the live `find_nearest_facilities` function to test
+> this.** A forgotten rename, a dropped connection mid-test, or a second person
+> using the app would leave the urgent journey broken for real users. The live
+> function stays untouched.
+
+**Option 1 — airplane mode (no rebuild).** Enable airplane mode and tap "Need
+One Now". The RPC call fails at the network layer and travels the same
+`{ ok: false }` path, so the UI must show the retryable error card. This also
+satisfies check 20.
+
+**Option 2 — build-time fault injection.** For the case where the network is
+healthy but the RPC is not, `fetchClosestFacility` honours a flag:
+
+```bash
+EXPO_PUBLIC_FORCE_NEAREST_FAILURE=true npx expo prebuild --platform android --clean
 ```
 
-Tap "Need One Now", confirm the retryable error, then rename it back. Do not
-leave the live function renamed.
+Build a **throwaway** APK with that set, verify the error state, then rebuild
+without it. The flag returns a failure rather than throwing, so it exercises the
+real path the UI handles rather than a crash path.
+
+It is intentionally **not** gated on `__DEV__`: `__DEV__` is false in a release
+APK, so a dev-only guard could never be exercised on the build actually under
+test. It is inert unless the value is exactly `"true"` at build time — confirm
+it is absent from any APK you intend to distribute.
+
+In both cases the pass criterion is the same: the card reads "We could not
+complete the search" with a **Try again** action, and never "Nothing found
+within 25 km".
 
 ---
 

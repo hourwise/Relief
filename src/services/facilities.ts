@@ -22,6 +22,28 @@ export { filterColumnMap, mapNearestFacilityRow };
 const VIEWPORT_LIMIT = 500;
 const SEARCH_LIMIT = 20;
 
+/**
+ * Smoke-test fault injection for the nearest-facility journey.
+ *
+ * Smoke check 16 has to prove that an RPC failure surfaces as a retryable
+ * error and never as "no facilities found". The alternative — renaming the
+ * live find_nearest_facilities function — risks leaving the urgent journey
+ * broken for real users if a rename is forgotten or a connection drops, so it
+ * is not used.
+ *
+ * Deliberately NOT gated on `__DEV__`: the smoke test runs against a release
+ * APK, where `__DEV__` is false, so a dev-only guard could never be exercised
+ * on the build under test. Instead this is off unless the flag is explicitly
+ * "true" at build time. Build a throwaway APK with it set, verify the error
+ * state, then rebuild without it.
+ *
+ * Airplane mode exercises the same failure path without a rebuild, and is the
+ * quicker check; this flag exists for the case where the network is fine but
+ * the RPC itself is not.
+ */
+const FORCE_NEAREST_FAILURE =
+  process.env.EXPO_PUBLIC_FORCE_NEAREST_FAILURE === 'true';
+
 /** A read that either succeeded or failed for a stated reason. */
 export type QueryResult<T> =
   | { ok: true; data: T }
@@ -193,6 +215,16 @@ export async function fetchClosestFacility(
   latitude: number,
   longitude: number,
 ): Promise<QueryResult<NearestFacilityResult | null>> {
+  if (FORCE_NEAREST_FAILURE) {
+    // Returned rather than thrown, so this travels the real failure path the
+    // UI must handle, not a crash path.
+    console.warn('find_nearest_facilities: forced failure via EXPO_PUBLIC_FORCE_NEAREST_FAILURE');
+    return {
+      ok: false,
+      error: 'Forced nearest-facility failure (smoke test fault injection).',
+    };
+  }
+
   const radii = [5000, 10000, 25000];
 
   for (const radius of radii) {
