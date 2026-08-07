@@ -19,7 +19,7 @@
 | Android smoke test | 22 required checks | **22/22 PASS** on a physical S24 Ultra — see `ANDROID_SMOKE_TEST.md` |
 | Find UX acceptance test | 20 checks | **20/20 PASS** after the filter, viewport and locate-control pass |
 | Signed-in journey | favourites, reports, corrections, sign-out | **PASS**, with database writes confirmed over `psql` and test rows removed afterwards |
-| Pre-merge auth gate | audit + device pass | Guest, sign-in, session restoration and sign-out **VERIFIED**; new-account creation and Google OAuth **BLOCKED** on external setup — see `ANDROID_SMOKE_TEST.md` |
+| Pre-merge auth gate | audit + device pass | Guest, **new-account creation**, email confirmation, sign-in, session restoration and sign-out all **VERIFIED**. Google OAuth **BLOCKED** on external setup; account self-service (reset/delete/rename) **not built** — see `ANDROID_SMOKE_TEST.md` |
 
 ---
 
@@ -31,7 +31,7 @@ What changed in this pass: the nearest-facility RPC was broken and is now fixed 
 
 A release APK has now been built, installed on a physical Samsung Galaxy S24 Ultra and driven through all 22 required smoke checks with no Metro or development server running. All 22 pass, as does a full signed-in journey covering favourites, reports, corrections and sign-out, with every database write confirmed over `psql`. Seven defects were found in the process and fixed — most importantly, the map never actually moved to the user location, so it showed the startup fallback while data loaded for somewhere else.
 
-What is still **not** verified: account creation and Google OAuth (sign-in with an existing account was exercised); no EAS build exists; and the Google Maps key restrictions in Cloud Console have not been inspected.
+Email authentication is now verified end to end: a genuinely new account was created on the device, confirmed by email, and signed in, with the profile row created automatically by the database trigger. What is still **not** verified: Google OAuth (the provider is disabled, so the button is hidden rather than broken); no EAS build exists; and the Google Maps key restrictions in Cloud Console have not been inspected.
 
 ---
 
@@ -143,7 +143,7 @@ Hidden-but-retained screens (AI recommendations, predictive suggestions, route p
 
 ## Current blockers
 
-1. **New-account creation is unverified.** Sign-in with an existing account is verified end to end. Creating an account requires typing an email and password, which the assistant does not do — a human must run that path. The live project has `mailer_autoconfirm: false`, so a new sign-up yields no session until the emailed link is opened.
+1. **Account self-service is missing.** There is no password reset, no account deletion and no way to change a display name in the app. Account deletion in particular is required by Google Play for any app that offers account creation, and Play expects an in-app route as well as a public web URL — so a web-only page will not be sufficient at submission. Planned as web-hosted account settings once the site exists.
 2. **Google OAuth is not configured.** `GET /auth/v1/settings` reports `google: false`, so the provider cannot work at all. The button is now hidden behind `AUTH_PROVIDERS.GOOGLE` rather than failing in front of users. Enabling it needs Google Cloud credentials, SHA-1 registration, Supabase provider setup, a redirect allow-list entry, **and** an app-side deep-link handler that does not yet exist.
 3. **Password reset does not exist.** There is no `resetPasswordForEmail` and no "Forgot password?" link, so a user who forgets their password cannot recover the account in-app.
 4. **EAS project not linked.** Needs `eas init`, a decision on which Expo account owns it (`hourwiseeu` or `pcgsoft`), and the three `EXPO_PUBLIC_*` values added as `preview` environment variables. The APK under test was built locally instead.

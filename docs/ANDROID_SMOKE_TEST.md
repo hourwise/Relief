@@ -29,7 +29,7 @@ the final build with all seven in place. See "Defects found" at the end.
 | EAS build | Not run. No `projectId` is linked, and the Expo login has two accounts (`hourwiseeu`, `pcgsoft`), so project ownership is an unmade decision. The local APK above was used instead. |
 | Google Maps key restrictions | Tiles render on this device, so the key works for the debug certificate. The Cloud Console configuration itself was not inspected — see below. |
 | Emulator | Never used. It cannot start on this machine, but **not** for the reason assumed: the log passes the hypervisor check (`Ok: Hypervisor compatibility to run avd: Pixel_7_Pro are met`) and then fails on disk — `FATAL │ Not enough space to create userdata partition. Available: 4949.80 MB … need 7372.80 MB`, with `C:` at 98–99% full. Freeing ~3 GB or pointing `ANDROID_AVD_HOME` at `D:` should unblock it. Not needed now that a physical device works. |
-| Registration / OAuth | Sign-in with an existing email account was verified (see the signed-in section). **Creating a new account** and the Google OAuth path were not exercised. |
+| Google OAuth | Not exercised: the provider is disabled in Supabase, so it cannot work. The button is hidden rather than shown broken. Email sign-up, confirmation and sign-in ARE verified end to end. |
 
 ---
 
@@ -371,12 +371,24 @@ external.google    : false      -> Google OAuth is NOT configured
 
 ### BLOCKED — external setup required
 
-**1. New-account creation could not be completed here.**
+**1. New-account creation — now COMPLETED by the maintainer (2026-08-07).**
 Creating an account requires entering an email and a password, which this
-assistant does not do. The flow is ready to test; it needs a human to type the
-credentials. Because `mailer_autoconfirm` is false, expect: sign-up succeeds →
-**no session** → "Check your email" → click the link → return to the app → sign
-in normally. Baseline before testing: `auth.users = 1`.
+assistant does not do, so this was run by hand on the device. Verified
+afterwards over `psql`:
+
+```
+auth.users        1 -> 2
+new account       created 18:40:38, email_confirmed_at set
+                  last_sign_in_at 18:41:24  (46s later)
+raw_user_meta_data.full_name  present
+auth.identities   provider = email
+public.user_profiles  1 -> 2   (handle_new_user trigger fired)
+```
+
+So under the live configuration: sign-up → confirmation email → link opened →
+sign-in all work end to end, and the profile row is created automatically.
+**The test account was retained**, not deleted, so the second `user_profiles`
+row is expected.
 
 > Supabase deliberately returns **success** when signing up with an email that
 > already exists (anti-enumeration). The app therefore shows "Check your email"
@@ -407,8 +419,6 @@ domain is needed before external testers sign up.
 
 ### NOT TESTED
 
-- New-account creation end to end (see above).
-- Email confirmation link click-through.
 - Google OAuth on device — deliberately not simulated or faked.
 - Password reset — the feature does not exist.
 - Apple sign-in — iOS only; this is an Android build.
