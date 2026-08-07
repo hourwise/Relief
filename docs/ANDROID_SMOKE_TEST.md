@@ -199,6 +199,27 @@ created above were deleted, returning the database to its baseline
 correction concerned a real facility, so leaving them would have meant
 publishing invented information about a real place.
 
+### Re-verified after the accessibility and lint pass (2026-08-07)
+
+Rebuilt and reinstalled after replacing three `useRef(new Animated.Value(...)).current`
+reads-during-render with `useMemo` (AnimatedPin, SelectedFacilityMarker,
+StartupWelcome) and moving FindScreen's captured initial region into state.
+Those all sit in the guest path, so a regression check mattered more than the
+new code:
+
+- Cold launch, splash and welcome exit: unchanged, `TotalTime: 497 ms`.
+- Map recentres on the user, blue dot, five markers: unchanged.
+- "Need One Now" still returns Tam 'O' Shanter Farm at 1.8 km and recentres.
+- 0 fatal exceptions.
+- The plural fix is now visible: the badge reads **"1 facility nearby"** where it
+  previously read "1 facilities nearby".
+
+**Not re-checked visually:** the selected report card's new contrast. The report
+screen is behind the auth gate and the device was signed out by the sign-out
+test, so seeing it again needs a sign-in. The colour values are asserted by
+inspection (`primary` fill, white label and description) and the report type
+labels are covered by `__tests__/reportTypes.test.ts` (45 assertions).
+
 ### Signed-in observations (not fixed)
 
 - ~~On the report screen, the **selected** issue card keeps dark text on the dark

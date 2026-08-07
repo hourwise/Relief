@@ -9,8 +9,9 @@
 | Node | `node --version` | v24.12.0 |
 | Install | `npm ci` | Passed — 583 packages |
 | Expo doctor | `npx expo-doctor` | **21/21 checks passed** |
+| Lint | `npm run lint` | **0 errors**, 92 warnings (ESLint + Prettier now configured) |
 | TypeScript | `npx tsc --noEmit` | **0 errors** |
-| Tests | `npm test` | **7 files, 162 assertions, all passing** |
+| Tests | `npm test` | **8 files, 207 assertions, all passing** |
 | Public config | `npx expo config --type public` | Resolves; `com.relief.app`, SDK 56.0.0 |
 | Android prebuild | `npx expo prebuild --platform android --clean` | Succeeded |
 | APK build (local) | `gradlew assembleRelease -PreactNativeArchitectures=arm64-v8a` | **BUILD SUCCESSFUL** — `app-release.apk`, 48.8 MB, arm64-v8a, JS bundle embedded |
@@ -85,7 +86,7 @@ The seven original hand-written migrations no longer describe the live database 
 
 ### Test coverage
 
-`npm test` runs 7 files without a device or database:
+`npm test` runs 8 files without a device or database:
 
 | File | Assertions | Covers |
 |------|-----------|--------|
@@ -96,6 +97,7 @@ The seven original hand-written migrations no longer describe the live database 
 | `estimateWalkingTime.test.ts` | 10 | Walking-time calculation |
 | `onboardingPreferences.test.ts` | 2 | Onboarding preference selection |
 | `onboardingMigration.test.ts` | 13 | Guest→user onboarding migration over an in-memory AsyncStorage, including the ordering contract whose violation re-prompted signed-in users |
+| `reportTypes.test.ts` | 45 | Report type labels and durations, including that no label is the raw enum and that an unknown type is de-slugged rather than shown raw |
 
 ---
 
@@ -138,7 +140,7 @@ Hidden-but-retained screens (AI recommendations, predictive suggestions, route p
 5. **Quality gates were run under Node 24.12.0**, while the EAS image uses Node 22. `.nvmrc`, `.node-version` and `engines` now pin 22; re-run `npm ci && npm run verify && npx expo-doctor` under Node 22 before the first EAS build.
 6. **9 published facilities have unusable names** (two characters or fewer, or no alphanumerics) from the Toilet Map UK import — one renders as `]` in search results. A data cleanup, not an app defect.
 7. **Storage, moderation, notifications, RevenueCat** remain unconfigured; the features that depend on them are hidden rather than finished.
-8. **No linting** configured (ESLint/Prettier still absent).
+8. **Lint warnings and unrouted-screen debt.** ESLint reports 0 errors but 92 warnings, mostly unused variables inside hidden features. The unrouted screens keep their React Compiler violations as scoped warnings and must be cleared — or those screens deleted — before any of them is registered again. Prettier is configured but has deliberately **not** been run repo-wide, so that a reformat does not bury real changes.
 9. **No CI.** The quality gates exist as npm scripts but nothing runs them automatically.
 10. **Machine-level `GRADLE_USER_HOME` is misconfigured** — it points inside a scoop-managed Gradle install of a different version, which prevented any Gradle build until overridden. Android Studio inherits this. See `ANDROID_SMOKE_TEST.md`.
 
