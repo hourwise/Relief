@@ -82,6 +82,15 @@ export interface FindExperience {
   region: Region;
   onRegionChangeComplete: (region: Region) => void;
   focusRegion: (latitude: number, longitude: number) => Region;
+  /**
+   * Where the camera should move to next, or null if it should stay put.
+   *
+   * The MapView takes `initialRegion` only, so updating `region` alone never
+   * moves the camera — it just records where the user has panned to. Every
+   * programmatic move (first fix, search result, cluster zoom, nearest
+   * facility) publishes a target here and the screen animates to it.
+   */
+  cameraTarget: Region | null;
 
   // Sorting (list)
   sortMode: SortMode;
@@ -128,6 +137,7 @@ export function useFindExperience(): FindExperience {
   const [region, setRegion] = useState<Region>(FALLBACK_REGION);
   const [sortMode, setSortMode] = useState<SortMode>('distance');
   const [centredOnUser, setCentredOnUser] = useState(false);
+  const [cameraTarget, setCameraTarget] = useState<Region | null>(null);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Facility[]>([]);
@@ -235,6 +245,11 @@ export function useFindExperience(): FindExperience {
       longitudeDelta: LONGITUDE_DELTA,
     };
     setRegion(next);
+    // The camera must be told to move; setRegion alone only records state.
+    // Without this the map sat on the London fallback while facilities were
+    // fetched for the user's real position, so the count and the visible
+    // markers disagreed.
+    setCameraTarget(next);
     setCentredOnUser(true);
     load(next);
   }, [location, centredOnUser, load]);
@@ -277,6 +292,7 @@ export function useFindExperience(): FindExperience {
       longitudeDelta: 0.02 * ASPECT_RATIO,
     };
     setRegion(next);
+    setCameraTarget(next);
     return next;
   }, []);
 
@@ -413,6 +429,7 @@ export function useFindExperience(): FindExperience {
     region,
     onRegionChangeComplete,
     focusRegion,
+    cameraTarget,
 
     sortMode,
     setSortMode,

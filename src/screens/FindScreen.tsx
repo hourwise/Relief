@@ -100,11 +100,20 @@ export const FindScreen: React.FC = () => {
 
   const animateTo = useCallback(
     (latitude: number, longitude: number) => {
-      const next = find.focusRegion(latitude, longitude);
-      mapRef.current?.animateToRegion(next, 500);
+      // Publishing a target is enough; the effect below drives the camera.
+      find.focusRegion(latitude, longitude);
     },
     [find],
   );
+
+  // The single place the camera is moved programmatically. MapView takes only
+  // `initialRegion`, so without this nothing would ever recentre — the map
+  // would stay on the startup fallback while data loaded for somewhere else.
+  const cameraTarget = find.cameraTarget;
+  useEffect(() => {
+    if (!cameraTarget) return;
+    mapRef.current?.animateToRegion(cameraTarget, 500);
+  }, [cameraTarget]);
 
   const handleSearchResultPress = useCallback(
     (facility: Facility) => {
