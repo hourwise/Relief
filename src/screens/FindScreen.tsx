@@ -16,14 +16,13 @@ import {
   FlatList,
   Linking,
   Pressable,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
   View,
 } from 'react-native';
 import type MapView from 'react-native-maps';
-import { List, Map as MapIcon, SlidersHorizontal, X } from 'lucide-react-native';
+import { List, LocateFixed, Map as MapIcon, SlidersHorizontal, X } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
@@ -31,7 +30,6 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import {
   FacilityListBody,
   FacilityMapBody,
-  FilterChip,
   PrimaryButton,
   SegmentedSwitch,
   SoftCard,
@@ -47,11 +45,7 @@ import {
   spacing,
   typography,
 } from '../theme';
-import {
-  useFindExperience,
-  type FindView,
-  type Region,
-} from '../hooks/useFindExperience';
+import { useFindExperience, type FindView } from '../hooks/useFindExperience';
 import { useFilters } from '../context/FiltersContext';
 import { estimateWalkingTime } from '../utils/walkingTime';
 import { formatDistance } from '../utils/distance';
@@ -60,12 +54,9 @@ import type { Facility, FindStackParamList } from '../types';
 
 type FindNavigationProp = NativeStackNavigationProp<FindStackParamList, 'FindHome'>;
 
-const QUICK_FILTERS = [
-  { label: 'Free', key: 'is_free' },
-  { label: 'Accessible', key: 'is_accessible' },
-  { label: 'Baby changing', key: 'has_baby_changing' },
-  { label: 'Gender-neutral', key: 'is_gender_neutral' },
-] as const;
+// Quick-filter chips were removed: they duplicated the Filters button, ate map
+// space, and gave filters two sources of truth that could disagree. The Filters
+// screen is now the only place filters are set.
 
 const VIEW_OPTIONS = [
   { value: 'map' as FindView, label: 'Map', icon: <MapIcon size={16} color={colors.textSecondary} /> },
@@ -84,16 +75,9 @@ export const FindScreen: React.FC = () => {
   const navigation = useNavigation<FindNavigationProp>();
   const insets = useSafeAreaInsets();
   const mapRef = useRef<MapView | null>(null);
-  const { filters, setFilters, activeFilterCount } = useFilters();
+  const { setFilters, activeFilterCount } = useFilters();
   const find = useFindExperience();
   const [chromeHeight, setChromeHeight] = useState(160);
-
-  // The map's initialRegion is captured once. Later movement goes through
-  // animateToRegion so the user's own gestures are never fought.
-  //
-  // Held in state rather than a ref because this is read during render, and
-  // reading a ref during render is unsafe under the React Compiler.
-  const [initialRegion] = useState<Region>(find.region);
 
   const openFacility = useCallback(
     (facility: Facility) =>
@@ -146,17 +130,16 @@ export const FindScreen: React.FC = () => {
     if (find.view === 'map') animateTo(latitude, longitude);
   }, [nearestResult, find.view, animateTo]);
 
-  const toggleQuickFilter = (key: (typeof QUICK_FILTERS)[number]['key']) => {
-    const next = { ...filters };
-    if (next[key] === true) delete next[key];
-    else next[key] = true;
-    setFilters(next);
-  };
-
   const openDirections = (latitude: number, longitude: number) =>
     Linking.openURL(
       `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}&travelmode=walking&dir_action=navigate`,
     );
+
+  // Keep the locate control clear of whatever occupies the bottom of the map:
+  // the tall nearest-facility card, the shorter selection card, or the urgent
+  // button on its own.
+  const locateButtonBottom =
+    find.nearest.active || find.selectedFacility ? 260 : 108;
 
   // ── Runtime states, in priority order ─────────────────────
   const notice = (() => {
@@ -380,7 +363,6 @@ export const FindScreen: React.FC = () => {
       {find.view === 'map' ? (
         <FacilityMapBody
           mapRef={mapRef}
-          initialRegion={initialRegion}
           region={find.region}
           facilities={find.facilities}
           selectedFacilityId={find.selectedFacility?.id ?? null}
@@ -460,28 +442,31 @@ export const FindScreen: React.FC = () => {
           onChange={find.setView}
           style={styles.viewSwitch}
         />
-
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.quickFilters}
-          keyboardShouldPersistTaps="handled"
-        >
-          {QUICK_FILTERS.map((item) => (
-            <View key={item.key} style={styles.chipWrap}>
-              <FilterChip
-                label={item.label}
-                selected={filters[item.key] === true}
-                onPress={() => toggleQuickFilter(item.key)}
-              />
-            </View>
-          ))}
-        </ScrollView>
       </View>
 
       {/* Map-only floating status. In list view these live in the list header. */}
       {find.view === 'map' ? (
         <>
+          {/* Relief's own locate control, replacing the native one, which
+              testers did not find. Sits above the urgent button so it is
+              reachable one-handed without covering it. */}
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Centre map on my location"
+            accessibilityHint={
+              find.hasUserLocation
+                ? undefined
+                : 'Location is not available yet; this will ask for it'
+            }
+            onPress={find.centreOnUser}
+            style={[styles.locateButton, { bottom: locateButtonBottom }]}
+          >
+            <LocateFixed
+              size={22}
+              color={find.hasUserLocation ? colors.primary : colors.textMuted}
+            />
+          </Pressable>
+
           {find.facilitiesLoading ? (
             <View style={[styles.loadingOverlay, { top: chromeHeight + spacing.xs }]}>
               <ActivityIndicator size="small" color={colors.primary} />
@@ -590,9 +575,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
   },
   filtersText: { ...typography.buttonSmall, color: colors.primary },
-  viewSwitch: { marginTop: spacing.sm },
-  quickFilters: { paddingTop: spacing.sm, paddingBottom: spacing.xs },
-  chipWrap: { marginRight: spacing.sm },
+  viewSwitch: { marginTop: spacing.sm, marginBottom: spacing.sm },
+
+  locateButton: {
+    position: 'absolute',
+    right: spacing.lg,
+    width: 48,
+    height: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: borderRadius.full,
+    backgroundColor: colors.white,
+    zIndex: 20,
+    ...shadows.md,
+  },
 
   loadingOverlay: {
     position: 'absolute',

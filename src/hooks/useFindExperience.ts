@@ -91,6 +91,17 @@ export interface FindExperience {
    * facility) publishes a target here and the screen animates to it.
    */
   cameraTarget: Region | null;
+  /**
+   * Move the camera back to the user's current position.
+   *
+   * Reuses the fix already held rather than asking the OS again — the position
+   * is already good enough, and a fresh request would add latency for nothing.
+   * If there is no fix because permission was denied or unavailable, this goes
+   * through the normal location recovery instead of silently doing nothing.
+   */
+  centreOnUser: () => Promise<void>;
+  /** True when a position is held, so the locate control can reflect it. */
+  hasUserLocation: boolean;
 
   // Sorting (list)
   sortMode: SortMode;
@@ -301,6 +312,28 @@ export function useFindExperience(): FindExperience {
     load(region);
   }, [load, region]);
 
+  const centreOnUser = useCallback(async () => {
+    if (!location) {
+      // No fix: run the normal recovery, which re-requests permission if that
+      // is what is missing. The centring effect takes over once a fix lands.
+      await refreshLocation();
+      return;
+    }
+
+    const next: Region = {
+      latitude: location.latitude,
+      longitude: location.longitude,
+      // Neighbourhood zoom: tight enough to be useful on arrival, wide enough
+      // to show more than the pavement you are standing on.
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01 * ASPECT_RATIO,
+    };
+
+    setRegion(next);
+    setCameraTarget(next);
+    load(next);
+  }, [location, refreshLocation, load]);
+
   // ── Ranked list, shared by both views ─────────────────────
   const ranked = useMemo<RankedFacility[]>(() => {
     const openNowOnly = filters.open_now === true;
@@ -430,6 +463,8 @@ export function useFindExperience(): FindExperience {
     onRegionChangeComplete,
     focusRegion,
     cameraTarget,
+    centreOnUser,
+    hasUserLocation: location !== null,
 
     sortMode,
     setSortMode,

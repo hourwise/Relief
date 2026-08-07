@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Dimensions, Platform, StyleSheet } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { ClusterMarker } from './ClusterMarker';
@@ -57,7 +57,6 @@ function clusterFacilities(facilities: Facility[], region: Region): Cluster[] {
 
 interface FacilityMapBodyProps {
   mapRef: React.RefObject<MapView | null>;
-  initialRegion: Region;
   region: Region;
   facilities: Facility[];
   selectedFacilityId: string | null;
@@ -73,7 +72,6 @@ interface FacilityMapBodyProps {
  */
 export const FacilityMapBody: React.FC<FacilityMapBodyProps> = ({
   mapRef,
-  initialRegion,
   region,
   facilities,
   selectedFacilityId,
@@ -93,14 +91,26 @@ export const FacilityMapBody: React.FC<FacilityMapBodyProps> = ({
   const isCluster = (item: Facility | Cluster): item is Cluster =>
     'count' in item && item.count > 1;
 
+  // Captured when THIS MapView mounts, not when the screen first rendered.
+  //
+  // Switching to List unmounts the map, and switching back mounts a new one.
+  // Previously the screen captured `initialRegion` on its own first render —
+  // while the region was still the London fallback — so every return to Map
+  // jumped back to London, discarding wherever the user had panned or
+  // searched. Reading the shared region here means a remount resumes exactly
+  // where the map left off. It is read once, so it never fights panning.
+  const [mountRegion] = useState<Region>(region);
+
   return (
     <MapView
       ref={mapRef}
       style={styles.map}
-      initialRegion={initialRegion}
+      initialRegion={mountRegion}
       onRegionChangeComplete={onRegionChangeComplete}
       showsUserLocation
-      showsMyLocationButton
+      // Replaced by Relief's own locate control, which is easier to find and
+      // shares the app's camera pathway. Two controls would be redundant.
+      showsMyLocationButton={false}
       showsCompass
       rotateEnabled
       zoomEnabled

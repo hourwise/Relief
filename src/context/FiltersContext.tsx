@@ -6,6 +6,7 @@
 
 import React, { createContext, useContext, useState, useCallback } from 'react';
 import type { FacilityFilters } from '../types';
+import { countActiveFilters } from '../utils/filterDefinitions';
 
 interface FiltersContextType {
   filters: Partial<FacilityFilters>;
@@ -36,12 +37,10 @@ export const FiltersProvider: React.FC<{ children: React.ReactNode }> = ({
     setFiltersState(defaultFilters);
   }, []);
 
-  const activeFilterCount = Object.entries(filters).filter(
-    ([key, val]) => {
-      if (key === 'min_rating') return (val as number) > 0;
-      return val === true;
-    },
-  ).length;
+  // Counted through the shared definition so the badge matches what the
+  // Filters screen shows. Counting only `true` here meant a Paid-only filter
+  // (`is_free: false`) was active but the button still read "Filters".
+  const activeFilterCount = countActiveFilters(filters);
 
   return (
     <FiltersContext.Provider
