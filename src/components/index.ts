@@ -26,3 +26,4 @@ export { StateNotice } from './StateNotice';
 export { SegmentedSwitch } from './SegmentedSwitch';
 export { FacilityMapBody } from './FacilityMapBody';
 export { FacilityListBody } from './FacilityListBody';
+export { BrandedHandoff } from './BrandedHandoff';

@@ -1,10 +1,12 @@
 import React, { useMemo, useState } from 'react';
 import { Dimensions, Platform, StyleSheet } from 'react-native';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker, Polyline, PROVIDER_GOOGLE } from 'react-native-maps';
 import { ClusterMarker } from './ClusterMarker';
 import { FacilityMarker } from './FacilityMarker';
 import { SelectedFacilityMarker } from './SelectedFacilityMarker';
 import type { Region } from '../hooks/useFindExperience';
+import { colors } from '../theme';
+import { RELIEF_MAP_STYLE } from '../theme/mapStyle';
 import type { Facility } from '../types';
 
 const { height } = Dimensions.get('window');
@@ -64,6 +66,8 @@ interface FacilityMapBodyProps {
   onRegionChangeComplete: (region: Region) => void;
   onSelectFacility: (facility: Facility) => void;
   onZoomToCluster: (latitude: number, longitude: number) => void;
+  /** Straight line from the user to the active destination, or null. */
+  routeLine: { latitude: number; longitude: number }[] | null;
 }
 
 /**
@@ -79,6 +83,7 @@ export const FacilityMapBody: React.FC<FacilityMapBodyProps> = ({
   onRegionChangeComplete,
   onSelectFacility,
   onZoomToCluster,
+  routeLine,
 }) => {
   const markers = useMemo<(Facility | Cluster)[]>(
     () =>
@@ -117,7 +122,38 @@ export const FacilityMapBody: React.FC<FacilityMapBodyProps> = ({
       scrollEnabled
       pitchEnabled={false}
       provider={Platform.OS === 'android' ? PROVIDER_GOOGLE : undefined}
+      customMapStyle={RELIEF_MAP_STYLE}
+      // The style is the brand surface; without this the map follows the device
+      // theme and rendered dark navy against Relief's light mint chrome.
+      userInterfaceStyle="light"
     >
+      {/* Direct line to the selected destination.
+          Relief previously drew nothing at all: "Get directions" handed straight
+          off to Google Maps, so there was never a line on our own map. This is a
+          straight geodesic path, not a routed one — it is drawn dashed and
+          labelled as direct distance precisely so it is not mistaken for a
+          turn-by-turn route. Real routing needs the Directions API. */}
+      {routeLine ? (
+        <>
+          <Polyline
+            coordinates={routeLine}
+            strokeColor={colors.primary}
+            strokeWidth={8}
+            lineCap="round"
+            geodesic
+            zIndex={1}
+          />
+          <Polyline
+            coordinates={routeLine}
+            strokeColor={colors.amber}
+            strokeWidth={4}
+            lineCap="round"
+            lineDashPattern={[10, 12]}
+            geodesic
+            zIndex={2}
+          />
+        </>
+      ) : null}
       {markers.map((item) => {
         if (isCluster(item)) {
           return (

@@ -28,6 +28,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import {
+  BrandedHandoff,
   FacilityListBody,
   FacilityMapBody,
   PrimaryButton,
@@ -134,6 +135,50 @@ export const FindScreen: React.FC = () => {
     Linking.openURL(
       `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}&travelmode=walking&dir_action=navigate`,
     );
+
+  // Branded handoff: shown only while the app is genuinely getting ready, and
+  // dismissed the moment it is. No timer, no artificial minimum — a fast
+  // connection should see little more than a flicker.
+  //
+  // "Ready" means location has resolved one way or another (a fix, a refusal,
+  // or a failure — all three are answers) AND the first facility fetch has
+  // settled. It also gives up after a ceiling so a hung request can never
+  // strand the user behind a splash.
+  const [handoffDone, setHandoffDone] = useState(false);
+  const ready =
+    !find.locationInitialising && (find.facilities.length > 0 || !find.facilitiesLoading);
+
+  useEffect(() => {
+    const ceiling = setTimeout(() => setHandoffDone(true), 6000);
+    return () => clearTimeout(ceiling);
+  }, []);
+
+  const handoffStatus = find.locationInitialising
+    ? 'Finding your location…'
+    : 'Finding nearby facilities…';
+
+  // The line drawn on our own map from the user to the active destination.
+  //
+  // The reported "route line does not show" was not a rendering fault: Relief
+  // never drew one. "Get directions" opened Google Maps, so the only route that
+  // ever existed was Google's, inside Google's app. This gives the destination
+  // a visible connection to the user before they hand off.
+  //
+  // It needs a real position at both ends; with no location fix there is
+  // nothing to draw a line from.
+  const routeLine = React.useMemo(() => {
+    if (!find.location) return null;
+    const destination = nearestResult
+      ? { latitude: nearestResult.facility.latitude, longitude: nearestResult.facility.longitude }
+      : find.selectedFacility
+        ? { latitude: find.selectedFacility.latitude, longitude: find.selectedFacility.longitude }
+        : null;
+    if (!destination) return null;
+    return [
+      { latitude: find.location.latitude, longitude: find.location.longitude },
+      destination,
+    ];
+  }, [find.location, nearestResult, find.selectedFacility]);
 
   // Keep the locate control clear of whatever occupies the bottom of the map:
   // the tall nearest-facility card, the shorter selection card, or the urgent
@@ -386,6 +431,7 @@ export const FindScreen: React.FC = () => {
           onRegionChangeComplete={find.onRegionChangeComplete}
           onSelectFacility={find.selectFacility}
           onZoomToCluster={animateTo}
+          routeLine={routeLine}
         />
       ) : (
         <FacilityListBody
@@ -545,6 +591,14 @@ export const FindScreen: React.FC = () => {
       ) : null}
 
       {bottomCard}
+
+      {!handoffDone ? (
+        <BrandedHandoff
+          status={handoffStatus}
+          visible={!ready}
+          onFadedOut={() => setHandoffDone(true)}
+        />
+      ) : null}
     </View>
   );
 };
