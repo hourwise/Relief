@@ -148,7 +148,7 @@ export const LoginScreen: React.FC = () => {
           onPress={() => navigation.navigate('Register')}
         >
           <Text style={styles.signupLinkText}>
-            Don't have an account?{' '}
+            {"Don't have an account? "}
             <Text style={styles.signupLinkBold}>Sign Up</Text>
           </Text>
         </TouchableOpacity>

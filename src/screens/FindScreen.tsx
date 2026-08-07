@@ -90,7 +90,10 @@ export const FindScreen: React.FC = () => {
 
   // The map's initialRegion is captured once. Later movement goes through
   // animateToRegion so the user's own gestures are never fought.
-  const initialRegionRef = useRef<Region>(find.region);
+  //
+  // Held in state rather than a ref because this is read during render, and
+  // reading a ref during render is unsafe under the React Compiler.
+  const [initialRegion] = useState<Region>(find.region);
 
   const openFacility = useCallback(
     (facility: Facility) =>
@@ -377,7 +380,7 @@ export const FindScreen: React.FC = () => {
       {find.view === 'map' ? (
         <FacilityMapBody
           mapRef={mapRef}
-          initialRegion={initialRegionRef.current}
+          initialRegion={initialRegion}
           region={find.region}
           facilities={find.facilities}
           selectedFacilityId={find.selectedFacility?.id ?? null}

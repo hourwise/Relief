@@ -1,0 +1,16 @@
+# Generated or vendored — not ours to format.
+node_modules/
+android/
+ios/
+dist/
+.expo/
+src/types/database.types.ts
+supabase/migrations/
+supabase/legacy_migrations/
+package-lock.json
+
+# Vite visual reference, not part of the React Native app.
+React Native App UI (1)/
+
+# Deno, formatted by its own toolchain.
+supabase/functions/

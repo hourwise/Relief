@@ -15,7 +15,7 @@ import {
   TextInput,
 } from 'react-native';
 import { colors, typography, spacing, borderRadius } from '../theme';
-import { Button, Card } from '../components';
+import { Button, Card , PremiumGate } from '../components';
 import {
   getSavedProfiles,
   createSavedProfile,
@@ -25,7 +25,7 @@ import {
   getModeIcon,
 } from '../services/profiles';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { PremiumGate } from '../components';
+
 import type { SavedProfile, SavedProfileMode } from '../types';
 
 const PROFILE_MODES: { mode: SavedProfileMode; description: string }[] = [

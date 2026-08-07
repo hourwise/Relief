@@ -4,7 +4,7 @@
 // Inspired by Studio Ghibli warmth, soft organic shapes
 // ============================================================
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Animated, StyleSheet, View, Text } from 'react-native';
 import { colors, shadows } from '../theme';
 
@@ -21,7 +21,7 @@ export const AnimatedPin: React.FC<AnimatedPinProps> = ({
   glowColor = colors.mapPinGlow,
   icon = '📍',
 }) => {
-  const pulseAnim = useRef(new Animated.Value(1)).current;
+  const pulseAnim = useMemo(() => new Animated.Value(1), []);
 
   useEffect(() => {
     const pulse = Animated.loop(

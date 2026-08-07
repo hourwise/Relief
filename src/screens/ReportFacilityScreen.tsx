@@ -3,7 +3,7 @@
 // Temporary reports: closure, out of order, cleaning, busy, etc.
 // ============================================================
 
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -19,16 +19,17 @@ import { submitTemporaryReport, getActiveReports, resolveOwnReport } from '../se
 import { useRoute, useNavigation, NavigationProp, RouteProp } from '@react-navigation/native';
 import type { FindStackParamList } from '../types';
 import type { TemporaryReport } from '../types/community';
+import { REPORT_TYPE_META, reportDurationHours, reportTypeLabel, type ReportType } from '../utils/reportTypes';
 
-type ReportType = TemporaryReport['type'];
-
-const REPORT_TYPES: { type: ReportType; label: string; icon: string; description: string; durationHours: number }[] = [
-  { type: 'closed', label: 'Closed', icon: '🔒', description: 'Facility is currently closed', durationHours: 2 },
-  { type: 'out_of_order', label: 'Out of Order', icon: '🔧', description: 'Facility is out of service', durationHours: 4 },
-  { type: 'cleaning', label: 'Cleaning', icon: '🧹', description: 'Currently being cleaned', durationHours: 1 },
-  { type: 'busy', label: 'Busy', icon: '🚶', description: 'Long queue / very busy', durationHours: 1 },
-  { type: 'no_water', label: 'No Water', icon: '🚱', description: 'No running water available', durationHours: 4 },
-  { type: 'refurbishment', label: 'Refurbishment', icon: '🔨', description: 'Under refurbishment', durationHours: 24 },
+// Labels, icons and durations come from the shared source so this form and the
+// facility detail banner cannot disagree about what a report type is called.
+const REPORT_TYPES: { type: ReportType; description: string }[] = [
+  { type: 'closed', description: 'Facility is currently closed' },
+  { type: 'out_of_order', description: 'Facility is out of service' },
+  { type: 'cleaning', description: 'Currently being cleaned' },
+  { type: 'busy', description: 'Long queue / very busy' },
+  { type: 'no_water', description: 'No running water available' },
+  { type: 'refurbishment', description: 'Under refurbishment' },
 ];
 
 export const ReportFacilityScreen: React.FC = () => {
@@ -42,16 +43,18 @@ export const ReportFacilityScreen: React.FC = () => {
   const [notes, setNotes] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
-  useEffect(() => {
-    loadActiveReports();
-  }, []);
-
-  const loadActiveReports = async () => {
+  // Declared before the effect that calls it. It was previously referenced
+  // above its own `const` declaration, which only worked by closure timing.
+  const loadActiveReports = useCallback(async () => {
     setLoading(true);
     const reports = await getActiveReports(facilityId);
     setActiveReports(reports);
     setLoading(false);
-  };
+  }, [facilityId]);
+
+  useEffect(() => {
+    loadActiveReports();
+  }, [loadActiveReports]);
 
   const handleSubmit = async () => {
     if (!selectedType) {
@@ -60,12 +63,11 @@ export const ReportFacilityScreen: React.FC = () => {
     }
 
     setSubmitting(true);
-    const reportType = REPORT_TYPES.find((r) => r.type === selectedType);
     const result = await submitTemporaryReport(
       facilityId,
       selectedType,
       notes.trim(),
-      reportType?.durationHours || 2,
+      reportDurationHours(selectedType),
     );
     setSubmitting(false);
 
@@ -94,9 +96,7 @@ export const ReportFacilityScreen: React.FC = () => {
             <View key={report.id} style={styles.activeReportItem}>
               <View style={styles.activeReportInfo}>
                 <Text style={styles.activeReportType}>
-                  {REPORT_TYPES.find((r) => r.type === report.type)?.icon}{' '}
-                  {REPORT_TYPES.find((r) => r.type === report.type)?.label ||
-                    report.type}
+                  {REPORT_TYPE_META[report.type]?.icon} {reportTypeLabel(report.type)}
                 </Text>
                 <Text style={styles.activeReportTime}>
                   Expires:{' '}
@@ -112,7 +112,7 @@ export const ReportFacilityScreen: React.FC = () => {
       )}
 
       {/* Report Type Selection */}
-      <Text style={styles.sectionTitle}>What's the issue?</Text>
+      <Text style={styles.sectionTitle}>{"What's the issue?"}</Text>
       <View style={styles.typeGrid}>
         {REPORT_TYPES.map((reportType) => {
           const isSelected = selectedType === reportType.type;
@@ -125,17 +125,25 @@ export const ReportFacilityScreen: React.FC = () => {
               ]}
               onPress={() => setSelectedType(reportType.type)}
               activeOpacity={0.7}
+              accessibilityRole="radio"
+              accessibilityState={{ selected: isSelected, checked: isSelected }}
+              accessibilityLabel={`${reportTypeLabel(reportType.type)}. ${reportType.description}`}
             >
-              <Text style={styles.typeIcon}>{reportType.icon}</Text>
+              <Text style={styles.typeIcon}>{REPORT_TYPE_META[reportType.type].icon}</Text>
               <Text
                 style={[
                   styles.typeLabel,
                   isSelected && styles.typeLabelSelected,
                 ]}
               >
-                {reportType.label}
+                {reportTypeLabel(reportType.type)}
               </Text>
-              <Text style={styles.typeDescription}>
+              <Text
+                style={[
+                  styles.typeDescription,
+                  isSelected && styles.typeDescriptionSelected,
+                ]}
+              >
                 {reportType.description}
               </Text>
             </TouchableOpacity>
@@ -235,9 +243,13 @@ const styles = StyleSheet.create({
     borderColor: colors.gray200,
     alignItems: 'center',
   },
+  // Selected state fills with `primary` and inverts the text. It previously
+  // filled with `primaryLight` (#2D8A77) while keeping `primary` (#1A6B5C) text
+  // and secondary-grey description — dark on dark, roughly 1.5:1, so the
+  // selected option was the hardest one on the screen to read.
   typeCardSelected: {
     borderColor: colors.primary,
-    backgroundColor: colors.primaryLight,
+    backgroundColor: colors.primary,
   },
   typeIcon: {
     fontSize: 28,
@@ -250,12 +262,15 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   typeLabelSelected: {
-    color: colors.primary,
+    color: colors.white,
   },
   typeDescription: {
     ...typography.caption,
     color: colors.textSecondary,
     textAlign: 'center',
+  },
+  typeDescriptionSelected: {
+    color: colors.white,
   },
   label: {
     ...typography.bodySmall,

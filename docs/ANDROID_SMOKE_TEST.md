@@ -201,13 +201,21 @@ publishing invented information about a real place.
 
 ### Signed-in observations (not fixed)
 
-- On the report screen, the **selected** issue card keeps dark text on the dark
-  green fill, which is poor contrast. The correction screen gets this right
-  (white on green). Worth aligning.
-- Both submission screens show a success dialog but stay on the completed form
-  with the selection still active, so the same report can be submitted twice.
-  They should dismiss back to the facility.
-- The report banner prints the raw enum (`busy:`) rather than a friendly label.
+- ~~On the report screen, the **selected** issue card keeps dark text on the dark
+  green fill.~~ **Fixed.** It filled with `primaryLight` (#2D8A77) while keeping
+  `primary` (#1A6B5C) text and a secondary-grey description — roughly 1.5:1,
+  making the selected option the hardest thing on the screen to read. It now
+  fills with `primary` and inverts the text to white, matching the correction
+  screen, and the cards carry proper radio roles and selected state.
+- ~~Both submission screens stay on the completed form after their success
+  dialog, so a report can be submitted twice.~~ **This observation was wrong.**
+  Both already dismiss: `ReportFacilityScreen` and `CorrectInfoScreen` each pass
+  `onPress: () => navigation.goBack()` on the dialog's OK. What was seen was the
+  modal dialog sitting over the form *before* being dismissed. No change needed.
+- ~~The report banner prints the raw enum (`busy:`).~~ **Fixed.** Labels, icons
+  and durations now come from `src/utils/reportTypes.ts`, shared by the banner
+  and the report form so the two cannot drift, with a de-slugging fallback for a
+  type the client does not yet know about.
 
 ## Defects found by this run
 

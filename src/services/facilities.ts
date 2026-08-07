@@ -63,7 +63,7 @@ export interface ViewportBounds {
   maxLongitude: number;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 function applyFilters(query: any, filters: Partial<FacilityFilters>): any {
   let q = query;
   for (const { column, value } of filterColumnMap(filters)) {

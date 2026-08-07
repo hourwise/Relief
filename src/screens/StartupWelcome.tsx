@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { AccessibilityInfo, Animated, Pressable, StyleSheet, Text, View } from 'react-native';
 import { ReliefLogo, WatercolorMapBackdrop } from '../components';
 import { borderRadius, colors, spacing, typography } from '../theme';
@@ -10,8 +10,8 @@ interface StartupWelcomeProps {
 
 /** A post-native-splash welcome surface that exits as soon as real startup is done. */
 export const StartupWelcome: React.FC<StartupWelcomeProps> = ({ startupReady, onFinished }) => {
-  const opacity = useRef(new Animated.Value(1)).current;
-  const contentOpacity = useRef(new Animated.Value(0)).current;
+  const opacity = useMemo(() => new Animated.Value(1), []);
+  const contentOpacity = useMemo(() => new Animated.Value(0), []);
   const [reduceMotion, setReduceMotion] = useState(false);
   const [skipDecoration, setSkipDecoration] = useState(false);
 

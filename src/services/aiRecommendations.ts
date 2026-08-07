@@ -59,11 +59,11 @@ export interface PredictiveSuggestion {
  * Map ProfilePreferences to facility attribute checks.
  * Returns a list of (attribute, label) pairs that are required.
  */
-function getPreferenceChecks(prefs: ProfilePreferences): Array<{
+function getPreferenceChecks(prefs: ProfilePreferences): {
   field: keyof Facility;
   label: string;
-}> {
-  const checks: Array<{ field: keyof Facility; label: string }> = [];
+}[] {
+  const checks: { field: keyof Facility; label: string }[] = [];
 
   if (prefs.requires_accessible) {
     checks.push({ field: 'is_accessible', label: 'Accessible' });

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { AccessibilityInfo, Animated, StyleSheet, View } from 'react-native';
 import { MapPin } from 'lucide-react-native';
 import { colors, shadows } from '../theme';
@@ -6,7 +6,7 @@ import { colors, shadows } from '../theme';
 interface SelectedFacilityMarkerProps { urgent?: boolean; }
 
 export const SelectedFacilityMarker: React.FC<SelectedFacilityMarkerProps> = ({ urgent = false }) => {
-  const scale = useRef(new Animated.Value(1)).current;
+  const scale = useMemo(() => new Animated.Value(1), []);
   const [reduceMotion, setReduceMotion] = useState(false);
   useEffect(() => {
     AccessibilityInfo.isReduceMotionEnabled().then(setReduceMotion).catch(() => undefined);

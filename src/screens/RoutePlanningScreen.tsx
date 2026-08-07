@@ -16,11 +16,11 @@ import {
   Linking,
 } from 'react-native';
 import { colors, typography, spacing, borderRadius } from '../theme';
-import { Button, Card, Badge } from '../components';
+import { Button, Card, Badge , PremiumGate } from '../components';
 import { planRoute, formatRouteSummary } from '../services/routePlanning';
 import type { RoutePlan } from '../services/routePlanning';
 import type { Facility } from '../types';
-import { PremiumGate } from '../components';
+
 
 const SUGGESTED_ROUTES = [
   { from: 'Liverpool', to: 'London' },

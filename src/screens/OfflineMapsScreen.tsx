@@ -15,7 +15,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { colors, typography, spacing, borderRadius } from '../theme';
-import { Button, Card, Badge } from '../components';
+import { Button, Card, Badge , PremiumGate } from '../components';
 import {
   downloadRegion,
   getDownloadedRegions,
@@ -25,7 +25,7 @@ import {
   isRegionDownloaded,
 } from '../services/offlineMaps';
 import { useNavigation, NavigationProp, useFocusEffect } from '@react-navigation/native';
-import { PremiumGate } from '../components';
+
 import type { DownloadedRegion } from '../services/offlineMaps';
 
 const POPULAR_TOWNS = [

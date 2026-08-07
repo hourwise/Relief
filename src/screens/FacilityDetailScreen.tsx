@@ -10,11 +10,12 @@ import { fetchFacilityById } from '../services/facilities';
 import { addFavourite, isFavourite, removeFavourite } from '../services/favourites';
 import { useAuthGate } from '../context/AuthContext';
 import { getOpenStatus } from '../utils/openingHours';
+import { reportTypeLabel } from '../utils/reportTypes';
 import { borderRadius, colors, spacing, touchTargets, typography } from '../theme';
 
 type FacilityDetailRouteProp = RouteProp<FindStackParamList, 'FacilityDetail'>;
 
-const amenityLabels: Array<[keyof Facility, string]> = [
+const amenityLabels: [keyof Facility, string][] = [
   ['is_accessible', 'Accessible'], ['is_disabled_access', 'Disabled access'], ['has_wheelchair_access', 'Wheelchair access'], ['requires_radar_key', 'RADAR Key'], ['has_adult_changing_place', 'Adult changing place'], ['has_grab_rails', 'Grab rails'], ['has_baby_changing', 'Baby changing'], ['has_family_room', 'Family room'], ['is_gender_neutral', 'Gender-neutral'], ['is_single_occupancy', 'Single occupancy'], ['is_24h', 'Open 24 hours'], ['is_picnic_area', 'Picnic area'],
 ];
 
@@ -130,7 +131,7 @@ export const FacilityDetailScreen: React.FC = () => {
           <View style={styles.locationCopy}><Text style={styles.locationKicker}>FACILITY LOCATION</Text><Text style={styles.locationText} numberOfLines={2}>{facility.town || facility.address || 'Location information unavailable'}</Text></View>
         </SoftCard>
 
-        {activeReports.length ? <SoftCard style={styles.warning}><Text style={styles.warningTitle}>Recent community reports</Text>{activeReports.map((report) => <Text key={report.id} style={styles.warningText}>{report.type}: {report.notes || 'No details provided'}</Text>)}</SoftCard> : null}
+        {activeReports.length ? <SoftCard style={styles.warning}><Text style={styles.warningTitle}>Recent community reports</Text>{activeReports.map((report) => <Text key={report.id} style={styles.warningText}>{reportTypeLabel(report.type)}{report.notes?.trim() ? ` — ${report.notes.trim()}` : ''}</Text>)}</SoftCard> : null}
 
         <View style={styles.hero}><View style={styles.heroCopy}><Text style={styles.name}>{facility.name}</Text><Text style={styles.address}>{facility.address || facility.town || 'Address unavailable'}</Text></View><StatusBadge status={openStatus} /></View>
         <View style={styles.metaBadges}><View style={styles.costBadge}><Text style={styles.costText}>{cost}</Text></View><VerificationBadge status={facility.verification_status} /></View>
