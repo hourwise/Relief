@@ -332,11 +332,7 @@ export const FindScreen: React.FC = () => {
     if (find.selectedFacility) {
       const selected = find.selectedFacility;
       return (
-        <SoftCard
-          onPress={() => openFacility(selected)}
-          accessibilityLabel={`View details for ${selected.name}`}
-          style={styles.bottomCard}
-        >
+        <SoftCard style={styles.bottomCard}>
           <View style={styles.selectedRow}>
             <View style={styles.selectedCopy}>
               <Text style={styles.cardTitle} numberOfLines={1}>
@@ -349,7 +345,27 @@ export const FindScreen: React.FC = () => {
             </View>
             <StatusBadge status={getOpenStatus(selected)} />
           </View>
-          <Text style={styles.detailsLink}>View details</Text>
+          {/* Dismissable. Without this, tapping any marker hid "Need One Now"
+              with no way back — an incidental tap should not block the most
+              urgent control on the screen. */}
+          <View style={styles.selectedActions}>
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel={`View details for ${selected.name}`}
+              onPress={() => openFacility(selected)}
+              style={styles.detailsLinkButton}
+            >
+              <Text style={styles.detailsLink}>View details</Text>
+            </Pressable>
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel="Close"
+              onPress={() => find.selectFacility(null)}
+              style={styles.dismiss}
+            >
+              <Text style={styles.dismissText}>Close</Text>
+            </Pressable>
+          </View>
         </SoftCard>
       );
     }
@@ -698,6 +714,7 @@ const styles = StyleSheet.create({
   dismissText: { ...typography.buttonSmall, color: colors.textSecondary },
   selectedRow: { flexDirection: 'row', alignItems: 'flex-start' },
   selectedCopy: { flex: 1, paddingRight: spacing.sm },
+  selectedActions: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   detailsLink: { ...typography.buttonSmall, color: colors.primary, marginTop: spacing.sm },
   detailsLinkButton: { minHeight: 44, justifyContent: 'center' },
 });

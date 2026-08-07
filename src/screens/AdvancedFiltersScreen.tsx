@@ -47,7 +47,9 @@ export const AdvancedFiltersScreen: React.FC = () => {
 
   return <ScreenBackground>
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.header}>
+      {/* react-native's SafeAreaView is a no-op on Android, so the top inset is
+          applied here. Without it the title and Reset sat under the status bar. */}
+      <View style={[styles.header, { paddingTop: insets.top }]}>
         <Pressable accessibilityRole="button" accessibilityLabel="Back" onPress={() => navigation.goBack()} style={styles.backButton}><ArrowLeft size={22} color={colors.textPrimary} /></Pressable>
         <View style={styles.headerCopy}><Text style={styles.headerTitle}>Filters</Text><Text style={styles.headerSubtitle}>{activeCount ? `${activeCount} active filter${activeCount === 1 ? '' : 's'}` : 'No filters applied'}</Text></View>
         <Pressable accessibilityRole="button" accessibilityLabel="Reset filters" disabled={!activeCount} onPress={() => setDraft({})} style={[styles.reset, !activeCount && styles.resetDisabled]}><RotateCcw size={17} color={colors.primary} /><Text style={styles.resetText}>Reset</Text></Pressable>
@@ -137,7 +139,7 @@ export const AdvancedFiltersScreen: React.FC = () => {
 
 const styles = StyleSheet.create({
   safeArea: { flex: 1 },
-  header: { minHeight: 68, flexDirection: 'row', alignItems: 'center', paddingHorizontal: spacing.lg, backgroundColor: colors.white, borderBottomWidth: 1, borderBottomColor: colors.borderLight },
+  header: { minHeight: 68, flexDirection: 'row', alignItems: 'center', paddingHorizontal: spacing.lg, paddingBottom: spacing.sm, backgroundColor: colors.white, borderBottomWidth: 1, borderBottomColor: colors.borderLight },
   backButton: { minWidth: touchTargets.minimum, minHeight: touchTargets.minimum, alignItems: 'center', justifyContent: 'center', marginRight: spacing.sm },
   headerCopy: { flex: 1 },
   headerTitle: { ...typography.h3, color: colors.textPrimary },

@@ -28,6 +28,9 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 const DEBOUNCE_MS = 400;
 
+/** Zoom used by the "centre on my location" control. See centreOnUser(). */
+const LOCATE_LATITUDE_DELTA = 0.05;
+
 /** Fallback view (central London) used only until a real position arrives. */
 const FALLBACK_REGION: Region = {
   latitude: 51.5074,
@@ -323,10 +326,13 @@ export function useFindExperience(): FindExperience {
     const next: Region = {
       latitude: location.latitude,
       longitude: location.longitude,
-      // Neighbourhood zoom: tight enough to be useful on arrival, wide enough
-      // to show more than the pavement you are standing on.
-      latitudeDelta: 0.01,
-      longitudeDelta: 0.01 * ASPECT_RATIO,
+      // ~5.5 km tall. Chosen from the data rather than by feel: at the test
+      // location the live database has 0 published facilities within 1 km, 7
+      // within 3 km and 29 within 5 km. A tighter zoom (0.01, ~1.1 km) put the
+      // user in the middle of an empty map reading "No facilities in this
+      // area" — technically true, and a useless answer to "where am I".
+      latitudeDelta: LOCATE_LATITUDE_DELTA,
+      longitudeDelta: LOCATE_LATITUDE_DELTA * ASPECT_RATIO,
     };
 
     setRegion(next);

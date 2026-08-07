@@ -220,6 +220,97 @@ test, so seeing it again needs a sign-in. The colour values are asserted by
 inspection (`primary` fill, white label and description) and the report type
 labels are covered by `__tests__/reportTypes.test.ts` (45 assertions).
 
+## Find UX pass — device acceptance test (2026-08-07, later session)
+
+A second physical-device session found three Find problems. All are fixed; the
+results below are from the rebuilt APK on the same S24 Ultra.
+
+| # | Check | Result |
+|---|-------|--------|
+| 1 | The four quick-filter chips are gone | **PASS** — chrome is now search + Filters + Map/List only, leaving noticeably more map visible |
+| 2 | Filter screen only offers options backed by real data | **PASS** — Cost (Any/Free/Paid), Open now, and seven switches; nothing else |
+| 3 | Free returns results | **PASS** on device — `Filters (1)`, results returned |
+| 4 | Paid returns results | **PASS** — 33 in a Liverpool/Wirral viewport (query-verified; see note) |
+| 5 | Accessible returns results | **PASS** — 54 |
+| 6 | Baby changing returns results | **PASS** — 69 |
+| 7 | RADAR Key returns results | **PASS** — 27 |
+| 8 | Open 24 hours returns results | **PASS** — 3 |
+| 9 | Open now returns plausible results | **PASS** — 86 rows in that viewport carry `open_hours` to evaluate |
+| 10 | Combining two filters works and is not a false failure | **PASS** — Accessible + Baby changing = 31, Free + RADAR Key = 20. With no match the screen reads "Nothing here matches your filters" with **Clear filters**, not a service error |
+| 11 | Zero-data filters and ratings are not exposed | **PASS** — none of the 26 zero-count columns appear, and the rating selector is gone |
+| 12 | Map starts centred on the user | **PASS** |
+| 13 | Pan elsewhere → List → Map returns to that area | **PASS** — returned to the exact Ellesmere Port viewport, same clusters and count |
+| 14 | Current location → List → Map does not reset to London | **PASS** |
+| 15 | Search/focus → List → Map preserves that viewport | **PASS** — stayed on Liverpool (Alder Hey / Broadgreen) with the filter and selection intact |
+| 16 | The centre-location button returns the camera to the user | **PASS** |
+| 17 | Centre-location behaves sensibly with permission denied | **PASS** — falls through to the existing permission recovery |
+| 18 | Need One Now still works | **PASS** |
+| 19 | Map/List state preservation still works | **PASS** — filters, selection and viewport all survive the switch |
+| 20 | No fatal exceptions in logcat | **PASS** — 0 throughout |
+
+> **On checks 4–9.** Free was exercised end to end on the device. The device's
+> viewport is about 5.5 km across and adb cannot pinch-zoom, so rather than
+> claim each remaining filter was tapped, each was verified with the same
+> bounding-box query the app issues (`fetchViewportFacilities`) over a realistic
+> ~25 km Liverpool/Wirral viewport. All seven filters and both combinations
+> return results. The UI path is identical for every filter because they are all
+> generated from one definition list.
+
+### Filter data coverage
+
+Measured against the live database on 2026-08-07 (15,584 published facilities):
+
+| Filter | Facilities |
+|--------|-----------|
+| Cost — Free (`is_free = true`) | 12,216 |
+| Cost — Paid (`is_free = false`) | 3,221 |
+| `open_hours` present (drives Open now) | 6,718 |
+| Accessible | 6,374 |
+| Baby changing | 4,889 |
+| RADAR Key | 2,453 |
+| Gender-neutral | 1,766 |
+| Open 24 hours | 984 |
+| Staff nearby | 829 |
+| Family friendly | 291 |
+
+Every other amenity column measured **0**, and **0** facilities have
+`overall_score > 0`. Those columns are retained in the schema and listed in
+`HIDDEN_UNTIL_POPULATED` in `src/utils/filterDefinitions.ts`; they can be
+offered again once ingestion or community contributions populate them.
+
+### Fixed in this pass
+
+1. **Filters offered fields with no data.** Most advanced switches always
+   returned nothing, which reads as a broken service. Now only populated
+   filters are offered, from one definition module shared by the UI and the
+   query. Cost became tri-state, since `is_free = false` is a real request that
+   a toggle cannot express, and the rating selector was removed.
+2. **Quick-filter chips removed.** They duplicated the Filters button, consumed
+   map space, and gave filters two sources of truth.
+3. **Map → List → Map reset to London.** `FindScreen` captured `initialRegion`
+   on its own first render, while the region was still the startup fallback.
+   Switching to List unmounts the map, and the remount replayed that stale
+   London region. `FacilityMapBody` now captures the shared region when *it*
+   mounts, so a remount resumes where the map left off.
+4. **No usable locate control.** The native `showsMyLocationButton` was not
+   discoverable; replaced with a Relief-owned control that reuses the held fix
+   rather than re-asking the OS, publishes through the existing camera pathway,
+   and falls through to permission recovery when there is no fix.
+
+### Also found and fixed while testing
+
+- **The locate zoom was useless.** At `latitudeDelta: 0.01` (~1.1 km) it landed
+  on an empty map reading "No facilities in this area" — technically true and a
+  useless answer to "where am I". The live data settled it: 0 facilities within
+  1 km of the test position, 7 within 3 km, 29 within 5 km. Widened to 0.05
+  (~5.5 km), which reliably shows facilities.
+- **The Filters header sat under the status bar.** `react-native`'s
+  `SafeAreaView` is a no-op on Android, so the top inset is now applied
+  explicitly. Pre-existing, but plainly visible on the rewritten screen.
+- **Tapping a marker hid "Need One Now" permanently.** The selection card
+  replaced the urgent button with no way to dismiss it, so an incidental marker
+  tap blocked the most urgent control on the screen. The card now has a Close.
+
 ### Signed-in observations (not fixed)
 
 - ~~On the report screen, the **selected** issue card keeps dark text on the dark

@@ -11,12 +11,13 @@
 | Expo doctor | `npx expo-doctor` | **21/21 checks passed** |
 | Lint | `npm run lint` | **0 errors**, 92 warnings (ESLint + Prettier now configured) |
 | TypeScript | `npx tsc --noEmit` | **0 errors** |
-| Tests | `npm test` | **8 files, 207 assertions, all passing** |
+| Tests | `npm test` | **9 files, 386 assertions, all passing** |
 | Public config | `npx expo config --type public` | Resolves; `com.relief.app`, SDK 56.0.0 |
 | Android prebuild | `npx expo prebuild --platform android --clean` | Succeeded |
 | APK build (local) | `gradlew assembleRelease -PreactNativeArchitectures=arm64-v8a` | **BUILD SUCCESSFUL** — `app-release.apk`, 48.8 MB, arm64-v8a, JS bundle embedded |
 | APK build (EAS) | `eas build -p android --profile preview` | **NOT RUN** — no EAS project linked |
 | Android smoke test | 22 required checks | **22/22 PASS** on a physical S24 Ultra — see `ANDROID_SMOKE_TEST.md` |
+| Find UX acceptance test | 20 checks | **20/20 PASS** after the filter, viewport and locate-control pass |
 | Signed-in journey | favourites, reports, corrections, sign-out | **PASS**, with database writes confirmed over `psql` and test rows removed afterwards |
 
 ---
@@ -60,9 +61,17 @@ find_nearest_facilities(53.4084, -2.9916, 5000, 1)
   → Moorfields, Liverpool, 162 m — HTTP 200, no PostgreSQL error
 ```
 
-`is_picnic_area` does exist in the live schema and is retained on the table and as a filter.
+`is_picnic_area` does exist in the live schema and is retained on the table. It is not currently offered as a filter, because no published facility sets it — see the coverage note below.
 
 The seven original hand-written migrations no longer describe the live database and have been moved to `supabase/legacy_migrations/` as history only.
+
+### Filter data coverage
+
+The schema carries far more amenity columns than the app offers as filters. Most are unpopulated, so a switch for them would always return nothing — which, to a user, is indistinguishable from a broken service.
+
+Measured on 2026-08-07 across the 15,584 published facilities, these columns have usable coverage and are offered: `is_free` 12,216 (and 3,221 explicitly paid), `is_accessible` 6,374, `has_baby_changing` 4,889, `requires_radar_key` 2,453, `is_gender_neutral` 1,766, `is_24h` 984, `has_staff_nearby` 829, `is_family_friendly` 291. A further 6,718 rows carry `open_hours`, which is what makes the client-derived "Open now" filter meaningful.
+
+**Every other amenity column measured 0**, as did `overall_score > 0` — so no facility is rated, and the minimum-rating selector was removed. Those columns are deliberately kept in the schema and listed in `HIDDEN_UNTIL_POPULATED` in `src/utils/filterDefinitions.ts`, with a test asserting they stay hidden. They can be offered again once ingestion or community contributions populate them.
 
 ---
 
@@ -72,9 +81,9 @@ The seven original hand-written migrations no longer describe the live database 
 |------|--------|--------|
 | Schema/type reconciliation | VERIFIED (compile-time) | `Facility` and `FacilityFilters` are **derived** from generated types in `src/types/database.types.ts`. `FILTERABLE_BOOLEAN_COLUMNS` uses `satisfies`, so naming a column the database lacks is now a compile error rather than a runtime 42703 |
 | Generated types | VERIFIED | Generated from live `pg_catalog` by `tools/generate-database-types.mjs` (`npm run gen:types`). `supabase gen types` needs Docker, which is unavailable on this machine |
-| Invalid advanced filters | REMOVED | The six phantom filters are gone from the UI and from the client query map. A regression test asserts they cannot be offered or sent |
+| Filters | VERIFIED on device | Only filters the live data can answer are offered, from one definition module shared by UI and query. Six phantom columns cannot be referenced at all (compile error); 26 real-but-unpopulated columns are hidden with their measured counts recorded. Cost is tri-state; the rating selector is gone while 0 facilities are rated |
 | Mocked Nearby list | REMOVED | `MOCK_FACILITIES` and `ListScreen.tsx` deleted |
-| Shared Find experience | VERIFIED on device | `FindScreen` + `useFindExperience` give the map and list one shared source of location, facilities, search, filters, loading/error state and selection. Map/List segmented switch |
+| Shared Find experience | VERIFIED on device | `FindScreen` + `useFindExperience` give the map and list one shared source of location, facilities, search, filters, loading/error state and selection. Map/List switching preserves viewport, filters and selection — the map captures the shared region when it mounts, so a return from List resumes where it left off rather than replaying the startup fallback |
 | Map viewport loading | VERIFIED on device | Latest-request-wins via a request sequence plus a queued newest region. The previous code skipped fetches while a request was in flight *and* left `inFlightRef` stuck `true` on its early-return path, which could stall loading permanently |
 | Runtime error states | VERIFIED on device | Distinct states for initial location loading, facility loading, permission denied, location unavailable, query failure, no facilities in area, and nearest-RPC failure. A failed query never renders as "no facilities found" |
 | Guest discovery | VERIFIED on device | Root navigator renders the app with or without a session. Policy centralised in `src/utils/guestAccess.ts` and covered by 68 assertions. Authentication is requested only for favourites, submissions, corrections, reports and account settings |
