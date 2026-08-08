@@ -1,8 +1,8 @@
 import React from 'react';
-import { Pressable, SafeAreaView, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 import { ArrowLeft, RotateCcw } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { FacilityFilters } from '../types';
 import { PrimaryButton, ScreenBackground, SoftCard } from '../components';
 import { useFilters } from '../context/FiltersContext';
@@ -47,9 +47,10 @@ export const AdvancedFiltersScreen: React.FC = () => {
 
   return <ScreenBackground>
     <SafeAreaView style={styles.safeArea}>
-      {/* react-native's SafeAreaView is a no-op on Android, so the top inset is
-          applied here. Without it the title and Reset sat under the status bar. */}
-      <View style={[styles.header, { paddingTop: insets.top }]}>
+      {/* The top inset comes from SafeAreaView (the safe-area-context one —
+          react-native's is a no-op on Android). Padding it again here would
+          double-count the status bar. */}
+      <View style={styles.header}>
         <Pressable accessibilityRole="button" accessibilityLabel="Back" onPress={() => navigation.goBack()} style={styles.backButton}><ArrowLeft size={22} color={colors.textPrimary} /></Pressable>
         <View style={styles.headerCopy}><Text style={styles.headerTitle}>Filters</Text><Text style={styles.headerSubtitle}>{activeCount ? `${activeCount} active filter${activeCount === 1 ? '' : 's'}` : 'No filters applied'}</Text></View>
         <Pressable accessibilityRole="button" accessibilityLabel="Reset filters" disabled={!activeCount} onPress={() => setDraft({})} style={[styles.reset, !activeCount && styles.resetDisabled]}><RotateCcw size={17} color={colors.primary} /><Text style={styles.resetText}>Reset</Text></Pressable>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Pressable, SafeAreaView, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { ReliefLogo, PrimaryButton, ScreenBackground, SoftCard, WatercolorMapBackdrop } from '../components';
 import { useFilters } from '../context/FiltersContext';
 import { borderRadius, colors, spacing, touchTargets, typography } from '../theme';

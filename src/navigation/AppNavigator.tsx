@@ -11,7 +11,7 @@
 // "Need One Now" without registering first.
 // ============================================================
 
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -39,6 +39,8 @@ import {
 } from '../utils/onboarding';
 import { onAuthStateChange, getCurrentSession } from '../services/auth';
 import { AuthContext } from '../context/AuthContext';
+import { HandoffProvider, useHandoff } from '../context/HandoffContext';
+import { BrandedHandoff } from '../components';
 import type {
   RootStackParamList,
   AuthStackParamList,
@@ -199,7 +201,10 @@ interface AppNavigatorProps {
   onStartupResolved?: () => void;
 }
 
-export const AppNavigator: React.FC<AppNavigatorProps> = ({ onStartupResolved }) => {
+const AppNavigatorInner: React.FC<AppNavigatorProps> = ({ onStartupResolved }) => {
+  const { beginSignInHandoff, reason, isActive, dismissed, markDismissed } = useHandoff();
+  const startupResolvedRef = useRef(false);
+  const onSignedIn = beginSignInHandoff;
   const [userId, setUserId] = useState<string | null>(null);
   const [initializing, setInitializing] = useState(true);
 
@@ -209,13 +214,23 @@ export const AppNavigator: React.FC<AppNavigatorProps> = ({ onStartupResolved })
       .catch(() => setUserId(null))
       .finally(() => {
         setInitializing(false);
+        startupResolvedRef.current = true;
         onStartupResolved?.();
       });
 
     // Migration is deliberately NOT done here — MainEntry awaits it before
     // checking onboarding, so there is no ordering race between the two.
     const subscription = onAuthStateChange((session) => {
-      setUserId(session?.user.id ?? null);
+      const next = session?.user.id ?? null;
+      setUserId((previous) => {
+        // A genuine sign-in is null -> id AFTER startup has resolved. Restoring
+        // an existing session on launch is not a sign-in, and signing OUT must
+        // never produce a "welcome" transition.
+        if (previous === null && next !== null && startupResolvedRef.current) {
+          onSignedIn();
+        }
+        return next;
+      });
     });
 
     return () => subscription?.subscription.unsubscribe();
@@ -226,12 +241,11 @@ export const AppNavigator: React.FC<AppNavigatorProps> = ({ onStartupResolved })
     [userId],
   );
 
+  // No plain "Relief" text screen any more: the branded handoff covers this
+  // window, so cold start is one continuous Relief moment instead of a bare
+  // word followed by a splash followed by a map.
   if (initializing) {
-    return (
-      <View style={styles.loadingContainer}>
-        <Text style={styles.loadingText}>Relief</Text>
-      </View>
-    );
+    return <BrandedHandoff status="Preparing Relief…" visible onFadedOut={() => {}} />;
   }
 
   return (
@@ -251,9 +265,26 @@ export const AppNavigator: React.FC<AppNavigatorProps> = ({ onStartupResolved })
           <RootStack.Screen name="AboutRelief" component={AboutReliefScreen} />
         </RootStack.Navigator>
       </NavigationContainer>
+
+      {/* One overlay for both cold start and sign-in, above the navigator so a
+          modal auth flow cannot hide it and Main staying mounted cannot stop it
+          replaying. */}
+      {!dismissed && reason ? (
+        <BrandedHandoff
+          status={reason === 'sign-in' ? 'Welcome back…' : 'Finding nearby facilities…'}
+          visible={isActive}
+          onFadedOut={markDismissed}
+        />
+      ) : null}
     </AuthContext.Provider>
   );
 };
+
+export const AppNavigator: React.FC<AppNavigatorProps> = (props) => (
+  <HandoffProvider>
+    <AppNavigatorInner {...props} />
+  </HandoffProvider>
+);
 
 const styles = StyleSheet.create({
   tabBar: {

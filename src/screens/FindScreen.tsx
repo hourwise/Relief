@@ -28,7 +28,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import {
-  BrandedHandoff,
   FacilityListBody,
   FacilityMapBody,
   PrimaryButton,
@@ -48,6 +47,7 @@ import {
 } from '../theme';
 import { useFindExperience, type FindView } from '../hooks/useFindExperience';
 import { useFilters } from '../context/FiltersContext';
+import { useHandoff } from '../context/HandoffContext';
 import { estimateWalkingTime } from '../utils/walkingTime';
 import { formatDistance } from '../utils/distance';
 import { getOpenStatus } from '../utils/openingHours';
@@ -136,49 +136,33 @@ export const FindScreen: React.FC = () => {
       `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}&travelmode=walking&dir_action=navigate`,
     );
 
-  // Branded handoff: shown only while the app is genuinely getting ready, and
-  // dismissed the moment it is. No timer, no artificial minimum — a fast
-  // connection should see little more than a flicker.
-  //
-  // "Ready" means location has resolved one way or another (a fix, a refusal,
-  // or a failure — all three are answers) AND the first facility fetch has
-  // settled. It also gives up after a ceiling so a hung request can never
-  // strand the user behind a splash.
-  const [handoffDone, setHandoffDone] = useState(false);
-  const ready =
+  // Readiness is reported UP to the root handoff rather than owning an
+  // overlay here. Find cannot host it: auth is a modal over Main, so this
+  // screen is never unmounted on sign-in and its overlay would not replay.
+  const { reportFindReady } = useHandoff();
+  const findSettled =
     !find.locationInitialising && (find.facilities.length > 0 || !find.facilitiesLoading);
-
   useEffect(() => {
-    const ceiling = setTimeout(() => setHandoffDone(true), 6000);
-    return () => clearTimeout(ceiling);
-  }, []);
+    if (findSettled) reportFindReady();
+  }, [findSettled, reportFindReady]);
 
-  const handoffStatus = find.locationInitialising
-    ? 'Finding your location…'
-    : 'Finding nearby facilities…';
-
-  // The line drawn on our own map from the user to the active destination.
+  // Direct bearing line, shown ONLY for Need One Now.
   //
-  // The reported "route line does not show" was not a rendering fault: Relief
-  // never drew one. "Get directions" opened Google Maps, so the only route that
-  // ever existed was Google's, inside Google's app. This gives the destination
-  // a visible connection to the user before they hand off.
-  //
-  // It needs a real position at both ends; with no location fix there is
-  // nothing to draw a line from.
-  const routeLine = React.useMemo(() => {
-    if (!find.location) return null;
-    const destination = nearestResult
-      ? { latitude: nearestResult.facility.latitude, longitude: nearestResult.facility.longitude }
-      : find.selectedFacility
-        ? { latitude: find.selectedFacility.latitude, longitude: find.selectedFacility.longitude }
-        : null;
-    if (!destination) return null;
+  // This is a straight geodesic line, not a walking route, so it must never
+  // be presented as routing. It earns its place in the urgent journey —
+  // "the thing you need is that way" is exactly what Need One Now answers —
+  // but drawing it for an ordinary marker tap would dress a straight line up
+  // as directions. Turn-by-turn remains a Google Maps hand-off.
+  const bearingLine = React.useMemo(() => {
+    if (!find.location || !nearestResult) return null;
     return [
       { latitude: find.location.latitude, longitude: find.location.longitude },
-      destination,
+      {
+        latitude: nearestResult.facility.latitude,
+        longitude: nearestResult.facility.longitude,
+      },
     ];
-  }, [find.location, nearestResult, find.selectedFacility]);
+  }, [find.location, nearestResult]);
 
   // Keep the locate control clear of whatever occupies the bottom of the map:
   // the tall nearest-facility card, the shorter selection card, or the urgent
@@ -431,7 +415,7 @@ export const FindScreen: React.FC = () => {
           onRegionChangeComplete={find.onRegionChangeComplete}
           onSelectFacility={find.selectFacility}
           onZoomToCluster={animateTo}
-          routeLine={routeLine}
+          routeLine={bearingLine}
         />
       ) : (
         <FacilityListBody
@@ -591,14 +575,6 @@ export const FindScreen: React.FC = () => {
       ) : null}
 
       {bottomCard}
-
-      {!handoffDone ? (
-        <BrandedHandoff
-          status={handoffStatus}
-          visible={!ready}
-          onFadedOut={() => setHandoffDone(true)}
-        />
-      ) : null}
     </View>
   );
 };
