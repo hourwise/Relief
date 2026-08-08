@@ -62,3 +62,13 @@ supabase/.env
 # generated native folders
 /ios
 /android
+
+# Design reference material — NOT part of the React Native application.
+# The Figma/Vite export and the raw social-media stills live here locally for
+# reference only. Curated, intentionally named runtime assets belong in
+# assets/branding/ and ARE tracked. See docs/VISUAL_DESIGN_SYSTEM.md.
+React Native App UI*/
+main logo with subtitle and background.jpeg
+assets/*.jpeg
+assets/*.webp
+assets/26*.jpg
