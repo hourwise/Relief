@@ -9,13 +9,15 @@ the consolidated stabilisation branch.
 ## Consolidated branch gate — 2026-08-10
 
 The source was consolidated at `065b42c9f9fb5226bcf2221f682a165a70e85757`.
-The Node 22 focused tests passed (11 files, 461 assertions), but a fresh APK
-could not be produced: the normal release build hit a Windows CMake/Prefab
-path-length error, and a New Architecture-off retry was blocked by the
-incomplete `node_modules` tree missing `expo-module-gradle-plugin`. Therefore
-the 28-item physical-device acceptance list was **NOT RUN**, and no new cold
-launch, UI, navigation, availability, external-route, account, or fatal
-exception result is claimed here.
+The Node 22 focused tests passed (11 files, 461 assertions), TypeScript passed,
+and direct ESLint passed on the changed files. A fresh APK was still not
+produced: the short-path current-configuration retry reached codegen but hit
+mixed `R:`/`D:` dependency roots, while the consistent real-path
+New-Architecture-off diagnostic build reached native compilation and Metro
+bundling before stalling without a release artifact. Therefore the 28-item
+physical-device acceptance list was **NOT RUN**, and no new cold launch, UI,
+navigation, availability, external-route, account, or fatal exception result
+is claimed here. ADB also reported no connected device at the recovery check.
 
 The Need One Now source fix is now explicit in the gate record: the app asks
 for several candidates within 25 km, enriches only those candidates with

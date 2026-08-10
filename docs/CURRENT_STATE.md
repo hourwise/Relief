@@ -2,21 +2,21 @@
 
 **Last verified:** 2026-08-10 (consolidation gate); device baseline remains 2026-08-07
 **Branch:** `claude/android-apk-stabilisation` at consolidated Luna HEAD `065b42c9f9fb5226bcf2221f682a165a70e85757`
-**Verification method:** Remote ref consolidation, source audit, pure tests and Expo public config were run on 2026-08-10. The latest consolidated source did not produce an APK because the local dependency tree/install and Windows native build environment were blocked; the prior parent-branch APK evidence remains historical and is not evidence for the consolidated branch.
+**Verification method:** Remote ref consolidation, source audit, TypeScript, direct ESLint, focused tests and Expo public config were run on 2026-08-10. The latest consolidated source did not produce an APK: the real-path New Architecture-off diagnostic build reached native compilation and Metro bundling but stalled before emitting a release artifact; the prior parent-branch APK evidence remains historical and is not evidence for the consolidated branch.
 
 | Check | Command | Result |
 |-------|---------|--------|
-| Node | `node --version` | v24.12.0 |
-| Install | `npm ci` | Passed — 583 packages |
-| Expo doctor | `npx expo-doctor` | **21/21 checks passed** |
-| Lint | `npm run lint` | **0 errors**, 92 warnings (ESLint + Prettier now configured) |
-| TypeScript | `npx tsc --noEmit` | **0 errors** |
-| Tests | `npm test` | **10 files, 453 assertions, all passing** |
-| Public config | `npx expo config --type public` | Resolves; `com.relief.app`, SDK 56.0.0 |
-| Android prebuild | `npx expo prebuild --platform android --clean` | Succeeded |
-| APK build (local) | `gradlew assembleRelease -PreactNativeArchitectures=arm64-v8a` | **BUILD SUCCESSFUL** — `app-release.apk`, 48.8 MB, arm64-v8a, JS bundle embedded |
+| Node 22 runtime | `node --version` | **PASS** — v22.22.2 used for the focused Node 22 test run |
+| Install | `npm ci` | **BLOCKED** — Windows EPERM/non-terminating cleanup; a usable dependency tree was later recovered for direct checks |
+| Expo doctor | `npx expo-doctor` | **BLOCKED** — package unavailable in the recovered local tree |
+| Lint | direct ESLint on changed files | **PASS** — 0 reported errors; the `expo lint` wrapper rejects the temporary mapped-drive root |
+| TypeScript | `tsc --noEmit` from the short mapped path | **PASS** — 0 errors |
+| Tests | `tools/run-tests.mjs` | **PASS** — 11 files, 461 assertions |
+| Public config | Expo config command | **PASS** — resolves `com.relief.app`, SDK 56.0.0 |
+| Android prebuild | not rerun during consolidation | **NOT RUN** — no source regeneration requested |
+| APK build (local) | `gradlew assembleRelease -PreactNativeArchitectures=arm64-v8a` | **NOT BUILT** — current-configuration mapped build hit mixed `R:`/`D:` roots in codegen; real-path New Architecture-off diagnostic build stalled during Metro bundling with no release APK |
 | APK build (EAS) | `eas build -p android --profile preview` | **NOT RUN** — no EAS project linked |
-| Android smoke test | 22 required checks | **22/22 PASS** on a physical S24 Ultra — see `ANDROID_SMOKE_TEST.md` |
+| Android smoke test | consolidated 28-item gate | **NOT RUN** — no fresh APK and no device visible to ADB |
 | Find UX acceptance test | 20 checks | **20/20 PASS** after the filter, viewport and locate-control pass |
 | Signed-in journey | favourites, reports, corrections, sign-out | **PASS**, with database writes confirmed over `psql` and test rows removed afterwards |
 | Pre-merge auth gate | audit + device pass | Guest, **new-account creation**, email confirmation, sign-in, session restoration and sign-out all **VERIFIED**. Google OAuth **BLOCKED** on external setup; account self-service (reset/delete/rename) **not built** — see `ANDROID_SMOKE_TEST.md` |
@@ -35,7 +35,7 @@ The requested fast-forward consolidation was performed without rewriting history
 | Focused tests | **PASS** — 11 files, 461 assertions, including the new Need One Now ranking tests, run with the Node 22.22.2 executable |
 | `npx expo config --type public` | **PASS** — resolves Relief, package `com.relief.app`, SDK `56.0.0` |
 | `npx expo-doctor` | **BLOCKED BY INSTALL** — the `expo-doctor` package was absent from the incomplete dependency tree |
-| Local release APK | **NOT BUILT** — normal native build hit Windows path length in React Native CMake/Prefab; a scoped New Architecture-off retry then failed because `expo-module-gradle-plugin` was missing from the incomplete dependency tree |
+| Local release APK | **NOT BUILT** — a short-path current-configuration retry reached codegen but failed on mixed mapped/real dependency roots; the consistent real-path New Architecture-off diagnostic build reached native compilation and Metro bundling, then stalled without emitting an APK |
 | Consolidated physical-device smoke test | **NOT RUN** — no fresh APK was produced; the 2026-08-07 parent-branch run must not be reused as evidence for this branch |
 
 ### Need One Now consolidation fix
