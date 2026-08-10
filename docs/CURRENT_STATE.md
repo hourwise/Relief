@@ -1,7 +1,7 @@
 # Relief — Current State Assessment
 
 **Last verified:** 2026-08-10 (consolidation gate); device baseline remains 2026-08-07
-**Branch:** `claude/android-apk-stabilisation` at consolidated Luna HEAD `065b42c9f9fb5226bcf2221f682a165a70e85757`
+**Branch:** `claude/android-apk-stabilisation` at `5dce071` (Luna source consolidated from `065b42c9f9fb5226bcf2221f682a165a70e85757`)
 **Verification method:** Remote ref consolidation, source audit, TypeScript, direct ESLint, focused tests and Expo public config were run on 2026-08-10. The latest consolidated source did not produce an APK: the real-path New Architecture-off diagnostic build reached native compilation and Metro bundling but stalled before emitting a release artifact; the prior parent-branch APK evidence remains historical and is not evidence for the consolidated branch.
 
 | Check | Command | Result |
@@ -17,9 +17,9 @@
 | APK build (local) | `gradlew assembleRelease -PreactNativeArchitectures=arm64-v8a` | **NOT BUILT** — current-configuration mapped build hit mixed `R:`/`D:` roots in codegen; real-path New Architecture-off diagnostic build stalled during Metro bundling with no release APK |
 | APK build (EAS) | `eas build -p android --profile preview` | **NOT RUN** — no EAS project linked |
 | Android smoke test | consolidated 28-item gate | **NOT RUN** — no fresh APK was produced or installed; the S24 Ultra became visible to ADB only after the build attempts |
-| Find UX acceptance test | 20 checks | **20/20 PASS** after the filter, viewport and locate-control pass |
-| Signed-in journey | favourites, reports, corrections, sign-out | **PASS**, with database writes confirmed over `psql` and test rows removed afterwards |
-| Pre-merge auth gate | audit + device pass | Guest, **new-account creation**, email confirmation, sign-in, session restoration and sign-out all **VERIFIED**. Google OAuth **BLOCKED** on external setup; account self-service (reset/delete/rename) **not built** — see `ANDROID_SMOKE_TEST.md` |
+| Find UX acceptance test | 20 checks | **HISTORICAL PARENT BASELINE ONLY** — not rerun on the consolidated branch |
+| Signed-in journey | favourites, reports, corrections, sign-out | **HISTORICAL PARENT BASELINE ONLY** — no consolidated APK/device run |
+| Pre-merge auth gate | audit + device pass | **HISTORICAL PARENT BASELINE ONLY** — Google OAuth remains **BLOCKED** on external setup; account self-service (reset/delete/rename) is **not built** |
 
 ## Final consolidation gate — 2026-08-10
 
@@ -28,10 +28,10 @@ The requested fast-forward consolidation was performed without rewriting history
 | Check | Result |
 |-------|--------|
 | Remote ref comparison | **PASS** — Luna `065b42c9f9fb5226bcf2221f682a165a70e85757` was 1 commit ahead and 0 behind stabilisation `c54a977958e7f7afcdab3394449d08ba4f3278d9` |
-| Consolidated branch | **PASS** — `claude/android-apk-stabilisation` fast-forwarded and pushed at `065b42c9f9fb5226bcf2221f682a165a70e85757` |
+| Consolidated branch | **PASS** — `claude/android-apk-stabilisation` fast-forwarded to Luna and the source/docs gate commits were pushed through `5dce071` |
 | Node 22 runtime | **PASS** — `v22.22.2` |
 | `npm ci` | **BLOCKED** — npm hit Windows `EPERM` while cleaning the existing native dependency tree and did not terminate cleanly within the bounded retry; the restored tree remained incomplete |
-| `npm run verify` | **BLOCKED BY INSTALL** — could not start the repository script because the interrupted tree lacked npm executable links; direct Node 22 TypeScript invocation was also invalid against the incomplete tree’s missing dependency metadata |
+| `npm run verify` | **BLOCKED BY WRAPPER** — TypeScript and direct ESLint passed from the short path, but the Expo lint wrapper rejects the mapped-drive project root; focused tests passed separately |
 | Focused tests | **PASS** — 11 files, 461 assertions, including the new Need One Now ranking tests, run with the Node 22.22.2 executable |
 | `npx expo config --type public` | **PASS** — resolves Relief, package `com.relief.app`, SDK `56.0.0` |
 | `npx expo-doctor` | **BLOCKED BY INSTALL** — the `expo-doctor` package was absent from the incomplete dependency tree |
@@ -54,13 +54,13 @@ The fix is covered by 8 new pure assertions: nearer closed versus farther open, 
 
 ## Executive Summary
 
-Relief is a React Native / Expo SDK 56 application whose **core discovery journey is now wired to live data end to end at the service layer**, and whose most urgent feature — "Need One Now" — has been repaired and verified against the live database.
+Relief is a React Native / Expo SDK 56 application whose **core discovery journey is wired to live data end to end at the service layer**, and whose most urgent feature — "Need One Now" — has been repaired and verified at the source/data-contract gate. The parent-branch device evidence described below is historical and does not clear the consolidated branch for merge.
 
 What changed in this pass: the nearest-facility RPC was broken and is now fixed and verified; the database schema is now recorded in git for the first time; the mocked Nearby list is gone; discovery no longer requires an account; and the map's viewport loading no longer drops the user's latest pan.
 
-A release APK has now been built, installed on a physical Samsung Galaxy S24 Ultra and driven through all 22 required smoke checks with no Metro or development server running. All 22 pass, as does a full signed-in journey covering favourites, reports, corrections and sign-out, with every database write confirmed over `psql`. Seven defects were found in the process and fixed — most importantly, the map never actually moved to the user location, so it showed the startup fallback while data loaded for somewhere else.
+The parent branch previously produced a release APK, installed it on a physical Samsung Galaxy S24 Ultra and drove all 22 required smoke checks, plus a signed-in journey covering favourites, reports, corrections and sign-out. That evidence remains historical: the consolidated branch produced no fresh APK during this gate, so those results are not reused as current verification.
 
-Email authentication is now verified end to end: a genuinely new account was created on the device, confirmed by email, and signed in, with the profile row created automatically by the database trigger. What is still **not** verified: Google OAuth (the provider is disabled, so the button is hidden rather than broken); no EAS build exists; and the Google Maps key restrictions in Cloud Console have not been inspected.
+Email authentication was verified end to end on the parent branch: a genuinely new account was created on the device, confirmed by email, and signed in, with the profile row created automatically by the database trigger. This is not a consolidated-device claim. What is still **not** verified: Google OAuth (the provider is disabled, so the button is hidden rather than broken); no EAS build exists; and the Google Maps key restrictions in Cloud Console have not been inspected.
 
 ---
 
