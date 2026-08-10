@@ -1,7 +1,7 @@
 # Relief — Current State Assessment
 
-**Last verified:** 2026-08-07
-**Branch:** `claude/android-apk-stabilisation` (cut from `feat/figma-ui-refresh`)
+**Last verified:** 2026-08-07 (device baseline); Luna continuation inspected 2026-08-08
+**Branch:** `luna/mobile-home-profile-polish` (cut from `c54a977958e7f7afcdab3394449d08ba4f3278d9`)
 **Verification method:** Live Supabase project queried directly (PostgreSQL 17.6) via `psql` and the anonymous REST endpoint; repository quality gates run locally; **release APK built, installed and driven on a physical Samsung Galaxy S24 Ultra with no Metro running.**
 
 | Check | Command | Result |
@@ -89,8 +89,8 @@ Measured on 2026-08-07 across the 15,584 published facilities, these columns hav
 | Runtime error states | VERIFIED on device | Distinct states for initial location loading, facility loading, permission denied, location unavailable, query failure, no facilities in area, and nearest-RPC failure. A failed query never renders as "no facilities found" |
 | Guest discovery | VERIFIED on device | Root navigator renders the app with or without a session. Policy centralised in `src/utils/guestAccess.ts` and covered by 68 assertions. Authentication is requested only for favourites, submissions, corrections, reports and account settings |
 | Onboarding | VERIFIED on device | Stored against a guest key when signed out and migrated on sign-in. The migration is awaited before the completion check — doing it in the auth listener raced that check and re-prompted a guest who had already finished |
-| Navigation | VERIFIED on device | Three tabs (Find, Favourites, Profile) with Lucide icons. Unfinished features removed from Profile; a static audit confirms no reachable button targets an unregistered route |
-| Facility detail | VERIFIED on device | Redesign preserved. The Lucide `Star` SVG is no longer nested inside a `<Text>` (a native view inside `Text` does not lay out reliably on Android). Nullable `overall_score` handled. Reports and corrections require authentication |
+| Navigation | IMPLEMENTED BUT NOT DEVICE TESTED | Three primary tabs are now Home, Find, Profile. Favourites lives in a stack beneath Home; the transient BrandedHandoff remains an overlay, not a route |
+| Facility detail | IMPLEMENTED BUT NOT DEVICE TESTED | Visual hierarchy refreshed with warm-white cards and denser header/section treatment. The Lucide `Star` SVG remains outside `<Text>`, nullable `overall_score` remains truthful, and reports/corrections still require authentication |
 | Directions | VERIFIED on device | Coordinate deep links to Google Maps and Waze |
 | Native splash / StartupWelcome | VERIFIED on device | Mint splash with the Relief mark, no white flash; welcome layer dismisses and does not reappear |
 
@@ -143,7 +143,7 @@ Hidden-but-retained screens (AI recommendations, predictive suggestions, route p
 
 ## Current blockers
 
-1. **Account self-service is missing.** There is no password reset, no account deletion and no way to change a display name in the app. Account deletion in particular is required by Google Play for any app that offers account creation, and Play expects an in-app route as well as a public web URL — so a web-only page will not be sufficient at submission. Planned as web-hosted account settings once the site exists.
+1. **Account self-service remains partial.** Display-name editing is now implemented in the app, keeping Auth `full_name` metadata and the `user_profiles.display_name` row together. Password reset and account deletion are still absent. Account deletion in particular is required by Google Play for any app that offers account creation, and Play expects an in-app route as well as a public web URL — so a web-only page will not be sufficient at submission.
 2. **Google OAuth is not configured.** `GET /auth/v1/settings` reports `google: false`, so the provider cannot work at all. The button is now hidden behind `AUTH_PROVIDERS.GOOGLE` rather than failing in front of users. Enabling it needs Google Cloud credentials, SHA-1 registration, Supabase provider setup, a redirect allow-list entry, **and** an app-side deep-link handler that does not yet exist.
 3. **Password reset does not exist.** There is no `resetPasswordForEmail` and no "Forgot password?" link, so a user who forgets their password cannot recover the account in-app.
 4. **EAS project not linked.** Needs `eas init`, a decision on which Expo account owns it (`hourwiseeu` or `pcgsoft`), and the three `EXPO_PUBLIC_*` values added as `preview` environment variables. The APK under test was built locally instead.
@@ -161,3 +161,23 @@ Hidden-but-retained screens (AI recommendations, predictive suggestions, route p
 ## Safe next action
 
 Exercise account **creation** and Google OAuth on the device — the two auth paths still unverified. Then, if a shareable build is wanted: `eas init` against the chosen Expo account, add the three `EXPO_PUBLIC_*` values as `preview` environment variables, register the EAS keystore's SHA-1 on the Maps key, and run `eas build -p android --profile preview`. Re-run the quality gates under Node 22 first.
+
+## Luna continuation status (2026-08-08)
+
+The following work is **IMPLEMENTED BUT NOT DEVICE TESTED** on this branch:
+
+* Home is the persistent default after onboarding, with Find a facility,
+  Need One Now, Saved places, and About Relief actions.
+* The primary navigation is exactly Home / Find / Profile. Favourites is a
+  nested Home stack screen and keeps the bottom navigation visible.
+* Home Need One Now passes a one-shot action id into the existing Find flow;
+  Home does not duplicate the nearest-facility query.
+* Profile now has guest/signed-in account cards, display-name editing,
+  location permission state/recovery, Saved places, and config-derived app
+  version/build information. Password reset and account deletion remain
+  intentionally unavailable.
+* Map/detail/filter visual polish is applied without changing the truthful
+  filter set or the Need One Now bearing-line restriction.
+
+The hidden-feature audit is recorded in `docs/HIDDEN_FEATURE_AUDIT.md`. A new
+APK/device run is required before changing any of these statuses to VERIFIED.

@@ -34,21 +34,22 @@ const LAND_SOFT = '#EAF2ED';
 const WATER = '#CFE6E0'; // muted teal, distinct from land without shouting
 const ROAD_PRIMARY = '#FFFFFF';
 const ROAD_PRIMARY_EDGE = '#D6E5DE';
-const ROAD_SECONDARY = '#F7FBF9';
-const ROAD_SECONDARY_EDGE = '#E1EDE7';
+const ROAD_SECONDARY = '#FAFCFB';
+const ROAD_SECONDARY_EDGE = '#D5E5DE';
 const PARK = '#DCEBE0';
 const LABEL = '#4A5B54'; // muted grey-green, readable on pale mint
 const LABEL_HALO = '#FFFFFF';
-const LABEL_SOFT = '#6F8079';
-const TRANSIT = '#DDE9E4';
+const LABEL_SOFT = '#60736B';
+const TRANSIT = '#D6E7E0';
 
 export const RELIEF_MAP_STYLE: MapStyleElement[] = [
   // ── Base ────────────────────────────────────────────────
   { elementType: 'geometry', stylers: [{ color: LAND }] },
   { elementType: 'labels.text.fill', stylers: [{ color: LABEL }] },
   { elementType: 'labels.text.stroke', stylers: [{ color: LABEL_HALO }, { weight: 3 }] },
-  // Icon glyphs are removed but their labels stay: the words carry the
-  // wayfinding information, the coloured pins were the visual noise.
+  // Keep the global map calm, then opt useful orientation landmarks back in
+  // below. This avoids a wall of icons without removing the clues people use
+  // to recognise where they are.
   { elementType: 'labels.icon', stylers: [{ visibility: 'off' }] },
 
   // ── Administrative ──────────────────────────────────────
@@ -56,6 +57,7 @@ export const RELIEF_MAP_STYLE: MapStyleElement[] = [
   { featureType: 'administrative.land_parcel', stylers: [{ visibility: 'off' }] },
   { featureType: 'administrative.neighborhood', elementType: 'labels.text.fill', stylers: [{ color: LABEL_SOFT }] },
   { featureType: 'administrative.locality', elementType: 'labels.text.fill', stylers: [{ color: LABEL }] },
+  { featureType: 'administrative.locality', elementType: 'labels.text.stroke', stylers: [{ color: LABEL_HALO }, { weight: 3 }] },
 
   // ── Landscape ───────────────────────────────────────────
   { featureType: 'landscape.natural', elementType: 'geometry', stylers: [{ color: LAND }] },
@@ -68,11 +70,14 @@ export const RELIEF_MAP_STYLE: MapStyleElement[] = [
   // ── Other POIs: quietened so our pins win ───────────────
   { featureType: 'poi', elementType: 'geometry', stylers: [{ color: LAND_SOFT }] },
   { featureType: 'poi', elementType: 'labels.text.fill', stylers: [{ color: LABEL_SOFT }] },
-  { featureType: 'poi.business', stylers: [{ visibility: 'off' }] },
+  { featureType: 'poi.business', elementType: 'labels.icon', stylers: [{ visibility: 'on' }] },
+  { featureType: 'poi.business', elementType: 'labels.text.fill', stylers: [{ color: LABEL }] },
   // Kept deliberately: these are places people are sent to, and are often
   // where a facility actually is.
   { featureType: 'poi.medical', elementType: 'labels', stylers: [{ visibility: 'on' }] },
+  { featureType: 'poi.medical', elementType: 'labels.icon', stylers: [{ visibility: 'on' }] },
   { featureType: 'poi.attraction', elementType: 'labels', stylers: [{ visibility: 'on' }] },
+  { featureType: 'poi.attraction', elementType: 'labels.icon', stylers: [{ visibility: 'on' }] },
 
   // ── Roads: soft lines, clear hierarchy ──────────────────
   { featureType: 'road', elementType: 'geometry', stylers: [{ color: ROAD_SECONDARY }] },
@@ -84,6 +89,7 @@ export const RELIEF_MAP_STYLE: MapStyleElement[] = [
   { featureType: 'road.arterial', elementType: 'geometry', stylers: [{ color: ROAD_PRIMARY }] },
   { featureType: 'road.arterial', elementType: 'geometry.stroke', stylers: [{ color: ROAD_SECONDARY_EDGE }] },
   { featureType: 'road.local', elementType: 'geometry', stylers: [{ color: ROAD_SECONDARY }] },
+  { featureType: 'road.local', elementType: 'geometry.stroke', stylers: [{ color: ROAD_SECONDARY_EDGE }] },
   // Walking routes matter for this app, so paths stay visible.
   { featureType: 'road.local', elementType: 'labels.text.fill', stylers: [{ color: LABEL_SOFT }] },
 
@@ -91,6 +97,7 @@ export const RELIEF_MAP_STYLE: MapStyleElement[] = [
   { featureType: 'transit', elementType: 'geometry', stylers: [{ color: TRANSIT }] },
   { featureType: 'transit', elementType: 'labels.text.fill', stylers: [{ color: LABEL_SOFT }] },
   { featureType: 'transit.station', elementType: 'labels', stylers: [{ visibility: 'on' }] },
+  { featureType: 'transit.station', elementType: 'labels.icon', stylers: [{ visibility: 'on' }] },
 
   // ── Water ───────────────────────────────────────────────
   { featureType: 'water', elementType: 'geometry', stylers: [{ color: WATER }] },

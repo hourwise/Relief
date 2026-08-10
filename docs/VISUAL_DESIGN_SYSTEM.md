@@ -76,9 +76,9 @@ Principles, in priority order:
 2. **Recede, don't disappear.** Land and minor roads are quietened so the teal
    pins and the amber selection are the brightest things on screen.
 3. **No decoration that costs information.** Labels are muted, never removed.
-   POI *icons* are off; POI *labels* stay, because "next to the museum" is how
-   people actually navigate. Medical, attraction and transit labels are
-   explicitly kept — they are often where a facility is.
+   Most POI icons stay quiet, while business, medical, attraction and transit
+   landmarks retain their icons and labels because "next to the museum" or
+   "near the station" is how people actually navigate.
 
 Land `#F4F9F6` · water `#CFE6E0` · parks `#DCEBE0` · primary roads white with a
 `#D6E5DE` edge · labels `#4A5B54` with a white halo.
@@ -109,12 +109,15 @@ reduce-motion the ripples render statically at rest — the marker still reads a
 
 ## 6. Route line
 
-Relief draws a **direct line**, not a route: an 8px teal underlay with a 4px
-amber dashed overlay, `geodesic`, from the user to the active destination.
+Relief draws a **bearing/direct-distance indicator**, not a route: an 8px teal
+underlay with a 4px amber dashed overlay, `geodesic`, from the user to the
+active Need One Now destination. It is intentionally restricted to Need One
+Now, where showing "the thing you need is that way" supports the urgent flow.
 
 It is dashed **deliberately** so it is never mistaken for turn-by-turn
 guidance, consistent with the app's existing honesty that walking times are
-straight-line estimates. Turn-by-turn remains a hand-off to Google Maps.
+straight-line estimates. It is not a routed walking polyline. Actual walking
+routing remains a hand-off to Google Maps.
 
 Drawing a true routed polyline would require the **Google Directions API**
 (a separate, billed API). Until that is enabled, do not present the line as a
@@ -187,7 +190,8 @@ Removed during stabilisation for reasons recorded in `CURRENT_STATE.md`:
 - The four persistent quick-filter chips (duplicated the Filters button, two
   sources of truth).
 - Filters for unpopulated columns, and the community-rating selector.
-- Four-tab navigation — it is Find / Favourites / Profile.
+- Four-tab navigation — the primary tabs are Home / Find / Profile. Favourites
+  remains available as a stack screen beneath Home.
 - Unfinished Community / AI / route-planning / offline surfaces.
 - Google sign-in while the provider is disabled in Supabase.
 

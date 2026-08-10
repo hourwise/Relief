@@ -11,16 +11,17 @@
 // "Need One Now" without registering first.
 // ============================================================
 
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text, StyleSheet } from 'react-native';
-import { Heart, Search, User } from 'lucide-react-native';
+import { View, StyleSheet } from 'react-native';
+import { Home as HomeIcon, Search, User } from 'lucide-react-native';
 import { colors, typography } from '../theme';
 import {
   LoginScreen,
   RegisterScreen,
+  HomeScreen,
   FindScreen,
   FacilityDetailScreen,
   ProfileScreen,
@@ -45,12 +46,14 @@ import type {
   RootStackParamList,
   AuthStackParamList,
   MainTabParamList,
+  HomeStackParamList,
   FindStackParamList,
 } from '../types';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const AuthStack = createNativeStackNavigator<AuthStackParamList>();
 const Tab = createBottomTabNavigator<MainTabParamList>();
+const HomeStack = createNativeStackNavigator<HomeStackParamList>();
 const FindStack = createNativeStackNavigator<FindStackParamList>();
 
 const modalHeader = (title: string) => ({
@@ -100,12 +103,30 @@ const AuthNavigator: React.FC = () => (
   </AuthStack.Navigator>
 );
 
+const HomeStackNavigator: React.FC = () => (
+  <HomeStack.Navigator screenOptions={{ headerShown: false }}>
+    <HomeStack.Screen name="HomeMain" component={HomeScreen} />
+    <HomeStack.Screen
+      name="Favourites"
+      component={FavouritesScreen}
+      options={{
+        headerShown: true,
+        title: 'Saved places',
+        headerStyle: styles.header,
+        headerTitleStyle: styles.headerTitle,
+        headerTintColor: colors.textPrimary,
+      }}
+    />
+  </HomeStack.Navigator>
+);
+
 /**
  * Three tabs, per the accessibility policy's maximum. "Nearby" is gone as a
  * separate tab because the list is now a view inside Find.
  */
 const MainNavigator: React.FC = () => (
   <Tab.Navigator
+    initialRouteName="Home"
     screenOptions={{
       tabBarActiveTintColor: colors.primary,
       tabBarInactiveTintColor: colors.gray400,
@@ -117,20 +138,21 @@ const MainNavigator: React.FC = () => (
     }}
   >
     <Tab.Screen
+      name="Home"
+      component={HomeStackNavigator}
+      options={{
+        title: 'Home',
+        headerShown: false,
+        tabBarIcon: ({ color, size }) => <HomeIcon color={color} size={size} />,
+      }}
+    />
+    <Tab.Screen
       name="Find"
       component={FindStackNavigator}
       options={{
         title: 'Find',
         headerShown: false,
         tabBarIcon: ({ color, size }) => <Search color={color} size={size} />,
-      }}
-    />
-    <Tab.Screen
-      name="Favourites"
-      component={FavouritesScreen}
-      options={{
-        title: 'Favourites',
-        tabBarIcon: ({ color, size }) => <Heart color={color} size={size} />,
       }}
     />
     <Tab.Screen
@@ -152,6 +174,7 @@ const MainNavigator: React.FC = () => (
  * migrated to the user, so a guest who later registers is not asked twice.
  */
 const MainEntry: React.FC<{ userId: string | null }> = ({ userId }) => {
+  const { reportAppReady } = useHandoff();
   const storageKey = userId ?? GUEST_ONBOARDING_KEY;
   const [checking, setChecking] = useState(true);
   const [showOnboarding, setShowOnboarding] = useState(false);
@@ -169,7 +192,14 @@ const MainEntry: React.FC<{ userId: string | null }> = ({ userId }) => {
       try {
         if (userId) await migrateGuestOnboarding(userId);
         const completed = await hasCompletedOnboarding(storageKey);
-        if (!cancelled) setShowOnboarding(!completed);
+        if (!cancelled) {
+          const onboardingRequired = !completed;
+          setShowOnboarding(onboardingRequired);
+
+          // The root app must own startup readiness. Find is a lazy tab and may
+          // not be mounted yet, so the initial handoff cannot wait for it.
+          if (onboardingRequired) reportAppReady();
+        }
       } catch {
         // Never block discovery because storage failed.
         if (!cancelled) setShowOnboarding(false);
@@ -181,7 +211,14 @@ const MainEntry: React.FC<{ userId: string | null }> = ({ userId }) => {
     return () => {
       cancelled = true;
     };
-  }, [storageKey, userId]);
+  }, [reportAppReady, storageKey, userId]);
+
+  // Release the root handoff once the entry decision has settled. This also
+  // handles a sign-in while the user is on Home: Find remains lazy and must
+  // never be required just to reveal the already-mounted app.
+  useEffect(() => {
+    if (!checking) reportAppReady();
+  }, [checking, reportAppReady, userId]);
 
   if (checking) return <View style={styles.loadingContainer} />;
 
@@ -234,7 +271,7 @@ const AppNavigatorInner: React.FC<AppNavigatorProps> = ({ onStartupResolved }) =
     });
 
     return () => subscription?.subscription.unsubscribe();
-  }, [onStartupResolved]);
+  }, [onSignedIn, onStartupResolved]);
 
   const authValue = useMemo(
     () => ({ userId, isAuthenticated: userId !== null }),

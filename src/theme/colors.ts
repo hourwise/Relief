@@ -8,6 +8,7 @@ export const colors = {
   sage: '#6CA08E',
   mintSurface: '#F3F8F5',
   secondarySurface: '#EBF3EF',
+  warmWhite: '#FFFDF9',
   amber: '#F4C453',
   urgent: '#E75F51',
   charcoal: '#212C28',
@@ -16,7 +17,7 @@ export const colors = {
   transparent: 'transparent',
 
   background: '#F3F8F5',
-  cardBackground: '#FFFFFF',
+  cardBackground: '#FFFDF9',
   tealSoft: '#EBF3EF',
   textPrimary: '#212C28',
   textSecondary: '#63736C',
@@ -25,8 +26,8 @@ export const colors = {
   border: '#D8E6DF',
   borderLight: '#E8F0EC',
   overlay: 'rgba(22, 73, 62, 0.30)',
-  glassBackground: 'rgba(255, 255, 255, 0.94)',
-  mapOverlay: 'rgba(255, 255, 255, 0.92)',
+  glassBackground: 'rgba(255, 253, 249, 0.96)',
+  mapOverlay: 'rgba(255, 253, 249, 0.94)',
 
   success: '#1A6B5C',
   warning: '#C88418',

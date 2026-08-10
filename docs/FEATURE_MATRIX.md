@@ -1,7 +1,7 @@
 # Relief — Feature Matrix
 
-**Last verified:** 2026-07-25  
-**Verification method:** Targeted source/config audit for Supabase and Android Google Maps setup; app smoke testing still pending
+**Last verified:** 2026-08-08  
+**Verification method:** Source/config audit on `luna/mobile-home-profile-polish`; the existing 2026-08-07 APK evidence remains valid only for the parent branch, and the Luna continuation is not device-tested
 
 Each feature is assessed against the current repository, not against plans or intentions.
 
@@ -39,6 +39,7 @@ Each feature is assessed against the current repository, not against plans or in
 | Welcome transition | StartupWelcome | `App.tsx`, `screens/StartupWelcome.tsx` | Local decorative vector background | Auth/session startup state | UI IMPLEMENTED | Native welcome layer waits for fonts and initial session decision; tap skips decorative fade; reduced-motion checked | Device transition not yet smoke-tested | Test native hand-off on Android and iOS |
 | First-run onboarding | AuthenticatedEntry, OnboardingScreen | `navigation/AppNavigator.tsx`, `screens/OnboardingScreen.tsx`, `utils/onboarding.ts` | User-scoped AsyncStorage plus `FiltersContext` | Supabase Auth session | BACKEND-DEPENDENT | Shows only for an authenticated user without local completion; selected preferences merge only true filter values | Auth/session flow not yet smoke-tested | Verify first sign-in and repeat launch |
 | About Relief artwork | Profile, AboutReliefScreen | `screens/ProfileScreen.tsx`, `screens/AboutReliefScreen.tsx`, `assets/branding/relief-brand-poster.jpg` | Local supplied poster | None | UI IMPLEMENTED | Poster is rendered with `contain` and its source aspect ratio; it is not used on startup or the live map | Screen not yet device-tested | Verify large-font and screen-reader presentation |
+| Persistent Home | HomeScreen | `screens/HomeScreen.tsx`, `navigation/AppNavigator.tsx` | Local brand assets plus existing navigation actions | Existing Find/Favourites/Auth routes | IMPLEMENTED BUT NOT DEVICE TESTED | Home is the default post-onboarding tab; Find, Need One Now, Saved places, and About Relief are reachable without duplicating facility queries | New APK has not been installed on the S24 Ultra | Build and run the Luna Android acceptance list |
 
 ---
 
@@ -60,7 +61,7 @@ Each feature is assessed against the current repository, not against plans or in
 | Google OAuth | LoginScreen | `screens/LoginScreen.tsx`, `services/auth.ts` | Supabase Auth + Google | Supabase Auth, Google Cloud OAuth | BACKEND-DEPENDENT | `signInWithOAuth('google')` with WebBrowser flow | Requires Google OAuth configuration separate from Android Maps SDK key | Configure only after email auth/basic browse path is verified |
 | Apple OAuth | LoginScreen | `screens/LoginScreen.tsx`, `services/auth.ts` | Supabase Auth + Apple | Supabase Auth, Apple Developer | BACKEND-DEPENDENT | `signInWithOAuth('apple')` with WebBrowser flow | Requires Apple Developer account | Configure for iOS |
 | Session persistence | AppNavigator | `navigation/AppNavigator.tsx`, `services/auth.ts` | Supabase Auth | Supabase Auth | BACKEND-DEPENDENT | `onAuthStateChange()` listener + `persistSession: true` | Session may not restore without Supabase | Verify after Supabase connection |
-| Auth gate (blocks unauthenticated) | AppNavigator | `navigation/AppNavigator.tsx` | Supabase Auth | Supabase Auth | UI IMPLEMENTED | Root navigator shows LoginScreen when no session | **Blocks urgent access for unauthenticated users** | Add unauthenticated browse path |
+| Guest-capable main entry | AppNavigator | `navigation/AppNavigator.tsx`, `utils/guestAccess.ts` | Supabase session when present; local guest onboarding otherwise | Supabase Auth for account actions only | VERIFIED on parent device; Luna navigation IMPLEMENTED BUT NOT DEVICE TESTED | Main renders for guests and signed-in users; Auth is an on-demand modal for account-dependent actions | The Home-default change needs a fresh device run | Verify Home → Find and guest Need One Now on the Luna APK |
 
 ---
 
@@ -68,9 +69,9 @@ Each feature is assessed against the current repository, not against plans or in
 
 | Feature | Surface | Files | Data Source | Backend Dependency | Status | Evidence | Risk | Next Step |
 |---------|---------|-------|-------------|-------------------|--------|----------|------|-----------|
-| User profile | ProfileScreen | `screens/ProfileScreen.tsx` | Supabase Auth user | Supabase Auth | BACKEND-DEPENDENT | Reads `user.email`, `user.user_metadata` | No editable profile fields beyond auth data | Implement after auth |
+| User profile | ProfileScreen | `screens/ProfileScreen.tsx`, `services/account.ts` | Supabase Auth metadata + `user_profiles.display_name` | Supabase Auth + `user_profiles` RLS | IMPLEMENTED BUT NOT DEVICE TESTED | Reads guest/signed-in state and updates both `full_name` metadata and `display_name` with rollback on partial failure | Requires a signed-in device write test | Verify edit, failure handling, and sign-out |
 | Saved filter profiles | SavedProfilesScreen | `screens/SavedProfilesScreen.tsx`, `services/profiles.ts` | Supabase `saved_profiles` table | Supabase | BACKEND-DEPENDENT | Profile CRUD operations; 10-profile limit | Feature flag `PREMIUM: false` disables | Enable after premium backend |
-| Favourites | FavouritesScreen | `screens/FavouritesScreen.tsx`, `services/favourites.ts` | Supabase `favourites` table | Supabase | BACKEND-DEPENDENT | Add/remove/check/count operations | Requires `favourites` table with RLS | Deploy migration; test |
+| Favourites | Home → Favourites | `screens/FavouritesScreen.tsx`, `navigation/AppNavigator.tsx`, `services/favourites.ts` | Supabase `favourites` table | Supabase | IMPLEMENTED BUT NOT DEVICE TESTED on Luna branch | Remains account-dependent, retains bottom navigation, and returns naturally to Home through the nested stack | Requires a fresh navigation/device run | Verify guest truthfulness, signed-in list, and back behavior |
 
 ---
 

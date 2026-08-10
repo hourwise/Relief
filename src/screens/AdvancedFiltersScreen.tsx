@@ -2,8 +2,9 @@ import React from 'react';
 import { Pressable, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 import { ArrowLeft, RotateCcw } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import type { FacilityFilters } from '../types';
+import type { FacilityFilters, FindStackParamList } from '../types';
 import { PrimaryButton, ScreenBackground, SoftCard } from '../components';
 import { useFilters } from '../context/FiltersContext';
 import {
@@ -26,7 +27,7 @@ import { borderRadius, colors, spacing, touchTargets, typography } from '../them
  * yet, so every threshold above "Any" returned an empty list.
  */
 export const AdvancedFiltersScreen: React.FC = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<FindStackParamList, 'AdvancedFilters'>>();
   const insets = useSafeAreaInsets();
   const { filters: savedFilters, setFilters } = useFilters();
   const [draft, setDraft] = React.useState<Partial<FacilityFilters>>({ ...savedFilters });
@@ -96,7 +97,7 @@ export const AdvancedFiltersScreen: React.FC = () => {
               accessibilityState={{ checked: draft.open_now === true }}
               value={draft.open_now === true}
               onValueChange={() => toggleFilter('open_now')}
-              trackColor={{ false: colors.gray200, true: colors.primaryLight }}
+              trackColor={{ false: colors.sage, true: colors.primaryLight }}
               thumbColor={draft.open_now === true ? colors.primary : colors.white}
             />
           </View>
@@ -118,7 +119,7 @@ export const AdvancedFiltersScreen: React.FC = () => {
                   accessibilityState={{ checked: value }}
                   value={value}
                   onValueChange={() => toggleFilter(filter.key)}
-                  trackColor={{ false: colors.gray200, true: colors.primaryLight }}
+                  trackColor={{ false: colors.sage, true: colors.primaryLight }}
                   thumbColor={value ? colors.primary : colors.white}
                 />
               </View>
@@ -150,7 +151,7 @@ const styles = StyleSheet.create({
   resetText: { ...typography.buttonSmall, color: colors.primary },
 
   content: { padding: spacing.lg, paddingBottom: spacing['5xl'] },
-  notice: { backgroundColor: colors.secondarySurface, marginBottom: spacing.md },
+  notice: { backgroundColor: colors.secondarySurface, borderColor: 'rgba(26, 107, 92, 0.15)', marginBottom: spacing.md },
   noticeTitle: { ...typography.label, color: colors.primary },
   noticeText: { ...typography.bodySmall, color: colors.textSecondary, marginTop: 3 },
 
@@ -158,17 +159,17 @@ const styles = StyleSheet.create({
   sectionTitle: { ...typography.h4, color: colors.textPrimary, marginBottom: spacing.sm },
 
   costRow: { flexDirection: 'row', gap: spacing.sm },
-  costOption: { flex: 1, minHeight: touchTargets.minimum, borderRadius: borderRadius.full, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.gray100, borderWidth: 1, borderColor: colors.border },
+  costOption: { flex: 1, minHeight: touchTargets.minimum, borderRadius: borderRadius.full, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.secondarySurface, borderWidth: 1, borderColor: colors.sage },
   costSelected: { backgroundColor: colors.primary, borderColor: colors.primary },
-  costText: { ...typography.buttonSmall, color: colors.textSecondary },
+  costText: { ...typography.buttonSmall, color: colors.primary },
   costTextSelected: { color: colors.white },
 
-  filterRow: { minHeight: 64, flexDirection: 'row', alignItems: 'center' },
+  filterRow: { minHeight: 60, flexDirection: 'row', alignItems: 'center' },
   filterRowDivided: { borderTopWidth: 1, borderTopColor: colors.borderLight },
   filterCopy: { flex: 1, paddingRight: spacing.md },
   filterTitle: { ...typography.label, color: colors.textPrimary },
   filterDescription: { ...typography.caption, color: colors.textSecondary, marginTop: 2 },
 
   footnote: { ...typography.caption, color: colors.textMuted, lineHeight: 18, paddingHorizontal: spacing.xs, marginTop: spacing.xs },
-  footer: { paddingHorizontal: spacing.lg, paddingTop: spacing.md, backgroundColor: colors.white, borderTopWidth: 1, borderTopColor: colors.border },
+  footer: { paddingHorizontal: spacing.lg, paddingTop: spacing.md, backgroundColor: colors.warmWhite, borderTopWidth: 1, borderTopColor: colors.border },
 });

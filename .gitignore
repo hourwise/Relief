@@ -63,6 +63,9 @@ supabase/.env
 /ios
 /android
 
+# local gradle user home (created by local release builds)
+.gradle-home/
+
 # Design reference material — NOT part of the React Native application.
 # The Figma/Vite export and the raw social-media stills live here locally for
 # reference only. Curated, intentionally named runtime assets belong in

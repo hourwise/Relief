@@ -39,7 +39,12 @@ interface UseLocationReturn {
   refreshLocation: () => Promise<void>;
 }
 
-export function useLocation(): UseLocationReturn {
+interface UseLocationOptions {
+  /** Find uses the normal startup request; account surfaces only inspect state. */
+  autoRefresh?: boolean;
+}
+
+export function useLocation({ autoRefresh = true }: UseLocationOptions = {}): UseLocationReturn {
   const [location, setLocation] = useState<UserLocation | null>(null);
   const [status, setStatus] = useState<LocationStatus>('loading');
   const [initialising, setInitialising] = useState(true);
@@ -118,9 +123,29 @@ export function useLocation(): UseLocationReturn {
     }
   }, [requestPermission]);
 
+  const checkPermission = useCallback(async () => {
+    try {
+      const permission = await Location.getForegroundPermissionsAsync();
+      if (!mountedRef.current) return;
+      if (permission.status === 'undetermined') {
+        setStatus('loading');
+      } else if (permission.status !== 'granted') {
+        setStatus('denied');
+      } else {
+        const servicesEnabled = await Location.hasServicesEnabledAsync();
+        if (mountedRef.current) setStatus(servicesEnabled ? 'granted' : 'unavailable');
+      }
+    } catch {
+      if (mountedRef.current) setStatus('unavailable');
+    } finally {
+      if (mountedRef.current) setInitialising(false);
+    }
+  }, []);
+
   useEffect(() => {
-    refreshLocation();
-  }, [refreshLocation]);
+    if (autoRefresh) refreshLocation();
+    else checkPermission();
+  }, [autoRefresh, checkPermission, refreshLocation]);
 
   return { location, status, initialising, requestPermission, refreshLocation };
 }

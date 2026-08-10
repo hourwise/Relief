@@ -18,16 +18,24 @@ import {
 } from 'react-native';
 import { Heart, Star } from 'lucide-react-native';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import type { NavigationProp } from '@react-navigation/native';
+import type { CompositeNavigationProp, NavigationProp } from '@react-navigation/native';
+import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { colors, spacing, touchTargets, typography } from '../theme';
 import { PrimaryButton, SoftCard, StateNotice, StatusBadge } from '../components';
 import { getFavouriteFacilities, removeFavourite } from '../services/favourites';
 import { getOpenStatus } from '../utils/openingHours';
 import { useAuth } from '../context/AuthContext';
 import { signInReason } from '../utils/guestAccess';
-import type { Facility, MainTabParamList, RootStackParamList } from '../types';
+import type { Facility, HomeStackParamList, MainTabParamList, RootStackParamList } from '../types';
 
-type FavouritesNavigation = NavigationProp<RootStackParamList & MainTabParamList>;
+type FavouritesNavigation = CompositeNavigationProp<
+  NativeStackNavigationProp<HomeStackParamList, 'Favourites'>,
+  CompositeNavigationProp<
+    BottomTabNavigationProp<MainTabParamList, 'Home'>,
+    NavigationProp<RootStackParamList>
+  >
+>;
 
 export const FavouritesScreen: React.FC = () => {
   const navigation = useNavigation<FavouritesNavigation>();
@@ -66,7 +74,7 @@ export const FavouritesScreen: React.FC = () => {
     navigation.navigate('Find', {
       screen: 'FacilityDetail',
       params: { facilityId: facility.id },
-    } as never);
+    });
 
   const handleRemove = (facility: Facility) => {
     Alert.alert('Remove favourite', `Remove “${facility.name}” from your favourites?`, [

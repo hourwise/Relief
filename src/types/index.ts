@@ -11,6 +11,7 @@
 // ============================================================
 
 import type { Tables } from './database.types';
+import type { NavigatorScreenParams } from '@react-navigation/native';
 
 export type { Database, Json } from './database.types';
 
@@ -273,16 +274,21 @@ export type AuthStackParamList = {
 };
 
 export type MainTabParamList = {
-  Find: undefined;
-  Favourites: undefined;
+  Home: NavigatorScreenParams<HomeStackParamList> | undefined;
+  Find: NavigatorScreenParams<FindStackParamList> | undefined;
   Profile: undefined;
+};
+
+export type HomeStackParamList = {
+  HomeMain: undefined;
+  Favourites: undefined;
 };
 
 /**
  * The Find tab's stack. `FindHome` hosts the shared Map/List experience.
  */
 export type FindStackParamList = {
-  FindHome: undefined;
+  FindHome: { action?: 'need_one_now'; actionId?: number } | undefined;
   FacilityDetail: { facilityId: string };
   AddFacility: undefined;
   ReportFacility: { facilityId: string };

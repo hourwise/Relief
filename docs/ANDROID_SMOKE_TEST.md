@@ -20,6 +20,27 @@ the final build with all seven in place. See "Defects found" at the end.
 > internal preview but is not a release-signed artifact, and an EAS build will
 > have a different certificate. See "Google Maps key verification".
 
+## Luna continuation — device status
+
+The APK documented above predates the Home/Profile/visual continuation. The
+working tree now contains the following **IMPLEMENTED BUT NOT DEVICE TESTED**
+changes; no new APK was built or installed during this pass:
+
+* persistent Home as the post-onboarding default;
+* exactly three primary tabs: Home / Find / Profile;
+* Favourites moved beneath Home while retaining the bottom navigation;
+* one-shot Home → Need One Now hand-off into the existing Find flow;
+* Profile account editing, location recovery, Saved places, and config-derived
+  app information;
+* warmer detail/filter/selected-card surfaces and increased map wayfinding
+  detail;
+* bearing line documentation restricted to Need One Now.
+
+The 27-item Luna acceptance list is therefore **NOT RUN** on this branch. The
+next physical run should use a freshly built APK and record each item as
+VERIFIED, FAIL, or EXTERNAL SETUP REQUIRED; code inspection alone is not a
+device PASS.
+
 ---
 
 ## Still outstanding
@@ -563,9 +584,10 @@ within 25 km".
 Every `navigation.navigate(...)` target in `src/` was checked against the routes
 registered in `src/navigation/AppNavigator.tsx`.
 
-Registered: `Main`, `Auth` (`Login`, `Register`), `AboutRelief`, tabs `Find` /
-`Favourites` / `Profile`, and the Find stack `FindHome`, `FacilityDetail`,
-`AddFacility`, `ReportFacility`, `CorrectInfo`, `AdvancedFilters`.
+Registered: `Main`, `Auth` (`Login`, `Register`), `AboutRelief`, tabs `Home` /
+`Find` / `Profile`, the Home stack `HomeMain` / `Favourites`, and the Find
+stack `FindHome`, `FacilityDetail`, `AddFacility`, `ReportFacility`,
+`CorrectInfo`, `AdvancedFilters`.
 
 All navigation calls from reachable screens resolve to registered routes. The
 remaining calls to unregistered routes (`SavedProfiles`, `Paywall`) exist only
@@ -575,6 +597,7 @@ which is used only by `OfflineMapsScreen`, `RoutePlanningScreen` and
 `SavedProfilesScreen`). None is reachable from the tab bar, so no visible button
 triggers them. This is a static result and still needs confirming by hand.
 
-`FacilityDetail` from the Favourites tab is addressed through the Find tab
-(`navigate('Find', { screen: 'FacilityDetail', … })`) because the route lives in
-that tab's stack; navigating to it directly would be an unhandled action.
+`FacilityDetail` from the Home → Favourites stack is addressed through the Find
+tab (`navigate('Find', { screen: 'FacilityDetail', … })`) because the route
+lives in that tab's stack; navigating to it directly would be an unhandled
+action.

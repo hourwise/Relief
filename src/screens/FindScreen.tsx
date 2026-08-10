@@ -23,10 +23,11 @@ import {
 } from 'react-native';
 import type MapView from 'react-native-maps';
 import { List, LocateFixed, Map as MapIcon, SlidersHorizontal, X } from 'lucide-react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { RouteProp } from '@react-navigation/native';
 import {
   FacilityListBody,
   FacilityMapBody,
@@ -54,6 +55,7 @@ import { getOpenStatus } from '../utils/openingHours';
 import type { Facility, FindStackParamList } from '../types';
 
 type FindNavigationProp = NativeStackNavigationProp<FindStackParamList, 'FindHome'>;
+type FindRouteProp = RouteProp<FindStackParamList, 'FindHome'>;
 
 // Quick-filter chips were removed: they duplicated the Filters button, ate map
 // space, and gave filters two sources of truth that could disagree. The Filters
@@ -78,7 +80,18 @@ export const FindScreen: React.FC = () => {
   const mapRef = useRef<MapView | null>(null);
   const { setFilters, activeFilterCount } = useFilters();
   const find = useFindExperience();
+  const route = useRoute<FindRouteProp>();
   const [chromeHeight, setChromeHeight] = useState(160);
+  const consumedNeedOneNowRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const action = route.params?.action;
+    const actionId = route.params?.actionId;
+    if (action !== 'need_one_now' || actionId === undefined) return;
+    if (consumedNeedOneNowRef.current === actionId) return;
+    consumedNeedOneNowRef.current = actionId;
+    find.findNearest();
+  }, [find, route.params?.action, route.params?.actionId]);
 
   const openFacility = useCallback(
     (facility: Facility) =>
@@ -361,9 +374,10 @@ export const FindScreen: React.FC = () => {
     if (find.selectedFacility) {
       const selected = find.selectedFacility;
       return (
-        <SoftCard style={styles.bottomCard}>
+        <SoftCard style={[styles.bottomCard, styles.selectedBottomCard]}>
           <View style={styles.selectedRow}>
             <View style={styles.selectedCopy}>
+              <Text style={styles.cardEyebrow}>SELECTED FACILITY</Text>
               <Text style={styles.cardTitle} numberOfLines={1}>
                 {selected.name}
               </Text>
@@ -717,6 +731,7 @@ const styles = StyleSheet.create({
     padding: spacing.lg,
   },
   bottomCardProblem: { backgroundColor: '#FFF4D9' },
+  selectedBottomCard: { borderRadius: borderRadius['2xl'], borderColor: 'rgba(26, 107, 92, 0.2)' },
   cardEyebrow: {
     ...typography.caption,
     fontFamily: 'PlusJakartaSans_700Bold',

@@ -55,7 +55,7 @@ graph TD
 |-------|---------------|-------|
 | **Framework** | React Native 0.85 + Expo SDK 56 | Managed workflow |
 | **Language** | TypeScript 6.0, strict mode | `tsconfig.json` extends `expo/tsconfig.base` |
-| **Navigation** | React Navigation 7 | Native stack + bottom tabs; auth-gated root |
+| **Navigation** | React Navigation 7 | Root stack with guest-capable Main entry, Home/Find/Profile bottom tabs, and an on-demand auth modal |
 | **State** | React Context (Filters, Subscription) + local state | No global state library |
 | **Persistence** | AsyncStorage (alert prefs), expo-sqlite (offline data), expo-secure-store | No encrypted remote storage |
 | **Mapping** | `react-native-maps` with `PROVIDER_GOOGLE` on Android | Google Maps selected for Android MVP; `EXPO_PUBLIC_GOOGLE_MAPS_API_KEY` is the expected env var; iOS remains default provider for now |
@@ -68,23 +68,29 @@ graph TD
 
 ```
 RootNavigator
-├── AuthNavigator (shown when unauthenticated)
-│   └── LoginScreen
-└── MainNavigator (shown when authenticated)
-    ├── Tab: Map → MapStack
-    │   ├── MapView (MapScreen)
+└── Main (guest or signed-in)
+    ├── Tab: Home → HomeStack
+    │   ├── HomeMain
+    │   └── Favourites
+    ├── Tab: Find → FindStack
+    │   ├── FindHome (shared Map/List experience)
     │   ├── FacilityDetail
     │   ├── AddFacility
     │   ├── ReportFacility
     │   ├── CorrectInfo
     │   └── AdvancedFilters
-    ├── Tab: List (ListScreen)
-    ├── Tab: Favourites (FavouritesScreen)
-    └── Tab: Profile (ProfileScreen)
-        └── (modal screens for premium features)
+    └── Tab: Profile → ProfileScreen
+
+Root-level modal routes remain available when needed:
+
+* `Auth` → Login/Register for account-dependent actions
+* `AboutRelief` → factual app information
 ```
 
-**Critical observation:** There is no unauthenticated route to any facility discovery screen. The auth gate in `AppNavigator.tsx` routes all unauthenticated users to `LoginScreen`.
+The transient `BrandedHandoff` is an overlay while startup or sign-in is
+genuinely resolving; it is not a route. After onboarding, the persistent
+default is `Home`. Guests remain able to enter Find and complete discovery,
+including Need One Now, without an account.
 
 ### Service Layer
 
@@ -215,4 +221,4 @@ See `docs/DECISIONS_NEEDED.md` for full decision log. Critical architecture deci
 3. **Photo processing** — EXIF stripping and face blurring architecture not designed.
 4. **Admin panel** — No technology or hosting decision made.
 5. **Environment separation** — Development Supabase exists per user report; staging and production separation still needed.
-6. **Unauthenticated urgent access** — Basic "Need One Now" discovery still requires a navigation decision and implementation.
+6. **Unauthenticated urgent access** — RESOLVED in the current discovery architecture. Main is guest-capable, and Home hands Need One Now into the existing Find flow without duplicating the facility query.

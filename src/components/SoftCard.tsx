@@ -24,6 +24,6 @@ export const SoftCard: React.FC<SoftCardProps> = ({ children, style, onPress, ac
 };
 
 const styles = StyleSheet.create({
-  card: { backgroundColor: colors.glassBackground, borderColor: colors.borderLight, borderRadius: borderRadius.xl, borderWidth: 1, padding: spacing.lg, ...shadows.md },
+  card: { backgroundColor: colors.glassBackground, borderColor: 'rgba(26, 107, 92, 0.12)', borderRadius: borderRadius.xl, borderWidth: 1, padding: spacing.lg, ...shadows.md },
   pressed: { opacity: 0.88 },
 });
