@@ -16,7 +16,7 @@
 | Android prebuild | not rerun during consolidation | **NOT RUN** — no source regeneration requested |
 | APK build (local) | `gradlew assembleRelease -PreactNativeArchitectures=arm64-v8a` | **NOT BUILT** — current-configuration mapped build hit mixed `R:`/`D:` roots in codegen; real-path New Architecture-off diagnostic build stalled during Metro bundling with no release APK |
 | APK build (EAS) | `eas build -p android --profile preview` | **NOT RUN** — no EAS project linked |
-| Android smoke test | consolidated 28-item gate | **NOT RUN** — no fresh APK and no device visible to ADB |
+| Android smoke test | consolidated 28-item gate | **NOT RUN** — no fresh APK was produced or installed; the S24 Ultra became visible to ADB only after the build attempts |
 | Find UX acceptance test | 20 checks | **20/20 PASS** after the filter, viewport and locate-control pass |
 | Signed-in journey | favourites, reports, corrections, sign-out | **PASS**, with database writes confirmed over `psql` and test rows removed afterwards |
 | Pre-merge auth gate | audit + device pass | Guest, **new-account creation**, email confirmation, sign-in, session restoration and sign-out all **VERIFIED**. Google OAuth **BLOCKED** on external setup; account self-service (reset/delete/rename) **not built** — see `ANDROID_SMOKE_TEST.md` |

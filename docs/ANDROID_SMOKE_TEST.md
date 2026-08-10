@@ -17,7 +17,8 @@ New-Architecture-off diagnostic build reached native compilation and Metro
 bundling before stalling without a release artifact. Therefore the 28-item
 physical-device acceptance list was **NOT RUN**, and no new cold launch, UI,
 navigation, availability, external-route, account, or fatal exception result
-is claimed here. ADB also reported no connected device at the recovery check.
+is claimed here. ADB was initially empty during recovery and later showed the
+S24 Ultra, but no fresh APK was available to install.
 
 The Need One Now source fix is now explicit in the gate record: the app asks
 for several candidates within 25 km, enriches only those candidates with
