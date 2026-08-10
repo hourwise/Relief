@@ -41,7 +41,7 @@ export const AboutReliefScreen: React.FC<AboutReliefScreenProps> = ({ navigation
           />
         </View>
         <SoftCard style={styles.section}><SectionHeader title="Find comfort, feel relief" /><Text style={styles.copy}>Relief helps people find suitable facilities with the accessibility, privacy, family, and comfort information that matters in the moment.</Text></SoftCard>
-        <SoftCard style={styles.section}><SectionHeader title="App information" /><Text style={styles.version}>Relief v{version}</Text><Text style={styles.copy}>This prototype uses real facility records where the connected development services are available. Details and community updates can be incomplete or unavailable.</Text></SoftCard>
+        <SoftCard style={styles.section}><SectionHeader title="App information" /><Text style={styles.version}>Relief v{version}</Text><Text style={styles.copy}>This preview build uses real facility records where the connected services are available. Details and community updates can be incomplete or unavailable.</Text></SoftCard>
         <SoftCard style={styles.section}><SectionHeader title="Data attribution" /><Text style={styles.copy}>Some imported UK facility records are attributed to Toilet Map UK under CC-BY 4.0. Check the original source for its current data and licence information.</Text><Pressable accessibilityRole="link" accessibilityLabel="Open Toilet Map UK" onPress={() => Linking.openURL('https://www.toiletmapuk.org/')} style={styles.link}><Text style={styles.linkText}>Toilet Map UK</Text><ExternalLink size={16} color={colors.primary} /></Pressable></SoftCard>
       </ScrollView>
     </SafeAreaView>

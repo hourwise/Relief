@@ -1,7 +1,7 @@
 # Relief — Feature Matrix
 
-**Last verified:** 2026-08-08  
-**Verification method:** Source/config audit on `luna/mobile-home-profile-polish`; the existing 2026-08-07 APK evidence remains valid only for the parent branch, and the Luna continuation is not device-tested
+**Last verified:** 2026-08-10
+**Verification method:** Source/config audit on consolidated `claude/android-apk-stabilisation` at `065b42c9f9fb5226bcf2221f682a165a70e85757`; the existing 2026-08-07 APK evidence remains valid only for the parent branch, and the consolidated branch has no fresh device run because APK build prerequisites were blocked
 
 Each feature is assessed against the current repository, not against plans or intentions.
 
@@ -16,7 +16,7 @@ Each feature is assessed against the current repository, not against plans or in
 | List view | ListScreen | `screens/ListScreen.tsx` | Supabase `facilities` table | Supabase | BACKEND-DEPENDENT | Supabase query exists; 15,584 UK facilities imported; previously showed 3 hardcoded Liverpool facilities | Needs client-side smoke test | Run smoke test; replace hardcoded fallback with real query |
 | Search by town/postcode | MapScreen | `screens/MapScreen.tsx` | Supabase `facilities` table | Supabase | BACKEND-DEPENDENT | `searchFacilities()` queries Supabase; 383 distinct towns in imported data | Requires verified Supabase reads | Smoke test with real data |
 | Facility detail | FacilityDetailScreen | `screens/FacilityDetailScreen.tsx` | Supabase facility/read and reports service | Supabase (for facility, photos, reports) | BACKEND-DEPENDENT | Renders real facility values and explicit unknown states for hours, cost, access notes, ratings and photos; coordinate directions retained | Device/data behaviour not yet smoke-tested | Verify with real facility data |
-| "Need One Now" emergency | MapScreen | `screens/MapScreen.tsx` | Supabase `facilities` table via `find_nearest_facilities` RPC | Supabase + PostGIS | BACKEND-DEPENDENT | `fetchClosestFacility()` calls PostGIS RPC `find_nearest_facilities` with controlled radius expansion (5→10→25 km); server-side ST_DWithin/ST_DDistance; GiST spatial index; returns `distance_metres` | **Cannot be accessed without login** — auth gate blocks unauthenticated users; RPC migration needs manual apply | Apply migration; fix auth gate; run manual verification |
+| "Need One Now" emergency | Find experience | `hooks/useFindExperience.ts`, `services/facilities.ts`, `utils/nearestFacility.ts` | Supabase `facilities` table via `find_nearest_facilities` RPC | Supabase + PostGIS | UI IMPLEMENTED — BACKEND-DEPENDENT; source gate passed, device unverified | Requests up to 25 candidates within 25 km, enriches `is_24h` without widening the RPC projection, and ranks confirmed open → unknown → confirmed closed by distance; guest access remains in the routed navigation | Fresh consolidated APK/device run is blocked by local dependency/build prerequisites | Recreate dependencies, build/install the consolidated APK, and exercise the full urgent journey |
 | Directions deep links | FacilityDetailScreen | `screens/FacilityDetailScreen.tsx` | Platform maps URLs | Google/Apple/Waze apps | UI IMPLEMENTED | Deep-link buttons exist | Requires maps app installed | Test on device |
 
 ---

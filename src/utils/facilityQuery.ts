@@ -54,6 +54,8 @@ export interface NearestFacilityRow {
   town: string | null;
   postcode: string | null;
   open_hours: unknown;
+  /** Enriched from facilities because the narrow RPC does not project it. */
+  is_24h?: boolean | null;
   is_free: boolean | null;
   is_accessible: boolean | null;
   overall_score: number | null;
@@ -92,6 +94,7 @@ export function mapNearestFacilityRow(
     town: row.town,
     postcode: row.postcode,
     open_hours: (row.open_hours as NearestFacility['open_hours']) ?? null,
+    is_24h: row.is_24h ?? null,
     is_free: row.is_free,
     is_accessible: row.is_accessible,
     overall_score: row.overall_score,

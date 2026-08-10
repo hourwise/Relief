@@ -325,19 +325,27 @@ export const FindScreen: React.FC = () => {
 
       if (nearestResult) {
         const nearby = nearestResult.facility;
+        const availability = getOpenStatus(nearby);
         return (
           <SoftCard style={styles.bottomCard}>
             <Text style={styles.cardEyebrow}>NEAREST FACILITY</Text>
-            <Text style={styles.cardTitle} numberOfLines={2}>
-              {nearby.name}
-            </Text>
+            {availability === 'closed' ? (
+              <>
+                <Text style={styles.cardTitle}>No confirmed-open facility found nearby</Text>
+                <Text style={styles.cardMeta}>Nearest known facility: {nearby.name}</Text>
+              </>
+            ) : (
+              <Text style={styles.cardTitle} numberOfLines={2}>
+                {nearby.name}
+              </Text>
+            )}
             <Text style={styles.cardMeta}>
               {formatDistance(nearestResult.distance_metres)} away · approx.{' '}
               {estimateWalkingTime(nearestResult.distance_metres)} min walk ·{' '}
               {costLabel(nearby)}
             </Text>
             <View style={styles.cardStatus}>
-              <StatusBadge status={getOpenStatus(nearby)} />
+              <StatusBadge status={availability} />
             </View>
             <View style={styles.cardActions}>
               <PrimaryButton

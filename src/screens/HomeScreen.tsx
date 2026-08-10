@@ -80,7 +80,7 @@ export const HomeScreen: React.FC = () => {
           <Pressable
             accessibilityRole="button"
             accessibilityLabel="Need One Now"
-            accessibilityHint="Find the nearest suitable facility"
+            accessibilityHint="Find the nearest facility"
             onPress={needOneNow}
             style={({ pressed }) => [styles.urgentCard, pressed && styles.pressed]}
           >
@@ -89,7 +89,7 @@ export const HomeScreen: React.FC = () => {
             </View>
             <View style={styles.actionCopy}>
               <Text style={styles.urgentTitle}>Need One Now</Text>
-              <Text style={styles.urgentDetail}>Find the nearest suitable facility.</Text>
+              <Text style={styles.urgentDetail}>Find the nearest facility.</Text>
             </View>
           </Pressable>
 

@@ -1,6 +1,31 @@
 # Android Preview Smoke Test
 
-**Status: EXECUTED — 22 of 22 guest checks PASS, plus a full signed-in journey.**
+**Latest consolidation status (2026-08-10): NOT RUN — no fresh APK was produced.**
+
+The historical parent-branch baseline below remains **22 of 22 guest checks
+PASS**, plus a full signed-in journey, from 2026-08-07. It is not evidence for
+the consolidated stabilisation branch.
+
+## Consolidated branch gate — 2026-08-10
+
+The source was consolidated at `065b42c9f9fb5226bcf2221f682a165a70e85757`.
+The Node 22 focused tests passed (11 files, 461 assertions), but a fresh APK
+could not be produced: the normal release build hit a Windows CMake/Prefab
+path-length error, and a New Architecture-off retry was blocked by the
+incomplete `node_modules` tree missing `expo-module-gradle-plugin`. Therefore
+the 28-item physical-device acceptance list was **NOT RUN**, and no new cold
+launch, UI, navigation, availability, external-route, account, or fatal
+exception result is claimed here.
+
+The Need One Now source fix is now explicit in the gate record: the app asks
+for several candidates within 25 km, enriches only those candidates with
+`is_24h`, and ranks confirmed open/24-hour before unknown, with confirmed
+closed last. Missing or malformed hours remain unknown. A closed-only fallback
+states that no confirmed-open facility was found nearby.
+
+---
+
+**Historical parent-branch status: EXECUTED — 22 of 22 guest checks PASS, plus a full signed-in journey.**
 
 **Build under test:** local release APK, `app-release.apk` (48.8 MB),
 `com.relief.app` versionCode 1 / versionName 1.0.0, targetSdk 36, `arm64-v8a`,

@@ -5,7 +5,7 @@ import { borderRadius, colors, shadows, touchTargets, typography } from '../them
 interface UrgentButtonProps { onPress: () => void; style?: StyleProp<ViewStyle>; compact?: boolean; }
 
 export const UrgentButton: React.FC<UrgentButtonProps> = ({ onPress, style, compact = false }) => (
-  <Pressable accessibilityRole="button" accessibilityLabel="Need One Now" accessibilityHint="Find the nearest suitable facility" onPress={onPress} style={({ pressed }) => [styles.button, compact && styles.compact, pressed && styles.pressed, style]}>
+  <Pressable accessibilityRole="button" accessibilityLabel="Need One Now" accessibilityHint="Find the nearest facility" onPress={onPress} style={({ pressed }) => [styles.button, compact && styles.compact, pressed && styles.pressed, style]}>
     <Text style={styles.title}>Need One Now</Text>
     {!compact ? <View style={styles.subtextRow}><Text style={styles.subtext}>Find the nearest facility</Text></View> : null}
   </Pressable>

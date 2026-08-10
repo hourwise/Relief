@@ -162,6 +162,7 @@ export interface NearestFacility {
   town: string | null;
   postcode: string | null;
   open_hours: OpenHours | null;
+  is_24h: boolean | null;
   is_free: boolean | null;
   is_accessible: boolean | null;
   overall_score: number | null;

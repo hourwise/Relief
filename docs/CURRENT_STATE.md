@@ -1,8 +1,8 @@
 # Relief — Current State Assessment
 
-**Last verified:** 2026-08-07 (device baseline); Luna continuation inspected 2026-08-08
-**Branch:** `luna/mobile-home-profile-polish` (cut from `c54a977958e7f7afcdab3394449d08ba4f3278d9`)
-**Verification method:** Live Supabase project queried directly (PostgreSQL 17.6) via `psql` and the anonymous REST endpoint; repository quality gates run locally; **release APK built, installed and driven on a physical Samsung Galaxy S24 Ultra with no Metro running.**
+**Last verified:** 2026-08-10 (consolidation gate); device baseline remains 2026-08-07
+**Branch:** `claude/android-apk-stabilisation` at consolidated Luna HEAD `065b42c9f9fb5226bcf2221f682a165a70e85757`
+**Verification method:** Remote ref consolidation, source audit, pure tests and Expo public config were run on 2026-08-10. The latest consolidated source did not produce an APK because the local dependency tree/install and Windows native build environment were blocked; the prior parent-branch APK evidence remains historical and is not evidence for the consolidated branch.
 
 | Check | Command | Result |
 |-------|---------|--------|
@@ -20,6 +20,35 @@
 | Find UX acceptance test | 20 checks | **20/20 PASS** after the filter, viewport and locate-control pass |
 | Signed-in journey | favourites, reports, corrections, sign-out | **PASS**, with database writes confirmed over `psql` and test rows removed afterwards |
 | Pre-merge auth gate | audit + device pass | Guest, **new-account creation**, email confirmation, sign-in, session restoration and sign-out all **VERIFIED**. Google OAuth **BLOCKED** on external setup; account self-service (reset/delete/rename) **not built** — see `ANDROID_SMOKE_TEST.md` |
+
+## Final consolidation gate — 2026-08-10
+
+The requested fast-forward consolidation was performed without rewriting history:
+
+| Check | Result |
+|-------|--------|
+| Remote ref comparison | **PASS** — Luna `065b42c9f9fb5226bcf2221f682a165a70e85757` was 1 commit ahead and 0 behind stabilisation `c54a977958e7f7afcdab3394449d08ba4f3278d9` |
+| Consolidated branch | **PASS** — `claude/android-apk-stabilisation` fast-forwarded and pushed at `065b42c9f9fb5226bcf2221f682a165a70e85757` |
+| Node 22 runtime | **PASS** — `v22.22.2` |
+| `npm ci` | **BLOCKED** — npm hit Windows `EPERM` while cleaning the existing native dependency tree and did not terminate cleanly within the bounded retry; the restored tree remained incomplete |
+| `npm run verify` | **BLOCKED BY INSTALL** — could not start the repository script because the interrupted tree lacked npm executable links; direct Node 22 TypeScript invocation was also invalid against the incomplete tree’s missing dependency metadata |
+| Focused tests | **PASS** — 11 files, 461 assertions, including the new Need One Now ranking tests, run with the Node 22.22.2 executable |
+| `npx expo config --type public` | **PASS** — resolves Relief, package `com.relief.app`, SDK `56.0.0` |
+| `npx expo-doctor` | **BLOCKED BY INSTALL** — the `expo-doctor` package was absent from the incomplete dependency tree |
+| Local release APK | **NOT BUILT** — normal native build hit Windows path length in React Native CMake/Prefab; a scoped New Architecture-off retry then failed because `expo-module-gradle-plugin` was missing from the incomplete dependency tree |
+| Consolidated physical-device smoke test | **NOT RUN** — no fresh APK was produced; the 2026-08-07 parent-branch run must not be reused as evidence for this branch |
+
+### Need One Now consolidation fix
+
+The previous implementation asked `find_nearest_facilities` for `result_limit: 1`, so the database-nearest row was returned even when it was confirmed closed. The consolidated implementation requests up to 25 candidates within the existing 25 km ceiling, reads `is_24h` only for those candidate IDs without widening the RPC projection, and ranks application-side as:
+
+1. confirmed open or confirmed 24-hour;
+2. opening status unknown;
+3. confirmed closed.
+
+Distance is the tie-breaker inside each class. Missing, null, or malformed `open_hours` remains unknown. A closed-only result is shown as a fallback with explicit `No confirmed-open facility found nearby` wording; no candidates continues to produce the existing truthful empty state.
+
+The fix is covered by 8 new pure assertions: nearer closed versus farther open, unknown versus closed, closed-only fallback ordering, 24-hour handling, missing-hours unknown handling, and empty-result preservation.
 
 ---
 

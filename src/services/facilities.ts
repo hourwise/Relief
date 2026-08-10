@@ -14,6 +14,7 @@ import {
   mapNearestFacilityRow,
   type NearestFacilityRow,
 } from '../utils/facilityQuery';
+import { rankNearestFacilities } from '../utils/nearestFacility';
 import type { Facility, FacilityFilters, NearestFacilityResult } from '../types';
 
 // Re-exported so callers keep a single import site for facility reads.
@@ -21,6 +22,8 @@ export { filterColumnMap, mapNearestFacilityRow };
 
 const VIEWPORT_LIMIT = 500;
 const SEARCH_LIMIT = 20;
+const NEAREST_RADIUS_METRES = 25000;
+const NEAREST_RESULT_LIMIT = 25;
 
 /**
  * Smoke-test fault injection for the nearest-facility journey.
@@ -222,10 +225,9 @@ export async function searchFacilities(
 /**
  * The closest published facility, via the PostGIS RPC.
  *
- * Radius widens 5 km → 10 km → 25 km only when a search genuinely found
- * nothing. An RPC *error* aborts immediately: retrying a broken function at a
- * wider radius just fails three times and then reports "nothing nearby",
- * which is exactly the misdiagnosis this journey must not make.
+ * The RPC returns several candidates inside the existing 25 km ceiling. The
+ * app then ranks them by availability before distance so an urgent search
+ * does not knowingly prefer a confirmed-closed facility.
  */
 export async function fetchClosestFacility(
   latitude: number,
@@ -241,39 +243,68 @@ export async function fetchClosestFacility(
     };
   }
 
-  const radii = [5000, 10000, 25000];
+  const { data, error } = await supabase.rpc('find_nearest_facilities', {
+    user_latitude: latitude,
+    user_longitude: longitude,
+    search_radius_metres: NEAREST_RADIUS_METRES,
+    result_limit: NEAREST_RESULT_LIMIT,
+  });
 
-  for (const radius of radii) {
-    const { data, error } = await supabase.rpc('find_nearest_facilities', {
-      user_latitude: latitude,
-      user_longitude: longitude,
-      search_radius_metres: radius,
-      result_limit: 1,
-    });
-
-    if (error) {
-      console.error(`find_nearest_facilities failed at ${radius}m:`, error);
-      return { ok: false, error: describeError(error) };
-    }
-
-    const rows = (data ?? []) as NearestFacilityRow[];
-    if (rows.length > 0) {
-      const facility = mapNearestFacilityRow(rows[0]);
-      if (!facility) {
-        return {
-          ok: false,
-          error: 'The nearest facility could not be read. Please try again.',
-        };
-      }
-      return {
-        ok: true,
-        data: { facility, distance_metres: facility.distance_metres },
-      };
-    }
+  if (error) {
+    console.error(
+      `find_nearest_facilities failed at ${NEAREST_RADIUS_METRES}m:`,
+      error,
+    );
+    return { ok: false, error: describeError(error) };
   }
 
-  // Searched every radius successfully and genuinely found nothing.
-  return { ok: true, data: null };
+  const rows = (data ?? []) as NearestFacilityRow[];
+  if (rows.length === 0) {
+    // The query succeeded and genuinely found nothing within 25 km.
+    return { ok: true, data: null };
+  }
+
+  // Keep the RPC projection narrow. `is_24h` is read only for these bounded
+  // candidates so a 24-hour facility with no open_hours is still confirmed
+  // open without changing the fragile live function signature/projection.
+  const candidateIds = rows.flatMap((row) =>
+    row.facility_id ? [row.facility_id] : [],
+  );
+  const { data: availability, error: availabilityError } = await supabase
+    .from('facilities')
+    .select('id, is_24h')
+    .in('id', candidateIds)
+    .eq('publication_status', 'published');
+
+  if (availabilityError) {
+    console.error('nearest facility availability lookup failed:', availabilityError);
+    return { ok: false, error: describeError(availabilityError) };
+  }
+
+  const is24hById = new Map(
+    (availability ?? []).map((row) => [row.id, row.is_24h]),
+  );
+  const candidates = rows
+    .map((row) =>
+      mapNearestFacilityRow({
+        ...row,
+        is_24h: row.facility_id ? is24hById.get(row.facility_id) ?? null : null,
+      }),
+    )
+    .filter((facility): facility is NonNullable<typeof facility> => facility !== null);
+
+  if (candidates.length === 0) {
+    return {
+      ok: false,
+      error: 'The nearest facility could not be read. Please try again.',
+    };
+  }
+
+  const [facility] = rankNearestFacilities(candidates);
+  return {
+    ok: true,
+    data: { facility, distance_metres: facility.distance_metres },
+  };
 }
 
 export { estimateWalkingTime } from '../utils/walkingTime';
