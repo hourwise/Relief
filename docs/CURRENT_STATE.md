@@ -1,8 +1,45 @@
 # Relief — Current State Assessment
 
-**Last verified:** 2026-08-10 (consolidation gate); device baseline remains 2026-08-07
-**Branch:** `claude/android-apk-stabilisation` at `5dce071` (Luna source consolidated from `065b42c9f9fb5226bcf2221f682a165a70e85757`)
-**Verification method:** Remote ref consolidation, source audit, TypeScript, direct ESLint, focused tests and Expo public config were run on 2026-08-10. The latest consolidated source did not produce an APK: the real-path New Architecture-off diagnostic build reached native compilation and Metro bundling but stalled before emitting a release artifact; the prior parent-branch APK evidence remains historical and is not evidence for the consolidated branch.
+**Last verified:** 2026-08-11 (fresh short-path Android merge gate)
+**Branch:** `claude/android-apk-stabilisation` at `11322abf27d6dd23a708b37e7aad88905d38f2db`
+**Verification method:** Fresh clone at `D:\r\relief`, Node `22.22.2`, clean `npm ci`, source gates, Expo SDK 56 public config, Android prebuild, local arm64 release APK assembly, installation on the physical Samsung S24 Ultra, and the current 28-item smoke list. The existing working copy was not modified.
+
+## Fresh short-path Android merge gate - 2026-08-11
+
+The exact remote branch head was verified in a new clone at `D:\r\relief`:
+`11322abf27d6dd23a708b37e7aad88905d38f2db`. The clone had no `node_modules`,
+`android/`, or `.env` before setup. The local public environment was recreated
+without printing or committing values; `.env` remains ignored.
+
+| Gate | Result |
+|------|--------|
+| Node/npm | **VERIFIED** - Node `v22.22.2`, npm `10.9.7` |
+| Source verification | **VERIFIED** - `npm run verify`; 11 test files and 461 assertions passed |
+| Expo validation | **VERIFIED** - `npx expo-doctor` 21/21; public config resolved SDK 56 and package `com.relief.app` |
+| Native generation | **VERIFIED** - clean Android prebuild; New Architecture setting unchanged |
+| Local release build | **VERIFIED** - Expo device selection was non-interactive and the targeted run stalled without an APK; the permitted Gradle fallback succeeded |
+| Install | **VERIFIED** - `adb install -r` returned `Success` on the S24 Ultra (`SM_S928B`, serial `R5CX13MZ2YF`) |
+| Device smoke | **VERIFIED** - current 28-item guest, map/list/filter, urgent, detail, directions, profile, account handoff, sign-out, and cold-launch checks passed |
+| Fatal Android exceptions | **VERIFIED** - 0 fatal matches after the smoke run; the relaunched app process remained alive |
+
+The APK was `android/app/build/outputs/apk/release/app-release.apk`,
+49,349,586 bytes, SHA-256
+`84FD9ED90BBAC770022252A4CEC3CC4A88383098184C05C3951476B21547A99B`.
+The Need One Now ranking source gate remains the authority for open/unknown/
+closed ordering (8 assertions passed); the physical run returned a confirmed
+open, free nearest candidate using live data.
+
+**Merge decision for this gate: READY TO MERGE TO MAIN.** This is an internal
+local-build/device decision only. It does not authorize EAS, production data
+enrichment, external-service setup, or a merge/push operation.
+
+Outstanding release setup remains explicit: EAS is **NOT RUN**; production
+Supabase Auth, Storage, Edge Functions, moderation and operational setup remain
+outside this gate; Google Play, Play App Signing and store submission setup are
+**NOT RUN**; account deletion is not implemented; and legal/privacy/terms and
+public account-deletion URL setup remain outstanding.
+
+The older check table below records the superseded 2026-08-10 pre-device state.
 
 | Check | Command | Result |
 |-------|---------|--------|
@@ -53,6 +90,11 @@ The fix is covered by 8 new pure assertions: nearer closed versus farther open, 
 ---
 
 ## Executive Summary
+
+The legacy consolidation narrative below predates the fresh 2026-08-11 device
+gate above. Its source and parent-branch history remains useful for
+traceability, but its pre-device merge warning is superseded by the current
+gate decision recorded above.
 
 Relief is a React Native / Expo SDK 56 application whose **core discovery journey is wired to live data end to end at the service layer**, and whose most urgent feature — "Need One Now" — has been repaired and verified at the source/data-contract gate. The parent-branch device evidence described below is historical and does not clear the consolidated branch for merge.
 

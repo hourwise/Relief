@@ -1,6 +1,66 @@
 # Android Preview Smoke Test
 
-**Latest consolidation status (2026-08-10): NOT RUN — no fresh APK was produced.**
+## Current fresh short-path Android merge gate - 2026-08-11
+
+**Decision: READY TO MERGE TO MAIN** for the local Android/device gate. This
+does not authorize EAS, production data enrichment, external-service setup,
+or a merge/push operation.
+
+EAS remains **NOT RUN**. Production Supabase services beyond the verified
+read-only discovery path, Google Play and Play App Signing setup, account
+deletion, and legal/privacy/terms and public account-deletion URL setup remain
+outstanding.
+
+The gate ran from a fresh clone at `D:\r\relief` on branch head
+`11322abf27d6dd23a708b37e7aad88905d38f2db`, using Node `22.22.2`, JDK 17,
+the Android SDK, a clean Gradle home, and the authorized Samsung S24 Ultra
+(`SM_S928B`, serial `R5CX13MZ2YF`). No source/product files were changed.
+
+### Build evidence
+
+* `npm ci` passed in the fresh clone with 816 packages and no EPERM.
+* `npm run verify` passed: TypeScript and lint exited 0; 11 test files and
+  461 assertions passed.
+* `npx expo-doctor` passed 21/21 checks.
+* `npx expo config --type public` resolved SDK 56.0.0 and `com.relief.app`;
+  public environment values were not printed.
+* `npx expo prebuild --platform android --clean` passed. The generated
+  manifest contained one `com.google.android.geo.API_KEY` metadata entry.
+* The exact Expo device command could not select a device in the
+  non-interactive shell; the targeted device-name run stalled without an APK
+  and exposed no first native error. The permitted Gradle fallback passed:
+
+  ```powershell
+  .\gradlew.bat assembleRelease -PreactNativeArchitectures=arm64-v8a --stacktrace
+  ```
+
+  Artifact: `android/app/build/outputs/apk/release/app-release.apk`,
+  49,349,586 bytes, SHA-256
+  `84FD9ED90BBAC770022252A4CEC3CC4A88383098184C05C3951476B21547A99B`.
+  `adb install -r` returned `Success`.
+
+### Current device acceptance list
+
+The fresh installed APK passed the current 28-item list: cold launch and
+branding, Home landing and tabs, Home to Find, Saved places truthfulness,
+Need One Now, real open-candidate presentation, map tiles and legibility,
+Map/List, panned viewport and centre-on-user, Free filtering, selected marker,
+Facility Detail and safe areas, directions and the visible Google Maps walking
+route, Profile/location status/refresh, About Relief, display-name editor
+submission using the unchanged value, sign-out, guest Find, sign-in handoff,
+Continue without an account, and zero fatal Android exceptions. The ranking
+cases for open/unknown/closed facilities remain covered by the 8 passing source
+assertions; the physical run used live data and returned a confirmed open
+candidate.
+
+The cold relaunch ended at `com.relief.app/.MainActivity` with a live process;
+the post-smoke logcat scan found 0 fatal exception, fatal AndroidRuntime, or
+React Native error matches.
+
+The dated consolidation note below is historical pre-device evidence; it is
+retained for traceability and is superseded by this fresh gate.
+
+**Historical pre-device status (2026-08-10): NOT RUN — no fresh APK was produced.**
 
 The historical parent-branch baseline below remains **22 of 22 guest checks
 PASS**, plus a full signed-in journey, from 2026-08-07. It is not evidence for

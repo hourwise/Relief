@@ -1,7 +1,25 @@
 # Relief — Feature Matrix
 
-**Last verified:** 2026-08-10
-**Verification method:** Source/config audit on consolidated `claude/android-apk-stabilisation` at `065b42c9f9fb5226bcf2221f682a165a70e85757`; the existing 2026-08-07 APK evidence remains valid only for the parent branch, and the consolidated branch has no fresh device run because APK build prerequisites were blocked
+**Last verified:** 2026-08-11
+**Verification method:** Fresh clone at `D:\r\relief`, exact branch head `11322abf27d6dd23a708b37e7aad88905d38f2db`, Node 22 source gates, clean Android prebuild, local release APK, and physical Samsung S24 Ultra smoke test. Existing working copy and product code were not modified.
+
+## Fresh Android gate overlay - 2026-08-11
+
+The following statuses are newly verified on the fresh installed APK. They
+supersede the older device-unverified notes in the detailed source matrix
+below; backend, EAS, Google OAuth, and production-service setup remain separate
+gates.
+
+| Surface | Status | Fresh evidence |
+|---------|--------|----------------|
+| Map, markers, viewport and centre-on-user | VERIFIED | Google tiles, live markers, panned viewport, selected marker and centre control exercised on the S24 Ultra |
+| List view and basic Free filter | VERIFIED | Map/List switch and one active Free filter returned a live free facility |
+| Need One Now | VERIFIED | 8 source ranking assertions plus a guest live-data urgent journey with a confirmed open candidate |
+| Facility detail and directions | VERIFIED | Detail, safe areas, deep-link controls and visible Google Maps walking route exercised |
+| Native startup, onboarding and Home | VERIFIED | Fresh release install reached branded onboarding and Home with the three primary tabs |
+| About Relief | VERIFIED | Fresh device run opened the artwork, app information and truthful preview copy |
+| Guest-capable entry and auth handoff | VERIFIED | Guest Find/Need One Now worked; sign-in screen and Continue without an account returned to guest state |
+| Signed-in profile editor and sign-out | VERIFIED | Existing unchanged value submitted safely; sign-out returned the app to guest state |
 
 Each feature is assessed against the current repository, not against plans or intentions.
 
