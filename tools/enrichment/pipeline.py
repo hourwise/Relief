@@ -404,24 +404,76 @@ def field_differences(candidate: NormalizedCandidate, facility: dict[str, Any]) 
     for source_field, facility_field in FIELD_MAP.items():
         source_value = getattr(candidate, source_field)
         relief_value = facility.get(facility_field)
-        if source_field == "opening_hours" and known_value(source_value) and known_value(relief_value):
-            conflicting_days = [
-                day for day, source_hours in source_value.items()
-                if day in relief_value and relief_value.get(day) is not None and source_hours != relief_value.get(day)
-            ]
-            if conflicting_days:
+        if source_field == "opening_hours":
+            if not known_value(source_value):
+                if known_value(relief_value):
+                    omissions.append({
+                        "field": source_field,
+                        "relief_field": facility_field,
+                        "omitted_days": sorted(relief_value) if isinstance(relief_value, dict) else None,
+                        "relief_value": relief_value,
+                    })
+                else:
+                    same.append(source_field)
+                continue
+            if not known_value(relief_value):
+                enrichment.append({
+                    "field": source_field,
+                    "relief_field": facility_field,
+                    "source_value": source_value,
+                })
+                continue
+            if isinstance(source_value, dict) and isinstance(relief_value, dict):
+                same_days = []
+                added_days = []
+                conflicting_days = []
+                omitted_days = []
+                for day in DAY_KEYS:
+                    source_day = source_value.get(day)
+                    relief_day = relief_value.get(day)
+                    if source_day is not None and relief_day is None:
+                        added_days.append(day)
+                    elif source_day is None and relief_day is not None:
+                        omitted_days.append(day)
+                    elif source_day == relief_day:
+                        same_days.append(day)
+                    else:
+                        conflicting_days.append(day)
+                if added_days:
+                    enrichment.append({
+                        "field": source_field,
+                        "relief_field": facility_field,
+                        "added_days": added_days,
+                        "source_value": {day: source_value[day] for day in added_days},
+                    })
+                if conflicting_days:
+                    conflicts.append({
+                        "field": source_field,
+                        "relief_field": facility_field,
+                        "conflicting_days": conflicting_days,
+                        "source_value": {day: source_value[day] for day in conflicting_days},
+                        "relief_value": {day: relief_value[day] for day in conflicting_days},
+                    })
+                if omitted_days:
+                    omissions.append({
+                        "field": source_field,
+                        "relief_field": facility_field,
+                        "omitted_days": omitted_days,
+                        "relief_value": {day: relief_value[day] for day in omitted_days},
+                    })
+                if not added_days and not conflicting_days and not omitted_days:
+                    same.append(source_field)
+                # Missing source days mean unknown, not closed or deleted.
+                continue
+            if values_equal(source_value, relief_value, source_field):
+                same.append(source_field)
+            else:
                 conflicts.append({
                     "field": source_field,
                     "relief_field": facility_field,
-                    "conflicting_days": conflicting_days,
                     "source_value": source_value,
                     "relief_value": relief_value,
                 })
-            else:
-                # Empty/malformed source day entries remain unknown. A partial
-                # source schedule is not itself a disagreement with days the
-                # source did not express.
-                same.append(source_field)
             continue
         if not known_value(source_value):
             if known_value(relief_value):

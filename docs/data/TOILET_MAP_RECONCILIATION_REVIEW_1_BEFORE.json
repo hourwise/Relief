@@ -1,0 +1,2134 @@
+{
+  "report_schema_version": "1.0",
+  "generated_at": "2026-08-11T13:04:52.030003+00:00",
+  "read_only": true,
+  "source": {
+    "canonical_name": "Toilet Map UK",
+    "data_url": "https://www.toiletmap.org.uk/dataset",
+    "download_url": "https://p02w6qqjlqmja4sk.public.blob.vercel-storage.com/exports/toilets-2026-08-11T00%3A00%3A40.710Z-APHGhV8gen3MznZyQPYdAigXG8eRY7.csv?download=1",
+    "source_declared_update_timestamp": "2026-08-11T01:00:00+00:00",
+    "retrieval_timestamp": "2026-08-11T13:13:27+01:00",
+    "licence": "CC BY 4.0",
+    "attribution": "Contains data from the Toilet Map © 2025 – CC BY 4.0 (Creative Commons Attribution 4.0 International)",
+    "input_sha256": "f6824fdc7cd29df8c1f45ba749c1b28d319fb34803c55459bbe748ef65937624",
+    "input_bytes": 7856657
+  },
+  "baseline": {
+    "retrieved_at": "2026-08-11T13:15:34+01:00",
+    "project_ref": "bgwxrxkmyaihplaloely",
+    "query_mode": "read-only Supabase SQL via connected project",
+    "facility_count": 15584,
+    "publication_status_counts": {
+      "published": 15584
+    },
+    "facility_sources_by_source": [
+      {
+        "source_name": "Toilet Map UK",
+        "total_count": 15584,
+        "current_count": 15584,
+        "distinct_facility_count": 15584
+      }
+    ],
+    "import_runs": [
+      {
+        "id": "143e2b77-05b7-4415-aa29-0ea0f05190f4",
+        "source_name": "Toilet Map UK",
+        "source_file_name": "normalised.csv",
+        "source_checksum": "24a3655f01f03596f3427c9b4af8c752bc0844eb8dbd66c066b04a82e1c2d40f",
+        "status": "completed",
+        "started_at": "2026-07-25T13:11:48.264394+00:00",
+        "completed_at": "2026-07-25T13:11:48.264394+00:00",
+        "rows_received": 15584,
+        "rows_valid": 15584,
+        "rows_inserted": 15480,
+        "rows_updated": 0,
+        "rows_unchanged": 104,
+        "rows_quarantined": 0,
+        "rows_marked_stale": 0,
+        "error_summary": null
+      },
+      {
+        "id": "7878844a-5964-4a8b-8940-02a18e967cc6",
+        "source_name": "Toilet Map UK",
+        "source_file_name": "normalised.csv",
+        "source_checksum": "24a3655f01f03596f3427c9b4af8c752bc0844eb8dbd66c066b04a82e1c2d40f",
+        "status": "completed",
+        "started_at": "2026-07-25T13:06:52.957007+00:00",
+        "completed_at": "2026-07-25T13:06:52.957007+00:00",
+        "rows_received": 104,
+        "rows_valid": 104,
+        "rows_inserted": 0,
+        "rows_updated": 0,
+        "rows_unchanged": 104,
+        "rows_quarantined": 0,
+        "rows_marked_stale": 0,
+        "error_summary": null
+      },
+      {
+        "id": "81cbae77-6bfe-49f2-8072-ecdcdd30d46f",
+        "source_name": "Toilet Map UK",
+        "source_file_name": "normalised.csv",
+        "source_checksum": "24a3655f01f03596f3427c9b4af8c752bc0844eb8dbd66c066b04a82e1c2d40f",
+        "status": "completed",
+        "started_at": "2026-07-25T12:53:07.414910+00:00",
+        "completed_at": "2026-07-25T12:53:07.414910+00:00",
+        "rows_received": 104,
+        "rows_valid": 104,
+        "rows_inserted": 104,
+        "rows_updated": 0,
+        "rows_unchanged": 0,
+        "rows_quarantined": 0,
+        "rows_marked_stale": 0,
+        "error_summary": null
+      }
+    ],
+    "toilet_map_linked_facilities": 15584,
+    "toilet_map_current_links": 15584,
+    "records_with_field_provenance": 10922,
+    "duplicate_source_record_ids": [],
+    "facilities_without_source_linkage": 0,
+    "invalid_name_baseline": {
+      "all_facilities": 9,
+      "published_facilities": 9,
+      "published_examples": [
+        {
+          "id": "1cfb8c04-7f41-4090-8c5a-1cd2b198cb6c",
+          "name": "]",
+          "publication_status": "published"
+        },
+        {
+          "id": "09d00901-2601-48b5-9048-e08003d5724a",
+          "name": "0",
+          "publication_status": "published"
+        },
+        {
+          "id": "257df832-62f4-4fad-9baa-f55bea0ebe85",
+          "name": "2",
+          "publication_status": "published"
+        },
+        {
+          "id": "00d04461-cb67-4e02-8048-75271c2d15f7",
+          "name": "BP",
+          "publication_status": "published"
+        },
+        {
+          "id": "62a20dc5-8b2b-4ab7-985b-ab9128f6cc3e",
+          "name": "BP",
+          "publication_status": "published"
+        },
+        {
+          "id": "8e6f56d9-e0e5-4e9d-95f0-b798cdfd1c9a",
+          "name": "BP",
+          "publication_status": "published"
+        },
+        {
+          "id": "9fcd3b30-ca5a-40bb-8fcc-d015297ec505",
+          "name": "BP",
+          "publication_status": "published"
+        },
+        {
+          "id": "b1ff48d6-78ea-4e4a-a331-9fc425ac624c",
+          "name": "BP",
+          "publication_status": "published"
+        },
+        {
+          "id": "14b3611a-5a74-40e9-83b4-bd5b67afff57",
+          "name": "my",
+          "publication_status": "published"
+        }
+      ]
+    }
+  },
+  "input": {
+    "generated_at": "2026-08-11T13:04:52.030003+00:00",
+    "input_path": "D:\\r\\relief\\tools\\facility-enrichment\\cache\\toilet-map-uk-2026-08-11.csv",
+    "snapshot_mode": "read-only Supabase REST GET",
+    "facility_snapshot_count": 15584,
+    "facility_source_snapshot_count": 15584,
+    "source_status_counts": {
+      "active": 16057
+    },
+    "validation_error_counts": {
+      "coordinates outside the UK validation envelope": 458
+    },
+    "quality_warning_counts": {
+      "missing source name": 2682,
+      "opening_times present but not a usable seven-day time array": 64
+    }
+  },
+  "matching_rules": {
+    "source_id": "Existing facility_sources (source_name + source_record_id) is authoritative; no fuzzy match can override it.",
+    "search_radius_metres": 250.0,
+    "high_confidence": [
+      "name similarity >= 0.93 and distance <= 60m with matching or unknown town",
+      "or name similarity >= 0.97 and distance <= 150m with matching or unknown town",
+      "a close competing candidate makes the result AMBIGUOUS instead"
+    ],
+    "ambiguous": "Plausible nearby candidates with insufficient score margin remain AMBIGUOUS.",
+    "likely_new": "No conservative high-confidence match; no automatic merge is proposed.",
+    "invalid_source_record": "Missing source identity, unusable coordinates, out-of-envelope coordinates, duplicate input ID without an authoritative linkage, or missing name when no source-ID match exists.",
+    "missing_values": "Missing upstream fields remain unknown/omitted; they never become false and never clear an existing Relief value."
+  },
+  "summary": {
+    "relief_baseline_facility_count": 15584,
+    "current_toilet_map_input_record_count": 16057,
+    "current_toilet_map_active_records": 16057,
+    "current_toilet_map_removed_or_inactive_records": 0,
+    "current_toilet_map_unknown_status_records": 0,
+    "exact_source_id_matches": 15567,
+    "high_confidence_inferred_matches": 0,
+    "ambiguous_candidates": 1,
+    "likely_new_facilities": 31,
+    "unchanged_linked_records": 15526,
+    "changed_linked_records": 41,
+    "upstream_removed_inactive_records": 0,
+    "previously_linked_relief_records_absent_upstream": 17,
+    "invalid_source_records": 458,
+    "source_quality_warning_records": 2746,
+    "potential_duplicate_clusters": 0
+  },
+  "field_enrichment_opportunities": {
+    "opening_hours": 6,
+    "requires_radar_key": 14,
+    "has_baby_changing": 16,
+    "is_gender_neutral": 15,
+    "is_free": 1,
+    "is_accessible": 2
+  },
+  "field_conflicts": {
+    "is_accessible": 15,
+    "requires_radar_key": 4,
+    "name": 19,
+    "longitude": 9,
+    "latitude": 8,
+    "opening_hours": 11,
+    "is_gender_neutral": 1,
+    "has_baby_changing": 1
+  },
+  "field_omissions": {
+    "name": 2608,
+    "has_staff_nearby": 4525,
+    "is_family_friendly": 2762,
+    "opening_hours": 62,
+    "is_free": 4,
+    "requires_radar_key": 2,
+    "has_baby_changing": 1
+  },
+  "potential_duplicate_clusters": [],
+  "examples": {
+    "likely_new": [
+      {
+        "source_record_id": "02760f05f626d67f29aabc09",
+        "name": "Armada Way Accessible Toilets",
+        "town": "Plymouth",
+        "latitude": 50.371866538,
+        "longitude": -4.142508017,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "LIKELY_NEW",
+          "facility_id": null,
+          "distance_metres": 74.4047426233552,
+          "name_similarity": 0.64,
+          "town_match": true,
+          "reasons": [
+            "nearby evidence is below the conservative match threshold"
+          ],
+          "alternatives": [
+            {
+              "facility_id": "d8083525-0566-422c-8a3c-b65c2111ed14",
+              "distance_metres": 74.4047426233552,
+              "name_similarity": 0.64,
+              "town_match": true,
+              "town_unknown": false,
+              "score": 0.7064762059013159,
+              "facility_name": "Armada Way surface disabled",
+              "facility_town": "Plymouth"
+            }
+          ]
+        }
+      },
+      {
+        "source_record_id": "059ffb72ce5bab427a2de7a1",
+        "name": "RSPB Lochwinnoch",
+        "town": "Renfrewshire",
+        "latitude": 55.788635344,
+        "longitude": -4.618718357,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "LIKELY_NEW",
+          "facility_id": null,
+          "distance_metres": null,
+          "name_similarity": null,
+          "town_match": null,
+          "reasons": [
+            "no candidate within the provisional search envelope"
+          ],
+          "alternatives": []
+        }
+      },
+      {
+        "source_record_id": "14abe0d9023602979da37362",
+        "name": "Chill @ Chives Cafe",
+        "town": "Derby",
+        "latitude": 52.925885481,
+        "longitude": -1.469015853,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "LIKELY_NEW",
+          "facility_id": null,
+          "distance_metres": null,
+          "name_similarity": null,
+          "town_match": null,
+          "reasons": [
+            "no candidate within the provisional search envelope"
+          ],
+          "alternatives": []
+        }
+      },
+      {
+        "source_record_id": "177c0eaa345c7ce7677eb13c",
+        "name": "Becky's Barn Cafe",
+        "town": "Shropshire",
+        "latitude": 52.62996944,
+        "longitude": -2.259723544,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "LIKELY_NEW",
+          "facility_id": null,
+          "distance_metres": null,
+          "name_similarity": null,
+          "town_match": null,
+          "reasons": [
+            "no candidate within the provisional search envelope"
+          ],
+          "alternatives": []
+        }
+      },
+      {
+        "source_record_id": "1c7f7f431a450c0659bb4d18",
+        "name": "Neilston Train Station",
+        "town": "East Renfrewshire",
+        "latitude": 55.783046156,
+        "longitude": -4.426827809,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "LIKELY_NEW",
+          "facility_id": null,
+          "distance_metres": null,
+          "name_similarity": null,
+          "town_match": null,
+          "reasons": [
+            "no candidate within the provisional search envelope"
+          ],
+          "alternatives": []
+        }
+      },
+      {
+        "source_record_id": "1d9034f071dab8ee5ee5181f",
+        "name": "Exeter City Library",
+        "town": "Exeter",
+        "latitude": 50.725190606,
+        "longitude": -3.530183136,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "LIKELY_NEW",
+          "facility_id": null,
+          "distance_metres": null,
+          "name_similarity": null,
+          "town_match": null,
+          "reasons": [
+            "no candidate within the provisional search envelope"
+          ],
+          "alternatives": []
+        }
+      },
+      {
+        "source_record_id": "230fbaf1acae2242e54a0ad8",
+        "name": "Council House Entrance Lobby",
+        "town": "Derby",
+        "latitude": 52.923090706,
+        "longitude": -1.474302408,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "LIKELY_NEW",
+          "facility_id": null,
+          "distance_metres": null,
+          "name_similarity": null,
+          "town_match": null,
+          "reasons": [
+            "no candidate within the provisional search envelope"
+          ],
+          "alternatives": []
+        }
+      },
+      {
+        "source_record_id": "232bc6a31fc2f51f403d077f",
+        "name": "Canary Wharf (Jubilee Line) underground station (ticket entrance area) (unpaid area) (accessible toilet only)",
+        "town": "Tower Hamlets",
+        "latitude": 51.503532085,
+        "longitude": -0.019448746,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "LIKELY_NEW",
+          "facility_id": null,
+          "distance_metres": null,
+          "name_similarity": null,
+          "town_match": null,
+          "reasons": [
+            "no candidate within the provisional search envelope"
+          ],
+          "alternatives": []
+        }
+      },
+      {
+        "source_record_id": "319a320ae4671c38ef383f6f",
+        "name": "Birds Bakery Cafe",
+        "town": "Charnwood",
+        "latitude": 52.759246484,
+        "longitude": -1.207197322,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "LIKELY_NEW",
+          "facility_id": null,
+          "distance_metres": null,
+          "name_similarity": null,
+          "town_match": null,
+          "reasons": [
+            "no candidate within the provisional search envelope"
+          ],
+          "alternatives": []
+        }
+      },
+      {
+        "source_record_id": "33aebf2ab67de1b196b4ca15",
+        "name": "Neilston Library",
+        "town": "East Renfrewshire",
+        "latitude": 55.78539835,
+        "longitude": -4.424472753,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "LIKELY_NEW",
+          "facility_id": null,
+          "distance_metres": null,
+          "name_similarity": null,
+          "town_match": null,
+          "reasons": [
+            "no candidate within the provisional search envelope"
+          ],
+          "alternatives": []
+        }
+      }
+    ],
+    "changed": [
+      {
+        "source_record_id": "048aa55c0c44d7aba3818f53",
+        "name": "Silverburn Shopping Centre 2",
+        "town": "Glasgow City",
+        "latitude": 55.821151921,
+        "longitude": -4.341594124,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "EXACT_SOURCE_ID",
+          "facility_id": "7213db1f-fac9-4cec-8c9b-83b23336c7ce",
+          "distance_metres": 0.011711724528626974,
+          "name_similarity": 1.0,
+          "town_match": true,
+          "reasons": [
+            "existing facility_sources linkage is the strongest identity signal"
+          ],
+          "alternatives": []
+        },
+        "lifecycle": "existing_source_record_changed",
+        "field_differences": {
+          "same": [
+            "name",
+            "address",
+            "town",
+            "postcode",
+            "latitude",
+            "longitude",
+            "is_free",
+            "is_accessible",
+            "requires_radar_key",
+            "has_baby_changing",
+            "is_gender_neutral",
+            "is_family_friendly",
+            "has_staff_nearby"
+          ],
+          "enrichment": [
+            {
+              "field": "opening_hours",
+              "relief_field": "open_hours",
+              "source_value": {
+                "monday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                },
+                "tuesday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                },
+                "wednesday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                },
+                "thursday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                },
+                "friday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                },
+                "saturday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                },
+                "sunday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                }
+              }
+            }
+          ],
+          "conflicts": [],
+          "omissions": []
+        }
+      },
+      {
+        "source_record_id": "0919600062e662375ae07ca5",
+        "name": "Buckshaw Parkway",
+        "town": "Chorley",
+        "latitude": 53.672838013,
+        "longitude": -2.659458518,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "EXACT_SOURCE_ID",
+          "facility_id": "493207a8-cf6c-4d8d-ba32-614983baa427",
+          "distance_metres": 0.03178287455538874,
+          "name_similarity": 1.0,
+          "town_match": true,
+          "reasons": [
+            "existing facility_sources linkage is the strongest identity signal"
+          ],
+          "alternatives": []
+        },
+        "lifecycle": "existing_source_record_changed",
+        "field_differences": {
+          "same": [
+            "name",
+            "address",
+            "town",
+            "postcode",
+            "latitude",
+            "longitude",
+            "opening_hours",
+            "is_free",
+            "has_baby_changing",
+            "is_gender_neutral",
+            "is_family_friendly",
+            "has_staff_nearby"
+          ],
+          "enrichment": [],
+          "conflicts": [
+            {
+              "field": "is_accessible",
+              "relief_field": "is_accessible",
+              "source_value": true,
+              "relief_value": false
+            },
+            {
+              "field": "requires_radar_key",
+              "relief_field": "requires_radar_key",
+              "source_value": true,
+              "relief_value": false
+            }
+          ],
+          "omissions": []
+        }
+      },
+      {
+        "source_record_id": "1050bb89634e172910d88402",
+        "name": "Durham Clayport Library",
+        "town": "County Durham",
+        "latitude": 54.778003612,
+        "longitude": -1.57535255,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "EXACT_SOURCE_ID",
+          "facility_id": "5742c567-92c6-47f3-b755-9c936886d905",
+          "distance_metres": 0.05190585581860046,
+          "name_similarity": 1.0,
+          "town_match": true,
+          "reasons": [
+            "existing facility_sources linkage is the strongest identity signal"
+          ],
+          "alternatives": []
+        },
+        "lifecycle": "existing_source_record_changed",
+        "field_differences": {
+          "same": [
+            "name",
+            "address",
+            "town",
+            "postcode",
+            "latitude",
+            "longitude",
+            "opening_hours",
+            "is_free",
+            "is_accessible",
+            "is_family_friendly",
+            "has_staff_nearby"
+          ],
+          "enrichment": [
+            {
+              "field": "requires_radar_key",
+              "relief_field": "requires_radar_key",
+              "source_value": true
+            },
+            {
+              "field": "has_baby_changing",
+              "relief_field": "has_baby_changing",
+              "source_value": true
+            },
+            {
+              "field": "is_gender_neutral",
+              "relief_field": "is_gender_neutral",
+              "source_value": true
+            }
+          ],
+          "conflicts": [],
+          "omissions": []
+        }
+      },
+      {
+        "source_record_id": "14a1c966324c38bd332208b1",
+        "name": "Oakmere Park",
+        "town": "Hertsmere",
+        "latitude": 51.6966125,
+        "longitude": -0.1754623,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "EXACT_SOURCE_ID",
+          "facility_id": "e0d843f6-931d-42fa-811f-54d333c1bff9",
+          "distance_metres": 0.059317727421175935,
+          "name_similarity": 0.3333333333333333,
+          "town_match": true,
+          "reasons": [
+            "existing facility_sources linkage is the strongest identity signal"
+          ],
+          "alternatives": []
+        },
+        "lifecycle": "existing_source_record_changed",
+        "field_differences": {
+          "same": [
+            "address",
+            "town",
+            "postcode",
+            "latitude",
+            "longitude",
+            "opening_hours",
+            "is_accessible",
+            "requires_radar_key",
+            "has_baby_changing",
+            "is_gender_neutral",
+            "is_family_friendly",
+            "has_staff_nearby"
+          ],
+          "enrichment": [],
+          "conflicts": [
+            {
+              "field": "name",
+              "relief_field": "name",
+              "source_value": "Oakmere Park",
+              "relief_value": "Unnamed Toilet"
+            }
+          ],
+          "omissions": [
+            {
+              "field": "is_free",
+              "relief_field": "is_free",
+              "relief_value": false
+            }
+          ]
+        }
+      },
+      {
+        "source_record_id": "1e71d9a13cbb1d1f32455bff",
+        "name": "Promenade (Senna Road)",
+        "town": null,
+        "latitude": 54.153717465,
+        "longitude": -4.477962242,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "EXACT_SOURCE_ID",
+          "facility_id": "4a6cff49-1286-47e2-8c0e-9678638e08b6",
+          "distance_metres": 1.7492261119997041,
+          "name_similarity": 1.0,
+          "town_match": null,
+          "reasons": [
+            "existing facility_sources linkage is the strongest identity signal"
+          ],
+          "alternatives": []
+        },
+        "lifecycle": "existing_source_record_changed",
+        "field_differences": {
+          "same": [
+            "name",
+            "address",
+            "town",
+            "postcode",
+            "latitude",
+            "opening_hours",
+            "is_free",
+            "requires_radar_key",
+            "has_baby_changing",
+            "is_family_friendly",
+            "has_staff_nearby"
+          ],
+          "enrichment": [
+            {
+              "field": "is_gender_neutral",
+              "relief_field": "is_gender_neutral",
+              "source_value": false
+            }
+          ],
+          "conflicts": [
+            {
+              "field": "longitude",
+              "relief_field": "longitude",
+              "source_value": -4.477962242,
+              "relief_value": -4.477988
+            },
+            {
+              "field": "is_accessible",
+              "relief_field": "is_accessible",
+              "source_value": true,
+              "relief_value": false
+            }
+          ],
+          "omissions": []
+        }
+      },
+      {
+        "source_record_id": "2793dd03c8dcacd811e23691",
+        "name": "Silverburn Shopping Centre 1",
+        "town": "Glasgow City",
+        "latitude": 55.8189041,
+        "longitude": -4.342389,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "EXACT_SOURCE_ID",
+          "facility_id": "ba77f1fd-b878-4347-beeb-26f5a8a38291",
+          "distance_metres": 0.011119492004311874,
+          "name_similarity": 0.21052631578947367,
+          "town_match": true,
+          "reasons": [
+            "existing facility_sources linkage is the strongest identity signal"
+          ],
+          "alternatives": []
+        },
+        "lifecycle": "existing_source_record_changed",
+        "field_differences": {
+          "same": [
+            "address",
+            "town",
+            "postcode",
+            "latitude",
+            "longitude",
+            "is_free",
+            "requires_radar_key",
+            "is_family_friendly",
+            "has_staff_nearby"
+          ],
+          "enrichment": [
+            {
+              "field": "opening_hours",
+              "relief_field": "open_hours",
+              "source_value": {
+                "monday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                },
+                "tuesday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                },
+                "wednesday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                },
+                "thursday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                },
+                "friday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                },
+                "saturday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                },
+                "sunday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                }
+              }
+            },
+            {
+              "field": "has_baby_changing",
+              "relief_field": "has_baby_changing",
+              "source_value": true
+            },
+            {
+              "field": "is_gender_neutral",
+              "relief_field": "is_gender_neutral",
+              "source_value": true
+            }
+          ],
+          "conflicts": [
+            {
+              "field": "name",
+              "relief_field": "name",
+              "source_value": "Silverburn Shopping Centre 1",
+              "relief_value": "Unnamed Toilet"
+            },
+            {
+              "field": "is_accessible",
+              "relief_field": "is_accessible",
+              "source_value": true,
+              "relief_value": false
+            }
+          ],
+          "omissions": []
+        }
+      },
+      {
+        "source_record_id": "2a7ea23fbbb9a8e0c3db5ffd",
+        "name": "Port Jack",
+        "town": null,
+        "latitude": 54.1671135,
+        "longitude": -4.4519212,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "EXACT_SOURCE_ID",
+          "facility_id": "cf385907-c050-44d7-bd14-b5cb4be94a8e",
+          "distance_metres": 0.05710147020874802,
+          "name_similarity": 1.0,
+          "town_match": null,
+          "reasons": [
+            "existing facility_sources linkage is the strongest identity signal"
+          ],
+          "alternatives": []
+        },
+        "lifecycle": "existing_source_record_changed",
+        "field_differences": {
+          "same": [
+            "name",
+            "address",
+            "town",
+            "postcode",
+            "latitude",
+            "longitude",
+            "opening_hours",
+            "is_free",
+            "is_family_friendly"
+          ],
+          "enrichment": [
+            {
+              "field": "requires_radar_key",
+              "relief_field": "requires_radar_key",
+              "source_value": true
+            },
+            {
+              "field": "has_baby_changing",
+              "relief_field": "has_baby_changing",
+              "source_value": false
+            },
+            {
+              "field": "is_gender_neutral",
+              "relief_field": "is_gender_neutral",
+              "source_value": false
+            }
+          ],
+          "conflicts": [
+            {
+              "field": "is_accessible",
+              "relief_field": "is_accessible",
+              "source_value": true,
+              "relief_value": false
+            }
+          ],
+          "omissions": [
+            {
+              "field": "has_staff_nearby",
+              "relief_field": "has_staff_nearby",
+              "relief_value": false
+            }
+          ]
+        }
+      },
+      {
+        "source_record_id": "2af1f5fe27a2e4a6ee9df327",
+        "name": "Loch Promenade",
+        "town": null,
+        "latitude": 54.1491072,
+        "longitude": -4.4746971,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "EXACT_SOURCE_ID",
+          "facility_id": "8c838ebd-4939-4913-98a5-4f85825bf7d2",
+          "distance_metres": 0.023172923104999625,
+          "name_similarity": 1.0,
+          "town_match": null,
+          "reasons": [
+            "existing facility_sources linkage is the strongest identity signal"
+          ],
+          "alternatives": []
+        },
+        "lifecycle": "existing_source_record_changed",
+        "field_differences": {
+          "same": [
+            "name",
+            "address",
+            "town",
+            "postcode",
+            "latitude",
+            "longitude",
+            "opening_hours",
+            "is_free",
+            "is_accessible",
+            "is_family_friendly"
+          ],
+          "enrichment": [
+            {
+              "field": "requires_radar_key",
+              "relief_field": "requires_radar_key",
+              "source_value": false
+            },
+            {
+              "field": "has_baby_changing",
+              "relief_field": "has_baby_changing",
+              "source_value": false
+            },
+            {
+              "field": "is_gender_neutral",
+              "relief_field": "is_gender_neutral",
+              "source_value": false
+            }
+          ],
+          "conflicts": [],
+          "omissions": [
+            {
+              "field": "has_staff_nearby",
+              "relief_field": "has_staff_nearby",
+              "relief_value": false
+            }
+          ]
+        }
+      },
+      {
+        "source_record_id": "2cc4a8be56b4123f4c6b9cdf",
+        "name": "Twickenham",
+        "town": "Richmond upon Thames",
+        "latitude": 51.450274216,
+        "longitude": -0.329431593,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "EXACT_SOURCE_ID",
+          "facility_id": "1a86877d-aec2-413c-8dd1-172c911c1948",
+          "distance_metres": 22.018771186681743,
+          "name_similarity": 1.0,
+          "town_match": true,
+          "reasons": [
+            "existing facility_sources linkage is the strongest identity signal"
+          ],
+          "alternatives": []
+        },
+        "lifecycle": "existing_source_record_changed",
+        "field_differences": {
+          "same": [
+            "name",
+            "address",
+            "town",
+            "postcode",
+            "opening_hours",
+            "is_free",
+            "is_accessible",
+            "requires_radar_key",
+            "has_baby_changing",
+            "is_gender_neutral",
+            "is_family_friendly",
+            "has_staff_nearby"
+          ],
+          "enrichment": [],
+          "conflicts": [
+            {
+              "field": "latitude",
+              "relief_field": "latitude",
+              "source_value": 51.450274216,
+              "relief_value": 51.450377
+            },
+            {
+              "field": "longitude",
+              "relief_field": "longitude",
+              "source_value": -0.329431593,
+              "relief_value": -0.32916
+            }
+          ],
+          "omissions": []
+        }
+      },
+      {
+        "source_record_id": "3596d85e074dbcee6eb47e42",
+        "name": "Isle of Man Sea Terminal",
+        "town": null,
+        "latitude": 54.148314,
+        "longitude": -4.4731085,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "EXACT_SOURCE_ID",
+          "facility_id": "43d0fa52-7ee2-453a-9400-5fefa07dc4e8",
+          "distance_metres": 0.0325628276835049,
+          "name_similarity": 1.0,
+          "town_match": null,
+          "reasons": [
+            "existing facility_sources linkage is the strongest identity signal"
+          ],
+          "alternatives": []
+        },
+        "lifecycle": "existing_source_record_changed",
+        "field_differences": {
+          "same": [
+            "name",
+            "address",
+            "town",
+            "postcode",
+            "latitude",
+            "longitude",
+            "opening_hours",
+            "is_free",
+            "is_accessible",
+            "has_baby_changing",
+            "is_family_friendly"
+          ],
+          "enrichment": [
+            {
+              "field": "requires_radar_key",
+              "relief_field": "requires_radar_key",
+              "source_value": false
+            },
+            {
+              "field": "is_gender_neutral",
+              "relief_field": "is_gender_neutral",
+              "source_value": false
+            }
+          ],
+          "conflicts": [],
+          "omissions": [
+            {
+              "field": "has_staff_nearby",
+              "relief_field": "has_staff_nearby",
+              "relief_value": false
+            }
+          ]
+        }
+      }
+    ],
+    "ambiguous": [
+      {
+        "source_record_id": "46da2d339d53dfbd632099f3",
+        "name": "Hemsby Beach Toilets",
+        "town": "Great Yarmouth",
+        "latitude": 52.694602966,
+        "longitude": 1.707775474,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "AMBIGUOUS",
+          "facility_id": null,
+          "distance_metres": 15.545899903559555,
+          "name_similarity": 0.7586206896551724,
+          "town_match": true,
+          "reasons": [
+            "one or more plausible facilities remain too close in score for an automatic merge"
+          ],
+          "alternatives": [
+            {
+              "facility_id": "f9aa75af-9dd4-4d1c-a59d-9054549a03f9",
+              "distance_metres": 15.545899903559555,
+              "name_similarity": 0.7586206896551724,
+              "town_match": true,
+              "town_unknown": false,
+              "score": 0.8306667283530145,
+              "facility_name": "Hemsby Beach.",
+              "facility_town": "Great Yarmouth"
+            }
+          ]
+        }
+      }
+    ],
+    "upstream_removed_or_inactive": [],
+    "previously_linked_absent_upstream": [
+      {
+        "source_record_id": "750f8541c3fbbdae1f1d7d24",
+        "facility_id": "96cd40fe-c45b-422a-aba2-4f8238f64e31",
+        "facility_name": "Kirkgate Market",
+        "facility_town": "Bradford",
+        "source_name": "Toilet Map UK",
+        "is_current": true,
+        "reason": "previously linked source ID is absent from the current source snapshot; no automatic unpublish/delete"
+      },
+      {
+        "source_record_id": "e783b2bc1c9bf2336fd371ed",
+        "facility_id": "e1c81334-944e-4a20-928d-6500f91afe67",
+        "facility_name": "Torpoint Ferry",
+        "facility_town": "Cornwall",
+        "source_name": "Toilet Map UK",
+        "is_current": true,
+        "reason": "previously linked source ID is absent from the current source snapshot; no automatic unpublish/delete"
+      },
+      {
+        "source_record_id": "cc951fdb4053e76d9b9889a4",
+        "facility_id": "f04e6a31-e3af-4d0e-b343-abc8f8dc6b8a",
+        "facility_name": "High Street Car Park",
+        "facility_town": "Wychavon",
+        "source_name": "Toilet Map UK",
+        "is_current": true,
+        "reason": "previously linked source ID is absent from the current source snapshot; no automatic unpublish/delete"
+      },
+      {
+        "source_record_id": "2bdb80decb9602132b1320e2",
+        "facility_id": "68cda580-cdbe-4d82-bcf4-7cbf9aee249b",
+        "facility_name": "Torpoint ferry lanes devonport",
+        "facility_town": "Plymouth",
+        "source_name": "Toilet Map UK",
+        "is_current": true,
+        "reason": "previously linked source ID is absent from the current source snapshot; no automatic unpublish/delete"
+      },
+      {
+        "source_record_id": "acd99438140a65b1c9bd75d6",
+        "facility_id": "910f2907-5108-4796-bb7c-4d0ee8ecb3e1",
+        "facility_name": "Riverside Shopping Centre",
+        "facility_town": "Wychavon",
+        "source_name": "Toilet Map UK",
+        "is_current": true,
+        "reason": "previously linked source ID is absent from the current source snapshot; no automatic unpublish/delete"
+      },
+      {
+        "source_record_id": "d4fb29220671733629b0a205",
+        "facility_id": "a0d173a6-9701-4969-a47b-0588d8465027",
+        "facility_name": "Addlestone Station",
+        "facility_town": "Runnymede",
+        "source_name": "Toilet Map UK",
+        "is_current": true,
+        "reason": "previously linked source ID is absent from the current source snapshot; no automatic unpublish/delete"
+      },
+      {
+        "source_record_id": "8b3f7e4ae100ba40cd8adc41",
+        "facility_id": "39be8181-25c6-47f4-9a24-22e848074df1",
+        "facility_name": "Unnamed Toilet",
+        "facility_town": "Canterbury",
+        "source_name": "Toilet Map UK",
+        "is_current": true,
+        "reason": "previously linked source ID is absent from the current source snapshot; no automatic unpublish/delete"
+      },
+      {
+        "source_record_id": "459c11b3fb79b6bf6f33caaf",
+        "facility_id": "1c423834-45dc-4b05-93e9-b162ee461377",
+        "facility_name": "Cabot Place - Mall, Level -1 (by Flip Out & Leon)",
+        "facility_town": "Tower Hamlets",
+        "source_name": "Toilet Map UK",
+        "is_current": true,
+        "reason": "previously linked source ID is absent from the current source snapshot; no automatic unpublish/delete"
+      },
+      {
+        "source_record_id": "2085e12709f990ca33f76124",
+        "facility_id": "23e31510-c227-404b-b15c-c41b304882fc",
+        "facility_name": "Sunshine Cafe",
+        "facility_town": "Richmond upon Thames",
+        "source_name": "Toilet Map UK",
+        "is_current": true,
+        "reason": "previously linked source ID is absent from the current source snapshot; no automatic unpublish/delete"
+      },
+      {
+        "source_record_id": "fa3fba0530eda567254df9fd",
+        "facility_id": "f5693a10-a1ac-49fe-b538-4d5211039739",
+        "facility_name": "Spice Up",
+        "facility_town": "Richmond upon Thames",
+        "source_name": "Toilet Map UK",
+        "is_current": true,
+        "reason": "previously linked source ID is absent from the current source snapshot; no automatic unpublish/delete"
+      }
+    ],
+    "invalid_or_source_quality": [
+      {
+        "source_record_id": "00ec010072e80d78c6533cec",
+        "name": "BV Nhi đồng 2",
+        "town": null,
+        "latitude": 10.781271929,
+        "longitude": 106.701568365,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [
+          "coordinates outside the UK validation envelope"
+        ],
+        "decision": {
+          "decision": "INVALID_SOURCE_RECORD",
+          "facility_id": null,
+          "distance_metres": null,
+          "name_similarity": null,
+          "town_match": null,
+          "reasons": [
+            "coordinates outside the UK validation envelope"
+          ],
+          "alternatives": []
+        }
+      },
+      {
+        "source_record_id": "0134d0ada3e6cc2afd3c284d",
+        "name": "Swimming Pool",
+        "town": null,
+        "latitude": 41.8439673,
+        "longitude": -72.939212,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [
+          "coordinates outside the UK validation envelope"
+        ],
+        "decision": {
+          "decision": "INVALID_SOURCE_RECORD",
+          "facility_id": null,
+          "distance_metres": null,
+          "name_similarity": null,
+          "town_match": null,
+          "reasons": [
+            "coordinates outside the UK validation envelope"
+          ],
+          "alternatives": []
+        }
+      },
+      {
+        "source_record_id": "020576934a1398b9ba0ece23",
+        "name": "PVT-LTR",
+        "town": null,
+        "latitude": 10.771188136,
+        "longitude": 106.691515446,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [
+          "coordinates outside the UK validation envelope"
+        ],
+        "decision": {
+          "decision": "INVALID_SOURCE_RECORD",
+          "facility_id": null,
+          "distance_metres": null,
+          "name_similarity": null,
+          "town_match": null,
+          "reasons": [
+            "coordinates outside the UK validation envelope"
+          ],
+          "alternatives": []
+        }
+      },
+      {
+        "source_record_id": "02699d114e48200dc8d1ee15",
+        "name": "Poperinge - Hop Museum",
+        "town": null,
+        "latitude": 50.855259154,
+        "longitude": 2.721911073,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [
+          "coordinates outside the UK validation envelope"
+        ],
+        "decision": {
+          "decision": "INVALID_SOURCE_RECORD",
+          "facility_id": null,
+          "distance_metres": null,
+          "name_similarity": null,
+          "town_match": null,
+          "reasons": [
+            "coordinates outside the UK validation envelope"
+          ],
+          "alternatives": []
+        }
+      },
+      {
+        "source_record_id": "02cc56574891270c067356be",
+        "name": "Multi-Storey Car Park Toilets",
+        "town": null,
+        "latitude": 46.949008017,
+        "longitude": 7.451769412,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [
+          "coordinates outside the UK validation envelope"
+        ],
+        "decision": {
+          "decision": "INVALID_SOURCE_RECORD",
+          "facility_id": null,
+          "distance_metres": null,
+          "name_similarity": null,
+          "town_match": null,
+          "reasons": [
+            "coordinates outside the UK validation envelope"
+          ],
+          "alternatives": []
+        }
+      },
+      {
+        "source_record_id": "0332494afedb06145742202d",
+        "name": "Baltimore",
+        "town": null,
+        "latitude": 51.482331671,
+        "longitude": -9.374325871,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [
+          "coordinates outside the UK validation envelope"
+        ],
+        "decision": {
+          "decision": "INVALID_SOURCE_RECORD",
+          "facility_id": null,
+          "distance_metres": null,
+          "name_similarity": null,
+          "town_match": null,
+          "reasons": [
+            "coordinates outside the UK validation envelope"
+          ],
+          "alternatives": []
+        }
+      },
+      {
+        "source_record_id": "03ab0c1c424fb41bc762a20c",
+        "name": "BV Từ Dũ",
+        "town": null,
+        "latitude": 10.768779781,
+        "longitude": 106.685222983,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [
+          "coordinates outside the UK validation envelope"
+        ],
+        "decision": {
+          "decision": "INVALID_SOURCE_RECORD",
+          "facility_id": null,
+          "distance_metres": null,
+          "name_similarity": null,
+          "town_match": null,
+          "reasons": [
+            "coordinates outside the UK validation envelope"
+          ],
+          "alternatives": []
+        }
+      },
+      {
+        "source_record_id": "03acb6e368dec039481e92f8",
+        "name": "Khu B CV Gia Định",
+        "town": null,
+        "latitude": 10.811782104,
+        "longitude": 106.677010059,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [
+          "coordinates outside the UK validation envelope"
+        ],
+        "decision": {
+          "decision": "INVALID_SOURCE_RECORD",
+          "facility_id": null,
+          "distance_metres": null,
+          "name_similarity": null,
+          "town_match": null,
+          "reasons": [
+            "coordinates outside the UK validation envelope"
+          ],
+          "alternatives": []
+        }
+      },
+      {
+        "source_record_id": "04b6cc3550b7a1490fdbfce7",
+        "name": "Cao Bá Quát",
+        "town": null,
+        "latitude": 10.777859761,
+        "longitude": 106.704191566,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [
+          "coordinates outside the UK validation envelope"
+        ],
+        "decision": {
+          "decision": "INVALID_SOURCE_RECORD",
+          "facility_id": null,
+          "distance_metres": null,
+          "name_similarity": null,
+          "town_match": null,
+          "reasons": [
+            "coordinates outside the UK validation envelope"
+          ],
+          "alternatives": []
+        }
+      },
+      {
+        "source_record_id": "06f1fb6c90c694337f24829b",
+        "name": "Lion toilet",
+        "town": null,
+        "latitude": 50.961901847,
+        "longitude": 6.978389025,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [
+          "coordinates outside the UK validation envelope"
+        ],
+        "decision": {
+          "decision": "INVALID_SOURCE_RECORD",
+          "facility_id": null,
+          "distance_metres": null,
+          "name_similarity": null,
+          "town_match": null,
+          "reasons": [
+            "coordinates outside the UK validation envelope"
+          ],
+          "alternatives": []
+        }
+      }
+    ],
+    "field_conflicts": [
+      {
+        "source_record_id": "0919600062e662375ae07ca5",
+        "name": "Buckshaw Parkway",
+        "town": "Chorley",
+        "latitude": 53.672838013,
+        "longitude": -2.659458518,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "EXACT_SOURCE_ID",
+          "facility_id": "493207a8-cf6c-4d8d-ba32-614983baa427",
+          "distance_metres": 0.03178287455538874,
+          "name_similarity": 1.0,
+          "town_match": true,
+          "reasons": [
+            "existing facility_sources linkage is the strongest identity signal"
+          ],
+          "alternatives": []
+        },
+        "lifecycle": "existing_source_record_changed",
+        "field_differences": {
+          "same": [
+            "name",
+            "address",
+            "town",
+            "postcode",
+            "latitude",
+            "longitude",
+            "opening_hours",
+            "is_free",
+            "has_baby_changing",
+            "is_gender_neutral",
+            "is_family_friendly",
+            "has_staff_nearby"
+          ],
+          "enrichment": [],
+          "conflicts": [
+            {
+              "field": "is_accessible",
+              "relief_field": "is_accessible",
+              "source_value": true,
+              "relief_value": false
+            },
+            {
+              "field": "requires_radar_key",
+              "relief_field": "requires_radar_key",
+              "source_value": true,
+              "relief_value": false
+            }
+          ],
+          "omissions": []
+        }
+      },
+      {
+        "source_record_id": "14a1c966324c38bd332208b1",
+        "name": "Oakmere Park",
+        "town": "Hertsmere",
+        "latitude": 51.6966125,
+        "longitude": -0.1754623,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "EXACT_SOURCE_ID",
+          "facility_id": "e0d843f6-931d-42fa-811f-54d333c1bff9",
+          "distance_metres": 0.059317727421175935,
+          "name_similarity": 0.3333333333333333,
+          "town_match": true,
+          "reasons": [
+            "existing facility_sources linkage is the strongest identity signal"
+          ],
+          "alternatives": []
+        },
+        "lifecycle": "existing_source_record_changed",
+        "field_differences": {
+          "same": [
+            "address",
+            "town",
+            "postcode",
+            "latitude",
+            "longitude",
+            "opening_hours",
+            "is_accessible",
+            "requires_radar_key",
+            "has_baby_changing",
+            "is_gender_neutral",
+            "is_family_friendly",
+            "has_staff_nearby"
+          ],
+          "enrichment": [],
+          "conflicts": [
+            {
+              "field": "name",
+              "relief_field": "name",
+              "source_value": "Oakmere Park",
+              "relief_value": "Unnamed Toilet"
+            }
+          ],
+          "omissions": [
+            {
+              "field": "is_free",
+              "relief_field": "is_free",
+              "relief_value": false
+            }
+          ]
+        }
+      },
+      {
+        "source_record_id": "1e71d9a13cbb1d1f32455bff",
+        "name": "Promenade (Senna Road)",
+        "town": null,
+        "latitude": 54.153717465,
+        "longitude": -4.477962242,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "EXACT_SOURCE_ID",
+          "facility_id": "4a6cff49-1286-47e2-8c0e-9678638e08b6",
+          "distance_metres": 1.7492261119997041,
+          "name_similarity": 1.0,
+          "town_match": null,
+          "reasons": [
+            "existing facility_sources linkage is the strongest identity signal"
+          ],
+          "alternatives": []
+        },
+        "lifecycle": "existing_source_record_changed",
+        "field_differences": {
+          "same": [
+            "name",
+            "address",
+            "town",
+            "postcode",
+            "latitude",
+            "opening_hours",
+            "is_free",
+            "requires_radar_key",
+            "has_baby_changing",
+            "is_family_friendly",
+            "has_staff_nearby"
+          ],
+          "enrichment": [
+            {
+              "field": "is_gender_neutral",
+              "relief_field": "is_gender_neutral",
+              "source_value": false
+            }
+          ],
+          "conflicts": [
+            {
+              "field": "longitude",
+              "relief_field": "longitude",
+              "source_value": -4.477962242,
+              "relief_value": -4.477988
+            },
+            {
+              "field": "is_accessible",
+              "relief_field": "is_accessible",
+              "source_value": true,
+              "relief_value": false
+            }
+          ],
+          "omissions": []
+        }
+      },
+      {
+        "source_record_id": "2793dd03c8dcacd811e23691",
+        "name": "Silverburn Shopping Centre 1",
+        "town": "Glasgow City",
+        "latitude": 55.8189041,
+        "longitude": -4.342389,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "EXACT_SOURCE_ID",
+          "facility_id": "ba77f1fd-b878-4347-beeb-26f5a8a38291",
+          "distance_metres": 0.011119492004311874,
+          "name_similarity": 0.21052631578947367,
+          "town_match": true,
+          "reasons": [
+            "existing facility_sources linkage is the strongest identity signal"
+          ],
+          "alternatives": []
+        },
+        "lifecycle": "existing_source_record_changed",
+        "field_differences": {
+          "same": [
+            "address",
+            "town",
+            "postcode",
+            "latitude",
+            "longitude",
+            "is_free",
+            "requires_radar_key",
+            "is_family_friendly",
+            "has_staff_nearby"
+          ],
+          "enrichment": [
+            {
+              "field": "opening_hours",
+              "relief_field": "open_hours",
+              "source_value": {
+                "monday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                },
+                "tuesday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                },
+                "wednesday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                },
+                "thursday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                },
+                "friday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                },
+                "saturday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                },
+                "sunday": {
+                  "open": "09:00",
+                  "close": "22:00"
+                }
+              }
+            },
+            {
+              "field": "has_baby_changing",
+              "relief_field": "has_baby_changing",
+              "source_value": true
+            },
+            {
+              "field": "is_gender_neutral",
+              "relief_field": "is_gender_neutral",
+              "source_value": true
+            }
+          ],
+          "conflicts": [
+            {
+              "field": "name",
+              "relief_field": "name",
+              "source_value": "Silverburn Shopping Centre 1",
+              "relief_value": "Unnamed Toilet"
+            },
+            {
+              "field": "is_accessible",
+              "relief_field": "is_accessible",
+              "source_value": true,
+              "relief_value": false
+            }
+          ],
+          "omissions": []
+        }
+      },
+      {
+        "source_record_id": "2a7ea23fbbb9a8e0c3db5ffd",
+        "name": "Port Jack",
+        "town": null,
+        "latitude": 54.1671135,
+        "longitude": -4.4519212,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "EXACT_SOURCE_ID",
+          "facility_id": "cf385907-c050-44d7-bd14-b5cb4be94a8e",
+          "distance_metres": 0.05710147020874802,
+          "name_similarity": 1.0,
+          "town_match": null,
+          "reasons": [
+            "existing facility_sources linkage is the strongest identity signal"
+          ],
+          "alternatives": []
+        },
+        "lifecycle": "existing_source_record_changed",
+        "field_differences": {
+          "same": [
+            "name",
+            "address",
+            "town",
+            "postcode",
+            "latitude",
+            "longitude",
+            "opening_hours",
+            "is_free",
+            "is_family_friendly"
+          ],
+          "enrichment": [
+            {
+              "field": "requires_radar_key",
+              "relief_field": "requires_radar_key",
+              "source_value": true
+            },
+            {
+              "field": "has_baby_changing",
+              "relief_field": "has_baby_changing",
+              "source_value": false
+            },
+            {
+              "field": "is_gender_neutral",
+              "relief_field": "is_gender_neutral",
+              "source_value": false
+            }
+          ],
+          "conflicts": [
+            {
+              "field": "is_accessible",
+              "relief_field": "is_accessible",
+              "source_value": true,
+              "relief_value": false
+            }
+          ],
+          "omissions": [
+            {
+              "field": "has_staff_nearby",
+              "relief_field": "has_staff_nearby",
+              "relief_value": false
+            }
+          ]
+        }
+      },
+      {
+        "source_record_id": "2cc4a8be56b4123f4c6b9cdf",
+        "name": "Twickenham",
+        "town": "Richmond upon Thames",
+        "latitude": 51.450274216,
+        "longitude": -0.329431593,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "EXACT_SOURCE_ID",
+          "facility_id": "1a86877d-aec2-413c-8dd1-172c911c1948",
+          "distance_metres": 22.018771186681743,
+          "name_similarity": 1.0,
+          "town_match": true,
+          "reasons": [
+            "existing facility_sources linkage is the strongest identity signal"
+          ],
+          "alternatives": []
+        },
+        "lifecycle": "existing_source_record_changed",
+        "field_differences": {
+          "same": [
+            "name",
+            "address",
+            "town",
+            "postcode",
+            "opening_hours",
+            "is_free",
+            "is_accessible",
+            "requires_radar_key",
+            "has_baby_changing",
+            "is_gender_neutral",
+            "is_family_friendly",
+            "has_staff_nearby"
+          ],
+          "enrichment": [],
+          "conflicts": [
+            {
+              "field": "latitude",
+              "relief_field": "latitude",
+              "source_value": 51.450274216,
+              "relief_value": 51.450377
+            },
+            {
+              "field": "longitude",
+              "relief_field": "longitude",
+              "source_value": -0.329431593,
+              "relief_value": -0.32916
+            }
+          ],
+          "omissions": []
+        }
+      },
+      {
+        "source_record_id": "435c5eb4425b1f4197fdc415",
+        "name": "The Wyllyotts Centre",
+        "town": "Hertsmere",
+        "latitude": 51.696177369,
+        "longitude": -0.194245577,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "EXACT_SOURCE_ID",
+          "facility_id": "f746e2c4-3684-46f5-bb12-7b8206f19dbf",
+          "distance_metres": 0.050333842651698844,
+          "name_similarity": 0.9090909090909091,
+          "town_match": true,
+          "reasons": [
+            "existing facility_sources linkage is the strongest identity signal"
+          ],
+          "alternatives": []
+        },
+        "lifecycle": "existing_source_record_changed",
+        "field_differences": {
+          "same": [
+            "address",
+            "town",
+            "postcode",
+            "latitude",
+            "longitude",
+            "opening_hours",
+            "is_free",
+            "requires_radar_key",
+            "has_baby_changing",
+            "is_gender_neutral",
+            "is_family_friendly",
+            "has_staff_nearby"
+          ],
+          "enrichment": [],
+          "conflicts": [
+            {
+              "field": "name",
+              "relief_field": "name",
+              "source_value": "The Wyllyotts Centre",
+              "relief_value": "Wyllyotts Centre"
+            },
+            {
+              "field": "is_accessible",
+              "relief_field": "is_accessible",
+              "source_value": true,
+              "relief_value": false
+            }
+          ],
+          "omissions": []
+        }
+      },
+      {
+        "source_record_id": "439082c9b8bdf249c7799223",
+        "name": "Shore Road",
+        "town": null,
+        "latitude": 54.22448456,
+        "longitude": -4.69690374,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "EXACT_SOURCE_ID",
+          "facility_id": "4cddc62f-71e0-4106-a1aa-13080a6a2934",
+          "distance_metres": 0.0517628394817994,
+          "name_similarity": 0.18181818181818182,
+          "town_match": null,
+          "reasons": [
+            "existing facility_sources linkage is the strongest identity signal"
+          ],
+          "alternatives": []
+        },
+        "lifecycle": "existing_source_record_changed",
+        "field_differences": {
+          "same": [
+            "address",
+            "town",
+            "postcode",
+            "latitude",
+            "longitude",
+            "opening_hours",
+            "is_free",
+            "has_baby_changing",
+            "is_family_friendly",
+            "has_staff_nearby"
+          ],
+          "enrichment": [
+            {
+              "field": "requires_radar_key",
+              "relief_field": "requires_radar_key",
+              "source_value": true
+            },
+            {
+              "field": "is_gender_neutral",
+              "relief_field": "is_gender_neutral",
+              "source_value": false
+            }
+          ],
+          "conflicts": [
+            {
+              "field": "name",
+              "relief_field": "name",
+              "source_value": "Shore Road",
+              "relief_value": "Unnamed Toilet"
+            },
+            {
+              "field": "is_accessible",
+              "relief_field": "is_accessible",
+              "source_value": true,
+              "relief_value": false
+            }
+          ],
+          "omissions": []
+        }
+      },
+      {
+        "source_record_id": "47931cc3659d98b3ff90623d",
+        "name": "Communities 1st Community Hub",
+        "town": "Hertsmere",
+        "latitude": 51.667822571,
+        "longitude": -0.282694101,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "EXACT_SOURCE_ID",
+          "facility_id": "a4c31707-e414-454c-addd-e8e4bf34c6b7",
+          "distance_metres": 0.04820848836257292,
+          "name_similarity": 0.4,
+          "town_match": true,
+          "reasons": [
+            "existing facility_sources linkage is the strongest identity signal"
+          ],
+          "alternatives": []
+        },
+        "lifecycle": "existing_source_record_changed",
+        "field_differences": {
+          "same": [
+            "address",
+            "town",
+            "postcode",
+            "latitude",
+            "longitude",
+            "is_free",
+            "is_gender_neutral",
+            "is_family_friendly",
+            "has_staff_nearby"
+          ],
+          "enrichment": [
+            {
+              "field": "requires_radar_key",
+              "relief_field": "requires_radar_key",
+              "source_value": false
+            },
+            {
+              "field": "has_baby_changing",
+              "relief_field": "has_baby_changing",
+              "source_value": true
+            }
+          ],
+          "conflicts": [
+            {
+              "field": "name",
+              "relief_field": "name",
+              "source_value": "Communities 1st Community Hub",
+              "relief_value": "Community Shop, Leeming Road"
+            },
+            {
+              "field": "opening_hours",
+              "relief_field": "open_hours",
+              "conflicting_days": [
+                "wednesday",
+                "thursday",
+                "friday"
+              ],
+              "source_value": {
+                "monday": {
+                  "open": "09:00",
+                  "close": "17:00"
+                },
+                "tuesday": {
+                  "open": "09:00",
+                  "close": "17:00"
+                },
+                "wednesday": {
+                  "open": "09:00",
+                  "close": "15:00"
+                },
+                "thursday": {
+                  "open": "09:00",
+                  "close": "15:00"
+                },
+                "friday": {
+                  "open": "09:00",
+                  "close": "15:00"
+                }
+              },
+              "relief_value": {
+                "friday": {
+                  "open": "09:00",
+                  "close": "17:00"
+                },
+                "monday": {
+                  "open": "09:00",
+                  "close": "17:00"
+                },
+                "sunday": {
+                  "open": "09:00",
+                  "close": "17:00"
+                },
+                "tuesday": {
+                  "open": "09:00",
+                  "close": "17:00"
+                },
+                "saturday": {
+                  "open": "09:00",
+                  "close": "17:00"
+                },
+                "thursday": {
+                  "open": "09:00",
+                  "close": "17:00"
+                },
+                "wednesday": {
+                  "open": "09:00",
+                  "close": "17:00"
+                }
+              }
+            },
+            {
+              "field": "is_accessible",
+              "relief_field": "is_accessible",
+              "source_value": true,
+              "relief_value": false
+            }
+          ],
+          "omissions": []
+        }
+      },
+      {
+        "source_record_id": "5577f4ba2cf8063eb3250cce",
+        "name": "Peel Breakwater",
+        "town": null,
+        "latitude": 54.2275631,
+        "longitude": -4.6975347,
+        "source_status": "active",
+        "quality_warnings": [],
+        "validation_errors": [],
+        "decision": {
+          "decision": "EXACT_SOURCE_ID",
+          "facility_id": "cef8cd94-4722-4a0a-af99-d41d89162eaa",
+          "distance_metres": 0.02244780647100781,
+          "name_similarity": 1.0,
+          "town_match": null,
+          "reasons": [
+            "existing facility_sources linkage is the strongest identity signal"
+          ],
+          "alternatives": []
+        },
+        "lifecycle": "existing_source_record_changed",
+        "field_differences": {
+          "same": [
+            "name",
+            "address",
+            "town",
+            "postcode",
+            "latitude",
+            "longitude",
+            "opening_hours",
+            "is_free",
+            "is_family_friendly"
+          ],
+          "enrichment": [
+            {
+              "field": "requires_radar_key",
+              "relief_field": "requires_radar_key",
+              "source_value": false
+            },
+            {
+              "field": "has_baby_changing",
+              "relief_field": "has_baby_changing",
+              "source_value": false
+            },
+            {
+              "field": "is_gender_neutral",
+              "relief_field": "is_gender_neutral",
+              "source_value": false
+            }
+          ],
+          "conflicts": [
+            {
+              "field": "is_accessible",
+              "relief_field": "is_accessible",
+              "source_value": true,
+              "relief_value": false
+            }
+          ],
+          "omissions": [
+            {
+              "field": "has_staff_nearby",
+              "relief_field": "has_staff_nearby",
+              "relief_value": false
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "report_json_path": "docs/data/TOILET_MAP_RECONCILIATION_REVIEW_1_BEFORE.json",
+  "report_markdown_path": "docs/data/TOILET_MAP_RECONCILIATION_REVIEW_1_BEFORE.md"
+}

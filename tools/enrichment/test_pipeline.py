@@ -9,14 +9,24 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from pipeline import (
-    NormalizedCandidate,
-    ToiletMapAdapter,
-    field_differences,
-    match_candidate,
-    build_facility_index,
-    reconcile,
-)
+try:
+    from .pipeline import (
+        NormalizedCandidate,
+        ToiletMapAdapter,
+        field_differences,
+        match_candidate,
+        build_facility_index,
+        reconcile,
+    )
+except ImportError:  # Supports direct execution: python tools/enrichment/test_pipeline.py
+    from pipeline import (
+        NormalizedCandidate,
+        ToiletMapAdapter,
+        field_differences,
+        match_candidate,
+        build_facility_index,
+        reconcile,
+    )
 
 
 def candidate(**overrides):
@@ -139,6 +149,66 @@ class EnrichmentFoundationTests(unittest.TestCase):
         self.assertIn("is_accessible", [item["field"] for item in diff["conflicts"]])
         self.assertIn("address", [item["field"] for item in diff["omissions"]])
 
+    def test_opening_hours_source_adds_one_day(self):
+        self.facility["open_hours"] = {"monday": {"open": "09:00", "close": "17:00"}}
+        source = candidate(opening_hours={
+            "monday": {"open": "09:00", "close": "17:00"},
+            "tuesday": {"open": "09:00", "close": "17:00"},
+        })
+        diff = field_differences(source, self.facility)
+        self.assertEqual(diff["enrichment"][0]["added_days"], ["tuesday"])
+        self.assertEqual(diff["conflicts"], [])
+        self.assertEqual([item for item in diff["omissions"] if item["field"] == "opening_hours"], [])
+
+    def test_opening_hours_conflict_is_day_level(self):
+        self.facility["open_hours"] = {"monday": {"open": "09:00", "close": "17:00"}}
+        source = candidate(opening_hours={"monday": {"open": "10:00", "close": "17:00"}})
+        diff = field_differences(source, self.facility)
+        self.assertEqual(diff["conflicts"][0]["conflicting_days"], ["monday"])
+
+    def test_opening_hours_source_omits_relief_day(self):
+        self.facility["open_hours"] = {
+            "monday": {"open": "09:00", "close": "17:00"},
+            "tuesday": {"open": "09:00", "close": "17:00"},
+        }
+        source = candidate(opening_hours={"monday": {"open": "09:00", "close": "17:00"}})
+        diff = field_differences(source, self.facility)
+        opening_omissions = [item for item in diff["omissions"] if item["field"] == "opening_hours"]
+        self.assertEqual(opening_omissions[0]["omitted_days"], ["tuesday"])
+
+    def test_opening_hours_identical_partial_schedule_is_same(self):
+        hours = {"monday": {"open": "09:00", "close": "17:00"}}
+        self.facility["open_hours"] = hours
+        diff = field_differences(candidate(opening_hours=hours), self.facility)
+        self.assertIn("opening_hours", diff["same"])
+        self.assertEqual(diff["enrichment"], [])
+        self.assertEqual(diff["conflicts"], [])
+        self.assertEqual([item for item in diff["omissions"] if item["field"] == "opening_hours"], [])
+
+    def test_opening_hours_relief_empty_source_known_is_enrichment(self):
+        source = candidate(opening_hours={"monday": {"open": "09:00", "close": "17:00"}})
+        diff = field_differences(source, self.facility)
+        self.assertEqual(diff["enrichment"][0]["field"], "opening_hours")
+
+    def test_malformed_source_hours_remain_unknown(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "malformed.csv"
+            fieldnames = ["id", "active", "name", "latitude", "longitude", "opening_times"]
+            with path.open("w", newline="", encoding="utf-8") as handle:
+                writer = csv.DictWriter(handle, fieldnames=fieldnames)
+                writer.writeheader()
+                writer.writerow({
+                    "id": "malformed",
+                    "active": "true",
+                    "name": "Example",
+                    "latitude": "53.0",
+                    "longitude": "-2.0",
+                    "opening_times": "not-json",
+                })
+            parsed = ToiletMapAdapter().read(path)[0]
+        self.assertIsNone(parsed.opening_hours)
+        self.assertIn("opening_times present but not a usable seven-day time array", parsed.quality_warnings)
+
     def test_removed_and_missing_source_records_are_reported_without_mutation_path(self):
         removed = candidate(source_record_id="source-1", source_status="removed")
         source_links = [
@@ -150,11 +220,16 @@ class EnrichmentFoundationTests(unittest.TestCase):
         self.assertEqual(report["summary"]["previously_linked_relief_records_absent_upstream"], 1)
 
     def test_dry_run_has_no_mutating_http_method(self):
-        source = Path(__file__).with_name("dry_run.py").read_text(encoding="utf-8")
-        self.assertIn('method="GET"', source)
-        self.assertNotIn('method="POST"', source)
-        self.assertNotIn('method="PATCH"', source)
-        self.assertNotIn('method="DELETE"', source)
+        for filename in ("dry_run.py", "review.py"):
+            source = Path(__file__).with_name(filename).read_text(encoding="utf-8")
+            if filename == "dry_run.py":
+                self.assertIn('method="GET"', source)
+            self.assertNotIn('method="POST"', source)
+            self.assertNotIn('method="PATCH"', source)
+            self.assertNotIn('method="PUT"', source)
+            self.assertNotIn('method="DELETE"', source)
+            self.assertNotIn("supabase_execute", source)
+            self.assertNotIn("apply_migration", source)
 
 
 if __name__ == "__main__":

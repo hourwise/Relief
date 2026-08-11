@@ -84,6 +84,14 @@ The command performs only HTTP `GET` requests for paged `facilities` and `facili
 
 The current source registry is `tools/enrichment/source_registry.json`. The official source page, download URL, retrieval timestamp, source-declared update time, licence, input byte count, checksum, record counts, lifecycle counts, match categories, field diffs, and review samples are recorded in the generated JSON and Markdown reports. Raw source data and REST snapshots remain ignored under `tools/facility-enrichment/cache/`; the raw dataset is not committed.
 
+## Review 1 refinements
+
+The first fixed-snapshot review keeps the automatic matching thresholds unchanged and adds a separate wider review radius only for evidence. It distinguishes valid external geography from invalid source data, reviews all likely-new and absent-source records, and keeps source-ID crosswalks manual. The review found 221 continental-Europe records, 38 Republic-of-Ireland records, 198 other valid-geography records, and one explicit name/coordinate contradiction among the 458 out-of-envelope records; production scope was not changed.
+
+Opening hours are compared day by day. A source-added day is an enrichment opportunity, a differing existing day is a conflict, and a Relief-known day absent from the source is an omission. Missing source days remain unknown rather than closed or deleted. The review artifacts are `TOILET_MAP_RECONCILIATION_REVIEW_1.*` and `TOILET_MAP_PROPOSED_APPLY_PLAN_2026-08.*`; the latter is a plan only and has no executable mutation path.
+
+The captured provenance snapshot uses `source_imported` verification status and Toilet Map UK provenance. Future automatic updates must not assume that Toilet Map outranks community- or staff-verified evidence; an approved update would require source ID, source update time, field, old/new values, decision basis, policy/reviewer, and recorded-at metadata.
+
 ## Current review boundary
 
 This phase covers the official Toilet Map UK source only. TfL, National Rail, council, specialist, and other sources are future adapters. No production inserts/updates/deletes, migrations, UI/filter changes, external contact, EAS build, Play setup, or data enrichment apply step is part of this foundation.

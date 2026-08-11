@@ -62,6 +62,7 @@
     "config": "expo config --type public",
     "gen:types": "node tools/generate-database-types.mjs src/types/database.types.ts",
     "enrichment:toilet-map:dry-run": "python tools/enrichment/dry_run.py",
+    "enrichment:toilet-map:review": "python tools/enrichment/review.py",
     "verify": "npm run typecheck && npm run lint && npm test",
     "lint": "expo lint",
     "lint:fix": "expo lint --fix",
