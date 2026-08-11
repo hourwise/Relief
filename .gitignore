@@ -75,3 +75,5 @@ main logo with subtitle and background.jpeg
 assets/*.jpeg
 assets/*.webp
 assets/26*.jpg
+tools/facility-enrichment/cache/
+tools/facility-enrichment/output/

@@ -1,0 +1,11 @@
+{
+  "Toilet Map UK": {
+    "canonical_name": "Toilet Map UK",
+    "licence": "CC BY 4.0",
+    "attribution": "Contains data from the Toilet Map \u00a9 2025 \u2013 CC BY 4.0 (Creative Commons Attribution 4.0 International)",
+    "homepage": "https://www.toiletmap.org.uk/",
+    "data_url": "https://www.toiletmap.org.uk/dataset",
+    "reuse_notes": "Official dataset page says the data may be copied, redistributed and adapted with clear credit and a statement of changes. The dry run does not write source data to Supabase.",
+    "retrieval_cadence": "Check the official dataset page before each run; use the declared update timestamp from that page."
+  }
+}

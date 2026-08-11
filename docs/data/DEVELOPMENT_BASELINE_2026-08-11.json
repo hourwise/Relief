@@ -1,0 +1,90 @@
+{
+  "retrieved_at": "2026-08-11T13:15:34+01:00",
+  "project_ref": "bgwxrxkmyaihplaloely",
+  "query_mode": "read-only Supabase SQL via connected project",
+  "facility_count": 15584,
+  "publication_status_counts": {
+    "published": 15584
+  },
+  "facility_sources_by_source": [
+    {
+      "source_name": "Toilet Map UK",
+      "total_count": 15584,
+      "current_count": 15584,
+      "distinct_facility_count": 15584
+    }
+  ],
+  "import_runs": [
+    {
+      "id": "143e2b77-05b7-4415-aa29-0ea0f05190f4",
+      "source_name": "Toilet Map UK",
+      "source_file_name": "normalised.csv",
+      "source_checksum": "24a3655f01f03596f3427c9b4af8c752bc0844eb8dbd66c066b04a82e1c2d40f",
+      "status": "completed",
+      "started_at": "2026-07-25T13:11:48.264394+00:00",
+      "completed_at": "2026-07-25T13:11:48.264394+00:00",
+      "rows_received": 15584,
+      "rows_valid": 15584,
+      "rows_inserted": 15480,
+      "rows_updated": 0,
+      "rows_unchanged": 104,
+      "rows_quarantined": 0,
+      "rows_marked_stale": 0,
+      "error_summary": null
+    },
+    {
+      "id": "7878844a-5964-4a8b-8940-02a18e967cc6",
+      "source_name": "Toilet Map UK",
+      "source_file_name": "normalised.csv",
+      "source_checksum": "24a3655f01f03596f3427c9b4af8c752bc0844eb8dbd66c066b04a82e1c2d40f",
+      "status": "completed",
+      "started_at": "2026-07-25T13:06:52.957007+00:00",
+      "completed_at": "2026-07-25T13:06:52.957007+00:00",
+      "rows_received": 104,
+      "rows_valid": 104,
+      "rows_inserted": 0,
+      "rows_updated": 0,
+      "rows_unchanged": 104,
+      "rows_quarantined": 0,
+      "rows_marked_stale": 0,
+      "error_summary": null
+    },
+    {
+      "id": "81cbae77-6bfe-49f2-8072-ecdcdd30d46f",
+      "source_name": "Toilet Map UK",
+      "source_file_name": "normalised.csv",
+      "source_checksum": "24a3655f01f03596f3427c9b4af8c752bc0844eb8dbd66c066b04a82e1c2d40f",
+      "status": "completed",
+      "started_at": "2026-07-25T12:53:07.414910+00:00",
+      "completed_at": "2026-07-25T12:53:07.414910+00:00",
+      "rows_received": 104,
+      "rows_valid": 104,
+      "rows_inserted": 104,
+      "rows_updated": 0,
+      "rows_unchanged": 0,
+      "rows_quarantined": 0,
+      "rows_marked_stale": 0,
+      "error_summary": null
+    }
+  ],
+  "toilet_map_linked_facilities": 15584,
+  "toilet_map_current_links": 15584,
+  "records_with_field_provenance": 10922,
+  "duplicate_source_record_ids": [],
+  "facilities_without_source_linkage": 0,
+  "invalid_name_baseline": {
+    "all_facilities": 9,
+    "published_facilities": 9,
+    "published_examples": [
+      {"id": "1cfb8c04-7f41-4090-8c5a-1cd2b198cb6c", "name": "]", "publication_status": "published"},
+      {"id": "09d00901-2601-48b5-9048-e08003d5724a", "name": "0", "publication_status": "published"},
+      {"id": "257df832-62f4-4fad-9baa-f55bea0ebe85", "name": "2", "publication_status": "published"},
+      {"id": "00d04461-cb67-4e02-8048-75271c2d15f7", "name": "BP", "publication_status": "published"},
+      {"id": "62a20dc5-8b2b-4ab7-985b-ab9128f6cc3e", "name": "BP", "publication_status": "published"},
+      {"id": "8e6f56d9-e0e5-4e9d-95f0-b798cdfd1c9a", "name": "BP", "publication_status": "published"},
+      {"id": "9fcd3b30-ca5a-40bb-8fcc-d015297ec505", "name": "BP", "publication_status": "published"},
+      {"id": "b1ff48d6-78ea-4e4a-a331-9fc425ac624c", "name": "BP", "publication_status": "published"},
+      {"id": "14b3611a-5a74-40e9-83b4-bd5b67afff57", "name": "my", "publication_status": "published"}
+    ]
+  }
+}
