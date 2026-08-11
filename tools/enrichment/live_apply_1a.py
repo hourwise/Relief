@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import os
 import threading
 from collections import defaultdict
 from dataclasses import dataclass
@@ -57,6 +58,9 @@ LIVE_APPLY_CONFIRMATION = "APPLY_RELIEF_TOILET_MAP_1A_48"
 PRIVILEGED_DATABASE_ENV = "RELIEF_APPLY_1A_DATABASE_URL"
 APPLY_RUN_KIND = "apply_1a"
 ALLOWED_APPLY_FIELDS = frozenset(ALLOWED_FIELDS)
+# Review lock: this branch can validate the future privileged path but cannot
+# open a database connection or execute the SQL function.
+LIVE_EXECUTION_ENABLED = False
 
 
 class LiveApplyGateError(ValueError):
@@ -339,6 +343,40 @@ def future_execution_command() -> str:
     )
 
 
+def execute_privileged_apply(
+    *,
+    plan_sha256: str,
+    manifest_sha256: str,
+    source_sha256: str,
+    project_ref: str,
+    confirmation: str,
+    privileged_db_env: str,
+) -> None:
+    """Validate the future operator call, then fail closed on this branch.
+
+    The database URL is intentionally read only from the named environment
+    variable.  The hard design lock is checked before any database client or
+    connection can be constructed.
+    """
+
+    validate_approval_identity(
+        plan_sha256=plan_sha256,
+        manifest_sha256=manifest_sha256,
+        source_sha256=source_sha256,
+        project_ref=project_ref,
+        confirmation=confirmation,
+    )
+    if privileged_db_env != PRIVILEGED_DATABASE_ENV:
+        raise LiveApplyGateError("unexpected privileged credential environment name")
+    if not os.environ.get(PRIVILEGED_DATABASE_ENV):
+        raise LiveApplyGateError(f"{PRIVILEGED_DATABASE_ENV} is not set")
+    if not LIVE_EXECUTION_ENABLED:
+        raise LiveApplyGateError(
+            "LIVE APPLY NOT EXECUTED: LIVE_EXECUTION_ENABLED is hard-locked false on this review branch"
+        )
+    raise LiveApplyGateError("LIVE APPLY NOT EXECUTED: privileged client implementation is not enabled")
+
+
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Design-stage Apply 1A live-apply interlock")
     parser.add_argument("--apply", action="store_true", help="request the future privileged path")
@@ -359,18 +397,18 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if not all((args.project_ref, args.plan_sha, args.manifest_sha, args.source_sha, args.confirm)):
         raise SystemExit("LIVE APPLY REFUSED: all approval identities and --confirm are required")
-    validate_approval_identity(
-        plan_sha256=args.plan_sha,
-        manifest_sha256=args.manifest_sha,
-        source_sha256=args.source_sha,
-        project_ref=args.project_ref,
-        confirmation=args.confirm,
-    )
-    if args.privileged_db_env != PRIVILEGED_DATABASE_ENV:
-        raise SystemExit("LIVE APPLY REFUSED: unexpected privileged credential environment name")
-    raise SystemExit(
-        "LIVE APPLY NOT EXECUTED: the audit migration and privileged transaction boundary are design-only and not deployed"
-    )
+    try:
+        execute_privileged_apply(
+            plan_sha256=args.plan_sha,
+            manifest_sha256=args.manifest_sha,
+            source_sha256=args.source_sha,
+            project_ref=args.project_ref,
+            confirmation=args.confirm,
+            privileged_db_env=args.privileged_db_env,
+        )
+    except LiveApplyGateError as exc:
+        raise SystemExit(str(exc)) from exc
+    return 0
 
 
 if __name__ == "__main__":

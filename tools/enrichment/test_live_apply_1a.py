@@ -3,11 +3,14 @@
 from __future__ import annotations
 
 import copy
+import os
+import re
 import sys
 import threading
 import unittest
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
+from unittest.mock import patch
 
 try:
     from .apply_engine_1a import EXPECTED_APPROVED_MANIFEST_SHA256, EXPECTED_APPROVED_PLAN_SHA256, EXPECTED_SOURCE_CHECKSUM
@@ -17,7 +20,9 @@ try:
         LiveApplyGateError,
         SyntheticApplyCoordinator,
         apply_synthetic_transaction,
+        execute_privileged_apply,
         future_execution_command,
+        LIVE_EXECUTION_ENABLED,
         load_approved_operations,
         post_apply_verify,
         validate_approval_identity,
@@ -33,7 +38,9 @@ except ImportError:  # Supports direct execution: python tools/enrichment/test_l
         LiveApplyGateError,
         SyntheticApplyCoordinator,
         apply_synthetic_transaction,
+        execute_privileged_apply,
         future_execution_command,
+        LIVE_EXECUTION_ENABLED,
         load_approved_operations,
         post_apply_verify,
         validate_approval_identity,
@@ -92,6 +99,31 @@ def apply_identity_kwargs() -> dict[str, str]:
     }
 
 
+def registry_operations() -> set[tuple[str, str, str, str, bool]]:
+    """Read the immutable SQL seed tuples for static exact-set assertions."""
+
+    sql = MIGRATION_PATH.read_text(encoding="utf-8")
+    rows = re.findall(
+        r"\('(?P<operation>A1A-[^']+)', '(?P<facility>[0-9a-f-]+)'::uuid, "
+        r"'(?P<source>[^']+)', '(?P<field>[^']+)', NULL, (?P<value>true|false),",
+        sql,
+    )
+    return {
+        (operation, facility, source, field, value == "true")
+        for operation, facility, source, field, value in rows
+    }
+
+
+def registry_operation(operation: dict) -> tuple[str, str, str, str, bool]:
+    return (
+        operation["operation_id"],
+        operation["facility_id"],
+        operation["source_record_id"],
+        operation["field"],
+        operation["proposed_value"],
+    )
+
+
 class LiveApply1ATests(unittest.TestCase):
     def test_exact_approved_identities_are_accepted(self):
         manifest, operations = load_approved_operations(ROOT)
@@ -99,6 +131,17 @@ class LiveApply1ATests(unittest.TestCase):
         self.assertEqual(manifest["manifest_sha256"], EXPECTED_APPROVED_MANIFEST_SHA256)
         self.assertEqual(len(operations), 48)
         validate_approval_identity(**apply_identity_kwargs())
+
+    def test_upper_and_lower_approval_inputs_have_one_canonical_identity(self):
+        lower = apply_identity_kwargs()
+        upper = {
+            **lower,
+            "plan_sha256": lower["plan_sha256"].upper(),
+            "manifest_sha256": lower["manifest_sha256"].upper(),
+            "source_sha256": lower["source_sha256"].upper(),
+        }
+        validate_approval_identity(**lower)
+        validate_approval_identity(**upper)
 
     def test_wrong_plan_sha_is_rejected(self):
         values = apply_identity_kwargs()
@@ -134,6 +177,50 @@ class LiveApply1ATests(unittest.TestCase):
         extra["operation_id"] = "A1A-extra-test-operation"
         with self.assertRaises(ValueError):
             validate_operation_set(operations + [extra])
+
+    def test_registry_rejects_altered_facility_id(self):
+        operations = approved_operations()
+        altered = registry_operation(operations[0])
+        altered = (altered[0], "11111111-1111-4111-8111-111111111111", *altered[2:])
+        self.assertNotIn(altered, registry_operations())
+
+    def test_registry_rejects_altered_source_id(self):
+        operations = approved_operations()
+        altered = registry_operation(operations[0])
+        altered = (*altered[:2], "syntactically-valid-but-unapproved-source-id", *altered[3:])
+        self.assertNotIn(altered, registry_operations())
+
+    def test_registry_rejects_altered_field(self):
+        operations = approved_operations()
+        altered = registry_operation(operations[0])
+        altered = (*altered[:3], "is_free", altered[4])
+        self.assertNotIn(altered, registry_operations())
+
+    def test_registry_rejects_altered_boolean(self):
+        operations = approved_operations()
+        altered = registry_operation(operations[0])
+        altered = (*altered[:4], not altered[4])
+        self.assertNotIn(altered, registry_operations())
+
+    def test_registry_rejects_missing_extra_and_distribution_changes(self):
+        operations = approved_operations()
+        registry = registry_operations()
+        approved = {registry_operation(operation) for operation in operations}
+        self.assertEqual(registry, approved)
+        self.assertNotEqual(registry, approved - {registry_operation(operations[-1])})
+        extra = ("A1A-unapproved", "11111111-1111-4111-8111-111111111111", "extra-source", "is_free", True)
+        self.assertNotIn(extra, registry)
+        distribution = {field: sum(row[3] == field for row in registry) for field in {row[3] for row in registry}}
+        self.assertEqual(
+            distribution,
+            {
+                "has_baby_changing": 16,
+                "requires_radar_key": 14,
+                "is_gender_neutral": 15,
+                "is_accessible": 2,
+                "is_free": 1,
+            },
+        )
 
     def test_non_allowlisted_field_is_rejected(self):
         operation = copy.deepcopy(approved_operations()[0])
@@ -224,6 +311,18 @@ class LiveApply1ATests(unittest.TestCase):
         self.assertEqual(second.audit["applied_count"], 0)
         self.assertEqual(first.state["facilities"], second.state["facilities"])
 
+    def test_rolled_back_manifest_is_retryable(self):
+        operations = approved_operations()
+        state = synthetic_state(operations)
+        state["facilities"][operations[-1]["facility_id"]][operations[-1]["field"]] = True
+        failed = apply_synthetic_transaction(state, operations)
+        self.assertEqual(failed.audit["transaction_outcome"], "rolled_back")
+
+        retry_state = synthetic_state(operations)
+        retried = apply_synthetic_transaction(retry_state, operations)
+        self.assertEqual(retried.audit["transaction_outcome"], "committed")
+        self.assertEqual(retried.audit["applied_count"], 48)
+
     def test_concurrent_same_manifest_is_serialized_and_applies_once(self):
         operations = approved_operations()
         holder = {"state": synthetic_state(operations)}
@@ -247,25 +346,69 @@ class LiveApply1ATests(unittest.TestCase):
 
     def test_normal_roles_have_no_privileged_apply_rpc_grant(self):
         sql = MIGRATION_PATH.read_text(encoding="utf-8").upper()
-        self.assertNotIn("GRANT EXECUTE", sql)
-        self.assertNotIn("TO ANON", sql)
-        self.assertNotIn("TO AUTHENTICATED", sql)
+        self.assertIn("REVOKE EXECUTE ON FUNCTION PRIVATE.APPLY_RELIEF_TOILET_MAP_1A", sql)
+        self.assertIn("FROM PUBLIC", sql)
+        self.assertIn("FROM ANON", sql)
+        self.assertIn("FROM AUTHENTICATED", sql)
+        self.assertNotIn("GRANT EXECUTE ON FUNCTION PRIVATE.APPLY_RELIEF_TOILET_MAP_1A(TEXT, TEXT, TEXT, TEXT, TEXT) TO ANON", sql)
+        self.assertNotIn("GRANT EXECUTE ON FUNCTION PRIVATE.APPLY_RELIEF_TOILET_MAP_1A(TEXT, TEXT, TEXT, TEXT, TEXT) TO AUTHENTICATED", sql)
 
     def test_audit_migration_is_guarded_and_pins_only_approved_identities(self):
         sql = MIGRATION_PATH.read_text(encoding="utf-8")
         self.assertIn("ADD COLUMN IF NOT EXISTS", sql)
-        self.assertIn("CREATE UNIQUE INDEX IF NOT EXISTS", sql)
+        self.assertIn("CREATE UNIQUE INDEX IF NOT EXISTS import_runs_apply_1a_committed_manifest_key", sql)
         self.assertIn(EXPECTED_APPROVED_PLAN_SHA256, sql)
         self.assertIn(EXPECTED_APPROVED_MANIFEST_SHA256, sql)
-        self.assertIn(EXPECTED_SOURCE_CHECKSUM.upper(), sql)
+        self.assertIn(EXPECTED_SOURCE_CHECKSUM, sql)
+        self.assertIn("lower(source_checksum) = 'f6824fdc7cd29df8c1f45ba749c1b28d319fb34803c55459bbe748ef65937624'", sql)
         self.assertIn("Documented rollback", sql)
-        self.assertNotIn("INSERT INTO", sql.upper())
-        self.assertNotIn("UPDATE public.", sql.upper())
-        self.assertNotIn("DELETE FROM", sql.upper())
+        self.assertIn("INSERT INTO PRIVATE.RELIEF_APPLY_1A_APPROVED_OPERATIONS", sql.upper())
+        self.assertIn("UPDATE PUBLIC.IMPORT_RUNS", sql.upper())
+        self.assertNotIn("INSERT INTO PUBLIC.FACILITIES", sql.upper())
+        self.assertNotIn("INSERT INTO PUBLIC.FACILITY_SOURCES", sql.upper())
+        self.assertNotIn("DELETE FROM PUBLIC.FACILITIES", sql.upper())
+        self.assertNotIn("DELETE FROM PUBLIC.FACILITY_SOURCES", sql.upper())
+
+    def test_private_registry_binds_exact_48_and_fixed_function_contract(self):
+        sql = MIGRATION_PATH.read_text(encoding="utf-8")
+        self.assertEqual(sql.count("('A1A-"), 48)
+        self.assertIn("CREATE TABLE IF NOT EXISTS private.relief_apply_1a_approved_operations", sql)
+        self.assertIn("CREATE OR REPLACE FUNCTION private.apply_relief_toilet_map_1a(", sql)
+        self.assertNotIn("p_operations_json", sql)
+        self.assertNotIn("jsonb)", sql.split("CREATE OR REPLACE FUNCTION private.apply_relief_toilet_map_1a(", 1)[1].split("$function$", 1)[0])
+        self.assertIn("SECURITY DEFINER", sql)
+        self.assertIn("SET search_path = ''", sql)
+        for field in ("has_baby_changing", "requires_radar_key", "is_gender_neutral", "is_accessible", "is_free"):
+            self.assertIn(f"IF r.field = '{field}'", sql)
+
+    def test_registry_is_immutable_and_no_role_is_created(self):
+        sql = MIGRATION_PATH.read_text(encoding="utf-8").upper()
+        self.assertIn("BEFORE INSERT OR UPDATE OR DELETE", sql)
+        self.assertIn("RELIEF_APPLY_1A_REGISTRY_IMMUTABLE", sql)
+        self.assertNotIn("CREATE ROLE", sql)
+        self.assertIn("GRANT EXECUTE ON FUNCTION PRIVATE.APPLY_RELIEF_TOILET_MAP_1A", sql)
+        self.assertIn("RELIEF_APPLY_OPERATOR", sql)
+
+    def test_live_execution_hard_lock_refuses_even_with_all_gates_and_env(self):
+        self.assertFalse(LIVE_EXECUTION_ENABLED)
+        with patch.dict(os.environ, {PRIVILEGED_DATABASE_ENV: "postgresql://review-only-placeholder"}, clear=False):
+            with self.assertRaisesRegex(LiveApplyGateError, "hard-locked false"):
+                execute_privileged_apply(
+                    **apply_identity_kwargs(),
+                    privileged_db_env=PRIVILEGED_DATABASE_ENV,
+                )
 
     def test_no_create_delete_unpublish_or_source_link_mutation_path_exists(self):
         source = (MIGRATION_PATH.read_text(encoding="utf-8") + (ROOT / "tools/enrichment/live_apply_1a.py").read_text(encoding="utf-8")).upper()
-        for forbidden in ("INSERT INTO", "DELETE FROM", "DROP TABLE", "CREATE FACILITY", "PUBLICATION_STATUS =", "FACILITY_SOURCES SET"):
+        for forbidden in (
+            "INSERT INTO PUBLIC.FACILITIES",
+            "INSERT INTO PUBLIC.FACILITY_SOURCES",
+            "DELETE FROM PUBLIC.FACILITIES",
+            "DELETE FROM PUBLIC.FACILITY_SOURCES",
+            "CREATE FACILITY",
+            "PUBLICATION_STATUS =",
+            "FACILITY_SOURCES SET",
+        ):
             self.assertNotIn(forbidden, source)
 
     def test_post_apply_verifier_detects_wrong_field(self):

@@ -73,9 +73,10 @@ The current Supabase security advisor also reports existing, pre-task issues:
 `public.import_runs` and the staging table have RLS enabled without policies,
 and several existing public security-definer functions are callable by normal
 roles. These are existing schema/application concerns, not an Apply 1A write
-path. This task does not broaden scope by repairing them. In particular, no
-new Apply function or execute grant is added; the future Apply function must
-be placed in a private schema with explicit role-only execute permission.
+path. This task does not broaden scope by repairing them. The local migration
+now prepares the Apply function in a private schema with explicit role-only
+execute permission, but the migration has not been deployed and the function
+has not been executed.
 
 The existing importer source run referenced by all 48 source links is:
 
@@ -112,8 +113,9 @@ The undelivered migration
   `rolled_back`, `failed`, or `already_applied`);
 - `rollback_summary`;
 - guarded format, identity, count, and committed-outcome constraints; and
-- a partial unique key preventing two `apply_1a` rows for the same approved
-  manifest.
+- a non-unique manifest lookup plus a committed-only unique key. This permits
+  durable rolled-back attempt history and a safe retry while still preventing
+  two committed rows for the same approved manifest.
 
 The migration is additive and idempotently guarded. Existing importer rows
 remain `run_kind = import` and retain their current status vocabulary. A
@@ -126,13 +128,13 @@ The future operator is local/admin-only and must use a server-side privileged
 database connection. The mobile app and its anon/authenticated key must never
 call the write boundary.
 
-The future deployed function should live in a non-exposed `private` schema,
-use `SECURITY DEFINER SET search_path = ''` with fully qualified relations,
-and accept one complete approved manifest payload. It must compare the raw
-plan and canonical manifest to immutable approved identities; a caller-supplied
-hash must never be compared only with a hash calculated from the same caller
-payload. The deployed function must also validate the exact 48 operation
-records, not just the count.
+The migration now prepares the function in a non-exposed `private` schema,
+using `SECURITY DEFINER SET search_path = ''` and fully qualified relations.
+It accepts only the five approval gates; it does not accept an operations JSON
+payload. The exact 48 operations are seeded into
+`private.relief_apply_1a_approved_operations`, checked for the approved hashes
+and field distribution, and protected by an immutable trigger. A caller-
+supplied hash can therefore never authorize a substituted operation set.
 
 The intended function contract is conceptually:
 
@@ -142,17 +144,16 @@ private.apply_relief_toilet_map_1a(
   p_plan_sha256,
   p_manifest_sha256,
   p_source_sha256,
-  p_approved_review_commit,
-  p_apply_engine_version,
-  p_manifest_json,
-  p_operations_json
+  p_confirmation
 ) -> run evidence JSON
 ```
 
-That RPC is deliberately not created by this migration. Keeping the write
-function out of a design-only migration prevents an accidental callable
-write boundary before its SQL implementation, role ownership, and deployed
-approval registry receive a separate review.
+That function is prepared in this design-only migration but is not callable by
+normal roles: execute is revoked from `PUBLIC`, `anon`, and `authenticated`.
+The migration does not create either privileged role. It conditionally grants
+only `relief_apply_operator` if a deployment DBA has provisioned it
+separately; dedicated function-owner assignment remains a deployment review
+item.
 
 When implemented, permissions must be explicit:
 
@@ -165,8 +166,9 @@ grant execute on function private.apply_relief_toilet_map_1a(...) to relief_appl
 
 The role name is a design placeholder, not a role created in this task. No
 service-role key, database password, token, or nonce is committed. The current
-operator module refuses the live form because the migration and RPC are not
-deployed.
+operator module refuses the live form because `LIVE_EXECUTION_ENABLED = False`
+on this review branch, even when all arguments and the named environment
+variable are present.
 
 ## Exact transaction semantics
 
@@ -174,7 +176,7 @@ The future function must run as one PostgreSQL transaction:
 
 1. Take a transaction-scoped advisory lock keyed by the approved manifest.
 2. Lock or create the `apply_1a` audit run and resolve idempotency state.
-3. Validate project, plan, manifest, source, review, engine, and exact
+3. Validate project, plan, manifest, source, confirmation, and exact registry
    operation identities.
 4. Lock and re-read all 48 facilities and exact source links.
 5. Refuse the entire run if any facility is missing, a link is absent/not
@@ -188,6 +190,12 @@ The future function must run as one PostgreSQL transaction:
 9. Run the post-apply checks and complete the audit row as `status = completed`
    and `transaction_outcome = committed`.
 10. Commit once. Any exception rolls back every facility/provenance change.
+
+The audit row is inserted before the inner PL/pgSQL exception block. A failure
+inside that block rolls back all facility/provenance work, then records a safe
+`status = failed`, `transaction_outcome = rolled_back` row after the
+subtransaction rollback. The rollback summary stores only a SQLSTATE and fixed
+operator-safe text; it never stores a database URL or raw exception detail.
 
 There is no permitted `47 committed + 1 failed` outcome. A retry of a
 rolled-back attempt is allowed after a fresh preflight; a committed same-
@@ -224,17 +232,38 @@ transaction.
 
 ## Idempotency and concurrency
 
-The partial unique manifest key on `import_runs` is the durable duplicate
-guard. A transaction-scoped advisory lock serializes concurrent attempts for
+The committed-only unique manifest key on `import_runs` is the durable
+duplicate guard. A transaction-scoped advisory lock serializes concurrent attempts for
 the same manifest before the run row is inspected:
 
 - committed same manifest → `ALREADY_APPLIED`, no-op;
-- failed/rolled-back same manifest → retryable after preflight;
+- failed/rolled-back same manifest → a new attempt row is retryable after
+  fresh preflight;
 - in-progress duplicate → reject or wait behind the lock, never run twice;
 - different manifest → reject as unapproved.
 
 The local synthetic coordinator tests both serialization and the single
-successful application effect.
+successful application effect. The local transaction model also proves that a
+rolled-back manifest can be retried.
+
+## Historical import-run checksum preflight
+
+Before considering deployment, the live `public.import_runs` table was read
+with a GET-only SQL query on 2026-08-11:
+
+```text
+total rows:                 3
+null source_checksum rows:  0
+valid 64-hex rows:          3
+invalid/non-64 rows:        0
+```
+
+All three rows are completed `Toilet Map UK` importer runs with the historical
+lowercase checksum
+`24a3655f01f03596f3427c9b4af8c752bc0844eb8dbd66c066b04a82e1c2d40f`.
+The new format constraint is therefore compatible with existing history. The
+Apply identity uses canonical lowercase comparison with `lower(source_checksum)`
+and does not replace or reinterpret those historical rows.
 
 ## Rollback and recovery
 
@@ -278,12 +307,15 @@ python tools/enrichment/live_apply_1a.py --apply --project-ref bgwxrxkmyaihplalo
 
 The privileged database URL is supplied only at execution time through the
 named environment variable. There is no default that enables mutation, and
-the current design branch refuses the live form because the migration/RPC are
-not deployed.
+the current boundary branch refuses the live form because
+`LIVE_EXECUTION_ENABLED = False`, even when the named environment variable is
+present. The function and migration are prepared only for deployment review.
 
 ## Current gate result
 
-This is **NOT READY FOR LIVE APPLY 1A AUTHORIZATION**. The 48-operation
-preflight is ready, but the additive migration has not been deployed and the
-privileged transactional RPC has not received or passed its separate deploy-
-and-permission review. The required zero-mutation boundary remains intact.
+This is **READY FOR APPLY 1A MIGRATION DEPLOYMENT REVIEW**, but **NOT READY FOR
+LIVE APPLY 1A AUTHORIZATION**. The 48-operation preflight is ready and the
+privileged transactional SQL boundary is implemented in the migration, but it
+has not been deployed, no privileged role has been created, and the operator
+hard lock remains in force. The required zero-mutation boundary remains
+intact.
