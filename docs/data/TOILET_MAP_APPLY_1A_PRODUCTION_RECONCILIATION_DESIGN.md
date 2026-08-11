@@ -205,11 +205,39 @@ BASELINE_EQUIVALENCE = PASS
 RPC_REPAIR_EQUIVALENCE = PASS
 ```
 
-## 5. Proposed migration-history reconciliation
+## 5. Canonical active migration lineage and history repair record
 
-The proposed reconciliation is metadata-only and must be separately
-authorized. It does not execute historical SQL, modify the live function, or
-touch facility, provenance, source-link, audit, role, or grant data.
+The active local migration directory now canonicalises truthful production
+lineage without replaying Relief's original executable history. The five
+historical versions are represented locally by comment-only lineage markers;
+the executable schema reconstruction begins at the verified live-schema
+baseline.
+
+```text
+Historical production lineage
+        ↓
+five no-op local lineage markers
+        ↓
+20260806000000 canonical live-schema baseline
+        ↓
+20260806000100 canonical RPC repair
+        ↓
+20260811164202 Apply 1A
+```
+
+The five markers do not reconstruct historical intermediate database states.
+They exist only to preserve truthful local/remote migration lineage so the
+Supabase CLI can compare the active directory with the production history.
+
+A fresh database recreated from this repository reconstructs the canonical
+schema from `20260806000000_live_schema_baseline.sql` rather than replaying
+Relief's original pre-August-2026 historical evolution. That is intentional.
+The archived historical migrations are forensic/history artifacts and are not
+part of the executable canonical chain.
+
+The two metadata repairs were separately authorized and completed. They did
+not execute historical SQL, modify the live function, or touch facility,
+provenance, source-link, audit, role, grant, or schema data.
 
 ### No historical-file replay
 
@@ -219,17 +247,16 @@ claim that the two unrecorded `20260725` files were separately applied. The
 legacy SQL remains available for audit and lineage review under its exact git
 path.
 
-### Proposed repairs
+### Completed history repairs
 
-Each repair is a separate future command and requires a fresh read-only
-precondition check plus an explicit owner gate:
+Each repair was run separately after its read-only equivalence gate:
 
 ```text
 supabase migration repair --status applied 20260806000000
 supabase migration repair --status applied 20260806000100
 ```
 
-| Version | Proposed state | Why | Evidence required immediately before repair | Risk if incorrect |
+| Version | Recorded state | Why | Evidence captured before repair | Risk if incorrect |
 |---|---|---|---|---|
 | `20260806000000` | `applied` | The file is a schema-only snapshot of the already-live schema, not a forward production delta. Marking it applied prevents `db push` from trying to replay the baseline. | Full read-only schema comparison against the baseline, including tables, columns, constraints, indexes, functions, triggers, policies, grants, extensions, and schemas; current facility/source/provenance snapshot unchanged. | A false repair would tell the CLI to skip schema that is actually missing, causing later migration failure or an unrecorded schema gap. |
 | `20260806000100` | `applied` | The repaired function definition is already present in production, and the Git change records live application/verification. Marking it applied records the existing effect without replacing the function again. | Exact signature/owner/security/search-path/return-shape/body/grant comparison to the approved repair, plus a read-only RPC smoke query. | A false repair would leave the old broken RPC while the CLI believes the repair exists. The repair must be deployed as a separately authorized forward change if equality cannot be proven. |
@@ -240,15 +267,15 @@ the two extra legacy `20260725` files because there is no truthful distinct
 remote version to mark and their effects are represented by the baseline/current
 schema.
 
-After the two proposed repairs, the exact local-only pending set should be:
+After the two completed repairs, the exact local-only pending set is:
 
 ```text
 20260811164202_apply_1a_audit_and_transaction.sql
 ```
 
-The expected remote migration table would contain the five historical rows plus
-the two truthful applied markers. Any other row, local file, or pending SQL is a
-stop condition.
+The remote migration table contains the five historical rows plus the two
+truthful applied markers. Any other row, local file, or pending SQL is a stop
+condition.
 
 ## 6. Bounded production roles
 
@@ -415,35 +442,38 @@ call.
 
 ## 10. Files changed and validation
 
-The authorized local package contains:
+The canonicalisation package contains:
 
-- `supabase/roles.sql` — new, secret-free bounded role definition;
-- `docs/data/TOILET_MAP_APPLY_1A_PRODUCTION_RECONCILIATION_DESIGN.md` — this
-  reconciliation and deployment-gate design.
+- `supabase/migrations/001_initial_schema.sql` — comment-only lineage marker;
+- `supabase/migrations/20260624_community_features.sql` — comment-only lineage marker;
+- `supabase/migrations/20260625_premium_features.sql` — comment-only lineage marker;
+- `supabase/migrations/20260701_monetisation.sql` — comment-only lineage marker;
+- `supabase/migrations/20260725_facility_trust_and_import.sql` — comment-only lineage marker;
+- `docs/data/TOILET_MAP_APPLY_1A_PRODUCTION_RECONCILIATION_DESIGN.md` — canonical
+  lineage and deployment-gate design.
 
-The approved Apply migration and all historical migration SQL are unchanged.
-No production migration metadata was changed. No production role or grant was
-changed.
+The five lineage markers and this document are the only changes in this
+canonicalisation package. `supabase/roles.sql` is unchanged. The approved Apply
+migration, RPC repair, baseline, manifest, plan, and all archived historical
+migration SQL are unchanged. No production migration metadata was changed by
+this task, and no production schema, role, grant, or data was changed.
 
-Validation for this package must include:
+Validation for this package includes:
 
-- static review of `roles.sql` for the exact role attributes, no password
-  clause, no superuser/bypass-RLS/create-role/create-db request, and no broad
-  grants;
+- explicit comment-only validation of all five markers;
 - the existing Apply 1A Python tests and manifest/plan integrity checks;
 - `git diff --check`;
 - final branch/HEAD/status capture.
 
-At the reconciliation checkpoint, the package is limited to these two files and
-is ready for the separately authorized checkpoint commit. The production
-history repairs remain gated below and are not implied by this local commit.
+The package is ready for the canonicalisation checkpoint commit. The
+subsequent dry-run remains preview-only and does not authorize infrastructure
+deployment.
 
 ## 11. Recommendation
 
-The design and read-only equivalence gates are sufficiently specific for the
-separately authorized history-repair step. Production is not yet ready for
-infrastructure deployment authorization until both metadata repairs, the fresh
-data/preflight gate, and the dry-run have completed exactly as specified. The
-current checkpoint status is:
+The canonical lineage and read-only equivalence gates are complete. Production
+is not yet ready for infrastructure deployment authorization until the fresh
+data/preflight gate and the exact dry-run complete as specified. The current
+checkpoint status is:
 
-**READY FOR MIGRATION-HISTORY RECONCILIATION AUTHORIZATION**
+**READY FOR CANONICAL MIGRATION-LINEAGE DRY-RUN**

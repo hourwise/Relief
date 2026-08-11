@@ -1,0 +1,13 @@
+-- Relief canonical migration lineage marker: 001 / initial_schema.
+--
+-- This version already exists in the Relief production migration history.
+-- The original executable SQL remains archived at:
+--   supabase/legacy_migrations/001_initial_schema.sql
+--
+-- This marker deliberately does not replay that historical SQL. Active schema
+-- reconstruction is canonicalised by 20260806000000_live_schema_baseline.sql,
+-- followed by the verified RPC repair and the Apply 1A migration.
+--
+-- This marker preserves truthful local/remote migration lineage only. It must
+-- not be replaced with legacy executable SQL without a new architecture
+-- decision.
