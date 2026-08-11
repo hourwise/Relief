@@ -902,9 +902,23 @@ REVOKE EXECUTE ON FUNCTION private.apply_relief_toilet_map_1a(text, text, text, 
 -- deliberately does not transfer ownership to an unprovisioned role.
 DO $$
 BEGIN
+  IF EXISTS (SELECT 1 FROM pg_catalog.pg_roles WHERE rolname = 'relief_apply_owner') THEN
+    EXECUTE 'GRANT USAGE ON SCHEMA private TO relief_apply_owner';
+    EXECUTE 'GRANT SELECT ON TABLE private.relief_apply_1a_approved_operations TO relief_apply_owner';
+    EXECUTE 'GRANT SELECT ON TABLE public.facilities, public.facility_sources TO relief_apply_owner';
+    EXECUTE 'GRANT UPDATE (has_baby_changing, requires_radar_key, is_gender_neutral, is_accessible, is_free, field_provenance) ON TABLE public.facilities TO relief_apply_owner';
+    EXECUTE 'GRANT SELECT ON TABLE public.import_runs TO relief_apply_owner';
+    EXECUTE 'GRANT INSERT (source_name, source_file_name, source_checksum, status, started_at, rows_received, rows_valid, run_kind, approved_plan_sha256, approved_manifest_sha256, approved_review_commit, apply_engine_version, project_ref, requested_operation_count, ready_count, applied_count, stale_count, failed_count, transaction_outcome, rollback_summary) ON TABLE public.import_runs TO relief_apply_owner';
+    EXECUTE 'GRANT UPDATE (status, completed_at, rows_updated, ready_count, applied_count, stale_count, failed_count, transaction_outcome, error_summary, rollback_summary) ON TABLE public.import_runs TO relief_apply_owner';
+  END IF;
+
   IF EXISTS (SELECT 1 FROM pg_catalog.pg_roles WHERE rolname = 'relief_apply_operator') THEN
     EXECUTE 'GRANT USAGE ON SCHEMA private TO relief_apply_operator';
     EXECUTE 'GRANT EXECUTE ON FUNCTION private.apply_relief_toilet_map_1a(text, text, text, text, text) TO relief_apply_operator';
+  END IF;
+
+  IF EXISTS (SELECT 1 FROM pg_catalog.pg_roles WHERE rolname = 'relief_apply_owner') THEN
+    EXECUTE 'ALTER FUNCTION private.apply_relief_toilet_map_1a(text, text, text, text, text) OWNER TO relief_apply_owner';
   END IF;
 END;
 $$;

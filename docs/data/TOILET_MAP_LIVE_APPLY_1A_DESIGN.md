@@ -150,10 +150,12 @@ private.apply_relief_toilet_map_1a(
 
 That function is prepared in this design-only migration but is not callable by
 normal roles: execute is revoked from `PUBLIC`, `anon`, and `authenticated`.
-The migration does not create either privileged role. It conditionally grants
-only `relief_apply_operator` if a deployment DBA has provisioned it
-separately; dedicated function-owner assignment remains a deployment review
-item.
+The migration does not create either privileged role. If a deployment DBA has
+provisioned them separately, it conditionally grants `relief_apply_operator`
+only this function and gives `relief_apply_owner` only the registry read,
+facility read/approved-column update, and audit insert/update rights before
+transferring function ownership. With either role absent, no grant or transfer
+occurs.
 
 When implemented, permissions must be explicit:
 
@@ -164,7 +166,7 @@ revoke execute on function private.apply_relief_toilet_map_1a(...) from authenti
 grant execute on function private.apply_relief_toilet_map_1a(...) to relief_apply_operator;
 ```
 
-The role name is a design placeholder, not a role created in this task. No
+The role names are deployment placeholders, not roles created in this task. No
 service-role key, database password, token, or nonce is committed. The current
 operator module refuses the live form because `LIVE_EXECUTION_ENABLED = False`
 on this review branch, even when all arguments and the named environment
