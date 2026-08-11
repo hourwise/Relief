@@ -1,0 +1,85 @@
+{
+  "artifact": "TOILET_MAP_APPLY_1A_DISPOSABLE_DB_TEST",
+  "review_date": "2026-08-11",
+  "branch": "codex/toilet-map-apply-1a-disposable-test",
+  "starting_sha": "90bf6a90137fe9a048589bba4a05590b496269d5",
+  "approved_parent_sha": "90bf6a90137fe9a048589bba4a05590b496269d5",
+  "approved_review_commit": "4710b9ec7a9f5a83aa9e7225400b8a6046ce0e77",
+  "approved_apply_engine_checkpoint": "a323b515a961332d78f9ec878ee6fe84d579a64e",
+  "approved_plan_sha256": "7400626bc99061af7ba82c29969fc8929d7394c59afcfe574e1880521bad2b45",
+  "approved_manifest_sha256": "1de1a71186b80ce043b48fc5f4d6c4bc6ed9d1c964b3ddf7ad3b96ddd073bfa0",
+  "approved_source_sha256": "F6824FDC7CD29DF8C1F45BA749C1B28D319FB34803C55459BBE748EF65937624",
+  "approved_operation_count": 48,
+  "field_distribution": {"has_baby_changing": 16, "requires_radar_key": 14, "is_gender_neutral": 15, "is_accessible": 2, "is_free": 1},
+  "disposable_target": {
+    "technology": "PostgreSQL 17.10",
+    "platform": "x86_64-windows",
+    "host": "127.0.0.1",
+    "port": 55432,
+    "admin_current_user": "relief_local_admin",
+    "database": "relief_apply_1a_test",
+    "cluster": "fresh initdb cluster under the OS temporary directory; local trust authentication; no production credentials",
+    "docker": "not used; Docker unavailable",
+    "production_host_check": "passed; no supabase.co, pooler.supabase.com, production project ref, or production credential used",
+    "roles": {
+      "relief_apply_owner": "NOLOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT",
+      "relief_apply_operator": "LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT; trust-only local test role",
+      "anon": "NOLOGIN non-privileged",
+      "authenticated": "NOLOGIN non-privileged"
+    }
+  },
+  "fixture": {
+    "schema": "minimum relevant facilities, facility_sources, import_runs schema with checks, FKs, unique source identity, and updated_at trigger",
+    "target_facilities": 25,
+    "unrelated_facilities": 1,
+    "facility_count": 26,
+    "source_links": 25,
+    "historical_import_runs_before_apply": 1,
+    "target_fields_initially_null": 48,
+    "provenance_forms": ["absent target key", "unrelated key", "compatible Toilet Map UK/source_imported key"]
+  },
+  "migration": {
+    "path": "supabase/migrations/20260811164202_apply_1a_audit_and_transaction.sql",
+    "first_application": "PASS",
+    "registry_rows": 48,
+    "registry_hashes_and_distribution": "PASS; exact plan, manifest, source and project identities; 16/14/15/2/1",
+    "function_signature": "private.apply_relief_toilet_map_1a(text,text,text,text,text) RETURNS jsonb",
+    "function_owner": "relief_apply_owner",
+    "private_schema_registry_trigger_indexes": "created",
+    "second_application": "EXPECTED FAIL / exit 3 at immutable registry insert; transaction rollback; no duplicate rows/functions/triggers/indexes/data"
+  },
+  "defect_found_and_corrected": {
+    "found": true,
+    "original_failure": "LOCK TABLE failed under bounded owner with SQLSTATE 42501; PostgreSQL has no grantable LOCK privilege",
+    "narrow_fix": "facility rows use FOR SHARE; exact source-link checks and full before/after source digest remain; target facility rows upgrade to FOR UPDATE",
+    "scope_unchanged": "operations, plan, manifest, source checksum, field allowlist, provenance policy, preconditions and output values unchanged",
+    "retested": true
+  },
+  "privileges": {
+    "public_anon_authenticated_execute": false,
+    "operator": "private schema usage and Apply execute only; direct facilities/source/registry/import_runs writes rejected",
+    "owner": "function owner; SELECT registry/facilities/source; import_runs SELECT/INSERT/UPDATE; UPDATE only five target columns plus field_provenance",
+    "owner_superuser_bypassrls_createrole_createdb": false,
+    "registry_tampering": "operator UPDATE and DELETE rejected; no caller operations parameter"
+  },
+  "transaction_tests": {
+    "success": {"status": "COMMITTED", "requested": 48, "ready": 48, "applied": 48, "stale": 0, "failed": 0, "exact_values": 48, "exact_provenance": 48, "facility_count_unchanged": true, "source_links_unchanged": true, "publication_status_unchanged": true, "unrelated_provenance_keys_preserved": 17},
+    "second_exact_call": {"status": "ALREADY_APPLIED", "applied": 0, "facility_changes": 0, "provenance_changes": 0, "committed_successes": 1},
+    "stale_operation": {"status": "ROLLED_BACK", "applied": 0, "operations_1_to_47_leaked": false, "apply_provenance_retained": false, "safe_audit": true},
+    "retry_after_rollback": {"status": "COMMITTED", "applied": 48, "committed_successes": 1, "rolled_back_attempts": 1},
+    "wrong_identity": ["wrong project rejected", "wrong plan rejected", "wrong manifest rejected", "wrong source rejected", "wrong confirmation rejected"],
+    "provenance": {"unrelated": "success and preserved", "community_or_staff": "full rollback", "uninterpretable": "full rollback", "compatible Toilet Map": "success"},
+    "source_links": {"missing": "full rollback", "duplicate": "unique constraint rejection", "is_current_false": "full rollback", "wrong_facility": "full rollback", "newer_timestamp": "full rollback"},
+    "concurrency": "one COMMITTED 48-operation call and one ALREADY_APPLIED zero-operation call; one committed success",
+    "postcheck_fault": "disposable publication-status trigger caused full rollback; removing trigger allowed COMMITTED 48",
+    "schema_rollback": "fresh unused database removed function, trigger, registry, indexes, private schema, Apply columns; historical import run preserved"
+  },
+  "operator": {"LIVE_EXECUTION_ENABLED": false, "no_apply": "DRY_RUN_ONLY", "wrong_identity": "rejected", "missing_env": "rejected", "valid_dummy_local_env": "rejected before database client/connection"},
+  "simulation": {"mode": "GET-only live preflight plus in-memory transactional simulation", "manifest_sha256": "1de1a71186b80ce043b48fc5f4d6c4bc6ed9d1c964b3ddf7ad3b96ddd073bfa0", "requested": 48, "ready": 48, "stale": 0, "persistent_data_differences": 0, "before_snapshot_sha256": "cd16178ed5310f6dc228e0be7b6b0171606936a2c3160bb0e584aa1d015f57d1", "after_snapshot_sha256": "cd16178ed5310f6dc228e0be7b6b0171606936a2c3160bb0e584aa1d015f57d1"},
+  "production_read_only": {"project_ref": "bgwxrxkmyaihplaloely", "mode": "read-only Supabase REST GET", "requested": 48, "ready": 48, "stale": 0, "before_snapshot_sha256": "8d4d910af231a0a083316ee299678442b3e396a558d6a411d3109e92bfe764f1", "after_snapshot_sha256": "8d4d910af231a0a083316ee299678442b3e396a558d6a411d3109e92bfe764f1", "persistent_difference": false, "facility_rows": 25, "source_link_rows": 25, "live_import_runs": 3, "live_apply_columns": 0, "live_private_registry_tables": 0, "remote_migration_contains_apply_1a": false},
+  "quality": {"node": "v22.22.2", "npm": "10.9.7", "npm_ci": "PASS; 816 packages; 26 audit vulnerabilities reported", "npm_run_verify": "PASS; TypeScript, Expo lint, 11 JS test files", "expo_doctor": "PASS; 21/21", "python_tests": "PASS; 75", "disposable_sql": "PASS", "git_diff_check": "PASS", "android_build": "NOT RUN", "eas": "NOT RUN", "play_setup": "NOT RUN"},
+  "production_migrations_deployed": 0,
+  "production_live_apply_executions": 0,
+  "production_database_mutations": 0,
+  "remaining_blocker": "Production relief_apply_owner and relief_apply_operator provisioning/ownership and a separate deployment authorization review remain before any production migration deployment."
+}

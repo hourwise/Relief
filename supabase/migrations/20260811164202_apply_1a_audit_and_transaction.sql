@@ -466,10 +466,15 @@ BEGIN
   RETURNING id INTO v_run_id;
 
   BEGIN
-    -- These locks prevent non-target facility/source changes while the
-    -- complete before/after assertions are evaluated. Affected facility rows
-    -- are also explicitly locked below.
-    LOCK TABLE public.facilities, public.facility_sources IN SHARE MODE;
+    -- Share-lock every currently existing facility row while the complete
+    -- before/after assertions are evaluated. PostgreSQL has no grantable LOCK
+    -- table privilege, and row locks on facility_sources require an update
+    -- privilege that the bounded owner role must not receive. Exact source
+    -- link checks and the full before/after source digest therefore provide
+    -- the source-link concurrency guard. Inserts are caught by the
+    -- before/after cardinality and digest assertions below. Affected facility
+    -- rows are explicitly upgraded to FOR UPDATE during validation.
+    PERFORM 1 FROM public.facilities AS f FOR SHARE;
 
     SELECT count(*), count(DISTINCT operation_id), count(DISTINCT (facility_id, source_record_id, field))
     INTO v_registry_count, v_distinct_ids, v_distinct_operations
