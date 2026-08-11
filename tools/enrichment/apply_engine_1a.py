@@ -25,6 +25,8 @@ from urllib.request import Request, urlopen
 
 
 EXPECTED_REVIEW_COMMIT = "4710b9ec7a9f5a83aa9e7225400b8a6046ce0e77"
+EXPECTED_APPROVED_PLAN_SHA256 = "7400626bc99061af7ba82c29969fc8929d7394c59afcfe574e1880521bad2b45"
+EXPECTED_APPROVED_MANIFEST_SHA256 = "1de1a71186b80ce043b48fc5f4d6c4bc6ed9d1c964b3ddf7ad3b96ddd073bfa0"
 EXPECTED_SOURCE_CHECKSUM = "f6824fdc7cd29df8c1f45ba749c1b28d319fb34803c55459bbe748ef65937624"
 EXPECTED_PROJECT_REF = "bgwxrxkmyaihplaloely"
 EXPECTED_PLAN_SCHEMA_VERSION = "1.0"
@@ -212,8 +214,8 @@ def validate_plan(plan: dict[str, Any], raw_plan_sha256: str) -> None:
     selected = extract_candidates(plan)
     if len(selected) != 48:
         raise ValueError(f"Apply 1A requires exactly 48 entries, found {len(selected)}")
-    if raw_plan_sha256 != sha256_file(Path(__file__).resolve().parents[2] / "docs/data/TOILET_MAP_PROPOSED_APPLY_PLAN_2026-08.json"):
-        raise ValueError("plan hash changed while validating")
+    if raw_plan_sha256 != EXPECTED_APPROVED_PLAN_SHA256:
+        raise ValueError("raw plan hash is not the approved Apply 1A plan hash")
 
 
 def extract_candidates(plan: dict[str, Any]) -> list[dict[str, Any]]:
@@ -302,16 +304,22 @@ def build_manifest(plan: dict[str, Any], plan_sha256: str) -> dict[str, Any]:
 
 
 def validate_manifest_identity(manifest: dict[str, Any], plan_sha256: str, source_checksum: str) -> None:
+    if plan_sha256 != EXPECTED_APPROVED_PLAN_SHA256:
+        raise ValueError("manifest plan hash is not the approved Apply 1A plan hash")
     if manifest.get("approved_plan_sha256") != plan_sha256:
         raise ValueError("manifest plan hash does not match approved plan")
     if str(manifest.get("approved_source_checksum", "")).lower() != source_checksum.lower():
         raise ValueError("manifest source checksum does not match approved source")
     if manifest.get("apply_engine_version") != APPLY_ENGINE_VERSION:
         raise ValueError("manifest apply version is not approved")
+    if manifest.get("manifest_sha256") != EXPECTED_APPROVED_MANIFEST_SHA256:
+        raise ValueError("manifest hash is not the approved Apply 1A manifest hash")
     core = dict(manifest)
     actual_hash = core.pop("manifest_sha256", None)
     if actual_hash != canonical_sha256(core):
         raise ValueError("manifest deterministic hash does not verify")
+    if actual_hash != EXPECTED_APPROVED_MANIFEST_SHA256:
+        raise ValueError("canonical manifest hash is not the approved Apply 1A manifest hash")
     if len(manifest.get("operations", [])) != 48:
         raise ValueError("manifest operation count is not 48")
 

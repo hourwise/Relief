@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import copy
+import json
 import sys
 import unittest
 from pathlib import Path
@@ -12,34 +13,49 @@ try:
     from .apply_engine_1a import (
         ALLOWED_FIELDS,
         APPLY_ENGINE_VERSION,
+        EXPECTED_APPROVED_MANIFEST_SHA256,
+        EXPECTED_APPROVED_PLAN_SHA256,
         EXPECTED_SOURCE_CHECKSUM,
         build_manifest,
         build_simulation,
+        canonical_sha256,
         evaluate_operation,
         load_json,
         merged_provenance,
+        sha256_bytes,
         simulate_apply,
         validate_entry_shape,
+        validate_plan,
         validate_manifest_identity,
     )
 except ImportError:  # Supports direct execution: python tools/enrichment/test_apply_engine_1a.py
     from apply_engine_1a import (
         ALLOWED_FIELDS,
         APPLY_ENGINE_VERSION,
+        EXPECTED_APPROVED_MANIFEST_SHA256,
+        EXPECTED_APPROVED_PLAN_SHA256,
         EXPECTED_SOURCE_CHECKSUM,
         build_manifest,
         build_simulation,
+        canonical_sha256,
         evaluate_operation,
         load_json,
         merged_provenance,
+        sha256_bytes,
         simulate_apply,
         validate_entry_shape,
+        validate_plan,
         validate_manifest_identity,
     )
 
 
 ROOT = Path(__file__).resolve().parents[2]
 PLAN_PATH = ROOT / "docs/data/TOILET_MAP_PROPOSED_APPLY_PLAN_2026-08.json"
+
+
+def modified_plan_sha256(plan: dict) -> str:
+    raw = (json.dumps(plan, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+    return sha256_bytes(raw)
 
 
 def operation(field: str = "is_accessible", proposed: bool = True) -> dict:
@@ -100,6 +116,54 @@ def state(op: dict, current=None, provenance=None) -> dict:
 
 
 class ApplyEngine1ATests(unittest.TestCase):
+    def test_exact_approved_plan_hash_passes(self):
+        plan = load_json(PLAN_PATH)
+        validate_plan(plan, EXPECTED_APPROVED_PLAN_SHA256)
+
+    def test_editing_a_proposed_boolean_fails_plan_validation(self):
+        plan = load_json(PLAN_PATH)
+        entry = next(item for item in plan["entries"] if item.get("category") == "would_enrich_existing")
+        entry["proposed_value"] = not entry["proposed_value"]
+        with self.assertRaises(ValueError):
+            validate_plan(plan, modified_plan_sha256(plan))
+
+    def test_replacing_a_facility_uuid_fails_plan_validation(self):
+        plan = load_json(PLAN_PATH)
+        entry = next(item for item in plan["entries"] if item.get("category") == "would_enrich_existing")
+        entry["relief_facility_id"] = "22222222-2222-2222-2222-222222222222"
+        with self.assertRaises(ValueError):
+            validate_plan(plan, modified_plan_sha256(plan))
+
+    def test_changing_a_source_record_id_fails_plan_validation(self):
+        plan = load_json(PLAN_PATH)
+        entry = next(item for item in plan["entries"] if item.get("category") == "would_enrich_existing")
+        entry["source_record_id"] = "changed-source-record-id"
+        with self.assertRaises(ValueError):
+            validate_plan(plan, modified_plan_sha256(plan))
+
+    def test_reordering_the_raw_plan_fails_plan_validation(self):
+        plan = load_json(PLAN_PATH)
+        plan["entries"] = list(reversed(plan["entries"]))
+        with self.assertRaises(ValueError):
+            validate_plan(plan, modified_plan_sha256(plan))
+
+    def test_exact_approved_manifest_hash_passes(self):
+        plan = load_json(PLAN_PATH)
+        manifest = build_manifest(plan, EXPECTED_APPROVED_PLAN_SHA256)
+        self.assertEqual(manifest["manifest_sha256"], EXPECTED_APPROVED_MANIFEST_SHA256)
+        validate_manifest_identity(manifest, EXPECTED_APPROVED_PLAN_SHA256, EXPECTED_SOURCE_CHECKSUM)
+
+    def test_structurally_valid_different_manifest_is_rejected(self):
+        plan = load_json(PLAN_PATH)
+        manifest = build_manifest(plan, EXPECTED_APPROVED_PLAN_SHA256)
+        changed = copy.deepcopy(manifest)
+        changed["operations"][0]["proposed_value"] = not changed["operations"][0]["proposed_value"]
+        changed_core = dict(changed)
+        changed_core.pop("manifest_sha256")
+        changed["manifest_sha256"] = canonical_sha256(changed_core)
+        with self.assertRaises(ValueError):
+            validate_manifest_identity(changed, EXPECTED_APPROVED_PLAN_SHA256, EXPECTED_SOURCE_CHECKSUM)
+
     def test_exact_allowed_null_to_true_is_accepted(self):
         op = operation(proposed=True)
         self.assertEqual(evaluate_operation(op, state(op), "2026-08-11T14:00:00Z")["status"], "READY")
@@ -147,9 +211,9 @@ class ApplyEngine1ATests(unittest.TestCase):
 
     def test_wrong_source_checksum_is_rejected(self):
         plan = load_json(PLAN_PATH)
-        manifest = build_manifest(plan, "plan-hash")
+        manifest = build_manifest(plan, EXPECTED_APPROVED_PLAN_SHA256)
         with self.assertRaises(ValueError):
-            validate_manifest_identity(manifest, "plan-hash", "0" * 64)
+            validate_manifest_identity(manifest, EXPECTED_APPROVED_PLAN_SHA256, "0" * 64)
 
     def test_wrong_plan_hash_and_version_are_rejected(self):
         plan = load_json(PLAN_PATH)
