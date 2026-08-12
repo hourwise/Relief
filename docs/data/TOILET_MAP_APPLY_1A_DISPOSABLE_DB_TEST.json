@@ -23,7 +23,7 @@
     "production_host_check": "passed; no supabase.co, pooler.supabase.com, production project ref, or production credential used",
     "roles": {
       "relief_apply_owner": "NOLOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT",
-      "relief_apply_operator": "LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT; trust-only local test role",
+      "relief_apply_operator": "NOLOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT; bounded local test role",
       "anon": "NOLOGIN non-privileged",
       "authenticated": "NOLOGIN non-privileged"
     }

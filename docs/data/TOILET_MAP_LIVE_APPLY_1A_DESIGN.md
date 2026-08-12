@@ -124,8 +124,10 @@ run.
 
 ## Future privileged write boundary
 
-The future operator is local/admin-only and must use a server-side privileged
-database connection. The mobile app and its anon/authenticated key must never
+The future Apply execution is local/admin-only and must use a server-side
+privileged database connection. Both bounded Apply roles are `NOLOGIN`; the
+authenticated administrative `postgres` session switches locally to
+`relief_apply_owner`. The mobile app and its anon/authenticated key must never
 call the write boundary.
 
 The migration now prepares the function in a non-exposed `private` schema,

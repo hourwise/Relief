@@ -50,6 +50,8 @@ except ImportError:  # Supports direct execution: python tools/enrichment/test_l
 
 ROOT = Path(__file__).resolve().parents[2]
 MIGRATION_PATH = next(ROOT.glob("supabase/migrations/*_apply_1a_audit_and_transaction.sql"))
+ROLES_PATH = ROOT / "supabase/roles.sql"
+DISPOSABLE_FIXTURE_PATH = ROOT / "tools/enrichment/disposable_apply_1a_fixture.sql"
 
 
 def approved_operations() -> list[dict]:
@@ -388,6 +390,25 @@ class LiveApply1ATests(unittest.TestCase):
         self.assertNotIn("CREATE ROLE", sql)
         self.assertIn("GRANT EXECUTE ON FUNCTION PRIVATE.APPLY_RELIEF_TOILET_MAP_1A", sql)
         self.assertIn("RELIEF_APPLY_OPERATOR", sql)
+
+    def test_apply_roles_are_bounded_no_login_principals(self):
+        roles = ROLES_PATH.read_text(encoding="utf-8")
+        role_blocks = re.findall(
+            r"(?:CREATE|ALTER) ROLE relief_apply_(?:owner|operator)(.*?);",
+            roles,
+            flags=re.IGNORECASE | re.DOTALL,
+        )
+        self.assertEqual(len(role_blocks), 4)
+        self.assertTrue(all("NOLOGIN" in block.upper() for block in role_blocks))
+        self.assertFalse(any(re.search(r"(?<!NO)\bLOGIN\b", block, re.IGNORECASE) for block in role_blocks))
+        sql_without_comments = re.sub(r"--[^\r\n]*", "", roles)
+        self.assertNotRegex(sql_without_comments, r"\bPASSWORD\b")
+
+        fixture = DISPOSABLE_FIXTURE_PATH.read_text(encoding="utf-8")
+        self.assertIn(
+            "CREATE ROLE relief_apply_operator NOLOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT;",
+            fixture,
+        )
 
     def test_owner_handoff_uses_temporary_create_and_reasserts_boundary(self):
         sql = MIGRATION_PATH.read_text(encoding="utf-8")

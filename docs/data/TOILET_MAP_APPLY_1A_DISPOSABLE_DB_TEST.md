@@ -37,7 +37,7 @@ server=PostgreSQL 17.10 on x86_64-windows
 The cluster used local trust authentication and throwaway roles only. No
 password was committed or printed. `relief_apply_owner` was `NOLOGIN,
 NOSUPERUSER, NOCREATEDB, NOCREATEROLE, NOINHERIT`; `relief_apply_operator` was
-`LOGIN, NOSUPERUSER, NOCREATEDB, NOCREATEROLE, NOINHERIT`. `anon` and
+`NOLOGIN, NOSUPERUSER, NOCREATEDB, NOCREATEROLE, NOINHERIT`. `anon` and
 `authenticated` were non-login, non-privileged roles.
 
 The fixture created the minimum relevant current schema for `facilities`,

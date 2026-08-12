@@ -297,7 +297,7 @@ The local file creates or normalizes only:
 
 ```text
 relief_apply_owner     NOLOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT
-relief_apply_operator  LOGIN   NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT
+relief_apply_operator  NOLOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT
 ```
 
 It also grants `relief_apply_owner` to the hosted `postgres` deployment role so
@@ -316,20 +316,18 @@ or admin session; do not add privileges to the Apply roles to work around it.
 
 ### Credential and invocation model
 
-`LOGIN` is necessary for the selected architecture because a controlled
-server-side Apply runner authenticates directly to Postgres as
-`relief_apply_operator`. The operator role is not a mobile/API identity. The
-mobile app, anon key, authenticated role, and `service_role` must not call the
-function.
+No reusable Apply-specific database login credential is required. Both bounded
+roles are `NOLOGIN`: production execution uses only the authenticated
+administrative `postgres` session with `SET LOCAL ROLE relief_apply_owner`.
+`relief_apply_operator` remains a bounded NOLOGIN execution-principal role for
+privilege modelling and disposable testing; it is not a directly
+authenticatable production user. The mobile app, anon key, authenticated role,
+and `service_role` must not call the function.
 
-The roles file intentionally has no `PASSWORD` clause. A future owner-approved
-credential step must set a randomly generated operator secret outside this
-repository, store it only in the server-side deployment runner/secret manager,
-redact it from CLI output and logs, and never expose it through any
-`EXPO_PUBLIC_*` variable or mobile bundle. Rotation is a controlled password
-replacement followed by runner-secret replacement and a connection check;
-disablement is `NOLOGIN` plus removal of the runner secret. No credential was
-generated or changed in this task.
+The roles file intentionally has no `PASSWORD` clause. Password state is not
+an execution gate for these NOLOGIN roles; hashes must not be selected,
+exported, or logged. No reusable Apply credential belongs in this repository,
+`.env`, an `EXPO_PUBLIC_*` variable, or a mobile bundle.
 
 Using an Edge Function with `service_role` would reduce password custody but
 would not preserve the disposable-tested least-privilege boundary because
@@ -362,10 +360,10 @@ separately; no step below was executed here.
    narrowly scoped CLI role operation. Do not use a normal `db push --include-roles`
    as a presumed role-only command while Apply 1A is still pending; the CLI can
    bundle pending migrations.
-6. **Secure operator credential step.** Set the operator password through the
-   approved secret-handling path, store it server-side only, and verify role
-   attributes without printing password material. This is a separate approval
-   from role DDL and was not performed here.
+6. **Role sealing and execution model.** Normalize both bounded Apply roles to
+   `NOLOGIN`, verify their exact attributes without selecting password hashes,
+   and use only the authenticated administrative `postgres` session with
+   `SET LOCAL ROLE relief_apply_owner` for any separately approved Apply.
 7. **Role verification.** Confirm both role attribute tuples exactly, confirm
    the owner membership needed for ownership transfer, and confirm there are no
    extra memberships or broad grants. Do not proceed if the roles differ from
@@ -405,8 +403,9 @@ All checks are read-only and must pass together:
 - the migration file SHA, plan SHA, manifest SHA, source SHA, review commit,
   project ref, engine version, 48-operation count, and field distribution are
   unchanged;
-- both roles exist with the exact approved attributes; operator password
-  material is not selected or logged; owner membership is bounded;
+- both roles exist with the exact approved attributes and both direct login
+  paths are disabled by `NOLOGIN`; password hash material is not selected or
+  logged; owner membership is bounded;
 - `private.apply_relief_toilet_map_1a(text,text,text,text,text)` exists exactly
   once, is `SECURITY DEFINER`, has the approved owner, and has a fixed empty
   `search_path`/fully-qualified implementation;
@@ -536,13 +535,11 @@ schema-qualified function reference.
 
 ### Role file and production membership investigation
 
-`supabase/roles.sql` is unchanged and has SHA-256
-`61bb48a1bf649129c74dffcdce8f35e774de77bb987dec1f33e62af273437f44`. It is
-secret-free and contains no `PASSWORD` clause. Its effective definitions are
-the exact bounded roles: owner `NOLOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE
-NOINHERIT NOREPLICATION NOBYPASSRLS`, operator `LOGIN NOSUPERUSER NOCREATEDB
-NOCREATEROLE NOINHERIT NOREPLICATION NOBYPASSRLS` (the latter false attributes
-are PostgreSQL defaults in the file). The explicit
+`supabase/roles.sql` remains secret-free and contains no `PASSWORD` clause. Its
+effective definitions are the exact bounded roles: owner `NOLOGIN NOSUPERUSER
+NOCREATEDB NOCREATEROLE NOINHERIT NOREPLICATION NOBYPASSRLS`, operator `NOLOGIN
+NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT NOREPLICATION NOBYPASSRLS` (the
+latter false attributes are PostgreSQL defaults in the file). The explicit
 `GRANT relief_apply_owner TO postgres` remains because it is the portable/local
 bootstrap required for a non-superuser migration executor to transfer
 ownership; it is idempotent and is not an application-role grant.

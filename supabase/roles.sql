@@ -1,14 +1,16 @@
 -- Relief Apply 1A bounded database roles.
 --
 -- This file is deliberately secret-free. It is a declarative role definition,
--- not a credential store. The operator LOGIN role receives its password in a
--- separately approved, secure provisioning step; no PASSWORD clause belongs
--- in this repository.
+-- not a credential store. No reusable Apply-specific database login
+-- credential is required; no PASSWORD clause belongs in this repository.
 --
 -- The roles are intentionally narrower than postgres/service_role. The Apply
 -- migration grants the owner role only its exact registry/read/allowlisted
 -- write permissions and grants the operator role only private-schema usage
--- and execution of the Apply function.
+-- and execution of the Apply function. Production execution uses the
+-- authenticated administrative postgres session with SET LOCAL ROLE
+-- relief_apply_owner; the operator remains a bounded NOLOGIN execution
+-- principal for privilege modelling and disposable testing.
 
 DO $$
 BEGIN
@@ -26,10 +28,10 @@ BEGIN
     SELECT 1 FROM pg_catalog.pg_roles WHERE rolname = 'relief_apply_operator'
   ) THEN
     CREATE ROLE relief_apply_operator
-      LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT;
+      NOLOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT;
   ELSE
     ALTER ROLE relief_apply_operator
-      LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT;
+      NOLOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT;
   END IF;
 
   -- The migration executor is the hosted postgres role, not a superuser.
