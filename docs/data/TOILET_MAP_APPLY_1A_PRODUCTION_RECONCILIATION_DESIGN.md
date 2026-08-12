@@ -611,3 +611,76 @@ function, no Apply-specific audit columns, and zero Apply executions.
 updated; `GENERATED_TYPES_UPDATE_REQUIRED_AFTER_SUCCESSFUL_INFRASTRUCTURE_DEPLOYMENT = True`.
 The corrected commit and the preview-only post-patch dry-run remain separate
 from any production deployment authorization.
+
+## 13. Apply audit RLS corrective migration (2026-08-12)
+
+The one authorized production Apply dispatch was attempted exactly once after
+the corrected infrastructure migration had been deployed. It failed before
+the first audit row was inserted:
+
+```text
+SQLSTATE 42501
+new row violates row-level security policy for table "import_runs"
+```
+
+The failure was not a missing broad table grant. Production had RLS enabled on
+`public.import_runs`, `FORCE ROW LEVEL SECURITY = false`, zero policies, and
+`postgres` as the table owner. The bounded `relief_apply_owner` had the exact
+column-level INSERT and UPDATE grants created by the Apply infrastructure, but
+it was neither the table owner nor a BYPASSRLS role. With no matching policy,
+RLS default-denied the initial audit INSERT. Read-only outcome checks found
+zero Apply audit rows, zero Apply executions, zero facility value mutations,
+zero provenance mutations, and zero facility-source mutations. The approved
+48-operation preflight remained `48 READY / 0 STALE` and the canonical
+production snapshot remained
+`8d4d910af231a0a083316ee299678442b3e396a558d6a411d3109e92bfe764f1`.
+
+The deployed migration
+`20260811164202_apply_1a_audit_and_transaction.sql` was not edited or
+rewritten. The forward correction was generated with the Supabase CLI as:
+
+```text
+supabase/migrations/20260812104919_apply_1a_import_runs_rls.sql
+```
+
+It changes only `public.import_runs` and creates exactly three policies, all
+targeted only to `relief_apply_owner`:
+
+| Policy | Command | Boundary |
+|---|---|---|
+| `relief_apply_owner_apply_1a_select` | `SELECT` | `USING` requires the frozen Apply 1A run kind, source/file, source checksum, project ref, plan, manifest, review commit, and engine identity. |
+| `relief_apply_owner_apply_1a_insert` | `INSERT` | `WITH CHECK` requires that identity plus the exact initial `started`/`not_started`, 48-row, zero-progress audit shape. |
+| `relief_apply_owner_apply_1a_update` | `UPDATE` | `USING` retains the frozen identity; `WITH CHECK` permits only the existing committed success shape or the bounded rolled-back failure shape. |
+
+No policy targets `PUBLIC`, `anon`, `authenticated`, `service_role`,
+`authenticator`, or `relief_apply_operator`. RLS remains enabled; it is not
+forced, disabled, or bypassed. No table-level INSERT/UPDATE/ALL grant was
+added, no role login state or membership changed, and the function boundary
+remains private, `SECURITY DEFINER`, empty `search_path`, owner/operator
+execute only.
+
+### Disposable PostgreSQL 17 regression
+
+The new disposable regression harness is
+`tools/enrichment/test_apply_1a_import_runs_rls.py`. It creates isolated local
+PostgreSQL 17 databases and removes them after the test. Results:
+
+| Gate | Result |
+|---|---|
+| Old state: RLS enabled, zero policies | `SQLSTATE 42501` at initial `import_runs` INSERT; zero audit/data changes |
+| Corrected first call | `COMMITTED`, requested/ready/applied `48/48/48`, stale/failed `0/0` |
+| Corrected second call | `ALREADY_APPLIED`, `applied_count=0`, same committed run ID |
+| Controlled rollback | `ROLLED_BACK`; durable failed audit row, `applied_count=0`, `rows_updated=0`, `failed_count=1` |
+| Target/provenance checks | 48 correct targets and 48 matching Apply provenance on success; zero Apply provenance after rollback |
+| Source links/publication | source digest unchanged; publication-status digest unchanged |
+| Access boundary | exactly three owner policies; table-level INSERT/UPDATE false; existing exact column grants true; app-facing policy count zero |
+| Function/role boundary | owner/operator execute true; public/anon/authenticated/service_role/authenticator execute false; both Apply roles NOLOGIN |
+
+The JavaScript suite passed all 11 test files. The focused Python suites passed
+25 Apply Engine tests, 37 live-boundary tests, and 15 pipeline tests, and the
+new PostgreSQL 17 RLS regression passed. The frozen plan, manifest, source,
+review, engine, 48-operation count, and field distribution remain unchanged.
+
+The corrective migration is committed only after the local/disposable gates
+pass and is previewed with `supabase db push --dry-run`. It has not been
+deployed to production. Live Apply retry remains unauthorized.
