@@ -923,7 +923,22 @@ BEGIN
   END IF;
 
   IF EXISTS (SELECT 1 FROM pg_catalog.pg_roles WHERE rolname = 'relief_apply_owner') THEN
+    -- PostgreSQL requires the prospective function owner to have CREATE on
+    -- the containing schema during an ownership transfer. Keep this grant
+    -- temporary: the bounded owner must not retain schema-creation power.
+    EXECUTE 'GRANT CREATE ON SCHEMA private TO relief_apply_owner';
     EXECUTE 'ALTER FUNCTION private.apply_relief_toilet_map_1a(text, text, text, text, text) OWNER TO relief_apply_owner';
+    EXECUTE 'REVOKE CREATE ON SCHEMA private FROM relief_apply_owner';
+
+    IF pg_catalog.has_schema_privilege('relief_apply_owner', 'private', 'CREATE') THEN
+      RAISE EXCEPTION 'Apply 1A owner role retains CREATE on private';
+    END IF;
+  END IF;
+
+  IF EXISTS (SELECT 1 FROM pg_catalog.pg_roles WHERE rolname = 'relief_apply_operator') THEN
+    IF pg_catalog.has_schema_privilege('relief_apply_operator', 'private', 'CREATE') THEN
+      RAISE EXCEPTION 'Apply 1A operator role has CREATE on private';
+    END IF;
   END IF;
 END;
 $$;

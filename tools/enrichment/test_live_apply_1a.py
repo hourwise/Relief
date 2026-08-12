@@ -389,6 +389,19 @@ class LiveApply1ATests(unittest.TestCase):
         self.assertIn("GRANT EXECUTE ON FUNCTION PRIVATE.APPLY_RELIEF_TOILET_MAP_1A", sql)
         self.assertIn("RELIEF_APPLY_OPERATOR", sql)
 
+    def test_owner_handoff_uses_temporary_create_and_reasserts_boundary(self):
+        sql = MIGRATION_PATH.read_text(encoding="utf-8")
+        temporary_create = "EXECUTE 'GRANT CREATE ON SCHEMA private TO relief_apply_owner'"
+        ownership_transfer = "EXECUTE 'ALTER FUNCTION private.apply_relief_toilet_map_1a(text, text, text, text, text) OWNER TO relief_apply_owner'"
+        temporary_revoke = "EXECUTE 'REVOKE CREATE ON SCHEMA private FROM relief_apply_owner'"
+
+        self.assertLess(sql.index(temporary_create), sql.index(ownership_transfer))
+        self.assertLess(sql.index(ownership_transfer), sql.index(temporary_revoke))
+        self.assertIn("pg_catalog.has_schema_privilege('relief_apply_owner', 'private', 'CREATE')", sql)
+        self.assertIn("pg_catalog.has_schema_privilege('relief_apply_operator', 'private', 'CREATE')", sql)
+        self.assertNotIn("ALTER SCHEMA private OWNER TO relief_apply_owner", sql)
+        self.assertNotIn("GRANT relief_apply_owner TO relief_apply_operator", sql)
+
     def test_live_execution_hard_lock_refuses_even_with_all_gates_and_env(self):
         self.assertFalse(LIVE_EXECUTION_ENABLED)
         with patch.dict(os.environ, {PRIVILEGED_DATABASE_ENV: "postgresql://review-only-placeholder"}, clear=False):

@@ -4,11 +4,13 @@
 or Apply mutation was performed at this checkpoint.**
 
 This document records the bounded follow-up authorized after the accepted
-Apply 1A reconciliation report. It is a local reconciliation design and
-evidence record, not a deployment approval. The CLI was linked only to the
-confirmed Relief project. No `supabase migration repair`, role DDL, grant
-change, `supabase db push`, Apply RPC call, credential generation, or live
-execution was performed while producing this checkpoint.
+Apply 1A reconciliation report, including the later corrective investigation
+after the first infrastructure attempt. It is a local reconciliation design
+and evidence record, not a deployment approval. The CLI was linked only to
+the confirmed Relief project. No `supabase migration repair`, production role
+cleanup, production grant change, mutating `supabase db push`, production
+Apply RPC call, credential generation, or live execution was performed while
+producing this record.
 
 ## 1. Starting state
 
@@ -149,8 +151,10 @@ the baseline, including `facilities`, `facility_sources`, and `import_runs`.
 It also has bounded conditional role grants and ownership transfer for the two
 named roles; it deliberately does not create roles.
 
-The approved migration is unchanged. Its approved raw SHA-256 remains:
+The pre-fix approved migration SHA-256 was
 `5b893f371ee25adf16550370d312c2a227578e2af562bebe46e383a29a3c81d7`.
+The corrective version changes only the final ownership handoff and its
+privilege assertions; its new SHA-256 is recorded in section 12.
 
 ## 4. Read-only equivalence gates completed
 
@@ -451,29 +455,162 @@ The canonicalisation package contains:
 - `supabase/migrations/20260725_facility_trust_and_import.sql` — comment-only lineage marker;
 - `docs/data/TOILET_MAP_APPLY_1A_PRODUCTION_RECONCILIATION_DESIGN.md` — canonical
   lineage and deployment-gate design.
+- `supabase/migrations/20260811164202_apply_1a_audit_and_transaction.sql` —
+  corrective temporary-schema-CREATE ownership handoff and final assertions;
+- `tools/enrichment/test_live_apply_1a.py` — ownership-boundary regression test.
 
-The five lineage markers and this document are the only changes in this
-canonicalisation package. `supabase/roles.sql` is unchanged. The approved Apply
-migration, RPC repair, baseline, manifest, plan, and all archived historical
-migration SQL are unchanged. No production migration metadata was changed by
-this task, and no production schema, role, grant, or data was changed.
+The five lineage markers remain unchanged. `supabase/roles.sql` is unchanged;
+the corrective package does not add a password or alter role membership. The
+RPC repair, baseline, manifest, plan, and all archived historical migration
+SQL are unchanged. No production migration metadata was changed by this task,
+and no production schema, role, grant, or data was changed.
 
 Validation for this package includes:
 
 - explicit comment-only validation of all five markers;
-- the existing Apply 1A Python tests and manifest/plan integrity checks;
+- the existing Apply 1A Python tests, ownership-boundary regression, and
+  manifest/plan integrity checks;
 - `git diff --check`;
 - final branch/HEAD/status capture.
 
-The package is ready for the canonicalisation checkpoint commit. The
-subsequent dry-run remains preview-only and does not authorize infrastructure
-deployment.
+The package is ready for the corrective checkpoint commit. Any subsequent
+dry-run remains preview-only and does not authorize infrastructure deployment.
 
 ## 11. Recommendation
 
-The canonical lineage and read-only equivalence gates are complete. Production
-is not yet ready for infrastructure deployment authorization until the fresh
-data/preflight gate and the exact dry-run complete as specified. The current
-checkpoint status is:
+The canonical lineage and read-only equivalence gates remain complete. The
+canonicalisation checkpoint above is historical; the corrective investigation
+and its production read-only gates are recorded below.
 
-**READY FOR CANONICAL MIGRATION-LINEAGE DRY-RUN**
+## 12. Corrective migration / role-state investigation (2026-08-12)
+
+### First production infrastructure attempt
+
+The first approved infrastructure attempt started from branch
+`codex/toilet-map-apply-1a-production-deploy` at
+`b2ca15770c91fb8ef24cd915c8d80fdaaecf8877`. It used CLI `2.75.0` and
+`supabase db push --include-roles`. The CLI seeded the already-approved
+secret-free `roles.sql`, then began only
+`20260811164202_apply_1a_audit_and_transaction.sql`.
+
+The migration reached the final ownership block and failed at statement 25:
+
+```text
+ERROR: permission denied for schema private (SQLSTATE 42501)
+CONTEXT: SQL statement "ALTER FUNCTION private.apply_relief_toilet_map_1a(text, text, text, text, text) OWNER TO relief_apply_owner"
+```
+
+The migration transaction rolled back. The persisted side effects were role
+state only: `relief_apply_owner` and `relief_apply_operator` remained present.
+The private schema, registry, Apply function, Apply-specific `import_runs`
+columns, and Apply audit rows were absent. No facility values, provenance,
+facility-source links, or Apply execution were changed. The production
+relevant-data snapshot remained
+`8d4d910af231a0a083316ee299678442b3e396a558d6a411d3109e92bfe764f1`.
+
+### Root cause and corrective SQL
+
+`ROOT_CAUSE_CONFIRMED = PASS`. The exact committed pre-fix SQL granted
+`USAGE` on `private` and then attempted to transfer function ownership to the
+NOLOGIN owner role. It did not give that prospective owner `CREATE` on the
+containing schema during the transfer. The old migration was replayed by a
+non-superuser migration executor in an isolated PostgreSQL 17.10 disposable
+database; it exited with code 3 at that same dynamic `ALTER FUNCTION` and left
+the transaction rolled back with no private Apply objects.
+
+The smallest corrective change is inside the existing conditional owner block:
+
+```sql
+GRANT CREATE ON SCHEMA private TO relief_apply_owner;
+ALTER FUNCTION private.apply_relief_toilet_map_1a(
+  text, text, text, text, text
+) OWNER TO relief_apply_owner;
+REVOKE CREATE ON SCHEMA private FROM relief_apply_owner;
+```
+
+The migration then asserts with `pg_catalog.has_schema_privilege` that both
+`relief_apply_owner` and `relief_apply_operator` have no `CREATE` privilege on
+`private`. It does not transfer private-schema ownership, broaden either
+role, change `SECURITY DEFINER`, change `SET search_path = ''`, or alter any
+schema-qualified function reference.
+
+### Role file and production membership investigation
+
+`supabase/roles.sql` is unchanged and has SHA-256
+`61bb48a1bf649129c74dffcdce8f35e774de77bb987dec1f33e62af273437f44`. It is
+secret-free and contains no `PASSWORD` clause. Its effective definitions are
+the exact bounded roles: owner `NOLOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE
+NOINHERIT NOREPLICATION NOBYPASSRLS`, operator `LOGIN NOSUPERUSER NOCREATEDB
+NOCREATEROLE NOINHERIT NOREPLICATION NOBYPASSRLS` (the latter false attributes
+are PostgreSQL defaults in the file). The explicit
+`GRANT relief_apply_owner TO postgres` remains because it is the portable/local
+bootstrap required for a non-superuser migration executor to transfer
+ownership; it is idempotent and is not an application-role grant.
+
+The fresh production `pg_auth_members` read was:
+
+| Granted role | Member | Grantor | Admin | Inherit | Set |
+|---|---|---|---:|---:|---:|
+| `relief_apply_operator` | `postgres` | `supabase_admin` | true | false | false |
+| `relief_apply_owner` | `postgres` | `postgres` | false | true | true |
+| `relief_apply_owner` | `postgres` | `supabase_admin` | true | false | false |
+
+The two `supabase_admin` rows are hosted control-plane role-provisioning
+memberships: they target only the hosted `postgres` migration/executor role,
+not an application/runtime role. The `grantor=postgres` owner row is the
+explicit repository bootstrap. No custom Apply role is granted to
+`anon`, `authenticated`, `service_role`, `authenticator`, or
+`dashboard_user`; the application-facing membership count is exactly zero.
+No membership was revoked or added in this task.
+
+### Corrected disposable replay and validation
+
+The corrected migration ran from `BEGIN` to `COMMIT` in a fresh local
+throwaway database. It produced the private schema, exactly 48 immutable
+registry rows, one immutable trigger, and one Apply function. Proof values:
+
+| Check | Result |
+|---|---|
+| Function owner | `relief_apply_owner` |
+| `SECURITY DEFINER` | true |
+| `search_path` | `""` |
+| Owner `USAGE` / `CREATE` on private | true / false |
+| Operator `USAGE` / `CREATE` on private | true / false |
+| Operator execute | true |
+| anon/authenticated/service_role execute | false / false / false |
+| Registry rows | 48 |
+| Distribution | 16 / 14 / 15 / 2 / 1 |
+| Apply audit rows before local call | 0 |
+
+The disposable function check then returned one `COMMITTED` result with
+`requested=48`, `ready=48`, `applied=48`, `stale=0`, followed by one exact
+`ALREADY_APPLIED` result with `applied_count=0`. Facility count stayed 26 and
+source-link count stayed 25. The existing synthetic and disposable evidence
+for rollback, retry, concurrency, provenance, source-link, postcheck-fault,
+and idempotency tests remains passing; the focused Python suites reran with
+76 tests passing, including the new ownership-handoff regression.
+
+### Identity preservation and production read-only recheck
+
+| Identity | Value |
+|---|---|
+| Old Apply migration SHA-256 | `5b893f371ee25adf16550370d312c2a227578e2af562bebe46e383a29a3c81d7` |
+| Corrected Apply migration SHA-256 | `c3b463dfba10e1112750fb85c89a7f6e1913170600e388140968fa2373de895c` |
+| Plan SHA-256 | `7400626bc99061af7ba82c29969fc8929d7394c59afcfe574e1880521bad2b45` |
+| Manifest SHA-256 | `1de1a71186b80ce043b48fc5f4d6c4bc6ed9d1c964b3ddf7ad3b96ddd073bfa0` |
+| Source SHA-256 | `F6824FDC7CD29DF8C1F45BA749C1B28D319FB34803C55459BBE748EF65937624` |
+
+The approved operation count and distribution remain 48 and
+`has_baby_changing=16`, `requires_radar_key=14`, `is_gender_neutral=15`,
+`is_accessible=2`, `is_free=1`. The fresh production GET-only Apply preflight
+returned exactly `48 READY / 0 STALE`; its before and after relevant-data
+snapshots both hashed to
+`8d4d910af231a0a083316ee299678442b3e396a558d6a411d3109e92bfe764f1`, with
+zero persistent differences. Production read-only catalog checks still show
+the migration pending, no `private` schema, no Apply registry, no Apply
+function, no Apply-specific audit columns, and zero Apply executions.
+
+`LIVE_EXECUTION_ENABLED = False`. Generated application DB types were not
+updated; `GENERATED_TYPES_UPDATE_REQUIRED_AFTER_SUCCESSFUL_INFRASTRUCTURE_DEPLOYMENT = True`.
+The corrected commit and the preview-only post-patch dry-run remain separate
+from any production deployment authorization.
