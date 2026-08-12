@@ -5,6 +5,13 @@
 // ============================================================
 
 import { supabase } from './supabase';
+import { describeSupabaseError } from '../utils/supabaseErrors';
+import {
+  buildCorrectionInsert,
+  buildFacilitySubmissionInsert,
+  buildTemporaryReportInsert,
+} from './integrationContracts';
+import { runNonFatalSideEffect } from '../utils/nonFatalSideEffect';
 import type {
   FacilitySubmission,
   TemporaryReport,
@@ -37,22 +44,23 @@ export async function submitFacility(
     return { success: false, error: rateCheck.error };
   }
 
-  const { data, error } = await supabase.from('facility_submissions').insert({
-    ...submission,
-    user_id: userData.user.id,
-    status: 'pending',
-  });
+  const { data, error } = await supabase
+    .from('facility_submissions')
+    .insert(buildFacilitySubmissionInsert(userData.user.id, submission));
 
   if (error) {
     console.error('Error submitting facility:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: describeSupabaseError(error, 'This community action could not be completed. Please try again.') };
   }
 
   // Record the rate limit action
   await recordRateLimit(userData.user.id, 'submit_facility');
 
   // Award Explorer badge if this is the first submission
-  await checkAndAwardBadge(userData.user.id, 'explorer');
+  await runNonFatalSideEffect(
+    () => checkAndAwardBadge(userData.user.id, 'explorer'),
+    (error) => console.warn('Explorer badge side effect skipped:', error),
+  );
 
   return { success: true };
 }
@@ -119,7 +127,7 @@ export async function uploadFacilityPhoto(
       });
 
     if (error) {
-      return { success: false, error: error.message };
+      return { success: false, error: describeSupabaseError(error, 'This community action could not be completed. Please try again.') };
     }
 
     // Get public URL
@@ -141,7 +149,7 @@ export async function uploadFacilityPhoto(
       });
 
     if (modError) {
-      return { success: false, error: modError.message };
+      return { success: false, error: describeSupabaseError(modError, 'This community action could not be completed. Please try again.') };
     }
 
     // Record rate limit
@@ -176,7 +184,7 @@ export async function reportPhoto(
     .eq('id', photoId);
 
   if (error) {
-    return { success: false, error: error.message };
+    return { success: false, error: describeSupabaseError(error, 'This community action could not be completed. Please try again.') };
   }
 
   return { success: true };
@@ -203,7 +211,7 @@ export async function reportReview(
     });
 
   if (error) {
-    return { success: false, error: error.message };
+    return { success: false, error: describeSupabaseError(error, 'This community action could not be completed. Please try again.') };
   }
 
   return { success: true };
@@ -275,25 +283,23 @@ export async function submitTemporaryReport(
     Date.now() + durationHours * 60 * 60 * 1000,
   ).toISOString();
 
-  const { error } = await supabase.from('temporary_reports').insert({
-    facility_id: facilityId,
-    user_id: userData.user.id,
-    type,
-    notes,
-    expires_at: expiresAt,
-    is_expired: false,
-  });
+  const { error } = await supabase
+    .from('temporary_reports')
+    .insert(buildTemporaryReportInsert(userData.user.id, facilityId, type, notes, expiresAt));
 
   if (error) {
     console.error('Error submitting report:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: describeSupabaseError(error, 'This community action could not be completed. Please try again.') };
   }
 
   // Record rate limit
   await recordRateLimit(userData.user.id, `report_facility_${facilityId}`);
 
   // Award Community Hero badge if this is the 5th report
-  await checkAndAwardBadge(userData.user.id, 'community_hero');
+  await runNonFatalSideEffect(
+    () => checkAndAwardBadge(userData.user.id, 'community_hero'),
+    (error) => console.warn('Community Hero badge side effect skipped:', error),
+  );
 
   return { success: true };
 }
@@ -343,7 +349,7 @@ export async function resolveOwnReport(
     .eq('user_id', userData.user.id); // Can only resolve own reports
 
   if (error) {
-    return { success: false, error: error.message };
+    return { success: false, error: describeSupabaseError(error, 'This community action could not be completed. Please try again.') };
   }
 
   return { success: true };
@@ -380,19 +386,13 @@ export async function submitCorrection(
     return { success: false, error: rateCheck.error };
   }
 
-  const { error } = await supabase.from('correction_requests').insert({
-    facility_id: facilityId,
-    user_id: userData.user.id,
-    field,
-    old_value: oldValue,
-    new_value: newValue,
-    notes,
-    status: 'pending',
-  });
+  const { error } = await supabase
+    .from('correction_requests')
+    .insert(buildCorrectionInsert(userData.user.id, facilityId, field, oldValue, newValue, notes));
 
   if (error) {
     console.error('Error submitting correction:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: describeSupabaseError(error, 'This community action could not be completed. Please try again.') };
   }
 
   // Record rate limit
@@ -438,7 +438,7 @@ export async function addAccessCode(
       .eq('id', existing.id);
 
     if (error) {
-      return { success: false, error: error.message };
+      return { success: false, error: describeSupabaseError(error, 'This community action could not be completed. Please try again.') };
     }
   } else {
     // Insert new code
@@ -451,7 +451,7 @@ export async function addAccessCode(
     });
 
     if (error) {
-      return { success: false, error: error.message };
+      return { success: false, error: describeSupabaseError(error, 'This community action could not be completed. Please try again.') };
     }
   }
 
@@ -570,11 +570,14 @@ async function checkAndAwardBadge(
   }
 
   if (shouldAward) {
-    await supabase.from('user_badges').insert({
+    const { error } = await supabase.from('user_badges').insert({
       user_id: userId,
       badge_type: badgeType,
       source,
     });
+    if (error) {
+      console.warn(`Badge insert blocked or unavailable for ${badgeType}:`, error);
+    }
   }
 }
 

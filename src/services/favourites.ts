@@ -5,6 +5,8 @@
 
 import { supabase } from './supabase';
 import type { Favourite, Facility } from '../types';
+import { describeSupabaseError } from '../utils/supabaseErrors';
+import { buildFavouriteInsert, buildOwnedFacilityFilter } from './integrationContracts';
 
 /**
  * Fetch all favourites for the current user.
@@ -81,14 +83,16 @@ export async function addFavourite(
     return { success: false, error: 'Already in favourites' };
   }
 
-  const { error } = await supabase.from('favourites').insert({
-    user_id: userData.user.id,
-    facility_id: facilityId,
-  });
+  const { error } = await supabase
+    .from('favourites')
+    .insert(buildFavouriteInsert(userData.user.id, facilityId));
 
   if (error) {
     console.error('Error adding favourite:', error);
-    return { success: false, error: error.message };
+    return {
+      success: false,
+      error: describeSupabaseError(error, 'The favourite could not be saved. Please try again.'),
+    };
   }
 
   return { success: true };
@@ -105,15 +109,19 @@ export async function removeFavourite(
     return { success: false, error: 'You must be signed in' };
   }
 
+  const ownership = buildOwnedFacilityFilter(userData.user.id, facilityId);
   const { error } = await supabase
     .from('favourites')
     .delete()
-    .eq('user_id', userData.user.id)
-    .eq('facility_id', facilityId);
+    .eq('user_id', ownership.user_id)
+    .eq('facility_id', ownership.facility_id);
 
   if (error) {
     console.error('Error removing favourite:', error);
-    return { success: false, error: error.message };
+    return {
+      success: false,
+      error: describeSupabaseError(error, 'The favourite could not be removed. Please try again.'),
+    };
   }
 
   return { success: true };

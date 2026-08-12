@@ -15,6 +15,8 @@ import {
   type NearestFacilityRow,
 } from '../utils/facilityQuery';
 import { rankNearestFacilities } from '../utils/nearestFacility';
+import { describeSupabaseError } from '../utils/supabaseErrors';
+import { buildFindNearestFacilitiesArgs } from './integrationContracts';
 import type { Facility, FacilityFilters, NearestFacilityResult } from '../types';
 
 // Re-exported so callers keep a single import site for facility reads.
@@ -88,20 +90,7 @@ function applyFilters(query: any, filters: Partial<FacilityFilters>): any {
  * which tells the user nothing and leaks the backend hostname into the UI.
  */
 function describeError(error: { message?: string; code?: string } | null): string {
-  if (!error) return 'Something went wrong. Please try again.';
-
-  if (error.code === '42703' || error.code === '42883') {
-    // Schema/RPC drift — named distinctly so it is not mistaken for a network
-    // problem during triage.
-    return 'The facility service is out of date. Please update the app.';
-  }
-
-  const raw = error.message ?? '';
-  if (/network|fetch failed|unknownhost|unable to resolve host|timeout|timed out|econn/i.test(raw)) {
-    return 'No connection. Check your internet and try again.';
-  }
-
-  return 'Could not reach the facility service. Please try again.';
+  return describeSupabaseError(error, 'Could not reach the facility service. Please try again.');
 }
 
 /**
@@ -243,12 +232,15 @@ export async function fetchClosestFacility(
     };
   }
 
-  const { data, error } = await supabase.rpc('find_nearest_facilities', {
-    user_latitude: latitude,
-    user_longitude: longitude,
-    search_radius_metres: NEAREST_RADIUS_METRES,
-    result_limit: NEAREST_RESULT_LIMIT,
-  });
+  const { data, error } = await supabase.rpc(
+    'find_nearest_facilities',
+    buildFindNearestFacilitiesArgs(
+      latitude,
+      longitude,
+      NEAREST_RADIUS_METRES,
+      NEAREST_RESULT_LIMIT,
+    ),
+  );
 
   if (error) {
     console.error(

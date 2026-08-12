@@ -1,5 +1,17 @@
 # Relief — Current State Assessment
 
+## Phase A post-Apply audit — 2026-08-12
+
+The current Apply-sealed checkout was audited for mobile integration, RLS
+compatibility, privacy/deletion readiness, and Android build readiness. The
+evidence and release classification are recorded in
+[`RELEASE_PREPARATION_PHASE_A.md`](RELEASE_PREPARATION_PHASE_A.md). The audit
+made no production mutation; generated types remain refresh-blocked because
+the approved generator did not receive `SUPABASE_DB_URL`. The app-side
+integration contract/error-handling tests pass, while the local debug APK is
+blocked by the React Native Gradle plugin settings failure and public release
+is blocked by the unresolved account-deletion/privacy contract.
+
 **Last verified:** 2026-08-11 (fresh short-path Android merge gate)
 **Branch:** `claude/android-apk-stabilisation` at `11322abf27d6dd23a708b37e7aad88905d38f2db`
 **Verification method:** Fresh clone at `D:\r\relief`, Node `22.22.2`, clean `npm ci`, source gates, Expo SDK 56 public config, Android prebuild, local arm64 release APK assembly, installation on the physical Samsung S24 Ultra, and the current 28-item smoke list. The existing working copy was not modified.
