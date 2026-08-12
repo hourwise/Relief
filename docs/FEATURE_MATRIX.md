@@ -1,7 +1,23 @@
 # Relief — Feature Matrix
 
-**Last verified:** 2026-08-11
-**Verification method:** Fresh clone at `D:\r\relief`, exact branch head `11322abf27d6dd23a708b37e7aad88905d38f2db`, Node 22 source gates, clean Android prebuild, local release APK, and physical Samsung S24 Ultra smoke test. Existing working copy and product code were not modified.
+**Last verified:** 2026-08-12
+**Verification method:** Phase B post-Apply source audit, contract regression tests, Expo SDK 56 clean disposable prebuild, and current/clean Android Gradle reproduction. No production mutation, authenticated production write, upload, or release signing was performed.
+
+## Phase B post-Apply integration overlay - 2026-08-12
+
+This overlay supersedes older device/build notes where they conflict. It does
+not convert catalog compatibility into a live authenticated write test.
+
+| Surface | Status | Evidence / boundary |
+|---------|--------|---------------------|
+| Published facility reads | CATALOG_COMPATIBLE_NOT_LIVE_WRITE_TESTED | Current read-only evidence is compatible with anonymous published-facility reads. |
+| Nearest-facility RPC | CATALOG_COMPATIBLE_NOT_LIVE_WRITE_TESTED | Anonymous/authenticated EXECUTE is compatible; the RPC is not security definer. |
+| Favourites, profile, reports, corrections, facility submissions, rate limits, access codes, review reports | CATALOG_COMPATIBLE_NOT_LIVE_WRITE_TESTED | Authenticated owner-flow catalog evidence is compatible; no production write was attempted. |
+| Saved profiles | CATALOG_COMPATIBLE_NOT_LIVE_WRITE_TESTED | Catalog-compatible but unreachable while the feature is disabled. |
+| Subscription events | BACKEND-DEPENDENT | Server-write-only boundary; premium remains disabled. |
+| Badge award side effect | BLOCKED_BY_RLS | `user_badges` has no authenticated INSERT policy; client submission remains successful when award insertion is denied or throws. |
+| Photo upload / moderation | BLOCKED_BY_STORAGE_INFRASTRUCTURE | Storage bucket count and storage object policy count are zero; upload remains unreachable. |
+| Android debug APK | BLOCKED | Clean and current trees reproduce the React Native Gradle plugin Kotlin DSL failure under the local toolchain. |
 
 ## Fresh Android gate overlay - 2026-08-11
 

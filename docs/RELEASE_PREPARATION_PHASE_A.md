@@ -6,6 +6,17 @@
 **Production Supabase ref configured for the mobile build:** `bgwxrxkmyaihplaloely`
 **Production mutation boundary:** preserved. No migration, Apply invocation, policy/grant change, mobile write, account creation, upload, deletion, or auth-configuration change was performed.
 
+## Phase B superseding addendum
+
+The Phase B follow-up is recorded in
+[`RELEASE_PREPARATION_PHASE_B.md`](RELEASE_PREPARATION_PHASE_B.md). For the
+current matrix, use `CATALOG_COMPATIBLE_NOT_LIVE_WRITE_TESTED` for the
+catalog-compatible authenticated flows, `BLOCKED_BY_RLS` for the badge award
+side effect, and `BLOCKED_BY_STORAGE_INFRASTRUCTURE` for photo upload. The
+badge guard and regression coverage are included in the Phase A checkpoint;
+the Android clean-prebuild comparison and Gradle reproduction are recorded in
+the Phase B report.
+
 ## A. Current architecture
 
 The app is a React Native 0.85.3 / Expo SDK 56.0.19 TypeScript app using

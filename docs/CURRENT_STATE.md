@@ -1,5 +1,17 @@
 # Relief — Current State Assessment
 
+## Phase B post-Apply integration and Android debug audit — 2026-08-12
+
+The Phase B audit is recorded in
+[`RELEASE_PREPARATION_PHASE_B.md`](RELEASE_PREPARATION_PHASE_B.md). The
+Supabase client contract hardening is checkpointed at commit
+`c9d228f3e796741024eedcd31981149a65b0379c`; badge awarding is now a non-fatal
+optional side effect with regression coverage. A clean Expo SDK 56 prebuild
+matches the current ignored Android Gradle files, but both clean and current
+debug builds stop in the React Native Gradle plugin Kotlin DSL with
+`plugins`/`id` unresolved. No native workaround or production mutation was
+made, so the debug APK gate remains blocked by local Android toolchain state.
+
 ## Phase A post-Apply audit — 2026-08-12
 
 The current Apply-sealed checkout was audited for mobile integration, RLS
