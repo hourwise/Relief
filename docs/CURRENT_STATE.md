@@ -1,5 +1,27 @@
 # Relief — Current State Assessment
 
+## Phase E hermetic Android debug build — 2026-08-13
+
+The Phase E evidence is recorded in
+[`RELEASE_PREPARATION_PHASE_E.md`](RELEASE_PREPARATION_PHASE_E.md). The current
+checkout passed the source gates, Expo Doctor, public config, and two successful
+arm64 debug APK builds from independent fresh Gradle homes. The original React
+Native Gradle plugin Kotlin settings error is absent when Gradle uses an
+isolated user home. A tracked
+[`tools/build-android-debug.ps1`](../tools/build-android-debug.ps1) helper now
+selects a valid Android SDK and a dedicated process-local Relief Gradle home.
+
+The debug APK gate is **VERIFIED** for local Android functional testing. This
+does not change the existing backend and public-release classifications:
+generated types remain **BLOCKED_BY_MISSING_DB_URL**, authenticated writes and
+storage remain unverified or blocked as documented, and account deletion/privacy
+remains a public release blocker. The local APK is a debug artifact and is not
+a release-signed build.
+
+**Last verified:** 2026-08-13
+**Branch:** `codex/toilet-map-apply-1a-production-deploy` at
+`67eabbf496ecf53948998b7e002dd703beaba0cc`
+
 ## Phase B post-Apply integration and Android debug audit — 2026-08-12
 
 The Phase B audit is recorded in
