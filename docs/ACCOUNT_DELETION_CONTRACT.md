@@ -1,11 +1,16 @@
 # Relief account-deletion contract
 
-Status: `SOURCE IMPLEMENTED — PRODUCTION NOT DEPLOYED`
+Status: `DEPLOYED — GUARDED FOR ACCOUNTS WITH SUBSCRIPTION HISTORY`
+
+Production status: the guarded migration and `delete-account` Edge Function
+are deployed to the Relief production project. Accounts with any row in
+`user_subscriptions` or `subscription_events` fail closed with
+`SUBSCRIPTION_RETENTION_UNRESOLVED` before destructive cleanup begins.
 
 This document records the deletion inventory verified against the current
-Relief Supabase schema and the source-only implementation in this branch. No
-production migration, Edge Function deployment, Storage deletion, Auth
-deletion, or real-account test has been performed.
+Relief Supabase schema and the deployed implementation in this branch. A
+disposable Auth account was used for the live verification; existing users
+and canonical facility/source data were not modified.
 
 ## Security boundary
 
@@ -100,6 +105,8 @@ support/data-request path until the long-term retention design is approved.
 - `src/screens/AccountDeletionScreen.tsx`
 - `__tests__/accountDeletion.test.ts`
 
-Production remains disabled until the migration, Edge Function secrets,
-function grants, Storage behaviour, Auth admin path, legal retention policy,
-and a disposable-account verification are separately approved and deployed.
+The production path is deployed with the migration, Edge Function secrets,
+function grants, Storage behaviour, and Auth admin path verified. The legal
+retention policy remains unresolved for accounts with subscription history;
+those accounts are blocked with `SUBSCRIPTION_RETENTION_UNRESOLVED` until the
+retention and anonymisation decisions are approved separately.
