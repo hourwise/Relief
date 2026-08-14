@@ -7,6 +7,9 @@
     "preview": {
       "environment": "preview",
       "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_RELIEF_TEST_MODE": "true"
+      },
       "android": {
         "buildType": "apk"
       }
