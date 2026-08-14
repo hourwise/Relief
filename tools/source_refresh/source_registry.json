@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "record_runtime_fields": [
+    "retrieved_at",
+    "source_file_or_api_version",
+    "checksum",
+    "parser_normalizer_version",
+    "source_record_identifier",
+    "last_seen_at",
+    "current_status"
+  ],
+  "sources": [
+    {
+      "source_id": "toilet_map_uk",
+      "source_name": "Great British Public Toilet Map",
+      "publisher": "Toilet Map UK",
+      "source_url": "https://www.toiletmap.org.uk/dataset",
+      "licence_identifier": "CC BY 4.0",
+      "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+      "required_attribution": "Contains data from the Toilet Map © 2025 – CC BY 4.0 (Creative Commons Attribution 4.0 International)",
+      "parser_normalizer_version": "toilet-map-adapter-v1",
+      "current_status": "CURRENT_SOURCE_READY",
+      "reuse_notes": "Verify the official dataset page, declared update timestamp, licence, and source identity before each run."
+    },
+    {
+      "source_id": "council_changing_places_ogl",
+      "source_name": "Council Changing Places dataset (named publisher required)",
+      "publisher": null,
+      "source_url": null,
+      "licence_identifier": "Open Government Licence v3.0",
+      "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "required_attribution": "Contains public sector information licensed under the Open Government Licence v3.0.",
+      "parser_normalizer_version": "council-changing-places-adapter-pending",
+      "current_status": "TEMPLATE_PENDING_SOURCE_CONFIRMATION",
+      "reuse_notes": "One entry per explicit council dataset after its publisher, source URL, licence statement, and record identifier are verified. Do not use the Changing Places Consortium master registry without separate reuse-rights confirmation."
+    },
+    {
+      "source_id": "tfl_toilet_accessibility",
+      "source_name": "TfL toilet/accessibility data (endpoint required)",
+      "publisher": "Transport for London",
+      "source_url": null,
+      "licence_identifier": null,
+      "licence_url": null,
+      "required_attribution": null,
+      "parser_normalizer_version": "tfl-toilet-accessibility-adapter-pending",
+      "current_status": "TEMPLATE_PENDING_SOURCE_CONFIRMATION",
+      "reuse_notes": "Select and verify the specific TfL dataset/API, version, terms, attribution wording, and stable source record identifier before ingestion."
+    },
+    {
+      "source_id": "council_toilets_ogl_template",
+      "source_name": "Explicit council public-toilet dataset (named publisher required)",
+      "publisher": null,
+      "source_url": null,
+      "licence_identifier": "Open Government Licence v3.0",
+      "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "required_attribution": "Contains public sector information licensed under the Open Government Licence v3.0.",
+      "parser_normalizer_version": "council-toilets-adapter-pending",
+      "current_status": "TEMPLATE_PENDING_SOURCE_CONFIRMATION",
+      "reuse_notes": "Duplicate this template only for an explicit council source with confirmed reuse terms; do not infer a licence from a search result or aggregator."
+    }
+  ]
+}
