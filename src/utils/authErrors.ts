@@ -11,7 +11,11 @@
 // auth screens cannot drift and no raw message escapes.
 // ============================================================
 
-export type AuthAction = 'sign_in' | 'sign_up';
+export type AuthAction =
+  | 'sign_in'
+  | 'sign_up'
+  | 'password_reset'
+  | 'password_update';
 
 interface AuthErrorLike {
   message?: string;
@@ -22,6 +26,8 @@ interface AuthErrorLike {
 const FALLBACK: Record<AuthAction, string> = {
   sign_in: 'Could not sign you in. Please try again.',
   sign_up: 'Could not create your account. Please try again.',
+  password_reset: 'Could not start password recovery. Please try again.',
+  password_update: 'Could not update your password. Please try again.',
 };
 
 /**
@@ -91,6 +97,10 @@ export function describeAuthError(
   }
   if (code === 'email_address_not_authorized' || has('not authorized')) {
     return 'That email address cannot be used to sign up. Please try another.';
+  }
+
+  if (code === 'otp_expired' || has('expired', 'invalid or expired', 'invalid token')) {
+    return 'That recovery link has expired. Request a new password-reset email.';
   }
 
   // --- Signups disabled server-side

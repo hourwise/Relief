@@ -12,10 +12,9 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
-  ActivityIndicator,
   Linking,
 } from 'react-native';
-import { colors, typography, spacing, borderRadius } from '../theme';
+import { colors, spacing, borderRadius } from '../theme';
 import { Button, Card, Badge , PremiumGate } from '../components';
 import { planRoute, formatRouteSummary } from '../services/routePlanning';
 import type { RoutePlan } from '../services/routePlanning';
@@ -80,7 +79,7 @@ export const RoutePlanningScreen: React.FC = () => {
   return (
     <PremiumGate feature="route_planning">
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <Text style={styles.title}>Route Planning</Text>
+      <Text style={styles.title}>Route planning (straight-line estimate)</Text>
       <Text style={styles.subtitle}>
         Plan a journey with suggested comfort stops every 60-90 minutes.
       </Text>

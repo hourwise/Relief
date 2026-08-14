@@ -1,6 +1,8 @@
 # Relief — Feature Matrix
 
 **Last verified:** 2026-08-12
+> Phase G canonical test-build readiness is maintained in [`FEATURE_TEST_READINESS.md`](./FEATURE_TEST_READINESS.md). This file contains historical feature-matrix and earlier verification evidence; do not use older status labels here to decide Phase G test-build readiness.
+
 **Verification method:** Phase B post-Apply source audit, contract regression tests, Expo SDK 56 clean disposable prebuild, and current/clean Android Gradle reproduction. No production mutation, authenticated production write, upload, or release signing was performed.
 
 ## Phase B post-Apply integration overlay - 2026-08-12

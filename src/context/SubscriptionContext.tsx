@@ -22,6 +22,7 @@ import {
 } from '../services/revenuecat';
 import { getCurrentUser, onAuthStateChange } from '../services/auth';
 import type { PurchasesPackage, CustomerInfo } from 'react-native-purchases';
+import { RELIEF_TEST_MODE } from '../utils/env';
 
 // ============================================================
 // Constants
@@ -277,11 +278,11 @@ export const SubscriptionProvider: React.FC<{ children: React.ReactNode }> = ({ 
     }
   }, []);
 
-  // Check if a feature is locked behind a paywall
-  // RevenueCat disabled during testing — nothing is locked
+  // Test mode deliberately unlocks the UI without claiming a purchase. Normal
+  // builds keep premium features locked until a real entitlement exists.
   const isFeatureLocked = useCallback((_feature: PremiumFeature): boolean => {
-    return false;
-  }, []);
+    return !RELIEF_TEST_MODE && !(state.isActive && state.tier !== 'free');
+  }, [state.isActive, state.tier]);
 
   // Initialise on mount
   // RevenueCat disabled during testing — skip init, use free tier

@@ -141,6 +141,7 @@ const ALLOWED = new Set([
   'The sign-in service is having trouble. Please try again shortly.',
   'Could not sign you in. Please try again.',
   'Could not create your account. Please try again.',
+  'That recovery link has expired. Request a new password-reset email.',
 ]);
 
 for (const message of RAW_LEAKS) {

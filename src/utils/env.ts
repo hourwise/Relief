@@ -19,6 +19,12 @@ export const APP_SCHEME = 'relief';
 // API timeouts
 export const API_TIMEOUT = 10000;
 
+/**
+ * QA-only switch. It is deliberately opt-in and is safe to bundle because it
+ * does not grant service credentials or bypass production authorization.
+ */
+export const RELIEF_TEST_MODE = process.env.EXPO_PUBLIC_RELIEF_TEST_MODE === 'true';
+
 // Feature flags
 export const FEATURES = {
   COMMUNITY: true,

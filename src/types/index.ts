@@ -267,11 +267,24 @@ export type RootStackParamList = {
   Main: undefined;
   Auth: { reason?: string } | undefined;
   AboutRelief: undefined;
+  FeatureLab: undefined;
+  AccountDeletion: undefined;
+  PhotoFlow: undefined;
+  SavedProfiles: undefined;
+  OfflineMaps: undefined;
+  RoutePlanning: undefined;
+  NotificationAlerts: undefined;
+  Paywall: undefined;
+  AIRecommendations: undefined;
+  PredictiveSuggestions: undefined;
+  LegalInfo: { section?: 'privacy' | 'terms' | 'support' | 'data_request' } | undefined;
 };
 
 export type AuthStackParamList = {
   Login: { reason?: string } | undefined;
   Register: undefined;
+  ForgotPassword: undefined;
+  UpdatePassword: undefined;
 };
 
 export type MainTabParamList = {

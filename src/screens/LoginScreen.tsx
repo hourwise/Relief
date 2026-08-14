@@ -179,6 +179,15 @@ export const LoginScreen: React.FC = () => {
           </Text>
         </TouchableOpacity>
 
+        <TouchableOpacity
+          accessibilityRole="button"
+          accessibilityLabel="Forgot password"
+          style={styles.forgotLink}
+          onPress={() => navigation.navigate('ForgotPassword')}
+        >
+          <Text style={styles.forgotLinkText}>Forgot password?</Text>
+        </TouchableOpacity>
+
         {/* Signing in is always optional: finding a facility does not need an
             account, so there must be a way back out. */}
         {navigation.canGoBack() ? (
@@ -264,6 +273,16 @@ const styles = StyleSheet.create({
   signupLinkBold: {
     color: colors.primary,
     fontWeight: '600',
+  },
+  forgotLink: {
+    alignSelf: 'center',
+    minHeight: touchTargets.minimum,
+    justifyContent: 'center',
+    marginTop: spacing.sm,
+  },
+  forgotLinkText: {
+    ...typography.buttonSmall,
+    color: colors.primary,
   },
   guestLink: {
     minHeight: touchTargets.minimum,

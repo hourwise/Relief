@@ -1,5 +1,9 @@
 # Relief — Current State Assessment
 
+## Phase G feature test readiness — 2026-08-14
+
+Phase G adds the canonical source-derived inventory in [`FEATURE_TEST_READINESS.md`](./FEATURE_TEST_READINESS.md), opt-in `EXPO_PUBLIC_RELIEF_TEST_MODE`, password-reset screens and deep-link handling, a non-destructive account-deletion adapter, truthful photo/premium boundaries, and a QA Feature Lab. Production mutations, Storage, RevenueCat, remote push, OAuth, review writes, and legal endpoints remain explicitly blocked or unconfigured. Per the user’s instruction, no Phase G APK was produced or installed; the Phase E hermetic APK is the last verified local APK baseline, and Android Studio physical-device testing plus the cloud EAS build are deferred.
+
 ## Phase E hermetic Android debug build — 2026-08-13
 
 The Phase E evidence is recorded in
@@ -259,6 +263,8 @@ Hidden-but-retained screens (AI recommendations, predictive suggestions, route p
 ---
 
 ## Current blockers
+
+Phase G supersedes the older historical wording below for password recovery and navigation: password reset now has entry, callback, update, and expiry handling; account deletion now has a non-destructive UI and explicit production-unavailable adapter; and the previously hidden capability screens are intentionally reachable from Feature Lab only in opt-in test mode. The remaining blockers are recorded canonically in `docs/FEATURE_TEST_READINESS.md`.
 
 1. **Account self-service remains partial.** Display-name editing is now implemented in the app, keeping Auth `full_name` metadata and the `user_profiles.display_name` row together. Password reset and account deletion are still absent. Account deletion in particular is required by Google Play for any app that offers account creation, and Play expects an in-app route as well as a public web URL — so a web-only page will not be sufficient at submission.
 2. **Google OAuth is not configured.** `GET /auth/v1/settings` reports `google: false`, so the provider cannot work at all. The button is now hidden behind `AUTH_PROVIDERS.GOOGLE` rather than failing in front of users. Enabling it needs Google Cloud credentials, SHA-1 registration, Supabase provider setup, a redirect allow-list entry, **and** an app-side deep-link handler that does not yet exist.

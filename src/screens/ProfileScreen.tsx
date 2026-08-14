@@ -4,7 +4,7 @@ import { Alert, Linking, Pressable, ScrollView, StyleSheet, Text, View } from 'r
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import type { CompositeNavigationProp, NavigationProp } from '@react-navigation/native';
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import { ChevronRight, Edit3, Heart, Info, MapPin, Settings2 } from 'lucide-react-native';
+import { ChevronRight, Edit3, Heart, Info, MapPin, Settings2, Trash2, FlaskConical } from 'lucide-react-native';
 import type { User } from '@supabase/supabase-js';
 import { Button, Input, ScreenBackground, SoftCard } from '../components';
 import { colors, borderRadius, spacing, touchTargets, typography } from '../theme';
@@ -14,6 +14,7 @@ import { useAuth } from '../context/AuthContext';
 import { signInReason } from '../utils/guestAccess';
 import { useLocation, type LocationStatus } from '../hooks/useLocation';
 import type { MainTabParamList, RootStackParamList } from '../types';
+import { RELIEF_TEST_MODE } from '../utils/env';
 
 type ProfileNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<MainTabParamList, 'Profile'>,
@@ -160,6 +161,9 @@ export const ProfileScreen: React.FC = () => {
                 </Pressable>
               )}
               <Button title="Sign out" onPress={handleSignOut} variant="outline" loading={signingOut} fullWidth style={styles.accountButton} />
+              <Pressable accessibilityRole="button" accessibilityLabel="Delete account" onPress={() => navigation.navigate('AccountDeletion')} style={styles.dangerAction}>
+                <Trash2 size={18} color={colors.error} /><Text style={styles.dangerActionText}>Delete account</Text><ChevronRight size={18} color={colors.error} />
+              </Pressable>
             </>
           ) : (
             <>
@@ -198,6 +202,15 @@ export const ProfileScreen: React.FC = () => {
           <Text style={styles.previewLabel}>Preview build · core discovery is available to guests.</Text>
         </SoftCard>
 
+        {RELIEF_TEST_MODE ? <>
+          <Text style={styles.sectionLabel}>QUALITY ASSURANCE</Text>
+          <SoftCard onPress={() => navigation.navigate('FeatureLab')} accessibilityLabel="Open Feature Lab" style={styles.linkCard}>
+            <View style={styles.linkIcon}><FlaskConical size={20} color={colors.primary} /></View>
+            <View style={styles.linkCopy}><Text style={styles.linkTitle}>Feature Lab</Text><Text style={styles.linkDetail}>Test-mode entry for readiness checks.</Text></View>
+            <ChevronRight size={20} color={colors.sage} />
+          </SoftCard>
+        </> : null}
+
       </ScrollView>
     </ScreenBackground>
   );
@@ -223,6 +236,8 @@ const styles = StyleSheet.create({
   editForm: { marginTop: spacing.lg },
   editActions: { flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', gap: spacing.sm },
   errorText: { ...typography.caption, color: colors.error, marginTop: spacing.md },
+  dangerAction: { minHeight: touchTargets.minimum, flexDirection: 'row', alignItems: 'center', gap: spacing.sm, marginTop: spacing.md },
+  dangerActionText: { ...typography.buttonSmall, color: colors.error, flex: 1 },
   sectionLabel: { ...typography.caption, color: colors.textSecondary, fontFamily: 'PlusJakartaSans_700Bold', letterSpacing: 1, marginBottom: spacing.sm },
   linkCard: { minHeight: 72, flexDirection: 'row', alignItems: 'center', backgroundColor: colors.warmWhite, marginBottom: spacing.lg },
   linkIcon: { width: 42, height: 42, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.secondarySurface, marginRight: spacing.md },

@@ -4,7 +4,9 @@
 
 import { supabase } from './supabase';
 import * as WebBrowser from 'expo-web-browser';
+import { Linking } from 'react-native';
 import { Session, User } from '@supabase/supabase-js';
+import { isPasswordRecoveryUrl } from '../utils/passwordRecovery';
 
 // Required for OAuth flow
 WebBrowser.maybeCompleteAuthSession();
@@ -41,6 +43,45 @@ export async function signInWithEmail(email: string, password: string) {
     password,
   });
   return { data, error };
+}
+
+export async function requestPasswordReset(email: string) {
+  const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: redirectUri,
+  });
+  return { data, error };
+}
+
+export async function updatePassword(password: string) {
+  const { data, error } = await supabase.auth.updateUser({ password });
+  return { data, error };
+}
+
+export { isPasswordRecoveryUrl } from '../utils/passwordRecovery';
+
+/**
+ * Listen for both Supabase's recovery event and native deep links. The caller
+ * owns navigation; this service never assumes a particular navigator exists.
+ */
+export function subscribeToPasswordRecovery(callback: (valid: boolean) => void) {
+  const authSubscription = supabase.auth.onAuthStateChange((event) => {
+    if (event === 'PASSWORD_RECOVERY') callback(true);
+  });
+  const linkingSubscription = Linking.addEventListener('url', ({ url }) => {
+    if (isPasswordRecoveryUrl(url)) callback(true);
+  });
+  Linking.getInitialURL()
+    .then((url) => {
+      if (url && isPasswordRecoveryUrl(url)) callback(true);
+    })
+    .catch(() => undefined);
+
+  return {
+    unsubscribe: () => {
+      authSubscription.data.subscription.unsubscribe();
+      linkingSubscription.remove();
+    },
+  };
 }
 
 export async function signOut() {

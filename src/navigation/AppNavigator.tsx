@@ -32,6 +32,19 @@ import {
   FavouritesScreen,
   OnboardingScreen,
   AboutReliefScreen,
+  ForgotPasswordScreen,
+  UpdatePasswordScreen,
+  AccountDeletionScreen,
+  PhotoFlowScreen,
+  LegalInfoScreen,
+  FeatureLabScreen,
+  SavedProfilesScreen,
+  RoutePlanningScreen,
+  OfflineMapsScreen,
+  NotificationAlertsScreen,
+  PaywallScreen,
+  AIRecommendationsScreen,
+  PredictiveSuggestionsScreen,
 } from '../screens';
 import {
   hasCompletedOnboarding,
@@ -42,6 +55,7 @@ import { onAuthStateChange, getCurrentSession } from '../services/auth';
 import { AuthContext } from '../context/AuthContext';
 import { HandoffProvider, useHandoff } from '../context/HandoffContext';
 import { BrandedHandoff } from '../components';
+import { APP_SCHEME, RELIEF_TEST_MODE } from '../utils/env';
 import type {
   RootStackParamList,
   AuthStackParamList,
@@ -100,6 +114,8 @@ const AuthNavigator: React.FC = () => (
   <AuthStack.Navigator screenOptions={{ headerShown: false }}>
     <AuthStack.Screen name="Login" component={LoginScreen} />
     <AuthStack.Screen name="Register" component={RegisterScreen} />
+    <AuthStack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+    <AuthStack.Screen name="UpdatePassword" component={UpdatePasswordScreen} />
   </AuthStack.Navigator>
 );
 
@@ -287,7 +303,12 @@ const AppNavigatorInner: React.FC<AppNavigatorProps> = ({ onStartupResolved }) =
 
   return (
     <AuthContext.Provider value={authValue}>
-      <NavigationContainer>
+      <NavigationContainer
+        linking={{
+          prefixes: [`${APP_SCHEME}://`],
+          config: { screens: { Auth: { screens: { UpdatePassword: 'auth/callback' } } } },
+        } as never}
+      >
         <RootStack.Navigator screenOptions={{ headerShown: false }}>
           {/* Always available, session or not. */}
           <RootStack.Screen name="Main">
@@ -300,6 +321,17 @@ const AppNavigatorInner: React.FC<AppNavigatorProps> = ({ onStartupResolved }) =
             options={{ presentation: 'modal' }}
           />
           <RootStack.Screen name="AboutRelief" component={AboutReliefScreen} />
+          {RELIEF_TEST_MODE ? <RootStack.Screen name="FeatureLab" component={FeatureLabScreen} options={modalHeader('Feature Lab')} /> : null}
+          <RootStack.Screen name="AccountDeletion" component={AccountDeletionScreen} options={modalHeader('Delete account')} />
+          <RootStack.Screen name="PhotoFlow" component={PhotoFlowScreen} options={modalHeader('Photo contribution')} />
+          <RootStack.Screen name="LegalInfo" component={LegalInfoScreen} options={modalHeader('Legal and support')} />
+          <RootStack.Screen name="SavedProfiles" component={SavedProfilesScreen} options={modalHeader('Saved profiles')} />
+          <RootStack.Screen name="RoutePlanning" component={RoutePlanningScreen} options={modalHeader('Route planning')} />
+          <RootStack.Screen name="OfflineMaps" component={OfflineMapsScreen} options={modalHeader('Offline facility data')} />
+          <RootStack.Screen name="NotificationAlerts" component={NotificationAlertsScreen} options={modalHeader('Alerts')} />
+          <RootStack.Screen name="Paywall" component={PaywallScreen} options={modalHeader('Relief Plus')} />
+          <RootStack.Screen name="AIRecommendations" component={AIRecommendationsScreen} options={modalHeader('Recommendations')} />
+          <RootStack.Screen name="PredictiveSuggestions" component={PredictiveSuggestionsScreen} options={modalHeader('Suggestions')} />
         </RootStack.Navigator>
       </NavigationContainer>
 

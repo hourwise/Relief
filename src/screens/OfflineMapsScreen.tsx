@@ -1,9 +1,9 @@
 // ============================================================
-// Project "Relief" — Offline Maps Screen (4.4)
+// Project "Relief" — Offline Facility Data Screen (4.4)
 // Download facility regions for offline use
 // ============================================================
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   View,
   Text,
@@ -14,7 +14,7 @@ import {
   Alert,
   ActivityIndicator,
 } from 'react-native';
-import { colors, typography, spacing, borderRadius } from '../theme';
+import { colors, spacing, borderRadius } from '../theme';
 import { Button, Card, Badge , PremiumGate } from '../components';
 import {
   downloadRegion,
@@ -24,7 +24,7 @@ import {
   formatBytes,
   isRegionDownloaded,
 } from '../services/offlineMaps';
-import { useNavigation, NavigationProp, useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 
 import type { DownloadedRegion } from '../services/offlineMaps';
 
@@ -35,31 +35,27 @@ const POPULAR_TOWNS = [
 ];
 
 export const OfflineMapsScreen: React.FC = () => {
-  const navigation = useNavigation<NavigationProp<any>>();
   const [regions, setRegions] = useState<DownloadedRegion[]>([]);
   const [storageSize, setStorageSize] = useState(0);
-  const [loading, setLoading] = useState(true);
   const [downloading, setDownloading] = useState<string | null>(null);
   const [downloadProgress, setDownloadProgress] = useState(0);
   const [downloadTotal, setDownloadTotal] = useState(0);
   const [customTown, setCustomTown] = useState('');
 
-  useFocusEffect(
-    useCallback(() => {
-      loadData();
-    }, []),
-  );
-
-  const loadData = async () => {
-    setLoading(true);
+  const loadData = useCallback(async () => {
     const [downloaded, size] = await Promise.all([
       getDownloadedRegions(),
       getOfflineStorageSize(),
     ]);
     setRegions(downloaded);
     setStorageSize(size);
-    setLoading(false);
-  };
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      loadData();
+    }, [loadData]),
+  );
 
   const handleDownload = async (town: string) => {
     if (downloading) return;
@@ -120,10 +116,10 @@ export const OfflineMapsScreen: React.FC = () => {
   return (
     <PremiumGate feature="offline_maps">
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <Text style={styles.title}>Offline Maps</Text>
+      <Text style={styles.title}>Offline facility data</Text>
       <Text style={styles.subtitle}>
         Download facility data for towns and cities to use offline when you
-        don't have an internet connection.
+        do not have an internet connection.
       </Text>
 
       {/* Storage Info */}
@@ -224,7 +220,7 @@ export const OfflineMapsScreen: React.FC = () => {
 
       {/* Info */}
       <Card variant="glass" style={styles.infoCard}>
-        <Text style={styles.infoTitle}>ℹ️ About Offline Maps</Text>
+        <Text style={styles.infoTitle}>ℹ️ About offline facility data</Text>
         <Text style={styles.infoText}>
           Downloaded regions store facility data locally on your device. You can
           browse facilities, view details, and get directions even without an

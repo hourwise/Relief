@@ -14,6 +14,7 @@ import {
 import { colors, typography, spacing } from '../theme';
 import { useSubscription, PremiumFeature } from '../context/SubscriptionContext';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { RELIEF_TEST_MODE } from '../utils/env';
 
 interface PremiumGateProps {
   feature: PremiumFeature;
@@ -71,16 +72,13 @@ export const PremiumGate: React.FC<PremiumGateProps> = ({
   const { isFeatureLocked, loading } = useSubscription();
   const navigation = useNavigation<NavigationProp<any>>();
 
-  // RevenueCat disabled during testing — always render children
-  return <>{children}</>;
-
   const locked = isFeatureLocked(feature);
 
   if (loading) {
     return <>{children}</>;
   }
 
-  if (!locked) {
+  if (!locked || RELIEF_TEST_MODE) {
     return <>{children}</>;
   }
 
