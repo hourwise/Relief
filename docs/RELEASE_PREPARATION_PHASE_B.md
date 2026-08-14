@@ -1,6 +1,10 @@
 # Relief Release Preparation Phase B - Android debug recovery and authenticated-flow readiness
 
 **Audit date:** 2026-08-12
+
+This is a historical Phase B snapshot. The current account-deletion state is
+recorded in `ACCOUNT_DELETION_CONTRACT.md` and
+`ACCOUNT_DELETION_RELEASE_READINESS.md`.
 **Branch:** `codex/toilet-map-apply-1a-production-deploy`
 **Phase A checkpoint:** `c9d228f3e796741024eedcd31981149a65b0379c`
 **Production boundary:** preserved. No migration, Apply invocation, policy or grant change, production write, account creation, upload, deletion, Storage change, or auth configuration change was performed.

@@ -26,6 +26,10 @@ The following documents are authoritative for the Relief project. When documents
 | 13 | `docs/DOC_PASS_REPORT.md` | This documentation pass report |
 | 14 | `docs/archive/` | Historical, non-authoritative material |
 
+Account-deletion release-readiness evidence is recorded in
+[`docs/ACCOUNT_DELETION_RELEASE_READINESS.md`](ACCOUNT_DELETION_RELEASE_READINESS.md).
+It is a bounded audit and does not supersede the source-of-truth hierarchy.
+
 ---
 
 ## Required Reading Order

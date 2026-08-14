@@ -2,7 +2,7 @@
 
 ## Phase G feature test readiness — 2026-08-14
 
-Phase G adds the canonical source-derived inventory in [`FEATURE_TEST_READINESS.md`](./FEATURE_TEST_READINESS.md), opt-in `EXPO_PUBLIC_RELIEF_TEST_MODE`, password-reset screens and deep-link handling, a source-only governed account-deletion path, truthful photo/premium boundaries, and a QA Feature Lab. Production mutations, Storage, RevenueCat, remote push, OAuth, review writes, and legal endpoints remain explicitly blocked or unconfigured. Per the user’s instruction, no Phase G APK was produced or installed; the Phase E hermetic APK is the last verified local APK baseline, and Android Studio physical-device testing plus the cloud EAS build are deferred.
+Phase G adds the canonical source-derived inventory in [`FEATURE_TEST_READINESS.md`](./FEATURE_TEST_READINESS.md), opt-in `EXPO_PUBLIC_RELIEF_TEST_MODE`, password-reset screens and deep-link handling, a deployed governed account-deletion path, truthful photo/premium boundaries, and a QA Feature Lab. Production Storage, RevenueCat, remote push, OAuth, review writes, and public legal endpoints remain explicitly blocked or unconfigured. Per the user’s instruction, no Phase G APK was produced or installed; the Phase E hermetic APK is the last verified local APK baseline, and Android Studio physical-device testing plus the cloud EAS build are deferred.
 
 ## Phase E hermetic Android debug build — 2026-08-13
 
@@ -18,11 +18,17 @@ selects a valid Android SDK and a dedicated process-local Relief Gradle home.
 The debug APK gate is **VERIFIED** for local Android functional testing. This
 does not change the existing backend and public-release classifications:
 generated types remain **BLOCKED_BY_MISSING_DB_URL**, authenticated writes and
-storage remain unverified or blocked as documented, and account deletion/privacy
-remains a public release blocker. The local APK is a debug artifact and is not
+storage remain unverified or blocked as documented, and the deployed account
+deletion path remains a public privacy/support release blocker until its public
+legal materials are established. The local APK is a debug artifact and is not
 a release-signed build.
 
 **Last verified:** 2026-08-13
+
+Current account-deletion status: the governed production backend is deployed
+and the normal signed-in Profile entry is available. Public privacy, support,
+data-rights, and account-deletion URL work remains a release blocker. See
+[`ACCOUNT_DELETION_RELEASE_READINESS.md`](ACCOUNT_DELETION_RELEASE_READINESS.md).
 **Branch:** `codex/toilet-map-apply-1a-production-deploy` at
 `67eabbf496ecf53948998b7e002dd703beaba0cc`
 
@@ -86,8 +92,9 @@ enrichment, external-service setup, or a merge/push operation.
 Outstanding release setup remains explicit: EAS is **NOT RUN**; production
 Supabase Auth, Storage, Edge Functions, moderation and operational setup remain
 outside this gate; Google Play, Play App Signing and store submission setup are
-**NOT RUN**; account deletion is not implemented; and legal/privacy/terms and
-public account-deletion URL setup remain outstanding.
+**NOT RUN**; account deletion is deployed and reachable from Profile; and
+legal/privacy/terms, support contact, and public account-deletion URL setup
+remain outstanding.
 
 The older check table below records the superseded 2026-08-10 pre-device state.
 
@@ -264,9 +271,9 @@ Hidden-but-retained screens (AI recommendations, predictive suggestions, route p
 
 ## Current blockers
 
-Phase G supersedes the older historical wording below for password recovery and navigation: password reset now has entry, callback, update, and expiry handling; account deletion now has a governed source implementation but no production deployment; and the previously hidden capability screens are intentionally reachable from Feature Lab only in opt-in test mode. The remaining blockers are recorded canonically in `docs/FEATURE_TEST_READINESS.md`.
+Phase G supersedes the older historical wording below for password recovery and navigation: password reset now has entry, callback, update, and expiry handling; account deletion now has a deployed governed backend and normal Profile entry; and the previously hidden capability screens are intentionally reachable from Feature Lab only in opt-in test mode. The remaining blockers are recorded canonically in `docs/FEATURE_TEST_READINESS.md` and `docs/ACCOUNT_DELETION_RELEASE_READINESS.md`.
 
-1. **Account self-service remains partial.** Display-name editing is now implemented in the app, keeping Auth `full_name` metadata and the `user_profiles.display_name` row together. Password reset is implemented but email delivery is unverified; account deletion now has a source-only governed SQL/Edge Function/Auth Admin path, but it is not deployed or verified against a disposable account. Account deletion in particular is required by Google Play for any app that offers account creation, and Play expects an in-app route as well as a public web URL — so a web-only page will not be sufficient at submission.
+1. **Account self-service remains partial.** Display-name editing is now implemented in the app, keeping Auth `full_name` metadata and the `user_profiles.display_name` row together. Password reset is implemented but email delivery is unverified; account deletion is deployed, verified against a disposable account, and reachable from Profile. Public privacy/support/data-rights materials and the public deletion URL are still required before store submission.
 2. **Google OAuth is not configured.** `GET /auth/v1/settings` reports `google: false`, so the provider cannot work at all. The button is now hidden behind `AUTH_PROVIDERS.GOOGLE` rather than failing in front of users. Enabling it needs Google Cloud credentials, SHA-1 registration, Supabase provider setup, a redirect allow-list entry, **and** an app-side deep-link handler that does not yet exist.
 3. **Password reset does not exist.** There is no `resetPasswordForEmail` and no "Forgot password?" link, so a user who forgets their password cannot recover the account in-app.
 4. **EAS project not linked.** Needs `eas init`, a decision on which Expo account owns it (`hourwiseeu` or `pcgsoft`), and the three `EXPO_PUBLIC_*` values added as `preview` environment variables. The APK under test was built locally instead.
@@ -296,9 +303,8 @@ The following work is **IMPLEMENTED BUT NOT DEVICE TESTED** on this branch:
 * Home Need One Now passes a one-shot action id into the existing Find flow;
   Home does not duplicate the nearest-facility query.
 * Profile now has guest/signed-in account cards, display-name editing,
-  location permission state/recovery, Saved places, and config-derived app
-  version/build information. Password reset and account deletion remain
-  intentionally unavailable.
+  location permission state/recovery, Saved places, config-derived app
+  version/build information, and the normal signed-in account-deletion entry.
 * Map/detail/filter visual polish is applied without changing the truthful
   filter set or the Need One Now bearing-line restriction.
 

@@ -79,7 +79,7 @@ This plan defines a safe, staged route from the current frontend-only prototype 
 **Security requirements:**
 - Email verification enabled before full access
 - Passwords never stored — handled entirely by Supabase Auth
-- Account deletion: hard-delete user data; retain anonymised facility contributions
+- Account deletion: use the deployed governed cleanup contract for eligible accounts; canonical/provenance records may remain, and subscription-history accounts fail closed pending retention decisions
 - Data export: provide machine-readable format (JSON)
 
 **Acceptance criteria:**

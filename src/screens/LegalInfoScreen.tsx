@@ -11,10 +11,11 @@ export const LegalInfoScreen: React.FC = () => {
   const title = section === 'privacy' ? 'Privacy' : section === 'terms' ? 'Terms' : section === 'support' ? 'Support' : section === 'data_request' ? 'Data request' : 'Legal and support';
   return <ScreenBackground><ScrollView contentContainerStyle={styles.content}><SoftCard style={styles.card}>
     <Text style={styles.title}>{title}</Text>
-    <Text style={styles.body}>This preview build does not yet have approved public privacy, terms, support, or data-request URLs configured.</Text>
-    <Text style={styles.body}>Do not treat this screen as a substitute for the production legal contract. Account deletion and data requests remain blocked until the accountable service, retention policy, and support route are configured.</Text>
+    <Text style={styles.body}>Relief account deletion is available to signed-in users from Profile → Delete account. It requires recent authentication and is reported successful only after the server confirms the governed cleanup and Auth deletion.</Text>
+    <Text style={styles.body}>Accounts with subscription or payment history are currently blocked from automated deletion while retention and anonymisation handling remains unresolved. No deletion outcome is promised for those accounts.</Text>
+    <Text style={styles.body}>This build does not contain an approved public privacy policy, terms, support contact, or data-rights URL. Those release materials must be established before publishing the app.</Text>
     <Text style={styles.label}>CURRENT STATE</Text>
-    <Text style={styles.status}>LEGAL_CONTRACT_BLOCKED</Text>
+    <Text style={styles.status}>{section === 'data_request' ? 'DATA_REQUEST_CONTACT_NOT_CONFIGURED' : 'PUBLIC_LEGAL_MATERIALS_NOT_CONFIGURED'}</Text>
   </SoftCard></ScrollView></ScreenBackground>;
 };
 

@@ -1,6 +1,10 @@
 # Relief Release Preparation Phase A — post-Apply integration and Android audit
 
 **Audit date:** 2026-08-12
+
+This is a historical Phase A snapshot. The current account-deletion state is
+recorded in `ACCOUNT_DELETION_CONTRACT.md` and
+`ACCOUNT_DELETION_RELEASE_READINESS.md`.
 **Starting branch:** `codex/toilet-map-apply-1a-production-deploy`
 **Starting HEAD / remote branch HEAD:** `1d2a82890da6d82ef77efbc1fe79c3f42076577`
 **Production Supabase ref configured for the mobile build:** `bgwxrxkmyaihplaloely`

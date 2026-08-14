@@ -31,6 +31,28 @@ type DeletionResponse = {
 
 export type AccountDeletionInvoker = (confirmation: string) => Promise<AccountDeletionResult>;
 
+export function getAccountDeletionErrorMessage(
+  result: Extract<AccountDeletionResult, { success: false }>,
+): string {
+  switch (result.code) {
+    case 'SUBSCRIPTION_RETENTION_UNRESOLVED':
+      return 'Automated deletion cannot currently complete because this account has subscription or payment history that needs additional handling. No account data was deleted. Relief support and data-rights contact details are not configured in this build yet.';
+    case 'RECENT_AUTHENTICATION_REQUIRED':
+      return 'For your security, please sign in again and then retry account deletion.';
+    case 'STORAGE_CLEANUP_FAILED':
+      return 'Relief could not confirm file cleanup, so your account was not reported as deleted. Please try again later.';
+    case 'DATA_CLEANUP_FAILED':
+      return 'Relief could not complete the account-data cleanup, so your account was not reported as deleted. Please try again later.';
+    case 'AUTH_DELETE_FAILED':
+      return 'Relief cleaned the account data but could not remove the sign-in account. Please try again later.';
+    case 'DELETION_BACKEND_MISCONFIGURED':
+    case 'DELETION_REQUEST_FAILED':
+      return 'The account deletion service is temporarily unavailable. Your account was not reported as deleted. Please try again later.';
+    default:
+      return result.error;
+  }
+}
+
 async function invokeProductionDeletion(confirmation: string): Promise<AccountDeletionResult> {
   const { supabase } = await import('./supabase');
   const { data, error } = await supabase.functions.invoke<DeletionResponse>(ACCOUNT_DELETION_FUNCTION, {
@@ -62,7 +84,7 @@ async function invokeProductionDeletion(confirmation: string): Promise<AccountDe
   return {
     success: true,
     simulated: false,
-    message: 'Your account and current Relief data have been deleted.',
+    message: 'Your Relief account and governed user-linked data have been deleted. Canonical facility and provenance records may remain.',
     requestId: data.request_id,
   };
 }

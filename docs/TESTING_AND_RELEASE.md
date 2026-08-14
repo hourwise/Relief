@@ -166,7 +166,7 @@ The critical path test:
 
 | Scenario | Expected Behaviour |
 |----------|-------------------|
-| Account deletion | User data removed; anonymised contributions retained |
+| Account deletion | Eligible accounts: governed user-linked data removed and Auth deleted after server confirmation; canonical/provenance records may remain; subscription-history accounts are blocked pending retention handling |
 | Data export | Machine-readable JSON of all user data delivered |
 | Photo upload → check EXIF | EXIF metadata stripped before public URL served |
 | Photo upload → check faces | Faces blurred before public URL served |

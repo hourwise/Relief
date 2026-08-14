@@ -5,7 +5,7 @@ import {
   SUBSCRIPTION_RETENTION_UNRESOLVED,
   subscriptionGuardStatus,
 } from '../supabase/functions/delete-account/contract';
-import { createAccountDeletionAdapter } from '../src/services/accountDeletion';
+import { createAccountDeletionAdapter, getAccountDeletionErrorMessage } from '../src/services/accountDeletion';
 import { assertEqual, assertTrue, section } from './helpers/harness';
 
 section('account deletion security contract');
@@ -48,6 +48,14 @@ assertEqual(
   'guard failure cannot proceed to later deletion phases',
   subscriptionGuardStatus(null, new Error('guard failed')) === 'allow',
   false,
+);
+assertTrue(
+  'subscription history receives a dedicated user-facing explanation',
+  getAccountDeletionErrorMessage({
+    success: false,
+    code: 'SUBSCRIPTION_RETENTION_UNRESOLVED',
+    error: 'internal guard message',
+  }).includes('subscription or payment history'),
 );
 assertEqual(
   'anonymous or stale authentication is rejected by the recent-auth gate',
