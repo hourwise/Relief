@@ -5,10 +5,10 @@
 // are used by the services and can be tested locally without production
 // credentials, users, or database writes.
 
-import type { TablesInsert, Functions } from '../types/database.types';
+import type { Database, TablesInsert } from '../types/database.types';
 import type { FacilitySubmission, TemporaryReport } from '../types/community';
 
-export type FindNearestFacilitiesArgs = Functions<'find_nearest_facilities'>['Args'];
+export type FindNearestFacilitiesArgs = Database['public']['Functions']['find_nearest_facilities']['Args'];
 
 export function buildFindNearestFacilitiesArgs(
   latitude: number,
