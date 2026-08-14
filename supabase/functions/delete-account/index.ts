@@ -3,6 +3,8 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 import {
   parseDeletionRequestBody,
   isRecentlyAuthenticated,
+  SUBSCRIPTION_RETENTION_UNRESOLVED,
+  subscriptionGuardStatus,
 } from './contract.ts';
 
 const STORAGE_PAGE_SIZE = 1000;
@@ -141,6 +143,33 @@ serve(async (request) => {
     auth: { autoRefreshToken: false, persistSession: false },
     global: { headers: { Authorization: `Bearer ${token}` } },
   });
+
+  // Check the retention guard before touching Storage. The SQL cleanup
+  // function repeats this check immediately before application-row deletion
+  // to fail closed if the account's subscription state changes in between.
+  const { data: subscriptionGuard, error: subscriptionGuardError } = await userClient
+    .rpc('check_my_account_deletion_subscription_guard');
+  const guardStatus = subscriptionGuardStatus(subscriptionGuard, subscriptionGuardError);
+  if (guardStatus === 'blocked') {
+    return jsonResponse({
+      ok: false,
+      code: SUBSCRIPTION_RETENTION_UNRESOLVED,
+      error: 'Automated deletion is temporarily unavailable while subscription history retention is unresolved.',
+      partial: false,
+      retryable: false,
+      request_id: requestId,
+    }, 409);
+  }
+  if (guardStatus === 'failed') {
+    console.error(JSON.stringify({ request_id: requestId, outcome: 'subscription_guard_failed' }));
+    return jsonResponse({
+      ok: false,
+      code: 'DATA_CLEANUP_FAILED',
+      partial: false,
+      retryable: true,
+      request_id: requestId,
+    }, 502);
+  }
 
   let storageObjectsRemoved = 0;
   try {

@@ -2,6 +2,8 @@ import {
   DELETE_ACCOUNT_CONFIRMATION,
   isRecentlyAuthenticated,
   parseDeletionRequestBody,
+  SUBSCRIPTION_RETENTION_UNRESOLVED,
+  subscriptionGuardStatus,
 } from '../supabase/functions/delete-account/contract';
 import { createAccountDeletionAdapter } from '../src/services/accountDeletion';
 import { assertEqual, assertTrue, section } from './helpers/harness';
@@ -20,6 +22,31 @@ assertEqual(
 assertEqual(
   'arbitrary target_user_id field is rejected',
   parseDeletionRequestBody({ confirmation: DELETE_ACCOUNT_CONFIRMATION, target_user_id: 'another-user' }).ok,
+  false,
+);
+assertEqual(
+  'zero subscription rows allow the deletion path',
+  subscriptionGuardStatus({ blocked: false, subscription_history_present: false }),
+  'allow',
+);
+assertEqual(
+  'user subscription row blocks deletion',
+  subscriptionGuardStatus({ blocked: true, code: SUBSCRIPTION_RETENTION_UNRESOLVED }),
+  'blocked',
+);
+assertEqual(
+  'subscription event row blocks deletion',
+  subscriptionGuardStatus({ blocked: true, code: SUBSCRIPTION_RETENTION_UNRESOLVED }),
+  'blocked',
+);
+assertEqual(
+  'blocked subscription guard cannot proceed to later deletion phases',
+  subscriptionGuardStatus({ blocked: true, code: SUBSCRIPTION_RETENTION_UNRESOLVED }) === 'allow',
+  false,
+);
+assertEqual(
+  'guard failure cannot proceed to later deletion phases',
+  subscriptionGuardStatus(null, new Error('guard failed')) === 'allow',
   false,
 );
 assertEqual(

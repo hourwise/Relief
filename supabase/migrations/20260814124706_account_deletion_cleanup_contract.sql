@@ -2,7 +2,54 @@
 -- deployment. This function removes the authenticated user's current public
 -- application rows, but it deliberately does not delete auth.users. The
 -- trusted Edge Function performs Storage API cleanup first and Auth admin
--- deletion last.
+-- deletion last. Subscription and payment-history rows are fail-closed:
+-- automated deletion is blocked until their retention treatment is governed.
+
+create or replace function public.check_my_account_deletion_subscription_guard()
+returns jsonb
+language plpgsql
+security definer
+set search_path = ''
+as $$
+declare
+  actor uuid := (select auth.uid());
+  has_subscription_history boolean;
+begin
+  if actor is null then
+    raise exception using
+      errcode = '28000',
+      message = 'Authenticated user required';
+  end if;
+
+  select exists (
+    select 1
+      from public.user_subscriptions
+     where user_id = actor
+    union all
+    select 1
+      from public.subscription_events
+     where user_id = actor
+  )
+    into has_subscription_history;
+
+  if has_subscription_history then
+    return pg_catalog.jsonb_build_object(
+      'blocked', true,
+      'code', 'SUBSCRIPTION_RETENTION_UNRESOLVED',
+      'subscription_history_present', true
+    );
+  end if;
+
+  return pg_catalog.jsonb_build_object(
+    'blocked', false,
+    'subscription_history_present', false
+  );
+end;
+$$;
+
+revoke all on function public.check_my_account_deletion_subscription_guard() from public;
+revoke execute on function public.check_my_account_deletion_subscription_guard() from anon;
+grant execute on function public.check_my_account_deletion_subscription_guard() to authenticated;
 
 create or replace function public.delete_my_account_data()
 returns jsonb
@@ -25,16 +72,28 @@ declare
   deleted_rate_limits integer := 0;
   deleted_review_reports integer := 0;
   deleted_saved_profiles integer := 0;
-  deleted_subscription_events integer := 0;
   deleted_temporary_reports integer := 0;
   deleted_badges integer := 0;
-  deleted_user_subscriptions integer := 0;
   deleted_user_profile integer := 0;
+  subscription_guard jsonb;
 begin
   if actor is null then
     raise exception using
       errcode = '28000',
       message = 'Authenticated user required';
+  end if;
+
+  -- This must be the first data operation. Subscription/payment history is
+  -- neither deleted nor de-identified until a separate retention policy is
+  -- approved. The Edge Function also calls the guard before Storage cleanup;
+  -- this second check closes the gap before application-row deletion.
+  subscription_guard := public.check_my_account_deletion_subscription_guard();
+  if coalesce((subscription_guard ->> 'blocked')::boolean, false) then
+    return subscription_guard || pg_catalog.jsonb_build_object(
+      'contract_version', '20260814.2',
+      'data_cleanup_completed', false,
+      'auth_user_deleted', false
+    );
   end if;
 
   -- Preserve moderation/history rows while removing the deleted user's
@@ -92,17 +151,11 @@ begin
   delete from public.saved_profiles where user_id = actor;
   get diagnostics deleted_saved_profiles = row_count;
 
-  delete from public.subscription_events where user_id = actor;
-  get diagnostics deleted_subscription_events = row_count;
-
   delete from public.temporary_reports where user_id = actor;
   get diagnostics deleted_temporary_reports = row_count;
 
   delete from public.user_badges where user_id = actor;
   get diagnostics deleted_badges = row_count;
-
-  delete from public.user_subscriptions where user_id = actor;
-  get diagnostics deleted_user_subscriptions = row_count;
 
   delete from public.user_profiles where id = actor;
   get diagnostics deleted_user_profile = row_count;
@@ -123,10 +176,8 @@ begin
     'deleted_rate_limits', deleted_rate_limits,
     'deleted_review_reports', deleted_review_reports,
     'deleted_saved_profiles', deleted_saved_profiles,
-    'deleted_subscription_events', deleted_subscription_events,
     'deleted_temporary_reports', deleted_temporary_reports,
     'deleted_badges', deleted_badges,
-    'deleted_user_subscriptions', deleted_user_subscriptions,
     'deleted_user_profile', deleted_user_profile
   );
 end;

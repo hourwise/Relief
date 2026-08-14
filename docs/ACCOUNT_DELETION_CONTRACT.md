@@ -57,6 +57,25 @@ resource from the design: the function handles rows if they exist later.
 | `storage.objects` | Storage metadata has `owner`/`owner_id`; no current buckets or objects | `DELETE` owned objects when present | Edge Function Storage API `remove`, batches of 1,000 | SQL never deletes Storage objects. Inventory/removal failure stops before database cleanup; partial removal is returned as retryable. A bounded 50,000-object safety limit surfaces an exceptional case instead of silently truncating. |
 | Auth/session history and audit records | No dedicated Relief account-deletion audit table; Auth-managed records are not exposed as app rows | `RETAIN` only as platform-managed operational history | Supabase Auth/platform | The Edge Function logs only a request ID and outcome, not email or raw user data. A future legal/audit-retention decision may add a minimised pseudonymous audit table. |
 
+## Subscription-history guard
+
+The current production schema keeps `user_subscriptions.user_id` and
+`subscription_events.user_id` as required links to `auth.users`, and no
+approved retention or de-identification policy exists for those records.
+Therefore automated account deletion is intentionally fail-closed for any
+authenticated user with a row in either table.
+
+The guard runs before Storage or application cleanup and returns
+`SUBSCRIPTION_RETENTION_UNRESOLVED`. It performs no application cleanup, no
+Storage deletion, and no Auth Admin deletion. The SQL cleanup function repeats
+the guard immediately before its destructive statements. Neither subscription
+table is deleted or de-identified by this contract.
+
+This is a temporary product limitation while RevenueCat and paid entitlements
+remain inactive. Subscription retention is not solved by this guard; users
+with subscription or payment-event history require a separately governed
+support/data-request path until the long-term retention design is approved.
+
 ## Failure and retry contract
 
 1. Invalid method, missing/invalid JWT, unsupported body fields, invalid

@@ -1,4 +1,5 @@
 export const DELETE_ACCOUNT_CONFIRMATION = 'DELETE MY ACCOUNT';
+export const SUBSCRIPTION_RETENTION_UNRESOLVED = 'SUBSCRIPTION_RETENTION_UNRESOLVED';
 export const RECENT_AUTH_WINDOW_MS = 15 * 60 * 1000;
 const CLOCK_SKEW_MS = 60 * 1000;
 
@@ -36,4 +37,18 @@ export function isRecentlyAuthenticated(
   const signInMs = Date.parse(lastSignInAt);
   if (!Number.isFinite(signInMs)) return false;
   return signInMs <= nowMs + CLOCK_SKEW_MS && nowMs - signInMs <= RECENT_AUTH_WINDOW_MS;
+}
+
+export type SubscriptionGuardStatus = 'allow' | 'blocked' | 'failed';
+
+export function subscriptionGuardStatus(
+  data: unknown,
+  error: unknown = null,
+): SubscriptionGuardStatus {
+  if (error) return 'failed';
+  if (!data || typeof data !== 'object') return 'failed';
+  const guard = data as { blocked?: unknown; code?: unknown };
+  if (guard.blocked === true && guard.code === SUBSCRIPTION_RETENTION_UNRESOLVED) return 'blocked';
+  if (guard.blocked === false) return 'allow';
+  return 'failed';
 }
