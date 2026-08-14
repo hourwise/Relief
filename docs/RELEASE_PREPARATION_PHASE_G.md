@@ -8,7 +8,7 @@ Phase G is source/test readiness work only. The user has stopped local Android/G
 
 - Canonical 42-feature inventory: [`FEATURE_TEST_READINESS.md`](./FEATURE_TEST_READINESS.md).
 - Password reset: email entry, safe success state, `resetPasswordForEmail`, `relief://auth/callback`, recovery event/deep-link handling, new password form, `updateUser`, safe expired/invalid-link state, and contract tests.
-- Account deletion: Profile → Delete account → explanation → typed confirmation → destructive reconfirmation. Test mode simulates only; production returns `ACCOUNT_DELETION_NOT_CONFIGURED`.
+- Account deletion: Profile → Delete account → explanation → typed confirmation → destructive reconfirmation. Test mode simulates only; production source now invokes the governed `delete-account` Edge Function, which remains undeployed until a separate production approval.
 - QA Feature Lab: opt-in only through `EXPO_PUBLIC_RELIEF_TEST_MODE=true`; default false. It exposes advanced filters, saved profiles, route estimate, offline facility data, local alerts, premium UI, photo adapter, deletion adapter, and legal state.
 - Adapter boundaries: photo storage and account deletion never report fake production success; premium test mode unlocks presentation only; remote push and RevenueCat remain unavailable.
 - Misleading “Offline Maps” language is renamed to offline facility data. Route planning is labelled as a straight-line estimate and does not claim road-aware navigation.

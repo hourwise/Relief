@@ -33,7 +33,7 @@ export const AccountDeletionScreen: React.FC = () => {
             const result = await requestAccountDeletion(confirmation);
             setLoading(false);
             if (!result.success) { setError(result.error); return; }
-            Alert.alert('Request simulated', result.message, [{ text: 'Done', onPress: navigation.goBack }]);
+            Alert.alert(RELIEF_TEST_MODE ? 'Request simulated' : 'Account deletion complete', result.message, [{ text: 'Done', onPress: navigation.goBack }]);
           },
         },
       ],
@@ -46,11 +46,11 @@ export const AccountDeletionScreen: React.FC = () => {
         <SoftCard style={styles.card}>
           <Text style={styles.title}>Delete your account</Text>
           <Text style={styles.body}>This is a permanent account request. Review any saved places and community contributions before continuing.</Text>
-          <Text style={styles.body}>Relief will not delete anything from this screen unless an approved account-deletion backend is connected. {RELIEF_TEST_MODE ? 'Test mode simulates the request only.' : 'This build reports the production adapter as unavailable.'}</Text>
+          <Text style={styles.body}>{RELIEF_TEST_MODE ? 'Test mode simulates the request only.' : 'Relief sends this request to a server-governed deletion path. The backend must be deployed and configured before this build can complete it.'}</Text>
           {!isAuthenticated ? <Text style={styles.warning}>Sign in is required to request account deletion.</Text> : null}
           <Input label="Type DELETE MY ACCOUNT to confirm" value={confirmation} onChangeText={setConfirmation} autoCapitalize="characters" error={error || undefined} />
           <Button title={RELIEF_TEST_MODE ? 'Simulate deletion request' : 'Request account deletion'} onPress={submit} loading={loading} disabled={!isAuthenticated} fullWidth />
-          {!RELIEF_TEST_MODE ? <Text style={styles.note}>Production account deletion is blocked pending the retention, legal, and backend contract.</Text> : null}
+          {!RELIEF_TEST_MODE ? <Text style={styles.note}>Deletion is transactional for current app data. Storage cleanup and Auth deletion are handled by the trusted backend; failures are reported for retry.</Text> : null}
         </SoftCard>
       </ScrollView>
     </ScreenBackground>

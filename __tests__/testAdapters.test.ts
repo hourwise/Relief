@@ -7,10 +7,14 @@ section('account deletion adapters');
   const testDelete = createAccountDeletionAdapter(true);
   const testDeleteResult = await testDelete('DELETE MY ACCOUNT');
   assertTrue('test deletion simulates success', testDeleteResult.success === true && testDeleteResult.simulated === true);
-  const productionDelete = createAccountDeletionAdapter(false);
+  const productionDelete = createAccountDeletionAdapter(false, async () => ({
+    success: false,
+    code: 'DELETION_BACKEND_MISCONFIGURED',
+    error: 'backend unavailable',
+  }));
   const productionDeleteResult = await productionDelete('DELETE MY ACCOUNT');
-  assertEqual('production deletion remains unconfigured', productionDeleteResult.success, false);
-  if (!productionDeleteResult.success) assertEqual('production deletion code', productionDeleteResult.code, 'ACCOUNT_DELETION_NOT_CONFIGURED');
+  assertEqual('production deletion reports backend failure without claiming success', productionDeleteResult.success, false);
+  if (!productionDeleteResult.success) assertEqual('production deletion code', productionDeleteResult.code, 'DELETION_BACKEND_MISCONFIGURED');
 
   section('photo storage adapters');
   const testPhoto = createPhotoStorageAdapter(true);

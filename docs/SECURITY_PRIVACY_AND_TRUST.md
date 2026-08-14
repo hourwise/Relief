@@ -132,7 +132,7 @@ RevenueCat ─── webhook ─── Supabase Edge Function (entitlement sync)
 |-------------|---------------|
 | Privacy Policy published | ❌ NOT STARTED |
 | Terms of Service published | ❌ NOT STARTED |
-| Account deletion | ❌ NOT IMPLEMENTED |
+| Account deletion | 🔶 SOURCE IMPLEMENTED — governed SQL cleanup + Edge Function/Auth Admin path not deployed |
 | Data export | ❌ NOT IMPLEMENTED |
 | Delete review/photo | ❌ NOT IMPLEMENTED |
 | Privacy contact email | ❌ NOT ESTABLISHED |
@@ -166,7 +166,7 @@ RevenueCat ─── webhook ─── Supabase Edge Function (entitlement sync)
 | No EXIF stripping | Critical | Photo uploads |
 | No face blurring | High | Photo uploads |
 | No server-side rate limiting | High | Community features |
-| No account deletion | High | GDPR compliance |
+| No production-deployed account deletion | High | GDPR compliance |
 | what3words simulation | Medium | Location sharing |
 | No admin audit logging | Medium | Moderation |
 | No input sanitisation | Medium | All user-generated content |
