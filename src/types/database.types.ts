@@ -1278,6 +1278,18 @@ export type Database = {
           verification_status: string
         }[]
       }
+      resolve_own_temporary_report: {
+        Args: { p_report_id: string }
+        Returns: boolean
+      }
+      upsert_own_access_code: {
+        Args: {
+          p_code: string
+          p_description?: string
+          p_facility_id: string
+        }
+        Returns: string
+      }
       geometry: { Args: { "": string }; Returns: unknown }
       geometry_above: {
         Args: { geom1: unknown; geom2: unknown }

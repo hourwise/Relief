@@ -326,16 +326,12 @@ export async function resolveOwnReport(
     return { success: false, error: 'Not authenticated' };
   }
 
-  const { error } = await supabase
-    .from('temporary_reports')
-    .update({
-      is_expired: true,
-      expires_at: new Date().toISOString(),
-    })
-    .eq('id', reportId)
-    .eq('user_id', userData.user.id); // Can only resolve own reports
+  const { data: resolved, error } = await supabase.rpc(
+    'resolve_own_temporary_report',
+    { p_report_id: reportId },
+  );
 
-  if (error) {
+  if (error || resolved !== true) {
     return { success: false, error: describeSupabaseError(error, 'This community action could not be completed. Please try again.') };
   }
 
@@ -405,41 +401,14 @@ export async function addAccessCode(
     return { success: false, error: 'You must be signed in to add access codes' };
   }
 
-  // Check if user already submitted a code for this facility
-  const { data: existing } = await supabase
-    .from('access_codes')
-    .select('id')
-    .eq('facility_id', facilityId)
-    .eq('user_id', userData.user.id)
-    .single();
+  const { error } = await supabase.rpc('upsert_own_access_code', {
+    p_facility_id: facilityId,
+    p_code: code,
+    p_description: description,
+  });
 
-  if (existing) {
-    // Update existing code
-    const { error } = await supabase
-      .from('access_codes')
-      .update({
-        code,
-        description,
-        updated_at: new Date().toISOString(),
-      })
-      .eq('id', existing.id);
-
-    if (error) {
-      return { success: false, error: describeSupabaseError(error, 'This community action could not be completed. Please try again.') };
-    }
-  } else {
-    // Insert new code
-    const { error } = await supabase.from('access_codes').insert({
-      facility_id: facilityId,
-      user_id: userData.user.id,
-      code,
-      description,
-      is_verified: false,
-    });
-
-    if (error) {
-      return { success: false, error: describeSupabaseError(error, 'This community action could not be completed. Please try again.') };
-    }
+  if (error) {
+    return { success: false, error: describeSupabaseError(error, 'This community action could not be completed. Please try again.') };
   }
 
   return { success: true };

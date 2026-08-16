@@ -48,7 +48,6 @@ export function buildTemporaryReportInsert(
     type,
     notes,
     expires_at: expiresAt,
-    is_expired: false,
   };
 }
 
@@ -67,7 +66,6 @@ export function buildCorrectionInsert(
     old_value: oldValue,
     new_value: newValue,
     notes,
-    status: 'pending',
   };
 }
 
@@ -83,6 +81,5 @@ export function buildFacilitySubmissionInsert(
   return {
     ...submission,
     user_id: userId,
-    status: 'pending',
   };
 }

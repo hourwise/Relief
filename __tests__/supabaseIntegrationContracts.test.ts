@@ -43,7 +43,7 @@ assertDeepEqual(
 );
 
 assertDeepEqual(
-  'temporary report insert carries expiry and pending state',
+  'temporary report insert carries ownership and expiry only',
   buildTemporaryReportInsert('user-1', 'facility-1', 'out_of_order', 'Closed', '2026-08-12T20:00:00.000Z'),
   {
     facility_id: 'facility-1',
@@ -51,12 +51,11 @@ assertDeepEqual(
     type: 'out_of_order',
     notes: 'Closed',
     expires_at: '2026-08-12T20:00:00.000Z',
-    is_expired: false,
   },
 );
 
 assertDeepEqual(
-  'correction insert carries the authenticated user id and pending status',
+  'correction insert leaves moderation state to the database',
   buildCorrectionInsert('user-1', 'facility-1', 'name', 'Old', 'New', 'Sign changed'),
   {
     facility_id: 'facility-1',
@@ -65,7 +64,6 @@ assertDeepEqual(
     old_value: 'Old',
     new_value: 'New',
     notes: 'Sign changed',
-    status: 'pending',
   },
 );
 
@@ -94,9 +92,9 @@ const submission = {
   submission_notes: '',
 };
 assertDeepEqual(
-  'facility submission insert adds only authenticated ownership and pending state',
+  'facility submission insert leaves moderation state to the database',
   buildFacilitySubmissionInsert('user-1', submission),
-  { ...submission, user_id: 'user-1', status: 'pending' },
+  { ...submission, user_id: 'user-1' },
 );
 
 section('failed-RLS and offline error handling');
