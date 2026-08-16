@@ -1,9 +1,35 @@
 # Relief — Feature Matrix
 
-**Last verified:** 2026-08-12
+**Last verified:** 2026-08-16
 > Phase G canonical test-build readiness is maintained in [`FEATURE_TEST_READINESS.md`](./FEATURE_TEST_READINESS.md). This file contains historical feature-matrix and earlier verification evidence; do not use older status labels here to decide Phase G test-build readiness.
 
-**Verification method:** Phase B post-Apply source audit, contract regression tests, Expo SDK 56 clean disposable prebuild, and current/clean Android Gradle reproduction. No production mutation, authenticated production write, upload, or release signing was performed.
+**Verification method:** Phase B post-Apply source audit, contract regression tests, Expo SDK 56 clean disposable prebuild, current/clean Android Gradle reproduction, and the bounded 2026-08-16 authenticated production community verification. No schema, policy, canonical-facility, import, Storage, OAuth, review, or account-deletion backend mutation was performed in the community verification.
+
+## Authenticated community integration overlay - 2026-08-16
+
+This overlay records the bounded production verification for one disposable
+test account. The account and its test rows were removed; the two pre-existing
+Auth users and the zero-row baseline for community tables were preserved. A
+failed check is a truthful boundary, not permission to deploy an ad-hoc policy.
+
+| Surface | Status | Live evidence / boundary |
+|---------|--------|--------------------------|
+| Profile/display name | VERIFIED | Auth metadata update, `user_profiles` update and owner readback passed; other-user profile read was not exposed. |
+| Favourites | VERIFIED | Owner create/read/delete passed; anonymous and arbitrary-other-user writes were denied. |
+| Facility submissions | BLOCKED | Owner create/read and anonymous/other-user denial passed, but client-supplied reviewer fields were accepted; moderation self-elevation remains a production contract blocker. |
+| Temporary reports | BLOCKED | Owner create/read and arbitrary-other-user denial passed; own-report resolution was denied by the deployed update policy, so the UI flow must not be presented as verified. |
+| Corrections | BLOCKED | Owner create/read and arbitrary-other-user denial passed, but client-supplied reviewer fields were accepted; moderation self-elevation remains a production contract blocker. |
+| Access codes | BLOCKED | Owner write was unavailable under the deployed grant/policy contract; no policy was broadened. |
+| Rate-limit records | VERIFIED (bounded) | Three own records and readback passed; arbitrary-other-user record insertion was denied. The client-side count check is not server-side abuse prevention. |
+| Governed badges | VERIFIED (bounded) | Direct client INSERT/UPDATE/DELETE were denied; the facility-submission trigger awarded Explorer and readback succeeded. The client award helper was removed. |
+| Photos / Storage | BLOCKED | Not exercised; existing Storage infrastructure remains unavailable. |
+| Reviews | DEFERRED | No approved review-write contract was exercised. |
+| OAuth, RevenueCat, remote push | BLOCKED | External configuration remains required and was not changed. |
+
+The anonymous negative checks for favourites, facility submissions, temporary
+reports and corrections all returned denial. Canonical facility data was read
+only. No migration, RLS policy, Edge Function, Storage, Auth-global,
+subscription, import, OSM, or account-deletion change was made.
 
 ## Phase B post-Apply integration overlay - 2026-08-12
 
@@ -14,10 +40,10 @@ not convert catalog compatibility into a live authenticated write test.
 |---------|--------|---------------------|
 | Published facility reads | CATALOG_COMPATIBLE_NOT_LIVE_WRITE_TESTED | Current read-only evidence is compatible with anonymous published-facility reads. |
 | Nearest-facility RPC | CATALOG_COMPATIBLE_NOT_LIVE_WRITE_TESTED | Anonymous/authenticated EXECUTE is compatible; the RPC is not security definer. |
-| Favourites, profile, reports, corrections, facility submissions, rate limits, access codes, review reports | CATALOG_COMPATIBLE_NOT_LIVE_WRITE_TESTED | Authenticated owner-flow catalog evidence is compatible; no production write was attempted. |
+| Favourites, profile, reports, corrections, facility submissions, rate limits, access codes, review reports | BACKEND-DEPENDENT | See the authenticated community integration overlay above for live owner/RLS results and blockers. |
 | Saved profiles | CATALOG_COMPATIBLE_NOT_LIVE_WRITE_TESTED | Catalog-compatible but unreachable while the feature is disabled. |
 | Subscription events | BACKEND-DEPENDENT | Server-write-only boundary; premium remains disabled. |
-| Badge award side effect | BLOCKED_BY_RLS | `user_badges` has no authenticated INSERT policy; client submission remains successful when award insertion is denied or throws. |
+| Badge award side effect | VERIFIED | Governed database triggers award badges; the mobile client now reads badges only. |
 | Photo upload / moderation | BLOCKED_BY_STORAGE_INFRASTRUCTURE | Storage bucket count and storage object policy count are zero; upload remains unreachable. |
 | Android debug APK | BLOCKED | Clean and current trees reproduce the React Native Gradle plugin Kotlin DSL failure under the local toolchain. |
 
@@ -115,12 +141,12 @@ Each feature is assessed against the current repository, not against plans or in
 
 | Feature | Surface | Files | Data Source | Backend Dependency | Status | Evidence | Risk | Next Step |
 |---------|---------|-------|-------------|-------------------|--------|----------|------|-----------|
-| Facility submission | AddFacilityScreen | `screens/AddFacilityScreen.tsx`, `services/community.ts` | Supabase `facility_submissions` | Supabase | BACKEND-DEPENDENT | Submission with moderation queue; rate limiting (3/hr) | No moderation UI exists | Deploy migration; build admin panel |
+| Facility submission | AddFacilityScreen | `screens/AddFacilityScreen.tsx`, `services/community.ts` | Supabase `facility_submissions` | Supabase | BLOCKED | Live owner create/read passed, but client-supplied reviewer fields were accepted; anonymous and other-user writes were denied | Moderation self-elevation is a deployed policy/contract defect; no ad-hoc patch applied | Design and approve a bounded moderation-boundary fix |
 | Photo upload | community service | `services/community.ts` | Supabase Storage `facility-photos` | Supabase Storage | BACKEND-DEPENDENT | Upload to storage; insert into `photo_moderation` | **No EXIF stripping or face blurring** — fields set to `false` | Implement server-side media processing |
-| Temporary reports | ReportFacilityScreen | `screens/ReportFacilityScreen.tsx`, `services/community.ts` | Supabase `temporary_reports` | Supabase | BACKEND-DEPENDENT | Reports with expiry; duplicate detection | Expiry requires Edge Function cron | Deploy expire-reports function |
-| Corrections | CorrectInfoScreen | `screens/CorrectInfoScreen.tsx`, `services/community.ts` | Supabase `correction_requests` | Supabase | BACKEND-DEPENDENT | Permanent edits to moderation queue | No admin review UI | Build moderation dashboard |
-| Badges | ProfileScreen, community service | `services/community.ts` | Supabase `badges`/`user_badges` | Supabase | BACKEND-DEPENDENT | 4 badge types with award logic | Requires tracking user contribution counts | Deploy migration |
-| Rate limiting | community service | `services/community.ts` | Supabase `rate_limits` table | Supabase | BACKEND-DEPENDENT | Client-side rate limit checks against Supabase table | **Client-side checks are not security** — must be enforced server-side | Move to Edge Function enforcement |
+| Temporary reports | ReportFacilityScreen | `screens/ReportFacilityScreen.tsx`, `services/community.ts` | Supabase `temporary_reports` | Supabase | BLOCKED | Owner create/read and other-user denial passed; own-report resolution was denied by deployed RLS | Do not claim own resolution until the policy contract is separately reviewed | Resolve the RLS/UI contract mismatch in a separate approved change |
+| Corrections | CorrectInfoScreen | `screens/CorrectInfoScreen.tsx`, `services/community.ts` | Supabase `correction_requests` | Supabase | BLOCKED | Live owner create/read and other-user denial passed, but reviewer fields could be client-supplied | Moderation self-elevation is a deployed policy/contract defect | Design and approve a bounded moderation-boundary fix |
+| Badges | ProfileScreen, community service | `services/community.ts` | Supabase `user_badges` | Supabase | VERIFIED (bounded) | Governed trigger awarded Explorer from a genuine facility-submission row; direct client writes were denied; client reads remain | Other threshold crossings were not recreated in this bounded run | Retain governed trigger path and verify further thresholds in a dedicated approved test |
+| Rate limiting | community service | `services/community.ts` | Supabase `rate_limits` table | Supabase | VERIFIED (bounded) | Own records/readback and arbitrary-other-user denial passed | **Client-side checks are not security** — server-side abuse enforcement remains unresolved | Move enforcement to an approved server-side boundary |
 | Reviews | rating functions in facilities | `services/facilities.ts` | Supabase | Supabase | BACKEND-DEPENDENT | Rating fields in Facility type | No review submission UI found | Verify review flow completeness |
 
 ---

@@ -11,7 +11,6 @@ import {
   buildFacilitySubmissionInsert,
   buildTemporaryReportInsert,
 } from './integrationContracts';
-import { runNonFatalSideEffect } from '../utils/nonFatalSideEffect';
 import type {
   FacilitySubmission,
   TemporaryReport,
@@ -55,12 +54,6 @@ export async function submitFacility(
 
   // Record the rate limit action
   await recordRateLimit(userData.user.id, 'submit_facility');
-
-  // Award Explorer badge if this is the first submission
-  await runNonFatalSideEffect(
-    () => checkAndAwardBadge(userData.user.id, 'explorer'),
-    (error) => console.warn('Explorer badge side effect skipped:', error),
-  );
 
   return { success: true };
 }
@@ -295,12 +288,6 @@ export async function submitTemporaryReport(
   // Record rate limit
   await recordRateLimit(userData.user.id, `report_facility_${facilityId}`);
 
-  // Award Community Hero badge if this is the 5th report
-  await runNonFatalSideEffect(
-    () => checkAndAwardBadge(userData.user.id, 'community_hero'),
-    (error) => console.warn('Community Hero badge side effect skipped:', error),
-  );
-
   return { success: true };
 }
 
@@ -504,82 +491,6 @@ export async function getUserBadges(): Promise<Badge[]> {
   return data as unknown as Badge[];
 }
 
-/**
- * Check and award a badge if conditions are met.
- */
-async function checkAndAwardBadge(
-  userId: string,
-  badgeType: Badge['badge_type'],
-): Promise<void> {
-  // Check if user already has this badge
-  const { data: existingBadge } = await supabase
-    .from('user_badges')
-    .select('id')
-    .eq('user_id', userId)
-    .eq('badge_type', badgeType)
-    .single();
-
-  if (existingBadge) return; // Already has badge
-
-  let shouldAward = false;
-  let source = '';
-
-  switch (badgeType) {
-    case 'explorer': {
-      // Award for first facility submission
-      const { count } = await supabase
-        .from('facility_submissions')
-        .select('id', { count: 'exact' })
-        .eq('user_id', userId);
-      shouldAward = (count ?? 0) >= 1;
-      source = 'Submitted your first facility';
-      break;
-    }
-    case 'community_hero': {
-      // Award for 5+ reports
-      const { count } = await supabase
-        .from('temporary_reports')
-        .select('id', { count: 'exact' })
-        .eq('user_id', userId);
-      shouldAward = (count ?? 0) >= 5;
-      source = 'Submitted 5 reports';
-      break;
-    }
-    case 'accessibility_champion': {
-      // Award for 3+ accessibility-related corrections
-      const { count } = await supabase
-        .from('correction_requests')
-        .select('id', { count: 'exact' })
-        .eq('user_id', userId)
-        .in('field', ['is_accessible', 'is_disabled_access', 'has_wheelchair_access', 'has_grab_rails', 'has_lift', 'has_adult_changing_place', 'requires_radar_key']);
-      shouldAward = (count ?? 0) >= 3;
-      source = 'Made 3 accessibility corrections';
-      break;
-    }
-    case 'family_helper': {
-      // Award for 3+ baby/family related corrections
-      const { count } = await supabase
-        .from('correction_requests')
-        .select('id', { count: 'exact' })
-        .eq('user_id', userId)
-        .in('field', ['has_baby_changing', 'has_family_room', 'has_baby_changing_inside', 'has_separate_changing_room', 'has_family_toilet', 'has_pram_access']);
-      shouldAward = (count ?? 0) >= 3;
-      source = 'Made 3 family-related corrections';
-      break;
-    }
-  }
-
-  if (shouldAward) {
-    const { error } = await supabase.from('user_badges').insert({
-      user_id: userId,
-      badge_type: badgeType,
-      source,
-    });
-    if (error) {
-      console.warn(`Badge insert blocked or unavailable for ${badgeType}:`, error);
-    }
-  }
-}
 
 // ────────────────────────────────────────
 // 2.8 — Rate Limiting & Duplicate Checks
