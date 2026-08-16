@@ -1221,6 +1221,11 @@ export type Database = {
             }
             Returns: string
           }
+      check_my_account_deletion_subscription_guard: {
+        Args: never
+        Returns: Json
+      }
+      delete_my_account_data: { Args: never; Returns: Json }
       disablelongtransactions: { Args: never; Returns: string }
       dropgeometrycolumn:
         | {
@@ -1277,18 +1282,6 @@ export type Database = {
           town: string
           verification_status: string
         }[]
-      }
-      resolve_own_temporary_report: {
-        Args: { p_report_id: string }
-        Returns: boolean
-      }
-      upsert_own_access_code: {
-        Args: {
-          p_code: string
-          p_description?: string
-          p_facility_id: string
-        }
-        Returns: string
       }
       geometry: { Args: { "": string }; Returns: unknown }
       geometry_above: {
@@ -1430,6 +1423,10 @@ export type Database = {
       }
       postgis_version: { Args: never; Returns: string }
       postgis_wagyu_version: { Args: never; Returns: string }
+      resolve_own_temporary_report: {
+        Args: { p_report_id: string }
+        Returns: boolean
+      }
       st_3dclosestpoint: {
         Args: { geom1: unknown; geom2: unknown }
         Returns: unknown
@@ -2039,6 +2036,10 @@ export type Database = {
           schema_name: string
           table_name: string
         }
+        Returns: string
+      }
+      upsert_own_access_code: {
+        Args: { p_code: string; p_description?: string; p_facility_id: string }
         Returns: string
       }
     }
