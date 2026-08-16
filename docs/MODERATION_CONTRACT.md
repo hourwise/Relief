@@ -1,8 +1,8 @@
 # Relief Governed Moderation Contract
 
-**Status:** SOURCE IMPLEMENTED / PRODUCTION GATED  
-**Date:** 2026-08-16  
-**Production project audited:** `bgwxrxkmyaihplaloely`  
+**Status:** SOURCE IMPLEMENTED / PRODUCTION GATED
+**Date:** 2026-08-16
+**Production project audited:** `bgwxrxkmyaihplaloely`
 **Source-only migration:** `supabase/migrations/20260816220000_governed_moderation_contract.sql`
 
 This document is the current design authority for community moderation. The
