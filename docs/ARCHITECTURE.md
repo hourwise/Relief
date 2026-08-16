@@ -126,7 +126,13 @@ FEATURES = {
 
 ### Current Trust Boundaries
 
-All application logic runs on the client device. There are **no server-side trust boundaries** — every service call to Supabase, RevenueCat, or what3words is client-initiated. The Supabase anon key (when configured) will be public by design per Supabase's security model.
+The user-facing application remains client-initiated and uses a public Supabase
+publishable/anon key, but the backend now contains important server-side trust
+boundaries. RLS and narrow SECURITY DEFINER functions govern community writes,
+the badge trigger awards are database-owned, and the account-deletion contract
+is server-guarded. The authenticated community write contracts are live
+hardened. The governed moderator membership/RPC contract is currently
+source-only and production-gated; it is not a live trust boundary yet.
 
 ---
 

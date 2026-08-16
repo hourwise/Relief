@@ -1,5 +1,24 @@
 # Relief — Current State Assessment
 
+## Governed moderation contract — source-only, production gated — 2026-08-16
+
+The live production audit found no moderator identity table, moderator RPC,
+admin screen, or canonical-application function. A local-only moderation
+contract is now defined in [`MODERATION_CONTRACT.md`](MODERATION_CONTRACT.md)
+and `supabase/migrations/20260816220000_governed_moderation_contract.sql`.
+
+The design uses database-backed `relief_moderators` membership, narrow
+authenticated-only SECURITY DEFINER RPCs, server-derived reviewer identity,
+explicit terminal transitions, and no client write path to moderation fields.
+Facility and correction approval only records the moderation result; it does
+not mutate canonical `facilities`. Access-code verification/revocation has a
+small local verification-history table. No migration was applied, no
+moderator was created, and no production contribution was changed.
+
+Review reports remain stale/deferred because no review table exists. Photo
+moderation remains out of scope. Android/EAS work files remain concurrent and
+untouched.
+
 ## Phase G feature test readiness — 2026-08-14
 
 Phase G adds the canonical source-derived inventory in [`FEATURE_TEST_READINESS.md`](./FEATURE_TEST_READINESS.md), opt-in `EXPO_PUBLIC_RELIEF_TEST_MODE`, password-reset screens and deep-link handling, a deployed governed account-deletion path, truthful photo/premium boundaries, and a QA Feature Lab. Production Storage, RevenueCat, remote push, OAuth, review writes, and public legal endpoints remain explicitly blocked or unconfigured. Per the user’s instruction, no Phase G APK was produced or installed; the Phase E hermetic APK is the last verified local APK baseline, and Android Studio physical-device testing plus the cloud EAS build are deferred.

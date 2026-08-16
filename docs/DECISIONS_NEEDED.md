@@ -164,9 +164,9 @@ Decisions are ordered by blocker level. A decision at BLOCKER level must be reso
 
 ---
 
-### D10: Moderation Ownership
+### D10: Moderation Ownership — SOURCE CONTRACT DEFINED / PRODUCTION OPEN
 
-**Context:** Community submissions, photos, reviews, and corrections require moderation. No admin panel or moderation workflow exists.
+**Context:** Community submissions, photos, reviews, and corrections require moderation. The source-only contract now defines database-backed moderator membership and narrow review RPCs, but no production moderator identities or admin portal exist.
 
 **Options:**
 - **A) In-house moderation** — Team reviews submissions via admin dashboard.
@@ -174,7 +174,7 @@ Decisions are ordered by blocker level. A decision at BLOCKER level must be reso
 - **C) Automated + human review** — Automated filters for spam/abuse; human review for edge cases.
 - **D) Defer to pre-launch** — Launch without community features; add with moderation later.
 
-**Recommendation:** Option D — launch as read-only directory; add community contributions post-launch with moderation in place.
+**Recommendation:** Option A for the moderation authority, with a small internal/web admin surface. The local contract keeps community approval separate from canonical facility mutation; production deployment and canonical-application semantics remain open.
 
 **Blocker level:** MEDIUM  
 **Owner:** TBD
@@ -240,7 +240,7 @@ Decisions are ordered by blocker level. A decision at BLOCKER level must be reso
 | D07 | Routing provider | HIGH | Open |
 | D08 | what3words retention | HIGH | Open |
 | D09 | Pricing model | MEDIUM | Open |
-| D10 | Moderation ownership | MEDIUM | Open |
+| D10 | Moderation ownership | MEDIUM | SOURCE CONTRACT DEFINED / PRODUCTION OPEN |
 | D11 | Account/support identity | MEDIUM | Open |
 | D12 | Legal documents | MEDIUM | Open |
 | D13 | Europe priority | LOW | Open |

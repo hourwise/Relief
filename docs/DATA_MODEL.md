@@ -3,6 +3,13 @@
 > **Status: Proposed — not yet deployed.**  
 > A development Supabase project and schema push are user-reported as of 2026-07-25, but this document has not been independently verified against the remote database. These tables, views, RPCs, storage buckets, and Edge Functions are inferred from TypeScript types, service queries, and SQL migration files. Fields marked `TBD` are not yet defined in any source file.
 
+> **Current audit correction — 2026-08-16:** the live Relief project has since
+> been independently audited. For the current moderation contract, live
+> schema, and source-only production gate, use
+> [`MODERATION_CONTRACT.md`](MODERATION_CONTRACT.md) and
+> [`CURRENT_STATE.md`](CURRENT_STATE.md). The historical “reviews” section
+> below describes an intended model; no live `reviews` table currently exists.
+
 ---
 
 ## Tables
@@ -138,7 +145,9 @@
 
 **Migration:** `supabase/migrations/20260624_community_features.sql`
 
-**RLS:** Users insert; service_role reviews.
+**RLS:** Authenticated users insert their own pending rows; the live schema has
+`reviewed_at` and `reviewed_by` but no rejection-reason field. A local-only
+moderation migration proposes that narrow audit field; it is not deployed.
 
 ---
 
@@ -148,7 +157,10 @@
 
 **Migration:** `supabase/migrations/20260624_community_features.sql`
 
-**RLS:** Authenticated users insert and view.
+**RLS:** The live contract uses an owner-derived upsert RPC, owner reads, and
+public reads only for verified codes attached to published facilities. Direct
+client verification is denied. Verification history is proposed locally, not
+deployed.
 
 **Security concern:** Access codes visible to all authenticated users. Consider abuse risk.
 
@@ -178,13 +190,15 @@
 
 ### `reviews`
 
-**Purpose:** User reviews with six-dimensional ratings.
+**Purpose:** Intended user reviews with six-dimensional ratings; no live table
+was found in the 2026-08-16 production audit.
 
 **Migration:** `supabase/migrations/20260624_community_features.sql`
 
 **Referencing code:** `services/community.ts` (review reports); rating fields in `types/index.ts`
 
-**RLS:** Authenticated users insert; all view.
+**RLS:** Not applicable to the current production schema. Review submission
+and review moderation are deferred.
 
 ---
 
@@ -193,6 +207,10 @@
 **Purpose:** Abuse reports against reviews.
 
 **Migration:** `supabase/migrations/20260624_community_features.sql`
+
+**Current status:** The live table accepts authenticated owner reports, but no
+canonical `reviews` table or review moderation workflow exists. Classified
+STALE / DEFERRED; this batch does not invent one.
 
 ---
 
