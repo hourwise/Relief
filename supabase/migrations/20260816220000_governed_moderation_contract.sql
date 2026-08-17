@@ -13,7 +13,7 @@ begin;
 
 create table if not exists public.relief_moderators (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid unique references auth.users(id) on delete set null,
+  user_id uuid unique references auth.users(id) on delete cascade,
   active boolean not null default true,
   created_at timestamptz not null default pg_catalog.now(),
   updated_at timestamptz not null default pg_catalog.now()

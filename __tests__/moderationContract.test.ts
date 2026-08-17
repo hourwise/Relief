@@ -22,6 +22,12 @@ assertTrue(
     migration.includes('from public, anon, authenticated, service_role'),
 );
 assertTrue(
+  'moderator membership cascades when its Auth user is deleted',
+  migration.includes(
+    'user_id uuid unique references auth.users(id) on delete cascade',
+  ),
+);
+assertTrue(
   'moderator authorization derives from auth.uid and active database state',
   migration.includes('private.relief_require_moderator') &&
     migration.includes('actor uuid := auth.uid()') &&
