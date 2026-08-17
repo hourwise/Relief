@@ -5,10 +5,22 @@ import {
   SUBSCRIPTION_RETENTION_UNRESOLVED,
   subscriptionGuardStatus,
 } from '../supabase/functions/delete-account/contract';
+// Node typings are intentionally not part of the mobile app dependency graph.
+// @ts-expect-error -- the test runner executes this under Node via tsx.
+import { readFileSync } from 'node:fs';
 import { createAccountDeletionAdapter, getAccountDeletionErrorMessage } from '../src/services/accountDeletion';
 import { assertEqual, assertTrue, section } from './helpers/harness';
 
 section('account deletion security contract');
+
+const deletionMigration = readFileSync(
+  new URL('../supabase/migrations/20260814124706_account_deletion_cleanup_contract.sql', import.meta.url),
+  'utf8',
+);
+const deletionEdgeFunction = readFileSync(
+  new URL('../supabase/functions/delete-account/index.ts', import.meta.url),
+  'utf8',
+);
 
 assertTrue(
   'deletion request accepts the exact confirmation object',
@@ -47,6 +59,42 @@ assertEqual(
 assertEqual(
   'guard failure cannot proceed to later deletion phases',
   subscriptionGuardStatus(null, new Error('guard failed')) === 'allow',
+  false,
+);
+assertTrue(
+  'subscription guard precedes every account cleanup operation',
+  deletionMigration.indexOf('subscription_guard := public.check_my_account_deletion_subscription_guard()') <
+    deletionMigration.indexOf('update public.correction_requests'),
+);
+assertTrue(
+  'reviewer identity cleanup preserves another user\'s facility submission',
+  deletionMigration.includes('update public.facility_submissions') &&
+    deletionMigration.includes('set reviewed_by = null') &&
+    deletionMigration.includes('where reviewed_by = actor') &&
+    deletionMigration.indexOf('update public.facility_submissions') <
+      deletionMigration.indexOf('delete from public.facility_submissions'),
+);
+assertTrue(
+  'correction reviewer identity is anonymised before owned-row deletion',
+  deletionMigration.includes('update public.correction_requests') &&
+    deletionMigration.indexOf('update public.correction_requests') <
+      deletionMigration.indexOf('delete from public.correction_requests'),
+);
+assertTrue(
+  'reporter and canonical attribution references are anonymised',
+  deletionMigration.includes('update public.photo_moderation') &&
+    deletionMigration.includes('set reported_by = null') &&
+    deletionMigration.includes('update public.facilities') &&
+    deletionMigration.includes('set created_by = null'),
+);
+assertTrue(
+  'Auth deletion occurs only after the governed database cleanup',
+  deletionEdgeFunction.indexOf('await userClient.rpc(\'delete_my_account_data\')') <
+    deletionEdgeFunction.indexOf('await admin.auth.admin.deleteUser(userId)'),
+);
+assertEqual(
+  'the deployed deletion path never accepts a target user id',
+  deletionEdgeFunction.includes('target_user_id') || deletionEdgeFunction.includes('user_id'),
   false,
 );
 assertTrue(

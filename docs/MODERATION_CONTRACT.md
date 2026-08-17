@@ -199,10 +199,19 @@ idempotence, and unchanged canonical facility state. Supabase TypeScript types
 were regenerated from the deployed schema.
 
 The account-deletion compatibility check confirmed the new membership
-`ON DELETE CASCADE` treatment. The first disposable deletion attempt exposed
-an existing reviewer foreign key until the disposable rows were cleaned up;
-the disposable moderator then deleted successfully. No production account-
-deletion function was changed.
+`ON DELETE CASCADE` treatment and the deployed deletion cleanup for moderator
+identity references. A disposable moderator reviewed a disposable user's
+facility submission and correction, and verified that user's access code. The
+moderator was then deleted through the deployed `delete-account` Edge
+Function. The contribution rows remained with their status, review timestamp,
+and rejection reason; `reviewed_by` became `NULL`; and the retained access-code
+history kept its action and timestamp with `moderator_id` set to `NULL`.
+
+The earlier failed disposable test used a direct `auth.admin.deleteUser` call
+before the deployed cleanup path was exercised. That bypassed the existing
+reviewer-reference cleanup and does not represent production function drift.
+The live migration, SQL functions, and Edge Function were audited together;
+no successor migration or production function change was required.
 
 Remaining decisions and out-of-scope work are:
 

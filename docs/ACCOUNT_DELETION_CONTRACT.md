@@ -32,6 +32,28 @@ The request body rejects every field other than `confirmation`, including
 `user_id` and `target_user_id`. The Edge Function does not trust client
 metadata or a client-supplied identity.
 
+## Moderator-reference reconciliation
+
+The deployed deletion path was live-tested with a disposable moderator who had
+reviewed another disposable user's facility submission and correction request
+and had verified that user's access code. The moderator was deleted through
+the `delete-account` Edge Function, not through a direct Auth Admin call.
+
+The database cleanup first sets `reviewed_by` on retained facility submissions
+and correction requests, and `reported_by` on retained photo-moderation rows,
+to `NULL`. It also clears `facilities.created_by` attribution. Owned rows are
+then deleted, while retained rows keep their status, review timestamp,
+submitted values, rejection reason, and other non-identity history. The
+`relief_moderators.user_id` membership cascades; retained
+`access_code_verification_history` rows keep their action and timestamp while
+`moderator_id` is set to `NULL`.
+
+The earlier failed disposable test used `auth.admin.deleteUser` directly while
+reviewer references still existed, so it bypassed this deployed cleanup path.
+That was a test-harness bypass, not production function drift. The current
+deployed migration, SQL functions, and Edge Function were audited and matched
+the local contract; no successor migration was required.
+
 ## Live schema deletion inventory
 
 The inventory below was read from the current Relief project schema. Counts at
