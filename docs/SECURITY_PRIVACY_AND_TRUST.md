@@ -133,7 +133,7 @@ RevenueCat ─── webhook ─── Supabase Edge Function (entitlement sync)
 | Privacy Policy published | ❌ NOT STARTED |
 | Terms of Service published | ❌ NOT STARTED |
 | Account deletion | 🔶 DEPLOYED — governed SQL cleanup + Edge Function/Auth Admin path verified; subscription-history accounts fail closed |
-| Data export | ❌ NOT IMPLEMENTED |
+| Data export | ⚠️ SOURCE IMPLEMENTED / PRODUCTION NOT DEPLOYED — governed Edge Function source, explicit redacted inventory, recent-auth boundary, native share delivery, and focused security tests are present; production deployment remains separately gated |
 | Delete review/photo | ❌ NOT IMPLEMENTED |
 | Privacy contact email | ❌ NOT ESTABLISHED |
 | Marketing consent tracking | ❌ NOT IMPLEMENTED |

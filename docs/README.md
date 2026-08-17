@@ -16,6 +16,7 @@ The following documents are authoritative for the Relief project. When documents
 | 3 | `docs/FEATURE_MATRIX.md` | Per-feature implementation evidence |
 | 4 | `docs/DATA_MODEL.md` | Intended database schema and backend objects |
 | 4a | `docs/MODERATION_CONTRACT.md` | Current governed moderation design and live production contract |
+| 4b | `docs/DATA_EXPORT_CONTRACT.md` | Source-only governed user data export contract and inventory |
 | 5 | `docs/ROADMAP.md` | Planned development sequence |
 | 6 | `docs/DECISIONS_NEEDED.md` | Open product and technical decisions |
 | 7 | `docs/SECURITY_PRIVACY_AND_TRUST.md` | Security, privacy, trust requirements |

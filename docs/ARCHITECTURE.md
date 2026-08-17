@@ -109,6 +109,7 @@ including Need One Now, without an account.
 | `locationSharing.ts` | what3words API + client Plus Code | Simulated W3W; simplified Plus Code |
 | `revenuecat.ts` | RevenueCat SDK | No-op without API keys |
 | `notifications.ts` | expo-notifications | Push token registration |
+| `dataExport.ts` | Supabase Auth + `export-account` Edge Function | Requests a subject-derived, redacted versioned JSON export and hands it to the native share sheet; production deployment is pending |
 
 ### Feature Flags
 

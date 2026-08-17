@@ -313,6 +313,18 @@ Phase G supersedes the older historical wording below for password recovery and 
 
 Exercise account **creation** and Google OAuth on the device — the two auth paths still unverified. Then, if a shareable build is wanted: `eas init` against the chosen Expo account, add the three `EXPO_PUBLIC_*` values as `preview` environment variables, register the EAS keystore's SHA-1 on the Maps key, and run `eas build -p android --profile preview`. Re-run the quality gates under Node 22 first.
 
+## Governed user data export — SOURCE IMPLEMENTED / PRODUCTION NOT DEPLOYED — 2026-08-17
+
+The signed-in Profile now exposes `Download my data` under Privacy & Data.
+The source implementation uses a server-governed `export-account` Edge
+Function with an empty request body, verified-subject identity, recent
+authentication, explicit user-scoped reads, and a versioned redacted JSON
+envelope delivered through the native share sheet. Test mode uses a clearly
+labelled deterministic synthetic export. No production migration, Edge
+Function deployment, live export, production account, or Storage file was
+created for this batch. The design authority is
+[`DATA_EXPORT_CONTRACT.md`](DATA_EXPORT_CONTRACT.md).
+
 ## Luna continuation status (2026-08-08)
 
 The following work is **IMPLEMENTED BUT NOT DEVICE TESTED** on this branch:

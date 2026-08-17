@@ -1,15 +1,16 @@
 import React, { useCallback, useState } from 'react';
 import Constants from 'expo-constants';
-import { Alert, Linking, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Alert, Linking, Pressable, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import type { CompositeNavigationProp, NavigationProp } from '@react-navigation/native';
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import { ChevronRight, Edit3, Heart, Info, MapPin, Settings2, Trash2, FlaskConical } from 'lucide-react-native';
+import { ChevronRight, Download, Edit3, Heart, Info, MapPin, Settings2, Trash2, FlaskConical } from 'lucide-react-native';
 import type { User } from '@supabase/supabase-js';
 import { Button, Input, ScreenBackground, SoftCard } from '../components';
 import { colors, borderRadius, spacing, touchTargets, typography } from '../theme';
 import { getAccountDetails, updateDisplayName, type AccountDetails } from '../services/account';
 import { signOut } from '../services/auth';
+import { getDataExportErrorMessage, requestDataExport } from '../services/dataExport';
 import { useAuth } from '../context/AuthContext';
 import { signInReason } from '../utils/guestAccess';
 import { useLocation, type LocationStatus } from '../hooks/useLocation';
@@ -43,6 +44,7 @@ export const ProfileScreen: React.FC = () => {
   const [draftName, setDraftName] = useState('');
   const [savingName, setSavingName] = useState(false);
   const [nameError, setNameError] = useState<string | null>(null);
+  const [exportingData, setExportingData] = useState(false);
   const location = useLocation({ autoRefresh: false });
 
   const loadAccount = useCallback(async () => {
@@ -114,6 +116,38 @@ export const ProfileScreen: React.FC = () => {
     }
   };
 
+  const handleDataExport = async () => {
+    if (!isAuthenticated) {
+      navigation.navigate('Auth', { reason: signInReason('account_settings') });
+      return;
+    }
+
+    setExportingData(true);
+    const result = await requestDataExport();
+    setExportingData(false);
+
+    if (!result.success) {
+      Alert.alert('Could not generate export', getDataExportErrorMessage(result));
+      return;
+    }
+
+    if (result.simulated) {
+      Alert.alert(
+        'Test-mode export example',
+        'This is deterministic synthetic data for QA. It is not a production export and no account data was read.',
+      );
+    }
+
+    try {
+      await Share.share({
+        title: 'Relief data export',
+        message: result.json,
+      });
+    } catch {
+      Alert.alert('Sharing unavailable', 'Relief generated the JSON export, but this device could not open its share sheet.');
+    }
+  };
+
   const locationCopy = locationStatusCopy[location.status];
   const locationAction = location.status === 'denied' || location.status === 'unavailable'
     ? openDeviceSettings
@@ -180,6 +214,16 @@ export const ProfileScreen: React.FC = () => {
           <ChevronRight size={20} color={colors.sage} />
         </SoftCard>
 
+        <Text style={styles.sectionLabel}>PRIVACY & DATA</Text>
+        <SoftCard onPress={handleDataExport} accessibilityLabel={isAuthenticated ? 'Download my data' : 'Sign in to download your data'} style={styles.linkCard}>
+          <View style={styles.linkIcon}><Download size={20} color={colors.primary} /></View>
+          <View style={styles.linkCopy}>
+            <Text style={styles.linkTitle}>{isAuthenticated ? 'Download my data' : 'Sign in to download your data'}</Text>
+            <Text style={styles.linkDetail}>{RELIEF_TEST_MODE ? 'Test-mode JSON example; no production data is read.' : 'Share a machine-readable JSON copy of your Relief account-linked data.'}</Text>
+          </View>
+          {exportingData ? <Text style={styles.exportingLabel}>Preparing…</Text> : <ChevronRight size={20} color={colors.sage} />}
+        </SoftCard>
+
         <Text style={styles.sectionLabel}>LOCATION</Text>
         <SoftCard style={styles.locationCard}>
           <View style={styles.locationHeader}>
@@ -244,6 +288,7 @@ const styles = StyleSheet.create({
   linkCopy: { flex: 1, paddingRight: spacing.sm },
   linkTitle: { ...typography.label, color: colors.textPrimary },
   linkDetail: { ...typography.caption, color: colors.textSecondary, lineHeight: 18, marginTop: 2 },
+  exportingLabel: { ...typography.caption, color: colors.primary, fontFamily: 'PlusJakartaSans_700Bold' },
   locationCard: { backgroundColor: colors.warmWhite, marginBottom: spacing.lg },
   locationHeader: { flexDirection: 'row', alignItems: 'center' },
   locationStatus: { alignSelf: 'flex-start', flexDirection: 'row', alignItems: 'center', gap: spacing.sm, marginTop: spacing.md, paddingVertical: spacing.xs, paddingHorizontal: spacing.sm, borderRadius: borderRadius.full, backgroundColor: colors.secondarySurface },
