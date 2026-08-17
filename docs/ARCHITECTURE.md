@@ -131,8 +131,9 @@ publishable/anon key, but the backend now contains important server-side trust
 boundaries. RLS and narrow SECURITY DEFINER functions govern community writes,
 the badge trigger awards are database-owned, and the account-deletion contract
 is server-guarded. The authenticated community write contracts are live
-hardened. The governed moderator membership/RPC contract is currently
-source-only and production-gated; it is not a live trust boundary yet.
+hardened. The governed moderator membership/RPC contract is live
+and forms a server-side trust boundary; no permanent moderator roster or
+admin surface is configured.
 
 ---
 

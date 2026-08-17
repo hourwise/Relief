@@ -7,11 +7,12 @@
 
 ## Governed moderation contract overlay — 2026-08-16
 
-The local moderation contract is **SOURCE IMPLEMENTED / PRODUCTION GATED**.
+The governed moderation contract is **COMMUNITY MODERATION CONTRACT — LIVE DEPLOYED**.
 It uses database-backed moderator membership and narrow server-authorized RPCs
-for facility submissions, corrections, and access-code verification. It does
-not add a moderator to production, apply a migration, expose a moderation UI,
-or mutate canonical facilities. See [`MODERATION_CONTRACT.md`](./MODERATION_CONTRACT.md).
+for facility submissions, corrections, and access-code verification. The
+production migration and live authorization tests passed. No permanent
+moderator, moderation UI, canonical publication path, or canonical facility
+mutation is enabled. See [`MODERATION_CONTRACT.md`](./MODERATION_CONTRACT.md).
 
 ## Authenticated community integration overlay - 2026-08-16
 
@@ -191,8 +192,8 @@ Each feature is assessed against the current repository, not against plans or in
 
 | Feature | Surface | Files | Data Source | Backend Dependency | Status | Evidence | Risk | Next Step |
 |---------|---------|-------|-------------|-------------------|--------|----------|------|-----------|
-| Admin panel | None | No admin UI files exist | N/A | Supabase moderator RPCs | PLANNED | Web/internal admin surface remains the recommended interface; source-only queue and decision RPCs are defined | No production moderator identities or portal | Approve a production moderator roster and admin-surface design |
-| Moderation tools | None (source service only) | `src/services/moderation.ts`, source-only migration | Supabase moderation RPCs | Supabase | BACKEND-DEPENDENT | Local queue/decision contract covers facility submissions, corrections, and access-code verification; production is not deployed | Canonical application, photo moderation, and review moderation remain outside scope | Separate production migration and canonical-boundary approval |
+| Admin panel | None | No admin UI files exist | N/A | Supabase moderator RPCs | PLANNED | Web/internal admin surface remains the recommended interface; live queue and decision RPCs are deployed | No permanent moderator identity or portal | Approve a production moderator roster and admin-surface design |
+| Moderation tools | None (source service only) | `src/services/moderation.ts`, governed migration | Supabase moderation RPCs | Supabase | VERIFIED | Live queues and decision RPCs passed ordinary-user denial, moderator authorization, server-derived reviewer, replay, and cleanup tests | No permanent moderator roster/UI; canonical application, photo moderation, and review moderation remain outside scope | Authorize a moderator roster and separate canonical-application design |
 | Report expiry automation | Edge Function | `supabase/functions/expire-reports/index.ts` | Supabase cron + Edge Function | Supabase | PLANNED | Deno function written; not deployed | Reports would never expire without this | Deploy after Supabase project exists |
 
 ---

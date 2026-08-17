@@ -14,6 +14,38 @@ export type Database = {
   }
   public: {
     Tables: {
+      access_code_verification_history: {
+        Row: {
+          access_code_id: string
+          action: string
+          created_at: string
+          id: string
+          moderator_id: string | null
+        }
+        Insert: {
+          access_code_id: string
+          action: string
+          created_at?: string
+          id?: string
+          moderator_id?: string | null
+        }
+        Update: {
+          access_code_id?: string
+          action?: string
+          created_at?: string
+          id?: string
+          moderator_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "access_code_verification_history_access_code_id_fkey"
+            columns: ["access_code_id"]
+            isOneToOne: false
+            referencedRelation: "access_codes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       access_codes: {
         Row: {
           code: string
@@ -64,6 +96,7 @@ export type Database = {
           new_value: string
           notes: string | null
           old_value: string
+          rejection_reason: string | null
           reviewed_at: string | null
           reviewed_by: string | null
           status: string
@@ -77,6 +110,7 @@ export type Database = {
           new_value: string
           notes?: string | null
           old_value?: string
+          rejection_reason?: string | null
           reviewed_at?: string | null
           reviewed_by?: string | null
           status?: string
@@ -90,6 +124,7 @@ export type Database = {
           new_value?: string
           notes?: string | null
           old_value?: string
+          rejection_reason?: string | null
           reviewed_at?: string | null
           reviewed_by?: string | null
           status?: string
@@ -711,6 +746,30 @@ export type Database = {
           id?: string
           timestamp?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      relief_moderators: {
+        Row: {
+          active: boolean
+          created_at: string
+          id: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          updated_at?: string
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -1382,7 +1441,179 @@ export type Database = {
       }
       geomfromewkt: { Args: { "": string }; Returns: unknown }
       gettransactionid: { Args: never; Returns: unknown }
+      list_moderation_access_codes: {
+        Args: never
+        Returns: {
+          code: string
+          created_at: string
+          description: string | null
+          facility_id: string
+          id: string
+          is_verified: boolean | null
+          updated_at: string
+          user_id: string
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "access_codes"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
+      list_moderation_correction_requests: {
+        Args: never
+        Returns: {
+          created_at: string
+          facility_id: string
+          field: string
+          id: string
+          new_value: string
+          notes: string | null
+          old_value: string
+          rejection_reason: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: string
+          user_id: string
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "correction_requests"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
+      list_moderation_facility_submissions: {
+        Args: never
+        Returns: {
+          access_codes: string | null
+          access_notes: string | null
+          address: string
+          country: string
+          created_at: string
+          has_baby_changing: boolean | null
+          has_family_room: boolean | null
+          id: string
+          is_24h: boolean | null
+          is_accessible: boolean | null
+          is_disabled_access: boolean | null
+          is_free: boolean | null
+          is_gender_neutral: boolean | null
+          is_single_occupancy: boolean | null
+          latitude: number
+          longitude: number
+          name: string
+          notes: string | null
+          open_hours: Json | null
+          photos: Json | null
+          postcode: string
+          price_note: string | null
+          rejection_reason: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: string
+          submission_notes: string | null
+          town: string
+          user_id: string
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "facility_submissions"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
       longtransactionsenabled: { Args: never; Returns: boolean }
+      moderate_access_code: {
+        Args: { p_access_code_id: string; p_decision: string }
+        Returns: {
+          code: string
+          created_at: string
+          description: string | null
+          facility_id: string
+          id: string
+          is_verified: boolean | null
+          updated_at: string
+          user_id: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "access_codes"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      moderate_correction_request: {
+        Args: {
+          p_correction_id: string
+          p_decision: string
+          p_rejection_reason?: string
+        }
+        Returns: {
+          created_at: string
+          facility_id: string
+          field: string
+          id: string
+          new_value: string
+          notes: string | null
+          old_value: string
+          rejection_reason: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: string
+          user_id: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "correction_requests"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      moderate_facility_submission: {
+        Args: {
+          p_decision: string
+          p_rejection_reason?: string
+          p_submission_id: string
+        }
+        Returns: {
+          access_codes: string | null
+          access_notes: string | null
+          address: string
+          country: string
+          created_at: string
+          has_baby_changing: boolean | null
+          has_family_room: boolean | null
+          id: string
+          is_24h: boolean | null
+          is_accessible: boolean | null
+          is_disabled_access: boolean | null
+          is_free: boolean | null
+          is_gender_neutral: boolean | null
+          is_single_occupancy: boolean | null
+          latitude: number
+          longitude: number
+          name: string
+          notes: string | null
+          open_hours: Json | null
+          photos: Json | null
+          postcode: string
+          price_note: string | null
+          rejection_reason: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: string
+          submission_notes: string | null
+          town: string
+          user_id: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "facility_submissions"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
       populate_geometry_columns:
         | { Args: { tbl_oid: unknown; use_typmod?: boolean }; Returns: number }
         | { Args: { use_typmod?: boolean }; Returns: string }

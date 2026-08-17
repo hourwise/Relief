@@ -1,15 +1,17 @@
 # Relief Governed Moderation Contract
 
-**Status:** SOURCE IMPLEMENTED / PRODUCTION GATED
-**Date:** 2026-08-16
+**Status:** COMMUNITY MODERATION CONTRACT — LIVE DEPLOYED
+**Date:** 2026-08-17
 **Production project audited:** `bgwxrxkmyaihplaloely`
-**Source-only migration:** `supabase/migrations/20260816220000_governed_moderation_contract.sql`
+**Source migration:** `supabase/migrations/20260816220000_governed_moderation_contract.sql`
+**Production migration:** `20260817062603 governed_moderation_contract`
 
 This document is the current design authority for community moderation. The
-moderation migration and service wrapper are local source only. They have not
-been applied to Supabase, no production moderator has been created, and no
-production contribution has been approved, rejected, verified, revoked or
-copied into the canonical facility table.
+moderation migration and service wrapper are deployed to the Relief production
+project. The deployment was verified with disposable moderator and ordinary
+user identities, then all disposable identities and rows were removed. No
+permanent moderator is configured, and no contribution was copied into the
+canonical facility table.
 
 ## Existing production contract discovered
 
@@ -18,33 +20,32 @@ The read-only production audit found these relevant tables:
 | Table | Current moderation-relevant state |
 |---|---|
 | `facility_submissions` | Contributor-owned pending queue with `pending`, `approved`, and `rejected` status values; `reviewed_at`, `reviewed_by`, and `rejection_reason` already exist. |
-| `correction_requests` | Contributor-owned pending queue with `pending`, `approved`, and `rejected` status values; `reviewed_at` and `reviewed_by` exist, but no rejection-reason column exists in production. |
-| `access_codes` | Owner-derived upsert contract and `is_verified` current state; no moderator verification function or verification-history table exists. |
+| `correction_requests` | Contributor-owned pending queue with `pending`, `approved`, and `rejected` status values; `reviewed_at`, `reviewed_by`, and the deployed `rejection_reason` field are present. |
+| `access_codes` | Owner-derived upsert contract and `is_verified` current state, with deployed moderator verification/revocation RPCs and narrow verification history. |
 | `review_reports` | `review_id`, `user_id`, `reason`, and `created_at`; it has an authenticated owner INSERT policy, but no review table was found behind `review_id`. |
 | `photo_moderation` | Pending/approved/rejected/reported state and owner/report fields exist; Storage and media processing remain outside this batch. |
 | `facilities` | Canonical rows include `publication_status`, `verification_status`, `field_provenance`, `created_by`, `location`, and source/import-derived verification fields. |
 | `user_profiles` | Profile and subscription fields only; no role or moderator field. |
 
-No authoritative moderator, admin, role, permission, or staff table existed.
+The deployed contract now provides the authoritative moderator membership table;
+no permanent moderator membership is currently configured. No admin portal exists.
 The only table matching a broad “role-like” name was `photo_moderation`, which
 is content state rather than identity authorization.
 
-Current live access is therefore asymmetric:
+Current live access is therefore intentionally asymmetric:
 
 - ordinary authenticated users can read their own submissions/corrections and
   submit pending contributions;
 - anonymous users cannot moderate;
 - authenticated users cannot update moderation fields;
-- the existing `service_role` policy can view and update facility submissions,
-  but there is no narrow moderator RPC or server-derived reviewer contract;
-- `reviewed_by` has no existing server-side population mechanism;
+- moderator queue and decision RPCs are authenticated-only and independently
+  check active database membership;
+- reviewer identity and review time are server-derived;
 - facility approval currently has no trigger or function that creates a
   canonical facility;
 - correction approval currently does not apply to `facilities`;
-- access-code verification currently has no moderator mechanism;
-- facility rejection reasons are retained; correction rejection reasons are
-  not currently represented;
-- no moderation event/history table exists;
+- access-code verification and revocation are recorded in the narrow history
+  table;
 - the canonical source/provenance fields make an ungoverned community copy or
   arbitrary correction unsafe.
 
@@ -54,7 +55,7 @@ contract rather than to an active review system.
 
 ## Moderator authorization model
 
-The local design introduces `public.relief_moderators` with:
+The deployed design uses `public.relief_moderators` with:
 
 - a database-generated row id;
 - a unique `user_id` reference to `auth.users`;
@@ -76,7 +77,7 @@ mobile client never receives a service-role credential.
 
 ## Facility-submission lifecycle
 
-The local contract provides:
+The deployed contract provides:
 
 1. `list_moderation_facility_submissions()` — returns pending rows only after
    moderator authorization.
@@ -114,7 +115,7 @@ value from the client.
 
 ## Correction lifecycle
 
-The local contract provides:
+The deployed contract provides:
 
 1. `list_moderation_correction_requests()` — returns pending rows only after
    moderator authorization.
@@ -122,9 +123,9 @@ The local contract provides:
    only `pending → approved` or `pending → rejected`, derives reviewer and
    review time, and preserves the submitted old/new values.
 
-The source-only migration adds a narrow `rejection_reason` column to the local
-proposed schema. It has not been deployed, so the production generated types
-and live schema remain unchanged.
+The deployed migration adds the narrow `rejection_reason` column. Supabase
+TypeScript types were regenerated from the live production schema after
+deployment.
 
 Correction approval is also a reviewed record only. No canonical column is
 interpreted or updated. Consequently there is no applicable canonical field
@@ -133,7 +134,7 @@ correction can affect `facilities`.
 
 ## Access-code verification lifecycle
 
-The local contract provides:
+The deployed contract provides:
 
 1. `list_moderation_access_codes()` — returns unverified codes to an authorized
    moderator only.
@@ -172,16 +173,16 @@ web/internal admin portal is the recommended long-term interface. The local
 not routed from the mobile navigation. Hiding a route is not treated as a
 security boundary.
 
-## Local migration and security-definer design
+## Deployed migration and security-definer design
 
-The source-only migration adds:
+The deployed migration adds:
 
 - `relief_moderators` with no client grants;
 - `access_code_verification_history` with no client grants;
 - local `correction_requests.rejection_reason`;
 - one private moderator-membership helper;
 - three queue-read RPCs;
-- four narrow moderation RPCs;
+- six narrow moderation RPCs (three queue reads and three decisions);
 - authenticated-only execute grants for the public RPCs.
 
 Every privileged function uses `SECURITY DEFINER` only where required and
@@ -189,17 +190,25 @@ sets `search_path = pg_catalog, public`. Relations are schema-qualified,
 reviewer identity is derived from `auth.uid()`, decisions are explicit, and
 ordinary authenticated users cannot supply ownership or reviewer identities.
 
-## Production gate
+## Production verification
 
-No production action was taken. A separate approval would be required to:
+The production gate passed on 2026-08-17. Live verification confirmed
+ordinary-user and anonymous denial, moderator queue access, server-derived
+reviewer fields, terminal replay rejection, access-code verify/revoke
+idempotence, and unchanged canonical facility state. Supabase TypeScript types
+were regenerated from the deployed schema.
 
-- review the exact migration diff and apply it;
-- decide whether the local correction rejection field is accepted;
-- nominate and create production moderator memberships;
-- regenerate Supabase types from the deployed schema;
-- run disposable ordinary-user/moderator authorization tests against live
-  RPCs;
-- decide and implement any future canonical facility application path;
-- decide access-code uniqueness and account-deletion treatment for moderation
-  history;
-- design a real review table and review-report moderation workflow.
+The account-deletion compatibility check confirmed the new membership
+`ON DELETE CASCADE` treatment. The first disposable deletion attempt exposed
+an existing reviewer foreign key until the disposable rows were cleaned up;
+the disposable moderator then deleted successfully. No production account-
+deletion function was changed.
+
+Remaining decisions and out-of-scope work are:
+
+- design and implement any future canonical facility application path;
+- decide access-code uniqueness;
+- design a real review table and review-report moderation workflow;
+- build a web/internal moderator interface and separately authorise any
+  permanent moderator roster;
+- implement photo moderation and Storage processing.

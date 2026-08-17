@@ -164,9 +164,9 @@ Decisions are ordered by blocker level. A decision at BLOCKER level must be reso
 
 ---
 
-### D10: Moderation Ownership — SOURCE CONTRACT DEFINED / PRODUCTION OPEN
+### D10: Moderation Ownership — LIVE CONTRACT DEPLOYED / PORTAL AND ROSTER OPEN
 
-**Context:** Community submissions, photos, reviews, and corrections require moderation. The source-only contract now defines database-backed moderator membership and narrow review RPCs, but no production moderator identities or admin portal exist.
+**Context:** Community submissions and corrections now have a live governed moderation contract with database-backed moderator membership and narrow review RPCs. No permanent moderator identity or admin portal is configured. Photos and reviews remain separate deferred workflows.
 
 **Options:**
 - **A) In-house moderation** — Team reviews submissions via admin dashboard.
@@ -174,7 +174,7 @@ Decisions are ordered by blocker level. A decision at BLOCKER level must be reso
 - **C) Automated + human review** — Automated filters for spam/abuse; human review for edge cases.
 - **D) Defer to pre-launch** — Launch without community features; add with moderation later.
 
-**Recommendation:** Option A for the moderation authority, with a small internal/web admin surface. The local contract keeps community approval separate from canonical facility mutation; production deployment and canonical-application semantics remain open.
+**Recommendation:** Option A for the moderation authority, with a small internal/web admin surface. The live contract keeps community approval separate from canonical facility mutation; portal design, permanent roster authorization, and canonical-application semantics remain open.
 
 **Blocker level:** MEDIUM  
 **Owner:** TBD

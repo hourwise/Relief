@@ -1,19 +1,21 @@
 # Relief — Current State Assessment
 
-## Governed moderation contract — source-only, production gated — 2026-08-16
+## Governed moderation contract — LIVE DEPLOYED — 2026-08-17
 
-The live production audit found no moderator identity table, moderator RPC,
-admin screen, or canonical-application function. A local-only moderation
-contract is now defined in [`MODERATION_CONTRACT.md`](MODERATION_CONTRACT.md)
-and `supabase/migrations/20260816220000_governed_moderation_contract.sql`.
+The governed moderation contract is deployed to the Relief production project
+in migration `20260817062603 governed_moderation_contract`. It provides
+database-backed moderator membership, narrow authenticated-only RPCs, and no
+admin screen or canonical-application function. The design authority is
+[`MODERATION_CONTRACT.md`](MODERATION_CONTRACT.md).
 
 The design uses database-backed `relief_moderators` membership, narrow
 authenticated-only SECURITY DEFINER RPCs, server-derived reviewer identity,
 explicit terminal transitions, and no client write path to moderation fields.
 Facility and correction approval only records the moderation result; it does
 not mutate canonical `facilities`. Access-code verification/revocation has a
-small local verification-history table. No migration was applied, no
-moderator was created, and no production contribution was changed.
+small deployed verification-history table. Disposable live verification
+identities and rows were removed; no permanent moderator is configured and no
+production contribution was changed.
 
 Review reports remain stale/deferred because no review table exists. Photo
 moderation remains out of scope. Android/EAS work files remain concurrent and
@@ -300,7 +302,7 @@ Phase G supersedes the older historical wording below for password recovery and 
 6. **Google Maps key restrictions not inspected.** Tiles render on this device, so the key works for the debug certificate and Maps SDK for Android is enabled — but the Cloud Console restriction list was not reviewed.
 7. **Quality gates were run under Node 24.12.0**, while the EAS image uses Node 22. `.nvmrc`, `.node-version` and `engines` now pin 22; re-run `npm ci && npm run verify && npx expo-doctor` under Node 22 before the first EAS build.
 8. **9 published facilities have unusable names** (two characters or fewer, or no alphanumerics) from the Toilet Map UK import — one renders as `]` in search results. A data cleanup, not an app defect.
-9. **Storage, moderation, notifications, RevenueCat** remain unconfigured; the features that depend on them are hidden rather than finished.
+9. **Storage, notifications, and RevenueCat** remain unconfigured. The governed moderation contract is live, but the moderator UI, permanent moderator roster, canonical publishing, photo moderation, and review moderation remain outside this scope.
 10. **Lint warnings and unrouted-screen debt.** ESLint reports 0 errors but 92 warnings, mostly unused variables inside hidden features. The unrouted screens keep their React Compiler violations as scoped warnings and must be cleared — or those screens deleted — before any of them is registered again. Prettier is configured but has deliberately **not** been run repo-wide, so that a reformat does not bury real changes.
 11. **No CI.** The quality gates exist as npm scripts but nothing runs them automatically.
 12. **Machine-level `GRADLE_USER_HOME` is misconfigured** — it points inside a scoop-managed Gradle install of a different version, which prevented any Gradle build until overridden. Android Studio inherits this. See `ANDROID_SMOKE_TEST.md`.

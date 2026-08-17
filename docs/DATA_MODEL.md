@@ -5,7 +5,7 @@
 
 > **Current audit correction — 2026-08-16:** the live Relief project has since
 > been independently audited. For the current moderation contract, live
-> schema, and source-only production gate, use
+> schema, and live production moderation contract, use
 > [`MODERATION_CONTRACT.md`](MODERATION_CONTRACT.md) and
 > [`CURRENT_STATE.md`](CURRENT_STATE.md). The historical “reviews” section
 > below describes an intended model; no live `reviews` table currently exists.
@@ -146,8 +146,8 @@
 **Migration:** `supabase/migrations/20260624_community_features.sql`
 
 **RLS:** Authenticated users insert their own pending rows; the live schema has
-`reviewed_at` and `reviewed_by` but no rejection-reason field. A local-only
-moderation migration proposes that narrow audit field; it is not deployed.
+`reviewed_at`, `reviewed_by`, and the deployed narrow `rejection_reason` field.
+Moderation decisions use authenticated-only, membership-checked RPCs.
 
 ---
 
@@ -159,8 +159,9 @@ moderation migration proposes that narrow audit field; it is not deployed.
 
 **RLS:** The live contract uses an owner-derived upsert RPC, owner reads, and
 public reads only for verified codes attached to published facilities. Direct
-client verification is denied. Verification history is proposed locally, not
-deployed.
+client verification is denied. Moderator verification/revocation is handled
+by authenticated-only RPCs and recorded in
+`access_code_verification_history`.
 
 **Security concern:** Access codes visible to all authenticated users. Consider abuse risk.
 
