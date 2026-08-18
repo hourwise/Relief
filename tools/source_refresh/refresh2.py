@@ -713,6 +713,37 @@ def write_markdown(reconciliation: dict[str, Any], review: dict[str, Any], recon
         f"Machine-readable review: `{review_path.name}`.",
     ])
     reconciliation_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    review_lines = [
+        "# Toilet Map Refresh 2 Review",
+        "",
+        "> **REVIEW ONLY — PROPOSED / NOT AUTHORIZED FOR PRODUCTION EXECUTION**",
+        "",
+        f"- Source checksum: `{review['source_checksum']}`",
+        f"- Generating commit: `{review['generating_commit']}`",
+        f"- Canonical mutations: `{review['statistics']['canonical_mutations']}`",
+        "",
+        "## Operation classes",
+        "",
+        "| Class | Count |",
+        "|---|---:|",
+    ]
+    for category in ("SAFE_CANDIDATE", "REVIEW_REQUIRED", "PROTECTED", "QUARANTINED", "STALE_CANDIDATE"):
+        review_lines.append(f"| `{category}` | {review['operation_counts'].get(category, 0):,} |")
+    review_lines.extend([
+        "",
+        "## Review rules",
+        "",
+        "- Explicit source booleans preserve `true`, `false`, and `null`; missing source values do not become false.",
+        "- Source/canonical conflicts, omissions, names, coordinates, opening hours, inferred matches and new facilities require human review.",
+        "- Stronger community/staff/governed provenance is protected and is never auto-overwritten.",
+        "- Missing source records are stale candidates; no deletion or unpublish operation is proposed.",
+        "",
+        f"Known bad-name records reviewed: `{len(review['known_bad_name_records'])}`; fresh non-empty bad-name candidates: `{len(review['new_bad_name_rows'])}`.",
+        f"Duplicate/collision candidates: `{len(review['duplicate_collision_candidates'])}`.",
+        "",
+        "The complete deterministic operation set, including before/after values, source evidence, provenance and review flags, is in `TOILET_MAP_APPLY_2_MANIFEST.json`.",
+    ])
+    review_path.write_text("\n".join(review_lines) + "\n", encoding="utf-8")
     plan_lines = [
         "# Toilet Map Refresh 2 — Proposed Apply 2 Plan",
         "",
