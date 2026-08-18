@@ -759,6 +759,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     baseline = json.loads(baseline_path.read_text(encoding="utf-8")) if baseline_path.exists() else {}
     known_bad_facility_ids = {str(item["id"]) for item in baseline.get("invalid_name_baseline", {}).get("published_examples", []) if item.get("id")}
     reconciliation, review, manifest = build_report(source_path=source_path, previous_rows=previous_rows, current_rows=current_rows, production=production, source_meta=source_meta, generating_commit=args.generating_commit or git_commit(root), known_bad_facility_ids=known_bad_facility_ids, accepted_production_counts={"facilities": 15584, "facility_sources": 15584, "import_runs": 5, "staging_rows": 0})
+    postcheck = production if args.offline else _production_read_snapshot(root, Path(args.snapshot_dir).resolve() / "postcheck", False)
+    reconciliation["production_postcheck"] = {"counts": postcheck["counts"], "visibility": postcheck["visibility"], "counts_equal_preflight": postcheck["counts"] == production["counts"], "this_batch_mutations": 0}
     out_dir = Path(args.output_dir).resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "TOILET_MAP_REFRESH_2_SOURCE.json").write_text(json.dumps(source_meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
