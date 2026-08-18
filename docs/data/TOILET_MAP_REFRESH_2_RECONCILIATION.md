@@ -28,21 +28,25 @@
 | Missing/stale candidates | 20 |
 | Exact canonical matches | 15,564 |
 | New facility candidates | 42 |
-| Proposed canonical field changes | 2,810 |
+| Proposed canonical field changes | 132 |
 | Protected/provenance-conflict operations | 0 |
 | Duplicate/collision candidates | 3 |
 | Quarantined rows | 485 |
 | Bad-name rows | 33 |
 | Missing source-name rows | 2,679 |
 | Bad-coordinate rows | 485 |
-| Manual-review count | 3,335 |
+| Review-required operations | 152 |
+| Review-deferred operations | 2,678 |
+| Apply 2 candidate operations | 174 |
+| Manual-review count | 657 |
 
 ## Proposed operation classes
 
 | Class | Count |
 |---|---:|
 | `SAFE_CANDIDATE` | 22 |
-| `REVIEW_REQUIRED` | 2,830 |
+| `REVIEW_REQUIRED` | 152 |
+| `REVIEW_DEFERRED` | 2,678 |
 | `PROTECTED` | 0 |
 | `QUARANTINED` | 485 |
 | `STALE_CANDIDATE` | 20 |
@@ -50,11 +54,23 @@
 ## Safety findings
 
 - `canonical_mutations = 0` and `production_mutations = 0`.
-- Source omissions, including true-to-null and known-hours-to-missing transitions, are review evidence only; they do not clear canonical values automatically.
+- Source omissions, including true-to-null and known-hours-to-missing transitions, are `REVIEW_DEFERRED` evidence only; they do not clear canonical values and are excluded from the Apply 2 candidate set.
 - Missing source records are `STALE_CANDIDATE`; no delete or unpublish operation is proposed.
 - Known unusable-name records reviewed: `9`; newly found bad-name rows: `24`.
 - Duplicate/collision candidates: `3`.
 - Apply 1A manifest, plan, audit evidence, roles and sealing evidence were read-only inputs and remain immutable.
+
+## Review decomposition
+
+| Reason code | Operations | Apply 2 candidate | Human review | Deterministic resolution |
+|---|---:|---:|---:|---|
+| `NEW_FACILITY` | 42 | yes | yes | RETAIN_FOR_EXPLICIT_CREATION_APPROVAL |
+| `SAFE_BOOLEAN_ENRICHMENT` | 22 | yes | no | PROMOTE_TO_SAFE_CANDIDATE |
+| `SOURCE_CANONICAL_CONFLICT` | 100 | yes | yes | RETAIN_FOR_HUMAN_REVIEW |
+| `SOURCE_OMISSION` | 2,678 | no | no | EXCLUDE_FROM_APPLY_2_PRESERVE_CANONICAL |
+| `SOURCE_VALIDATION` | 485 | no | yes | QUARANTINE_NO_APPLY |
+| `STALE_SOURCE_RECORD` | 20 | no | yes | RETAIN_CANONICAL_NO_DELETE |
+| `UNSUPPORTED_ENRICHMENT` | 10 | yes | yes | RETAIN_FOR_HUMAN_REVIEW |
 
 ## Production read-only postcheck boundary
 
