@@ -313,16 +313,22 @@ Phase G supersedes the older historical wording below for password recovery and 
 
 Exercise account **creation** and Google OAuth on the device — the two auth paths still unverified. Then, if a shareable build is wanted: `eas init` against the chosen Expo account, add the three `EXPO_PUBLIC_*` values as `preview` environment variables, register the EAS keystore's SHA-1 on the Maps key, and run `eas build -p android --profile preview`. Re-run the quality gates under Node 22 first.
 
-## Governed user data export — SOURCE IMPLEMENTED / PRODUCTION NOT DEPLOYED — 2026-08-17
+## Governed user data export — LIVE DEPLOYED / VERIFIED — 2026-08-18
 
 The signed-in Profile now exposes `Download my data` under Privacy & Data.
-The source implementation uses a server-governed `export-account` Edge
-Function with an empty request body, verified-subject identity, recent
-authentication, explicit user-scoped reads, and a versioned redacted JSON
-envelope delivered through the native share sheet. Test mode uses a clearly
-labelled deterministic synthetic export. No production migration, Edge
-Function deployment, live export, production account, or Storage file was
-created for this batch. The design authority is
+The live `export-account` Edge Function uses an empty request body,
+verified-subject identity, recent authentication, explicit user-scoped reads,
+and a versioned redacted JSON envelope delivered through the native share
+sheet. Production version 2 is active with JWT verification enabled. Live
+verification passed for anonymous/invalid-auth rejection, authenticated
+export, request-target rejection, two-way cross-user isolation, contribution
+redaction, secret/provider exclusion, repeatability, and non-mutation using
+two disposable accounts that were hard-deleted afterward. The protected
+moderation-summary sources are not exposed through the current export data
+source; the response explicitly reports partial availability instead of
+claiming that moderation activity is absent. No production migration,
+canonical mutation, Storage object, payment history, or real account was
+created for this verification. The design authority is
 [`DATA_EXPORT_CONTRACT.md`](DATA_EXPORT_CONTRACT.md).
 
 ## Luna continuation status (2026-08-08)

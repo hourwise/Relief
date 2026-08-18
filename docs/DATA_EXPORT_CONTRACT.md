@@ -1,11 +1,12 @@
 # Relief governed user data export contract
 
-Status: `DATA EXPORT — SOURCE IMPLEMENTED / PRODUCTION NOT DEPLOYED`
+Status: `GOVERNED USER DATA EXPORT — LIVE DEPLOYED / VERIFIED`
 
-This document describes the first governed `Download my data` implementation.
-It is source and local-verification evidence only. No production migration,
-Edge Function deployment, production account creation, or live export was
-performed in this batch.
+This document describes the governed `Download my data` implementation and
+its bounded production verification. The `export-account` Edge Function is
+deployed with JWT verification enabled. No production migration was required;
+the live test used two generated disposable accounts and removed them after
+verification.
 
 ## Boundary and architecture
 
@@ -21,9 +22,10 @@ it does not write a file, persist an export, use public Storage, or mutate any
 database row. The mobile Profile action passes the returned JSON to the native
 share sheet. No service-role credential reaches the mobile bundle or response.
 
-Production deployment must later configure the function with the normal
-Supabase secrets and retain JWT verification. That deployment is a separate
-approval gate.
+The live deployment uses the normal Supabase server-side secrets and retains
+JWT verification. Protected moderation-summary data remains explicitly
+omitted where unavailable through the current export data source; no
+moderation security controls were weakened to include it.
 
 ## Export inventory
 
