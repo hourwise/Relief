@@ -30,6 +30,8 @@ const synthetic = buildTestDataExport();
 assertEqual('export version is explicit', synthetic.export_version, 1);
 assertEqual('synthetic account is clearly non-production', synthetic.account.email, 'example.user@invalid.test');
 assertEqual('raw provider payloads are explicitly excluded', synthetic.subscriptions.provider_payloads, 'excluded');
+assertEqual('synthetic moderation availability is explicit', synthetic.moderation_activity.availability, 'complete');
+assertEqual('synthetic moderation limitation is null', synthetic.moderation_activity.limitation, null);
 assertTrue('synthetic export has stable empty sections', synthetic.favourites.length === 0 && synthetic.contributions.access_codes.length === 0);
 assertEqual('formatted export is valid JSON', JSON.parse(formatDataExport(synthetic)).export_version, 1);
 
@@ -56,6 +58,7 @@ void (async () => {
   assertTrue('server export has no mutation calls', !exportFunction.includes('.insert(') && !exportFunction.includes('.update(') && !exportFunction.includes('.delete('));
   assertTrue('reviewer identities are not returned in the payload mapping', !exportFunction.includes('reviewed_by:') && !exportFunction.includes('reported_by:') && !exportFunction.includes('moderator_id:'));
   assertTrue('canonical provenance is not selected', !exportFunction.includes(".select('field_provenance") && !exportFunction.includes('field_provenance,'));
+  assertTrue('unavailable moderation summaries are disclosed', exportFunction.includes('Some internal moderation activity is not currently included in this export.') && exportFunction.includes("availability: moderationUnavailable ? 'partial' : 'complete'"));
   assertTrue('profile exposes the user-facing export entry', profileScreen.includes('Download my data') && profileScreen.includes('requestDataExport'));
 
   section('authentication boundary');

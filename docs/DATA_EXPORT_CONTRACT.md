@@ -45,8 +45,8 @@ The inventory was derived from the current Relief production schema on project
 | `photo_moderation` | `EXPORT_REDACTED` | Own moderation row status and processing flags are included. Photo URLs, storage object names, and third-party metadata are excluded; Storage is not enabled. |
 | `user_badges` | `EXPORT` | Own badge type, award time, and governed source. |
 | `rate_limits` | `DO_NOT_EXPORT` | Internal abuse-control/security metadata is not personal-access data needed by the user. |
-| `relief_moderators` | `SUMMARY_ONLY` | Only the requester’s own active moderator role and assignment timestamps are represented; the private roster is never exposed. |
-| `access_code_verification_history` | `SUMMARY_ONLY` | Only the requester’s own verification action and timestamp are included. Other users’ codes, IDs, and contribution content are omitted. |
+| `relief_moderators` | `SUMMARY_ONLY` | Only the requester’s own active moderator role and assignment timestamps are represented when the protected source is available; the private roster is never exposed. If unavailable, the export explicitly discloses that some internal moderation activity is omitted. |
+| `access_code_verification_history` | `SUMMARY_ONLY` | Only the requester’s own verification action and timestamp are included when the protected source is available. If unavailable, the export explicitly discloses that some internal moderation activity is omitted. Other users’ codes, IDs, and contribution content are omitted. |
 | `user_subscriptions` | `EXPORT_REDACTED` | Own structured entitlement and lifecycle dates are included. Provider IDs and raw provider payloads are excluded. |
 | `subscription_events` | `EXPORT_REDACTED` | Own event type, tier transition, and creation time are included. `details`, `revenuecat_event_id`, and raw provider payloads are excluded. No retention/legal decision is made here. |
 | `facilities.created_by` | `EXPORT_REDACTED` | Bounded attribution only: canonical facility ID, public name/address/town/postcode, creator association, and creation time. `field_provenance`, source rows, and import internals are excluded. |
@@ -90,6 +90,8 @@ categories rather than omitting sections:
   },
   "moderation_activity": {
     "role": "none",
+    "availability": "complete",
+    "limitation": null,
     "review_actions": [],
     "verification_actions": [],
     "photo_reports": []
@@ -98,6 +100,14 @@ categories rather than omitting sections:
   "excluded": []
 }
 ```
+
+When protected moderation-summary sources are unavailable to the current
+export architecture, the response remains successful for the core export but
+uses `role: null`, `availability: "partial"`, and the user-facing limitation
+`Some internal moderation activity is not currently included in this export.`
+This distinguishes unavailable information from a confirmed absence of
+moderation activity without exposing protected table names or security
+configuration.
 
 The `excluded` field is an explicit human-readable reminder of categories that
 are intentionally outside the export. It is not a promise about legal

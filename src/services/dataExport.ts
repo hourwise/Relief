@@ -49,7 +49,9 @@ export interface ReliefDataExport {
     provider_payloads: 'excluded';
   };
   moderation_activity: {
-    role: 'moderator' | 'none';
+    role: 'moderator' | 'none' | null;
+    availability: 'complete' | 'partial';
+    limitation: string | null;
     review_actions: Record<string, unknown>[];
     verification_actions: Record<string, unknown>[];
     photo_reports: Record<string, unknown>[];
@@ -131,7 +133,14 @@ export function buildTestDataExport(): ReliefDataExport {
     },
     badges: [],
     subscriptions: { current: null, events: [], provider_payloads: 'excluded' },
-    moderation_activity: { role: 'none', review_actions: [], verification_actions: [], photo_reports: [] },
+    moderation_activity: {
+      role: 'none',
+      availability: 'complete',
+      limitation: null,
+      review_actions: [],
+      verification_actions: [],
+      photo_reports: [],
+    },
     canonical_attribution: [],
     excluded: [
       'passwords_and_authentication_tokens',

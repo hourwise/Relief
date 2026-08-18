@@ -39,10 +39,15 @@ function bearerToken(request: Request): string | null {
   return match?.[1] ?? null;
 }
 
-async function readRows<T extends Row>(query: any, label: string): Promise<T[]> {
+async function readRows<T extends Row>(
+  query: any,
+  label: string,
+  onOptionalUnavailable?: () => void,
+): Promise<T[]> {
   const { data, error } = await query;
   if (error) {
     if (OPTIONAL_EMPTY_READ_LABELS.has(label)) {
+      onOptionalUnavailable?.();
       console.warn(JSON.stringify({ outcome: 'optional_export_section_unavailable', section: label }));
       return [];
     }
@@ -103,6 +108,7 @@ function safeSubscription(row: Row): Row {
 
 async function buildExport(admin: any, user: { id: string; email?: string | null; created_at?: string; email_confirmed_at?: string | null; user_metadata?: Record<string, unknown> | null }): Promise<Row> {
   const userId = user.id;
+  const unavailableSections = new Set<string>();
   const [
     profiles,
     favourites,
@@ -136,8 +142,8 @@ async function buildExport(admin: any, user: { id: string; email?: string | null
     readRows(admin.from('photo_moderation').select('id,facility_id,status,exif_stripped,faces_blurred,report_reason,created_at').eq('user_id', userId), 'photo_moderation_read_failed'),
     readRows(admin.from('photo_moderation').select('status,created_at').eq('reported_by', userId), 'photo_reports_read_failed'),
     readRows(admin.from('user_badges').select('id,badge_type,awarded_at,source').eq('user_id', userId), 'badges_read_failed'),
-    readRows(admin.from('relief_moderators').select('active,created_at,updated_at').eq('user_id', userId).limit(1), 'moderator_read_failed'),
-    readRows(admin.from('access_code_verification_history').select('action,created_at').eq('moderator_id', userId), 'verification_history_read_failed'),
+    readRows(admin.from('relief_moderators').select('active,created_at,updated_at').eq('user_id', userId).limit(1), 'moderator_read_failed', () => unavailableSections.add('moderation_activity')),
+    readRows(admin.from('access_code_verification_history').select('action,created_at').eq('moderator_id', userId), 'verification_history_read_failed', () => unavailableSections.add('moderation_activity')),
     readRows(admin.from('user_subscriptions').select('tier,is_active,lifetime_purchase_at,plus_monthly_purchase_at,plus_yearly_purchase_at,current_period_start,current_period_end,will_renew,is_grace_period,cancellation_at,cancelled_at,refunded_at,created_at,updated_at').eq('user_id', userId).limit(1), 'subscription_read_failed'),
     readRows(admin.from('subscription_events').select('event_type,tier,previous_tier,created_at').eq('user_id', userId).order('created_at', { ascending: true }), 'subscription_events_read_failed'),
     readRows(admin.from('facility_submissions').select('status,reviewed_at').eq('reviewed_by', userId), 'reviewed_submissions_read_failed'),
@@ -163,6 +169,7 @@ async function buildExport(admin: any, user: { id: string; email?: string | null
   const metadata = user.user_metadata ?? {};
   const profile = profiles[0] ? withoutUserId(profiles[0]) : null;
   const moderator = moderators[0];
+  const moderationUnavailable = unavailableSections.has('moderation_activity');
 
   return {
     export_version: EXPORT_VERSION,
@@ -198,7 +205,9 @@ async function buildExport(admin: any, user: { id: string; email?: string | null
       provider_payloads: 'excluded',
     },
     moderation_activity: {
-      role: moderator?.active === true ? 'moderator' : 'none',
+      role: moderationUnavailable ? null : moderator?.active === true ? 'moderator' : 'none',
+      availability: moderationUnavailable ? 'partial' : 'complete',
+      limitation: moderationUnavailable ? 'Some internal moderation activity is not currently included in this export.' : null,
       review_actions: [
         ...reviewedSubmissions.map((row) => ({ kind: 'facility_submission', outcome: row.status, occurred_at: row.reviewed_at })),
         ...reviewedCorrections.map((row) => ({ kind: 'correction_request', outcome: row.status, occurred_at: row.reviewed_at })),
