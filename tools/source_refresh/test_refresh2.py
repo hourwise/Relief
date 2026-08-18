@@ -85,6 +85,33 @@ class Refresh2Tests(unittest.TestCase):
         protected = build_operations(candidates, [protected_facility], [link], source_version="2026-08-18T01:00:00Z", source_checksum="abc")
         self.assertEqual(protected["operation_counts"], {"PROTECTED": 1})
 
+    def test_source_omission_is_deferred_and_never_a_safe_clear(self) -> None:
+        candidates = ToiletMapAdapter().read(self._csv([source_row("omitted", name="")]))
+        facility = {"id": "facility-1", "name": "Unnamed Toilet", "town": "Liverpool", "latitude": 53.4, "longitude": -3.0, "field_provenance": {}}
+        link = {"facility_id": "facility-1", "source_name": "Toilet Map UK", "source_record_id": "omitted"}
+        result = build_operations(candidates, [facility], [link], source_version="2026-08-18T01:00:00Z", source_checksum="abc")
+        self.assertEqual(result["operation_counts"], {"REVIEW_DEFERRED": 1})
+        operation = result["operations"][0]
+        self.assertEqual(operation["review_reason_code"], "SOURCE_OMISSION")
+        self.assertEqual(operation["review_resolution"], "EXCLUDE_FROM_APPLY_2_PRESERVE_CANONICAL")
+        self.assertFalse(operation["apply_2_candidate"])
+        self.assertFalse(operation["human_review_required"])
+        self.assertEqual(result["apply_2_candidate_count"], 0)
+        self.assertEqual(result["proposed_canonical_field_changes"], 0)
+
+    def test_unsupported_opening_hours_enrichment_remains_human_review(self) -> None:
+        source = source_row("hours", opening_times='[["09:00","17:00"],["09:00","17:00"],["09:00","17:00"],["09:00","17:00"],["09:00","17:00"],["09:00","17:00"],["09:00","17:00"]]')
+        candidates = ToiletMapAdapter().read(self._csv([source]))
+        facility = {"id": "facility-1", "name": "Central Toilet", "town": "Liverpool", "latitude": 53.4, "longitude": -3.0, "open_hours": None, "field_provenance": {}}
+        link = {"facility_id": "facility-1", "source_name": "Toilet Map UK", "source_record_id": "hours"}
+        result = build_operations(candidates, [facility], [link], source_version="2026-08-18T01:00:00Z", source_checksum="abc")
+        self.assertEqual(result["operation_counts"], {"REVIEW_REQUIRED": 1})
+        operation = result["operations"][0]
+        self.assertEqual(operation["review_reason_code"], "UNSUPPORTED_ENRICHMENT")
+        self.assertTrue(operation["apply_2_candidate"])
+        self.assertTrue(operation["human_review_required"])
+        self.assertTrue(operation["review_assessment"]["urgent_search_impact"])
+
     def test_nearby_separate_facility_is_not_automatically_collapsed(self) -> None:
         candidates = ToiletMapAdapter().read(self._csv([source_row("new", name="Station Toilet", latitude="53.4001", longitude="-3.0001")]))
         facility = {"id": "facility-1", "name": "Library Toilet", "town": "Liverpool", "latitude": 53.4, "longitude": -3.0, "is_accessible": None, "field_provenance": {}}

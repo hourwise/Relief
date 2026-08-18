@@ -40,6 +40,17 @@ records become `STALE_CANDIDATE`; they are never deleted or unpublished by this
 tool. Raw snapshots and live REST snapshots remain under the ignored facility
 enrichment cache.
 
+### Refresh 2 review decomposition
+
+Source omissions are classified as `REVIEW_DEFERRED`: the current canonical
+value is preserved, the omission clear is excluded from the Apply 2 candidate
+set, and an unknown source value is never converted into false certainty.
+Exact-source conflicts, new-facility creation, and material opening-hours
+enrichment remain `REVIEW_REQUIRED`. Stronger Relief/community/staff/governed
+provenance remains `PROTECTED`; malformed, duplicate, and stale records retain
+their quarantine/lifecycle boundaries. Each operation records its review reason
+code, deterministic resolution, Apply 2 candidate flag, and safety assessment.
+
 The council and TfL entries are templates pending source-specific reuse
 verification. The Changing Places Consortium master registry and OSM/ODbL data
 are intentionally outside the canonical ingestion path.

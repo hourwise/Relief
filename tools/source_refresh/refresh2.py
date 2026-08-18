@@ -86,8 +86,95 @@ CLASS_ORDER = {
     "SAFE_CANDIDATE": 0,
     "REVIEW_REQUIRED": 1,
     "PROTECTED": 2,
-    "QUARANTINED": 3,
-    "STALE_CANDIDATE": 4,
+    "REVIEW_DEFERRED": 3,
+    "QUARANTINED": 4,
+    "STALE_CANDIDATE": 5,
+}
+
+APPLY_2_CANDIDATE_CATEGORIES = {"SAFE_CANDIDATE", "REVIEW_REQUIRED"}
+URGENT_SEARCH_FIELDS = {"open_hours", "is_accessible", "is_free", "requires_radar_key"}
+
+REVIEW_RULES = {
+    "SAFE_BOOLEAN_ENRICHMENT": {
+        "rule": "Exact source identity supplies an explicit boolean where the canonical value is unknown.",
+        "safety_critical": False,
+        "ambiguity": False,
+        "stronger_provenance_risk": False,
+        "unknown_to_false_certainty_risk": False,
+        "human_review_required": False,
+    },
+    "SOURCE_CANONICAL_CONFLICT": {
+        "rule": "The exact-linked source and current canonical value disagree; the source is not sufficient to choose the winner automatically.",
+        "safety_critical": True,
+        "ambiguity": True,
+        "stronger_provenance_risk": True,
+        "unknown_to_false_certainty_risk": False,
+        "human_review_required": True,
+    },
+    "SOURCE_OMISSION": {
+        "rule": "The fresh source omitted a value previously present in Relief; omission is unknown, not an instruction to clear the canonical value.",
+        "safety_critical": True,
+        "ambiguity": True,
+        "stronger_provenance_risk": True,
+        "unknown_to_false_certainty_risk": True,
+        "human_review_required": False,
+    },
+    "UNSUPPORTED_ENRICHMENT": {
+        "rule": "The source supplies a valid enrichment, but the field is outside the narrow automatic scalar policy.",
+        "safety_critical": True,
+        "ambiguity": True,
+        "stronger_provenance_risk": True,
+        "unknown_to_false_certainty_risk": False,
+        "human_review_required": True,
+    },
+    "NEW_FACILITY": {
+        "rule": "The source record has no exact canonical link; creation and duplicate review are required before any insert.",
+        "safety_critical": True,
+        "ambiguity": True,
+        "stronger_provenance_risk": False,
+        "unknown_to_false_certainty_risk": False,
+        "human_review_required": True,
+    },
+    "STRONGER_PROVENANCE": {
+        "rule": "The proposed source value would overwrite stronger Relief, community, staff, governed, or manually corrected provenance.",
+        "safety_critical": True,
+        "ambiguity": False,
+        "stronger_provenance_risk": True,
+        "unknown_to_false_certainty_risk": False,
+        "human_review_required": True,
+    },
+    "SOURCE_VALIDATION": {
+        "rule": "The source row is malformed or outside the permitted coordinate envelope and must remain quarantined.",
+        "safety_critical": True,
+        "ambiguity": True,
+        "stronger_provenance_risk": False,
+        "unknown_to_false_certainty_risk": True,
+        "human_review_required": True,
+    },
+    "DUPLICATE_SOURCE_LINK": {
+        "rule": "One source identity is linked to multiple canonical facilities and cannot be applied deterministically.",
+        "safety_critical": True,
+        "ambiguity": True,
+        "stronger_provenance_risk": False,
+        "unknown_to_false_certainty_risk": False,
+        "human_review_required": True,
+    },
+    "SOURCE_BAD_NAME": {
+        "rule": "The source record has no usable name; no name is invented for a new canonical facility.",
+        "safety_critical": True,
+        "ambiguity": True,
+        "stronger_provenance_risk": False,
+        "unknown_to_false_certainty_risk": True,
+        "human_review_required": True,
+    },
+    "STALE_SOURCE_RECORD": {
+        "rule": "A previously accepted source record is absent from the fresh source; canonical data is preserved and no delete/unpublish action is proposed.",
+        "safety_critical": True,
+        "ambiguity": True,
+        "stronger_provenance_risk": True,
+        "unknown_to_false_certainty_risk": True,
+        "human_review_required": True,
+    },
 }
 
 
@@ -324,7 +411,27 @@ def _operation(
     collision: bool = False,
     source_version: str | None,
     source_checksum: str,
+    review_reason_code: str,
+    review_resolution: str,
+    apply_2_candidate: bool | None = None,
 ) -> dict[str, Any]:
+    if review_reason_code not in REVIEW_RULES:
+        raise ValueError(f"unknown Refresh 2 review reason code: {review_reason_code}")
+    rule = REVIEW_RULES[review_reason_code]
+    if apply_2_candidate is None:
+        apply_2_candidate = category in APPLY_2_CANDIDATE_CATEGORIES
+    human_review_required = bool(rule["human_review_required"])
+    assessment = {
+        "rule": rule["rule"],
+        "safety_critical": rule["safety_critical"],
+        "ambiguous": rule["ambiguity"],
+        "deterministic_resolution": review_resolution,
+        "stronger_provenance_risk": rule["stronger_provenance_risk"] or bool(current_provenance),
+        "unknown_to_false_certainty_risk": rule["unknown_to_false_certainty_risk"],
+        "material_user_visible_change": bool(not str(field).startswith("__") and category not in {"REVIEW_DEFERRED", "QUARANTINED", "STALE_CANDIDATE"}),
+        "urgent_search_impact": field in URGENT_SEARCH_FIELDS,
+        "human_review_required": human_review_required,
+    }
     return {
         "operation_id": _operation_id(category, facility_id, candidate.source_record_id, field, before, after),
         "generation": "Toilet Map Refresh / Apply 2",
@@ -345,11 +452,54 @@ def _operation(
         },
         "current_provenance": current_provenance,
         "reason": reason,
-        "confidence": "HIGH" if category == "SAFE_CANDIDATE" else "MEDIUM" if category in {"REVIEW_REQUIRED", "PROTECTED"} else "LOW",
+        "review_reason_code": review_reason_code,
+        "review_resolution": review_resolution,
+        "review_assessment": assessment,
+        "apply_2_candidate": apply_2_candidate,
+        "confidence": "HIGH" if category in {"SAFE_CANDIDATE", "REVIEW_DEFERRED"} else "MEDIUM" if category in {"REVIEW_REQUIRED", "PROTECTED"} else "LOW",
         "auto_apply_proposed": category == "SAFE_CANDIDATE",
-        "human_review_required": category != "SAFE_CANDIDATE",
+        "human_review_required": human_review_required,
         "collision_candidate": collision,
     }
+
+
+def _operation_summary(operations: list[dict[str, Any]]) -> dict[str, Any]:
+    return {
+        "operation_counts": dict(Counter(operation["category"] for operation in operations)),
+        "apply_2_candidate_counts": dict(Counter(operation["category"] for operation in operations if operation["apply_2_candidate"])),
+        "review_reason_counts": dict(Counter(operation["review_reason_code"] for operation in operations)),
+        "review_resolution_counts": dict(Counter(operation["review_resolution"] for operation in operations)),
+        "apply_2_candidate_count": sum(1 for operation in operations if operation["apply_2_candidate"]),
+        "manual_review_count": sum(1 for operation in operations if operation["human_review_required"]),
+    }
+
+
+def _review_decomposition(operations: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    grouped: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for operation in operations:
+        grouped[operation["review_reason_code"]].append(operation)
+    decomposition = []
+    for reason_code in sorted(grouped):
+        items = grouped[reason_code]
+        first = items[0]
+        decomposition.append(
+            {
+                "review_reason_code": reason_code,
+                "operation_count": len(items),
+                "fields": dict(Counter(item["target_field"] for item in items)),
+                "categories": dict(Counter(item["category"] for item in items)),
+                "apply_2_candidate": any(item["apply_2_candidate"] for item in items),
+                "human_review_required": any(item["human_review_required"] for item in items),
+                "rule": first["review_assessment"]["rule"],
+                "deterministic_resolution": first["review_resolution"],
+                "safety_critical": first["review_assessment"]["safety_critical"],
+                "ambiguous": first["review_assessment"]["ambiguous"],
+                "stronger_provenance_risk": first["review_assessment"]["stronger_provenance_risk"],
+                "unknown_to_false_certainty_risk": first["review_assessment"]["unknown_to_false_certainty_risk"],
+                "urgent_search_impact": any(item["review_assessment"]["urgent_search_impact"] for item in items),
+            }
+        )
+    return decomposition
 
 
 def _candidate_from_raw(row: dict[str, Any]) -> NormalizedCandidate:
@@ -411,11 +561,11 @@ def build_operations(
         facility_id = str(links[0]["facility_id"]) if len(links) == 1 else None
         facility = facilities_by_id.get(facility_id) if facility_id else None
         if len(links) > 1:
-            operations.append(_operation("QUARANTINED", candidate, None, "__source_identity__", None, None, reason="source ID is linked to multiple canonical facilities", current_provenance=None, source_version=source_version, source_checksum=source_checksum))
+            operations.append(_operation("QUARANTINED", candidate, None, "__source_identity__", None, None, reason="source ID is linked to multiple canonical facilities", current_provenance=None, source_version=source_version, source_checksum=source_checksum, review_reason_code="DUPLICATE_SOURCE_LINK", review_resolution="QUARANTINE_NO_APPLY"))
             continue
         if candidate.validation_errors:
             invalid_candidates += 1
-            operations.append(_operation("QUARANTINED", candidate, facility_id, "__source_row__", None, candidate.validation_errors, reason="source row is malformed or outside the permitted UK coordinate envelope", current_provenance=facility.get("field_provenance") if facility else None, source_version=source_version, source_checksum=source_checksum))
+            operations.append(_operation("QUARANTINED", candidate, facility_id, "__source_row__", None, candidate.validation_errors, reason="source row is malformed or outside the permitted UK coordinate envelope", current_provenance=facility.get("field_provenance") if facility else None, source_version=source_version, source_checksum=source_checksum, review_reason_code="SOURCE_VALIDATION", review_resolution="QUARANTINE_NO_APPLY"))
             continue
         if facility is None:
             decision = match_candidate(candidate, facilities_by_id, links_by_source_id, facility_index)
@@ -434,7 +584,7 @@ def build_operations(
                 else:
                     category = "REVIEW_REQUIRED"
                     reason = "new source record requires explicit creation approval and duplicate review"
-                operations.append(_operation(category, candidate, None, "__facility_creation__", None, {field: value for field, value in candidate.as_dict().items() if field in FIELD_TO_CANONICAL and value is not None}, reason=reason, current_provenance=None, collision=collision, source_version=source_version, source_checksum=source_checksum))
+                operations.append(_operation(category, candidate, None, "__facility_creation__", None, {field: value for field, value in candidate.as_dict().items() if field in FIELD_TO_CANONICAL and value is not None}, reason=reason, current_provenance=None, collision=collision, source_version=source_version, source_checksum=source_checksum, review_reason_code="SOURCE_BAD_NAME" if category == "QUARANTINED" else "NEW_FACILITY", review_resolution="QUARANTINE_NO_APPLY" if category == "QUARANTINED" else "RETAIN_FOR_EXPLICIT_CREATION_APPROVAL"))
                 continue
         exact_matches += 1 if len(links) == 1 else 0
         if not facility:
@@ -457,7 +607,7 @@ def build_operations(
             else:
                 category = "REVIEW_REQUIRED"
                 reason = "source enrichment is valid but is outside the narrow automatic scalar policy"
-            operations.append(_operation(category, candidate, str(facility["id"]), target_field, facility.get(target_field), after, reason=reason, current_provenance=current_provenance, source_version=source_version, source_checksum=source_checksum))
+            operations.append(_operation(category, candidate, str(facility["id"]), target_field, facility.get(target_field), after, reason=reason, current_provenance=current_provenance, source_version=source_version, source_checksum=source_checksum, review_reason_code="STRONGER_PROVENANCE" if category == "PROTECTED" else "SAFE_BOOLEAN_ENRICHMENT" if category == "SAFE_CANDIDATE" else "UNSUPPORTED_ENRICHMENT", review_resolution="PROTECT_NO_APPLY" if category == "PROTECTED" else "PROMOTE_TO_SAFE_CANDIDATE" if category == "SAFE_CANDIDATE" else "RETAIN_FOR_HUMAN_REVIEW"))
         for entry in differences["conflicts"]:
             source_field = entry["field"]
             if source_field not in SOURCE_MANAGED_FIELDS:
@@ -465,15 +615,16 @@ def build_operations(
             target_field = entry["relief_field"]
             current_provenance = provenance.get(target_field)
             category = "PROTECTED" if _provenance_is_stronger(current_provenance) else "REVIEW_REQUIRED"
-            operations.append(_operation(category, candidate, str(facility["id"]), target_field, entry.get("relief_value"), entry.get("source_value"), reason="source and canonical values conflict; preserve stronger or current Relief data until review", current_provenance=current_provenance, source_version=source_version, source_checksum=source_checksum))
+            operations.append(_operation(category, candidate, str(facility["id"]), target_field, entry.get("relief_value"), entry.get("source_value"), reason="source and canonical values conflict; preserve stronger or current Relief data until review", current_provenance=current_provenance, source_version=source_version, source_checksum=source_checksum, review_reason_code="STRONGER_PROVENANCE" if category == "PROTECTED" else "SOURCE_CANONICAL_CONFLICT", review_resolution="PROTECT_NO_APPLY" if category == "PROTECTED" else "RETAIN_FOR_HUMAN_REVIEW"))
         for entry in differences["omissions"]:
             if entry["field"] not in SOURCE_MANAGED_FIELDS:
                 continue
             target_field = entry["relief_field"]
             current_provenance = provenance.get(target_field)
-            category = "PROTECTED" if _provenance_is_stronger(current_provenance) else "REVIEW_REQUIRED"
-            operations.append(_operation(category, candidate, str(facility["id"]), target_field, entry.get("relief_value"), None, reason="fresh source omitted a previously known value; omission is evidence for review, not an automatic clear", current_provenance=current_provenance, source_version=source_version, source_checksum=source_checksum))
+            category = "PROTECTED" if _provenance_is_stronger(current_provenance) else "REVIEW_DEFERRED"
+            operations.append(_operation(category, candidate, str(facility["id"]), target_field, entry.get("relief_value"), None, reason="fresh source omitted a previously known value; preserve the canonical value and exclude the clear from Apply 2", current_provenance=current_provenance, source_version=source_version, source_checksum=source_checksum, review_reason_code="STRONGER_PROVENANCE" if category == "PROTECTED" else "SOURCE_OMISSION", review_resolution="PROTECT_NO_APPLY" if category == "PROTECTED" else "EXCLUDE_FROM_APPLY_2_PRESERVE_CANONICAL", apply_2_candidate=False))
     operations = _sort_operations(operations)
+    summary = _operation_summary(operations)
     return {
         "operations": operations,
         "exact_source_id_matches": exact_matches,
@@ -483,8 +634,9 @@ def build_operations(
         "duplicate_collision_candidates": collisions,
         "canonical_mutations": 0,
         "production_mutations": 0,
-        "operation_counts": dict(Counter(operation["category"] for operation in operations)),
-        "proposed_canonical_field_changes": sum(1 for operation in operations if not operation["target_field"].startswith("__")),
+        **summary,
+        "review_decomposition": _review_decomposition(operations),
+        "proposed_canonical_field_changes": sum(1 for operation in operations if operation["apply_2_candidate"] and not operation["target_field"].startswith("__")),
         "known_bad_source_ids": sorted(known_bad_source_ids or set()),
     }
 
@@ -573,10 +725,11 @@ def build_report(
         if not link:
             continue
         candidate = _candidate_from_raw(previous_by_id[source_id])
-        stale_operations.append(_operation("STALE_CANDIDATE", candidate, str(link.get("facility_id")), "__source_lifecycle__", {"is_current": link.get("is_current", True)}, None, reason="previously accepted source record is absent from the fresh source; preserve canonical facility and review separately", current_provenance=None, source_version=source_meta["source_declared_update_timestamp"], source_checksum=source_meta["source_checksum"]))
+        stale_operations.append(_operation("STALE_CANDIDATE", candidate, str(link.get("facility_id")), "__source_lifecycle__", {"is_current": link.get("is_current", True)}, None, reason="previously accepted source record is absent from the fresh source; preserve canonical facility and review separately", current_provenance=None, source_version=source_meta["source_declared_update_timestamp"], source_checksum=source_meta["source_checksum"], review_reason_code="STALE_SOURCE_RECORD", review_resolution="RETAIN_CANONICAL_NO_DELETE"))
     operations["operations"] = _sort_operations([*operations["operations"], *stale_operations])
-    operations["operation_counts"] = dict(Counter(operation["category"] for operation in operations["operations"]))
-    operations["proposed_canonical_field_changes"] = sum(1 for operation in operations["operations"] if not operation["target_field"].startswith("__"))
+    operations.update(_operation_summary(operations["operations"]))
+    operations["review_decomposition"] = _review_decomposition(operations["operations"])
+    operations["proposed_canonical_field_changes"] = sum(1 for operation in operations["operations"] if operation["apply_2_candidate"] and not operation["target_field"].startswith("__"))
     new_bad_records = [record for record in source_diff["bad_name_rows"] if record.get("source_record_id") not in known_bad_ids]
     stats = {
         "source_rows_received": source_diff["source_rows_received"],
@@ -601,7 +754,10 @@ def build_report(
         "known_bad_name_records": len(bad_records),
         "new_bad_name_rows": len(new_bad_records),
         "bad_coordinate_rows": len(source_diff["bad_coordinate_rows"]),
-        "manual_review_count": sum(count for category, count in operations["operation_counts"].items() if category != "SAFE_CANDIDATE"),
+        "review_required_count": operations["operation_counts"].get("REVIEW_REQUIRED", 0),
+        "review_deferred_count": operations["operation_counts"].get("REVIEW_DEFERRED", 0),
+        "apply_2_candidate_count": operations["apply_2_candidate_count"],
+        "manual_review_count": operations["manual_review_count"],
         "canonical_mutations": 0,
         "production_mutations": 0,
         "counts_reconcile": source_diff["counts_reconcile"],
@@ -618,6 +774,7 @@ def build_report(
         "production_reconciliation": {"counts": production["counts"], "visibility": production["visibility"], "exact_source_id_matches": operations["exact_source_id_matches"], "high_confidence_inferred_matches": operations["high_confidence_inferred_matches"]},
         "statistics": stats,
         "field_level_canonical_operations": operations["operations"],
+        "review_decomposition": operations["review_decomposition"],
         "duplicate_collision_candidates": operations["duplicate_collision_candidates"],
         "known_bad_name_records": bad_records,
         "new_bad_name_rows": new_bad_records,
@@ -631,11 +788,15 @@ def build_report(
         "generating_commit": generating_commit,
         "statistics": stats,
         "operation_counts": operations["operation_counts"],
+        "apply_2_candidate_counts": operations["apply_2_candidate_counts"],
+        "review_reason_counts": operations["review_reason_counts"],
+        "review_resolution_counts": operations["review_resolution_counts"],
+        "review_decomposition": operations["review_decomposition"],
         "operations": operations["operations"],
         "known_bad_name_records": bad_records,
         "new_bad_name_rows": new_bad_records,
         "duplicate_collision_candidates": operations["duplicate_collision_candidates"],
-        "review_rules": {"unknown_booleans": "null remains unknown; no missing source value becomes false", "source_missing": "STALE_CANDIDATE only; no delete/unpublish", "protected_provenance": "never auto-overwrite stronger Relief/community/staff/governed values", "new_facilities": "candidate creation only; no insert", "coordinates": "UK bounds, finite and non-zero; no rounded-coordinate deduplication"},
+        "review_rules": {"unknown_booleans": "null remains unknown; no missing source value becomes false", "source_omissions": "REVIEW_DEFERRED; preserve canonical values and exclude omission clears from Apply 2", "source_missing": "STALE_CANDIDATE only; no delete/unpublish", "protected_provenance": "never auto-overwrite stronger Relief/community/staff/governed values", "new_facilities": "candidate creation only; no insert", "coordinates": "UK bounds, finite and non-zero; no rounded-coordinate deduplication"},
     }
     manifest = {
         "manifest_schema_version": "2.0",
@@ -650,6 +811,10 @@ def build_report(
         "canonical_mutations": 0,
         "production_mutations": 0,
         "operation_counts": operations["operation_counts"],
+        "apply_2_candidate_counts": operations["apply_2_candidate_counts"],
+        "review_reason_counts": operations["review_reason_counts"],
+        "review_resolution_counts": operations["review_resolution_counts"],
+        "review_decomposition": operations["review_decomposition"],
         "operations": operations["operations"],
     }
     return reconciliation, review, manifest
@@ -684,22 +849,31 @@ def write_markdown(reconciliation: dict[str, Any], review: dict[str, Any], recon
         ("Unchanged source records", "unchanged_source_records"), ("Changed source records", "changed_source_records"), ("New source records", "new_source_records"), ("Missing/stale candidates", "missing_stale_candidates"),
         ("Exact canonical matches", "exact_canonical_matches"), ("New facility candidates", "new_facility_candidates"), ("Proposed canonical field changes", "proposed_canonical_field_changes"),
         ("Protected/provenance-conflict operations", "protected_provenance_conflicts"), ("Duplicate/collision candidates", "duplicate_collision_candidates"), ("Quarantined rows", "quarantined_rows"),
-        ("Bad-name rows", "bad_name_rows"), ("Missing source-name rows", "missing_source_name_rows"), ("Bad-coordinate rows", "bad_coordinate_rows"), ("Manual-review count", "manual_review_count"),
+        ("Bad-name rows", "bad_name_rows"), ("Missing source-name rows", "missing_source_name_rows"), ("Bad-coordinate rows", "bad_coordinate_rows"), ("Review-required operations", "review_required_count"), ("Review-deferred operations", "review_deferred_count"), ("Apply 2 candidate operations", "apply_2_candidate_count"), ("Manual-review count", "manual_review_count"),
     ]
     lines.extend(f"| {label} | {stats[key]:,} |" for label, key in labels)
     lines.extend(["", "## Proposed operation classes", "", "| Class | Count |", "|---|---:|"])
-    for category in ("SAFE_CANDIDATE", "REVIEW_REQUIRED", "PROTECTED", "QUARANTINED", "STALE_CANDIDATE"):
+    for category in ("SAFE_CANDIDATE", "REVIEW_REQUIRED", "REVIEW_DEFERRED", "PROTECTED", "QUARANTINED", "STALE_CANDIDATE"):
         lines.append(f"| `{category}` | {review['operation_counts'].get(category, 0):,} |")
     lines.extend([
         "",
         "## Safety findings",
         "",
         f"- `canonical_mutations = {stats['canonical_mutations']}` and `production_mutations = {stats['production_mutations']}`.",
-        "- Source omissions, including true-to-null and known-hours-to-missing transitions, are review evidence only; they do not clear canonical values automatically.",
+        "- Source omissions, including true-to-null and known-hours-to-missing transitions, are `REVIEW_DEFERRED` evidence only; they do not clear canonical values and are excluded from the Apply 2 candidate set.",
         "- Missing source records are `STALE_CANDIDATE`; no delete or unpublish operation is proposed.",
         f"- Known unusable-name records reviewed: `{len(reconciliation['known_bad_name_records'])}`; newly found bad-name rows: `{len(reconciliation['new_bad_name_rows'])}`.",
         f"- Duplicate/collision candidates: `{len(reconciliation['duplicate_collision_candidates'])}`.",
         "- Apply 1A manifest, plan, audit evidence, roles and sealing evidence were read-only inputs and remain immutable.",
+        "",
+        "## Review decomposition",
+        "",
+        "| Reason code | Operations | Apply 2 candidate | Human review | Deterministic resolution |",
+        "|---|---:|---:|---:|---|",
+        *[
+            f"| `{item['review_reason_code']}` | {item['operation_count']:,} | {'yes' if item['apply_2_candidate'] else 'no'} | {'yes' if item['human_review_required'] else 'no'} | {item['deterministic_resolution']} |"
+            for item in review["review_decomposition"]
+        ],
         "",
         "## Production read-only postcheck boundary",
         "",
@@ -727,16 +901,26 @@ def write_markdown(reconciliation: dict[str, Any], review: dict[str, Any], recon
         "| Class | Count |",
         "|---|---:|",
     ]
-    for category in ("SAFE_CANDIDATE", "REVIEW_REQUIRED", "PROTECTED", "QUARANTINED", "STALE_CANDIDATE"):
+    for category in ("SAFE_CANDIDATE", "REVIEW_REQUIRED", "REVIEW_DEFERRED", "PROTECTED", "QUARANTINED", "STALE_CANDIDATE"):
         review_lines.append(f"| `{category}` | {review['operation_counts'].get(category, 0):,} |")
     review_lines.extend([
         "",
         "## Review rules",
         "",
         "- Explicit source booleans preserve `true`, `false`, and `null`; missing source values do not become false.",
-        "- Source/canonical conflicts, omissions, names, coordinates, opening hours, inferred matches and new facilities require human review.",
+        "- Source/canonical conflicts, names, coordinates, opening hours, inferred matches and new facilities remain human-review candidates.",
+        "- Source omissions are `REVIEW_DEFERRED`: preserve the canonical value and exclude the omission clear from Apply 2; no safe promotion is claimed.",
         "- Stronger community/staff/governed provenance is protected and is never auto-overwritten.",
         "- Missing source records are stale candidates; no deletion or unpublish operation is proposed.",
+        "",
+        "## Review decomposition",
+        "",
+        "| Reason code | Operations | Apply 2 candidate | Human review | Deterministic resolution |",
+        "|---|---:|---:|---:|---|",
+        *[
+            f"| `{item['review_reason_code']}` | {item['operation_count']:,} | {'yes' if item['apply_2_candidate'] else 'no'} | {'yes' if item['human_review_required'] else 'no'} | {item['deterministic_resolution']} |"
+            for item in review["review_decomposition"]
+        ],
         "",
         f"Known bad-name records reviewed: `{len(review['known_bad_name_records'])}`; fresh non-empty bad-name candidates: `{len(review['new_bad_name_rows'])}`.",
         f"Duplicate/collision candidates: `{len(review['duplicate_collision_candidates'])}`.",
@@ -758,7 +942,8 @@ def write_markdown(reconciliation: dict[str, Any], review: dict[str, Any], recon
         "## Classification policy",
         "",
         "- `SAFE_CANDIDATE`: exact source identity, explicit boolean enrichment, canonical value unknown, and no stronger provenance.",
-        "- `REVIEW_REQUIRED`: source/canonical conflict, omission, name/coordinate/hours change, inferred identity, or new-facility candidate.",
+        "- `REVIEW_REQUIRED`: source/canonical conflict, unsupported material enrichment, inferred identity, or new-facility candidate.",
+        "- `REVIEW_DEFERRED`: source omission is retained as evidence but is not an Apply 2 candidate because unknown is not a clear instruction.",
         "- `PROTECTED`: a proposed value would overwrite stronger Relief/community/staff/governed provenance.",
         "- `QUARANTINED`: malformed, unusable, duplicate-identity or bad-name record.",
         "- `STALE_CANDIDATE`: previous accepted source-linked record absent from the fresh source; preserve the canonical facility by default.",
