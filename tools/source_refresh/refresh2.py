@@ -764,7 +764,7 @@ def build_report(
     }
     reconciliation = {
         "report_schema_version": "2.0",
-        "classification": "TOILET MAP REFRESH 2 — RECONCILED / APPLY NOT AUTHORIZED",
+        "classification": "TOILET MAP REFRESH 2 — REVIEW DECOMPOSED / APPLY NOT AUTHORIZED",
         "read_only": True,
         "generating_commit": generating_commit,
         "tool_version": "relief.toilet-map-refresh-2.v1",
