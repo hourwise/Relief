@@ -1,0 +1,33 @@
+{
+  "source_id": "toilet_map_uk",
+  "publisher": "Toilet Map UK",
+  "source_name": "Great British Public Toilet Map",
+  "source_url": "https://www.toiletmap.org.uk/dataset",
+  "download_url": "https://p02w6qqjlqmja4sk.public.blob.vercel-storage.com/exports/toilets-2026-08-18T00%3A00%3A40.511Z-6jxqgpR5DUftpvcKe0ysCnWLHmz66G.csv?download=1",
+  "licence": "CC BY 4.0",
+  "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+  "required_attribution": "Contains data from the Toilet Map © 2025 – CC BY 4.0 (Creative Commons Attribution 4.0 International)",
+  "source_declared_update_timestamp": "2026-08-18T01:00:00+00:00",
+  "retrieval_timestamp": "2026-08-18T21:18:35.8681807Z",
+  "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+  "source_bytes": 7874878,
+  "parser_normalizer_version": "toilet-map-adapter-v1",
+  "baseline_source": {
+    "kind": "accepted_source_linked_baseline",
+    "record_count": 15584,
+    "checksum": "a06eaf0874e58a0ccfd796914e3617874fcb628975c65f73c7c0f842f6cbadf4",
+    "reconstructed_from": "read-only facility_sources.raw_data",
+    "raw_snapshot_preserved": true
+  },
+  "content_addressed_snapshot": {
+    "source_id": "toilet_map_uk",
+    "retrieved_at": "2026-08-18T21:18:35.8681807Z",
+    "last_seen_at": "2026-08-18T21:18:35.8681807Z",
+    "source_file_or_api_version": "2026-08-18T01:00:00+00:00",
+    "checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+    "parser_normalizer_version": "toilet-map-adapter-v1",
+    "current_status": "CURRENT",
+    "immutable": true,
+    "raw_snapshot": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f.raw"
+  }
+}
