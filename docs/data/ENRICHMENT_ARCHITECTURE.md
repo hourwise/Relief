@@ -95,3 +95,21 @@ The captured provenance snapshot uses `source_imported` verification status and 
 ## Current review boundary
 
 This phase covers the official Toilet Map UK source only. TfL, National Rail, council, specialist, and other sources are future adapters. No production inserts/updates/deletes, migrations, UI/filter changes, external contact, EAS build, Play setup, or data enrichment apply step is part of this foundation.
+
+## Refresh 2 boundary — 2026-08-18
+
+The current bounded refresh is recorded in `TOILET_MAP_REFRESH_2_SOURCE.json`,
+`TOILET_MAP_REFRESH_2_RECONCILIATION.*`, `TOILET_MAP_REFRESH_2_REVIEW.*`, and
+`TOILET_MAP_APPLY_2_MANIFEST.json`. It is a fresh Toilet Map comparison against
+the accepted source-linked baseline reconstructed from read-only
+`facility_sources.raw_data`; it is not a replay of the 2026-08-11 candidate
+and it does not reopen Apply 1A.
+
+The result is `TOILET MAP REFRESH 2 — RECONCILED / APPLY NOT AUTHORIZED`.
+Apply 2 is only a proposed, deterministic operation set. It has no production
+write path, no staging/import-run creation, and no canonical mutation. Source
+omissions remain review evidence, community/staff/governed provenance is
+protected, and missing source records remain stale candidates rather than
+deletions. The original national seed and Apply 1A enrichment remain
+historical evidence; this refresh is not live until a separately approved
+future application passes its own postchecks.

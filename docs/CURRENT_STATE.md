@@ -349,3 +349,14 @@ The following work is **IMPLEMENTED BUT NOT DEVICE TESTED** on this branch:
 
 The hidden-feature audit is recorded in `docs/HIDDEN_FEATURE_AUDIT.md`. A new
 APK/device run is required before changing any of these statuses to VERIFIED.
+
+## Toilet Map Refresh 2 — RECONCILED / APPLY NOT AUTHORIZED — 2026-08-18
+
+The current official Toilet Map UK dataset was independently checked on its
+dataset page, downloaded, checksum-preserved, normalized and reconciled
+read-only against the accepted source-linked Relief baseline. The resulting
+Refresh 2 and proposed Apply 2 evidence is under `docs/data/`. This work did
+not insert, update, delete, stage, create an `import_runs` row, invoke Apply
+1A, or change provenance. Apply 1A evidence remains immutable. See
+[`ENRICHMENT_ARCHITECTURE.md`](data/ENRICHMENT_ARCHITECTURE.md) and the
+versioned Refresh 2 artifacts for the exact counts and source checksum.
