@@ -7,6 +7,11 @@ const EXPORT_VERSION = 1;
 
 type Row = Record<string, unknown>;
 
+const OPTIONAL_EMPTY_READ_LABELS = new Set([
+  'moderator_read_failed',
+  'verification_history_read_failed',
+]);
+
 type FacilityReference = {
   id: string;
   name: string;
@@ -36,7 +41,13 @@ function bearerToken(request: Request): string | null {
 
 async function readRows<T extends Row>(query: any, label: string): Promise<T[]> {
   const { data, error } = await query;
-  if (error) throw new Error(label);
+  if (error) {
+    if (OPTIONAL_EMPTY_READ_LABELS.has(label)) {
+      console.warn(JSON.stringify({ outcome: 'optional_export_section_unavailable', section: label }));
+      return [];
+    }
+    throw new Error(label);
+  }
   return (data ?? []) as T[];
 }
 
