@@ -51,6 +51,18 @@ provenance remains `PROTECTED`; malformed, duplicate, and stale records retain
 their quarantine/lifecycle boundaries. Each operation records its review reason
 code, deterministic resolution, Apply 2 candidate flag, and safety assessment.
 
+### Refresh 2A existing-facility decision package
+
+`apply2a.py` consumes the published Refresh 2 Apply 2 manifest and produces a
+separate, read-only decision register for the 132 existing-facility candidate
+operations. It does not contact Supabase and has no apply option. The bounded
+policy promotes only exact-source explicit boolean enrichments where the
+canonical value is unknown and unproven. Existing canonical conflicts are
+kept or protected, and material opening-hours enrichments are deferred until
+independent current verification is available. The resulting execution
+candidate manifest is proposed only; it contains no authorization to mutate
+canonical or production data.
+
 The council and TfL entries are templates pending source-specific reuse
 verification. The Changing Places Consortium master registry and OSM/ODbL data
 are intentionally outside the canonical ingestion path.
