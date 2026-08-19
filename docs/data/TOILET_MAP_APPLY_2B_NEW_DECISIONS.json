@@ -1,0 +1,2371 @@
+{
+  "package_schema_version": "1.0",
+  "generation": "Toilet Map Refresh 2 / Apply 2B new-facility review",
+  "classification": "TOILET MAP APPLY 2B — NEW FACILITY PACKAGE PREPARED / EXECUTION NOT AUTHORIZED",
+  "status": "PROPOSED / NOT AUTHORIZED FOR PRODUCTION EXECUTION",
+  "read_only": true,
+  "apply_engine_version": "relief.toilet-map-refresh-2b-new.v1",
+  "generating_commit": "cd3d6e8",
+  "input_review_sha256": "c439f12be7f89b25dd12e8a3ee1309742b090514fadb06d80ae9ebfd804b7f5a",
+  "source_name": "Toilet Map UK",
+  "source_url": "https://www.toiletmap.org.uk/dataset",
+  "source_licence": "CC BY 4.0",
+  "source_version": "2026-08-18T01:00:00+00:00",
+  "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+  "project_ref": "bgwxrxkmyaihplaloely",
+  "scope": {
+    "new_facility_candidates_assessed": 42,
+    "existing_facility_operations_excluded": true,
+    "stale_operations_excluded": true,
+    "quarantined_source_rows_excluded": true,
+    "deferred_source_omissions_excluded": true
+  },
+  "decision_counts": {
+    "DEFER_EXTERNAL_VERIFICATION": 5,
+    "PREPARE_INSERT_CANDIDATE": 36,
+    "QUARANTINE": 1
+  },
+  "canonical_mutations": 0,
+  "production_mutations": 0,
+  "facility_inserts": 0,
+  "facility_updates": 0,
+  "facility_deletes": 0,
+  "facility_sources_mutations": 0,
+  "provenance_mutations": 0,
+  "staging_mutations": 0,
+  "import_run_mutations": 0,
+  "production_reference_counts": {
+    "facilities": 15584,
+    "facility_sources": 15584,
+    "import_runs": 5,
+    "staging": 0
+  },
+  "production_read_only_checks": {
+    "exact_source_link_check_candidate_count": 42,
+    "exact_source_link_check_rows_found": 0,
+    "targeted_nearest_facility_checks": 6,
+    "targeted_nearest_checks_are_read_only": true,
+    "apply_2a_data_reopened_or_modified": false
+  },
+  "package_kind": "DECISION_REPORT",
+  "decisions": [
+    {
+      "operation_id": "TM2-046d175b28808a47eaaa",
+      "source_record_id": "232bc6a31fc2f51f403d077f",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Canary Wharf (Jubilee Line) underground station (ticket entrance area) (unpaid area) (accessible toilet only)",
+        "town": "Tower Hamlets",
+        "latitude": 51.503532085,
+        "longitude": -0.019448746,
+        "opening_hours": {
+          "monday": {
+            "open": "05:30",
+            "close": "00:00"
+          },
+          "tuesday": {
+            "open": "05:30",
+            "close": "00:00"
+          },
+          "wednesday": {
+            "open": "05:30",
+            "close": "00:00"
+          },
+          "thursday": {
+            "open": "05:30",
+            "close": "00:00"
+          },
+          "friday": {
+            "open": "05:30",
+            "close": "00:00"
+          },
+          "saturday": {
+            "open": "00:00",
+            "close": "00:00"
+          },
+          "sunday": {
+            "open": "00:00",
+            "close": "23:45"
+          }
+        },
+        "is_free": true,
+        "is_accessible": true,
+        "requires_radar_key": true,
+        "has_baby_changing": false,
+        "is_gender_neutral": false
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-09T01:17:34.226Z",
+        "raw_row_hash": "b543e0147de9f85f6569544b8c581a0f5814cab2ab0aff619eac329b16e2e6c7"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-078bb4dd79b3b3c3a61a",
+      "source_record_id": "bc286db1008098ef3fcc5ac3",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Coffee#1 Derby",
+        "town": "Derby",
+        "latitude": 52.921572912,
+        "longitude": -1.477830112,
+        "is_free": true,
+        "is_accessible": true,
+        "is_gender_neutral": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-17T10:16:12.311Z",
+        "raw_row_hash": "51c45d7edc99efcd2d148020db9c3219c8201d575522b1335ab5eb9325662277"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-0e4a59faa04f75fa379c",
+      "source_record_id": "6de34ddb3ac6668d98c2334c",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Becky's Barn Cafe",
+        "town": "Shropshire",
+        "latitude": 52.631243874,
+        "longitude": -2.257285719,
+        "is_free": true,
+        "is_accessible": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-07T16:30:19.412Z",
+        "raw_row_hash": "55d1f785918a9dec807bc2b882b6a0e5bceb1a2f22546ece45a0b003ede736cc"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "DEFER_EXTERNAL_VERIFICATION",
+      "decision_rule": "SOURCE_BATCH_DUPLICATE_CANDIDATE_REQUIRES_SOURCE_IDENTITY_VERIFICATION",
+      "evidence_sufficient_for_future_apply_2b": false,
+      "external_verification_required": true,
+      "source_batch_duplicate_evidence": {
+        "match_type": "NORMALISED_NAME_AND_COORDINATE_PROXIMITY",
+        "other_operation_id": "TM2-11c5e038510aa366ec42",
+        "other_source_record_id": "177c0eaa345c7ce7677eb13c",
+        "other_name": "Becky's Barn Cafe",
+        "distance_m": 217.144,
+        "radius_m": 250.0
+      },
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": true
+    },
+    {
+      "operation_id": "TM2-1016ab43c0ec1482185b",
+      "source_record_id": "059ffb72ce5bab427a2de7a1",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "RSPB Lochwinnoch",
+        "town": "Renfrewshire",
+        "latitude": 55.788635344,
+        "longitude": -4.618718357,
+        "opening_hours": {
+          "monday": {
+            "open": "10:00",
+            "close": "17:00"
+          },
+          "tuesday": {
+            "open": "10:00",
+            "close": "17:00"
+          },
+          "wednesday": {
+            "open": "10:00",
+            "close": "17:00"
+          },
+          "thursday": {
+            "open": "10:00",
+            "close": "17:00"
+          },
+          "friday": {
+            "open": "10:00",
+            "close": "17:00"
+          },
+          "saturday": {
+            "open": "10:00",
+            "close": "17:00"
+          },
+          "sunday": {
+            "open": "10:00",
+            "close": "17:00"
+          }
+        },
+        "is_free": true,
+        "is_accessible": true,
+        "is_gender_neutral": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-05T16:38:43.622Z",
+        "raw_row_hash": "586041bcf5d2b2bef6c19b727525ff84c669eb7fedcfa886626c80338e97d897"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-1132855a3c36fe78c2c7",
+      "source_record_id": "fc1cf7d0e3edb420148aad20",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Bushey Rose Garden",
+        "town": "Hertsmere",
+        "latitude": 51.644002226,
+        "longitude": -0.360692776
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-06T10:44:49.992Z",
+        "raw_row_hash": "ccac3fb65a23a658da07fb3b34f224b926cc65346a170ea638b5d84b0abe2cdc"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-11c5e038510aa366ec42",
+      "source_record_id": "177c0eaa345c7ce7677eb13c",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Becky's Barn Cafe",
+        "town": "Shropshire",
+        "latitude": 52.62996944,
+        "longitude": -2.259723544,
+        "is_free": true,
+        "is_accessible": true,
+        "requires_radar_key": false
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-07T16:34:17.475Z",
+        "raw_row_hash": "5a49e74a46cb22c324836864425b0314e1ba93b590504b13d24bb3f0ea0f5c57"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "DEFER_EXTERNAL_VERIFICATION",
+      "decision_rule": "SOURCE_BATCH_DUPLICATE_CANDIDATE_REQUIRES_SOURCE_IDENTITY_VERIFICATION",
+      "evidence_sufficient_for_future_apply_2b": false,
+      "external_verification_required": true,
+      "source_batch_duplicate_evidence": {
+        "match_type": "NORMALISED_NAME_AND_COORDINATE_PROXIMITY",
+        "other_operation_id": "TM2-0e4a59faa04f75fa379c",
+        "other_source_record_id": "6de34ddb3ac6668d98c2334c",
+        "other_name": "Becky's Barn Cafe",
+        "distance_m": 217.144,
+        "radius_m": 250.0
+      },
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": true
+    },
+    {
+      "operation_id": "TM2-1c54e6e3b7cb4ee9d563",
+      "source_record_id": "ce7f310c0293474778934cc5",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Westfield London (lower level, next to Läderach shop)",
+        "town": "Hammersmith and Fulham",
+        "latitude": 51.507385075,
+        "longitude": -0.220946914,
+        "opening_hours": {
+          "monday": {
+            "open": "10:00",
+            "close": "21:00"
+          },
+          "tuesday": {
+            "open": "10:00",
+            "close": "21:00"
+          },
+          "wednesday": {
+            "open": "10:00",
+            "close": "21:00"
+          },
+          "thursday": {
+            "open": "10:00",
+            "close": "21:00"
+          },
+          "friday": {
+            "open": "10:00",
+            "close": "21:00"
+          },
+          "saturday": {
+            "open": "10:00",
+            "close": "21:00"
+          },
+          "sunday": {
+            "open": "12:00",
+            "close": "18:00"
+          }
+        },
+        "is_free": true,
+        "is_accessible": true,
+        "requires_radar_key": true,
+        "has_baby_changing": true,
+        "is_gender_neutral": false
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-03T02:22:30.906Z",
+        "raw_row_hash": "eb704952628c658288bd1adc624f38093b592a1aef6907cbfc71374329e1e723"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-212b01fcac92dbddbec9",
+      "source_record_id": "d6f5596b9d08edc4cfeac7df",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Weston-super-Mare Railway Station",
+        "town": "North Somerset",
+        "latitude": 51.344595814,
+        "longitude": -2.971932516,
+        "is_free": true,
+        "is_accessible": true,
+        "has_baby_changing": true,
+        "is_gender_neutral": false
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-01T22:45:57.913Z",
+        "raw_row_hash": "238b17c0c116b339b6f76d96a179d7e5670afd091d8732391c9b8163db93c15f"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-2227fed43629d066e325",
+      "source_record_id": "6e3587fd50aaf24da80ea357",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Precinct walk public toilet",
+        "town": "South Kesteven",
+        "latitude": 52.675507768,
+        "longitude": -0.316271424,
+        "is_free": true,
+        "is_accessible": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-04T08:43:02.377Z",
+        "raw_row_hash": "45cdf40711c16124c0cdf1a03561fc9eaa4c235582af2ee1ff3e244c7ee5c6c7"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-24ff0f24c85363e4b423",
+      "source_record_id": "8f8624f23652e467aae5184c",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Dobbies",
+        "town": "West Suffolk",
+        "latitude": 52.236038513,
+        "longitude": 0.726124942,
+        "is_free": true,
+        "has_baby_changing": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-10T22:00:44.792Z",
+        "raw_row_hash": "ce3785dcae627b29edba33e0a5c9cde61a7c2fbc8d0d22d75227cd51398433b3"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-250dbc4d2277f71259ef",
+      "source_record_id": "53a780f6c6ee963bdd2c1c1e",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Club Oasis",
+        "town": "Great Yarmouth",
+        "latitude": 52.674301147,
+        "longitude": 1.714458942,
+        "is_free": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-07-25T11:44:23.859Z",
+        "raw_row_hash": "da27017fe06c3c8c3f7a55ad14a4c2df233f4eae64e4a79ad755a675321ec718"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-28e5c5baa669542e1e93",
+      "source_record_id": "e7afff68c09835856392fee7",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Whirlies McDonald's",
+        "town": "South Lanarkshire",
+        "latitude": 55.779909455,
+        "longitude": -4.16336554,
+        "opening_hours": {
+          "monday": {
+            "open": "00:00",
+            "close": "23:59"
+          },
+          "tuesday": {
+            "open": "00:00",
+            "close": "23:59"
+          },
+          "wednesday": {
+            "open": "00:00",
+            "close": "23:59"
+          },
+          "thursday": {
+            "open": "00:00",
+            "close": "23:59"
+          },
+          "friday": {
+            "open": "00:00",
+            "close": "23:59"
+          },
+          "saturday": {
+            "open": "00:00",
+            "close": "23:59"
+          },
+          "sunday": {
+            "open": "00:00",
+            "close": "23:59"
+          }
+        },
+        "is_free": true,
+        "is_accessible": true,
+        "requires_radar_key": false,
+        "has_baby_changing": true,
+        "is_gender_neutral": false
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-07-28T06:04:40.131Z",
+        "raw_row_hash": "48d8992f5a5efbf393f972e0c63bdacb84411bd433f70ffae5db37a03b799f22"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-3031cf5788b689e30668",
+      "source_record_id": "857c4ddc685fa35c8a6eb0c1",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Lidl Tilehurst",
+        "town": "Reading",
+        "latitude": 51.460663103,
+        "longitude": -1.013701734,
+        "opening_hours": {
+          "monday": {
+            "open": "08:00",
+            "close": "22:00"
+          },
+          "tuesday": {
+            "open": "08:00",
+            "close": "22:00"
+          },
+          "wednesday": {
+            "open": "08:00",
+            "close": "22:00"
+          },
+          "thursday": {
+            "open": "08:00",
+            "close": "22:00"
+          },
+          "friday": {
+            "open": "08:00",
+            "close": "22:00"
+          },
+          "saturday": {
+            "open": "08:00",
+            "close": "22:00"
+          },
+          "sunday": {
+            "open": "10:00",
+            "close": "16:00"
+          }
+        },
+        "is_free": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-07-26T09:48:37.275Z",
+        "raw_row_hash": "3b10c8f8641b14d71a7e34eadf0d85d3c8a58976464ffe933fd37cc41e6e646f"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-3538ac5875917c1e6c39",
+      "source_record_id": "f3638d10f57ada4c1cf16566",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Petrol and diesel filling Station",
+        "town": "South Staffordshire",
+        "latitude": 52.624025875,
+        "longitude": -2.186574651,
+        "is_free": true,
+        "is_accessible": true,
+        "requires_radar_key": false,
+        "is_gender_neutral": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-05T13:50:23.354Z",
+        "raw_row_hash": "f4c2f00744a08dd059f721792e5f8e0b01c089760a88315a46d03d351c22f53a"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-364b5b3793da4ac1c9dc",
+      "source_record_id": "33aebf2ab67de1b196b4ca15",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Neilston Library",
+        "town": "East Renfrewshire",
+        "latitude": 55.78539835,
+        "longitude": -4.424472753,
+        "opening_hours": {
+          "monday": {
+            "open": "10:00",
+            "close": "17:00"
+          },
+          "tuesday": {
+            "open": "10:00",
+            "close": "17:00"
+          },
+          "wednesday": {
+            "open": "10:00",
+            "close": "17:00"
+          },
+          "friday": {
+            "open": "10:00",
+            "close": "17:00"
+          },
+          "saturday": {
+            "open": "09:30",
+            "close": "13:00"
+          }
+        },
+        "is_free": true,
+        "is_accessible": true,
+        "is_gender_neutral": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-05T16:34:45.523Z",
+        "raw_row_hash": "ec50a110b1aa930fd4195811b78fb82beac4be65672db27d972f8730725b1120"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-37f7bd619e0124a94c5a",
+      "source_record_id": "4d5844e4e99d8bf8ba9d7e11",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Neilston Leisure Centre",
+        "town": "East Renfrewshire",
+        "latitude": 55.785650049,
+        "longitude": -4.423115573,
+        "opening_hours": {
+          "monday": {
+            "open": "07:00",
+            "close": "21:00"
+          },
+          "tuesday": {
+            "open": "07:00",
+            "close": "21:00"
+          },
+          "wednesday": {
+            "open": "09:00",
+            "close": "21:00"
+          },
+          "thursday": {
+            "open": "07:00",
+            "close": "21:00"
+          },
+          "friday": {
+            "open": "07:00",
+            "close": "21:00"
+          },
+          "saturday": {
+            "open": "09:00",
+            "close": "16:00"
+          },
+          "sunday": {
+            "open": "09:00",
+            "close": "16:00"
+          }
+        },
+        "is_free": true,
+        "is_accessible": true,
+        "has_baby_changing": true,
+        "is_gender_neutral": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-05T16:33:53.936Z",
+        "raw_row_hash": "25024b6a8061bfd15007026259842e71f2ee034cb8d1835c285dcae85a64acbc"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-46ed62f00d65a2022216",
+      "source_record_id": "3b49d8f21b9a69ca0eb667ad",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "McDonalds",
+        "town": "Hertsmere",
+        "latitude": 51.658490709,
+        "longitude": -0.271463692,
+        "opening_hours": {
+          "monday": {
+            "open": "07:30",
+            "close": "23:00"
+          },
+          "tuesday": {
+            "open": "07:30",
+            "close": "23:00"
+          },
+          "wednesday": {
+            "open": "07:30",
+            "close": "23:00"
+          },
+          "thursday": {
+            "open": "07:30",
+            "close": "23:00"
+          },
+          "friday": {
+            "open": "07:30",
+            "close": "23:00"
+          },
+          "saturday": {
+            "open": "07:30",
+            "close": "23:00"
+          },
+          "sunday": {
+            "open": "07:30",
+            "close": "23:00"
+          }
+        },
+        "is_free": true,
+        "is_accessible": true,
+        "requires_radar_key": true,
+        "has_baby_changing": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-06T10:45:44.888Z",
+        "raw_row_hash": "f6af5e30ea0395575d1fcea2fe05c531770a81d222b410ca69f50d073cc4aaf1"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-4ff0ea7c4ea81b364de9",
+      "source_record_id": "fb968371c27222e3f758d8e0",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Silverburn Restaurant Concourse Toilets",
+        "town": "Glasgow City",
+        "latitude": 55.822955802,
+        "longitude": -4.342702929,
+        "opening_hours": {
+          "monday": {
+            "open": "09:00",
+            "close": "22:00"
+          },
+          "tuesday": {
+            "open": "09:00",
+            "close": "22:00"
+          },
+          "wednesday": {
+            "open": "09:00",
+            "close": "22:00"
+          },
+          "thursday": {
+            "open": "09:00",
+            "close": "22:00"
+          },
+          "friday": {
+            "open": "09:00",
+            "close": "22:00"
+          },
+          "saturday": {
+            "open": "09:00",
+            "close": "22:00"
+          },
+          "sunday": {
+            "open": "09:00",
+            "close": "22:00"
+          }
+        },
+        "is_free": true,
+        "is_accessible": true,
+        "has_baby_changing": true,
+        "is_gender_neutral": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-05T17:00:07.342Z",
+        "raw_row_hash": "eee3f9a3c889e5a7ba90bd301430023edf16c2b7262ace0bf80b082544a13173"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-65d3356f0db58259f72d",
+      "source_record_id": "88c551d0ff726ead4b2fb2ba",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Does not exist",
+        "town": "Hounslow",
+        "latitude": 51.468545905,
+        "longitude": -0.366564095
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-17T09:15:32.771Z",
+        "raw_row_hash": "95e875791a7758b89728c81b23f7814d4373e5dc6a07bc2ecda21a7d02be5fee"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "QUARANTINE",
+      "decision_rule": "INVALID_PLACEHOLDER_OR_MISSING_FACILITY_NAME",
+      "evidence_sufficient_for_future_apply_2b": false,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": true
+    },
+    {
+      "operation_id": "TM2-747763915b2b81f7f6cb",
+      "source_record_id": "1c7f7f431a450c0659bb4d18",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Neilston Train Station",
+        "town": "East Renfrewshire",
+        "latitude": 55.783046156,
+        "longitude": -4.426827809,
+        "opening_hours": {
+          "monday": {
+            "open": "06:58",
+            "close": "12:30"
+          },
+          "tuesday": {
+            "open": "06:58",
+            "close": "12:30"
+          },
+          "wednesday": {
+            "open": "06:58",
+            "close": "12:30"
+          },
+          "thursday": {
+            "open": "06:58",
+            "close": "12:30"
+          },
+          "friday": {
+            "open": "06:58",
+            "close": "19:15"
+          },
+          "saturday": {
+            "open": "08:30",
+            "close": "15:30"
+          },
+          "sunday": {
+            "open": "08:30",
+            "close": "15:30"
+          }
+        },
+        "is_free": true,
+        "is_accessible": true,
+        "is_gender_neutral": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-05T16:35:09.752Z",
+        "raw_row_hash": "8069ccbd2c477ca147fd0ff5b7b7844fce6c52ce219a1b7bc454ff7c492defe0"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-80ac1ebdc8ed3e5f922b",
+      "source_record_id": "02760f05f626d67f29aabc09",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Armada Way Accessible Toilets",
+        "town": "Plymouth",
+        "latitude": 50.371866538,
+        "longitude": -4.142508017,
+        "opening_hours": {
+          "monday": {
+            "open": "00:00",
+            "close": "00:00"
+          },
+          "tuesday": {
+            "open": "00:00",
+            "close": "00:00"
+          },
+          "wednesday": {
+            "open": "00:00",
+            "close": "00:00"
+          },
+          "thursday": {
+            "open": "00:00",
+            "close": "00:00"
+          },
+          "friday": {
+            "open": "00:00",
+            "close": "00:00"
+          },
+          "saturday": {
+            "open": "00:00",
+            "close": "00:00"
+          },
+          "sunday": {
+            "open": "00:00",
+            "close": "00:00"
+          }
+        },
+        "is_free": true,
+        "is_accessible": true,
+        "requires_radar_key": true,
+        "is_gender_neutral": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-07T19:41:13.758Z",
+        "raw_row_hash": "750c787b8f85bbcbfbb4cedc10bc817fae478a863740af01be42620936fa103a"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-85c0723eff3e08198921",
+      "source_record_id": "230fbaf1acae2242e54a0ad8",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Council House Entrance Lobby",
+        "town": "Derby",
+        "latitude": 52.923090706,
+        "longitude": -1.474302408,
+        "is_free": true,
+        "is_accessible": true,
+        "requires_radar_key": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-07T16:40:20.111Z",
+        "raw_row_hash": "f3a53383baef33a9ec1466516129903e067ce06c08af922ef801dd70e44d856e"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-8c15d16e979adee79d1b",
+      "source_record_id": "a318d929c92290531ea29e1d",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Lidl Reading West",
+        "town": "Reading",
+        "latitude": 51.455289492,
+        "longitude": -0.991138611,
+        "opening_hours": {
+          "monday": {
+            "open": "08:00",
+            "close": "22:00"
+          },
+          "tuesday": {
+            "open": "08:00",
+            "close": "22:00"
+          },
+          "wednesday": {
+            "open": "08:00",
+            "close": "22:00"
+          },
+          "thursday": {
+            "open": "08:00",
+            "close": "22:00"
+          },
+          "friday": {
+            "open": "08:00",
+            "close": "22:00"
+          },
+          "saturday": {
+            "open": "08:00",
+            "close": "22:00"
+          },
+          "sunday": {
+            "open": "11:00",
+            "close": "17:00"
+          }
+        },
+        "is_free": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-07-26T09:46:24.369Z",
+        "raw_row_hash": "e830fe9124a285310330bb6e11e62543555adfcd5db5a61396cc928554f658a6"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-9545f33c0d5216087a68",
+      "source_record_id": "de087518da62852cfb13962d",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Accessible Toilet @ Disability Equality (NW) Community Hub",
+        "town": "Preston",
+        "latitude": 53.765245667,
+        "longitude": -2.696126997,
+        "opening_hours": {
+          "monday": {
+            "open": "09:30",
+            "close": "16:00"
+          },
+          "tuesday": {
+            "open": "09:30",
+            "close": "16:00"
+          },
+          "wednesday": {
+            "open": "09:30",
+            "close": "16:00"
+          },
+          "thursday": {
+            "open": "09:30",
+            "close": "16:00"
+          },
+          "friday": {
+            "open": "09:30",
+            "close": "16:00"
+          }
+        },
+        "is_free": true,
+        "is_accessible": true,
+        "requires_radar_key": false,
+        "has_baby_changing": false,
+        "is_gender_neutral": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-12T13:53:19.601Z",
+        "raw_row_hash": "16d2b9d15f804951efe3a94c39328c882f1d6ef5fa48a8414c4380b598dac05c"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-98d67b4af6c09a6cc41f",
+      "source_record_id": "80f7d5d63fa3acde2acc0e2b",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "King George Park",
+        "town": "Hertsmere",
+        "latitude": 51.643389449,
+        "longitude": -0.352731597
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-06T10:40:37.329Z",
+        "raw_row_hash": "52a9ed0b7dfc1aebddae713a38949a237065417cae446055e44406a10f08d4ad"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-a56e67f1e2ae58757a3e",
+      "source_record_id": "b77ab579ca2eedffc65cdcca",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Rubio’s",
+        "town": "Brent",
+        "latitude": 51.53735583,
+        "longitude": -0.241734087,
+        "is_free": true,
+        "requires_radar_key": false,
+        "is_gender_neutral": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-17T18:43:49.700Z",
+        "raw_row_hash": "8858ea0b92c538c72a769a85f9e52e6136d371a0ce091f18cf8130ddd20d02ed"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-a841b3436208824bf19e",
+      "source_record_id": "e700cdd4047203a94a6a9080",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Waitrose",
+        "town": "East Hertfordshire",
+        "latitude": 51.8606827,
+        "longitude": 0.1648474,
+        "opening_hours": {
+          "monday": {
+            "open": "08:00",
+            "close": "20:00"
+          },
+          "tuesday": {
+            "open": "08:00",
+            "close": "20:00"
+          },
+          "wednesday": {
+            "open": "08:00",
+            "close": "20:00"
+          },
+          "thursday": {
+            "open": "08:00",
+            "close": "20:00"
+          },
+          "friday": {
+            "open": "08:00",
+            "close": "21:00"
+          },
+          "saturday": {
+            "open": "08:00",
+            "close": "20:00"
+          },
+          "sunday": {
+            "open": "10:00",
+            "close": "16:00"
+          }
+        },
+        "is_free": true,
+        "is_accessible": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-12T13:33:18.914Z",
+        "raw_row_hash": "f9d3a4a085a0fffab09c0378f1a13c5e9e9503b0942d7196967023d5b49d5983"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-a8f6a27db083eabb5654",
+      "source_record_id": "46da2d339d53dfbd632099f3",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Hemsby Beach Toilets",
+        "town": "Great Yarmouth",
+        "latitude": 52.694602966,
+        "longitude": 1.707775474,
+        "is_free": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-07-25T11:46:12.292Z",
+        "raw_row_hash": "dfb5da9ad3ca47877648c147d9d19e916a9c4c81084dcfc77382fc65c1c61539"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": true,
+      "decision": "DEFER_EXTERNAL_VERIFICATION",
+      "decision_rule": "CURRENT_CANONICAL_NEIGHBOUR_OR_COLLISION_REQUIRES_IDENTITY_VERIFICATION",
+      "evidence_sufficient_for_future_apply_2b": false,
+      "external_verification_required": true,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": true
+    },
+    {
+      "operation_id": "TM2-aa20c5d23cab8f4cbbcd",
+      "source_record_id": "319a320ae4671c38ef383f6f",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Birds Bakery Cafe",
+        "town": "Charnwood",
+        "latitude": 52.759246484,
+        "longitude": -1.207197322,
+        "is_free": true,
+        "is_accessible": true,
+        "requires_radar_key": false,
+        "has_baby_changing": false,
+        "is_gender_neutral": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-07T16:32:09.680Z",
+        "raw_row_hash": "c227993cf1bcc0e1be2afdcf27edb27eb313727092efd22bb66ddde82ab58724"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-b2b1caad3813b4f5cbf4",
+      "source_record_id": "1d9034f071dab8ee5ee5181f",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Exeter City Library",
+        "town": "Exeter",
+        "latitude": 50.725190606,
+        "longitude": -3.530183136,
+        "is_free": true,
+        "is_accessible": true,
+        "has_baby_changing": true,
+        "is_gender_neutral": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-06T21:01:03.917Z",
+        "raw_row_hash": "8c8173ce0c06480d04a5d55423499a955c5b07b1e1f92b2d183f656d5aa6d2f9"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-b3525ca1ea3b6cfd90f2",
+      "source_record_id": "f56fabed41bdd53b43154561",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Caffe Torta",
+        "town": "Erewash",
+        "latitude": 52.906419499,
+        "longitude": -1.381228492,
+        "is_free": true,
+        "is_gender_neutral": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-17T10:09:39.862Z",
+        "raw_row_hash": "60fe2a27a09e12f0429b788d50e6514f2743fec21bf642874941bc0b62bf62bc"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-b5126a69f1b99f989aff",
+      "source_record_id": "4090f92f66ab256d2938b037",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Marks and Spencer",
+        "town": "West Oxfordshire",
+        "latitude": 51.787483215,
+        "longitude": -1.48664248,
+        "is_free": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-01T13:40:13.383Z",
+        "raw_row_hash": "caaa9daa6a4a261650448664207629da7e722911930574cb79d9be0d6b3550e7"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-b51b3088dd1cfe5f930f",
+      "source_record_id": "defc1a12a8026d061ec6c37f",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Manor Café",
+        "town": "Hertsmere",
+        "latitude": 51.652137425,
+        "longitude": -0.26112913,
+        "opening_hours": {
+          "monday": {
+            "open": "07:00",
+            "close": "16:00"
+          },
+          "tuesday": {
+            "open": "07:00",
+            "close": "16:00"
+          },
+          "wednesday": {
+            "open": "07:00",
+            "close": "16:00"
+          },
+          "thursday": {
+            "open": "07:00",
+            "close": "16:00"
+          },
+          "friday": {
+            "open": "07:00",
+            "close": "16:00"
+          },
+          "saturday": {
+            "open": "07:30",
+            "close": "16:00"
+          }
+        },
+        "is_free": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-06T10:21:34.577Z",
+        "raw_row_hash": "5f4fb475373022def239c26193c799291cbfd007417494d70a053de66c01f76f"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-ba9cd26634c260082ad4",
+      "source_record_id": "7e4d881dc784d265df20994a",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Weston Museum",
+        "town": "North Somerset",
+        "latitude": 51.349030525,
+        "longitude": -2.975048237,
+        "opening_hours": {
+          "tuesday": {
+            "open": "10:00",
+            "close": "16:00"
+          },
+          "wednesday": {
+            "open": "10:00",
+            "close": "16:00"
+          },
+          "thursday": {
+            "open": "10:00",
+            "close": "16:00"
+          },
+          "friday": {
+            "open": "10:00",
+            "close": "16:00"
+          },
+          "saturday": {
+            "open": "10:00",
+            "close": "16:00"
+          }
+        },
+        "is_free": true,
+        "is_accessible": true,
+        "has_baby_changing": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-01T22:43:58.797Z",
+        "raw_row_hash": "4aa82a3837ea48a9cf62032a46b7af0d9ad36235e829abd225566604340b04ed"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-c1f3bc5a0ab1383f8c84",
+      "source_record_id": "6ed2683ff5dbb5a31bafd6ff",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Burns Mall Toilets",
+        "town": "East Ayrshire",
+        "latitude": 55.610422797,
+        "longitude": -4.495571399,
+        "opening_hours": {
+          "monday": {
+            "open": "06:30",
+            "close": "18:00"
+          },
+          "tuesday": {
+            "open": "06:30",
+            "close": "18:00"
+          },
+          "wednesday": {
+            "open": "06:30",
+            "close": "18:00"
+          },
+          "thursday": {
+            "open": "06:30",
+            "close": "18:00"
+          },
+          "friday": {
+            "open": "06:30",
+            "close": "18:00"
+          },
+          "saturday": {
+            "open": "06:30",
+            "close": "18:00"
+          },
+          "sunday": {
+            "open": "10:00",
+            "close": "17:00"
+          }
+        },
+        "is_free": true,
+        "is_accessible": true,
+        "is_gender_neutral": false
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-15T09:39:02.548Z",
+        "raw_row_hash": "a3244466ef7050a70d170e615910df01d176a8fcfababec6e16a8ebd582b33d2"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": true,
+      "decision": "DEFER_EXTERNAL_VERIFICATION",
+      "decision_rule": "CURRENT_CANONICAL_NEIGHBOUR_OR_COLLISION_REQUIRES_IDENTITY_VERIFICATION",
+      "evidence_sufficient_for_future_apply_2b": false,
+      "external_verification_required": true,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": true
+    },
+    {
+      "operation_id": "TM2-cd448729df1f560728f0",
+      "source_record_id": "14abe0d9023602979da37362",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Chill @ Chives Cafe",
+        "town": "Derby",
+        "latitude": 52.925885481,
+        "longitude": -1.469015853,
+        "is_free": true,
+        "is_accessible": false,
+        "is_gender_neutral": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-07T16:43:59.863Z",
+        "raw_row_hash": "165137b4a9a1f4bd09536e44e4dcf1f538ee94364e50644ccdd8866c8d17d9b2"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-d0acc3bb09743e14d080",
+      "source_record_id": "e5605b6c0df6875be110c199",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Tesco Extra",
+        "town": "Welwyn Hatfield",
+        "latitude": 51.776327709,
+        "longitude": -0.220058722,
+        "opening_hours": {
+          "monday": {
+            "open": "06:00",
+            "close": "00:00"
+          },
+          "tuesday": {
+            "open": "06:00",
+            "close": "00:00"
+          },
+          "wednesday": {
+            "open": "06:00",
+            "close": "00:00"
+          },
+          "thursday": {
+            "open": "06:00",
+            "close": "00:00"
+          },
+          "friday": {
+            "open": "06:00",
+            "close": "00:00"
+          },
+          "saturday": {
+            "open": "06:00",
+            "close": "00:00"
+          },
+          "sunday": {
+            "open": "10:00",
+            "close": "16:00"
+          }
+        },
+        "is_free": true,
+        "is_accessible": true,
+        "has_baby_changing": true,
+        "is_gender_neutral": false
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-14T08:46:22.470Z",
+        "raw_row_hash": "4acce471d213bc94bf752e51e249b39a467b8664feb15849c17725cb32542039"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": true,
+      "decision": "DEFER_EXTERNAL_VERIFICATION",
+      "decision_rule": "CURRENT_CANONICAL_NEIGHBOUR_OR_COLLISION_REQUIRES_IDENTITY_VERIFICATION",
+      "evidence_sufficient_for_future_apply_2b": false,
+      "external_verification_required": true,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": true
+    },
+    {
+      "operation_id": "TM2-d184848ddde09ce81b41",
+      "source_record_id": "d4a0b0dfba033bbc5471d0b4",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Copper Cogs Bar and cafe",
+        "town": "Erewash",
+        "latitude": 52.899200103,
+        "longitude": -1.271691619,
+        "is_free": true,
+        "is_accessible": true,
+        "is_gender_neutral": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-17T10:24:10.772Z",
+        "raw_row_hash": "0bc27bb9cbb0e194817cad8bed29810bbae9babc7facfdfb0ec4d0f2b4ea223f"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-ecd6c4b03379941d90c0",
+      "source_record_id": "7cc79e2f00ccb6fed0aa3d9b",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Subway Maghull",
+        "town": "Sefton",
+        "latitude": 53.5156803,
+        "longitude": -2.931918,
+        "opening_hours": {
+          "monday": {
+            "open": "08:00",
+            "close": "19:00"
+          },
+          "tuesday": {
+            "open": "08:00",
+            "close": "19:00"
+          },
+          "wednesday": {
+            "open": "08:00",
+            "close": "19:00"
+          },
+          "thursday": {
+            "open": "08:00",
+            "close": "19:00"
+          },
+          "friday": {
+            "open": "08:00",
+            "close": "19:00"
+          },
+          "saturday": {
+            "open": "08:00",
+            "close": "19:00"
+          },
+          "sunday": {
+            "open": "09:00",
+            "close": "18:00"
+          }
+        },
+        "is_free": true,
+        "is_accessible": true,
+        "requires_radar_key": false,
+        "is_gender_neutral": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-16T14:55:39.183Z",
+        "raw_row_hash": "3430f23db399207f06f2852fddd094eed8cf600ff478112c922c78faac193e3d"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-ef55d1714894becddeaf",
+      "source_record_id": "615f57c3f055e295b30e927b",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Starbucks on Sauchiehall Street",
+        "town": "Glasgow City",
+        "latitude": 55.864234782,
+        "longitude": -4.254438635,
+        "opening_hours": {
+          "monday": {
+            "open": "06:30",
+            "close": "22:00"
+          },
+          "tuesday": {
+            "open": "06:30",
+            "close": "22:00"
+          },
+          "wednesday": {
+            "open": "06:30",
+            "close": "22:00"
+          },
+          "thursday": {
+            "open": "06:30",
+            "close": "22:00"
+          },
+          "friday": {
+            "open": "06:30",
+            "close": "22:00"
+          },
+          "saturday": {
+            "open": "07:30",
+            "close": "22:00"
+          },
+          "sunday": {
+            "open": "07:30",
+            "close": "21:00"
+          }
+        },
+        "is_free": true,
+        "is_accessible": true,
+        "requires_radar_key": true,
+        "has_baby_changing": true,
+        "is_gender_neutral": false
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-07-27T07:50:37.468Z",
+        "raw_row_hash": "823bca51c4e8e99f089a7832941baf07570a2517b8a7efbfb733f863ca89ede2"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-f0ebde1c1b6bf0e99b75",
+      "source_record_id": "d4e39ccaa0d82f641d81a998",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Meopham Green Public Toilets",
+        "town": "Gravesham",
+        "latitude": 51.362612457,
+        "longitude": 0.355878174,
+        "opening_hours": {
+          "monday": {
+            "open": "08:00",
+            "close": "18:00"
+          },
+          "tuesday": {
+            "open": "08:00",
+            "close": "18:00"
+          },
+          "wednesday": {
+            "open": "08:00",
+            "close": "18:00"
+          },
+          "thursday": {
+            "open": "08:00",
+            "close": "18:00"
+          },
+          "friday": {
+            "open": "08:00",
+            "close": "18:00"
+          },
+          "saturday": {
+            "open": "08:00",
+            "close": "18:00"
+          },
+          "sunday": {
+            "open": "08:00",
+            "close": "18:00"
+          }
+        },
+        "is_free": true,
+        "is_accessible": true,
+        "requires_radar_key": true,
+        "is_gender_neutral": false
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-07T17:57:07.936Z",
+        "raw_row_hash": "9f331619183105591fc7cbfef748452c431d9c29236ade6adfcf4624661414df"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    },
+    {
+      "operation_id": "TM2-ff5b63deaf31a053e80f",
+      "source_record_id": "48da5d2fccb3c30e827ab43b",
+      "target_facility_id": null,
+      "target_field": "__facility_creation__",
+      "proposed_facility": {
+        "name": "Methodist Church",
+        "town": "East Hertfordshire",
+        "latitude": 51.868409525,
+        "longitude": 0.160578489,
+        "opening_hours": {
+          "monday": {
+            "open": "10:00",
+            "close": "12:00"
+          },
+          "tuesday": {
+            "open": "10:00",
+            "close": "16:00"
+          },
+          "wednesday": {
+            "open": "10:00",
+            "close": "16:00"
+          },
+          "thursday": {
+            "open": "10:00",
+            "close": "16:00"
+          },
+          "friday": {
+            "open": "10:00",
+            "close": "12:00"
+          },
+          "saturday": {
+            "open": "10:00",
+            "close": "12:00"
+          }
+        },
+        "is_free": true,
+        "is_accessible": true,
+        "has_baby_changing": true
+      },
+      "source_evidence": {
+        "source_name": "Toilet Map UK",
+        "source_url": "https://www.toiletmap.org.uk/dataset",
+        "licence": "CC BY 4.0",
+        "source_version": "2026-08-18T01:00:00+00:00",
+        "source_checksum": "5600358ce06ca5dfdc0060968b26e8c9e05a1cb5c9dbe0455cdf3951f480ad7f",
+        "source_updated_at": "2026-08-12T13:28:33.053Z",
+        "raw_row_hash": "6519a35837ae2d38c7c8b922f68e31a996444690c4c7651b6e18b396b81fb253"
+      },
+      "refresh_reason_code": "NEW_FACILITY",
+      "refresh_category": "REVIEW_REQUIRED",
+      "refresh_collision_candidate": false,
+      "decision": "PREPARE_INSERT_CANDIDATE",
+      "decision_rule": "VALID_EXACT_SOURCE_NEW_RECORD_WITH_NO_DETERMINISTIC_COLLISION_EVIDENCE",
+      "evidence_sufficient_for_future_apply_2b": true,
+      "external_verification_required": false,
+      "source_batch_duplicate_evidence": null,
+      "exact_source_link_count_preflight": 0,
+      "safety_critical": true,
+      "ambiguous": true,
+      "stronger_provenance_risk": false,
+      "unknown_to_false_certainty_risk": false,
+      "material_user_visible_change": false,
+      "urgent_search_impact": false,
+      "human_review_required_after_decision": false
+    }
+  ]
+}
