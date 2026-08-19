@@ -21,6 +21,8 @@ Exactly 22 `APPLY_SOURCE` operations were applied to 10 existing facilities:
 
 All operations were boolean enrichments with exact Toilet Map source identity. Field-level provenance was recorded with the frozen manifest SHA, source checksum, source record ID, and `EXACT_SOURCE_ID` basis.
 
+The existing `facilities_updated_at` trigger updated system timestamps on the 10 touched facility rows. No non-allowlisted user-facing facility columns were written.
+
 ## Postcheck
 
 The production postcheck confirmed:

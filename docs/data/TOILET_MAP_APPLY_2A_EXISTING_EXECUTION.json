@@ -9,6 +9,11 @@
   "source_snapshot_checksum": "5600358CE06CA5DFDC0060968B26E8C9E05A1CB5C9DBE0455CDF3951F480AD7F",
   "executed_at": "2026-08-19T21:12:06.323737Z",
   "execution_mode": "single guarded production SQL transaction",
+  "system_metadata": {
+    "facilities_updated_at_trigger_fired": true,
+    "affected_facility_rows": 10,
+    "no_non_allowlisted_user_facing_columns_written": true
+  },
   "authorized_scope": {
     "operation_count": 22,
     "affected_facility_rows": 10,
