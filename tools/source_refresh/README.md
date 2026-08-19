@@ -66,3 +66,23 @@ canonical or production data.
 The council and TfL entries are templates pending source-specific reuse
 verification. The Changing Places Consortium master registry and OSM/ODbL data
 are intentionally outside the canonical ingestion path.
+
+### Refresh 2B new-facility review package
+
+`apply2b.py` consumes the published Refresh 2 review evidence and assesses all
+42 `NEW_FACILITY` candidates individually. It is read-only and has no apply
+option. A candidate is included in the future-insert manifest only when the
+frozen public source row has a usable name and coordinate, the production
+exact-source preflight found no existing link, and no deterministic collision
+evidence was found. Same-name nearby source rows and canonical-neighbour
+collisions remain `DEFER_EXTERNAL_VERIFICATION`; placeholder identities are
+`QUARANTINE`.
+
+The generated artifacts are `TOILET_MAP_APPLY_2B_NEW_DECISIONS.json`,
+`TOILET_MAP_APPLY_2B_NEW_DECISIONS.md`,
+`TOILET_MAP_APPLY_2B_NEW_MANIFEST.json`, and
+`TOILET_MAP_APPLY_2B_NEW_PLAN.md` under `docs/data/`. The package is marked
+`TOILET MAP APPLY 2B — NEW FACILITY PACKAGE PREPARED / EXECUTION NOT
+AUTHORIZED`, contains no facility IDs or production write command, and reports
+zero canonical, production, source-link, provenance, staging, and import-run
+mutations.

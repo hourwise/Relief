@@ -360,3 +360,15 @@ not insert, update, delete, stage, create an `import_runs` row, invoke Apply
 1A, or change provenance. Apply 1A evidence remains immutable. See
 [`ENRICHMENT_ARCHITECTURE.md`](data/ENRICHMENT_ARCHITECTURE.md) and the
 versioned Refresh 2 artifacts for the exact counts and source checksum.
+
+## Toilet Map Apply 2B — NEW FACILITY PACKAGE PREPARED / EXECUTION NOT AUTHORIZED
+
+The bounded Refresh 2B review assessed all 42 new-facility candidates without
+writing production. Thirty-six candidates are prepared for a separately
+authorized future insert package, five remain deferred for identity or
+collision verification, and one placeholder-name record is quarantined. The
+three canonical-neighbour collisions are Hemsby Beach Toilets, Burns Mall
+Toilets, and Tesco Extra; the two same-name Becky’s Barn Cafe rows are also
+deferred because they are 217.1 m apart in the source batch. See the four
+`TOILET_MAP_APPLY_2B_NEW_*` artifacts under `docs/data/`. Production mutations
+remain `0`, and no Apply 2B execution is authorized by this package.
