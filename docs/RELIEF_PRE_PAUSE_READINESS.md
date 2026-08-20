@@ -1,8 +1,8 @@
 # Relief pre-pause readiness and recovery capture
 
-**Date:** 2026-08-20  
-**Branch:** `codex/toilet-map-apply-1a-production-deploy`  
-**Build-readiness commit:** `36de2101be6462a8036ac4e2d0d9a7b8b1f884fa`  
+**Date:** 2026-08-20
+**Branch:** `codex/toilet-map-apply-1a-production-deploy`
+**Build-readiness commit:** `36de2101be6462a8036ac4e2d0d9a7b8b1f884fa`
 **Production project:** `Relief` / `bgwxrxkmyaihplaloely`
 
 This is the current consolidation overlay. Earlier phase documents remain

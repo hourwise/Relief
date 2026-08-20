@@ -1,7 +1,7 @@
 # Relief final optional data review
 
-**Date:** 2026-08-20  
-**Repository branch:** `codex/toilet-map-apply-1a-production-deploy`  
+**Date:** 2026-08-20
+**Repository branch:** `codex/toilet-map-apply-1a-production-deploy`
 **Review basis:** committed Refresh 2 / Apply 2B evidence and read-only production inspection
 
 ## Decision
