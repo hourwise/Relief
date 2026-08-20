@@ -372,3 +372,29 @@ Toilets, and Tesco Extra; the two same-name Becky’s Barn Cafe rows are also
 deferred because they are 217.1 m apart in the source batch. See the four
 `TOILET_MAP_APPLY_2B_NEW_*` artifacts under `docs/data/`. Production mutations
 remain `0`, and no Apply 2B execution is authorized by this package.
+
+## Final pre-pause consolidation — 2026-08-20
+
+Apply 2B is now accepted as live/verified. The current read-only production
+checkpoint is `facilities=15,620`, `facility_sources=15,620`,
+`import_runs=5`, and `toilet_map_import_staging=0`, with all 15,620 facilities
+published and 15,620 current Toilet Map UK source links. No additional exact,
+frozen data package was present for this final optional review, so this batch
+performed no canonical, source-link, provenance, staging, or import-run
+mutation. The nine unusable published names remain manual-review items because
+the fresh source repeats the same unusable values; no deterministic correction
+was invented.
+
+The five SDK 56 patch dependencies were aligned in commit `36de210`, and the
+repository `verify` gate passes with all 21 test files passing. Expo Doctor is
+`21/22`: the remaining advisory is the known Hermes V1 memory regression, not
+an SDK 57 migration performed by this batch. EAS preview build
+`dbd8c240-3a77-4656-b726-c2c8bfc48736` was submitted from that commit using
+Node 22.22.2; final artifact/device verification is recorded in
+[`RELIEF_PRE_PAUSE_READINESS.md`](RELIEF_PRE_PAUSE_READINESS.md).
+
+The Supabase project remains active and healthy; no pause operation was run.
+The recovery and security-advisor capture is in
+[`RELIEF_PRE_PAUSE_READINESS.md`](RELIEF_PRE_PAUSE_READINESS.md), and the
+bounded final data decision is in
+[`TOILET_MAP_FINAL_OPTIONAL_DATA_REVIEW.md`](data/TOILET_MAP_FINAL_OPTIONAL_DATA_REVIEW.md).
