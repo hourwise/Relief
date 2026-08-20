@@ -1,0 +1,106 @@
+{
+  "classification": "UK PUBLIC SOURCE EXPANSION — DISCOVERY / INGESTION PREPARATION / PRODUCTION APPLY NOT AUTHORIZED",
+  "review_date": "2026-08-20",
+  "tool_version": "relief.uk-public-source-expansion.v1",
+  "production_project": "bgwxrxkmyaihplaloely",
+  "production_read_only_checkpoint": {
+    "facilities": 15620,
+    "facility_sources": 15620,
+    "import_runs": 5,
+    "toilet_map_import_staging": 0,
+    "facility_source_names": {
+      "Toilet Map UK": 15620
+    },
+    "query_scope": "read-only count and source-name aggregate; no user profile or account data selected"
+  },
+  "production_mutations": 0,
+  "selected_source_assessments": [
+    {
+      "source_id": "national_rail_knowledgebase",
+      "priority": 1,
+      "official_source": "https://www.nationalrail.co.uk/developers/",
+      "licence_or_terms": "NRE Licence / registered feed terms",
+      "status": "PENDING_REGISTERED_ACCESS_AND_TERMS",
+      "finding": "National Rail identifies Knowledgebase as the station-facilities content engine, available as XML via self-sign-up and REST API. The specific facility feed and permitted reuse terms must be obtained through the registered portal before retrieval or republishing.",
+      "candidate_action": "Do not scrape National Rail pages or use an unofficial mirror; request the registered station facilities feed and retain its source identity and terms."
+    },
+    {
+      "source_id": "tfl_bus_public_toilets",
+      "priority": 2,
+      "official_source": "https://tfl.gov.uk/info-for/open-data-users/our-open-data?intcmp=3671",
+      "licence_or_terms": "TfL Open Data terms / live-feed registration required",
+      "status": "ENRICHMENT_ONLY_PENDING_LIVE_FEED",
+      "example_snapshot": {
+        "official_url": "https://tfl.gov.uk/cdn/static/cms/documents/bus-stations-with-public-toilets.csv",
+        "source_version": "official-example-not-production",
+        "retrieved_at": "2026-08-20T00:00:00Z",
+        "sha256": "ce36eed029b75963c6215f4f0615114681a81dbe504014d0f9f005905508e497",
+        "rows": 48,
+        "duplicate_source_ids": 0,
+        "coordinate_collision_groups": 0,
+        "records_missing_coordinates": 48
+      },
+      "finding": "TfL says the public example is not updated and the live feed requires registration. The example has station names, a public-toilet flag, and notes, but no coordinates, so it cannot independently create Relief facilities.",
+      "candidate_action": "Obtain the registered current feed and join only through an authoritative station identity/coordinate source; preserve nulls and treat toilet flags as source facts, not canonical certainty."
+    },
+    {
+      "source_id": "rother_public_toilets",
+      "priority": 3,
+      "official_source": "https://www.data.gov.uk/dataset/e318a429-678e-447d-adbd-88f03faaa271/rother-district-council-public-toilets",
+      "licence_or_terms": "Open Government Licence",
+      "status": "PENDING_CURRENT_MACHINE_RESOURCE_CONFIRMATION",
+      "finding": "The National Data Library entry identifies a Rother public-toilet dataset, current metadata, and OGL. The listed public-toilet information resource is not enough by itself to establish a current coordinate-bearing machine feed, stable row identity, or operational status.",
+      "candidate_action": "Contact or verify the council resource before ingesting; do not treat a stale PDF, closed site, or metadata-only entry as current canonical evidence."
+    },
+    {
+      "source_id": "wales_national_toilet_map",
+      "priority": 4,
+      "official_source": "https://datamap.gov.wales/layers/geonode%3Anational_toilet_map/metadata_detail",
+      "licence_or_terms": "Public Sector Geospatial Agreement (PSGA)",
+      "status": "PENDING_REUSE_PERMISSION",
+      "finding": "DataMapWales publishes a National Toilet Map supplied by local authorities, but the layer metadata names PSGA. The portal-wide statement that OGL is used where possible does not override the layer-specific licence metadata.",
+      "candidate_action": "Obtain written confirmation that Relief may reuse and republish the layer and any derived coordinates; otherwise retain as research-only."
+    },
+    {
+      "source_id": "scotland_public_toilets_investigation",
+      "priority": 5,
+      "official_source": "https://data.gov.scot/",
+      "licence_or_terms": "Publisher-specific; OGL only where expressly stated",
+      "status": "NO_VERIFIED_FACILITY_FEED_SELECTED",
+      "finding": "The Scottish data platform is transitioning from statistics.gov.scot. Catalogue-level OGL availability is not evidence of a current facility-level public-toilet dataset.",
+      "candidate_action": "Revisit after the platform transition and select only a named, current, coordinate-bearing source with explicit licence and stable identity."
+    },
+    {
+      "source_id": "northern_ireland_public_toilets_investigation",
+      "priority": 6,
+      "official_source": "https://www.opendatani.gov.uk/",
+      "licence_or_terms": "Publisher-specific licence to be verified",
+      "status": "NO_VERIFIED_FACILITY_FEED_SELECTED",
+      "finding": "No current facility-level official toilet feed with clearly verified reuse terms was selected in this bounded review.",
+      "candidate_action": "Do not ingest directory pages, community registries, or unverified mirrors; continue only after a named publisher and explicit licence are confirmed."
+    }
+  ],
+  "implementation": {
+    "registry": "tools/source_expansion/source_registry.json",
+    "pipeline": "tools/source_expansion/pipeline.py",
+    "tests": "tools/source_expansion/test_pipeline.py",
+    "raw_snapshot_policy": "ignored local content-addressed cache; never force-added",
+    "normalization_policy": "unknown values remain null; OSGB36 easting/northing is not treated as WGS84 latitude/longitude",
+    "matching_policy": "source identity only for exact matches; name-only matches remain unresolved",
+    "apply_capability": false
+  },
+  "mutations": {
+    "canonical_mutations": 0,
+    "production_mutations": 0,
+    "facility_inserts": 0,
+    "facility_updates": 0,
+    "facility_deletes": 0,
+    "facility_source_mutations": 0,
+    "provenance_mutations": 0,
+    "import_run_mutations": 0,
+    "staging_mutations": 0,
+    "migration_changes": 0,
+    "rls_or_grant_changes": 0,
+    "edge_function_changes": 0
+  }
+}

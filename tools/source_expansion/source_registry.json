@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "policy": "DISCOVERY_AND_INGESTION_PREPARATION_ONLY",
+  "sources": [
+    {
+      "source_id": "national_rail_knowledgebase",
+      "source_name": "National Rail Knowledgebase station facilities",
+      "publisher": "National Rail",
+      "source_url": "https://www.nationalrail.co.uk/developers/",
+      "licence_identifier": "NRE Licence / registered feed terms",
+      "licence_url": "https://www.nationalrail.co.uk/developers/",
+      "required_attribution": "National Rail attribution in line with National Rail brand guidelines and feed terms.",
+      "parser_normalizer_version": "national-rail-kb-stations-v1",
+      "current_status": "TEMPLATE_PENDING_SOURCE_CONFIRMATION",
+      "access_requirement": "Self-sign-up on the National Rail data portal; confirm the specific Knowledgebase station-facilities feed and reuse terms before retrieval.",
+      "ingestion_boundary": "Do not use a public website scrape or an unofficial mirror as a substitute for the registered feed."
+    },
+    {
+      "source_id": "tfl_bus_public_toilets",
+      "source_name": "TfL bus stations with public toilets",
+      "publisher": "Transport for London",
+      "source_url": "https://tfl.gov.uk/info-for/open-data-users/our-open-data?intcmp=3671",
+      "licence_identifier": "TfL Open Data terms / live-feed registration required",
+      "licence_url": "https://tfl.gov.uk/info-for/open-data-users/",
+      "required_attribution": "Data provided by Transport for London",
+      "parser_normalizer_version": "tfl-bus-toilets-v1",
+      "current_status": "TEMPLATE_PENDING_SOURCE_CONFIRMATION",
+      "access_requirement": "Register for the live feed; the public example is not updated and is not a production snapshot.",
+      "ingestion_boundary": "The example CSV has station names and toilet flags but no coordinates; it is not independently insertable."
+    },
+    {
+      "source_id": "rother_public_toilets",
+      "source_name": "Rother District Council Public Toilets",
+      "publisher": "Rother District Council",
+      "source_url": "https://www.data.gov.uk/dataset/e318a429-678e-447d-adbd-88f03faaa271/rother-district-council-public-toilets",
+      "licence_identifier": "Open Government Licence",
+      "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "required_attribution": "Contains public sector information licensed under the Open Government Licence.",
+      "parser_normalizer_version": "esd-public-toilets-v1",
+      "current_status": "TEMPLATE_PENDING_SOURCE_CONFIRMATION",
+      "access_requirement": "Confirm the current machine-readable resource, row identifier, coordinate licence/CRS, and operating status before ingesting.",
+      "ingestion_boundary": "The catalog entry is current but its listed public-toilet information resource is not sufficient evidence of a current, coordinate-bearing feed by itself."
+    },
+    {
+      "source_id": "wales_national_toilet_map",
+      "source_name": "DataMapWales National Toilet Map",
+      "publisher": "Welsh Government / DataMapWales",
+      "source_url": "https://datamap.gov.wales/layers/geonode%3Anational_toilet_map/metadata_detail",
+      "licence_identifier": "Public Sector Geospatial Agreement (PSGA)",
+      "licence_url": "https://www.ordnancesurvey.co.uk/business-government/public-sector/geospatial-agreement",
+      "required_attribution": "Welsh Government / DataMapWales attribution as required by the applicable PSGA terms.",
+      "parser_normalizer_version": "datamap-wales-national-toilets-v1",
+      "current_status": "TEMPLATE_PENDING_SOURCE_CONFIRMATION",
+      "access_requirement": "Obtain written confirmation that Relief may reuse and republish the layer and any derived coordinate data under the applicable PSGA terms.",
+      "ingestion_boundary": "Do not infer OGL reuse from the portal-wide policy where the layer metadata names PSGA."
+    },
+    {
+      "source_id": "scotland_public_toilets_investigation",
+      "source_name": "Scottish public-sector public-toilet datasets",
+      "publisher": "Scottish public-sector data publishers",
+      "source_url": "https://data.gov.scot/",
+      "licence_identifier": "Open Government Licence where expressly stated by the dataset publisher",
+      "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "required_attribution": "Publisher-specific attribution, only after a toilet dataset and licence are verified.",
+      "parser_normalizer_version": "scotland-public-toilets-pending-v1",
+      "current_status": "TEMPLATE_PENDING_SOURCE_CONFIRMATION",
+      "access_requirement": "Identify a current facility-level toilet dataset and confirm its publisher, licence, row identity, and update cadence.",
+      "ingestion_boundary": "The new data.gov.scot platform is still transitioning; no source is promoted from catalogue-level discovery alone."
+    },
+    {
+      "source_id": "northern_ireland_public_toilets_investigation",
+      "source_name": "Northern Ireland public-toilet open datasets",
+      "publisher": "Northern Ireland public-sector data publishers",
+      "source_url": "https://www.opendatani.gov.uk/",
+      "licence_identifier": "Publisher-specific licence to be verified",
+      "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "required_attribution": "Publisher-specific attribution, only after a toilet dataset and licence are verified.",
+      "parser_normalizer_version": "northern-ireland-public-toilets-pending-v1",
+      "current_status": "TEMPLATE_PENDING_SOURCE_CONFIRMATION",
+      "access_requirement": "Identify a current facility-level toilet dataset and confirm explicit reuse rights.",
+      "ingestion_boundary": "Do not ingest a directory result, webpage, or community registry as an official source."
+    }
+  ]
+}

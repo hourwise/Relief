@@ -45,6 +45,7 @@ yarn-error.*
 # logs
 *.log
 logs/
+__pycache__/
 
 # Google services (contain secrets)
 google-services.json
@@ -77,3 +78,4 @@ assets/*.webp
 assets/26*.jpg
 tools/facility-enrichment/cache/
 tools/facility-enrichment/output/
+tools/source_expansion/cache/

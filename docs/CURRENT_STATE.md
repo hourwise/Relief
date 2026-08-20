@@ -399,3 +399,20 @@ The recovery and security-advisor capture is in
 [`RELIEF_PRE_PAUSE_READINESS.md`](RELIEF_PRE_PAUSE_READINESS.md), and the
 bounded final data decision is in
 [`TOILET_MAP_FINAL_OPTIONAL_DATA_REVIEW.md`](data/TOILET_MAP_FINAL_OPTIONAL_DATA_REVIEW.md).
+
+## UK public-source expansion — DISCOVERY / INGESTION PREPARATION — 2026-08-20
+
+The bounded National Rail, TfL, local-authority, Welsh, Scottish, and Northern
+Irish source review added no production data and left the accepted checkpoint
+unchanged at `facilities=15,620`, `facility_sources=15,620`, `import_runs=5`,
+and `toilet_map_import_staging=0`. The current `facility_sources` aggregate
+contains only the 15,620 Toilet Map UK links. Production mutations remain `0`.
+
+National Rail Knowledgebase and live TfL feeds require registered access or
+source terms. The public TfL example was held as enrichment-only because it is
+not updated and has no coordinates. Rother is a possible OGL local-authority
+candidate pending current machine-resource verification. DataMapWales names
+PSGA for its national layer, so reuse permission remains unresolved. No
+Scottish or Northern Irish feed met the bounded selection bar. See
+[`UK_PUBLIC_SOURCE_EXPANSION.md`](UK_PUBLIC_SOURCE_EXPANSION.md) and the
+versioned JSON evidence under `docs/data/`.
