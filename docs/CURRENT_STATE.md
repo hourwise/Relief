@@ -390,7 +390,8 @@ repository `verify` gate passes with all 21 test files passing. Expo Doctor is
 `21/22`: the remaining advisory is the known Hermes V1 memory regression, not
 an SDK 57 migration performed by this batch. EAS preview build
 `dbd8c240-3a77-4656-b726-c2c8bfc48736` was submitted from that commit using
-Node 22.22.2; final artifact/device verification is recorded in
+Node 22.22.2 and finished successfully. The artifact checksum and the fact
+that this exact build has no physical-device verification are recorded in
 [`RELIEF_PRE_PAUSE_READINESS.md`](RELIEF_PRE_PAUSE_READINESS.md).
 
 The Supabase project remains active and healthy; no pause operation was run.

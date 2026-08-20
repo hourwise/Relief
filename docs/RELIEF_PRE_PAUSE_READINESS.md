@@ -46,10 +46,17 @@ cache is not part of the repository or publication set.
   `6295bbe4-47b2-4fc2-8d47-cdf9fc15f6c2`.
 - The EAS `preview` environment contains the three required public client
   variable names. Their values are intentionally not recorded here.
-- EAS build `dbd8c240-3a77-4656-b726-c2c8bfc48736` was submitted from the
+- EAS build `dbd8c240-3a77-4656-b726-c2c8bfc48736` **FINISHED** from the
   build-readiness commit using Node `22.22.2`, the preview APK profile, and
-  the remote Android keystore. Its artifact and physical-device result are
-  pending this capture's final update.
+  the remote Android keystore. It completed at `2026-08-20T21:24:22Z`.
+  Artifact: [Relief preview APK](https://expo.dev/artifacts/eas/f4STKhMGd4md301GlKHLt_gCOlFo9DLJmtpdZGqS_4U.apk)
+  Size: `115,963,679` bytes. SHA-256:
+  `E0E7C9A57F8EF748B0903DD4CBC42915ED134EFE6E0971DA49881915722C894B`.
+- No Android device was connected during this batch (`adb devices` returned
+  no device), so installation, launch, Maps rendering, Supabase read-path,
+  and physical smoke acceptance for this exact EAS artifact remain
+  **NOT VERIFIED**. The prior device evidence is historical and is not
+  silently transferred to this new build.
 
 The build is an internal preview/test artifact, not a store-release claim.
 The EAS keystore certificate and Google Maps key restrictions still require
