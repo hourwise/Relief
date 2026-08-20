@@ -18,8 +18,12 @@ The TfL bus-toilet example is intentionally treated as enrichment-only: its
 published example has station names and toilet flags but no coordinates, and
 TfL says the example feed is not updated. Live TfL data requires registration.
 National Rail Knowledgebase data likewise requires registered access and the
-applicable NRE feed terms. DataMapWales metadata names PSGA for the National
-Toilet Map, so no OGL assumption is made.
+applicable NRE feed terms. The Sheffield City Council source is the first
+current OGL facility-level source processed by this package. Its GeoJSON has
+UPRN identifiers and coordinates but no names, so its 41 records remain
+review-required and cannot be inserted without a further source-specific
+decision. DataMapWales metadata names PSGA for the National Toilet Map, so no
+OGL assumption is made.
 
 Example:
 

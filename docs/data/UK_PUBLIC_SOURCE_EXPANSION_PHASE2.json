@@ -1,0 +1,74 @@
+{
+  "classification": "RELIEF UK SOURCE EXPANSION PHASE 2 — LIVE FEED ACQUIRED / CANDIDATE RECONCILIATION / PRODUCTION APPLY NOT AUTHORIZED",
+  "review_date": "2026-08-20",
+  "starting_commit": "334a12dee4fae50e6829e26298e0d0cebeb86252",
+  "tool_version": "relief.uk-public-source-expansion.v1",
+  "production_project": "bgwxrxkmyaihplaloely",
+  "production_baseline": {
+    "facilities": 15620,
+    "facility_sources": 15620,
+    "import_runs": 5,
+    "staging_rows": 0
+  },
+  "sources": {
+    "sheffield_public_toilets": {
+      "publisher": "Sheffield City Council",
+      "catalog_url": "https://www.data.gov.uk/dataset/1e172d53-a4d2-4da3-8fe7-206537f0611d/public-toilets-sheffield",
+      "data_url": "https://sheffieldcitycouncil.cloud.esriuk.com/server/rest/services/AGOL/OpenData1/FeatureServer/6/query?outFields=*&where=1%3D1&f=geojson",
+      "licence": "UK Open Government Licence (OGL)",
+      "catalog_last_updated": "2025-02-20",
+      "retrieved_at": "2026-08-20T00:00:00Z",
+      "snapshot_sha256": "0206086836c35ae3516531767563c8d2499994ed255c3555332169b942090e7f",
+      "source_rows": 41,
+      "duplicate_source_ids": 0,
+      "missing_names": 41,
+      "records_with_coordinates": 41,
+      "candidate_decisions": {
+        "REVIEW_REQUIRED_MISSING_NAME": 41,
+        "PREPARE_INSERT_CANDIDATE": 0,
+        "EXISTING_MATCH_OR_REVIEW": 18,
+        "NO_NEARBY_PRODUCTION_FACILITY_REVIEW": 23,
+        "EXACT_SOURCE_LINK": 0
+      },
+      "nearby_source_record_ids": [
+        "010013159595", "010013161014", "010023155044", "010024191998", "010090615101", "010090615109", "010090615126", "010090615148", "010090615175", "010090615195", "010090615474", "010090615525", "010090615532", "010090618201", "100052215645", "100052216711", "100052217846", "200003011336"
+      ],
+      "no_nearby_source_record_ids": [
+        "010013333396", "010013555482", "010023160184", "010090615093", "010090615102", "010090615139", "010090615158", "010090615167", "010090615177", "010090615187", "010090615295", "010090615306", "010090615307", "010090615382", "010090615446", "010090615458", "010090615491", "010090615640", "010090615670", "010090615673", "100052215625", "100052216602", "200003009984"
+      ]
+    },
+    "national_rail_knowledgebase": {
+      "status": "BLOCKED_EXTERNAL_ACCESS_ACTION",
+      "required_action": "Complete National Rail data-portal self-sign-up and obtain the current Knowledgebase station-facilities feed plus applicable NRE licence/attribution terms.",
+      "official_url": "https://www.nationalrail.co.uk/developers/"
+    },
+    "tfl": {
+      "status": "BLOCKED_EXTERNAL_ACCESS_ACTION",
+      "required_action": "Register for the live TfL feed/API and obtain the current station/bus toilet resource; the public example is not a current production snapshot and has no coordinates.",
+      "official_url": "https://tfl.gov.uk/info-for/open-data-users/our-open-data?intcmp=3671"
+    },
+    "rother_public_toilets": {
+      "status": "BLOCKED_RESOURCE_QUALITY",
+      "required_action": "Confirm a current machine-readable facility resource, stable row identity, coordinate CRS/licence, and operating status; the catalog currently exposes only a PDF resource.",
+      "official_url": "https://www.data.gov.uk/dataset/e318a429-678e-447d-adbd-88f03faaa271/rother-district-council-public-toilets"
+    },
+    "wales_scotland_northern_ireland": {
+      "status": "NOT_SELECTED",
+      "required_action": "Wales requires layer-specific PSGA reuse confirmation; Scotland and Northern Ireland still require a current facility-level feed with explicit reuse terms."
+    }
+  },
+  "mutations": {
+    "canonical_mutations": 0,
+    "production_mutations": 0,
+    "facility_inserts": 0,
+    "facility_updates": 0,
+    "facility_deletes": 0,
+    "facility_source_mutations": 0,
+    "provenance_mutations": 0,
+    "import_run_mutations": 0,
+    "staging_mutations": 0,
+    "migration_changes": 0,
+    "rls_or_grant_changes": 0,
+    "edge_function_changes": 0
+  }
+}

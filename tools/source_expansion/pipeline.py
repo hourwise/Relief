@@ -89,8 +89,8 @@ def normalize_esd_rows(rows: Iterable[dict[str, Any]], source_id: str) -> list[d
     for index, row in enumerate(rows, start=1):
         name = _clean(row.get("LocationText") or row.get("Name") or row.get("name"))
         record_id = _clean(row.get("UPRN") or row.get("uprn") or row.get("id")) or f"row-{index}"
-        latitude = _number(row.get("Latitude") or row.get("latitude"))
-        longitude = _number(row.get("Longitude") or row.get("longitude"))
+        latitude = _number(row.get("Latitude") or row.get("latitude") or row.get("__latitude"))
+        longitude = _number(row.get("Longitude") or row.get("longitude") or row.get("__longitude"))
         errors = []
         if not name:
             errors.append("missing name")
@@ -169,11 +169,14 @@ def compare_with_production(records: list[dict[str, Any]], production_rows: list
     }
 
 
-def build_report(source: dict[str, Any], records: list[dict[str, Any]], *, raw_checksum: str, retrieved_at: str, source_version: str | None, production_rows: list[dict[str, Any]] | None = None) -> dict[str, Any]:
+def build_report(source: dict[str, Any], records: list[dict[str, Any]], *, raw_checksum: str, retrieved_at: str, source_version: str | None, production_rows: list[dict[str, Any]] | None = None, production_match_summary: dict[str, Any] | None = None) -> dict[str, Any]:
     duplicate_report = analyze_duplicates(records)
     status_counts = Counter(record["normalization_status"] for record in records)
     errors = Counter(error for record in records for error in record.get("validation_errors", []))
     decisions = Counter("REVIEW_REQUIRED" if record.get("validation_errors") else "PREPARE_FOR_MATCHING" for record in records)
+    production_reconciliation = compare_with_production(records, production_rows or [])
+    if production_match_summary:
+        production_reconciliation.update(production_match_summary)
     report = {
         "tool_version": TOOL_VERSION,
         "classification": "UK PUBLIC SOURCE EXPANSION — DISCOVERY / INGESTION PREPARATION / PRODUCTION APPLY NOT AUTHORIZED",
@@ -196,7 +199,7 @@ def build_report(source: dict[str, Any], records: list[dict[str, Any]], *, raw_c
             "validation_errors": dict(sorted(errors.items())),
         },
         "duplicate_analysis": duplicate_report,
-        "production_reconciliation": compare_with_production(records, production_rows or []),
+        "production_reconciliation": production_reconciliation,
         "null_semantics": "Unknown source values remain null; no false boolean or coordinate certainty is introduced.",
         "mutations": {
             "canonical_mutations": 0,
@@ -215,12 +218,21 @@ def build_report(source: dict[str, Any], records: list[dict[str, Any]], *, raw_c
 
 
 def _read_rows(path: Path) -> list[dict[str, Any]]:
-    if path.suffix.lower() == ".json":
+    if path.suffix.lower() in {".json", ".geojson"}:
         value = json.loads(path.read_text(encoding="utf-8"))
         if isinstance(value, dict):
             value = value.get("features", value.get("records", value.get("data", [])))
             if value and isinstance(value[0], dict) and "properties" in value[0]:
-                value = [dict(item["properties"]) for item in value]
+                converted = []
+                for item in value:
+                    row = dict(item["properties"])
+                    geometry = item.get("geometry") or {}
+                    coordinates = geometry.get("coordinates") if isinstance(geometry, dict) else None
+                    if geometry.get("type") == "Point" and isinstance(coordinates, list) and len(coordinates) >= 2:
+                        row["__longitude"] = coordinates[0]
+                        row["__latitude"] = coordinates[1]
+                    converted.append(row)
+                value = converted
         if not isinstance(value, list):
             raise ValueError("input JSON must contain records, data, or GeoJSON features")
         return [dict(row) for row in value]
@@ -238,13 +250,25 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--production-snapshot", help="Optional JSON list of public facility rows from a read-only query")
     parser.add_argument("--retrieved-at", default=datetime.now(timezone.utc).isoformat())
     parser.add_argument("--source-version")
+    parser.add_argument("--nearby-match-count", type=int, help="Read-only production count for source rows with a facility within the agreed proximity window")
+    parser.add_argument("--no-nearby-match-count", type=int, help="Read-only production count for source rows without a facility within the agreed proximity window")
+    parser.add_argument("--exact-source-link-count", type=int, help="Read-only production count for exact source-record links")
     args = parser.parse_args(argv)
     registry = load_registry(Path(args.registry))
     source = registry[args.source_id]
     payload = Path(args.input).read_bytes()
     metadata = snapshot_bytes(payload, args.source_id, Path(args.snapshot_root), retrieved_at=args.retrieved_at, source_file_or_api_version=args.source_version, parser_normalizer_version=source["parser_normalizer_version"])
     production_rows = json.loads(Path(args.production_snapshot).read_text(encoding="utf-8")) if args.production_snapshot else []
-    report = build_report(source, normalize_rows(args.source_id, _read_rows(Path(args.input))), raw_checksum=sha256_bytes(payload), retrieved_at=args.retrieved_at, source_version=args.source_version, production_rows=production_rows)
+    production_match_summary = {
+        "production_snapshot_scope": "read-only source-row proximity aggregate supplied from production SQL; approximate 100m latitude/longitude bounding window",
+    }
+    if args.nearby_match_count is not None:
+        production_match_summary["nearby_within_approx_100m"] = args.nearby_match_count
+    if args.no_nearby_match_count is not None:
+        production_match_summary["no_nearby_within_approx_100m"] = args.no_nearby_match_count
+    if args.exact_source_link_count is not None:
+        production_match_summary["exact_source_links"] = args.exact_source_link_count
+    report = build_report(source, normalize_rows(args.source_id, _read_rows(Path(args.input))), raw_checksum=sha256_bytes(payload), retrieved_at=args.retrieved_at, source_version=args.source_version, production_rows=production_rows, production_match_summary=production_match_summary)
     report["snapshot_metadata"] = metadata
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)

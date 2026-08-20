@@ -42,6 +42,21 @@
       "ingestion_boundary": "The catalog entry is current but its listed public-toilet information resource is not sufficient evidence of a current, coordinate-bearing feed by itself."
     },
     {
+      "source_id": "sheffield_public_toilets",
+      "source_name": "Public Toilets Sheffield",
+      "publisher": "Sheffield City Council",
+      "source_url": "https://www.data.gov.uk/dataset/1e172d53-a4d2-4da3-8fe7-206537f0611d/public-toilets-sheffield",
+      "licence_identifier": "UK Open Government Licence (OGL)",
+      "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "required_attribution": "Contains public sector information licensed under the Open Government Licence.",
+      "parser_normalizer_version": "esri-geojson-public-toilets-v1",
+      "current_status": "CURRENT_SOURCE_READY",
+      "access_requirement": "Use the official Sheffield City Council ArcGIS GeoJSON resource listed by the National Data Library; retain its source URL and retrieval checksum.",
+      "ingestion_boundary": "Treat the catalog’s latest-published date as source freshness evidence, and require a new review if the service disappears or its licence changes.",
+      "data_url": "https://sheffieldcitycouncil.cloud.esriuk.com/server/rest/services/AGOL/OpenData1/FeatureServer/6/query?outFields=*&where=1%3D1&f=geojson",
+      "catalog_last_updated": "2025-02-20"
+    },
+    {
       "source_id": "wales_national_toilet_map",
       "source_name": "DataMapWales National Toilet Map",
       "publisher": "Welsh Government / DataMapWales",

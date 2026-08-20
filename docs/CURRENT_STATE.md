@@ -416,3 +416,17 @@ PSGA for its national layer, so reuse permission remains unresolved. No
 Scottish or Northern Irish feed met the bounded selection bar. See
 [`UK_PUBLIC_SOURCE_EXPANSION.md`](UK_PUBLIC_SOURCE_EXPANSION.md) and the
 versioned JSON evidence under `docs/data/`.
+
+## UK public-source expansion Phase 2 — LIVE FEED ACQUIRED / CANDIDATE RECONCILIATION — 2026-08-20
+
+The first real additional source was acquired from the official Sheffield City
+Council GeoJSON endpoint listed by the National Data Library under the UK OGL.
+The 41-row snapshot has coordinates and UPRN identifiers but no facility names,
+so all 41 remain review-required and zero are prepared for insertion. A
+read-only production proximity check found 18 near existing facilities and 23
+without a nearby facility; proximity was not promoted to identity. National
+Rail and TfL still require their registered access actions, Rother remains
+resource-quality blocked, and no Wales/Scotland/Northern Ireland feed was
+promoted. Production remains unchanged with `production_mutations=0`. See
+[`UK_PUBLIC_SOURCE_EXPANSION_PHASE2.md`](UK_PUBLIC_SOURCE_EXPANSION_PHASE2.md)
+and the Phase 2 JSON evidence under `docs/data/`.

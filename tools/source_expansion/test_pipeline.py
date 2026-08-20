@@ -29,6 +29,17 @@ class SourceExpansionTests(unittest.TestCase):
         self.assertIsNone(records[0]["latitude"])
         self.assertTrue(records[0]["validation_errors"])
 
+    def test_geojson_point_coordinates_are_preserved_as_wgs84(self) -> None:
+        records = normalize_esd_rows([{
+            "UPRN": "2001",
+            "LocationText": "Sheffield toilets",
+            "__latitude": 53.3811,
+            "__longitude": -1.4701,
+        }], "sheffield_public_toilets")
+        self.assertEqual(records[0]["latitude"], 53.3811)
+        self.assertEqual(records[0]["longitude"], -1.4701)
+        self.assertEqual(records[0]["validation_errors"], [])
+
     def test_duplicate_and_mutation_boundaries_are_explicit(self) -> None:
         records = normalize_tfl_bus_rows([
             {"BUS STATIONS": "A", "PUBLIC TOILETS": "Yes"},
@@ -44,6 +55,16 @@ class SourceExpansionTests(unittest.TestCase):
         self.assertEqual(report["mutations"]["production_mutations"], 0)
         self.assertEqual(report["mutations"]["facility_inserts"], 0)
         self.assertTrue(report["production_reconciliation"]["match_policy"])
+
+    def test_read_only_production_match_summary_is_recorded_without_mutation(self) -> None:
+        report = build_report({
+            "source_id": "sheffield_public_toilets", "source_name": "Sheffield", "publisher": "Sheffield City Council",
+            "source_url": "https://example.invalid", "licence_identifier": "OGL",
+            "licence_url": "https://example.invalid/licence", "required_attribution": "Sheffield City Council",
+        }, [], raw_checksum="abc", retrieved_at="2026-08-20T00:00:00Z", source_version="fixture",
+            production_match_summary={"nearby_within_approx_100m": 2, "exact_source_links": 0})
+        self.assertEqual(report["production_reconciliation"]["nearby_within_approx_100m"], 2)
+        self.assertEqual(report["mutations"]["production_mutations"], 0)
 
 
 if __name__ == "__main__":
