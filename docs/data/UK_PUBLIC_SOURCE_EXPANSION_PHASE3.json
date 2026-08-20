@@ -1,0 +1,56 @@
+{
+  "classification": "RELIEF UK SOURCE EXPANSION PHASE 3 — SHEFFIELD ADJUDICATED / MAJOR FEED ACCESS HANDOFF / PRODUCTION APPLY NOT AUTHORIZED",
+  "review_date": "2026-08-20",
+  "starting_commit": "1a8b6252a9584dd286518425a489b1f86aa8e0cf",
+  "sheffield_package": {
+    "package": "docs/data/UK_PUBLIC_SOURCE_EXPANSION_SHEFFIELD_PACKAGE.json",
+    "source_rows": 41,
+    "source_fields": ["objectid", "uprn", "blpu_state"],
+    "source_state_counts": {"2": 41},
+    "missing_source_names": 41,
+    "nearby_existing_facility_within_exact_100m": 18,
+    "no_nearby_existing_facility_within_exact_100m": 23,
+    "multiple_nearby_facilities": 0,
+    "exact_source_links": 0,
+    "INSERT": 0,
+    "SOURCE_LINK": 0,
+    "ENRICHMENT": 0,
+    "DEFER_EXTERNAL_VERIFICATION": 41,
+    "next_required_evidence": "Authoritative name-bearing source or council/OS/UPRN lookup with reuse rights and a stable facility identity."
+  },
+  "access_handoff": {
+    "national_rail": {
+      "status": "USER_REGISTRATION_REQUIRED",
+      "request_form": "https://rdg-forms.plumsail.io/76dbbe48-b1f9-4280-b463-321272ca47fa",
+      "fallback_marketplace": "https://raildata.org.uk/",
+      "request": "Knowledgebase Stations XML / station-facilities feed and Stations Made Easy where needed for facility detail.",
+      "must_return": ["approved feed name", "endpoint or portal product", "licence/terms", "attribution wording", "rate limits", "update/version field", "stable station identifier"],
+      "security": "Do not commit credentials, tokens, cookies, or downloaded private account material."
+    },
+    "tfl": {
+      "status": "USER_REGISTRATION_REQUIRED",
+      "portal": "https://api-portal.tfl.gov.uk/",
+      "steps": [
+        "Register and activate the TfL API portal account.",
+        "Sign in and open Products.",
+        "Create the 500 requests data-plan subscription as documented by TfL.",
+        "Open Profile and retrieve the API key; keep it outside Git and outside the mobile bundle.",
+        "Request/identify the current station-facilities and bus-stations-with-public-toilets resources.",
+        "Return the resource identifiers, schema/version, refresh cadence, terms, and attribution wording."
+      ],
+      "required_attribution": "Data provided by Transport for London",
+      "security": "Use the key only in a local/server-side environment; never commit it or put it in EXPO_PUBLIC_* variables."
+    }
+  },
+  "production_mutations": 0,
+  "mutation_ledger": {
+    "canonical_mutations": 0,
+    "facility_inserts": 0,
+    "facility_updates": 0,
+    "facility_deletes": 0,
+    "facility_source_mutations": 0,
+    "provenance_mutations": 0,
+    "import_run_mutations": 0,
+    "staging_mutations": 0
+  }
+}

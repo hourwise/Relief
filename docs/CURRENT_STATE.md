@@ -430,3 +430,17 @@ resource-quality blocked, and no Wales/Scotland/Northern Ireland feed was
 promoted. Production remains unchanged with `production_mutations=0`. See
 [`UK_PUBLIC_SOURCE_EXPANSION_PHASE2.md`](UK_PUBLIC_SOURCE_EXPANSION_PHASE2.md)
 and the Phase 2 JSON evidence under `docs/data/`.
+
+## UK public-source expansion Phase 3 — SHEFFIELD ADJUDICATED / ACCESS HANDOFF — 2026-08-20
+
+The Sheffield layer metadata confirms a structural absence of names: its only
+published fields are `objectid`, `uprn`, and `blpu_state`, with all 41 rows in
+state `2`. Exact read-only PostGIS adjudication found 18 rows with exactly one
+facility within 100 metres, 23 with none, zero with multiple nearby facilities,
+and zero exact source links. All 41 are frozen as
+`DEFER_EXTERNAL_VERIFICATION`; the proposed INSERT, SOURCE_LINK, and
+ENRICHMENT counts are all `0`. National Rail and TfL registration handoff
+instructions are recorded, but no account or credential action was performed.
+Production mutations remain `0`. See
+[`UK_PUBLIC_SOURCE_EXPANSION_PHASE3.md`](UK_PUBLIC_SOURCE_EXPANSION_PHASE3.md)
+and the Phase 3 JSON evidence under `docs/data/`.

@@ -3,6 +3,7 @@ from __future__ import annotations
 import unittest
 
 from .pipeline import analyze_duplicates, build_report, normalize_esd_rows, normalize_tfl_bus_rows
+from .sheffield import build_sheffield_package
 
 
 class SourceExpansionTests(unittest.TestCase):
@@ -55,6 +56,18 @@ class SourceExpansionTests(unittest.TestCase):
         self.assertEqual(report["mutations"]["production_mutations"], 0)
         self.assertEqual(report["mutations"]["facility_inserts"], 0)
         self.assertTrue(report["production_reconciliation"]["match_policy"])
+
+    def test_sheffield_package_has_no_supportable_operations(self) -> None:
+        records = [{"source_record_id": str(i), "name": None} for i in range(41)]
+        package = build_sheffield_package({
+            "source": {"source_id": "sheffield_public_toilets", "source_name": "Sheffield", "publisher": "Sheffield City Council", "source_url": "https://example.invalid", "licence_identifier": "OGL", "raw_checksum": "abc", "retrieved_at": "2026-08-20T00:00:00Z"},
+            "records": records,
+        }, [str(i) for i in range(18)], [str(i) for i in range(18, 41)])
+        self.assertEqual(package["decision_summary"]["INSERT"], 0)
+        self.assertEqual(package["decision_summary"]["SOURCE_LINK"], 0)
+        self.assertEqual(package["decision_summary"]["ENRICHMENT"], 0)
+        self.assertEqual(package["decision_summary"]["DEFER_EXTERNAL_VERIFICATION"], 41)
+        self.assertEqual(package["production_boundary"]["production_mutations"], 0)
 
     def test_read_only_production_match_summary_is_recorded_without_mutation(self) -> None:
         report = build_report({

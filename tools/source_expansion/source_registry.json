@@ -13,6 +13,8 @@
       "parser_normalizer_version": "national-rail-kb-stations-v1",
       "current_status": "TEMPLATE_PENDING_SOURCE_CONFIRMATION",
       "access_requirement": "Self-sign-up on the National Rail data portal; confirm the specific Knowledgebase station-facilities feed and reuse terms before retrieval.",
+      "access_url": "https://rdg-forms.plumsail.io/76dbbe48-b1f9-4280-b463-321272ca47fa",
+      "fallback_access_url": "https://raildata.org.uk/",
       "ingestion_boundary": "Do not use a public website scrape or an unofficial mirror as a substitute for the registered feed."
     },
     {
@@ -26,6 +28,7 @@
       "parser_normalizer_version": "tfl-bus-toilets-v1",
       "current_status": "TEMPLATE_PENDING_SOURCE_CONFIRMATION",
       "access_requirement": "Register for the live feed; the public example is not updated and is not a production snapshot.",
+      "access_url": "https://api-portal.tfl.gov.uk/",
       "ingestion_boundary": "The example CSV has station names and toilet flags but no coordinates; it is not independently insertable."
     },
     {
