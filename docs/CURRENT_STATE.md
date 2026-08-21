@@ -444,3 +444,27 @@ instructions are recorded, but no account or credential action was performed.
 Production mutations remain `0`. See
 [`UK_PUBLIC_SOURCE_EXPANSION_PHASE3.md`](UK_PUBLIC_SOURCE_EXPANSION_PHASE3.md)
 and the Phase 3 JSON evidence under `docs/data/`.
+
+## UK public-source expansion Phase 4 — TfL real detailed feed — RECONCILED / PRODUCTION APPLY NOT AUTHORIZED — 2026-08-21
+
+The current official TfL detailed station-data package was downloaded from
+`https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip` without an
+API key. The frozen package is recorded in
+[`UK_PUBLIC_SOURCE_EXPANSION_TFL_REAL_FEED_2026-08-21.md`](data/UK_PUBLIC_SOURCE_EXPANSION_TFL_REAL_FEED_2026-08-21.md)
+and
+[`UK_PUBLIC_SOURCE_EXPANSION_TFL_REAL_FEED_2026-08-21.json`](data/UK_PUBLIC_SOURCE_EXPANSION_TFL_REAL_FEED_2026-08-21.json).
+
+The ZIP contains 11 files, 509 station records, and 410 toilet rows. All 410
+toilet rows join to station records and have usable station-level coordinates;
+the source does not provide toilet-specific coordinates. The reconciliation
+classified 0 exact matches, 305 high-confidence matches, 33 review matches,
+58 distinct-new candidates, 0 insufficient-location rows, and 14 quarantine
+rows. The feed contains 147 stations with multiple toilet rows. A model guard
+blocks automatic source-link/enrichment operations where 328 TfL rows map to
+124 existing Relief facility candidates, so Male/Female/Unisex rows are not
+collapsed. Proposed operations are 58 INSERT candidates, 14 SOURCE_LINK
+candidates, and 14 ENRICHMENT candidates after the guard; none is authorized.
+
+Production remains unchanged at `facilities=15,620`,
+`facility_sources=15,620`, `import_runs=5`, and
+`toilet_map_import_staging=0`. Production mutations remain `0`.

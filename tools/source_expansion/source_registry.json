@@ -32,6 +32,20 @@
       "ingestion_boundary": "The example CSV has station names and toilet flags but no coordinates; it is not independently insertable."
     },
     {
+      "source_id": "tfl_detailed_station_data",
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "publisher": "Transport for London",
+      "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip",
+      "licence_identifier": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+      "licence_url": "https://tfl.gov.uk/corporate/terms-and-conditions/transport-data-service",
+      "required_attribution": "Data provided by Transport for London; retain TfL's applicable Powered by TfL Open Data attribution and any OS/Geomni attribution required by the terms.",
+      "parser_normalizer_version": "tfl-detailed-station-data-v1",
+      "current_status": "CURRENT_SOURCE_READY",
+      "access_requirement": "The official detailed ZIP is currently retrievable without an API key; retain retrieval UTC, byte size, SHA-256, and complete file inventory for each snapshot.",
+      "ingestion_boundary": "Preparation/reconciliation only. Join Toilets.csv to Stations.csv and StationPoints.csv, retain stable (StationUniqueId, Id) identity, and never promote station-level coordinates to toilet-specific coordinates or collapse multiple toilet rows automatically.",
+      "data_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+    },
+    {
       "source_id": "rother_public_toilets",
       "source_name": "Rother District Council Public Toilets",
       "publisher": "Rother District Council",

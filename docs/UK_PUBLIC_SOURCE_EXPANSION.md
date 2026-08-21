@@ -64,3 +64,28 @@ stable record identity, coordinates/CRS, update cadence, licence, and required
 attribution are independently verified. Any future insert/update package must
 be a separately governed generation and must not reuse an Apply 2A or Apply 2B
 writer.
+
+## TfL real detailed feed — 2026-08-21
+
+The official current detailed station-data ZIP was acquired successfully from
+`https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip` without an
+API key. Its checksum, complete ZIP inventory, feed schema verification,
+station join, row-level reconciliation, operation proposal, and production
+boundary are frozen in
+[`UK_PUBLIC_SOURCE_EXPANSION_TFL_REAL_FEED_2026-08-21.md`](data/UK_PUBLIC_SOURCE_EXPANSION_TFL_REAL_FEED_2026-08-21.md)
+and its JSON companion.
+
+The real feed has 509 stations and 410 toilet rows. `Toilets.csv` exposes the
+requested station/toilet IDs, access, baby-changing, gateline, location, fee,
+type, and TfL-management fields. All toilet rows join to `Stations.csv`; all
+have station-level coordinates through `StationPoints.csv`, but none has a
+toilet-specific coordinate. The package explicitly retains
+`STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED`.
+
+The row classifications are 0 `EXACT_MATCH`, 305 `HIGH_CONFIDENCE_MATCH`, 33
+`REVIEW_MATCH`, 58 `DISTINCT_NEW`, 0 `INSUFFICIENT_LOCATION`, and 14
+`QUARANTINE`. Because the source has multiple rows per station, the model
+guard blocks automatic collapse: 328 rows map to 124 existing facility
+candidates and require facility-model adjudication. After that guard, the
+frozen proposal contains 58 `INSERT`, 14 `SOURCE_LINK`, and 14 `ENRICHMENT`
+candidates. None was executed. Production mutations remain `0`.

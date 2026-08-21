@@ -4,6 +4,7 @@ import unittest
 
 from .pipeline import analyze_duplicates, build_report, normalize_esd_rows, normalize_tfl_bus_rows
 from .sheffield import build_sheffield_package
+from .tfl_detailed import normalize_tfl_feed, reconcile_toilets
 
 
 class SourceExpansionTests(unittest.TestCase):
@@ -78,6 +79,40 @@ class SourceExpansionTests(unittest.TestCase):
             production_match_summary={"nearby_within_approx_100m": 2, "exact_source_links": 0})
         self.assertEqual(report["production_reconciliation"]["nearby_within_approx_100m"], 2)
         self.assertEqual(report["mutations"]["production_mutations"], 0)
+
+    def test_tfl_detailed_feed_joins_station_identity_and_preserves_station_precision(self) -> None:
+        rows = normalize_tfl_feed({
+            "Stations.csv": [{"UniqueId": "HUBTEST", "Name": "Test Station"}],
+            "StationPoints.csv": [{"StationUniqueId": "HUBTEST", "Lat": "51.5", "Lon": "-0.1", "UniqueId": "point-1"}],
+            "Toilets.csv": [{
+                "StationUniqueId": "HUBTEST", "Id": "7", "Type": "Unisex", "IsAccessible": "TRUE",
+                "HasBabyChanging": "FALSE", "IsInsideGateLine": "TRUE", "Location": "Ticket hall",
+                "IsFeeCharged": "FALSE", "IsManagedByTfL": "TRUE",
+            }],
+        })
+        self.assertEqual(rows[0]["stable_tfl_station_id"], "HUBTEST")
+        self.assertEqual(rows[0]["stable_tfl_toilet_id"], "7")
+        self.assertEqual(rows[0]["station_name"], "Test Station")
+        self.assertEqual(rows[0]["station_coordinates"]["latitude"], 51.5)
+        self.assertEqual(rows[0]["positional_precision"], "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED")
+
+    def test_tfl_multiple_toilets_do_not_collapse_into_one_relief_facility(self) -> None:
+        tables = {
+            "Stations.csv": [{"UniqueId": "HUBTEST", "Name": "Test Station"}],
+            "StationPoints.csv": [{"StationUniqueId": "HUBTEST", "Lat": "51.5", "Lon": "-0.1"}],
+            "Toilets.csv": [
+                {"StationUniqueId": "HUBTEST", "Id": "1", "Type": "Male", "IsAccessible": "TRUE", "HasBabyChanging": "FALSE", "IsInsideGateLine": "TRUE", "Location": "Ticket hall", "IsFeeCharged": "FALSE", "IsManagedByTfL": "TRUE"},
+                {"StationUniqueId": "HUBTEST", "Id": "2", "Type": "Female", "IsAccessible": "TRUE", "HasBabyChanging": "FALSE", "IsInsideGateLine": "TRUE", "Location": "Ticket hall", "IsFeeCharged": "FALSE", "IsManagedByTfL": "TRUE"},
+            ],
+        }
+        reconciled = reconcile_toilets(normalize_tfl_feed(tables), [{
+            "id": "facility-1", "name": "Test Station", "address": None, "town": "London",
+            "latitude": 51.5, "longitude": -0.1, "is_accessible": None,
+            "has_baby_changing": None, "is_free": None, "is_gender_neutral": None,
+        }], [])
+        self.assertEqual(len(reconciled), 2)
+        self.assertTrue(all(row["model_review_required"] for row in reconciled))
+        self.assertTrue(all(row["proposed_operations"] == [] for row in reconciled))
 
 
 if __name__ == "__main__":
