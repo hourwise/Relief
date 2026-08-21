@@ -3,6 +3,15 @@ from __future__ import annotations
 import unittest
 
 from .pipeline import analyze_duplicates, build_report, normalize_esd_rows, normalize_tfl_bus_rows
+from .model_adjudication import (
+    STATION_LEVEL_PRECISION,
+    aggregate_at_least_one,
+    classify_position_precision,
+    classify_tfl_physical_relationship,
+    reclassify_frozen_tfl_operations,
+    tfl_source_identity,
+    tfl_source_record_id,
+)
 from .sheffield import build_sheffield_package
 from .tfl_detailed import normalize_tfl_feed, reconcile_toilets
 
@@ -113,6 +122,56 @@ class SourceExpansionTests(unittest.TestCase):
         self.assertEqual(len(reconciled), 2)
         self.assertTrue(all(row["model_review_required"] for row in reconciled))
         self.assertTrue(all(row["proposed_operations"] == [] for row in reconciled))
+
+    def test_tfl_identity_is_station_and_toilet_id(self) -> None:
+        self.assertEqual(tfl_source_identity("910GTEST", "7"), ("910GTEST", "7"))
+        self.assertEqual(tfl_source_record_id("910GTEST", "7"), "tfl:910GTEST:toilet:7")
+
+    def test_source_gender_rows_are_not_automatically_collapsed(self) -> None:
+        rows = [
+            {"StationUniqueId": "HUBTEST", "Id": "1", "Type": "Male"},
+            {"StationUniqueId": "HUBTEST", "Id": "2", "Type": "Female"},
+            {"StationUniqueId": "HUBTEST", "Id": "3", "Type": "Unisex"},
+        ]
+        self.assertEqual(classify_tfl_physical_relationship(rows), "SOURCE_DISTINCT_PHYSICAL_UNKNOWN")
+        self.assertEqual(len({tfl_source_record_id(r["StationUniqueId"], r["Id"]) for r in rows}), 3)
+
+    def test_station_coordinates_retain_station_level_precision(self) -> None:
+        row = {"station_coordinates": {"latitude": 51.5, "longitude": -0.1}}
+        self.assertEqual(classify_position_precision(row), STATION_LEVEL_PRECISION)
+        self.assertNotEqual(classify_position_precision(row), "TOILET_LEVEL")
+
+    def test_multiple_source_rows_can_share_one_parent_without_proving_rooms(self) -> None:
+        rows = [
+            {"StationUniqueId": "HUBTEST", "Id": "1", "Type": "Male"},
+            {"StationUniqueId": "HUBTEST", "Id": "2", "Type": "Female"},
+        ]
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(classify_tfl_physical_relationship(rows), "SOURCE_DISTINCT_PHYSICAL_UNKNOWN")
+
+    def test_duplicate_source_identity_is_not_a_new_physical_unit(self) -> None:
+        rows = [
+            {"StationUniqueId": "HUBTEST", "Id": "1"},
+            {"StationUniqueId": "HUBTEST", "Id": "1"},
+        ]
+        self.assertEqual(classify_tfl_physical_relationship(rows), "SAME_UNIT_MULTI_SOURCE")
+
+    def test_parent_aggregate_is_at_least_one_and_does_not_overwrite_children(self) -> None:
+        child_values = [True, False, None]
+        self.assertTrue(aggregate_at_least_one(child_values))
+        self.assertEqual(child_values, [True, False, None])
+        self.assertIsNone(aggregate_at_least_one([None, None]))
+
+    def test_frozen_tfl_reclassification_is_non_executable(self) -> None:
+        report = {
+            "counts": {"toilet_row_count": 410},
+            "proposal": {"proposed_operation_counts_after_model_guard": {"INSERT": 58, "SOURCE_LINK": 14, "ENRICHMENT": 14}},
+            "reconciliation": {"model_review_rows": 328, "model_review_existing_facilities": 124, "unresolved_positional_or_model_cases": 338},
+        }
+        result = reclassify_frozen_tfl_operations(report)
+        self.assertEqual(result["production_mutations"], 0)
+        self.assertTrue(result["operations_not_executed"])
+        self.assertEqual(result["operation_handling"]["INSERT"]["count"], 58)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,178 @@
+{
+  "document_type": "RELIEF_TFL_FACILITY_MODEL_ADJUDICATION",
+  "document_date": "2026-08-21",
+  "status": "PROPOSED / PRODUCTION EXECUTION NOT AUTHORIZED",
+  "starting_sha": "05d4d2cc372880953610539baa49892fab8856a1",
+  "repository": "hourwise/Relief",
+  "branch": "codex/toilet-map-apply-1a-production-deploy",
+  "protected_worktree_changes": [
+    ".easignore",
+    "app.json",
+    "docs/EAS_CONFIG_AUDIT.md"
+  ],
+  "final_classification": "RELIEF MULTI-TOILET FACILITY MODEL — ADJUDICATED / IMPLEMENTATION NOT AUTHORIZED",
+  "tfl_classification_preserved": "RELIEF TFL REAL FEED — RECONCILED / PRODUCTION APPLY NOT AUTHORIZED",
+  "production_mutations": 0,
+  "production_counts": {
+    "facilities": 15620,
+    "facility_sources": 15620,
+    "import_runs": 5,
+    "toilet_map_import_staging": 0
+  },
+  "schema_findings": {
+    "facility_row_contract": "One published facilities row is the map/search/detail/discovery object, but the schema does not enforce whether it represents a venue, one toilet, or an aggregate provision.",
+    "parent_fields": ["name", "address", "postcode", "town", "country", "latitude", "longitude", "location", "publication_status", "verification_status"],
+    "toilet_or_amenity_fields": ["is_accessible", "is_disabled_access", "has_baby_changing", "has_baby_changing_inside", "is_gender_neutral", "is_single_occupancy", "is_single_room", "is_free", "open_hours", "is_24h", "access_notes", "requires_radar_key"],
+    "missing_unit_contract": ["canonical_toilet_type", "gateline_status", "toilet_location_description", "toilet_unit_id", "unit_coordinate_precision", "unit_specific_opening", "unit_specific_charge"],
+    "provenance": "facility_sources is strongly facility_id-linked and field_provenance is JSONB; no child/source-unit table exists.",
+    "existing_duplicate_signal": {
+      "same_name_same_rounded_coordinate_groups": 44,
+      "rows_in_groups": 94,
+      "interpretation": "Evidence that facility identity and physical toilet identity are not interchangeable; not asserted duplicate or unit counts."
+    }
+  },
+  "affected_tables": {
+    "current": ["facilities", "facility_sources", "favourites", "temporary_reports", "facility_reports", "correction_requests", "access_codes", "photo_moderation", "facility_submissions", "review_reports", "import_runs", "toilet_map_import_staging"],
+    "proposed_additive": ["toilet_units", "toilet_unit_sources"],
+    "integrity_decision": "Keep facility_sources parent-only; use separate non-null toilet_unit_sources.toilet_unit_id rather than nullable polymorphic ownership."
+  },
+  "affected_rpcs_and_queries": {
+    "current_rpc": ["find_nearest_facilities", "expire_temporary_reports"],
+    "current_direct_query_contracts": ["fetchViewportFacilities", "fetchNearbyFacilities", "searchFacilities", "fetchFacilityById", "fetchClosestFacility"],
+    "moderation_contracts": ["list_moderation_facility_submissions", "moderate_facility_submission", "list_moderation_correction_requests", "moderate_correction_request"],
+    "required_future_change": "Keep map/nearest parent-shaped; add child-aware filters/detail queries only after schema and RLS authorization."
+  },
+  "recommendation": {
+    "classification": "INTRODUCE_TOILET_UNIT_MODEL",
+    "rationale": [
+      "The current one-row model cannot losslessly represent multiple toilet types, gateline positions, textual locations, or unit-specific access/opening differences.",
+      "TfL has 410 rows across 179 stations and 147 stations with multiple rows; stable source identity is not physical-unit identity.",
+      "An additive optional child model preserves current facility IDs and parent-oriented app contracts.",
+      "Source-only records remain available for unresolved relationships and future providers."
+    ],
+    "model_classification": {
+      "KEEP_CURRENT_MODEL": "Compatibility-only; insufficient for canonical unit-level promotion.",
+      "INTRODUCE_TOILET_UNIT_MODEL": "RECOMMENDED; additive parent plus optional unit plus unit-source records.",
+      "SOURCE_SUBRECORD_MODEL": "Interim/fallback evidence model; insufficient for unit-aware UX and filters.",
+      "GENERALIZED_PROVISION_GRAPH": "Not selected; excessive scope and migration risk for this batch."
+    }
+  },
+  "identity_rules": {
+    "parent": "Stable authoritative venue/station identity first; then existing provenance; then normalized name/address/postcode/town with operator context; coordinates supporting only; human review on conflict.",
+    "tfl_source": {
+      "stable_identity": "(StationUniqueId, Id)",
+      "source_record_id_pattern": "tfl:{StationUniqueId}:toilet:{Id}",
+      "physical_identity_warning": "Source identity is not proof of a distinct physical room."
+    },
+    "physical_relationship_classes": ["CONFIRMED_DISTINCT_UNIT", "LIKELY_DISTINCT_UNIT", "SOURCE_DISTINCT_PHYSICAL_UNKNOWN", "SAME_UNIT_MULTI_SOURCE", "UNRESOLVED"],
+    "default_multi_row_handling": "SOURCE_DISTINCT_PHYSICAL_UNKNOWN or UNRESOLVED absent independent physical evidence",
+    "distance_rule": "Distance alone never creates a parent or unit identity."
+  },
+  "attribute_ownership": {
+    "parent": ["canonical_name", "address", "venue_coordinate", "venue_coordinate_precision", "venue_wide_availability", "discoverability"],
+    "child_unit": ["male_female_unisex", "accessible", "baby_changing", "unit_charge", "unit_opening", "inside_outside_gateline", "toilet_location_description", "unit_radar_key", "unit_ask_staff"],
+    "source_only_or_source_assertion": ["source_id", "source_url", "provider", "licence", "tfl_management_status", "raw_source_attributes", "source_confidence", "source_updated_at"],
+    "derived_aggregate": ["has_at_least_one_accessible_unit", "has_at_least_one_baby_changing_unit", "has_any_unisex_unit"],
+    "aggregate_semantics": "At least one explicitly known unit; never every unit and never a silent overwrite of legacy parent booleans.",
+    "coordinate_precision": "TfL rows are STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED."
+  },
+  "feature_impacts": {
+    "map_pins": "NO_CHANGE",
+    "clustering": "NO_CHANGE",
+    "search": "QUERY_CHANGE",
+    "nearest_facility": "QUERY_CHANGE",
+    "facility_details": "QUERY_CHANGE + UI_CHANGE",
+    "accessibility_filters": "QUERY_CHANGE",
+    "baby_changing_filters": "QUERY_CHANGE",
+    "free_paid_filters": "QUERY_CHANGE",
+    "opening_filters": "QUERY_CHANGE",
+    "favourites": "NO_CHANGE in phase 1; UI_CHANGE for any future unit favourites",
+    "reports": "SCHEMA_CHANGE for unit-specific reports; parent-only phase 1 can remain unchanged",
+    "correction_requests": "SCHEMA_CHANGE for unit-specific corrections",
+    "ratings_reviews": "NO_CHANGE now; SCHEMA_CHANGE if reviews are implemented",
+    "facility_submission": "SCHEMA_CHANGE for unit submissions",
+    "moderation": "QUERY_CHANGE + SCHEMA_CHANGE",
+    "source_reconciliation": "SCHEMA_CHANGE",
+    "account_export_deletion": "QUERY_CHANGE if unit-linked user contributions are introduced"
+  },
+  "ui_contract": {
+    "map": "One pin per parent venue/station.",
+    "search": "One parent result; show child count only when explicit children exist.",
+    "details": "Parent summary plus optional explicit unit list with confidence/unknown labels.",
+    "filters": "Existential child semantics for at-least-one capability; unknown is not false.",
+    "reports": "Venue closure targets parent; one-unit closure targets child only when child exists.",
+    "favourites": "Parent venue by default. Unit favourites require a separate product decision.",
+    "urgent_journey": "Parent nearest lookup remains fast; child detail is secondary."
+  },
+  "migration_recommendation": {
+    "required": true,
+    "status": "PROPOSED / NOT DEPLOYED",
+    "strategy": "Additive phases: optional toilet_units; separate toilet_unit_sources; selected-provider source population; selective canonical promotion.",
+    "existing_facilities": "Do not reinterpret or rewrite the 15,620 facilities.",
+    "legacy_semantics": "Zero explicit children means facility with unit detail unknown, not exactly one toilet.",
+    "synthetic_child_rows": "Do not create 15,620 synthetic children.",
+    "production_migration_deployed": false
+  },
+  "source_link_recommendation": {
+    "facility_sources": "Remain parent-only with strong facility_id foreign key.",
+    "toilet_unit_sources": "Separate table with non-null toilet_unit_id, unique source_name/source_record_id, source metadata, raw data, and governed RLS.",
+    "nullable_polymorphic_source_table": "REJECTED due to weak integrity and ambiguous RLS/uniqueness.",
+    "unresolved_source_rows": "Preserve as source evidence/quarantine until parent and physical relationship are resolved."
+  },
+  "tfl_impact": {
+    "feed_checkpoint": {
+      "stations": 509,
+      "toilet_rows": 410,
+      "stations_with_toilet_rows": 179,
+      "stations_with_multiple_rows": 147,
+      "usable_station_coordinates": 410,
+      "accessible": 119,
+      "baby_changing": 80,
+      "inside_gateline": 274,
+      "outside_gateline": 136,
+      "male": 147,
+      "female": 147,
+      "unisex": 116
+    },
+    "frozen_operations": {
+      "INSERT": {"count": 58, "classification": "SAFE_ONLY_AFTER_MODEL_CHANGE", "execute": false},
+      "SOURCE_LINK": {"count": 14, "classification": "HUMAN_PHYSICAL_UNIT_ADJUDICATION", "execute": false},
+      "ENRICHMENT": {"count": 14, "classification": "HUMAN_PHYSICAL_UNIT_ADJUDICATION", "execute": false},
+      "collision_rows": {"count": 328, "existing_facility_candidates": 124, "classification": "SOURCE_IDENTITY_ONLY / PHYSICAL_UNIT_UNRESOLVED", "execute": false},
+      "unresolved_rows": {"count": 338, "classification": "PHYSICAL_UNIT_UNRESOLVED", "execute": false}
+    },
+    "overlap_note": "The 328 collision rows are included in the 338 unresolved positional/model rows; counts are not additive.",
+    "expected_net_new_facilities": "NOT ASSERTED by this adjudication; the frozen 58 is not an approval count under the recommended model."
+  },
+  "performance": {
+    "parent_map_search_nearest": "Retain parent-shaped reads and parent distance.",
+    "child_filters": "Use indexed EXISTS/aggregates or a maintained parent summary; avoid child fan-out in map payloads.",
+    "likely_indexes": ["toilet_units(facility_id)", "toilet_units(facility_id, is_accessible)", "toilet_units(facility_id, has_baby_changing)", "toilet_unit_sources(toilet_unit_id)", "unique(source_name, source_record_id)"],
+    "premature_optimization": false
+  },
+  "security_rls": {
+    "public_read": "Published parent and intentionally public child/source data only.",
+    "authenticated_writes": "Own pending reports/submissions only.",
+    "source_writes": "Privileged governed import/reconciliation boundary only.",
+    "moderation": "Preserve server-derived reviewer and replay/ownership protections.",
+    "rls_weakening": false,
+    "service_role_workaround": false
+  },
+  "unresolved_questions": [
+    "Define independent evidence for physical toilet units.",
+    "Choose exact child schema, status, confidence, and quarantine design.",
+    "Decide whether unit-targeted reports/corrections are phase 1.",
+    "Decide whether favourites remain parent-only.",
+    "Define future review/rating target; no active reviews table exists.",
+    "Authorize a governed canonical-application policy separately from moderation review."
+  ],
+  "tests": {
+    "new_pure_module": "tools/source_expansion/model_adjudication.py",
+    "coverage": ["TfL source identity", "gender rows not collapsed", "station coordinate precision", "multiple rows per parent", "source rows do not prove rooms", "aggregate non-overwrite semantics", "no executable production apply"],
+    "production_apply_path_introduced": false
+  },
+  "operations_not_executed": true,
+  "production_apply_authorized": false,
+  "attribution": "Data provided by Transport for London",
+  "transport_data_terms_recorded_in_prior_tfl_package": true
+}
