@@ -1,3 +1,8 @@
+// The two additive toilet-unit tables below describe the target contract from
+// supabase/migrations/20260821211239_add_toilet_unit_model.sql. They are
+// included ahead of deployment so the client contract can be implemented and
+// tested; regenerate this file from the live schema after the migration is
+// separately deployed.
 export type Json =
   | string
   | number
@@ -880,6 +885,167 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      toilet_unit_sources: {
+        Row: {
+          created_at: string
+          first_seen_at: string
+          id: string
+          import_run_id: string | null
+          is_current: boolean
+          last_seen_at: string
+          raw_data: Json | null
+          source_licence: string
+          source_name: string
+          source_record_id: string
+          source_updated_at: string | null
+          source_url: string | null
+          toilet_unit_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          first_seen_at?: string
+          id?: string
+          import_run_id?: string | null
+          is_current?: boolean
+          last_seen_at?: string
+          raw_data?: Json | null
+          source_licence: string
+          source_name: string
+          source_record_id: string
+          source_updated_at?: string | null
+          source_url?: string | null
+          toilet_unit_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          first_seen_at?: string
+          id?: string
+          import_run_id?: string | null
+          is_current?: boolean
+          last_seen_at?: string
+          raw_data?: Json | null
+          source_licence?: string
+          source_name?: string
+          source_record_id?: string
+          source_updated_at?: string | null
+          source_url?: string | null
+          toilet_unit_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "toilet_unit_sources_import_run_id_fkey"
+            columns: ["import_run_id"]
+            isOneToOne: false
+            referencedRelation: "import_runs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "toilet_unit_sources_toilet_unit_id_fkey"
+            columns: ["toilet_unit_id"]
+            isOneToOne: false
+            referencedRelation: "toilet_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      toilet_units: {
+        Row: {
+          access_notes: string | null
+          ask_staff: boolean | null
+          coordinate_precision: string
+          created_at: string
+          created_by: string | null
+          facility_id: string
+          field_provenance: Json
+          has_baby_changing: boolean | null
+          id: string
+          identity_status: string
+          is_24h: boolean | null
+          is_accessible: boolean | null
+          is_free: boolean | null
+          is_inside_gateline: boolean | null
+          last_verified_at: string | null
+          latitude: number | null
+          location_description: string | null
+          longitude: number | null
+          open_hours: Json | null
+          price_note: string | null
+          publication_status: string
+          requires_radar_key: boolean | null
+          unit_label: string | null
+          unit_type: string
+          updated_at: string
+          verification_status: string
+        }
+        Insert: {
+          access_notes?: string | null
+          ask_staff?: boolean | null
+          coordinate_precision?: string
+          created_at?: string
+          created_by?: string | null
+          facility_id: string
+          field_provenance?: Json
+          has_baby_changing?: boolean | null
+          id?: string
+          identity_status?: string
+          is_24h?: boolean | null
+          is_accessible?: boolean | null
+          is_free?: boolean | null
+          is_inside_gateline?: boolean | null
+          last_verified_at?: string | null
+          latitude?: number | null
+          location_description?: string | null
+          longitude?: number | null
+          open_hours?: Json | null
+          price_note?: string | null
+          publication_status?: string
+          requires_radar_key?: boolean | null
+          unit_label?: string | null
+          unit_type?: string
+          updated_at?: string
+          verification_status?: string
+        }
+        Update: {
+          access_notes?: string | null
+          ask_staff?: boolean | null
+          coordinate_precision?: string
+          created_at?: string
+          created_by?: string | null
+          facility_id?: string
+          field_provenance?: Json
+          has_baby_changing?: boolean | null
+          id?: string
+          identity_status?: string
+          is_24h?: boolean | null
+          is_accessible?: boolean | null
+          is_free?: boolean | null
+          is_inside_gateline?: boolean | null
+          last_verified_at?: string | null
+          latitude?: number | null
+          location_description?: string | null
+          longitude?: number | null
+          open_hours?: Json | null
+          price_note?: string | null
+          publication_status?: string
+          requires_radar_key?: boolean | null
+          unit_label?: string | null
+          unit_type?: string
+          updated_at?: string
+          verification_status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "toilet_units_facility_id_fkey"
+            columns: ["facility_id"]
+            isOneToOne: false
+            referencedRelation: "facilities"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       temporary_reports: {
         Row: {

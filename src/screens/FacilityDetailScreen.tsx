@@ -5,13 +5,16 @@ import { ArrowLeft, Flag, Heart, MapPin, Navigation, Pencil, Star } from 'lucide
 import { NavigationProp, RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import type { TemporaryReport } from '../types/community';
 import type { Facility, FindStackParamList } from '../types';
+import type { ToiletUnit } from '../types/toiletUnits';
 import { EmptyValue, PrimaryButton, ScreenBackground, SectionHeader, SoftCard, StateNotice, StatusBadge, VerificationBadge } from '../components';
 import { getActiveReports } from '../services/community';
 import { fetchFacilityById } from '../services/facilities';
+import { fetchFacilityToiletUnits } from '../services/toiletUnits';
 import { addFavourite, isFavourite, removeFavourite } from '../services/favourites';
 import { useAuthGate } from '../context/AuthContext';
 import { getOpenStatus } from '../utils/openingHours';
 import { reportTypeLabel } from '../utils/reportTypes';
+import { toiletUnitAttributeLabels, toiletUnitIdentityLabel, toiletUnitTypeLabel } from '../utils/toiletUnits';
 import { borderRadius, colors, spacing, touchTargets, typography } from '../theme';
 
 type FacilityDetailRouteProp = RouteProp<FindStackParamList, 'FacilityDetail'>;
@@ -44,6 +47,8 @@ export const FacilityDetailScreen: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [activeReports, setActiveReports] = useState<TemporaryReport[]>([]);
+  const [toiletUnits, setToiletUnits] = useState<ToiletUnit[]>([]);
+  const [toiletUnitsError, setToiletUnitsError] = useState<string | null>(null);
   const [favourited, setFavourited] = useState(false);
   const [favouriteBusy, setFavouriteBusy] = useState(false);
 
@@ -65,6 +70,18 @@ export const FacilityDetailScreen: React.FC = () => {
     // Community reports are supplementary: a failure here must not block the
     // facility itself from rendering.
     getActiveReports(facilityId).then(setActiveReports).catch(() => setActiveReports([]));
+    fetchFacilityToiletUnits(facilityId).then((result) => {
+      if (result.ok) {
+        setToiletUnits(result.data);
+        setToiletUnitsError(null);
+      } else {
+        setToiletUnits([]);
+        setToiletUnitsError(result.error);
+      }
+    }).catch(() => {
+      setToiletUnits([]);
+      setToiletUnitsError('Toilet unit details could not be loaded.');
+    });
   }, [facilityId, load]);
 
   useEffect(() => {
@@ -140,6 +157,18 @@ export const FacilityDetailScreen: React.FC = () => {
           {facility.last_verified_at ? <Text style={styles.verifiedDate}>Last verified {new Date(facility.last_verified_at).toLocaleDateString()}</Text> : null}
         </SoftCard>
 
+        <SoftCard style={styles.section}><SectionHeader title="Toilet provisions" detail={toiletUnits.length ? `${toiletUnits.length} explicit provision${toiletUnits.length === 1 ? '' : 's'}` : undefined} />
+          {toiletUnitsError ? <EmptyValue>Toilet unit details unavailable</EmptyValue> : toiletUnits.length ? <View style={styles.unitList}>{toiletUnits.map((unit) => {
+            const attributes = toiletUnitAttributeLabels(unit);
+            return <View key={unit.id} style={styles.unitRow}>
+              <Text style={styles.unitTitle}>{unit.unit_label?.trim() || toiletUnitTypeLabel(unit)}</Text>
+              <Text style={styles.unitMeta}>{attributes.length ? attributes.join(' · ') : 'No additional unit attributes recorded'}</Text>
+              {unit.location_description?.trim() ? <Text style={styles.unitNote}>{unit.location_description}</Text> : null}
+              <Text style={styles.unitStatus}>{toiletUnitIdentityLabel(unit)}</Text>
+            </View>;
+          })}</View> : <EmptyValue>No explicit toilet unit details recorded</EmptyValue>}
+        </SoftCard>
+
         <SoftCard style={styles.section}><SectionHeader title="Accessibility and amenities" />
           {amenities.length ? <View style={styles.chips}>{amenities.map((amenity) => <View key={amenity} style={styles.chip}><Text style={styles.chipText}>{amenity}</Text></View>)}</View> : <EmptyValue>Access information unavailable</EmptyValue>}
         </SoftCard>
@@ -172,5 +201,5 @@ const styles = StyleSheet.create({
   topBar: { minHeight: touchTargets.minimum, flexDirection: 'row', alignItems: 'center', marginBottom: spacing.md }, backButton: { width: touchTargets.minimum, height: touchTargets.minimum, borderRadius: borderRadius.full, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.white, marginRight: spacing.sm }, topLabel: { ...typography.buttonSmall, color: colors.textSecondary, flex: 1 }, favouriteButton: { width: touchTargets.minimum, height: touchTargets.minimum, borderRadius: borderRadius.full, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.white },
   locationHeader: { flexDirection: 'row', alignItems: 'center', backgroundColor: colors.secondarySurface, marginBottom: spacing.md }, locationIcon: { width: 52, height: 52, borderRadius: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.warmWhite, marginRight: spacing.md }, locationCopy: { flex: 1 }, locationKicker: { ...typography.caption, color: colors.primary, fontFamily: 'PlusJakartaSans_700Bold', letterSpacing: 0.9 }, locationText: { ...typography.bodySmall, color: colors.textPrimary, marginTop: 2 }, heroCard: { marginBottom: spacing.md, backgroundColor: colors.warmWhite, borderColor: 'rgba(26, 107, 92, 0.16)' },
   warning: { backgroundColor: '#FFF4D9', marginBottom: spacing.lg }, warningTitle: { ...typography.label, color: colors.textPrimary, marginBottom: spacing.xs }, warningText: { ...typography.bodySmall, color: colors.textSecondary, marginTop: 2 }, hero: { flexDirection: 'row', alignItems: 'flex-start' }, heroCopy: { flex: 1, paddingRight: spacing.md }, name: { ...typography.h1, color: colors.textPrimary }, address: { ...typography.bodySmall, color: colors.textSecondary, marginTop: spacing.xs }, metaBadges: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm, marginTop: spacing.md }, costBadge: { borderRadius: borderRadius.full, backgroundColor: '#FFF4D9', paddingVertical: 5, paddingHorizontal: 10 }, costText: { ...typography.caption, color: '#8C5A0C', fontFamily: 'PlusJakartaSans_600SemiBold' }, verifiedDate: { ...typography.caption, color: colors.textMuted, marginTop: spacing.sm, marginBottom: spacing.lg },
-  section: { marginBottom: spacing.md, backgroundColor: colors.warmWhite }, chips: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm }, chip: { borderRadius: borderRadius.full, backgroundColor: colors.secondarySurface, paddingVertical: 6, paddingHorizontal: 10 }, chipText: { ...typography.caption, color: colors.primary, fontFamily: 'PlusJakartaSans_600SemiBold' }, notes: { ...typography.bodySmall, color: colors.textPrimary, lineHeight: 22 }, scoreRow: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.lg }, score: { ...typography.score, color: colors.primary, marginRight: spacing.md }, scoreCaption: { ...typography.label, color: colors.textPrimary }, scoreDetail: { ...typography.caption, color: colors.textSecondary, marginTop: 2 }, ratingRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', minHeight: 35, borderTopWidth: 1, borderTopColor: colors.borderLight }, ratingLabel: { ...typography.bodySmall, color: colors.textSecondary }, ratingValueRow: { flexDirection: 'row', alignItems: 'center', gap: 5 }, ratingValue: { ...typography.label, color: colors.textPrimary }, photoNote: { ...typography.bodySmall, color: colors.textSecondary }, secondaryDirections: { flexDirection: 'row', marginTop: spacing.sm, gap: spacing.sm }, directionOption: { minHeight: touchTargets.minimum, flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: spacing.md }, directionOptionText: { ...typography.buttonSmall, color: colors.primary }, actionRow: { minHeight: 52, flexDirection: 'row', alignItems: 'center', gap: spacing.md, borderTopWidth: 1, borderTopColor: colors.borderLight, marginTop: spacing.sm }, lastAction: { marginTop: 0 }, actionText: { ...typography.buttonSmall, color: colors.textPrimary },
+  section: { marginBottom: spacing.md, backgroundColor: colors.warmWhite }, unitList: { gap: spacing.sm }, unitRow: { borderTopWidth: 1, borderTopColor: colors.borderLight, paddingTop: spacing.sm }, unitTitle: { ...typography.label, color: colors.textPrimary }, unitMeta: { ...typography.caption, color: colors.textSecondary, marginTop: 3 }, unitNote: { ...typography.bodySmall, color: colors.textPrimary, marginTop: 4 }, unitStatus: { ...typography.caption, color: colors.textMuted, marginTop: 4 }, chips: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm }, chip: { borderRadius: borderRadius.full, backgroundColor: colors.secondarySurface, paddingVertical: 6, paddingHorizontal: 10 }, chipText: { ...typography.caption, color: colors.primary, fontFamily: 'PlusJakartaSans_600SemiBold' }, notes: { ...typography.bodySmall, color: colors.textPrimary, lineHeight: 22 }, scoreRow: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.lg }, score: { ...typography.score, color: colors.primary, marginRight: spacing.md }, scoreCaption: { ...typography.label, color: colors.textPrimary }, scoreDetail: { ...typography.caption, color: colors.textSecondary, marginTop: 2 }, ratingRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', minHeight: 35, borderTopWidth: 1, borderTopColor: colors.borderLight }, ratingLabel: { ...typography.bodySmall, color: colors.textSecondary }, ratingValueRow: { flexDirection: 'row', alignItems: 'center', gap: 5 }, ratingValue: { ...typography.label, color: colors.textPrimary }, photoNote: { ...typography.bodySmall, color: colors.textSecondary }, secondaryDirections: { flexDirection: 'row', marginTop: spacing.sm, gap: spacing.sm }, directionOption: { minHeight: touchTargets.minimum, flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: spacing.md }, directionOptionText: { ...typography.buttonSmall, color: colors.primary }, actionRow: { minHeight: 52, flexDirection: 'row', alignItems: 'center', gap: spacing.md, borderTopWidth: 1, borderTopColor: colors.borderLight, marginTop: spacing.sm }, lastAction: { marginTop: 0 }, actionText: { ...typography.buttonSmall, color: colors.textPrimary },
 });
