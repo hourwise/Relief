@@ -469,10 +469,10 @@ Production remains unchanged at `facilities=15,620`,
 `facility_sources=15,620`, `import_runs=5`, and
 `toilet_map_import_staging=0`. Production mutations remain `0`.
 
-### Additive multi-toilet model implementation (2026-08-21)
+### Additive multi-toilet model deployment (2026-08-21)
 
-The accepted facility-model adjudication is now implemented as a non-deployed,
-additive schema and client detail contract. The migration
+The accepted facility-model adjudication is implemented as an additive schema
+and client detail contract. The migration
 `supabase/migrations/20260821211239_add_toilet_unit_model.sql` adds optional
 `toilet_units` and strongly linked `toilet_unit_sources` tables. Existing
 facilities are not backfilled: zero child rows means unit detail is unknown,
@@ -480,8 +480,13 @@ not that a facility contains exactly one toilet. Child coordinates are absent
 unless independently supported at toilet level; station coordinates are never
 copied into child rows. The Facility Detail screen reads published explicit
 units without blocking the parent facility when the additive relation is empty
-or unavailable.
+or unavailable. It was deployed to linked production as migration
+`20260821213435 add_toilet_unit_model`; both new tables remain empty.
 
-This implementation does not deploy the migration and does not promote any
-TfL INSERT, SOURCE_LINK, or ENRICHMENT operation. TfL production application
-remains unauthorized.
+Post-deployment verification confirmed RLS on both tables, published-unit
+read access only for `anon`/`authenticated`, no public grants or policies for
+the provenance table, and unchanged production counts:
+`facilities=15,620`, `facility_sources=15,620`, `import_runs=5`, and
+`toilet_map_import_staging=0`. The live type contract was regenerated after
+deployment. No TfL INSERT, SOURCE_LINK, or ENRICHMENT operation was promoted;
+TfL production application remains unauthorized.

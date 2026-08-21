@@ -1,8 +1,7 @@
-// The two additive toilet-unit tables below describe the target contract from
-// supabase/migrations/20260821211239_add_toilet_unit_model.sql. They are
-// included ahead of deployment so the client contract can be implemented and
-// tested; regenerate this file from the live schema after the migration is
-// separately deployed.
+// The two additive toilet-unit tables below describe the live contract from
+// supabase/migrations/20260821211239_add_toilet_unit_model.sql, deployed as
+// Supabase migration 20260821213435. The live schema was re-introspected after
+// deployment; no child or source rows were created by the deployment.
 export type Json =
   | string
   | number

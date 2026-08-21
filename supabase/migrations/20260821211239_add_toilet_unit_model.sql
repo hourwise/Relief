@@ -1,5 +1,5 @@
 -- Relief — additive multi-toilet facility model
--- PROPOSED / NOT DEPLOYED IN THIS BATCH.
+-- DEPLOYED to linked production as migration 20260821213435.
 --
 -- This migration creates optional child/source capability only. It does not
 -- backfill existing facilities, create synthetic units, create import runs,
