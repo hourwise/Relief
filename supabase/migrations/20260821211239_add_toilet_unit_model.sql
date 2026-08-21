@@ -154,22 +154,12 @@ create policy "Published toilet units are viewable"
     )
   );
 
-create policy "Published toilet unit sources are viewable"
-  on public.toilet_unit_sources for select
-  to anon, authenticated
-  using (
-    exists (
-      select 1
-      from public.toilet_units tu
-      join public.facilities f on f.id = tu.facility_id
-      where tu.id = toilet_unit_sources.toilet_unit_id
-        and tu.publication_status = 'published'::text
-        and f.publication_status = 'published'::text
-    )
-  );
+-- Unit rows are part of the public detail contract. Source rows contain raw
+-- provider/provenance data and are deliberately not exposed to the mobile
+-- Data API, even when their parent unit is published.
+revoke all on table public.toilet_unit_sources from public, anon, authenticated;
+grant select on table public.toilet_units to anon, authenticated;
 
--- New public-schema tables are not assumed to be Data API exposed. Grant only
--- public reads; RLS above still controls which rows are visible. Source/unit
--- writes are reserved for the governed import boundary.
-grant select on table public.toilet_units, public.toilet_unit_sources to anon, authenticated;
+-- New public-schema tables are not assumed to be Data API exposed. RLS above
+-- controls public unit rows; source/unit writes remain privileged.
 grant all on table public.toilet_units, public.toilet_unit_sources to service_role;

@@ -36,6 +36,12 @@ assertTrue(
     migration.includes('alter table public.toilet_unit_sources enable row level security'),
 );
 assertTrue(
+  'source rows are not exposed to public Data API roles',
+  migration.includes('revoke all on table public.toilet_unit_sources from public, anon, authenticated') &&
+    !migration.includes('Published toilet unit sources are viewable') &&
+    migration.includes('grant select on table public.toilet_units to anon, authenticated'),
+);
+assertTrue(
   'child coordinates cannot be station-level coordinates',
   migration.includes("coordinate_precision = 'TOILET_LEVEL'::text") &&
     migration.includes("coordinate_precision = 'UNKNOWN'::text and latitude is null and longitude is null"),
