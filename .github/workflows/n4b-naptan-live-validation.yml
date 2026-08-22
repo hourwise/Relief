@@ -67,18 +67,26 @@ jobs:
               EXPECTED_SOURCE_CHECKSUM,
               validate_manifest_identity,
               validate_plan,
-              sha256_file,
+              sha256_bytes,
           )
 
           root = Path.cwd()
           plan_path = root / 'docs/data/TOILET_MAP_PROPOSED_APPLY_PLAN_2026-08.json'
           manifest_path = root / 'docs/data/TOILET_MAP_APPLY_1A_MANIFEST.json'
-          plan = json.loads(plan_path.read_text(encoding='utf-8'))
+          plan_bytes = plan_path.read_bytes()
+          # The approved Apply 1A plan hash was recorded from the Windows
+          # working-tree artifact. GitHub checkout normalizes the tracked blob
+          # to LF, so reproduce the recorded byte representation in memory;
+          # never rewrite the committed evidence file.
+          normalized_plan_bytes = plan_bytes.replace(b'\r\n', b'\n').replace(b'\n', b'\r\n')
+          plan = json.loads(normalized_plan_bytes.decode('utf-8'))
           manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
-          plan_sha = sha256_file(plan_path)
+          raw_checkout_sha = sha256_bytes(plan_bytes)
+          plan_sha = sha256_bytes(normalized_plan_bytes)
           validate_plan(plan, plan_sha)
           validate_manifest_identity(manifest, plan_sha, EXPECTED_SOURCE_CHECKSUM)
           assert manifest['manifest_sha256'] == EXPECTED_APPROVED_MANIFEST_SHA256
+          print(f'raw_checkout_plan_sha256={raw_checkout_sha}')
           print(f'approved_plan_sha256={plan_sha}')
           print(f'approved_manifest_sha256={manifest["manifest_sha256"]}')
           print(f'approved_source_sha256={EXPECTED_SOURCE_CHECKSUM}')
@@ -291,4 +299,9 @@ jobs:
       - name: Stop disposable Supabase stack
         if: always()
         shell: bash
-        run: supabase stop --no-backup --yes
+        run: |
+          if command -v supabase >/dev/null 2>&1; then
+            supabase stop --no-backup --yes
+          else
+            echo 'supabase_cli_not_started; no disposable stack cleanup required'
+          fi
