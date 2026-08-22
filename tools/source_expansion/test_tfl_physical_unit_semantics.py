@@ -88,6 +88,13 @@ class TfLPhysicalUnitSemanticsTests(unittest.TestCase):
         self.assertEqual(self.package["production_verification"]["total_production_mutations"], 0)
         self.assertFalse(self.package["future_promotion_contract"]["executable"])
 
+    def test_preexisting_provenance_encoding_discrepancy_is_recorded_not_repaired(self) -> None:
+        check = self.package["production_verification"]["provenance_source_name_check"]
+        self.assertTrue(check["preexisting_encoding_discrepancy"])
+        self.assertEqual(check["observed_replacement_character_count"], 14)
+        self.assertEqual(check["observed_exact_expected_name_count"], 0)
+        self.assertFalse(check["correction_executed"])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -118,6 +118,7 @@ RLS, grants, anonymous access, authenticated access, public API exposure, and se
 - `git diff --check`: passed.
 - Bounded secret-pattern scan: passed.
 - Read-only production verification: passed; counts and all 14 observation physical states unchanged.
+- Read-only provenance check recorded a pre-existing source-name encoding discrepancy: all 14 production TfL source links contain `U+FFFD` instead of the registry em dash. No repair was authorized or executed.
 - No EAS, Expo prebuild, Gradle, Android, APK, or emulator tooling was run.
 
 ## Safety declaration

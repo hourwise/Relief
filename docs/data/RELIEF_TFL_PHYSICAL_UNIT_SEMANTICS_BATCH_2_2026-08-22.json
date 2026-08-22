@@ -998,6 +998,15 @@
     "observation_payloads_unchanged": true,
     "observation_physical_state_unchanged": true,
     "observation_rows_verified": 14,
+    "provenance_source_name_check": {
+      "correction_executed": false,
+      "expected_source_name": "TfL detailed station data — station facilities and toilets",
+      "observed_distinct_source_names": 1,
+      "observed_em_dash_count": 0,
+      "observed_exact_expected_name_count": 0,
+      "observed_replacement_character_count": 14,
+      "preexisting_encoding_discrepancy": true
+    },
     "public_observation_exposure_unchanged": true,
     "read_only": true,
     "security_unchanged": true,

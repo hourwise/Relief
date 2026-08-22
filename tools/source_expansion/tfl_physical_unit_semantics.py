@@ -454,6 +454,15 @@ def build_package() -> dict[str, Any]:
             "observation_payloads_unchanged": True,
             "observation_physical_state_unchanged": True,
             "canonical_facility_snapshot_unchanged": True,
+            "provenance_source_name_check": {
+                "expected_source_name": SOURCE_NAME,
+                "observed_distinct_source_names": 1,
+                "observed_exact_expected_name_count": 0,
+                "observed_replacement_character_count": 14,
+                "observed_em_dash_count": 0,
+                "preexisting_encoding_discrepancy": True,
+                "correction_executed": False,
+            },
             "security_unchanged": True,
             "public_observation_exposure_unchanged": True,
         },
@@ -593,6 +602,7 @@ def render_report(package: Mapping[str, Any]) -> str:
         "- `git diff --check`: passed.",
         "- Bounded secret-pattern scan: passed.",
         "- Read-only production verification: passed; counts and all 14 observation physical states unchanged.",
+        "- Read-only provenance check recorded a pre-existing source-name encoding discrepancy: all 14 production TfL source links contain `U+FFFD` instead of the registry em dash. No repair was authorized or executed.",
         "- No EAS, Expo prebuild, Gradle, Android, APK, or emulator tooling was run.",
         "",
         "## Safety declaration",
@@ -600,7 +610,7 @@ def render_report(package: Mapping[str, Any]) -> str:
         "This batch is read-only with respect to production. It does not create units, link observations, modify canonical facilities, refresh TfL, or authorize promotion.",
         "",
     ]
-    return "\n".join(lines) + "\n"
+    return "\n".join(lines).rstrip() + "\n"
 
 
 def main() -> int:
