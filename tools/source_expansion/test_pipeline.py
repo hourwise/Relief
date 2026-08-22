@@ -12,6 +12,12 @@ from .model_adjudication import (
     tfl_source_identity,
     tfl_source_record_id,
 )
+from .tfl_unit_readiness import (
+    READINESS_CLASSIFICATION,
+    build_readiness_package,
+    classify_insert_row,
+    json_safe,
+)
 from .sheffield import build_sheffield_package
 from .tfl_detailed import normalize_tfl_feed, reconcile_toilets
 
@@ -172,6 +178,63 @@ class SourceExpansionTests(unittest.TestCase):
         self.assertEqual(result["production_mutations"], 0)
         self.assertTrue(result["operations_not_executed"])
         self.assertEqual(result["operation_handling"]["INSERT"]["count"], 58)
+
+    def test_unit_readiness_does_not_promote_same_location_multi_rows(self) -> None:
+        rows = [
+            {"StationUniqueId": "HUBTEST", "Id": "1", "toilet_location_description": "Ticket hall"},
+            {"StationUniqueId": "HUBTEST", "Id": "2", "toilet_location_description": "Ticket hall"},
+        ]
+        row = {
+            "stable_tfl_station_id": "HUBTEST",
+            "stable_tfl_toilet_id": "1",
+            "station_name": "Test Station",
+            "station/public_location": "London, TfL station network",
+            "toilet_location_description": "Ticket hall",
+            "toilet_type": "MALE",
+            "station_coordinates": {"latitude": 51.5, "longitude": -0.1},
+            "positional_precision": STATION_LEVEL_PRECISION,
+            "best_existing_candidate": None,
+            "candidate_count": 0,
+        }
+        result = classify_insert_row(row, rows)
+        self.assertEqual(result["classification"], "PHYSICAL_UNIT_AMBIGUOUS")
+        self.assertFalse(result["unit_payload_safe"])
+
+    def test_unit_readiness_does_not_invent_parent_from_station_coordinates(self) -> None:
+        row = {
+            "stable_tfl_station_id": "HUBTEST",
+            "stable_tfl_toilet_id": "1",
+            "station_name": "Test Station",
+            "station/public_location": "London, TfL station network",
+            "toilet_location_description": "Ticket hall",
+            "toilet_type": "UNISEX",
+            "station_coordinates": {"latitude": 51.5, "longitude": -0.1},
+            "positional_precision": STATION_LEVEL_PRECISION,
+            "best_existing_candidate": None,
+            "candidate_count": 0,
+        }
+        result = classify_insert_row(row, [row])
+        self.assertEqual(result["classification"], "OTHER_NO_GO")
+        self.assertIsNone(result["parent_facility_id"])
+
+    def test_unit_readiness_report_is_zero_mutation_and_json_safe(self) -> None:
+        report = {
+            "records": [],
+            "counts": {"station_count": 0, "toilet_row_count": 0},
+            "source": {
+                "retrieval_utc": "2026-08-21T00:00:00Z",
+                "source_url": "https://example.invalid/tfl.zip",
+                "required_attribution": "Data provided by Transport for London",
+                "terms_url": "https://example.invalid/terms",
+            },
+            "feed_schema_verification": {"stations_with_multiple_toilets": 0},
+        }
+        result = json_safe(build_readiness_package(report))
+        self.assertEqual(result["readiness_classification"], READINESS_CLASSIFICATION)
+        self.assertEqual(result["production_mutations"], 0)
+        self.assertEqual(result["proposal_payloads"]["future_mutation_counts"]["facility_mutations"], 0)
+        self.assertTrue(result["operations_not_executed"])
+        self.assertFalse(result["tfl_promotion"])
 
 
 if __name__ == "__main__":
