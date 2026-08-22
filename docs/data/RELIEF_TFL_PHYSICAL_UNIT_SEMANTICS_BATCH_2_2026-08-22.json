@@ -1,0 +1,1639 @@
+{
+  "adjudications": [
+    {
+      "ambiguity_notes": [
+        "TfL row identity is source identity only, not physical-unit identity.",
+        "No toilet-specific coordinates are provided.",
+        "Gender, accessibility, baby-changing, fee, location text, and row multiplicity are not independently sufficient physical discriminators."
+      ],
+      "confidence": "MEDIUM",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_basis": "The feed supplies one toilet-provision row for this station, but does not state that its row ID is a physical-room identifier and supplies station-level coordinates only. The row is useful source evidence but is not sufficient by itself to assert a canonical physical unit.",
+      "evidence_refs": [
+        "tools/source_expansion/tfl_detailed.py",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json",
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_OBSERVATION_POST_APPLY_2026-08-22.json"
+      ],
+      "facility_source_id": "654e071c-cead-4ee6-bb6f-c89f1a3b95d8",
+      "human_review_required": true,
+      "observation_id": "60836315-6de7-4eb7-bde8-bb9cda9307f7",
+      "observation_state": {
+        "physical_unit_asserted": false,
+        "production_observation_unchanged": true,
+        "toilet_unit_id": null,
+        "unit_link_status": "UNLINKED"
+      },
+      "physical_unit_classification": "OBSERVATION_ONLY",
+      "proposed_future_attributes": null,
+      "proposed_future_unit_key": null,
+      "publisher_identity": {
+        "Id": "1",
+        "StationUniqueId": "910GBARKRIV"
+      },
+      "reason_code": "ROW_SEMANTICS_AMBIGUOUS",
+      "relief_canonical_facility_id": "2c01eed7-f892-4717-b608-d1b1566a4f73",
+      "relief_canonical_facility_name": "Barking Riverside Station, WITHIN BARRIER",
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:910GBARKRIV:toilet:1",
+      "source_row": {
+        "Id": "1",
+        "StationUniqueId": "910GBARKRIV",
+        "ask_staff": null,
+        "closes_with_station": null,
+        "coordinate_scope": "STATION_LEVEL",
+        "fee_status": "FREE",
+        "has_baby_changing": true,
+        "inside_gateline": true,
+        "is_accessible": true,
+        "opening_hours_text": null,
+        "opens_with_station": null,
+        "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+        "radar_key": null,
+        "raw_row_fingerprint": "1af4794611b70a55e6a3abfdd9a179ff2c4e32e4a5e705f2765cce16d461dad6",
+        "source_row_number": 403,
+        "station_coordinates": {
+          "latitude": 51.51967,
+          "longitude": 0.1167475,
+          "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+          "station_point_count": 6
+        },
+        "station_name": "Barking Riverside",
+        "station_public_location": "TfL station network; station-specific public street address not provided in this package",
+        "tfl_management_status": "MANAGED_BY_TFL",
+        "toilet_location_description": null,
+        "toilet_type": "UNISEX"
+      },
+      "source_row_fingerprint": "1af4794611b70a55e6a3abfdd9a179ff2c4e32e4a5e705f2765cce16d461dad6",
+      "tfl_station_identity": "910GBARKRIV"
+    },
+    {
+      "ambiguity_notes": [
+        "TfL row identity is source identity only, not physical-unit identity.",
+        "No toilet-specific coordinates are provided.",
+        "Gender, accessibility, baby-changing, fee, location text, and row multiplicity are not independently sufficient physical discriminators."
+      ],
+      "confidence": "MEDIUM",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_basis": "The feed supplies one toilet-provision row for this station, but does not state that its row ID is a physical-room identifier and supplies station-level coordinates only. The row is useful source evidence but is not sufficient by itself to assert a canonical physical unit.",
+      "evidence_refs": [
+        "tools/source_expansion/tfl_detailed.py",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json",
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_OBSERVATION_POST_APPLY_2026-08-22.json"
+      ],
+      "facility_source_id": "3dd63a04-5fa8-4442-9ff9-fb4bf38260a0",
+      "human_review_required": true,
+      "observation_id": "52aac510-7b34-4dd3-8f78-63c79d145743",
+      "observation_state": {
+        "physical_unit_asserted": false,
+        "production_observation_unchanged": true,
+        "toilet_unit_id": null,
+        "unit_link_status": "UNLINKED"
+      },
+      "physical_unit_classification": "OBSERVATION_ONLY",
+      "proposed_future_attributes": null,
+      "proposed_future_unit_key": null,
+      "publisher_identity": {
+        "Id": "1",
+        "StationUniqueId": "910GGODMAYS"
+      },
+      "reason_code": "ROW_SEMANTICS_AMBIGUOUS",
+      "relief_canonical_facility_id": "57651d54-0715-457d-a8d6-4cea7a9f63bb",
+      "relief_canonical_facility_name": "Tesco Extra Romford Goodmayes",
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:910GGODMAYS:toilet:1",
+      "source_row": {
+        "Id": "1",
+        "StationUniqueId": "910GGODMAYS",
+        "ask_staff": null,
+        "closes_with_station": null,
+        "coordinate_scope": "STATION_LEVEL",
+        "fee_status": "FREE",
+        "has_baby_changing": false,
+        "inside_gateline": false,
+        "is_accessible": true,
+        "opening_hours_text": null,
+        "opens_with_station": null,
+        "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+        "radar_key": null,
+        "raw_row_fingerprint": "c1263c9855d8b0b4f9cd5682f74b37f792621aebfa89d2799f10aa85c17c9984",
+        "source_row_number": 28,
+        "station_coordinates": {
+          "latitude": 51.565577,
+          "longitude": 0.110904,
+          "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+          "station_point_count": 7
+        },
+        "station_name": "Goodmayes",
+        "station_public_location": "TfL station network; station-specific public street address not provided in this package",
+        "tfl_management_status": "MANAGED_BY_TFL",
+        "toilet_location_description": "Located in ticket hall",
+        "toilet_type": "UNISEX"
+      },
+      "source_row_fingerprint": "c1263c9855d8b0b4f9cd5682f74b37f792621aebfa89d2799f10aa85c17c9984",
+      "tfl_station_identity": "910GGODMAYS"
+    },
+    {
+      "ambiguity_notes": [
+        "TfL row identity is source identity only, not physical-unit identity.",
+        "No toilet-specific coordinates are provided.",
+        "Gender, accessibility, baby-changing, fee, location text, and row multiplicity are not independently sufficient physical discriminators."
+      ],
+      "confidence": "MEDIUM",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_basis": "The feed supplies one toilet-provision row for this station, but does not state that its row ID is a physical-room identifier and supplies station-level coordinates only. The row is useful source evidence but is not sufficient by itself to assert a canonical physical unit.",
+      "evidence_refs": [
+        "tools/source_expansion/tfl_detailed.py",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json",
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_OBSERVATION_POST_APPLY_2026-08-22.json"
+      ],
+      "facility_source_id": "9ccce04c-b4f3-444c-bde2-1e8ff7616531",
+      "human_review_required": true,
+      "observation_id": "9ac658e1-e2d5-4103-b2c8-14014c371c32",
+      "observation_state": {
+        "physical_unit_asserted": false,
+        "production_observation_unchanged": true,
+        "toilet_unit_id": null,
+        "unit_link_status": "UNLINKED"
+      },
+      "physical_unit_classification": "OBSERVATION_ONLY",
+      "proposed_future_attributes": null,
+      "proposed_future_unit_key": null,
+      "publisher_identity": {
+        "Id": "1",
+        "StationUniqueId": "910GHANWELL"
+      },
+      "reason_code": "ROW_SEMANTICS_AMBIGUOUS",
+      "relief_canonical_facility_id": "81313ce2-a8fa-4fda-94ae-8c89e8339d71",
+      "relief_canonical_facility_name": "Hanwell Rail Station",
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:910GHANWELL:toilet:1",
+      "source_row": {
+        "Id": "1",
+        "StationUniqueId": "910GHANWELL",
+        "ask_staff": null,
+        "closes_with_station": null,
+        "coordinate_scope": "STATION_LEVEL",
+        "fee_status": "FREE",
+        "has_baby_changing": false,
+        "inside_gateline": true,
+        "is_accessible": true,
+        "opening_hours_text": null,
+        "opens_with_station": null,
+        "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+        "radar_key": null,
+        "raw_row_fingerprint": "b74a089eb37956b835c7e2187ce9bca9f3a65180304cc0048e83c21a566e6ae3",
+        "source_row_number": 33,
+        "station_coordinates": {
+          "latitude": 51.511926,
+          "longitude": -0.338359,
+          "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+          "station_point_count": 6
+        },
+        "station_name": "Hanwell",
+        "station_public_location": "TfL station network; station-specific public street address not provided in this package",
+        "tfl_management_status": "MANAGED_BY_TFL",
+        "toilet_location_description": "Located on platform 3",
+        "toilet_type": "UNISEX"
+      },
+      "source_row_fingerprint": "b74a089eb37956b835c7e2187ce9bca9f3a65180304cc0048e83c21a566e6ae3",
+      "tfl_station_identity": "910GHANWELL"
+    },
+    {
+      "ambiguity_notes": [
+        "TfL row identity is source identity only, not physical-unit identity.",
+        "No toilet-specific coordinates are provided.",
+        "Gender, accessibility, baby-changing, fee, location text, and row multiplicity are not independently sufficient physical discriminators."
+      ],
+      "confidence": "MEDIUM",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_basis": "The feed supplies one toilet-provision row for this station, but does not state that its row ID is a physical-room identifier and supplies station-level coordinates only. The row is useful source evidence but is not sufficient by itself to assert a canonical physical unit.",
+      "evidence_refs": [
+        "tools/source_expansion/tfl_detailed.py",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json",
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_OBSERVATION_POST_APPLY_2026-08-22.json"
+      ],
+      "facility_source_id": "bbde2995-a747-4c3f-aec4-eaf482300cb3",
+      "human_review_required": true,
+      "observation_id": "ee5f73da-c2ab-4ee9-a92b-4c42211acdae",
+      "observation_state": {
+        "physical_unit_asserted": false,
+        "production_observation_unchanged": true,
+        "toilet_unit_id": null,
+        "unit_link_status": "UNLINKED"
+      },
+      "physical_unit_classification": "OBSERVATION_ONLY",
+      "proposed_future_attributes": null,
+      "proposed_future_unit_key": null,
+      "publisher_identity": {
+        "Id": "1",
+        "StationUniqueId": "910GMANRPK"
+      },
+      "reason_code": "ROW_SEMANTICS_AMBIGUOUS",
+      "relief_canonical_facility_id": "ac3ea7e2-c181-4195-8814-19787409c739",
+      "relief_canonical_facility_name": "Manor Park Library",
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:910GMANRPK:toilet:1",
+      "source_row": {
+        "Id": "1",
+        "StationUniqueId": "910GMANRPK",
+        "ask_staff": null,
+        "closes_with_station": null,
+        "coordinate_scope": "STATION_LEVEL",
+        "fee_status": "FREE",
+        "has_baby_changing": false,
+        "inside_gateline": false,
+        "is_accessible": true,
+        "opening_hours_text": null,
+        "opens_with_station": null,
+        "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+        "radar_key": null,
+        "raw_row_fingerprint": "2bca9fcad52889028683d2de880b974abb36620a6acbf9d756d58b6787e700ea",
+        "source_row_number": 48,
+        "station_coordinates": {
+          "latitude": 51.55226,
+          "longitude": 0.046274,
+          "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+          "station_point_count": 7
+        },
+        "station_name": "Manor Park",
+        "station_public_location": "TfL station network; station-specific public street address not provided in this package",
+        "tfl_management_status": "MANAGED_BY_TFL",
+        "toilet_location_description": "Located in ticket hall",
+        "toilet_type": "UNISEX"
+      },
+      "source_row_fingerprint": "2bca9fcad52889028683d2de880b974abb36620a6acbf9d756d58b6787e700ea",
+      "tfl_station_identity": "910GMANRPK"
+    },
+    {
+      "ambiguity_notes": [
+        "TfL row identity is source identity only, not physical-unit identity.",
+        "No toilet-specific coordinates are provided.",
+        "Gender, accessibility, baby-changing, fee, location text, and row multiplicity are not independently sufficient physical discriminators."
+      ],
+      "confidence": "MEDIUM",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_basis": "The feed supplies one toilet-provision row for this station, but does not state that its row ID is a physical-room identifier and supplies station-level coordinates only. The row is useful source evidence but is not sufficient by itself to assert a canonical physical unit.",
+      "evidence_refs": [
+        "tools/source_expansion/tfl_detailed.py",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json",
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_OBSERVATION_POST_APPLY_2026-08-22.json"
+      ],
+      "facility_source_id": "4fbbf580-f456-4eba-85ef-51547a48755b",
+      "human_review_required": true,
+      "observation_id": "c54de769-d047-4a92-b159-87bdc5734002",
+      "observation_state": {
+        "physical_unit_asserted": false,
+        "production_observation_unchanged": true,
+        "toilet_unit_id": null,
+        "unit_link_status": "UNLINKED"
+      },
+      "physical_unit_classification": "OBSERVATION_ONLY",
+      "proposed_future_attributes": null,
+      "proposed_future_unit_key": null,
+      "publisher_identity": {
+        "Id": "1",
+        "StationUniqueId": "910GSVNKNGS"
+      },
+      "reason_code": "ROW_SEMANTICS_AMBIGUOUS",
+      "relief_canonical_facility_id": "f4ab26f6-4177-4338-a7e0-85ac651b9bf0",
+      "relief_canonical_facility_name": "Seven Kings",
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:910GSVNKNGS:toilet:1",
+      "source_row": {
+        "Id": "1",
+        "StationUniqueId": "910GSVNKNGS",
+        "ask_staff": null,
+        "closes_with_station": null,
+        "coordinate_scope": "STATION_LEVEL",
+        "fee_status": "FREE",
+        "has_baby_changing": false,
+        "inside_gateline": true,
+        "is_accessible": true,
+        "opening_hours_text": null,
+        "opens_with_station": null,
+        "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+        "radar_key": null,
+        "raw_row_fingerprint": "b5b29473f2296f4706d2338a5bfb77f5e0dd18e2ad968213bd9ade5c4d7c0830",
+        "source_row_number": 72,
+        "station_coordinates": {
+          "latitude": 51.563937,
+          "longitude": 0.097077,
+          "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+          "station_point_count": 8
+        },
+        "station_name": "Seven Kings",
+        "station_public_location": "TfL station network; station-specific public street address not provided in this package",
+        "tfl_management_status": "MANAGED_BY_TFL",
+        "toilet_location_description": "Located on Footbridge",
+        "toilet_type": "UNISEX"
+      },
+      "source_row_fingerprint": "b5b29473f2296f4706d2338a5bfb77f5e0dd18e2ad968213bd9ade5c4d7c0830",
+      "tfl_station_identity": "910GSVNKNGS"
+    },
+    {
+      "ambiguity_notes": [
+        "TfL row identity is source identity only, not physical-unit identity.",
+        "No toilet-specific coordinates are provided.",
+        "Gender, accessibility, baby-changing, fee, location text, and row multiplicity are not independently sufficient physical discriminators."
+      ],
+      "confidence": "MEDIUM",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_basis": "The feed supplies one toilet-provision row for this station, but does not state that its row ID is a physical-room identifier and supplies station-level coordinates only. The row is useful source evidence but is not sufficient by itself to assert a canonical physical unit.",
+      "evidence_refs": [
+        "tools/source_expansion/tfl_detailed.py",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json",
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_OBSERVATION_POST_APPLY_2026-08-22.json"
+      ],
+      "facility_source_id": "fbb8d8a6-715a-4f8a-a486-058e4ecb5ed2",
+      "human_review_required": true,
+      "observation_id": "04e59dc7-e430-45ff-a0ba-228e6e35399d",
+      "observation_state": {
+        "physical_unit_asserted": false,
+        "production_observation_unchanged": true,
+        "toilet_unit_id": null,
+        "unit_link_status": "UNLINKED"
+      },
+      "physical_unit_classification": "OBSERVATION_ONLY",
+      "proposed_future_attributes": null,
+      "proposed_future_unit_key": null,
+      "publisher_identity": {
+        "Id": "1",
+        "StationUniqueId": "940GZZBPSUST"
+      },
+      "reason_code": "ROW_SEMANTICS_AMBIGUOUS",
+      "relief_canonical_facility_id": "3e7c3df4-cd5d-4d3f-9020-d25c177310f2",
+      "relief_canonical_facility_name": "Battersea Power Station (Tube Station)",
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:940GZZBPSUST:toilet:1",
+      "source_row": {
+        "Id": "1",
+        "StationUniqueId": "940GZZBPSUST",
+        "ask_staff": null,
+        "closes_with_station": null,
+        "coordinate_scope": "STATION_LEVEL",
+        "fee_status": "FREE",
+        "has_baby_changing": true,
+        "inside_gateline": true,
+        "is_accessible": true,
+        "opening_hours_text": null,
+        "opens_with_station": null,
+        "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+        "radar_key": null,
+        "raw_row_fingerprint": "b0ced2eda6f9e905172adc9767d66fe9dff74e94f3648e5b54f83287f60151e1",
+        "source_row_number": 402,
+        "station_coordinates": {
+          "latitude": 51.479809,
+          "longitude": -0.142421,
+          "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+          "station_point_count": 9
+        },
+        "station_name": "Battersea Power Station",
+        "station_public_location": "TfL station network; station-specific public street address not provided in this package",
+        "tfl_management_status": "MANAGED_BY_TFL",
+        "toilet_location_description": "Located in ticket hall",
+        "toilet_type": "UNISEX"
+      },
+      "source_row_fingerprint": "b0ced2eda6f9e905172adc9767d66fe9dff74e94f3648e5b54f83287f60151e1",
+      "tfl_station_identity": "940GZZBPSUST"
+    },
+    {
+      "ambiguity_notes": [
+        "TfL row identity is source identity only, not physical-unit identity.",
+        "No toilet-specific coordinates are provided.",
+        "Gender, accessibility, baby-changing, fee, location text, and row multiplicity are not independently sufficient physical discriminators."
+      ],
+      "confidence": "MEDIUM",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_basis": "The feed supplies one toilet-provision row for this station, but does not state that its row ID is a physical-room identifier and supplies station-level coordinates only. The row is useful source evidence but is not sufficient by itself to assert a canonical physical unit.",
+      "evidence_refs": [
+        "tools/source_expansion/tfl_detailed.py",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json",
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_OBSERVATION_POST_APPLY_2026-08-22.json"
+      ],
+      "facility_source_id": "f2d52c23-37cb-4c56-b159-1af55ab865a9",
+      "human_review_required": true,
+      "observation_id": "a3d47264-2414-483d-a667-211f6d167705",
+      "observation_state": {
+        "physical_unit_asserted": false,
+        "production_observation_unchanged": true,
+        "toilet_unit_id": null,
+        "unit_link_status": "UNLINKED"
+      },
+      "physical_unit_classification": "OBSERVATION_ONLY",
+      "proposed_future_attributes": null,
+      "proposed_future_unit_key": null,
+      "publisher_identity": {
+        "Id": "3",
+        "StationUniqueId": "940GZZLUFYC"
+      },
+      "reason_code": "ROW_SEMANTICS_AMBIGUOUS",
+      "relief_canonical_facility_id": "9265243e-1bea-4137-af73-ab564aa7c1eb",
+      "relief_canonical_facility_name": "Finchley Central Station",
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:940GZZLUFYC:toilet:3",
+      "source_row": {
+        "Id": "3",
+        "StationUniqueId": "940GZZLUFYC",
+        "ask_staff": null,
+        "closes_with_station": null,
+        "coordinate_scope": "STATION_LEVEL",
+        "fee_status": "FREE",
+        "has_baby_changing": false,
+        "inside_gateline": true,
+        "is_accessible": true,
+        "opening_hours_text": null,
+        "opens_with_station": null,
+        "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+        "radar_key": null,
+        "raw_row_fingerprint": "ad2eda2c8255ae1e2c13e65dcfdc456e449f1d4a39f02afbef9eced0e82f331c",
+        "source_row_number": 140,
+        "station_coordinates": {
+          "latitude": 51.6010685,
+          "longitude": -0.1925825,
+          "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+          "station_point_count": 8
+        },
+        "station_name": "Finchley Central",
+        "station_public_location": "TfL station network; station-specific public street address not provided in this package",
+        "tfl_management_status": "MANAGED_BY_TFL",
+        "toilet_location_description": "Located on platform 3",
+        "toilet_type": "UNISEX"
+      },
+      "source_row_fingerprint": "ad2eda2c8255ae1e2c13e65dcfdc456e449f1d4a39f02afbef9eced0e82f331c",
+      "tfl_station_identity": "940GZZLUFYC"
+    },
+    {
+      "ambiguity_notes": [
+        "TfL row identity is source identity only, not physical-unit identity.",
+        "No toilet-specific coordinates are provided.",
+        "Gender, accessibility, baby-changing, fee, location text, and row multiplicity are not independently sufficient physical discriminators."
+      ],
+      "confidence": "MEDIUM",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_basis": "The feed supplies one toilet-provision row for this station, but does not state that its row ID is a physical-room identifier and supplies station-level coordinates only. The row is useful source evidence but is not sufficient by itself to assert a canonical physical unit.",
+      "evidence_refs": [
+        "tools/source_expansion/tfl_detailed.py",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json",
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_OBSERVATION_POST_APPLY_2026-08-22.json"
+      ],
+      "facility_source_id": "f57b5948-9495-4003-8a91-706ff490f38c",
+      "human_review_required": true,
+      "observation_id": "e2106522-e94d-4625-957f-f77815d9214d",
+      "observation_state": {
+        "physical_unit_asserted": false,
+        "production_observation_unchanged": true,
+        "toilet_unit_id": null,
+        "unit_link_status": "UNLINKED"
+      },
+      "physical_unit_classification": "OBSERVATION_ONLY",
+      "proposed_future_attributes": null,
+      "proposed_future_unit_key": null,
+      "publisher_identity": {
+        "Id": "1",
+        "StationUniqueId": "940GZZLURSG"
+      },
+      "reason_code": "ROW_SEMANTICS_AMBIGUOUS",
+      "relief_canonical_facility_id": "84161c85-79a5-4e8d-9e77-d275f1f3199c",
+      "relief_canonical_facility_name": "Ruislip Gardens Underground Station",
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:940GZZLURSG:toilet:1",
+      "source_row": {
+        "Id": "1",
+        "StationUniqueId": "940GZZLURSG",
+        "ask_staff": null,
+        "closes_with_station": null,
+        "coordinate_scope": "STATION_LEVEL",
+        "fee_status": "FREE",
+        "has_baby_changing": false,
+        "inside_gateline": false,
+        "is_accessible": true,
+        "opening_hours_text": null,
+        "opens_with_station": null,
+        "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+        "radar_key": null,
+        "raw_row_fingerprint": "f5e032b83a787b3432575a59b7f40a25f771ebc127ba07c3ae99f46df7745d6a",
+        "source_row_number": 213,
+        "station_coordinates": {
+          "latitude": 51.560604,
+          "longitude": -0.410839,
+          "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+          "station_point_count": 7
+        },
+        "station_name": "Ruislip Gardens",
+        "station_public_location": "TfL station network; station-specific public street address not provided in this package",
+        "tfl_management_status": "MANAGED_BY_TFL",
+        "toilet_location_description": "Located in ticket hall",
+        "toilet_type": "UNISEX"
+      },
+      "source_row_fingerprint": "f5e032b83a787b3432575a59b7f40a25f771ebc127ba07c3ae99f46df7745d6a",
+      "tfl_station_identity": "940GZZLURSG"
+    },
+    {
+      "ambiguity_notes": [
+        "TfL row identity is source identity only, not physical-unit identity.",
+        "No toilet-specific coordinates are provided.",
+        "Gender, accessibility, baby-changing, fee, location text, and row multiplicity are not independently sufficient physical discriminators."
+      ],
+      "confidence": "MEDIUM",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_basis": "The feed supplies one toilet-provision row for this station, but does not state that its row ID is a physical-room identifier and supplies station-level coordinates only. The row is useful source evidence but is not sufficient by itself to assert a canonical physical unit.",
+      "evidence_refs": [
+        "tools/source_expansion/tfl_detailed.py",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json",
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_OBSERVATION_POST_APPLY_2026-08-22.json"
+      ],
+      "facility_source_id": "090cfef0-6c14-435b-bc62-1771b0b80afc",
+      "human_review_required": true,
+      "observation_id": "16f064c4-7b2c-4a4c-9dd7-6ee9849de3e0",
+      "observation_state": {
+        "physical_unit_asserted": false,
+        "production_observation_unchanged": true,
+        "toilet_unit_id": null,
+        "unit_link_status": "UNLINKED"
+      },
+      "physical_unit_classification": "OBSERVATION_ONLY",
+      "proposed_future_attributes": null,
+      "proposed_future_unit_key": null,
+      "publisher_identity": {
+        "Id": "1",
+        "StationUniqueId": "HUBBAN"
+      },
+      "reason_code": "ROW_SEMANTICS_AMBIGUOUS",
+      "relief_canonical_facility_id": "c31820e7-2009-43be-9c8a-5437034b7469",
+      "relief_canonical_facility_name": "The Bank of England Museum",
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:HUBBAN:toilet:1",
+      "source_row": {
+        "Id": "1",
+        "StationUniqueId": "HUBBAN",
+        "ask_staff": null,
+        "closes_with_station": null,
+        "coordinate_scope": "STATION_LEVEL",
+        "fee_status": "FREE",
+        "has_baby_changing": false,
+        "inside_gateline": true,
+        "is_accessible": true,
+        "opening_hours_text": null,
+        "opens_with_station": null,
+        "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+        "radar_key": null,
+        "raw_row_fingerprint": "085c7aae0248bc25702407933238b59eaeaaae74ee1da42dd8e92e86fdfc1064",
+        "source_row_number": 271,
+        "station_coordinates": {
+          "latitude": 51.512893,
+          "longitude": -0.088312,
+          "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+          "station_point_count": 33
+        },
+        "station_name": "Bank",
+        "station_public_location": "TfL station network; station-specific public street address not provided in this package",
+        "tfl_management_status": "MANAGED_BY_TFL",
+        "toilet_location_description": "Located at Cannon Street ticket hall",
+        "toilet_type": "UNISEX"
+      },
+      "source_row_fingerprint": "085c7aae0248bc25702407933238b59eaeaaae74ee1da42dd8e92e86fdfc1064",
+      "tfl_station_identity": "HUBBAN"
+    },
+    {
+      "ambiguity_notes": [
+        "TfL row identity is source identity only, not physical-unit identity.",
+        "No toilet-specific coordinates are provided.",
+        "Gender, accessibility, baby-changing, fee, location text, and row multiplicity are not independently sufficient physical discriminators."
+      ],
+      "confidence": "MEDIUM",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_basis": "The feed supplies one toilet-provision row for this station, but does not state that its row ID is a physical-room identifier and supplies station-level coordinates only. The row is useful source evidence but is not sufficient by itself to assert a canonical physical unit.",
+      "evidence_refs": [
+        "tools/source_expansion/tfl_detailed.py",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json",
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_OBSERVATION_POST_APPLY_2026-08-22.json"
+      ],
+      "facility_source_id": "31001ce3-af60-43b9-bc5d-12c1fe461dea",
+      "human_review_required": true,
+      "observation_id": "caa1297c-4e40-401c-a782-7314ceaa6cc8",
+      "observation_state": {
+        "physical_unit_asserted": false,
+        "production_observation_unchanged": true,
+        "toilet_unit_id": null,
+        "unit_link_status": "UNLINKED"
+      },
+      "physical_unit_classification": "OBSERVATION_ONLY",
+      "proposed_future_attributes": null,
+      "proposed_future_unit_key": null,
+      "publisher_identity": {
+        "Id": "1",
+        "StationUniqueId": "HUBELM"
+      },
+      "reason_code": "ROW_SEMANTICS_AMBIGUOUS",
+      "relief_canonical_facility_id": "42d071c4-f774-4ec8-8d03-af03b459815e",
+      "relief_canonical_facility_name": "Elmers End Station",
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:HUBELM:toilet:1",
+      "source_row": {
+        "Id": "1",
+        "StationUniqueId": "HUBELM",
+        "ask_staff": null,
+        "closes_with_station": null,
+        "coordinate_scope": "STATION_LEVEL",
+        "fee_status": "FREE",
+        "has_baby_changing": false,
+        "inside_gateline": false,
+        "is_accessible": false,
+        "opening_hours_text": null,
+        "opens_with_station": null,
+        "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+        "radar_key": null,
+        "raw_row_fingerprint": "77140e2b8705217eec2319db8713bc95fdd4d292365c789d17a8f9e93ea3c071",
+        "source_row_number": 304,
+        "station_coordinates": {
+          "latitude": 51.398354,
+          "longitude": -0.049555,
+          "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+          "station_point_count": 7
+        },
+        "station_name": "Elmers End",
+        "station_public_location": "TfL station network; station-specific public street address not provided in this package",
+        "tfl_management_status": "NOT_MANAGED_BY_TFL",
+        "toilet_location_description": "Located in National Rail station",
+        "toilet_type": "MALE"
+      },
+      "source_row_fingerprint": "77140e2b8705217eec2319db8713bc95fdd4d292365c789d17a8f9e93ea3c071",
+      "tfl_station_identity": "HUBELM"
+    },
+    {
+      "ambiguity_notes": [
+        "TfL row identity is source identity only, not physical-unit identity.",
+        "No toilet-specific coordinates are provided.",
+        "Gender, accessibility, baby-changing, fee, location text, and row multiplicity are not independently sufficient physical discriminators."
+      ],
+      "confidence": "MEDIUM",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_basis": "The feed supplies one toilet-provision row for this station, but does not state that its row ID is a physical-room identifier and supplies station-level coordinates only. The row is useful source evidence but is not sufficient by itself to assert a canonical physical unit.",
+      "evidence_refs": [
+        "tools/source_expansion/tfl_detailed.py",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json",
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_OBSERVATION_POST_APPLY_2026-08-22.json"
+      ],
+      "facility_source_id": "5a6b1987-5b26-4be1-9df4-3bee7d2344b7",
+      "human_review_required": true,
+      "observation_id": "638b0871-2c3c-4ce6-8ad4-9c458b75b859",
+      "observation_state": {
+        "physical_unit_asserted": false,
+        "production_observation_unchanged": true,
+        "toilet_unit_id": null,
+        "unit_link_status": "UNLINKED"
+      },
+      "physical_unit_classification": "OBSERVATION_ONLY",
+      "proposed_future_attributes": null,
+      "proposed_future_unit_key": null,
+      "publisher_identity": {
+        "Id": "1",
+        "StationUniqueId": "HUBMJT"
+      },
+      "reason_code": "ROW_SEMANTICS_AMBIGUOUS",
+      "relief_canonical_facility_id": "1c8c9b32-b2f3-4791-bfdc-4d984c06132b",
+      "relief_canonical_facility_name": "Mitcham Junction Station",
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:HUBMJT:toilet:1",
+      "source_row": {
+        "Id": "1",
+        "StationUniqueId": "HUBMJT",
+        "ask_staff": null,
+        "closes_with_station": null,
+        "coordinate_scope": "STATION_LEVEL",
+        "fee_status": "FREE",
+        "has_baby_changing": false,
+        "inside_gateline": false,
+        "is_accessible": true,
+        "opening_hours_text": null,
+        "opens_with_station": null,
+        "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+        "radar_key": null,
+        "raw_row_fingerprint": "8158ca057a3422d441c2c6064af289f86b1c3a9cc540203e3197314ddc3493b8",
+        "source_row_number": 336,
+        "station_coordinates": {
+          "latitude": 51.392959,
+          "longitude": -0.157857,
+          "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+          "station_point_count": 7
+        },
+        "station_name": "Mitcham Junction",
+        "station_public_location": "TfL station network; station-specific public street address not provided in this package",
+        "tfl_management_status": "NOT_MANAGED_BY_TFL",
+        "toilet_location_description": "Located in National Rail station",
+        "toilet_type": "UNISEX"
+      },
+      "source_row_fingerprint": "8158ca057a3422d441c2c6064af289f86b1c3a9cc540203e3197314ddc3493b8",
+      "tfl_station_identity": "HUBMJT"
+    },
+    {
+      "ambiguity_notes": [
+        "TfL row identity is source identity only, not physical-unit identity.",
+        "No toilet-specific coordinates are provided.",
+        "Gender, accessibility, baby-changing, fee, location text, and row multiplicity are not independently sufficient physical discriminators."
+      ],
+      "confidence": "MEDIUM",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_basis": "The feed supplies one toilet-provision row for this station, but does not state that its row ID is a physical-room identifier and supplies station-level coordinates only. The row is useful source evidence but is not sufficient by itself to assert a canonical physical unit.",
+      "evidence_refs": [
+        "tools/source_expansion/tfl_detailed.py",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json",
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_OBSERVATION_POST_APPLY_2026-08-22.json"
+      ],
+      "facility_source_id": "96d46034-9dbb-4dcc-a0d1-6d7d5b5fa414",
+      "human_review_required": true,
+      "observation_id": "e7e9c81a-b3f7-40b3-8917-23c34ad0ec0c",
+      "observation_state": {
+        "physical_unit_asserted": false,
+        "production_observation_unchanged": true,
+        "toilet_unit_id": null,
+        "unit_link_status": "UNLINKED"
+      },
+      "physical_unit_classification": "OBSERVATION_ONLY",
+      "proposed_future_attributes": null,
+      "proposed_future_unit_key": null,
+      "publisher_identity": {
+        "Id": "1",
+        "StationUniqueId": "HUBSRU"
+      },
+      "reason_code": "ROW_SEMANTICS_AMBIGUOUS",
+      "relief_canonical_facility_id": "89f4cda8-9735-41ef-a1ef-d451d370e966",
+      "relief_canonical_facility_name": "Sainsbury's South Ruislip",
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:HUBSRU:toilet:1",
+      "source_row": {
+        "Id": "1",
+        "StationUniqueId": "HUBSRU",
+        "ask_staff": null,
+        "closes_with_station": null,
+        "coordinate_scope": "STATION_LEVEL",
+        "fee_status": "FREE",
+        "has_baby_changing": false,
+        "inside_gateline": true,
+        "is_accessible": true,
+        "opening_hours_text": null,
+        "opens_with_station": null,
+        "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+        "radar_key": null,
+        "raw_row_fingerprint": "f6e1de43ee30fdf59b5b726ff18ae377e82a9a5cb780a7d19a4ff9f538072cfa",
+        "source_row_number": 358,
+        "station_coordinates": {
+          "latitude": 51.556956,
+          "longitude": -0.398915,
+          "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+          "station_point_count": 9
+        },
+        "station_name": "South Ruislip",
+        "station_public_location": "TfL station network; station-specific public street address not provided in this package",
+        "tfl_management_status": "MANAGED_BY_TFL",
+        "toilet_location_description": "Located in ticket hall",
+        "toilet_type": "UNISEX"
+      },
+      "source_row_fingerprint": "f6e1de43ee30fdf59b5b726ff18ae377e82a9a5cb780a7d19a4ff9f538072cfa",
+      "tfl_station_identity": "HUBSRU"
+    },
+    {
+      "ambiguity_notes": [
+        "TfL row identity is source identity only, not physical-unit identity.",
+        "No toilet-specific coordinates are provided.",
+        "Gender, accessibility, baby-changing, fee, location text, and row multiplicity are not independently sufficient physical discriminators."
+      ],
+      "confidence": "MEDIUM",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_basis": "The feed supplies one toilet-provision row for this station, but does not state that its row ID is a physical-room identifier and supplies station-level coordinates only. The row is useful source evidence but is not sufficient by itself to assert a canonical physical unit.",
+      "evidence_refs": [
+        "tools/source_expansion/tfl_detailed.py",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json",
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_OBSERVATION_POST_APPLY_2026-08-22.json"
+      ],
+      "facility_source_id": "fe99892c-aa24-436f-abab-fb9a58e720d6",
+      "human_review_required": true,
+      "observation_id": "7d5d87a5-a46c-49a5-b33d-5e21297114d1",
+      "observation_state": {
+        "physical_unit_asserted": false,
+        "production_observation_unchanged": true,
+        "toilet_unit_id": null,
+        "unit_link_status": "UNLINKED"
+      },
+      "physical_unit_classification": "OBSERVATION_ONLY",
+      "proposed_future_attributes": null,
+      "proposed_future_unit_key": null,
+      "publisher_identity": {
+        "Id": "1",
+        "StationUniqueId": "HUBTCR"
+      },
+      "reason_code": "ROW_SEMANTICS_AMBIGUOUS",
+      "relief_canonical_facility_id": "c554adc3-aa75-46ea-a142-917042d49fde",
+      "relief_canonical_facility_name": "Tottenham Court Road Underground Station",
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:HUBTCR:toilet:1",
+      "source_row": {
+        "Id": "1",
+        "StationUniqueId": "HUBTCR",
+        "ask_staff": null,
+        "closes_with_station": null,
+        "coordinate_scope": "STATION_LEVEL",
+        "fee_status": "FREE",
+        "has_baby_changing": false,
+        "inside_gateline": false,
+        "is_accessible": true,
+        "opening_hours_text": null,
+        "opens_with_station": null,
+        "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+        "radar_key": null,
+        "raw_row_fingerprint": "d1849b13d020cf2ade98dd4a590292ddce26698711810d5f8134da60f66cab19",
+        "source_row_number": 362,
+        "station_coordinates": {
+          "latitude": 51.515972,
+          "longitude": -0.130416,
+          "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+          "station_point_count": 27
+        },
+        "station_name": "Tottenham Court Road",
+        "station_public_location": "TfL station network; station-specific public street address not provided in this package",
+        "tfl_management_status": "MANAGED_BY_TFL",
+        "toilet_location_description": "Located in ticket hall",
+        "toilet_type": "UNISEX"
+      },
+      "source_row_fingerprint": "d1849b13d020cf2ade98dd4a590292ddce26698711810d5f8134da60f66cab19",
+      "tfl_station_identity": "HUBTCR"
+    },
+    {
+      "ambiguity_notes": [
+        "TfL row identity is source identity only, not physical-unit identity.",
+        "No toilet-specific coordinates are provided.",
+        "Gender, accessibility, baby-changing, fee, location text, and row multiplicity are not independently sufficient physical discriminators."
+      ],
+      "confidence": "MEDIUM",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_basis": "The feed supplies one toilet-provision row for this station, but does not state that its row ID is a physical-room identifier and supplies station-level coordinates only. The row is useful source evidence but is not sufficient by itself to assert a canonical physical unit.",
+      "evidence_refs": [
+        "tools/source_expansion/tfl_detailed.py",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json",
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_OBSERVATION_POST_APPLY_2026-08-22.json"
+      ],
+      "facility_source_id": "276f7741-b187-4be4-bfa2-47fc8ac2e753",
+      "human_review_required": true,
+      "observation_id": "56fe81f3-00aa-4878-b21b-0b08d2fe7575",
+      "observation_state": {
+        "physical_unit_asserted": false,
+        "production_observation_unchanged": true,
+        "toilet_unit_id": null,
+        "unit_link_status": "UNLINKED"
+      },
+      "physical_unit_classification": "OBSERVATION_ONLY",
+      "proposed_future_attributes": null,
+      "proposed_future_unit_key": null,
+      "publisher_identity": {
+        "Id": "1",
+        "StationUniqueId": "HUBZWL"
+      },
+      "reason_code": "ROW_SEMANTICS_AMBIGUOUS",
+      "relief_canonical_facility_id": "9dc4103c-fbc2-4ed5-82fe-8a11f1dd18c8",
+      "relief_canonical_facility_name": "Idea Store Whitechapel",
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:HUBZWL:toilet:1",
+      "source_row": {
+        "Id": "1",
+        "StationUniqueId": "HUBZWL",
+        "ask_staff": null,
+        "closes_with_station": null,
+        "coordinate_scope": "STATION_LEVEL",
+        "fee_status": "FREE",
+        "has_baby_changing": true,
+        "inside_gateline": true,
+        "is_accessible": true,
+        "opening_hours_text": null,
+        "opens_with_station": null,
+        "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+        "radar_key": null,
+        "raw_row_fingerprint": "39968deff3c53629ec66545911229c28bab54caa4b1a8b3db7894415823794ac",
+        "source_row_number": 400,
+        "station_coordinates": {
+          "latitude": 51.519578,
+          "longitude": -0.059911,
+          "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+          "station_point_count": 15
+        },
+        "station_name": "Whitechapel",
+        "station_public_location": "TfL station network; station-specific public street address not provided in this package",
+        "tfl_management_status": "MANAGED_BY_TFL",
+        "toilet_location_description": null,
+        "toilet_type": "UNISEX"
+      },
+      "source_row_fingerprint": "39968deff3c53629ec66545911229c28bab54caa4b1a8b3db7894415823794ac",
+      "tfl_station_identity": "HUBZWL"
+    }
+  ],
+  "branch": "codex/toilet-map-apply-1a-production-deploy",
+  "classification": "RELIEF TFL PHYSICAL-UNIT SEMANTICS — SOURCE DOES NOT SUPPORT SAFE UNIT PROMOTION",
+  "document_type": "RELIEF_TFL_PHYSICAL_UNIT_SEMANTICS_BATCH_2",
+  "future_promotion_contract": {
+    "coordinate_rule": "Station-level coordinates remain station-level; toilet-level coordinates require independent toilet-level evidence.",
+    "executable": false,
+    "idempotency": "Unique facility/unit identity plus preserved source observation identity; conflicts fail closed.",
+    "required_evidence": [
+      "independent authoritative evidence identifies a distinct physical toilet location",
+      "parent facility is already verified and unambiguous",
+      "source-row-to-unit mapping is explicit and conflict-free",
+      "unit identity and attributes are reviewed before mutation"
+    ],
+    "rollback_boundary": "One transaction limited to approved unit rows and observation links, with pre/post invariant checks.",
+    "source_linking": "Preserve facility_source_observation and attach provenance through a separately governed link; do not replace source identity.",
+    "unit_key": "relief:{facility_id}:unit:{deterministic adjudication key}"
+  },
+  "invariants": {
+    "all_classifications_allowed": true,
+    "all_station_coordinates_station_level": true,
+    "exact_14_adjudications": true,
+    "exact_410_rows": true,
+    "frozen_reconciliation_hash_verified": true,
+    "frozen_zip_hash_verified": true,
+    "no_physical_unit_promotions_emitted": true,
+    "no_physical_unit_state_changed": true,
+    "no_production_mutation_path": true,
+    "production_counts_unchanged": true,
+    "required_attribution_retained": true,
+    "unique_source_identities": true
+  },
+  "production_verification": {
+    "before_after_counts": {
+      "facilities": {
+        "after": 15620,
+        "before": 15620,
+        "delta": 0
+      },
+      "facility_source_observations": {
+        "after": 14,
+        "before": 14,
+        "delta": 0
+      },
+      "facility_sources": {
+        "after": 15634,
+        "before": 15634,
+        "delta": 0
+      },
+      "import_runs": {
+        "after": 5,
+        "before": 5,
+        "delta": 0
+      },
+      "toilet_map_import_staging": {
+        "after": 0,
+        "before": 0,
+        "delta": 0
+      },
+      "toilet_unit_sources": {
+        "after": 0,
+        "before": 0,
+        "delta": 0
+      },
+      "toilet_units": {
+        "after": 0,
+        "before": 0,
+        "delta": 0
+      }
+    },
+    "canonical_facility_snapshot_unchanged": true,
+    "observation_payloads_unchanged": true,
+    "observation_physical_state_unchanged": true,
+    "observation_rows_verified": 14,
+    "public_observation_exposure_unchanged": true,
+    "read_only": true,
+    "security_unchanged": true,
+    "total_production_mutations": 0
+  },
+  "repository": "hourwise/Relief",
+  "row_identity_rules": {
+    "fingerprint": "SHA-256 of the complete frozen Toilets.csv row with sorted field names",
+    "physical_unit_identity": "NOT_PROVEN_BY_SOURCE_ROW_ID",
+    "publisher_identity": "(StationUniqueId, Id)",
+    "relief_source_record_id": "tfl:{StationUniqueId}:toilet:{Id}",
+    "row_position": "TRANSIENT_ONLY"
+  },
+  "schema_readiness": {
+    "classification": "SCHEMA_READY",
+    "current_observation_rows_remain_unlinked": true,
+    "reason": "The additive model supports multiple units per facility, unlinked source observations, station-level coordinate scope, strong provenance FKs, deterministic observation identity, and future governed observation-to-unit linking. No schema change is required to preserve this unresolved batch.",
+    "toilet_units_required_by_this_batch": 0
+  },
+  "scope": {
+    "applied_observation_rows": 14,
+    "batch_name": "Batch 2",
+    "source_rows_examined": 410,
+    "station_groups": 14
+  },
+  "source": {
+    "attribution": "Data provided by Transport for London",
+    "feed_info": [
+      {
+        "FeedLang": "en",
+        "FeedPublisherName": "Transport for London",
+        "FeedPublisherUrl": "https://tfl.gov.uk",
+        "FeedStartDate": "2026-08-03T09:14+00:00"
+      }
+    ],
+    "feed_record_count": 410,
+    "reconciliation_sha256": "65cc9cc8c41b7b3a003524610b674c7f2eae96ff7fe5116f38f2d2856cb777cb",
+    "refreshed": false,
+    "zip_bytes": 186973,
+    "zip_inventory_sha256": "c8307880629e138db146e9082932e14aac3398c3c3284d2049da6f242ce331f0",
+    "zip_retrieval_utc": "2026-08-21T06:08:20.1476469Z",
+    "zip_sha256": "19c50772febd1a3d7625f59e079b7590c5da4ed70424d6f552cfd7db1611e2ce",
+    "zip_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+  },
+  "station_topologies": [
+    {
+      "adjudication_state": "OBSERVATION_ONLY",
+      "authoritative_evidence_located": [
+        "frozen TfL Toilets.csv row attributes",
+        "repository parser and reconciliation evidence"
+      ],
+      "confidence": "MEDIUM",
+      "explanation": "Physical topology is not proven by the frozen source; no unit mapping is emitted.",
+      "proposed_physical_unit_count": null,
+      "row_count": 1,
+      "source_attributes": [
+        {
+          "accessible": true,
+          "baby_changing": true,
+          "coordinate_scope": "STATION_LEVEL",
+          "gender": "UNISEX",
+          "location": null,
+          "source_record_id": "tfl:910GBARKRIV:toilet:1"
+        }
+      ],
+      "source_record_ids": [
+        "tfl:910GBARKRIV:toilet:1"
+      ],
+      "source_rows_to_physical_units": null,
+      "tfl_station_identity": "910GBARKRIV"
+    },
+    {
+      "adjudication_state": "OBSERVATION_ONLY",
+      "authoritative_evidence_located": [
+        "frozen TfL Toilets.csv row attributes",
+        "repository parser and reconciliation evidence"
+      ],
+      "confidence": "MEDIUM",
+      "explanation": "Physical topology is not proven by the frozen source; no unit mapping is emitted.",
+      "proposed_physical_unit_count": null,
+      "row_count": 1,
+      "source_attributes": [
+        {
+          "accessible": true,
+          "baby_changing": false,
+          "coordinate_scope": "STATION_LEVEL",
+          "gender": "UNISEX",
+          "location": "Located in ticket hall",
+          "source_record_id": "tfl:910GGODMAYS:toilet:1"
+        }
+      ],
+      "source_record_ids": [
+        "tfl:910GGODMAYS:toilet:1"
+      ],
+      "source_rows_to_physical_units": null,
+      "tfl_station_identity": "910GGODMAYS"
+    },
+    {
+      "adjudication_state": "OBSERVATION_ONLY",
+      "authoritative_evidence_located": [
+        "frozen TfL Toilets.csv row attributes",
+        "repository parser and reconciliation evidence"
+      ],
+      "confidence": "MEDIUM",
+      "explanation": "Physical topology is not proven by the frozen source; no unit mapping is emitted.",
+      "proposed_physical_unit_count": null,
+      "row_count": 1,
+      "source_attributes": [
+        {
+          "accessible": true,
+          "baby_changing": false,
+          "coordinate_scope": "STATION_LEVEL",
+          "gender": "UNISEX",
+          "location": "Located on platform 3",
+          "source_record_id": "tfl:910GHANWELL:toilet:1"
+        }
+      ],
+      "source_record_ids": [
+        "tfl:910GHANWELL:toilet:1"
+      ],
+      "source_rows_to_physical_units": null,
+      "tfl_station_identity": "910GHANWELL"
+    },
+    {
+      "adjudication_state": "OBSERVATION_ONLY",
+      "authoritative_evidence_located": [
+        "frozen TfL Toilets.csv row attributes",
+        "repository parser and reconciliation evidence"
+      ],
+      "confidence": "MEDIUM",
+      "explanation": "Physical topology is not proven by the frozen source; no unit mapping is emitted.",
+      "proposed_physical_unit_count": null,
+      "row_count": 1,
+      "source_attributes": [
+        {
+          "accessible": true,
+          "baby_changing": false,
+          "coordinate_scope": "STATION_LEVEL",
+          "gender": "UNISEX",
+          "location": "Located in ticket hall",
+          "source_record_id": "tfl:910GMANRPK:toilet:1"
+        }
+      ],
+      "source_record_ids": [
+        "tfl:910GMANRPK:toilet:1"
+      ],
+      "source_rows_to_physical_units": null,
+      "tfl_station_identity": "910GMANRPK"
+    },
+    {
+      "adjudication_state": "OBSERVATION_ONLY",
+      "authoritative_evidence_located": [
+        "frozen TfL Toilets.csv row attributes",
+        "repository parser and reconciliation evidence"
+      ],
+      "confidence": "MEDIUM",
+      "explanation": "Physical topology is not proven by the frozen source; no unit mapping is emitted.",
+      "proposed_physical_unit_count": null,
+      "row_count": 1,
+      "source_attributes": [
+        {
+          "accessible": true,
+          "baby_changing": false,
+          "coordinate_scope": "STATION_LEVEL",
+          "gender": "UNISEX",
+          "location": "Located on Footbridge",
+          "source_record_id": "tfl:910GSVNKNGS:toilet:1"
+        }
+      ],
+      "source_record_ids": [
+        "tfl:910GSVNKNGS:toilet:1"
+      ],
+      "source_rows_to_physical_units": null,
+      "tfl_station_identity": "910GSVNKNGS"
+    },
+    {
+      "adjudication_state": "OBSERVATION_ONLY",
+      "authoritative_evidence_located": [
+        "frozen TfL Toilets.csv row attributes",
+        "repository parser and reconciliation evidence"
+      ],
+      "confidence": "MEDIUM",
+      "explanation": "Physical topology is not proven by the frozen source; no unit mapping is emitted.",
+      "proposed_physical_unit_count": null,
+      "row_count": 1,
+      "source_attributes": [
+        {
+          "accessible": true,
+          "baby_changing": true,
+          "coordinate_scope": "STATION_LEVEL",
+          "gender": "UNISEX",
+          "location": "Located in ticket hall",
+          "source_record_id": "tfl:940GZZBPSUST:toilet:1"
+        }
+      ],
+      "source_record_ids": [
+        "tfl:940GZZBPSUST:toilet:1"
+      ],
+      "source_rows_to_physical_units": null,
+      "tfl_station_identity": "940GZZBPSUST"
+    },
+    {
+      "adjudication_state": "OBSERVATION_ONLY",
+      "authoritative_evidence_located": [
+        "frozen TfL Toilets.csv row attributes",
+        "repository parser and reconciliation evidence"
+      ],
+      "confidence": "MEDIUM",
+      "explanation": "Physical topology is not proven by the frozen source; no unit mapping is emitted.",
+      "proposed_physical_unit_count": null,
+      "row_count": 1,
+      "source_attributes": [
+        {
+          "accessible": true,
+          "baby_changing": false,
+          "coordinate_scope": "STATION_LEVEL",
+          "gender": "UNISEX",
+          "location": "Located on platform 3",
+          "source_record_id": "tfl:940GZZLUFYC:toilet:3"
+        }
+      ],
+      "source_record_ids": [
+        "tfl:940GZZLUFYC:toilet:3"
+      ],
+      "source_rows_to_physical_units": null,
+      "tfl_station_identity": "940GZZLUFYC"
+    },
+    {
+      "adjudication_state": "OBSERVATION_ONLY",
+      "authoritative_evidence_located": [
+        "frozen TfL Toilets.csv row attributes",
+        "repository parser and reconciliation evidence"
+      ],
+      "confidence": "MEDIUM",
+      "explanation": "Physical topology is not proven by the frozen source; no unit mapping is emitted.",
+      "proposed_physical_unit_count": null,
+      "row_count": 1,
+      "source_attributes": [
+        {
+          "accessible": true,
+          "baby_changing": false,
+          "coordinate_scope": "STATION_LEVEL",
+          "gender": "UNISEX",
+          "location": "Located in ticket hall",
+          "source_record_id": "tfl:940GZZLURSG:toilet:1"
+        }
+      ],
+      "source_record_ids": [
+        "tfl:940GZZLURSG:toilet:1"
+      ],
+      "source_rows_to_physical_units": null,
+      "tfl_station_identity": "940GZZLURSG"
+    },
+    {
+      "adjudication_state": "OBSERVATION_ONLY",
+      "authoritative_evidence_located": [
+        "frozen TfL Toilets.csv row attributes",
+        "repository parser and reconciliation evidence"
+      ],
+      "confidence": "MEDIUM",
+      "explanation": "Physical topology is not proven by the frozen source; no unit mapping is emitted.",
+      "proposed_physical_unit_count": null,
+      "row_count": 1,
+      "source_attributes": [
+        {
+          "accessible": true,
+          "baby_changing": false,
+          "coordinate_scope": "STATION_LEVEL",
+          "gender": "UNISEX",
+          "location": "Located at Cannon Street ticket hall",
+          "source_record_id": "tfl:HUBBAN:toilet:1"
+        }
+      ],
+      "source_record_ids": [
+        "tfl:HUBBAN:toilet:1"
+      ],
+      "source_rows_to_physical_units": null,
+      "tfl_station_identity": "HUBBAN"
+    },
+    {
+      "adjudication_state": "OBSERVATION_ONLY",
+      "authoritative_evidence_located": [
+        "frozen TfL Toilets.csv row attributes",
+        "repository parser and reconciliation evidence"
+      ],
+      "confidence": "MEDIUM",
+      "explanation": "Physical topology is not proven by the frozen source; no unit mapping is emitted.",
+      "proposed_physical_unit_count": null,
+      "row_count": 1,
+      "source_attributes": [
+        {
+          "accessible": false,
+          "baby_changing": false,
+          "coordinate_scope": "STATION_LEVEL",
+          "gender": "MALE",
+          "location": "Located in National Rail station",
+          "source_record_id": "tfl:HUBELM:toilet:1"
+        }
+      ],
+      "source_record_ids": [
+        "tfl:HUBELM:toilet:1"
+      ],
+      "source_rows_to_physical_units": null,
+      "tfl_station_identity": "HUBELM"
+    },
+    {
+      "adjudication_state": "OBSERVATION_ONLY",
+      "authoritative_evidence_located": [
+        "frozen TfL Toilets.csv row attributes",
+        "repository parser and reconciliation evidence"
+      ],
+      "confidence": "MEDIUM",
+      "explanation": "Physical topology is not proven by the frozen source; no unit mapping is emitted.",
+      "proposed_physical_unit_count": null,
+      "row_count": 1,
+      "source_attributes": [
+        {
+          "accessible": true,
+          "baby_changing": false,
+          "coordinate_scope": "STATION_LEVEL",
+          "gender": "UNISEX",
+          "location": "Located in National Rail station",
+          "source_record_id": "tfl:HUBMJT:toilet:1"
+        }
+      ],
+      "source_record_ids": [
+        "tfl:HUBMJT:toilet:1"
+      ],
+      "source_rows_to_physical_units": null,
+      "tfl_station_identity": "HUBMJT"
+    },
+    {
+      "adjudication_state": "OBSERVATION_ONLY",
+      "authoritative_evidence_located": [
+        "frozen TfL Toilets.csv row attributes",
+        "repository parser and reconciliation evidence"
+      ],
+      "confidence": "MEDIUM",
+      "explanation": "Physical topology is not proven by the frozen source; no unit mapping is emitted.",
+      "proposed_physical_unit_count": null,
+      "row_count": 1,
+      "source_attributes": [
+        {
+          "accessible": true,
+          "baby_changing": false,
+          "coordinate_scope": "STATION_LEVEL",
+          "gender": "UNISEX",
+          "location": "Located in ticket hall",
+          "source_record_id": "tfl:HUBSRU:toilet:1"
+        }
+      ],
+      "source_record_ids": [
+        "tfl:HUBSRU:toilet:1"
+      ],
+      "source_rows_to_physical_units": null,
+      "tfl_station_identity": "HUBSRU"
+    },
+    {
+      "adjudication_state": "OBSERVATION_ONLY",
+      "authoritative_evidence_located": [
+        "frozen TfL Toilets.csv row attributes",
+        "repository parser and reconciliation evidence"
+      ],
+      "confidence": "MEDIUM",
+      "explanation": "Physical topology is not proven by the frozen source; no unit mapping is emitted.",
+      "proposed_physical_unit_count": null,
+      "row_count": 1,
+      "source_attributes": [
+        {
+          "accessible": true,
+          "baby_changing": false,
+          "coordinate_scope": "STATION_LEVEL",
+          "gender": "UNISEX",
+          "location": "Located in ticket hall",
+          "source_record_id": "tfl:HUBTCR:toilet:1"
+        }
+      ],
+      "source_record_ids": [
+        "tfl:HUBTCR:toilet:1"
+      ],
+      "source_rows_to_physical_units": null,
+      "tfl_station_identity": "HUBTCR"
+    },
+    {
+      "adjudication_state": "OBSERVATION_ONLY",
+      "authoritative_evidence_located": [
+        "frozen TfL Toilets.csv row attributes",
+        "repository parser and reconciliation evidence"
+      ],
+      "confidence": "MEDIUM",
+      "explanation": "Physical topology is not proven by the frozen source; no unit mapping is emitted.",
+      "proposed_physical_unit_count": null,
+      "row_count": 1,
+      "source_attributes": [
+        {
+          "accessible": true,
+          "baby_changing": true,
+          "coordinate_scope": "STATION_LEVEL",
+          "gender": "UNISEX",
+          "location": null,
+          "source_record_id": "tfl:HUBZWL:toilet:1"
+        }
+      ],
+      "source_record_ids": [
+        "tfl:HUBZWL:toilet:1"
+      ],
+      "source_rows_to_physical_units": null,
+      "tfl_station_identity": "HUBZWL"
+    }
+  ],
+  "summary": {
+    "classification_counts": {
+      "HUMAN_ADJUDICATION_REQUIRED": 0,
+      "OBSERVATION_ONLY": 14,
+      "PHYSICAL_UNIT_PROMOTION_READY": 0
+    },
+    "confidence_counts": {
+      "MEDIUM": 14
+    },
+    "physical_unit_mappings_inferred": 0,
+    "physical_units_created": 0,
+    "pilot_recommendation": "NO PHYSICAL-UNIT PILOT RECOMMENDED",
+    "reason_counts": {
+      "ROW_SEMANTICS_AMBIGUOUS": 14
+    },
+    "toilet_specific_coordinates_inferred": 0
+  },
+  "whole_source_semantics": {
+    "attribute_combination_distribution": {
+      "FEMALE|accessible=FALSE|baby_changing=FALSE": 111,
+      "FEMALE|accessible=FALSE|baby_changing=TRUE": 34,
+      "FEMALE|accessible=TRUE|baby_changing=TRUE": 2,
+      "MALE|accessible=FALSE|baby_changing=FALSE": 140,
+      "MALE|accessible=FALSE|baby_changing=TRUE": 5,
+      "MALE|accessible=TRUE|baby_changing=TRUE": 2,
+      "UNISEX|accessible=FALSE|baby_changing=TRUE": 1,
+      "UNISEX|accessible=TRUE|baby_changing=FALSE": 79,
+      "UNISEX|accessible=TRUE|baby_changing=TRUE": 36
+    },
+    "attribute_distributions": {
+      "accessible": {
+        "FALSE": 291,
+        "TRUE": 119
+      },
+      "baby_changing": {
+        "FALSE": 330,
+        "TRUE": 80
+      },
+      "fee": {
+        "FALSE": 397,
+        "TRUE": 13
+      },
+      "gender": {
+        "FEMALE": 147,
+        "MALE": 147,
+        "UNISEX": 116
+      },
+      "location": {
+        "Adjacent to DLR platform 16.": 1,
+        "Baby changing is located separately and only available when the information kiosk in the bus station is open": 1,
+        "Changing Places available": 1,
+        "Located at Cannon Street ticket hall": 1,
+        "Located at street level": 2,
+        "Located at street level. Baby changing is standalone area": 1,
+        "Located behind ticket office": 1,
+        "Located by bus station entrance": 2,
+        "Located in Brighton Yard ticket hall": 3,
+        "Located in Cowcross Street ticket hall": 1,
+        "Located in Eastbound ticket hall": 2,
+        "Located in King's Cross National Rail station": 2,
+        "Located in King's Cross National Rail station. Changing Places and standalone baby changing area available.": 1,
+        "Located in Metropolitan line ticket hall": 1,
+        "Located in National Rail station": 41,
+        "Located in National Rail station. Baby changing is standalone area": 2,
+        "Located in National Rail station. Baby changing is standalone area and Changing Places toilet available.": 1,
+        "Located in North ticket hall": 3,
+        "Located in Southern ticket hall, paid side": 2,
+        "Located in Southern ticket hall, paid side. Baby changing standalone area": 1,
+        "Located in airport": 3,
+        "Located in bus station": 2,
+        "Located in corridor to platform 5": 1,
+        "Located in public subway": 2,
+        "Located in ticket hall": 110,
+        "Located in waiting area on platform 6": 2,
+        "Located in walkway, inside gateline": 3,
+        "Located on Footbridge": 1,
+        "Located on National Rail platform 2": 2,
+        "Located on National Rail platform 4": 3,
+        "Located on lower concourse": 6,
+        "Located on platform": 14,
+        "Located on platform 1": 46,
+        "Located on platform 1/2": 1,
+        "Located on platform 2": 35,
+        "Located on platform 2/3": 1,
+        "Located on platform 3": 12,
+        "Located on platform 4": 21,
+        "Located on platform C": 3,
+        "Located on platforms 1 & 2": 3,
+        "Located on platforms 1 & 5": 3,
+        "Located on platforms 2,3,4": 3,
+        "Located on platforms 3 & 4": 3,
+        "Located outside station entrance": 3,
+        "UNKNOWN": 57
+      }
+    },
+    "coordinate_findings": {
+      "normalized_scope": "STATION_LEVEL",
+      "source_file": "StationPoints.csv",
+      "toilet_level_coordinates_supported": false,
+      "toilet_rows_with_station_coordinates": 410,
+      "toilet_specific_coordinate_columns": []
+    },
+    "duplicate_and_topology_risk": {
+      "clearly_distinct_rows_from_feed_alone": 0,
+      "exact_material_attribute_duplicate_candidate_extra_rows": 0,
+      "exact_material_attribute_duplicate_candidate_station_groups": 0,
+      "physical_topology_inherently_ambiguous_rows": 410,
+      "potential_duplicate_physical_identity_rows": 378,
+      "repeated_gender_within_station_groups": 6,
+      "representative_exact_attribute_groups": [],
+      "representative_repeated_gender_groups": [
+        {
+          "source_identities": [
+            "tfl:940GZZLUMDN:toilet:1",
+            "tfl:940GZZLUMDN:toilet:2"
+          ],
+          "station_id": "940GZZLUMDN",
+          "type": "UNISEX"
+        },
+        {
+          "source_identities": [
+            "tfl:HUBSRA:toilet:3",
+            "tfl:HUBSRA:toilet:4"
+          ],
+          "station_id": "HUBSRA",
+          "type": "UNISEX"
+        },
+        {
+          "source_identities": [
+            "tfl:HUBVIC:toilet:2",
+            "tfl:HUBVIC:toilet:5"
+          ],
+          "station_id": "HUBVIC",
+          "type": "FEMALE"
+        },
+        {
+          "source_identities": [
+            "tfl:HUBVIC:toilet:1",
+            "tfl:HUBVIC:toilet:4"
+          ],
+          "station_id": "HUBVIC",
+          "type": "MALE"
+        },
+        {
+          "source_identities": [
+            "tfl:HUBVIC:toilet:3",
+            "tfl:HUBVIC:toilet:6"
+          ],
+          "station_id": "HUBVIC",
+          "type": "UNISEX"
+        },
+        {
+          "source_identities": [
+            "tfl:HUBZFD:toilet:1",
+            "tfl:HUBZFD:toilet:4"
+          ],
+          "station_id": "HUBZFD",
+          "type": "UNISEX"
+        }
+      ],
+      "same_location_multirow_station_groups": 115
+    },
+    "rows_per_station_distribution": {
+      "1": 32,
+      "2": 68,
+      "3": 76,
+      "4": 2,
+      "6": 1
+    },
+    "rows_per_station_examples": {
+      "1": {
+        "source_record_ids": [
+          "tfl:910GACTONML:toilet:1"
+        ],
+        "station_id": "910GACTONML"
+      },
+      "2": {
+        "source_record_ids": [
+          "tfl:940GZZLUALP:toilet:1",
+          "tfl:940GZZLUALP:toilet:2"
+        ],
+        "station_id": "940GZZLUALP"
+      },
+      "3": {
+        "source_record_ids": [
+          "tfl:910GBHILLPK:toilet:1",
+          "tfl:910GBHILLPK:toilet:2",
+          "tfl:910GBHILLPK:toilet:3"
+        ],
+        "station_id": "910GBHILLPK"
+      },
+      "4": {
+        "source_record_ids": [
+          "tfl:HUBSRA:toilet:1",
+          "tfl:HUBSRA:toilet:2",
+          "tfl:HUBSRA:toilet:3",
+          "tfl:HUBSRA:toilet:4"
+        ],
+        "station_id": "HUBSRA"
+      },
+      "6": {
+        "source_record_ids": [
+          "tfl:HUBVIC:toilet:1",
+          "tfl:HUBVIC:toilet:2",
+          "tfl:HUBVIC:toilet:3",
+          "tfl:HUBVIC:toilet:4",
+          "tfl:HUBVIC:toilet:5",
+          "tfl:HUBVIC:toilet:6"
+        ],
+        "station_id": "HUBVIC"
+      }
+    },
+    "source_identity": {
+      "duplicate_identity_count": 0,
+      "id_is_not_physical_unit_proof": true,
+      "publisher_fields": [
+        "StationUniqueId",
+        "Id"
+      ],
+      "relief_source_record_id_format": "tfl:{StationUniqueId}:toilet:{Id}",
+      "row_position_is_transient": true,
+      "unique_identity_count": 410
+    },
+    "station_count_in_stations_csv": 509,
+    "stations_with_multiple_toilet_rows": 4,
+    "stations_with_toilet_rows": 179,
+    "toilet_row_count": 410
+  }
+}

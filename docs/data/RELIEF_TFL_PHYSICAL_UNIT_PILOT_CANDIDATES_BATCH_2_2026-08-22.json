@@ -1,0 +1,9 @@
+{
+  "candidates": [],
+  "classification": "NO PHYSICAL-UNIT PILOT RECOMMENDED",
+  "document_type": "RELIEF_TFL_PHYSICAL_UNIT_PILOT_CANDIDATES_BATCH_2",
+  "production_applied": false,
+  "reason": "The frozen TfL source does not provide independent physical-unit evidence for a high-confidence pilot candidate.",
+  "reconciliation_sha256": "65cc9cc8c41b7b3a003524610b674c7f2eae96ff7fe5116f38f2d2856cb777cb",
+  "source_zip_sha256": "19c50772febd1a3d7625f59e079b7590c5da4ed70424d6f552cfd7db1611e2ce"
+}
