@@ -1,0 +1,8 @@
+{
+  "classification": "N5_SOURCE_GRAPH_INGESTION_READY_FOR_SEPARATE_AUTHORIZATION",
+  "authorization": "N5 remains separately unauthorized",
+  "source_graph_rows": 0,
+  "n5_executed": false,
+  "canonical_reconciliation_executed": false,
+  "toilet_inference_executed": false
+}

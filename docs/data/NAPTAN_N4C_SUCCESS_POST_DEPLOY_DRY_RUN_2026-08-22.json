@@ -1,0 +1,7 @@
+{
+  "command": "supabase db push --dry-run --linked",
+  "exit_code": 0,
+  "output": "Remote database is up to date.",
+  "pending_migrations": [],
+  "classification": "MIGRATION_CHAIN_SYNCHRONIZED"
+}

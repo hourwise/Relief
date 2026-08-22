@@ -1,0 +1,14 @@
+{
+  "command": "supabase db push --linked",
+  "migration_version": "20260822170000",
+  "migration_name": "naptan_transport_source_graph",
+  "start_utc": "2026-08-22T21:32:56.8981314Z",
+  "end_utc": "2026-08-22T21:33:31.2017451Z",
+  "exit_code": 0,
+  "cli_output": [
+    "Applying migration 20260822170000_naptan_transport_source_graph.sql...",
+    "Finished supabase db push."
+  ],
+  "additional_migrations": [],
+  "sealed_sha256": "087A389B8CEAC021B12708BC55C39022CB38D5459510EFFB6CF057CEF232C44E"
+}

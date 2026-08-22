@@ -1,0 +1,16 @@
+{
+  "before": {
+    "head": "20260822092938",
+    "n4a_present": false,
+    "row_count": 17
+  },
+  "after": {
+    "head": "20260822170000",
+    "n4a_version": "20260822170000",
+    "n4a_name": "naptan_transport_source_graph",
+    "n4a_occurrences": 1,
+    "row_count": 18,
+    "canonical_order": true
+  },
+  "repair_operations_during_n4c": 0
+}

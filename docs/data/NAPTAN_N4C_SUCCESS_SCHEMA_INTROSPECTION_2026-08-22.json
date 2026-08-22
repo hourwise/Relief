@@ -1,0 +1,27 @@
+{
+  "runtime": {
+    "postgresql": "PostgreSQL 17.6 on aarch64-unknown-linux-gnu, compiled by gcc (GCC) 15.2.0, 64-bit",
+    "postgis": "POSTGIS=\"3.3.7 a0c7967\" [EXTENSION] PGSQL=\"170\" GEOS=\"3.14.1-CAPI-1.20.5\" PROJ=\"9.7.1\" LIBXML=\"2.15.1\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.2\" WAGYU=\"0.5.0 (Internal)\"",
+    "postgis_extension_version": "3.3.7",
+    "pgcrypto_extension_version": "1.3"
+  },
+  "tables": {
+    "transport_source_snapshots": {"columns": 19, "keyed_constraints": 3, "check_constraints": 26, "indexes": 4, "triggers": 1, "primary_key": ["id"], "unique_keys": [["source_snapshot_key"], ["source_namespace", "source_checksum_sha256"]], "foreign_keys": [], "rls": true},
+    "transport_source_places": {"columns": 18, "keyed_constraints": 4, "check_constraints": 19, "indexes": 6, "triggers": 1, "primary_key": ["id"], "unique_keys": [["snapshot_id", "id"], ["snapshot_id", "publisher_identity"]], "foreign_keys": ["snapshot_id -> transport_source_snapshots.id ON DELETE RESTRICT"], "rls": true},
+    "transport_source_nodes": {"columns": 17, "keyed_constraints": 4, "check_constraints": 18, "indexes": 7, "triggers": 1, "primary_key": ["id"], "unique_keys": [["snapshot_id", "id"], ["snapshot_id", "publisher_identity"]], "foreign_keys": ["snapshot_id -> transport_source_snapshots.id ON DELETE RESTRICT"], "rls": true},
+    "transport_source_memberships": {"columns": 12, "keyed_constraints": 5, "check_constraints": 17, "indexes": 5, "triggers": 1, "primary_key": ["id"], "unique_keys": [["snapshot_id", "membership_key"]], "foreign_keys": ["snapshot_id -> transport_source_snapshots.id ON DELETE RESTRICT", "(snapshot_id,node_id) -> transport_source_nodes(snapshot_id,id) ON DELETE RESTRICT", "(snapshot_id,place_id) -> transport_source_places(snapshot_id,id) ON DELETE RESTRICT"], "rls": true},
+    "transport_source_place_parents": {"columns": 12, "keyed_constraints": 5, "check_constraints": 17, "indexes": 5, "triggers": 1, "primary_key": ["id"], "unique_keys": [["snapshot_id", "parent_edge_key"]], "foreign_keys": ["snapshot_id -> transport_source_snapshots.id ON DELETE RESTRICT", "(snapshot_id,child_place_id) -> transport_source_places(snapshot_id,id) ON DELETE RESTRICT", "(snapshot_id,parent_place_id) -> transport_source_places(snapshot_id,id) ON DELETE RESTRICT"], "rls": true}
+  },
+  "geography": {
+    "generated_columns": [
+      "transport_source_places.publisher_location geography(Point,4326)",
+      "transport_source_nodes.publisher_location geography(Point,4326)"
+    ],
+    "spatial_indexes": [
+      "idx_transport_source_places_location",
+      "idx_transport_source_nodes_location"
+    ]
+  },
+  "triggers": "Each target table has one BEFORE UPDATE trigger invoking public.update_updated_at().",
+  "normalized_complex_table": false
+}

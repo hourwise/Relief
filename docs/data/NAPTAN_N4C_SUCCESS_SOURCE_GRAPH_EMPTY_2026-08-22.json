@@ -1,0 +1,16 @@
+{
+  "tables": {
+    "transport_source_snapshots": 0,
+    "transport_source_places": 0,
+    "transport_source_nodes": 0,
+    "transport_source_memberships": 0,
+    "transport_source_place_parents": 0
+  },
+  "total_naptan_ingestion_rows": 0,
+  "national_xml_downloaded": false,
+  "source_snapshot_created": false,
+  "stoparea_rows_created": 0,
+  "stoppoint_rows_created": 0,
+  "membership_rows_created": 0,
+  "parent_edge_rows_created": 0
+}

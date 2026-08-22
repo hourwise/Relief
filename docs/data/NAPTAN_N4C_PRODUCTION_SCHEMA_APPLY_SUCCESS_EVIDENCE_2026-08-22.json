@@ -1,0 +1,51 @@
+{
+  "transaction": "N4C",
+  "repository": "hourwise/Relief",
+  "branch": "codex/toilet-map-apply-1a-production-deploy",
+  "starting_local_sha": "16e29c6530cf8f763d9c7614c99db1c6b2a765ab",
+  "starting_remote_sha": "16e29c6530cf8f763d9c7614c99db1c6b2a765ab",
+  "project": {
+    "name": "Relief",
+    "ref": "bgwxrxkmyaihplaloely",
+    "organization_id": "dlvnqpwxnsirmpvtlkaj",
+    "status": "ACTIVE_HEALTHY",
+    "region": "eu-central-1"
+  },
+  "migration": {
+    "version": "20260822170000",
+    "name": "naptan_transport_source_graph",
+    "path": "supabase/migrations/20260822170000_naptan_transport_source_graph.sql",
+    "sha256": "087A389B8CEAC021B12708BC55C39022CB38D5459510EFFB6CF057CEF232C44E",
+    "applied_exactly_once": true,
+    "additional_migrations_applied": 0
+  },
+  "apply": {
+    "command": "supabase db push --linked",
+    "start_utc": "2026-08-22T21:32:56.8981314Z",
+    "end_utc": "2026-08-22T21:33:31.2017451Z",
+    "exit_code": 0,
+    "cli_version": "2.75.0"
+  },
+  "pre_apply": {
+    "ledger_head": "20260822092938",
+    "n4a_present": false,
+    "target_tables_present": false,
+    "dry_run_exit_code": 0,
+    "dry_run_pending": ["20260822170000_naptan_transport_source_graph.sql"]
+  },
+  "post_apply": {
+    "ledger_head": "20260822170000",
+    "post_deploy_dry_run_exit_code": 0,
+    "post_deploy_dry_run": "Remote database is up to date.",
+    "source_graph_rows": 0,
+    "application_data_mutations": 0,
+    "auth_mutations": 0
+  },
+  "classifications": {
+    "n4a_deployment": "N4A_SCHEMA_DEPLOYED",
+    "source_graph_security": "SOURCE_GRAPH_SECURITY_VERIFIED",
+    "data_state": "SOURCE_GRAPH_SCHEMA_EMPTY",
+    "migration_chain": "MIGRATION_CHAIN_SYNCHRONIZED",
+    "n5_readiness": "N5_SOURCE_GRAPH_INGESTION_READY_FOR_SEPARATE_AUTHORIZATION"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "source_graph_tables": [
+    "transport_source_snapshots",
+    "transport_source_places",
+    "transport_source_nodes",
+    "transport_source_memberships",
+    "transport_source_place_parents"
+  ],
+  "rls_enabled": true,
+  "policies": [],
+  "direct_public_privileges": [],
+  "direct_anon_privileges": [],
+  "direct_authenticated_privileges": [],
+  "service_role_privileges": "ALL as granted by the sealed migration",
+  "public_api_objects_created_by_migration": [],
+  "existing_account_function_fingerprints_unchanged": true,
+  "preexisting_unrelated_advisory": {
+    "table": "public.spatial_ref_sys",
+    "rls_enabled": false,
+    "changed_by_n4c": false,
+    "remediation_attempted": false
+  }
+}

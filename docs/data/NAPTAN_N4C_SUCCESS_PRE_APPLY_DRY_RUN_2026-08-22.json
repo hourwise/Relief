@@ -1,0 +1,10 @@
+{
+  "command": "supabase db push --dry-run --linked",
+  "exit_code": 0,
+  "pending_migrations": [
+    "20260822170000_naptan_transport_source_graph.sql"
+  ],
+  "include_all_used": false,
+  "repair_command_used": false,
+  "safe_to_apply": true
+}

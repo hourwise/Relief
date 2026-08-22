@@ -1,0 +1,16 @@
+{
+  "counts": {
+    "facilities": {"before": 15620, "after": 15620, "delta": 0},
+    "facility_sources": {"before": 15634, "after": 15634, "delta": 0},
+    "facility_source_observations": {"before": 14, "after": 14, "delta": 0},
+    "import_runs": {"before": 5, "after": 5, "delta": 0},
+    "toilet_map_import_staging": {"before": 0, "after": 0, "delta": 0},
+    "toilet_units": {"before": 0, "after": 0, "delta": 0},
+    "toilet_unit_sources": {"before": 0, "after": 0, "delta": 0}
+  },
+  "canonical_facility_mutations": 0,
+  "application_data_mutations": 0,
+  "auth_mutations": 0,
+  "tfl_observation_mutations": 0,
+  "toilet_unit_mutations": 0
+}
