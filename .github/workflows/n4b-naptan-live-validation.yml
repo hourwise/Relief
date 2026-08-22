@@ -131,7 +131,7 @@ jobs:
           set -euo pipefail
           db_container="$(docker ps --filter 'name=supabase_db_' --format '{{.Names}}' | head -n 1)"
           test -n "$db_container"
-          docker exec "$db_container" psql -U supabase_admin -d postgres -v ON_ERROR_STOP=1 -c "grant supabase_admin to postgres;" 2>&1 | tee evidence/disposable-role-bootstrap.txt
+          docker exec "$db_container" psql -U postgres -d postgres -v ON_ERROR_STOP=1 -c "grant supabase_admin to postgres;" 2>&1 | tee evidence/disposable-role-bootstrap.txt
           echo 'disposable_role_bootstrap=GRANT supabase_admin TO postgres' | tee -a evidence/run-metadata.txt
 
       - name: Apply the full repository migration chain to a fresh database
