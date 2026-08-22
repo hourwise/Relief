@@ -269,7 +269,12 @@ No raw NaPTAN XML, secrets, credentials, or source data was created or committed
 
 ## GIT RESULT
 
-The success evidence will be committed and pushed normally after staged-diff, protected-file, secret-scan, and final-hash checks. Earlier evidence remains untouched.
+The success evidence was committed and pushed normally after staged-diff, protected-file, secret-scan, and final-hash checks.
+
+- Evidence commit: `6c334d1cb81b50cf427882a4761f0c7b4adb0806`
+- Push: passed normally to `origin/codex/toilet-map-apply-1a-production-deploy`
+- No amend, force-push, merge, rebase, reset, cherry-pick, or second migration apply occurred.
+- Earlier evidence remains untouched.
 
 ## N5 READINESS
 
