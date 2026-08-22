@@ -1,0 +1,5696 @@
+{
+  "counts": {
+    "AMBIGUOUS": 4,
+    "HIGH_CONFIDENCE_NAME_GEO_MATCH": 4,
+    "NO_MATCH": 501
+  },
+  "frozen_tfl_reconciliation_sha256": "65cc9cc8c41b7b3a003524610b674c7f2eae96ff7fe5116f38f2d2856cb777cb",
+  "frozen_tfl_zip_sha256": "19c50772febd1a3d7625f59e079b7590c5da4ed70424d6f552cfd7db1611e2ce",
+  "production_mutation_plan": {
+    "facilities": 0,
+    "facility_source_observations": 0,
+    "facility_sources": 0,
+    "production_execution": false,
+    "toilet_unit_sources": 0,
+    "toilet_units": 0
+  },
+  "results": [
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Acton Central",
+      "tfl_station_id": "910GACTNCTL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Acton Main Line",
+      "tfl_station_id": "910GACTONML"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Anerley",
+      "tfl_station_id": "910GANERLEY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Barking Riverside",
+      "tfl_station_id": "910GBARKRIV"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Beckenham Hill",
+      "tfl_station_id": "910GBCKNHMH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Bellingham",
+      "tfl_station_id": "910GBELNGHM"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Bush Hill Park",
+      "tfl_station_id": "910GBHILLPK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Bickley",
+      "tfl_station_id": "910GBICKLEY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Burnham",
+      "tfl_station_id": "910GBNHAM"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Brondesbury",
+      "tfl_station_id": "910GBRBY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Brondesbury Park",
+      "tfl_station_id": "910GBRBYPK"
+    },
+    {
+      "candidates": [
+        {
+          "atco_code": "9100BRENTX",
+          "common_name": "Brent Cross West Station",
+          "distance_metres": 52.6,
+          "name_similarity": 1.0,
+          "source_identity": "naptan:9100BRENTX",
+          "stop_type": "RLY"
+        }
+      ],
+      "classification": "HIGH_CONFIDENCE_NAME_GEO_MATCH",
+      "confidence": "HIGH",
+      "evidence": [
+        "exact normalized name and unique official candidate within 250m",
+        "no explicit TfL-to-NaPTAN identifier cross-reference was present"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Brent Cross West Station",
+      "tfl_station_id": "910GBRENTX"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Brockley",
+      "tfl_station_id": "910GBROCKLY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Bromley South",
+      "tfl_station_id": "910GBROMLYS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Brentwood",
+      "tfl_station_id": "910GBRTWOOD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Bruce Grove",
+      "tfl_station_id": "910GBRUCGRV"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Bethnal Green",
+      "tfl_station_id": "910GBTHNLGR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Cambridge Heath",
+      "tfl_station_id": "910GCAMHTH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Catford",
+      "tfl_station_id": "910GCATFORD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Crofton Park",
+      "tfl_station_id": "910GCFPK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Chadwell Heath",
+      "tfl_station_id": "910GCHDWLHT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Cheshunt",
+      "tfl_station_id": "910GCHESHNT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Chingford",
+      "tfl_station_id": "910GCHINGFD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Clapton",
+      "tfl_station_id": "910GCLAPTON"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Caledonian Road & Barnsbury",
+      "tfl_station_id": "910GCLDNNRB"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Clapham High Street",
+      "tfl_station_id": "910GCLPHHS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Camden Road",
+      "tfl_station_id": "910GCMDNRD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Canonbury",
+      "tfl_station_id": "910GCNNB"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Coulsdon South",
+      "tfl_station_id": "910GCOLSDNS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Cricklewood",
+      "tfl_station_id": "910GCRKLWD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Charlton",
+      "tfl_station_id": "910GCRLN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Crouch Hill",
+      "tfl_station_id": "910GCROUCHH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Carpenders Park",
+      "tfl_station_id": "910GCRPNDPK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Carshalton",
+      "tfl_station_id": "910GCRSHLTN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "City Thameslink",
+      "tfl_station_id": "910GCTMSLNK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Dalston Junction",
+      "tfl_station_id": "910GDALS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Dalston Kingsland",
+      "tfl_station_id": "910GDALSKLD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Dartford",
+      "tfl_station_id": "910GDARTFD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Denmark Hill",
+      "tfl_station_id": "910GDENMRKH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Deptford",
+      "tfl_station_id": "910GDEPTFD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Edmonton Green",
+      "tfl_station_id": "910GEDMNGRN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Elstree & Borehamwood",
+      "tfl_station_id": "910GELTR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Emerson Park",
+      "tfl_station_id": "910GEMRSPKH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Enfield Town",
+      "tfl_station_id": "910GENFLDTN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Mitcham Eastfields",
+      "tfl_station_id": "910GESTFLDS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Finchley Road & Frognal",
+      "tfl_station_id": "910GFNCHLYR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Forest Hill",
+      "tfl_station_id": "910GFORESTH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Forest Gate",
+      "tfl_station_id": "910GFRSTGT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Gidea Park",
+      "tfl_station_id": "910GGIDEAPK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Goodmayes",
+      "tfl_station_id": "910GGODMAYS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Gospel Oak",
+      "tfl_station_id": "910GGOSPLOK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hackney Central",
+      "tfl_station_id": "910GHACKNYC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hackney Wick",
+      "tfl_station_id": "910GHACKNYW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Haggerston",
+      "tfl_station_id": "910GHAGGERS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hackney Downs",
+      "tfl_station_id": "910GHAKNYNM"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hanwell",
+      "tfl_station_id": "910GHANWELL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hayes & Harlington",
+      "tfl_station_id": "910GHAYESAH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hendon",
+      "tfl_station_id": "910GHDON"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Headstone Lane",
+      "tfl_station_id": "910GHEDSTNL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Herne Hill",
+      "tfl_station_id": "910GHERNEH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Highams Park",
+      "tfl_station_id": "910GHGHMSPK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hackbridge",
+      "tfl_station_id": "910GHKBG"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hampstead Heath",
+      "tfl_station_id": "910GHMPSTDH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Homerton",
+      "tfl_station_id": "910GHOMRTON"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Honor Oak Park",
+      "tfl_station_id": "910GHONROPK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hoxton",
+      "tfl_station_id": "910GHOXTON"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Harringay Green Lanes",
+      "tfl_station_id": "910GHRGYGL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Harold Wood",
+      "tfl_station_id": "910GHRLDWOD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hatch End",
+      "tfl_station_id": "910GHTCHEND"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Haydons Road",
+      "tfl_station_id": "910GHYDNSRD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Ilford",
+      "tfl_station_id": "910GILFORD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Iver",
+      "tfl_station_id": "910GIVER"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Kensal Rise",
+      "tfl_station_id": "910GKENR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Kilburn High Road",
+      "tfl_station_id": "910GKLBRNHR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Kentish Town West",
+      "tfl_station_id": "910GKNTSHTW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Langley",
+      "tfl_station_id": "910GLANGLEY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Loughborough Junction",
+      "tfl_station_id": "910GLBGHJN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Leyton Midland Road",
+      "tfl_station_id": "910GLEYTNMR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "London Fields",
+      "tfl_station_id": "910GLONFLDS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Leytonstone High Road",
+      "tfl_station_id": "910GLYTNSHR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Manor Park",
+      "tfl_station_id": "910GMANRPK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Maze Hill",
+      "tfl_station_id": "910GMAZEH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Maidenhead",
+      "tfl_station_id": "910GMDNHEAD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Mill Hill Broadway",
+      "tfl_station_id": "910GMLHB"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Morden South",
+      "tfl_station_id": "910GMORDENS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Maryland",
+      "tfl_station_id": "910GMRYLAND"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "New Barnet",
+      "tfl_station_id": "910GNBARNET"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "New Southgate",
+      "tfl_station_id": "910GNEWSGAT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Nunhead",
+      "tfl_station_id": "910GNUNHEAD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Oakleigh Park",
+      "tfl_station_id": "910GOKLGHPK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Orpington",
+      "tfl_station_id": "910GORPNGTN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Queens Road Peckham",
+      "tfl_station_id": "910GPCKHMQD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Peckham Rye",
+      "tfl_station_id": "910GPCKHMRY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Penge West",
+      "tfl_station_id": "910GPENEW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Petts Wood",
+      "tfl_station_id": "910GPETSWD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Plumstead",
+      "tfl_station_id": "910GPLMS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Purley",
+      "tfl_station_id": "910GPURLEY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Ravensbourne",
+      "tfl_station_id": "910GRBRN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Rectory Road",
+      "tfl_station_id": "910GRCTRYRD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Reading",
+      "tfl_station_id": "910GRDNGSTN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Romford",
+      "tfl_station_id": "910GROMFORD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Rotherhithe",
+      "tfl_station_id": "910GRTHERHI"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "South Acton",
+      "tfl_station_id": "910GSACTON"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Southbury",
+      "tfl_station_id": "910GSBURY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "South Croydon",
+      "tfl_station_id": "910GSCROYDN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Shenfield",
+      "tfl_station_id": "910GSHENFLD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "St Helier (London)",
+      "tfl_station_id": "910GSHLIER"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "South Hampstead",
+      "tfl_station_id": "910GSHMPSTD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Shoreditch High Street",
+      "tfl_station_id": "910GSHRDHST"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Shortlands",
+      "tfl_station_id": "910GSHRTLND"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Silver Street",
+      "tfl_station_id": "910GSIVRST"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Slade Green",
+      "tfl_station_id": "910GSLADEGN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Slough",
+      "tfl_station_id": "910GSLOUGH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "South Merton",
+      "tfl_station_id": "910GSMERTON"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Southall",
+      "tfl_station_id": "910GSTHALL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "St James Street",
+      "tfl_station_id": "910GSTJMSST"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Stoke Newington",
+      "tfl_station_id": "910GSTKNWNG"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Stamford Hill",
+      "tfl_station_id": "910GSTMFDHL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "St Mary Cray",
+      "tfl_station_id": "910GSTMRYC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "South Tottenham",
+      "tfl_station_id": "910GSTOTNHM"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Streatham",
+      "tfl_station_id": "910GSTRETHM"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Surrey Quays",
+      "tfl_station_id": "910GSURREYQ"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Sutton",
+      "tfl_station_id": "910GSUTTON"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Sutton Common",
+      "tfl_station_id": "910GSUTTONC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Seven Kings",
+      "tfl_station_id": "910GSVNKNGS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Swanley",
+      "tfl_station_id": "910GSWLY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Taplow",
+      "tfl_station_id": "910GTAPLOW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Theobalds Grove",
+      "tfl_station_id": "910GTHBLDSG"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Tooting",
+      "tfl_station_id": "910GTOOTING"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Tulse Hill",
+      "tfl_station_id": "910GTULSEH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Turkey Street",
+      "tfl_station_id": "910GTURKYST"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Twyford",
+      "tfl_station_id": "910GTWYFORD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Upper Holloway",
+      "tfl_station_id": "910GUPRHLWY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Wapping",
+      "tfl_station_id": "910GWAPPING"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Watford High Street",
+      "tfl_station_id": "910GWATFDHS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Westcombe Park",
+      "tfl_station_id": "910GWCOMBEP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Woodgrange Park",
+      "tfl_station_id": "910GWDGRNPK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "West Drayton",
+      "tfl_station_id": "910GWDRYTON"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Wood Street",
+      "tfl_station_id": "910GWDST"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "West Ealing",
+      "tfl_station_id": "910GWEALING"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "White Hart Lane",
+      "tfl_station_id": "910GWHHRTLA"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "West Hampstead",
+      "tfl_station_id": "910GWHMDSTD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "West Hampstead Thameslink",
+      "tfl_station_id": "910GWHMPSTM"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Wimbledon Chase",
+      "tfl_station_id": "910GWIMLCHS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Walthamstow Queen's Road",
+      "tfl_station_id": "910GWLTHQRD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Wandsworth Road",
+      "tfl_station_id": "910GWNDSWRD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Wanstead Park",
+      "tfl_station_id": "910GWNSTDPK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Woolwich",
+      "tfl_station_id": "910GWOLWXR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "West Sutton",
+      "tfl_station_id": "910GWSUTTON"
+    },
+    {
+      "candidates": [
+        {
+          "atco_code": "9400ZZALGWP",
+          "common_name": "Greenwich Peninsula",
+          "distance_metres": 36.1,
+          "name_similarity": 1.0,
+          "source_identity": "naptan:9400ZZALGWP",
+          "stop_type": "MET"
+        }
+      ],
+      "classification": "HIGH_CONFIDENCE_NAME_GEO_MATCH",
+      "confidence": "HIGH",
+      "evidence": [
+        "exact normalized name and unique official candidate within 250m",
+        "no explicit TfL-to-NaPTAN identifier cross-reference was present"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Greenwich Peninsula",
+      "tfl_station_id": "940GZZALGWP"
+    },
+    {
+      "candidates": [
+        {
+          "atco_code": "9400ZZALRDK",
+          "common_name": "Royal Docks",
+          "distance_metres": 8.1,
+          "name_similarity": 1.0,
+          "source_identity": "naptan:9400ZZALRDK",
+          "stop_type": "MET"
+        }
+      ],
+      "classification": "HIGH_CONFIDENCE_NAME_GEO_MATCH",
+      "confidence": "HIGH",
+      "evidence": [
+        "exact normalized name and unique official candidate within 250m",
+        "no explicit TfL-to-NaPTAN identifier cross-reference was present"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Royal Docks",
+      "tfl_station_id": "940GZZALRDK"
+    },
+    {
+      "candidates": [
+        {
+          "atco_code": "9300BSP",
+          "common_name": "Battersea Power Station Pier",
+          "distance_metres": 517.1,
+          "name_similarity": 0.902,
+          "source_identity": "naptan:9300BSP",
+          "stop_type": "FER"
+        }
+      ],
+      "classification": "AMBIGUOUS",
+      "confidence": "LOW",
+      "evidence": [
+        "candidate requires non-exact name/geometry interpretation"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Battersea Power Station",
+      "tfl_station_id": "940GZZBPSUST"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Addiscombe",
+      "tfl_station_id": "940GZZCRADD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Addington Village",
+      "tfl_station_id": "940GZZCRADV"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Ampere Way",
+      "tfl_station_id": "940GZZCRAMP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Arena",
+      "tfl_station_id": "940GZZCRARA"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Avenue Road",
+      "tfl_station_id": "940GZZCRAVE"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Beddington Lane",
+      "tfl_station_id": "940GZZCRBED"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Belgrave Walk",
+      "tfl_station_id": "940GZZCRBGV"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Blackhorse Lane",
+      "tfl_station_id": "940GZZCRBLA"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Beckenham Road",
+      "tfl_station_id": "940GZZCRBRD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "George Street",
+      "tfl_station_id": "940GZZCRCEN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Church Street",
+      "tfl_station_id": "940GZZCRCHR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Coombe Lane",
+      "tfl_station_id": "940GZZCRCOO"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Centrale",
+      "tfl_station_id": "940GZZCRCTR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Dundonald Road",
+      "tfl_station_id": "940GZZCRDDR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Fieldway",
+      "tfl_station_id": "940GZZCRFLD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Gravel Hill",
+      "tfl_station_id": "940GZZCRGRA"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Harrington Road",
+      "tfl_station_id": "940GZZCRHAR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "King Henry's Drive",
+      "tfl_station_id": "940GZZCRKGH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Lebanon Road",
+      "tfl_station_id": "940GZZCRLEB"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Lloyd Park",
+      "tfl_station_id": "940GZZCRLOY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Mitcham",
+      "tfl_station_id": "940GZZCRMCH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Morden Road",
+      "tfl_station_id": "940GZZCRMDN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Merton Park",
+      "tfl_station_id": "940GZZCRMTP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "New Addington",
+      "tfl_station_id": "940GZZCRNWA"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Phipps Bridge",
+      "tfl_station_id": "940GZZCRPHI"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Reeves Corner",
+      "tfl_station_id": "940GZZCRRVC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Sandilands",
+      "tfl_station_id": "940GZZCRSAN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Therapia Lane",
+      "tfl_station_id": "940GZZCRTPA"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Waddon Marsh",
+      "tfl_station_id": "940GZZCRWAD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Wandle Park",
+      "tfl_station_id": "940GZZCRWAN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Wellesley Road",
+      "tfl_station_id": "940GZZCRWEL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Woodside",
+      "tfl_station_id": "940GZZCRWOD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Abbey Road",
+      "tfl_station_id": "940GZZDLABR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "All Saints",
+      "tfl_station_id": "940GZZDLALL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Beckton",
+      "tfl_station_id": "940GZZDLBEC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Blackwall",
+      "tfl_station_id": "940GZZDLBLA"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Bow Church",
+      "tfl_station_id": "940GZZDLBOW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Beckton Park",
+      "tfl_station_id": "940GZZDLBPK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Crossharbour",
+      "tfl_station_id": "940GZZDLCLA"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Cyprus",
+      "tfl_station_id": "940GZZDLCYP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Deptford Bridge",
+      "tfl_station_id": "940GZZDLDEP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Devons Road",
+      "tfl_station_id": "940GZZDLDEV"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "East India",
+      "tfl_station_id": "940GZZDLEIN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Elverson Road",
+      "tfl_station_id": "940GZZDLELV"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Gallions Reach",
+      "tfl_station_id": "940GZZDLGAL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Heron Quays",
+      "tfl_station_id": "940GZZDLHEQ"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Island Gardens",
+      "tfl_station_id": "940GZZDLISL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "King George V",
+      "tfl_station_id": "940GZZDLKGV"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Langdon Park",
+      "tfl_station_id": "940GZZDLLDP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Mudchute",
+      "tfl_station_id": "940GZZDLMUD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Pontoon Dock",
+      "tfl_station_id": "940GZZDLPDK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Poplar",
+      "tfl_station_id": "940GZZDLPOP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Prince Regent",
+      "tfl_station_id": "940GZZDLPRE"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Pudding Mill Lane",
+      "tfl_station_id": "940GZZDLPUD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Royal Albert",
+      "tfl_station_id": "940GZZDLRAL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Royal Victoria",
+      "tfl_station_id": "940GZZDLRVC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Stratford High Street",
+      "tfl_station_id": "940GZZDLSHS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Stratford International",
+      "tfl_station_id": "940GZZDLSIT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "South Quay",
+      "tfl_station_id": "940GZZDLSOQ"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Star Lane",
+      "tfl_station_id": "940GZZDLSTL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Westferry",
+      "tfl_station_id": "940GZZDLWFE"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "West India Quay",
+      "tfl_station_id": "940GZZDLWIQ"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "West Silvertown",
+      "tfl_station_id": "940GZZDLWSV"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Acton Town",
+      "tfl_station_id": "940GZZLUACT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Archway",
+      "tfl_station_id": "940GZZLUACY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Aldgate East",
+      "tfl_station_id": "940GZZLUADE"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Angel",
+      "tfl_station_id": "940GZZLUAGL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Aldgate",
+      "tfl_station_id": "940GZZLUALD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Alperton",
+      "tfl_station_id": "940GZZLUALP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Arnos Grove",
+      "tfl_station_id": "940GZZLUASG"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Arsenal",
+      "tfl_station_id": "940GZZLUASL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Bromley-by-Bow",
+      "tfl_station_id": "940GZZLUBBB"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Barbican",
+      "tfl_station_id": "940GZZLUBBN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Bounds Green",
+      "tfl_station_id": "940GZZLUBDS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Becontree",
+      "tfl_station_id": "940GZZLUBEC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Barkingside",
+      "tfl_station_id": "940GZZLUBKE"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Buckhurst Hill",
+      "tfl_station_id": "940GZZLUBKH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Bethnal Green",
+      "tfl_station_id": "940GZZLUBLG"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Bermondsey",
+      "tfl_station_id": "940GZZLUBMY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Borough",
+      "tfl_station_id": "940GZZLUBOR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Boston Manor",
+      "tfl_station_id": "940GZZLUBOS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Barons Court",
+      "tfl_station_id": "940GZZLUBSC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Baker Street",
+      "tfl_station_id": "940GZZLUBST"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Burnt Oak",
+      "tfl_station_id": "940GZZLUBTK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Brent Cross",
+      "tfl_station_id": "940GZZLUBTX"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Bow Road",
+      "tfl_station_id": "940GZZLUBWR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Bayswater",
+      "tfl_station_id": "940GZZLUBWT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Belsize Park",
+      "tfl_station_id": "940GZZLUBZP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Caledonian Road",
+      "tfl_station_id": "940GZZLUCAR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Chalk Farm",
+      "tfl_station_id": "940GZZLUCFM"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Covent Garden",
+      "tfl_station_id": "940GZZLUCGN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Chancery Lane",
+      "tfl_station_id": "940GZZLUCHL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Cockfosters",
+      "tfl_station_id": "940GZZLUCKS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Colindale",
+      "tfl_station_id": "940GZZLUCND"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Clapham Common",
+      "tfl_station_id": "940GZZLUCPC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Canons Park",
+      "tfl_station_id": "940GZZLUCPK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Clapham North",
+      "tfl_station_id": "940GZZLUCPN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Clapham South",
+      "tfl_station_id": "940GZZLUCPS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Colliers Wood",
+      "tfl_station_id": "940GZZLUCSD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Chesham",
+      "tfl_station_id": "940GZZLUCSM"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Camden Town",
+      "tfl_station_id": "940GZZLUCTN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Chigwell",
+      "tfl_station_id": "940GZZLUCWL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Chiswick Park",
+      "tfl_station_id": "940GZZLUCWP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Croxley",
+      "tfl_station_id": "940GZZLUCXY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Debden",
+      "tfl_station_id": "940GZZLUDBN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Dagenham East",
+      "tfl_station_id": "940GZZLUDGE"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Dagenham Heathway",
+      "tfl_station_id": "940GZZLUDGY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Dollis Hill",
+      "tfl_station_id": "940GZZLUDOH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Eastcote",
+      "tfl_station_id": "940GZZLUEAE"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "East Acton",
+      "tfl_station_id": "940GZZLUEAN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Ealing Common",
+      "tfl_station_id": "940GZZLUECM"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Earl's Court",
+      "tfl_station_id": "940GZZLUECT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "East Finchley",
+      "tfl_station_id": "940GZZLUEFY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Edgware",
+      "tfl_station_id": "940GZZLUEGW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "East Ham",
+      "tfl_station_id": "940GZZLUEHM"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Embankment",
+      "tfl_station_id": "940GZZLUEMB"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Epping",
+      "tfl_station_id": "940GZZLUEPG"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Elm Park",
+      "tfl_station_id": "940GZZLUEPK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "East Putney",
+      "tfl_station_id": "940GZZLUEPY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Edgware Road",
+      "tfl_station_id": "940GZZLUERB"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Edgware Road",
+      "tfl_station_id": "940GZZLUERC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Euston Square",
+      "tfl_station_id": "940GZZLUESQ"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Fulham Broadway",
+      "tfl_station_id": "940GZZLUFBY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Fairlop",
+      "tfl_station_id": "940GZZLUFLP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Finchley Central",
+      "tfl_station_id": "940GZZLUFYC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Finchley Road",
+      "tfl_station_id": "940GZZLUFYR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Goodge Street",
+      "tfl_station_id": "940GZZLUGDG"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Grange Hill",
+      "tfl_station_id": "940GZZLUGGH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Golders Green",
+      "tfl_station_id": "940GZZLUGGN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Goldhawk Road",
+      "tfl_station_id": "940GZZLUGHK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Green Park",
+      "tfl_station_id": "940GZZLUGPK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Great Portland Street",
+      "tfl_station_id": "940GZZLUGPS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Gants Hill",
+      "tfl_station_id": "940GZZLUGTH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Gloucester Road",
+      "tfl_station_id": "940GZZLUGTR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Holborn",
+      "tfl_station_id": "940GZZLUHBN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "High Barnet",
+      "tfl_station_id": "940GZZLUHBT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hornchurch",
+      "tfl_station_id": "940GZZLUHCH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hendon Central",
+      "tfl_station_id": "940GZZLUHCL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hillingdon",
+      "tfl_station_id": "940GZZLUHGD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hanger Lane",
+      "tfl_station_id": "940GZZLUHGR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Highgate",
+      "tfl_station_id": "940GZZLUHGT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hainault",
+      "tfl_station_id": "940GZZLUHLT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hatton Cross",
+      "tfl_station_id": "940GZZLUHNX"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hyde Park Corner",
+      "tfl_station_id": "940GZZLUHPC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Holland Park",
+      "tfl_station_id": "940GZZLUHPK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "High Street Kensington",
+      "tfl_station_id": "940GZZLUHSK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hampstead",
+      "tfl_station_id": "940GZZLUHTD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hounslow Central",
+      "tfl_station_id": "940GZZLUHWC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hounslow East",
+      "tfl_station_id": "940GZZLUHWE"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hounslow West",
+      "tfl_station_id": "940GZZLUHWT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Holloway Road",
+      "tfl_station_id": "940GZZLUHWY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Ickenham",
+      "tfl_station_id": "940GZZLUICK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Kilburn",
+      "tfl_station_id": "940GZZLUKBN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Kingsbury",
+      "tfl_station_id": "940GZZLUKBY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Knightsbridge",
+      "tfl_station_id": "940GZZLUKNB"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Kennington",
+      "tfl_station_id": "940GZZLUKNG"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Kilburn Park",
+      "tfl_station_id": "940GZZLUKPK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Ladbroke Grove",
+      "tfl_station_id": "940GZZLULAD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Lambeth North",
+      "tfl_station_id": "940GZZLULBN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Loughton",
+      "tfl_station_id": "940GZZLULGN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Lancaster Gate",
+      "tfl_station_id": "940GZZLULGT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Latimer Road",
+      "tfl_station_id": "940GZZLULRD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Leicester Square",
+      "tfl_station_id": "940GZZLULSQ"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Leyton",
+      "tfl_station_id": "940GZZLULYN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Leytonstone",
+      "tfl_station_id": "940GZZLULYS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Marble Arch",
+      "tfl_station_id": "940GZZLUMBA"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Morden",
+      "tfl_station_id": "940GZZLUMDN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Mile End",
+      "tfl_station_id": "940GZZLUMED"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Mill Hill East",
+      "tfl_station_id": "940GZZLUMHL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Monument",
+      "tfl_station_id": "940GZZLUMMT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Moor Park",
+      "tfl_station_id": "940GZZLUMPK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Manor House",
+      "tfl_station_id": "940GZZLUMRH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Mansion House",
+      "tfl_station_id": "940GZZLUMSH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Mornington Crescent",
+      "tfl_station_id": "940GZZLUMTC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Maida Vale",
+      "tfl_station_id": "940GZZLUMVL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "North Acton",
+      "tfl_station_id": "940GZZLUNAN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Newbury Park",
+      "tfl_station_id": "940GZZLUNBP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Neasden",
+      "tfl_station_id": "940GZZLUNDN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "North Ealing",
+      "tfl_station_id": "940GZZLUNEN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Northfields",
+      "tfl_station_id": "940GZZLUNFD"
+    },
+    {
+      "candidates": [
+        {
+          "atco_code": "9300MIL",
+          "common_name": "North Greenwich Pier",
+          "distance_metres": 374.5,
+          "name_similarity": 0.8571,
+          "source_identity": "naptan:9300MIL",
+          "stop_type": "FER"
+        }
+      ],
+      "classification": "AMBIGUOUS",
+      "confidence": "LOW",
+      "evidence": [
+        "candidate requires non-exact name/geometry interpretation"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "North Greenwich",
+      "tfl_station_id": "940GZZLUNGW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "North Harrow",
+      "tfl_station_id": "940GZZLUNHA"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Notting Hill Gate",
+      "tfl_station_id": "940GZZLUNHG"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Northolt",
+      "tfl_station_id": "940GZZLUNHT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Northwick Park",
+      "tfl_station_id": "940GZZLUNKP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Northwood",
+      "tfl_station_id": "940GZZLUNOW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Northwood Hills",
+      "tfl_station_id": "940GZZLUNWH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Oakwood",
+      "tfl_station_id": "940GZZLUOAK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Osterley",
+      "tfl_station_id": "940GZZLUOSY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Oval",
+      "tfl_station_id": "940GZZLUOVL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Oxford Circus",
+      "tfl_station_id": "940GZZLUOXC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Piccadilly Circus",
+      "tfl_station_id": "940GZZLUPCC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Pimlico",
+      "tfl_station_id": "940GZZLUPCO"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Park Royal",
+      "tfl_station_id": "940GZZLUPKR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Plaistow",
+      "tfl_station_id": "940GZZLUPLW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Pinner",
+      "tfl_station_id": "940GZZLUPNR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Preston Road",
+      "tfl_station_id": "940GZZLUPRD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Parsons Green",
+      "tfl_station_id": "940GZZLUPSG"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Perivale",
+      "tfl_station_id": "940GZZLUPVL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Putney Bridge",
+      "tfl_station_id": "940GZZLUPYB"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Queensbury",
+      "tfl_station_id": "940GZZLUQBY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Queensway",
+      "tfl_station_id": "940GZZLUQWY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Redbridge",
+      "tfl_station_id": "940GZZLURBG"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Regent's Park",
+      "tfl_station_id": "940GZZLURGP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Ruislip Gardens",
+      "tfl_station_id": "940GZZLURSG"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Ruislip Manor",
+      "tfl_station_id": "940GZZLURSM"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Ruislip",
+      "tfl_station_id": "940GZZLURSP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Russell Square",
+      "tfl_station_id": "940GZZLURSQ"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Ravenscourt Park",
+      "tfl_station_id": "940GZZLURVP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Roding Valley",
+      "tfl_station_id": "940GZZLURVY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Rayners Lane",
+      "tfl_station_id": "940GZZLURYL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Royal Oak",
+      "tfl_station_id": "940GZZLURYO"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Shepherd's Bush Market",
+      "tfl_station_id": "940GZZLUSBM"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "South Ealing",
+      "tfl_station_id": "940GZZLUSEA"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Stamford Brook",
+      "tfl_station_id": "940GZZLUSFB"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Southfields",
+      "tfl_station_id": "940GZZLUSFS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Stepney Green",
+      "tfl_station_id": "940GZZLUSGN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Southgate",
+      "tfl_station_id": "940GZZLUSGT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "South Harrow",
+      "tfl_station_id": "940GZZLUSHH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "St James's Park",
+      "tfl_station_id": "940GZZLUSJP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "St John's Wood",
+      "tfl_station_id": "940GZZLUSJW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "South Kensington",
+      "tfl_station_id": "940GZZLUSKS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Stockwell",
+      "tfl_station_id": "940GZZLUSKW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Snaresbrook",
+      "tfl_station_id": "940GZZLUSNB"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "St Paul's",
+      "tfl_station_id": "940GZZLUSPU"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Sloane Square",
+      "tfl_station_id": "940GZZLUSSQ"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Stanmore",
+      "tfl_station_id": "940GZZLUSTM"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Sudbury Hill",
+      "tfl_station_id": "940GZZLUSUH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Sudbury Town",
+      "tfl_station_id": "940GZZLUSUT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Swiss Cottage",
+      "tfl_station_id": "940GZZLUSWC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "South Woodford",
+      "tfl_station_id": "940GZZLUSWF"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Southwark",
+      "tfl_station_id": "940GZZLUSWK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "South Wimbledon",
+      "tfl_station_id": "940GZZLUSWN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Totteridge & Whetstone",
+      "tfl_station_id": "940GZZLUTAW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Tooting Bec",
+      "tfl_station_id": "940GZZLUTBC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Tooting Broadway",
+      "tfl_station_id": "940GZZLUTBY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Tufnell Park",
+      "tfl_station_id": "940GZZLUTFP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Theydon Bois",
+      "tfl_station_id": "940GZZLUTHB"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Temple",
+      "tfl_station_id": "940GZZLUTMP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Turnham Green",
+      "tfl_station_id": "940GZZLUTNG"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Turnpike Lane",
+      "tfl_station_id": "940GZZLUTPN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Tower Hill",
+      "tfl_station_id": "940GZZLUTWH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Upminster Bridge",
+      "tfl_station_id": "940GZZLUUPB"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Upton Park",
+      "tfl_station_id": "940GZZLUUPK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Upney",
+      "tfl_station_id": "940GZZLUUPY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Uxbridge",
+      "tfl_station_id": "940GZZLUUXB"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Watford",
+      "tfl_station_id": "940GZZLUWAF"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "White City",
+      "tfl_station_id": "940GZZLUWCY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "West Finchley",
+      "tfl_station_id": "940GZZLUWFN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "West Hampstead",
+      "tfl_station_id": "940GZZLUWHP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "West Harrow",
+      "tfl_station_id": "940GZZLUWHW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Willesden Green",
+      "tfl_station_id": "940GZZLUWIG"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Wimbledon Park",
+      "tfl_station_id": "940GZZLUWIP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Warwick Avenue",
+      "tfl_station_id": "940GZZLUWKA"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "West Kensington",
+      "tfl_station_id": "940GZZLUWKN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Wood Lane",
+      "tfl_station_id": "940GZZLUWLA"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Woodford",
+      "tfl_station_id": "940GZZLUWOF"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Wood Green",
+      "tfl_station_id": "940GZZLUWOG"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Woodside Park",
+      "tfl_station_id": "940GZZLUWOP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Warren Street",
+      "tfl_station_id": "940GZZLUWRR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Wanstead",
+      "tfl_station_id": "940GZZLUWSD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Westbourne Park",
+      "tfl_station_id": "940GZZLUWSP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "West Acton",
+      "tfl_station_id": "940GZZLUWTA"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Wembley Park",
+      "tfl_station_id": "940GZZLUWYP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Nine Elms",
+      "tfl_station_id": "940GZZNEUGST"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Abbey Wood",
+      "tfl_station_id": "HUBABW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Amersham",
+      "tfl_station_id": "HUBAMR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Balham",
+      "tfl_station_id": "HUBBAL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Bank",
+      "tfl_station_id": "HUBBAN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Bond Street",
+      "tfl_station_id": "HUBBDS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Beckenham Junction",
+      "tfl_station_id": "HUBBEK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Blackfriars",
+      "tfl_station_id": "HUBBFR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Blackhorse Road",
+      "tfl_station_id": "HUBBHO"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Birkbeck",
+      "tfl_station_id": "HUBBIR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Barking",
+      "tfl_station_id": "HUBBKG"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Brixton",
+      "tfl_station_id": "HUBBRX"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Bushey",
+      "tfl_station_id": "HUBBSH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Canning Town",
+      "tfl_station_id": "HUBCAN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Canary Wharf",
+      "tfl_station_id": "HUBCAW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Chalfont & Latimer",
+      "tfl_station_id": "HUBCFO"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Charing Cross",
+      "tfl_station_id": "HUBCHX"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Clapham Junction",
+      "tfl_station_id": "HUBCLJ"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Chorleywood",
+      "tfl_station_id": "HUBCLW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Cannon Street",
+      "tfl_station_id": "HUBCST"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Custom House for ExCel",
+      "tfl_station_id": "HUBCUS"
+    },
+    {
+      "candidates": [
+        {
+          "atco_code": "9400ZZDLCUT",
+          "common_name": "Cutty Sark (for Maritime Greenwich) DLR Station",
+          "distance_metres": 5.3,
+          "name_similarity": 0.825,
+          "source_identity": "naptan:9400ZZDLCUT",
+          "stop_type": "MET"
+        }
+      ],
+      "classification": "AMBIGUOUS",
+      "confidence": "LOW",
+      "evidence": [
+        "candidate requires non-exact name/geometry interpretation"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Cutty Sark for Maritime Greenwich",
+      "tfl_station_id": "HUBCUT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Crystal Palace",
+      "tfl_station_id": "HUBCYP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Ealing Broadway",
+      "tfl_station_id": "HUBEAL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "East Croydon",
+      "tfl_station_id": "HUBECY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Elmers End",
+      "tfl_station_id": "HUBELM"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Elephant & Castle",
+      "tfl_station_id": "HUBEPH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Euston",
+      "tfl_station_id": "HUBEUS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Finsbury Park",
+      "tfl_station_id": "HUBFPK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Greenford",
+      "tfl_station_id": "HUBGFD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Greenwich",
+      "tfl_station_id": "HUBGNW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Gunnersbury",
+      "tfl_station_id": "HUBGUN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Heathrow Terminals 2 & 3",
+      "tfl_station_id": "HUBH13"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Harlesden",
+      "tfl_station_id": "HUBHDN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Highbury & Islington",
+      "tfl_station_id": "HUBHHY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Hammersmith",
+      "tfl_station_id": "HUBHMS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Harrow-on-the-Hill",
+      "tfl_station_id": "HUBHOH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Harrow & Wealdstone",
+      "tfl_station_id": "HUBHRW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Heathrow Terminal 4",
+      "tfl_station_id": "HUBHX4"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Heathrow Terminal 5",
+      "tfl_station_id": "HUBHX5"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Imperial Wharf",
+      "tfl_station_id": "HUBIMP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "King's Cross St Pancras",
+      "tfl_station_id": "HUBKGX"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Kensal Green",
+      "tfl_station_id": "HUBKNL"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Kenton",
+      "tfl_station_id": "HUBKNT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Kensington (Olympia)",
+      "tfl_station_id": "HUBKPA"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Kentish Town",
+      "tfl_station_id": "HUBKTN"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Kew Gardens",
+      "tfl_station_id": "HUBKWG"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "London Bridge",
+      "tfl_station_id": "HUBLBG"
+    },
+    {
+      "candidates": [
+        {
+          "atco_code": "9200LCY1",
+          "common_name": "London City Airport",
+          "distance_metres": 46.7,
+          "name_similarity": 1.0,
+          "source_identity": "naptan:9200LCY1",
+          "stop_type": "GAT"
+        }
+      ],
+      "classification": "HIGH_CONFIDENCE_NAME_GEO_MATCH",
+      "confidence": "HIGH",
+      "evidence": [
+        "exact normalized name and unique official candidate within 250m",
+        "no explicit TfL-to-NaPTAN identifier cross-reference was present"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "London City Airport",
+      "tfl_station_id": "HUBLCY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Lewisham",
+      "tfl_station_id": "HUBLEW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Limehouse",
+      "tfl_station_id": "HUBLHS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Liverpool Street",
+      "tfl_station_id": "HUBLST"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Mitcham Junction",
+      "tfl_station_id": "HUBMJT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Marylebone",
+      "tfl_station_id": "HUBMYB"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "North Wembley",
+      "tfl_station_id": "HUBNWB"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Norwood Junction",
+      "tfl_station_id": "HUBNWD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "New Cross",
+      "tfl_station_id": "HUBNWX"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "New Cross Gate",
+      "tfl_station_id": "HUBNXG"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Old Street",
+      "tfl_station_id": "HUBOLD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Paddington",
+      "tfl_station_id": "HUBPAD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Queen's Park",
+      "tfl_station_id": "HUBQPW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Rickmansworth",
+      "tfl_station_id": "HUBRIC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Richmond",
+      "tfl_station_id": "HUBRMD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Stonebridge Park",
+      "tfl_station_id": "HUBSBP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Shadwell",
+      "tfl_station_id": "HUBSDE"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "South Kenton",
+      "tfl_station_id": "HUBSOK"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Shepherd's Bush",
+      "tfl_station_id": "HUBSPB"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Stratford",
+      "tfl_station_id": "HUBSRA"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "South Ruislip",
+      "tfl_station_id": "HUBSRU"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Seven Sisters",
+      "tfl_station_id": "HUBSVS"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Sydenham",
+      "tfl_station_id": "HUBSYD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Tottenham Court Road",
+      "tfl_station_id": "HUBTCR"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Tower Gateway",
+      "tfl_station_id": "HUBTOG"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Tottenham Hale",
+      "tfl_station_id": "HUBTOM"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Upminster",
+      "tfl_station_id": "HUBUPM"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Victoria",
+      "tfl_station_id": "HUBVIC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Vauxhall",
+      "tfl_station_id": "HUBVXH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Waterloo",
+      "tfl_station_id": "HUBWAT"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "West Brompton",
+      "tfl_station_id": "HUBWBP"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "West Croydon",
+      "tfl_station_id": "HUBWCY"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "West Ham",
+      "tfl_station_id": "HUBWEH"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Watford Junction",
+      "tfl_station_id": "HUBWFJ"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Walthamstow Central",
+      "tfl_station_id": "HUBWHC"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Willesden Junction",
+      "tfl_station_id": "HUBWIJ"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Wimbledon",
+      "tfl_station_id": "HUBWIM"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Wembley Central",
+      "tfl_station_id": "HUBWMB"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "West Ruislip",
+      "tfl_station_id": "HUBWRU"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Westminster",
+      "tfl_station_id": "HUBWSM"
+    },
+    {
+      "candidates": [
+        {
+          "atco_code": "9300WAS",
+          "common_name": "Woolwich Arsenal Pier",
+          "distance_metres": 571.9,
+          "name_similarity": 0.8649,
+          "source_identity": "naptan:9300WAS",
+          "stop_type": "FER"
+        }
+      ],
+      "classification": "AMBIGUOUS",
+      "confidence": "LOW",
+      "evidence": [
+        "candidate requires non-exact name/geometry interpretation"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Woolwich Arsenal",
+      "tfl_station_id": "HUBWWA"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Canada Water",
+      "tfl_station_id": "HUBZCW"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Farringdon",
+      "tfl_station_id": "HUBZFD"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Moorgate",
+      "tfl_station_id": "HUBZMG"
+    },
+    {
+      "candidates": [],
+      "classification": "NO_MATCH",
+      "confidence": "LOW",
+      "evidence": [
+        "no official candidate within deterministic name/geometry threshold"
+      ],
+      "facility_creation_authorized": false,
+      "station_name": "Whitechapel",
+      "tfl_station_id": "HUBZWL"
+    }
+  ],
+  "source": "https://naptan.api.dft.gov.uk/v1/access-nodes?dataFormat=csv",
+  "station_count": 509
+}

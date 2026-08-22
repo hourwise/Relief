@@ -1,0 +1,32 @@
+{
+  "publisher": "UK Department for Transport",
+  "product": "NaPTAN national access nodes CSV",
+  "source_url": "https://naptan.api.dft.gov.uk/v1/access-nodes?dataFormat=csv",
+  "download_page": "https://beta-naptan.dft.gov.uk/download/national",
+  "resolved_url": "https://naptan.api.dft.gov.uk/v1/access-nodes?dataFormat=csv",
+  "retrieval_utc": "2026-08-22T12:09:52Z",
+  "filename": "Stops.csv",
+  "content_type": "application/csv",
+  "format": "CSV",
+  "compression": "none",
+  "byte_size": 101824634,
+  "sha256": "FF981876B8442122E058634769F290F6E775F454D80D82B465491E2E5006D3C2",
+  "source_publication_or_update_date": null,
+  "update_cadence": "The official national download page publishes the current national export; separate data.gov.uk metadata describes daily updates. No file-level publication timestamp was embedded in Stops.csv.",
+  "file_inventory": [
+    {
+      "filename": "Stops.csv",
+      "byte_size": 101824634,
+      "sha256": "FF981876B8442122E058634769F290F6E775F454D80D82B465491E2E5006D3C2",
+      "role": "CORE_FOR_RELIEF"
+    }
+  ],
+  "licence": {
+    "name": "Open Government Licence v3.0",
+    "url": "https://www.gov.uk/government/publications/national-public-transport-access-node-schema/naptan-and-nptg-data-sets-and-schema-guides",
+    "attribution": "Contains public sector information licensed under the Open Government Licence v3.0.",
+    "reuse_note": "Foundation use is recorded as compatible with the published OGL terms; this is not a legal opinion and third-party rights remain subject to the published terms."
+  },
+  "raw_bytes_repository_policy": "Raw national bytes kept in disposable external cache and not committed to Git; manifest and derived evidence only.",
+  "encoding": "UTF-8 CSV with optional BOM; replacement characters rejected"
+}

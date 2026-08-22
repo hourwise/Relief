@@ -1,0 +1,122 @@
+{
+  "candidate_stop_types": [
+    "BST",
+    "FER",
+    "GAT",
+    "MET",
+    "RLY"
+  ],
+  "counts": {
+    "ambiguous_existing_relief_match": 824,
+    "likely_existing_relief_match": 48,
+    "likely_new_transport_place_candidate": 3459,
+    "supporting_only_or_excluded_nodes": 431035
+  },
+  "examples": {
+    "ambiguous_existing_relief_match": [
+      {
+        "candidate_facility": "267bedd9-7e54-43d1-91f2-de02ae586003",
+        "common_name": "Buckhurst Hill Underground Station",
+        "naptan_source_identity": "naptan:1500ZZLUBKH0",
+        "stop_type": "MET"
+      },
+      {
+        "candidate_facility": "267bedd9-7e54-43d1-91f2-de02ae586003",
+        "common_name": "Buckhurst Hill Underground Station",
+        "naptan_source_identity": "naptan:1500ZZLUBKH1",
+        "stop_type": "MET"
+      },
+      {
+        "candidate_facility": "267bedd9-7e54-43d1-91f2-de02ae586003",
+        "common_name": "Buckhurst Hill Underground Station",
+        "naptan_source_identity": "naptan:1500ZZLUBKH2",
+        "stop_type": "MET"
+      },
+      {
+        "candidate_facility": "0e3a6061-a725-4491-8ffe-873db230c8c9",
+        "common_name": "Loughton Underground Station",
+        "naptan_source_identity": "naptan:1500ZZLULGN0",
+        "stop_type": "MET"
+      },
+      {
+        "candidate_facility": "2180a792-b27f-4902-8cb1-fbd3f96dde27",
+        "common_name": "Theydon Bois Underground Station",
+        "naptan_source_identity": "naptan:1500ZZLUTHB0",
+        "stop_type": "MET"
+      }
+    ],
+    "likely_existing_relief_match": [
+      {
+        "candidate_facility": "688b1edd-f6f9-408b-bd07-b2d140280a1b",
+        "common_name": "Debden Underground Station",
+        "naptan_source_identity": "naptan:1500ZZLUDBN0",
+        "stop_type": "MET"
+      },
+      {
+        "candidate_facility": "688b1edd-f6f9-408b-bd07-b2d140280a1b",
+        "common_name": "Debden Underground Station",
+        "naptan_source_identity": "naptan:1500ZZLUDBN1",
+        "stop_type": "MET"
+      },
+      {
+        "candidate_facility": "ed257f09-0ef2-45ac-9745-e2b6800d5bb8",
+        "common_name": "Epping Underground Station",
+        "naptan_source_identity": "naptan:1500ZZLUEPG0",
+        "stop_type": "MET"
+      },
+      {
+        "candidate_facility": "6651b5ab-bec8-4fcb-b0c4-380c33d0c6e0",
+        "common_name": "Ashton-under-Lyne Interchange",
+        "naptan_source_identity": "naptan:1800ANIN001",
+        "stop_type": "BST"
+      },
+      {
+        "candidate_facility": "32ff5104-17e6-4817-b0de-08c603b6fc1c",
+        "common_name": "Manchester Central Coach Station",
+        "naptan_source_identity": "naptan:1800CSBS001",
+        "stop_type": "BST"
+      }
+    ],
+    "likely_new_transport_place_candidate": [
+      {
+        "candidate_facility": null,
+        "common_name": "Chigwell Underground Station",
+        "naptan_source_identity": "naptan:1500ZZLUCWL0",
+        "stop_type": "MET"
+      },
+      {
+        "candidate_facility": null,
+        "common_name": "Chigwell Underground Station",
+        "naptan_source_identity": "naptan:1500ZZLUCWL1",
+        "stop_type": "MET"
+      },
+      {
+        "candidate_facility": null,
+        "common_name": "Grange Hill Underground Station",
+        "naptan_source_identity": "naptan:1500ZZLUGGH0",
+        "stop_type": "MET"
+      },
+      {
+        "candidate_facility": null,
+        "common_name": "Altrincham Interchange",
+        "naptan_source_identity": "naptan:1800AMIC001",
+        "stop_type": "BST"
+      },
+      {
+        "candidate_facility": null,
+        "common_name": "Ashton Bus Station",
+        "naptan_source_identity": "naptan:1800ANBS001",
+        "stop_type": "BST"
+      }
+    ]
+  },
+  "facility_snapshot": "tools/source_expansion/cache/tfl-detailed-2026-08-21/production-published-facilities.json",
+  "production_mutation_plan": {
+    "facilities_inserts": 0,
+    "facilities_updates": 0,
+    "facility_sources_inserts": 0,
+    "observations_inserts": 0,
+    "production_execution": false
+  },
+  "source": "https://naptan.api.dft.gov.uk/v1/access-nodes?dataFormat=csv"
+}

@@ -1,0 +1,132 @@
+{
+  "classifications": [
+    {
+      "count": 70,
+      "rationale": "Transport identity evidence only; classification does not authorize canonical facility creation.",
+      "relief_classification": "RELIEF_SUPPORTING_NODE",
+      "source_meaning": "airport entrance",
+      "stop_type": "AIR"
+    },
+    {
+      "count": 196,
+      "rationale": "Transport identity evidence only; classification does not authorize canonical facility creation.",
+      "relief_classification": "RELIEF_SUPPORTING_NODE",
+      "source_meaning": "bus/coach station entrance",
+      "stop_type": "BCE"
+    },
+    {
+      "count": 165,
+      "rationale": "Transport identity evidence only; classification does not authorize canonical facility creation.",
+      "relief_classification": "RELIEF_SUPPORTING_NODE",
+      "source_meaning": "variable bus/coach bay or stand",
+      "stop_type": "BCQ"
+    },
+    {
+      "count": 4950,
+      "rationale": "Transport identity evidence only; classification does not authorize canonical facility creation.",
+      "relief_classification": "RELIEF_SUPPORTING_NODE",
+      "source_meaning": "bus/coach station bay or stand",
+      "stop_type": "BCS"
+    },
+    {
+      "count": 416595,
+      "rationale": "Transport identity evidence only; classification does not authorize canonical facility creation.",
+      "relief_classification": "RELIEF_SUPPORTING_NODE",
+      "source_meaning": "on-street bus/coach/trolley stop",
+      "stop_type": "BCT"
+    },
+    {
+      "count": 40,
+      "rationale": "Transport identity evidence only; classification does not authorize canonical facility creation.",
+      "relief_classification": "RELIEF_TRANSPORT_PLACE_CANDIDATE",
+      "source_meaning": "bus/coach station access area",
+      "stop_type": "BST"
+    },
+    {
+      "count": 345,
+      "rationale": "Transport identity evidence only; classification does not authorize canonical facility creation.",
+      "relief_classification": "RELIEF_SUPPORTING_NODE",
+      "source_meaning": "ferry or port berth",
+      "stop_type": "FBT"
+    },
+    {
+      "count": 505,
+      "rationale": "Transport identity evidence only; classification does not authorize canonical facility creation.",
+      "relief_classification": "RELIEF_TRANSPORT_PLACE_CANDIDATE",
+      "source_meaning": "ferry or port interchange area",
+      "stop_type": "FER"
+    },
+    {
+      "count": 327,
+      "rationale": "Transport identity evidence only; classification does not authorize canonical facility creation.",
+      "relief_classification": "RELIEF_SUPPORTING_NODE",
+      "source_meaning": "ferry terminal or dock entrance",
+      "stop_type": "FTD"
+    },
+    {
+      "count": 84,
+      "rationale": "Transport identity evidence only; classification does not authorize canonical facility creation.",
+      "relief_classification": "RELIEF_TRANSPORT_PLACE_CANDIDATE",
+      "source_meaning": "airport interchange area",
+      "stop_type": "GAT"
+    },
+    {
+      "count": 987,
+      "rationale": "Transport identity evidence only; classification does not authorize canonical facility creation.",
+      "relief_classification": "RELIEF_TRANSPORT_PLACE_CANDIDATE",
+      "source_meaning": "tram/metro/underground interchange",
+      "stop_type": "MET"
+    },
+    {
+      "count": 1633,
+      "rationale": "Transport identity evidence only; classification does not authorize canonical facility creation.",
+      "relief_classification": "RELIEF_SUPPORTING_NODE",
+      "source_meaning": "tram/metro/underground platform",
+      "stop_type": "PLT"
+    },
+    {
+      "count": 2715,
+      "rationale": "Transport identity evidence only; classification does not authorize canonical facility creation.",
+      "relief_classification": "RELIEF_TRANSPORT_PLACE_CANDIDATE",
+      "source_meaning": "railway interchange area",
+      "stop_type": "RLY"
+    },
+    {
+      "count": 3,
+      "rationale": "Transport identity evidence only; classification does not authorize canonical facility creation.",
+      "relief_classification": "RELIEF_SUPPORTING_NODE",
+      "source_meaning": "rail platform",
+      "stop_type": "RPL"
+    },
+    {
+      "count": 4308,
+      "rationale": "Transport identity evidence only; classification does not authorize canonical facility creation.",
+      "relief_classification": "RELIEF_SUPPORTING_NODE",
+      "source_meaning": "rail station entrance",
+      "stop_type": "RSE"
+    },
+    {
+      "count": 71,
+      "rationale": "Transport identity evidence only; classification does not authorize canonical facility creation.",
+      "relief_classification": "NOT_RELIEF_PLACE_CANDIDATE",
+      "source_meaning": "shared taxi rank",
+      "stop_type": "STR"
+    },
+    {
+      "count": 1519,
+      "rationale": "Transport identity evidence only; classification does not authorize canonical facility creation.",
+      "relief_classification": "RELIEF_SUPPORTING_NODE",
+      "source_meaning": "tram/metro/underground entrance",
+      "stop_type": "TMU"
+    },
+    {
+      "count": 853,
+      "rationale": "Transport identity evidence only; classification does not authorize canonical facility creation.",
+      "relief_classification": "NOT_RELIEF_PLACE_CANDIDATE",
+      "source_meaning": "taxi rank",
+      "stop_type": "TXR"
+    }
+  ],
+  "source_schema_reference": "https://naptan.dft.gov.uk/naptan/schema/2.5/doc/NaPTANSchemaGuide-2.5-v0.67.pdf",
+  "unresolved_types": []
+}
