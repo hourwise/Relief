@@ -1,0 +1,780 @@
+{
+  "cross_complex_or_unresolved_count": 628,
+  "examples": [
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:036G00000068",
+        "naptan-stop-area:036GALTSCH"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:036G00000068",
+        "naptan-stop-area:036GALTSCH"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:036006045045",
+      "stop_type": "BCT"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:036G00000068",
+        "naptan-stop-area:036GALTSCH"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:036G00000068",
+        "naptan-stop-area:036GALTSCH"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:036006045046",
+      "stop_type": "BCT"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:037G0323",
+        "naptan-stop-area:037G0379"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:037G0379",
+        "naptan-stop-area:910GSLOUGH"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:03700323",
+      "stop_type": "BCT"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:037G0323",
+        "naptan-stop-area:037G0379"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:037G0379",
+        "naptan-stop-area:910GSLOUGH"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:03700324",
+      "stop_type": "BCT"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:037G0323",
+        "naptan-stop-area:037G0379"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:037G0379",
+        "naptan-stop-area:910GSLOUGH"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:03700325",
+      "stop_type": "BCT"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:037G0330",
+        "naptan-stop-area:037G0379"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:037G0330",
+        "naptan-stop-area:037G0379"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:03700331",
+      "stop_type": "BCT"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:037G0335",
+        "naptan-stop-area:037G0379"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:037G0335",
+        "naptan-stop-area:037G0379"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:03700335",
+      "stop_type": "BCT"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:037G0335",
+        "naptan-stop-area:037G0379"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:037G0335",
+        "naptan-stop-area:037G0379"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:03700336",
+      "stop_type": "BCT"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:037G0338",
+        "naptan-stop-area:037G0379"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:037G0379",
+        "naptan-stop-area:910GSLOUGH"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:03700338",
+      "stop_type": "BCT"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:037G0334",
+        "naptan-stop-area:037G0379"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:037G0334",
+        "naptan-stop-area:037G0379"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:03700443",
+      "stop_type": "BCT"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:037G0379",
+        "naptan-stop-area:037G0488"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:037G0379",
+        "naptan-stop-area:910GSLOUGH"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:03700488",
+      "stop_type": "BCT"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:037G0379",
+        "naptan-stop-area:037G0531"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:037G0379",
+        "naptan-stop-area:910GSLOUGH"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:03700531",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:037G0379",
+        "naptan-stop-area:037G0531"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:037G0379",
+        "naptan-stop-area:910GSLOUGH"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:03700532",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:037G0379",
+        "naptan-stop-area:037G0531"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:037G0379",
+        "naptan-stop-area:910GSLOUGH"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:03700533",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00002326",
+        "naptan-stop-area:040G00004658",
+        "naptan-stop-area:040G000AYBUS"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G000AYBUS",
+        "naptan-stop-area:910GAYLSBRY"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000002326",
+      "stop_type": "BCT"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00002326",
+        "naptan-stop-area:040G00004658",
+        "naptan-stop-area:040G000AYBUS"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G000AYBUS",
+        "naptan-stop-area:910GAYLSBRY"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000002327",
+      "stop_type": "BCT"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSA"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSA"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000002951",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSA"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSA"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000002952",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00000301",
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSA"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G00000301",
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSA"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000002953",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00000301",
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSB"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G00000301",
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSB"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000002954",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00000301",
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSB"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G00000301",
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSB"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000002955",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSB"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSB"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000002956",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSC"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSC"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000002957",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSC"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSC"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000002958",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSC"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSC"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000002959",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSD"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSD"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000002960",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSD"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSD"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000002961",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSD"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSD"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000002962",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSE"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSE"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000002963",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSE"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSE"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000002964",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSE"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSE"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000002965",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSF"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSF"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000002966",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSF"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSF"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000002967",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSF"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G00002951",
+        "naptan-stop-area:040G000HWBSF"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000002968",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00003836",
+        "naptan-stop-area:040G00003856"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G00003856"
+      ],
+      "shared_common_complex": true,
+      "stop_point_identity": "naptan:040000003856",
+      "stop_type": "BCT"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00004658",
+        "naptan-stop-area:040G000AYBUS"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G000AYBUS",
+        "naptan-stop-area:910GAYLSBRY"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000004651",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00004658",
+        "naptan-stop-area:040G000AYBUS"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G000AYBUS",
+        "naptan-stop-area:910GAYLSBRY"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000004652",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00004658",
+        "naptan-stop-area:040G000AYBUS"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G000AYBUS",
+        "naptan-stop-area:910GAYLSBRY"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000004653",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00004658",
+        "naptan-stop-area:040G000AYBUS"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G000AYBUS",
+        "naptan-stop-area:910GAYLSBRY"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000004654",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00004658",
+        "naptan-stop-area:040G000AYBUS"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G000AYBUS",
+        "naptan-stop-area:910GAYLSBRY"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000004655",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00004658",
+        "naptan-stop-area:040G000AYBUS"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G000AYBUS",
+        "naptan-stop-area:910GAYLSBRY"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000004656",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00004658",
+        "naptan-stop-area:040G000AYBUS"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G000AYBUS",
+        "naptan-stop-area:910GAYLSBRY"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000004657",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00004658",
+        "naptan-stop-area:040G000AYBUS"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G000AYBUS",
+        "naptan-stop-area:910GAYLSBRY"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000004658",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00004658",
+        "naptan-stop-area:040G000AYBUS"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G000AYBUS",
+        "naptan-stop-area:910GAYLSBRY"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000004659",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00004658",
+        "naptan-stop-area:040G000AYBUS"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G000AYBUS",
+        "naptan-stop-area:910GAYLSBRY"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000004660",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:040G00004658",
+        "naptan-stop-area:040G000AYBUS"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:040G000AYBUS",
+        "naptan-stop-area:910GAYLSBRY"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:040000004661",
+      "stop_type": "BCS"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:050GCC208247",
+        "naptan-stop-area:050GCC222245"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:050GCC208247",
+        "naptan-stop-area:050GCC222245"
+      ],
+      "shared_common_complex": false,
+      "stop_point_identity": "naptan:0500CCITY247",
+      "stop_type": "BCT"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:050GGS009020",
+        "naptan-stop-area:050GGS009025"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:910GSHELFD"
+      ],
+      "shared_common_complex": true,
+      "stop_point_identity": "naptan:0500SGRED009",
+      "stop_type": "BCT"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:050GGS009020",
+        "naptan-stop-area:050GGS020"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:910GSHELFD"
+      ],
+      "shared_common_complex": true,
+      "stop_point_identity": "naptan:0500SGRED020",
+      "stop_type": "BCT"
+    },
+    {
+      "handling": "PRESERVE_ALL_PARENTS; DO_NOT_SELECT_ONE",
+      "mode": "bus_coach",
+      "parent_stop_area_identities": [
+        "naptan-stop-area:050GGS009020",
+        "naptan-stop-area:050GGS009025"
+      ],
+      "resolved_root_complexes": [
+        "naptan-stop-area:910GSHELFD"
+      ],
+      "shared_common_complex": true,
+      "stop_point_identity": "naptan:0500SGRED025",
+      "stop_type": "BCT"
+    }
+  ],
+  "handling_contract": "MULTI_PARENT_NODE_COMPLEX; retain every publisher membership and refuse arbitrary parent selection",
+  "mode_combinations": {
+    "bus_coach": 687,
+    "metro_tram_underground": 4,
+    "rail": 10
+  },
+  "parent_count_distribution": {
+    "2": 667,
+    "3": 34
+  },
+  "shared_common_complex_count": 73,
+  "stop_type_distribution": {
+    "BCE": 7,
+    "BCQ": 2,
+    "BCS": 172,
+    "BCT": 504,
+    "BST": 2,
+    "RSE": 10,
+    "TMU": 4
+  },
+  "total_multi_parent_stop_points": 701
+}

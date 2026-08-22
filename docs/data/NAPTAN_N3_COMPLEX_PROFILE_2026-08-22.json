@@ -1,0 +1,5634 @@
+{
+  "canonical_facility_mutations": {
+    "facilities_inserts": 0,
+    "facilities_updates": 0,
+    "facility_source_inserts": 0,
+    "production_execution": false,
+    "source_observations": 0
+  },
+  "deep_hierarchy": {
+    "depth_distribution": {
+      "1": 93843,
+      "10": 1,
+      "11": 1,
+      "12": 1,
+      "13": 1,
+      "2": 3178,
+      "3": 180,
+      "4": 38,
+      "5": 9,
+      "6": 7,
+      "7": 5,
+      "8": 4,
+      "9": 2
+    },
+    "maximum_depth": 13
+  },
+  "defects": {
+    "DUPLICATE_MEMBERSHIP": 3,
+    "HIERARCHY_CYCLE": 0,
+    "INVALID_IDENTITY": 0,
+    "INVALID_MEMBERSHIP": 0,
+    "MISSING_AREA_PARENT": 41,
+    "MISSING_MEMBER_PARENT": 1543,
+    "UNRESOLVED_REFERENCE": 1581
+  },
+  "examples": [
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:010G0001"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:010G0001",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.45918,
+      "longitude": -2.59254,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "bristol bus station",
+      "root_name": "Bristol Bus Station",
+      "root_stop_area_identity": "naptan-stop-area:010G0001",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 11,
+      "stop_point_ids": [
+        "naptan:01000053203",
+        "naptan:01000053204",
+        "naptan:01000053205",
+        "naptan:01000053206",
+        "naptan:01000053207",
+        "naptan:01000053208",
+        "naptan:01000053209",
+        "naptan:01000053210",
+        "naptan:01000053211",
+        "naptan:01000053212",
+        "naptan:01000053214"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:010G0003"
+      ],
+      "area_type": "GBCS",
+      "complex_identity": "naptan-stop-area:010G0003",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.45599,
+      "longitude": -2.58183,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "old market street",
+      "root_name": "Old Market Street",
+      "root_stop_area_identity": "naptan-stop-area:010G0003",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:0100BRA46646",
+        "naptan:0100BRA46647"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:010G0004"
+      ],
+      "area_type": "GBCS",
+      "complex_identity": "naptan-stop-area:010G0004",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.49653,
+      "longitude": -2.59203,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "southmead hospital",
+      "root_name": "Southmead Hospital",
+      "root_stop_area_identity": "naptan-stop-area:010G0004",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 4,
+      "stop_point_ids": [
+        "naptan:010000007",
+        "naptan:010000033",
+        "naptan:010000034",
+        "naptan:010000035"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:010G0005"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:010G0005",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.45896,
+      "longitude": -2.59313,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "bristol bus station",
+      "root_name": "Bristol Bus Station",
+      "root_stop_area_identity": "naptan-stop-area:010G0005",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 8,
+      "stop_point_ids": [
+        "naptan:01000053216",
+        "naptan:01000053217",
+        "naptan:01000053218",
+        "naptan:01000053219",
+        "naptan:01000053220",
+        "naptan:01000053221",
+        "naptan:01000053222",
+        "naptan:01000053223"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:017G0001"
+      ],
+      "area_type": "GBCS",
+      "complex_identity": "naptan-stop-area:017G0001",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.53955,
+      "longitude": -2.40982,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "yate shopping centre",
+      "root_name": "Yate Shopping Centre",
+      "root_stop_area_identity": "naptan-stop-area:017G0001",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 5,
+      "stop_point_ids": [
+        "naptan:017000003",
+        "naptan:017000004",
+        "naptan:0170SGP90495",
+        "naptan:0170SGP90496",
+        "naptan:0170SGP90497"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:017G0002"
+      ],
+      "area_type": "GBCS",
+      "complex_identity": "naptan-stop-area:017G0002",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.52702,
+      "longitude": -2.5962,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "bus station",
+      "root_name": "Bus Station",
+      "root_stop_area_identity": "naptan-stop-area:017G0002",
+      "status": "MIXED",
+      "stop_area_count": 1,
+      "stop_point_count": 8,
+      "stop_point_ids": [
+        "naptan:0170SGP90851",
+        "naptan:0170SGP90852",
+        "naptan:0170SGP90853",
+        "naptan:0170SGP90854",
+        "naptan:0170SGP90855",
+        "naptan:0170SGP90856",
+        "naptan:0170SGP90857",
+        "naptan:0170SGP90858"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:017G0003"
+      ],
+      "area_type": "GBCS",
+      "complex_identity": "naptan-stop-area:017G0003",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.49985,
+      "longitude": -2.5461,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "frenchay campus",
+      "root_name": "Frenchay Campus",
+      "root_stop_area_identity": "naptan-stop-area:017G0003",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 7,
+      "stop_point_ids": [
+        "naptan:017000025",
+        "naptan:0170SGA01533",
+        "naptan:0170SGP90682",
+        "naptan:0170SGP90683",
+        "naptan:0170SGP90684",
+        "naptan:0170SGP90685",
+        "naptan:0170SGP90686"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:017G0004"
+      ],
+      "area_type": "GBCS",
+      "complex_identity": "naptan-stop-area:017G0004",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.46271,
+      "longitude": -2.50916,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "kings chase centre",
+      "root_name": "Kings Chase Centre",
+      "root_stop_area_identity": "naptan-stop-area:017G0004",
+      "status": "MIXED",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:0170SGB20115",
+        "naptan:0170SGB20116"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:019G0001"
+      ],
+      "area_type": "GBCS",
+      "complex_identity": "naptan-stop-area:019G0001",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.36218,
+      "longitude": -2.90956,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "worle interchange",
+      "root_name": "Worle Interchange",
+      "root_stop_area_identity": "naptan-stop-area:019G0001",
+      "status": "MIXED",
+      "stop_area_count": 1,
+      "stop_point_count": 4,
+      "stop_point_ids": [
+        "naptan:019000017",
+        "naptan:019000018",
+        "naptan:019000019",
+        "naptan:0190NSZ01231"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:019G0002"
+      ],
+      "area_type": "GBCS",
+      "complex_identity": "naptan-stop-area:019G0002",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.43558,
+      "longitude": -2.85199,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "triangle",
+      "root_name": "Triangle",
+      "root_stop_area_identity": "naptan-stop-area:019G0002",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:0190NSC30784",
+        "naptan:0190NSC30785"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:020G33094"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:020G33094",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.15791,
+      "longitude": -0.3521,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "willoughby close",
+      "root_name": "Willoughby Close",
+      "root_stop_area_identity": "naptan-stop-area:020G33094",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:020033094",
+        "naptan:020033095"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:020G33100"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:020G33100",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.15786,
+      "longitude": -0.35362,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "the cross",
+      "root_name": "The Cross",
+      "root_stop_area_identity": "naptan-stop-area:020G33100",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:020033100",
+        "naptan:020033101"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:020G34041"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:020G34041",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.08602,
+      "longitude": -0.48942,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "manor road",
+      "root_name": "Manor Road",
+      "root_stop_area_identity": "naptan-stop-area:020G34041",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:020034041",
+        "naptan:020034042"
+      ]
+    },
+    {
+      "aliases": [
+        "Paradine Road"
+      ],
+      "area_ids": [
+        "naptan-stop-area:020G35325",
+        "naptan-stop-area:020G35648"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:020G35648",
+      "complex_type": "PARENT_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_PARENT_AREA_COORDINATE",
+      "latitude": 52.12534,
+      "longitude": -0.45822,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "london road methodist chapel",
+      "root_name": "London Road Methodist Chapel",
+      "root_stop_area_identity": "naptan-stop-area:020G35648",
+      "status": "ACTIVE",
+      "stop_area_count": 2,
+      "stop_point_count": 4,
+      "stop_point_ids": [
+        "naptan:020035325",
+        "naptan:020035647",
+        "naptan:020035648",
+        "naptan:020035649"
+      ]
+    },
+    {
+      "aliases": [
+        "Bedford Hospital East",
+        "Bedford Hospital West"
+      ],
+      "area_ids": [
+        "naptan-stop-area:020G35715",
+        "naptan-stop-area:020G35717",
+        "naptan-stop-area:020G35812"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:020G35717",
+      "complex_type": "PARENT_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_PARENT_AREA_COORDINATE",
+      "latitude": 52.1294,
+      "longitude": -0.47139,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "britannia road",
+      "root_name": "Britannia Road",
+      "root_stop_area_identity": "naptan-stop-area:020G35717",
+      "status": "ACTIVE",
+      "stop_area_count": 3,
+      "stop_point_count": 6,
+      "stop_point_ids": [
+        "naptan:020035714",
+        "naptan:020035715",
+        "naptan:020035716",
+        "naptan:020035717",
+        "naptan:020035812",
+        "naptan:020035813"
+      ]
+    },
+    {
+      "aliases": [
+        "Kingsway Link",
+        "St John's Street"
+      ],
+      "area_ids": [
+        "naptan-stop-area:020G35770",
+        "naptan-stop-area:020G35771",
+        "naptan-stop-area:020G35817"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:020G35817",
+      "complex_type": "PARENT_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_PARENT_AREA_COORDINATE",
+      "latitude": 52.1327,
+      "longitude": -0.46654,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "bedford college",
+      "root_name": "Bedford College",
+      "root_stop_area_identity": "naptan-stop-area:020G35817",
+      "status": "ACTIVE",
+      "stop_area_count": 3,
+      "stop_point_count": 4,
+      "stop_point_ids": [
+        "naptan:020035770",
+        "naptan:020035771",
+        "naptan:020035817",
+        "naptan:020035822"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:020GSHARNBRK"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:020GSHARNBRK",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.22165,
+      "longitude": -0.55435,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "upper school",
+      "root_name": "Upper School",
+      "root_stop_area_identity": "naptan-stop-area:020GSHARNBRK",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 3,
+      "stop_point_ids": [
+        "naptan:020037067",
+        "naptan:020037068",
+        "naptan:020037069"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G12001"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G12001",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.85038,
+      "longitude": -0.37391,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "chiltern green road",
+      "root_name": "Chiltern Green Road",
+      "root_stop_area_identity": "naptan-stop-area:021G12001",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 3,
+      "stop_point_ids": [
+        "naptan:021012001",
+        "naptan:021012006",
+        "naptan:021024597"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G12007"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G12007",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.85576,
+      "longitude": -0.41436,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "bull wood",
+      "root_name": "Bull Wood",
+      "root_stop_area_identity": "naptan-stop-area:021G12007",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021012007",
+        "naptan:021012008"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G13053"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13053",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.8903,
+      "longitude": -0.48982,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "allenby avenue",
+      "root_name": "Allenby Avenue",
+      "root_stop_area_identity": "naptan-stop-area:021G13053",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013053",
+        "naptan:021013252"
+      ]
+    },
+    {
+      "aliases": [
+        "Friars Walk",
+        "The Quadrant",
+        "The Square",
+        "West Street"
+      ],
+      "area_ids": [
+        "naptan-stop-area:021G13101",
+        "naptan-stop-area:021G13102",
+        "naptan-stop-area:021G13107",
+        "naptan-stop-area:021G13111",
+        "naptan-stop-area:021G16557"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13107",
+      "complex_type": "MULTIMODAL_PARENT_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_PARENT_AREA_COORDINATE",
+      "latitude": 51.8865,
+      "longitude": -0.5195,
+      "modes": [
+        "bus_coach",
+        "taxi"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "church street",
+      "root_name": "Church Street",
+      "root_stop_area_identity": "naptan-stop-area:021G13107",
+      "status": "MIXED",
+      "stop_area_count": 5,
+      "stop_point_count": 11,
+      "stop_point_ids": [
+        "naptan:021013101",
+        "naptan:021013102",
+        "naptan:021013104",
+        "naptan:021013105",
+        "naptan:021013107",
+        "naptan:021013108",
+        "naptan:021013111",
+        "naptan:021013112",
+        "naptan:021013113",
+        "naptan:021013901",
+        "naptan:021016557"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G13114"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13114",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.88697,
+      "longitude": -0.51388,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "priory view",
+      "root_name": "Priory View",
+      "root_stop_area_identity": "naptan-stop-area:021G13114",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013114",
+        "naptan:021013115"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G13119"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13119",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.88485,
+      "longitude": -0.52592,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "st marys church",
+      "root_name": "St Marys Church",
+      "root_stop_area_identity": "naptan-stop-area:021G13119",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013119",
+        "naptan:021013120"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G13157"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13157",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.85362,
+      "longitude": -0.44569,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "manor road",
+      "root_name": "Manor Road",
+      "root_stop_area_identity": "naptan-stop-area:021G13157",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013517",
+        "naptan:021013520"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G13258"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13258",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.88747,
+      "longitude": -0.5078,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "boscombe road",
+      "root_name": "Boscombe Road",
+      "root_stop_area_identity": "naptan-stop-area:021G13258",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013258",
+        "naptan:021013259"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G13350"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13350",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.87768,
+      "longitude": -0.50629,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "mayfield stores",
+      "root_name": "Mayfield Stores",
+      "root_stop_area_identity": "naptan-stop-area:021G13350",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013350",
+        "naptan:021013352"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G13404"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13404",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.87838,
+      "longitude": -0.52355,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "queensbury academy",
+      "root_name": "Queensbury Academy",
+      "root_stop_area_identity": "naptan-stop-area:021G13404",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013404",
+        "naptan:021016528"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G13501"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13501",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.86233,
+      "longitude": -0.47148,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "eden brae business park",
+      "root_name": "Eden Brae Business Park",
+      "root_stop_area_identity": "naptan-stop-area:021G13501",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013501",
+        "naptan:021013551"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G13518"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13518",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.85559,
+      "longitude": -0.44422,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "woodside road",
+      "root_name": "Woodside Road",
+      "root_stop_area_identity": "naptan-stop-area:021G13518",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013518",
+        "naptan:021013519"
+      ]
+    },
+    {
+      "aliases": [
+        "Crossroads"
+      ],
+      "area_ids": [
+        "naptan-stop-area:021G13536",
+        "naptan-stop-area:021G13538"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13536",
+      "complex_type": "PARENT_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_PARENT_AREA_COORDINATE",
+      "latitude": 51.85485,
+      "longitude": -0.4341,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "prebendal drive",
+      "root_name": "Prebendal Drive",
+      "root_stop_area_identity": "naptan-stop-area:021G13536",
+      "status": "MIXED",
+      "stop_area_count": 2,
+      "stop_point_count": 4,
+      "stop_point_ids": [
+        "naptan:021013536",
+        "naptan:021013537",
+        "naptan:021013538",
+        "naptan:021013544"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G13606"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13606",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.89235,
+      "longitude": -0.52984,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "westfield road",
+      "root_name": "Westfield Road",
+      "root_stop_area_identity": "naptan-stop-area:021G13606",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013606",
+        "naptan:021013608"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G13611"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13611",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.88877,
+      "longitude": -0.52469,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "regent street",
+      "root_name": "Regent Street",
+      "root_stop_area_identity": "naptan-stop-area:021G13611",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013611",
+        "naptan:021013612"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G13663"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13663",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.90498,
+      "longitude": -0.51599,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "drury lane",
+      "root_name": "Drury Lane",
+      "root_stop_area_identity": "naptan-stop-area:021G13663",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013663",
+        "naptan:021013908"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G13665"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13665",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.91769,
+      "longitude": -0.50191,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "the farmstead",
+      "root_name": "The Farmstead",
+      "root_stop_area_identity": "naptan-stop-area:021G13665",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013665",
+        "naptan:021013666"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G13702"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13702",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.89633,
+      "longitude": -0.529,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "all saints academy",
+      "root_name": "All Saints Academy",
+      "root_stop_area_identity": "naptan-stop-area:021G13702",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013702",
+        "naptan:021013703"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G13708"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13708",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.90371,
+      "longitude": -0.52231,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "morrisons",
+      "root_name": "Morrisons",
+      "root_stop_area_identity": "naptan-stop-area:021G13708",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013708",
+        "naptan:021013907"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G13720"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13720",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.91301,
+      "longitude": -0.50598,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "houstone school",
+      "root_name": "Houstone School",
+      "root_stop_area_identity": "naptan-stop-area:021G13720",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013720",
+        "naptan:021013721"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G13722"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13722",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.9106,
+      "longitude": -0.50106,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "dolphin drive",
+      "root_name": "Dolphin Drive",
+      "root_stop_area_identity": "naptan-stop-area:021G13722",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013722",
+        "naptan:021013723"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G13724"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13724",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.91117,
+      "longitude": -0.50731,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "lime tree primary academy",
+      "root_name": "Lime Tree Primary Academy",
+      "root_stop_area_identity": "naptan-stop-area:021G13724",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013724",
+        "naptan:021013725"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G13755"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G13755",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.8955,
+      "longitude": -0.50373,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "the vale academy",
+      "root_name": "The Vale Academy",
+      "root_stop_area_identity": "naptan-stop-area:021G13755",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013755",
+        "naptan:021016520"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G140143"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G140143",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.89758,
+      "longitude": -0.64282,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "slapton road",
+      "root_name": "Slapton Road",
+      "root_stop_area_identity": "naptan-stop-area:021G140143",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021014043",
+        "naptan:021014067"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G14030"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G14030",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.91327,
+      "longitude": -0.64462,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "lywood road",
+      "root_name": "Lywood Road",
+      "root_stop_area_identity": "naptan-stop-area:021G14030",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021014030",
+        "naptan:021014031"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G14044"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G14044",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.89693,
+      "longitude": -0.63668,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "leighton road",
+      "root_name": "Leighton Road",
+      "root_stop_area_identity": "naptan-stop-area:021G14044",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021014044",
+        "naptan:021014070"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G14061"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G14061",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.90803,
+      "longitude": -0.58423,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "all saints church",
+      "root_name": "All Saints' Church",
+      "root_stop_area_identity": "naptan-stop-area:021G14061",
+      "status": "MIXED",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021014061",
+        "naptan:021014062"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G14124"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G14124",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.91366,
+      "longitude": -0.67495,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "victoria road",
+      "root_name": "Victoria Road",
+      "root_stop_area_identity": "naptan-stop-area:021G14124",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021014018",
+        "naptan:021014124"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G14484"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G14484",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.92069,
+      "longitude": -0.67457,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "golden riddy south",
+      "root_name": "Golden Riddy South",
+      "root_stop_area_identity": "naptan-stop-area:021G14484",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021014844",
+        "naptan:021024580"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G14828"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G14828",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.91376,
+      "longitude": -0.68137,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "bunkers lane",
+      "root_name": "Bunkers Lane",
+      "root_stop_area_identity": "naptan-stop-area:021G14828",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021014828",
+        "naptan:021014829"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G14849"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G14849",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.92346,
+      "longitude": -0.67973,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "alwins field",
+      "root_name": "Alwins Field",
+      "root_stop_area_identity": "naptan-stop-area:021G14849",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021014849",
+        "naptan:021024535"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G15000"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G15000",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.94561,
+      "longitude": -0.438,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "streatley turn",
+      "root_name": "Streatley Turn",
+      "root_stop_area_identity": "naptan-stop-area:021G15000",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021015000",
+        "naptan:021015001"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G15100"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G15100",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.9142,
+      "longitude": -0.48292,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "vauxhall warehouse",
+      "root_name": "Vauxhall Warehouse",
+      "root_stop_area_identity": "naptan-stop-area:021G15100",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021015100",
+        "naptan:021015101"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G15129"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G15129",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.94343,
+      "longitude": -0.53404,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "bp garage",
+      "root_name": "BP Garage",
+      "root_stop_area_identity": "naptan-stop-area:021G15129",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021015129",
+        "naptan:021015130"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G16021"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G16021",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.8787,
+      "longitude": -0.59307,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "park lane",
+      "root_name": "Park Lane",
+      "root_stop_area_identity": "naptan-stop-area:021G16021",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021016021",
+        "naptan:021016022"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G16066"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G16066",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.85012,
+      "longitude": -0.49388,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "kensworth primary school",
+      "root_name": "Kensworth Primary School",
+      "root_stop_area_identity": "naptan-stop-area:021G16066",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021016066",
+        "naptan:021016067"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G16104"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G16104",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.83029,
+      "longitude": -0.52068,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "studham lower school",
+      "root_name": "Studham Lower School",
+      "root_stop_area_identity": "naptan-stop-area:021G16104",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021016104",
+        "naptan:021016105"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G16506"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G16506",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.90956,
+      "longitude": -0.65991,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "enterprise way",
+      "root_name": "Enterprise Way",
+      "root_stop_area_identity": "naptan-stop-area:021G16506",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021016506",
+        "naptan:021024635"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G16521"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G16521",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.89148,
+      "longitude": -0.51291,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "chiltern park",
+      "root_name": "Chiltern Park",
+      "root_stop_area_identity": "naptan-stop-area:021G16521",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013762",
+        "naptan:021016521"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G16523"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G16523",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.91398,
+      "longitude": -0.65778,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "morrisons",
+      "root_name": "Morrisons",
+      "root_stop_area_identity": "naptan-stop-area:021G16523",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021014025",
+        "naptan:021016523"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G16545"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G16545",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.89045,
+      "longitude": -0.51713,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "central bedfordshire college",
+      "root_name": "Central Bedfordshire College",
+      "root_stop_area_identity": "naptan-stop-area:021G16545",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021016545",
+        "naptan:021016546"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G16547"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G16547",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.89402,
+      "longitude": -0.52498,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "portland ride",
+      "root_name": "Portland Ride",
+      "root_stop_area_identity": "naptan-stop-area:021G16547",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021016547",
+        "naptan:021016548"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G16549"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G16549",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.89091,
+      "longitude": -0.51559,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "white lion retail park",
+      "root_name": "White Lion Retail Park",
+      "root_stop_area_identity": "naptan-stop-area:021G16549",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021016549",
+        "naptan:021016550"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G16551"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G16551",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.88827,
+      "longitude": -0.47438,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "stanton road",
+      "root_name": "Stanton Road",
+      "root_stop_area_identity": "naptan-stop-area:021G16551",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021016551",
+        "naptan:021016552"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G16555"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G16555",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.8983,
+      "longitude": -0.52455,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "blackburn road",
+      "root_name": "Blackburn Road",
+      "root_stop_area_identity": "naptan-stop-area:021G16555",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021016555",
+        "naptan:021016556"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G16560"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G16560",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.934,
+      "longitude": -0.59097,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "kings arms farm park",
+      "root_name": "Kings Arms Farm Park",
+      "root_stop_area_identity": "naptan-stop-area:021G16560",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021016560",
+        "naptan:021016561"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G16562"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G16562",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.92084,
+      "longitude": -0.68227,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "knaves hill",
+      "root_name": "Knaves Hill",
+      "root_stop_area_identity": "naptan-stop-area:021G16562",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021016563",
+        "naptan:021016564"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G16564"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G16564",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.91947,
+      "longitude": -0.67834,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "st mary s way",
+      "root_name": "St Mary's Way",
+      "root_stop_area_identity": "naptan-stop-area:021G16564",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 1,
+      "stop_point_ids": [
+        "naptan:021016565"
+      ]
+    },
+    {
+      "aliases": [
+        "Duck Lane"
+      ],
+      "area_ids": [
+        "naptan-stop-area:021G20006",
+        "naptan-stop-area:021G20007"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G20007",
+      "complex_type": "PARENT_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_PARENT_AREA_COORDINATE",
+      "latitude": 51.98939,
+      "longitude": -0.61921,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "high street",
+      "root_name": "High Street",
+      "root_stop_area_identity": "naptan-stop-area:021G20007",
+      "status": "ACTIVE",
+      "stop_area_count": 2,
+      "stop_point_count": 4,
+      "stop_point_ids": [
+        "naptan:021020006",
+        "naptan:021020007",
+        "naptan:021020008",
+        "naptan:021020011"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G20045"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G20045",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.93089,
+      "longitude": -0.58627,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "hockliffe signals",
+      "root_name": "Hockliffe Signals",
+      "root_stop_area_identity": "naptan-stop-area:021G20045",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 3,
+      "stop_point_ids": [
+        "naptan:021013568",
+        "naptan:021013569",
+        "naptan:021020045"
+      ]
+    },
+    {
+      "aliases": [
+        "Rectory Lane"
+      ],
+      "area_ids": [
+        "naptan-stop-area:021G20051",
+        "naptan-stop-area:021G20054"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G20051",
+      "complex_type": "PARENT_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_PARENT_AREA_COORDINATE",
+      "latitude": 52.03279,
+      "longitude": -0.494,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "prince of wales",
+      "root_name": "Prince of Wales",
+      "root_stop_area_identity": "naptan-stop-area:021G20051",
+      "status": "ACTIVE",
+      "stop_area_count": 2,
+      "stop_point_count": 4,
+      "stop_point_ids": [
+        "naptan:021020051",
+        "naptan:021020054",
+        "naptan:021020055",
+        "naptan:021020524"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G20052"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G20052",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.03182,
+      "longitude": -0.49705,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "alameda road",
+      "root_name": "Alameda Road",
+      "root_stop_area_identity": "naptan-stop-area:021G20052",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021020052",
+        "naptan:021020053"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G20202"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G20202",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.00911,
+      "longitude": -0.49829,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "the ridgeway",
+      "root_name": "The Ridgeway",
+      "root_stop_area_identity": "naptan-stop-area:021G20202",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021020202",
+        "naptan:021020203"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G20204"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G20204",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.01325,
+      "longitude": -0.50107,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "williams way",
+      "root_name": "Williams Way",
+      "root_stop_area_identity": "naptan-stop-area:021G20204",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021020204",
+        "naptan:021020205"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G20281"
+      ],
+      "area_type": "GCLS",
+      "complex_identity": "naptan-stop-area:021G20281",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.02194,
+      "longitude": -0.49266,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "aragon road",
+      "root_name": "Aragon Road",
+      "root_stop_area_identity": "naptan-stop-area:021G20281",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 4,
+      "stop_point_ids": [
+        "naptan:021020281",
+        "naptan:021020282",
+        "naptan:021028143",
+        "naptan:021028144"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G20299"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G20299",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.02688,
+      "longitude": -0.494,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "arthur street",
+      "root_name": "Arthur Street",
+      "root_stop_area_identity": "naptan-stop-area:021G20299",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021020299",
+        "naptan:021020300"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G20320"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G20320",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.00513,
+      "longitude": -0.4248,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "obelisk way",
+      "root_name": "Obelisk Way",
+      "root_stop_area_identity": "naptan-stop-area:021G20320",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021020320",
+        "naptan:021020321"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G20326"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G20326",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.01432,
+      "longitude": -0.42659,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "newbury lane",
+      "root_name": "Newbury Lane",
+      "root_stop_area_identity": "naptan-stop-area:021G20326",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021020326",
+        "naptan:021020327"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G20404"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G20404",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.0312,
+      "longitude": -0.47347,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "snow hill",
+      "root_name": "Snow Hill",
+      "root_stop_area_identity": "naptan-stop-area:021G20404",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021020404",
+        "naptan:021020405"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G20525"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G20525",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.0432,
+      "longitude": -0.63656,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "the swan",
+      "root_name": "The Swan",
+      "root_stop_area_identity": "naptan-stop-area:021G20525",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021020525",
+        "naptan:021020526"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G20708"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G20708",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.01468,
+      "longitude": -0.4278,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "apple tree close",
+      "root_name": "Apple Tree Close",
+      "root_stop_area_identity": "naptan-stop-area:021G20708",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021020708",
+        "naptan:021020709"
+      ]
+    },
+    {
+      "aliases": [
+        "The Green"
+      ],
+      "area_ids": [
+        "naptan-stop-area:021G21002",
+        "naptan-stop-area:021GCLOPHILL"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G21002",
+      "complex_type": "PARENT_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_PARENT_AREA_COORDINATE",
+      "latitude": 52.02787,
+      "longitude": -0.42554,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "the flying horse",
+      "root_name": "The Flying Horse",
+      "root_stop_area_identity": "naptan-stop-area:021G21002",
+      "status": "ACTIVE",
+      "stop_area_count": 2,
+      "stop_point_count": 3,
+      "stop_point_ids": [
+        "naptan:021021000",
+        "naptan:021021001",
+        "naptan:021021002"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G21021"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G21021",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.03185,
+      "longitude": -0.40714,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "jacques lane",
+      "root_name": "Jacques Lane",
+      "root_stop_area_identity": "naptan-stop-area:021G21021",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021021021",
+        "naptan:021021022"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G21040"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G21040",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.98212,
+      "longitude": -0.39444,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "st margaret s church",
+      "root_name": "St Margaret's Church",
+      "root_stop_area_identity": "naptan-stop-area:021G21040",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021021040",
+        "naptan:021021041"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G21050"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G21050",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.98489,
+      "longitude": -0.36698,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "apsley end road",
+      "root_name": "Apsley End Road",
+      "root_stop_area_identity": "naptan-stop-area:021G21050",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021021050",
+        "naptan:021021051"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22004"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22004",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.03736,
+      "longitude": -0.33974,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "scotgrange meadow",
+      "root_name": "Scotgrange Meadow",
+      "root_stop_area_identity": "naptan-stop-area:021G22004",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022004",
+        "naptan:021022005"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22018"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22018",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.03613,
+      "longitude": -0.31079,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "knolls way",
+      "root_name": "Knolls Way",
+      "root_stop_area_identity": "naptan-stop-area:021G22018",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022018",
+        "naptan:021022019"
+      ]
+    },
+    {
+      "aliases": [
+        "The Crown - West"
+      ],
+      "area_ids": [
+        "naptan-stop-area:021G22024",
+        "naptan-stop-area:021G22026"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22026",
+      "complex_type": "PARENT_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_PARENT_AREA_COORDINATE",
+      "latitude": 52.02815,
+      "longitude": -0.28593,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "the crown north",
+      "root_name": "The Crown - North",
+      "root_stop_area_identity": "naptan-stop-area:021G22026",
+      "status": "ACTIVE",
+      "stop_area_count": 2,
+      "stop_point_count": 4,
+      "stop_point_ids": [
+        "naptan:021022024",
+        "naptan:021022025",
+        "naptan:021022026",
+        "naptan:021022027"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22032"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22032",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.03774,
+      "longitude": -0.28558,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "newtown",
+      "root_name": "Newtown",
+      "root_stop_area_identity": "naptan-stop-area:021G22032",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022032",
+        "naptan:021022033"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22034"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22034",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.03763,
+      "longitude": -0.28726,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "mill close",
+      "root_name": "Mill Close",
+      "root_stop_area_identity": "naptan-stop-area:021G22034",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022034",
+        "naptan:021022139"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22037"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22037",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.03907,
+      "longitude": -0.30139,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "all saints church",
+      "root_name": "All Saints' Church",
+      "root_stop_area_identity": "naptan-stop-area:021G22037",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022037",
+        "naptan:021022155"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22087"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22087",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.00928,
+      "longitude": -0.26351,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "cricketers road",
+      "root_name": "Cricketers Road",
+      "root_stop_area_identity": "naptan-stop-area:021G22087",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022087",
+        "naptan:021022088"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22089"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22089",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.00541,
+      "longitude": -0.26565,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "west drive",
+      "root_name": "West Drive",
+      "root_stop_area_identity": "naptan-stop-area:021G22089",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022089",
+        "naptan:021022090"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22091"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22091",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.00301,
+      "longitude": -0.26615,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "london row",
+      "root_name": "London Row",
+      "root_stop_area_identity": "naptan-stop-area:021G22091",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022091",
+        "naptan:021022092"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22100"
+      ],
+      "area_type": "GCLS",
+      "complex_identity": "naptan-stop-area:021G22100",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.01996,
+      "longitude": -0.24364,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "etonbury academy",
+      "root_name": "Etonbury Academy",
+      "root_stop_area_identity": "naptan-stop-area:021G22100",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 3,
+      "stop_point_ids": [
+        "naptan:021022099",
+        "naptan:021022100",
+        "naptan:021022501"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22118"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22118",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.01649,
+      "longitude": -0.23144,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "meadow way",
+      "root_name": "Meadow Way",
+      "root_stop_area_identity": "naptan-stop-area:021G22118",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022118",
+        "naptan:021022119"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22164"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22164",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.01083,
+      "longitude": -0.38007,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "st giles church",
+      "root_name": "St Giles' Church",
+      "root_stop_area_identity": "naptan-stop-area:021G22164",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022164",
+        "naptan:021022165"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22195"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22195",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.0157,
+      "longitude": -0.34212,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "fowlers drive",
+      "root_name": "Fowlers Drive",
+      "root_stop_area_identity": "naptan-stop-area:021G22195",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022195",
+        "naptan:021022196"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22211"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22211",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.0064,
+      "longitude": -0.32638,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "all saints church",
+      "root_name": "All Saints' Church",
+      "root_stop_area_identity": "naptan-stop-area:021G22211",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022211",
+        "naptan:021022212"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22237"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22237",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.0133,
+      "longitude": -0.25925,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "gothic way hail + ride",
+      "root_name": "Gothic Way Hail + Ride",
+      "root_stop_area_identity": "naptan-stop-area:021G22237",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022237",
+        "naptan:021022238"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22239"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22239",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.03563,
+      "longitude": -0.29869,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "miles drive",
+      "root_name": "Miles Drive",
+      "root_stop_area_identity": "naptan-stop-area:021G22239",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022239",
+        "naptan:021022240"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22402"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22402",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.00099,
+      "longitude": -0.35704,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "upton end road",
+      "root_name": "Upton End Road",
+      "root_stop_area_identity": "naptan-stop-area:021G22402",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022402",
+        "naptan:021022403"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22500"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22500",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.00714,
+      "longitude": -0.3041,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "bird in hand",
+      "root_name": "Bird In Hand",
+      "root_stop_area_identity": "naptan-stop-area:021G22500",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022500",
+        "naptan:021024516"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22502"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22502",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.00848,
+      "longitude": -0.23882,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "peggles lane",
+      "root_name": "Peggles Lane",
+      "root_stop_area_identity": "naptan-stop-area:021G22502",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022502",
+        "naptan:021022503"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22504"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22504",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.00986,
+      "longitude": -0.23266,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "speedwell way",
+      "root_name": "Speedwell Way",
+      "root_stop_area_identity": "naptan-stop-area:021G22504",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022504",
+        "naptan:021022505"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22508"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22508",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.0121,
+      "longitude": -0.22871,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "community centre",
+      "root_name": "Community Centre",
+      "root_stop_area_identity": "naptan-stop-area:021G22508",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 1,
+      "stop_point_ids": [
+        "naptan:021022508"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22515"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22515",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.01165,
+      "longitude": -0.22175,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "groveland way",
+      "root_name": "Groveland Way",
+      "root_stop_area_identity": "naptan-stop-area:021G22515",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022515",
+        "naptan:021022516"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22520"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22520",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.03437,
+      "longitude": -0.33173,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "queen elizabeth close",
+      "root_name": "Queen Elizabeth Close",
+      "root_stop_area_identity": "naptan-stop-area:021G22520",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022520",
+        "naptan:021022521"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G22522"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G22522",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.01953,
+      "longitude": -0.33618,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "orchard close",
+      "root_name": "Orchard Close",
+      "root_stop_area_identity": "naptan-stop-area:021G22522",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021022522",
+        "naptan:021022523"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G23014"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G23014",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.06477,
+      "longitude": -0.61645,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "lodge road",
+      "root_name": "Lodge Road",
+      "root_stop_area_identity": "naptan-stop-area:021G23014",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021023014",
+        "naptan:021023015"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G23023"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G23023",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.03426,
+      "longitude": -0.59772,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "shops",
+      "root_name": "Shops",
+      "root_stop_area_identity": "naptan-stop-area:021G23023",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021023023",
+        "naptan:021023026"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G23500"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G23500",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.07586,
+      "longitude": -0.59611,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "crane way",
+      "root_name": "Crane Way",
+      "root_stop_area_identity": "naptan-stop-area:021G23500",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021023500",
+        "naptan:021023501"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24017"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24017",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.06499,
+      "longitude": -0.54644,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "oat piece",
+      "root_name": "Oat Piece",
+      "root_stop_area_identity": "naptan-stop-area:021G24017",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024017",
+        "naptan:021024018"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24051"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24051",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.06585,
+      "longitude": -0.47702,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "mill lane",
+      "root_name": "Mill Lane",
+      "root_stop_area_identity": "naptan-stop-area:021G24051",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024051",
+        "naptan:021024052"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24053"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24053",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.08205,
+      "longitude": -0.48784,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "juniper drive",
+      "root_name": "Juniper Drive",
+      "root_stop_area_identity": "naptan-stop-area:021G24053",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024053",
+        "naptan:021024054"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24060"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24060",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.04586,
+      "longitude": -0.49776,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "lockheed martin",
+      "root_name": "Lockheed Martin",
+      "root_stop_area_identity": "naptan-stop-area:021G24060",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024059",
+        "naptan:021024060"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24507"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24507",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.06123,
+      "longitude": -0.37731,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "standalone warren",
+      "root_name": "Standalone Warren",
+      "root_stop_area_identity": "naptan-stop-area:021G24507",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024506",
+        "naptan:021024507"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24509"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24509",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.14639,
+      "longitude": -0.32169,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "park view",
+      "root_name": "Park View",
+      "root_stop_area_identity": "naptan-stop-area:021G24509",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024509",
+        "naptan:021024510"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24517"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24517",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.88566,
+      "longitude": -0.49791,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "jeans way",
+      "root_name": "Jeans Way",
+      "root_stop_area_identity": "naptan-stop-area:021G24517",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024517",
+        "naptan:021024518"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24521"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24521",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.9298,
+      "longitude": -0.55972,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "st mary s close",
+      "root_name": "St Mary's Close",
+      "root_stop_area_identity": "naptan-stop-area:021G24521",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024521",
+        "naptan:021024522"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24527"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24527",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.17102,
+      "longitude": -0.30128,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "station road",
+      "root_name": "Station Road",
+      "root_stop_area_identity": "naptan-stop-area:021G24527",
+      "status": "SOURCE_DELETED",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024527",
+        "naptan:021024529"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24542"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24542",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.02749,
+      "longitude": -0.35646,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "gravenhurst road",
+      "root_name": "Gravenhurst Road",
+      "root_stop_area_identity": "naptan-stop-area:021G24542",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024542",
+        "naptan:021024543"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24544"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24544",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.97022,
+      "longitude": -0.47151,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "lovett green",
+      "root_name": "Lovett Green",
+      "root_stop_area_identity": "naptan-stop-area:021G24544",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024534",
+        "naptan:021024544"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24545"
+      ],
+      "area_type": "GCLS",
+      "complex_identity": "naptan-stop-area:021G24545",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.96688,
+      "longitude": -0.48735,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "harlington upper school",
+      "root_name": "Harlington Upper School",
+      "root_stop_area_identity": "naptan-stop-area:021G24545",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 3,
+      "stop_point_ids": [
+        "naptan:021024545",
+        "naptan:021024546",
+        "naptan:021028172"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24547"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24547",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.9402,
+      "longitude": -0.47757,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "streatley road",
+      "root_name": "Streatley Road",
+      "root_stop_area_identity": "naptan-stop-area:021G24547",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 3,
+      "stop_point_ids": [
+        "naptan:021015055",
+        "naptan:021015056",
+        "naptan:021024547"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24548"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24548",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.93146,
+      "longitude": -0.47757,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "church road",
+      "root_name": "Church Road",
+      "root_stop_area_identity": "naptan-stop-area:021G24548",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024548",
+        "naptan:021024549"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24552"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24552",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.00185,
+      "longitude": -0.46439,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "greenfield academy",
+      "root_name": "Greenfield Academy",
+      "root_stop_area_identity": "naptan-stop-area:021G24552",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024552",
+        "naptan:021024553"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24554"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24554",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.02281,
+      "longitude": -0.33254,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "new meppershall care home",
+      "root_name": "New Meppershall Care Home",
+      "root_stop_area_identity": "naptan-stop-area:021G24554",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024554",
+        "naptan:021024555"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24558"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24558",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.90861,
+      "longitude": -0.49909,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "conquest road",
+      "root_name": "Conquest Road",
+      "root_stop_area_identity": "naptan-stop-area:021G24558",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024558",
+        "naptan:021024559"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24562"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24562",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.91561,
+      "longitude": -0.42049,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "furze close",
+      "root_name": "Furze Close",
+      "root_stop_area_identity": "naptan-stop-area:021G24562",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024562",
+        "naptan:021024567"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24564"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24564",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.91251,
+      "longitude": -0.41452,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "troon gardens",
+      "root_name": "Troon Gardens",
+      "root_stop_area_identity": "naptan-stop-area:021G24564",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024564",
+        "naptan:021024565"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24565"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24565",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.91367,
+      "longitude": -0.41824,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "ingram gardens",
+      "root_name": "Ingram Gardens",
+      "root_stop_area_identity": "naptan-stop-area:021G24565",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024563",
+        "naptan:021024566"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24568"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24568",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.09244,
+      "longitude": -0.24185,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "sullivan court",
+      "root_name": "Sullivan Court",
+      "root_stop_area_identity": "naptan-stop-area:021G24568",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024568",
+        "naptan:021024569"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24572"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24572",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.98693,
+      "longitude": -0.37154,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "chalkley bush close",
+      "root_name": "Chalkley Bush Close",
+      "root_stop_area_identity": "naptan-stop-area:021G24572",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024572",
+        "naptan:021024573"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24577"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24577",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.91055,
+      "longitude": -0.54659,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "thorn turn depot",
+      "root_name": "Thorn Turn Depot",
+      "root_stop_area_identity": "naptan-stop-area:021G24577",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024577",
+        "naptan:021024578"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24581"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24581",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.92215,
+      "longitude": -0.67426,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "golden riddy north",
+      "root_name": "Golden Riddy North",
+      "root_stop_area_identity": "naptan-stop-area:021G24581",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024581",
+        "naptan:021024582"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24583"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24583",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.91654,
+      "longitude": -0.64459,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "brownslea",
+      "root_name": "Brownslea",
+      "root_stop_area_identity": "naptan-stop-area:021G24583",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024583",
+        "naptan:021024596"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24584"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24584",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.85139,
+      "longitude": -0.44691,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "woodside view",
+      "root_name": "Woodside View",
+      "root_stop_area_identity": "naptan-stop-area:021G24584",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 3,
+      "stop_point_ids": [
+        "naptan:021013521",
+        "naptan:021013533",
+        "naptan:021024584"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24586"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24586",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.8808,
+      "longitude": -0.5372,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "royce close",
+      "root_name": "Royce Close",
+      "root_stop_area_identity": "naptan-stop-area:021G24586",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024586",
+        "naptan:021024587"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24589"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24589",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.918,
+      "longitude": -0.64238,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "clipstone crescent",
+      "root_name": "Clipstone Crescent",
+      "root_stop_area_identity": "naptan-stop-area:021G24589",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021014814",
+        "naptan:021024589"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24590"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24590",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.91697,
+      "longitude": -0.64221,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "midway",
+      "root_name": "Midway",
+      "root_stop_area_identity": "naptan-stop-area:021G24590",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021014815",
+        "naptan:021024590"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24591"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24591",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.91605,
+      "longitude": -0.63955,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "russell way",
+      "root_name": "Russell Way",
+      "root_stop_area_identity": "naptan-stop-area:021G24591",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021014816",
+        "naptan:021024591"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24592"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24592",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.91504,
+      "longitude": -0.64296,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "highfield road",
+      "root_name": "Highfield Road",
+      "root_stop_area_identity": "naptan-stop-area:021G24592",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021014817",
+        "naptan:021024592"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24599"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24599",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.11256,
+      "longitude": -0.22223,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "church",
+      "root_name": "Church",
+      "root_stop_area_identity": "naptan-stop-area:021G24599",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024599",
+        "naptan:021024601"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24610"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24610",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.05643,
+      "longitude": -0.31081,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "the green man",
+      "root_name": "The Green Man",
+      "root_stop_area_identity": "naptan-stop-area:021G24610",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024610",
+        "naptan:021024630"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24611"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24611",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.02947,
+      "longitude": -0.33292,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "polehanger farm",
+      "root_name": "Polehanger Farm",
+      "root_stop_area_identity": "naptan-stop-area:021G24611",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024611",
+        "naptan:021024629"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24612"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24612",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.08904,
+      "longitude": -0.24143,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "apollo gardens",
+      "root_name": "Apollo Gardens",
+      "root_stop_area_identity": "naptan-stop-area:021G24612",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024612",
+        "naptan:021026173"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24613"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24613",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.08671,
+      "longitude": -0.24184,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "ouse way",
+      "root_name": "Ouse Way",
+      "root_stop_area_identity": "naptan-stop-area:021G24613",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024613",
+        "naptan:021024614"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24615"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24615",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.09161,
+      "longitude": -0.25007,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "glebe road",
+      "root_name": "Glebe Road",
+      "root_stop_area_identity": "naptan-stop-area:021G24615",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024615",
+        "naptan:021026063"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24616"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24616",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.09589,
+      "longitude": -0.26482,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "mulberry close",
+      "root_name": "Mulberry Close",
+      "root_stop_area_identity": "naptan-stop-area:021G24616",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024616",
+        "naptan:021024617"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24618"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24618",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.09426,
+      "longitude": -0.26274,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "pine close",
+      "root_name": "Pine Close",
+      "root_stop_area_identity": "naptan-stop-area:021G24618",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024618",
+        "naptan:021024619"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24620"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24620",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.89751,
+      "longitude": -0.54148,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "barrie avenue",
+      "root_name": "Barrie Avenue",
+      "root_stop_area_identity": "naptan-stop-area:021G24620",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021013668",
+        "naptan:021024620"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24622"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24622",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.12766,
+      "longitude": -0.22824,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "nursery close",
+      "root_name": "Nursery Close",
+      "root_stop_area_identity": "naptan-stop-area:021G24622",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024622",
+        "naptan:021024623"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24624"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24624",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.0078,
+      "longitude": -0.2199,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "norton road",
+      "root_name": "Norton Road",
+      "root_stop_area_identity": "naptan-stop-area:021G24624",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024624",
+        "naptan:021024625"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24627"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24627",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.03167,
+      "longitude": -0.52108,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "center parcs roundabout",
+      "root_name": "Center Parcs Roundabout",
+      "root_stop_area_identity": "naptan-stop-area:021G24627",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024627",
+        "naptan:021024628"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24634"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24634",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.89739,
+      "longitude": -0.64063,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "hill view lane",
+      "root_name": "Hill View Lane",
+      "root_stop_area_identity": "naptan-stop-area:021G24634",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024634",
+        "naptan:021024641"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24642"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24642",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.9213,
+      "longitude": -0.63081,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "sagan rise",
+      "root_name": "Sagan Rise",
+      "root_stop_area_identity": "naptan-stop-area:021G24642",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024642",
+        "naptan:021024643"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G24644"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G24644",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.84757,
+      "longitude": -0.44765,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "woodside animal farm",
+      "root_name": "Woodside Animal Farm",
+      "root_stop_area_identity": "naptan-stop-area:021G24644",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021024644",
+        "naptan:021024645"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G25005"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G25005",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.05814,
+      "longitude": -0.42238,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "applewood",
+      "root_name": "Applewood",
+      "root_stop_area_identity": "naptan-stop-area:021G25005",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021025005",
+        "naptan:021025006"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G25106"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G25106",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.05542,
+      "longitude": -0.30363,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "the crescent",
+      "root_name": "The Crescent",
+      "root_stop_area_identity": "naptan-stop-area:021G25106",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021025106",
+        "naptan:021025107"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G25132"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G25132",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.06468,
+      "longitude": -0.31482,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "memorial",
+      "root_name": "Memorial",
+      "root_stop_area_identity": "naptan-stop-area:021G25132",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021025132",
+        "naptan:021025133"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G26000"
+      ],
+      "area_type": "GCLS",
+      "complex_identity": "naptan-stop-area:021G26000",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.09264,
+      "longitude": -0.27219,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "sainsbury s",
+      "root_name": "Sainsbury's",
+      "root_stop_area_identity": "naptan-stop-area:021G26000",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 4,
+      "stop_point_ids": [
+        "naptan:021024515",
+        "naptan:021026000",
+        "naptan:021026500",
+        "naptan:021028113"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G26031"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G26031",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.09398,
+      "longitude": -0.26407,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "wilsheres road",
+      "root_name": "Wilsheres Road",
+      "root_stop_area_identity": "naptan-stop-area:021G26031",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021026031",
+        "naptan:021026032"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G26042"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G26042",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.09508,
+      "longitude": -0.25229,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "nursery close",
+      "root_name": "Nursery Close",
+      "root_stop_area_identity": "naptan-stop-area:021G26042",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021026042",
+        "naptan:021026043"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G26045"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G26045",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.099,
+      "longitude": -0.2486,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "biggleswade hospital",
+      "root_name": "Biggleswade Hospital",
+      "root_stop_area_identity": "naptan-stop-area:021G26045",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021026044",
+        "naptan:021026045"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G26052"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G26052",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.09315,
+      "longitude": -0.25478,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "potton road",
+      "root_name": "Potton Road",
+      "root_stop_area_identity": "naptan-stop-area:021G26052",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021026052",
+        "naptan:021026053"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G26057"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G26057",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.09284,
+      "longitude": -0.25718,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "banks road north end",
+      "root_name": "Banks Road North End",
+      "root_stop_area_identity": "naptan-stop-area:021G26057",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021026057",
+        "naptan:021026058"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G26059"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G26059",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.09168,
+      "longitude": -0.25607,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "banks road",
+      "root_name": "Banks Road",
+      "root_stop_area_identity": "naptan-stop-area:021G26059",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021026059",
+        "naptan:021026060"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G26073"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G26073",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.08409,
+      "longitude": -0.25559,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "apple tree close",
+      "root_name": "Apple Tree Close",
+      "root_stop_area_identity": "naptan-stop-area:021G26073",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021026073",
+        "naptan:021026074"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G26085"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G26085",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.08046,
+      "longitude": -0.24358,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "foxglove drive",
+      "root_name": "Foxglove Drive",
+      "root_stop_area_identity": "naptan-stop-area:021G26085",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021026085",
+        "naptan:021026086"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G26137"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G26137",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.11456,
+      "longitude": -0.16294,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "alexander road",
+      "root_name": "Alexander Road",
+      "root_stop_area_identity": "naptan-stop-area:021G26137",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021026137",
+        "naptan:021026138"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G26174"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G26174",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.08358,
+      "longitude": -0.24682,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "the saxon centre",
+      "root_name": "The Saxon Centre",
+      "root_stop_area_identity": "naptan-stop-area:021G26174",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021026174",
+        "naptan:021026175"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G27066"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G27066",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.09952,
+      "longitude": -0.28511,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "swallowfield",
+      "root_name": "Swallowfield",
+      "root_stop_area_identity": "naptan-stop-area:021G27066",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021027066",
+        "naptan:021027067"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G28076"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G28076",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.9909,
+      "longitude": -0.62056,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "caswell lane",
+      "root_name": "Caswell Lane",
+      "root_stop_area_identity": "naptan-stop-area:021G28076",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021028076",
+        "naptan:021028077"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:021G28078"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:021G28078",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 52.00239,
+      "longitude": -0.24352,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "north drive",
+      "root_name": "North Drive",
+      "root_stop_area_identity": "naptan-stop-area:021G28078",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:021028078",
+        "naptan:021028079"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:029G0029"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:029G0029",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.88443,
+      "longitude": -0.43492,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "clifton road",
+      "root_name": "Clifton Road",
+      "root_stop_area_identity": "naptan-stop-area:029G0029",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:02900028",
+        "naptan:02900029"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:029G0047"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:029G0047",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.88809,
+      "longitude": -0.45845,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "chaul end lane",
+      "root_name": "Chaul End Lane",
+      "root_stop_area_identity": "naptan-stop-area:029G0047",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:02900046",
+        "naptan:02900047"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:029G0052"
+      ],
+      "area_type": "GBCS",
+      "complex_identity": "naptan-stop-area:029G0052",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.87917,
+      "longitude": -0.37533,
+      "modes": [
+        "bus_coach",
+        "taxi"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "airport bus station",
+      "root_name": "Airport Bus Station",
+      "root_stop_area_identity": "naptan-stop-area:029G0052",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 20,
+      "stop_point_ids": [
+        "naptan:02900007",
+        "naptan:02900052",
+        "naptan:02900053",
+        "naptan:02900054",
+        "naptan:02900055",
+        "naptan:02900056",
+        "naptan:02900057",
+        "naptan:02900058",
+        "naptan:02900059",
+        "naptan:02900060",
+        "naptan:02900061",
+        "naptan:02900062",
+        "naptan:02900063",
+        "naptan:02900064",
+        "naptan:02900065",
+        "naptan:02900066",
+        "naptan:02900067",
+        "naptan:02900068",
+        "naptan:02900069",
+        "naptan:029051224"
+      ]
+    },
+    {
+      "aliases": [
+        "Stanton Road"
+      ],
+      "area_ids": [
+        "naptan-stop-area:029G1202",
+        "naptan-stop-area:029G3005"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:029G1202",
+      "complex_type": "PARENT_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_PARENT_AREA_COORDINATE",
+      "latitude": 51.89429,
+      "longitude": -0.47527,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "luton dunstable hospital",
+      "root_name": "Luton & Dunstable Hospital",
+      "root_stop_area_identity": "naptan-stop-area:029G1202",
+      "status": "ACTIVE",
+      "stop_area_count": 2,
+      "stop_point_count": 5,
+      "stop_point_ids": [
+        "naptan:02903003",
+        "naptan:02903004",
+        "naptan:02903005",
+        "naptan:02903006",
+        "naptan:02903007"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:029G1208"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:029G1208",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.87739,
+      "longitude": -0.41617,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "chapel street",
+      "root_name": "Chapel Street",
+      "root_stop_area_identity": "naptan-stop-area:029G1208",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 1,
+      "stop_point_ids": [
+        "naptan:02903625"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:029G1210"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:029G1210",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.88103,
+      "longitude": -0.42356,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "dallow road",
+      "root_name": "Dallow Road",
+      "root_stop_area_identity": "naptan-stop-area:029G1210",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 1,
+      "stop_point_ids": [
+        "naptan:02903044"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:029G1211"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:029G1211",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.88486,
+      "longitude": -0.42784,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "kenilworth road",
+      "root_name": "Kenilworth Road",
+      "root_stop_area_identity": "naptan-stop-area:029G1211",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:02903021",
+        "naptan:02903022"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:029G1212"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:029G1212",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.8865,
+      "longitude": -0.43095,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "birch link",
+      "root_name": "Birch Link",
+      "root_stop_area_identity": "naptan-stop-area:029G1212",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 3,
+      "stop_point_ids": [
+        "naptan:02903023",
+        "naptan:02903024",
+        "naptan:02903043"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:029G1215"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:029G1215",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.88116,
+      "longitude": -0.41524,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "guildford street",
+      "root_name": "Guildford Street",
+      "root_stop_area_identity": "naptan-stop-area:029G1215",
+      "status": "SOURCE_DELETED",
+      "stop_area_count": 1,
+      "stop_point_count": 1,
+      "stop_point_ids": [
+        "naptan:02903630"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:029G1216"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:029G1216",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.8789,
+      "longitude": -0.4095,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "st marys road",
+      "root_name": "St Marys Road",
+      "root_stop_area_identity": "naptan-stop-area:029G1216",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:02903019",
+        "naptan:02903020"
+      ]
+    },
+    {
+      "aliases": [
+        "Barnfield College",
+        "Icknield High School"
+      ],
+      "area_ids": [
+        "naptan-stop-area:029G3215",
+        "naptan-stop-area:029G3217",
+        "naptan-stop-area:029G4723"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:029G3217",
+      "complex_type": "PARENT_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_PARENT_AREA_COORDINATE",
+      "latitude": 51.90692,
+      "longitude": -0.4238,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "barnfield avenue",
+      "root_name": "Barnfield Avenue",
+      "root_stop_area_identity": "naptan-stop-area:029G3217",
+      "status": "ACTIVE",
+      "stop_area_count": 3,
+      "stop_point_count": 6,
+      "stop_point_ids": [
+        "naptan:02903214",
+        "naptan:02903215",
+        "naptan:02903216",
+        "naptan:02903217",
+        "naptan:02904723",
+        "naptan:02904724"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:029G3556"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:029G3556",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.90329,
+      "longitude": -0.49821,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "tomlinson avenue junction",
+      "root_name": "Tomlinson Avenue junction",
+      "root_stop_area_identity": "naptan-stop-area:029G3556",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 3,
+      "stop_point_ids": [
+        "naptan:02903556",
+        "naptan:02903558",
+        "naptan:02903567"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:030G50020001"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:030G50020001",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.41389,
+      "longitude": -1.44631,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "kintbury cross roads",
+      "root_name": "Kintbury Cross Roads",
+      "root_stop_area_identity": "naptan-stop-area:030G50020001",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:030050020001",
+        "naptan:030050020002"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:030G50030001"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:030G50030001",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.37202,
+      "longitude": -1.29748,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "adbury turn",
+      "root_name": "Adbury turn",
+      "root_stop_area_identity": "naptan-stop-area:030G50030001",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:030050030001",
+        "naptan:030050030002"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:030G50040001"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:030G50040001",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.47239,
+      "longitude": -1.05334,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "addiscombe chase",
+      "root_name": "Addiscombe Chase",
+      "root_stop_area_identity": "naptan-stop-area:030G50040001",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:030050040001",
+        "naptan:030050040002"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:030G50050001"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:030G50050001",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.39128,
+      "longitude": -1.31042,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "aintree close",
+      "root_name": "Aintree Close",
+      "root_stop_area_identity": "naptan-stop-area:030G50050001",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:030050050001",
+        "naptan:030050050002"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:030G50060001"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:030G50060001",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.43839,
+      "longitude": -1.03104,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "albury gardens",
+      "root_name": "Albury Gardens",
+      "root_stop_area_identity": "naptan-stop-area:030G50060001",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:030050060001",
+        "naptan:030050060002"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:030G50110001"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:030G50110001",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.42033,
+      "longitude": -1.02986,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "amners farm road",
+      "root_name": "Amners Farm Road",
+      "root_stop_area_identity": "naptan-stop-area:030G50110001",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:030050110001",
+        "naptan:030050110002"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:030G50120001"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:030G50120001",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.39684,
+      "longitude": -1.32721,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "argyle road",
+      "root_name": "Argyle Road",
+      "root_stop_area_identity": "naptan-stop-area:030G50120001",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:030050120001",
+        "naptan:030050120002"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:030G50140001"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:030G50140001",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.38413,
+      "longitude": -1.39754,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "ash tree corner",
+      "root_name": "Ash Tree Corner",
+      "root_stop_area_identity": "naptan-stop-area:030G50140001",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:030050140001",
+        "naptan:030050140002"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:030G50160001"
+      ],
+      "area_type": "GCLS",
+      "complex_identity": "naptan-stop-area:030G50160001",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.48281,
+      "longitude": -1.14604,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "aldworth road",
+      "root_name": "Aldworth Road",
+      "root_stop_area_identity": "naptan-stop-area:030G50160001",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 1,
+      "stop_point_ids": [
+        "naptan:030050160001"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:030G50170001"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:030G50170001",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.41096,
+      "longitude": -1.51788,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "atherton crescent",
+      "root_name": "Atherton Crescent",
+      "root_stop_area_identity": "naptan-stop-area:030G50170001",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:030050170001",
+        "naptan:030050170002"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:030G50180001"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:030G50180001",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.41296,
+      "longitude": -1.12251,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "avon way",
+      "root_name": "Avon Way",
+      "root_stop_area_identity": "naptan-stop-area:030G50180001",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:030050180001",
+        "naptan:030050180002"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:030G50190001"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:030G50190001",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.36427,
+      "longitude": -1.13424,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "awe main gate",
+      "root_name": "AWE Main Gate",
+      "root_stop_area_identity": "naptan-stop-area:030G50190001",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:030050190001",
+        "naptan:030050190002"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:030G50240001"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:030G50240001",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.44026,
+      "longitude": -1.33401,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "arlington lane",
+      "root_name": "Arlington Lane",
+      "root_stop_area_identity": "naptan-stop-area:030G50240001",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:030050240001",
+        "naptan:030050240002"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:030G50250001"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:030G50250001",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.52429,
+      "longitude": -1.37388,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "california farm",
+      "root_name": "California Farm",
+      "root_stop_area_identity": "naptan-stop-area:030G50250001",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:030050250001",
+        "naptan:030050250002"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:030G50260001"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:030G50260001",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.4789,
+      "longitude": -1.35933,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "hillgreen lane cross roads",
+      "root_name": "Hillgreen Lane Cross Roads",
+      "root_stop_area_identity": "naptan-stop-area:030G50260001",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:030050260001",
+        "naptan:030050260002"
+      ]
+    },
+    {
+      "aliases": [],
+      "area_ids": [
+        "naptan-stop-area:030G50270001"
+      ],
+      "area_type": "GPBS",
+      "complex_identity": "naptan-stop-area:030G50270001",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "defects": [],
+      "geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "latitude": 51.5107,
+      "longitude": -1.363,
+      "modes": [
+        "bus_coach"
+      ],
+      "multi_parent_node_count": 0,
+      "normalized_name": "lilley copse",
+      "root_name": "Lilley Copse",
+      "root_stop_area_identity": "naptan-stop-area:030G50270001",
+      "status": "ACTIVE",
+      "stop_area_count": 1,
+      "stop_point_count": 2,
+      "stop_point_ids": [
+        "naptan:030050270001",
+        "naptan:030050270002"
+      ]
+    }
+  ],
+  "multi_parent": {
+    "cross_complex_or_unresolved": 628,
+    "shared_common_complex": 73,
+    "total": 701
+  },
+  "normalised_complexes": {
+    "complex_type_distribution": {
+      "MULTIMODAL_PARENT_COMPLEX": 1435,
+      "PARENT_AREA_COMPLEX": 559,
+      "SINGLE_AREA_COMPLEX": 91757
+    },
+    "defect_affected": 0,
+    "defect_distribution": {},
+    "geometry_distribution": {
+      "DERIVED_CHILD_AREA_CENTROID": 1,
+      "DERIVED_MEMBER_CENTROID": 23,
+      "NO_USABLE_GEOMETRY": 12292,
+      "PUBLISHER_PARENT_AREA_COORDINATE": 1884,
+      "PUBLISHER_STOPAREA_COORDINATE": 79551
+    },
+    "maximum_stop_areas": 18,
+    "maximum_stop_points": 76,
+    "mean_stop_areas": 1.0365,
+    "mean_stop_points": 1.7753,
+    "median_stop_areas": 1,
+    "median_stop_points": 2,
+    "mode_distribution": {
+      "air": 65,
+      "bus_coach": 75920,
+      "ferry_port": 470,
+      "metro_tram_underground": 641,
+      "multimodal": 1541,
+      "no_mode": 13591,
+      "rail": 1519,
+      "taxi": 4
+    },
+    "multimodal_parent": 1435,
+    "parent_area": 559,
+    "single_area": 91757,
+    "status_distribution": {
+      "ACTIVE": 79653,
+      "MIXED": 3838,
+      "PENDING": 6,
+      "SOURCE_DELETED": 10254
+    },
+    "total": 93751,
+    "unresolved": 93
+  },
+  "performance": {
+    "measurement": "runtime is reported in the human report; deterministic profile excludes elapsed time",
+    "memory_strategy": "iterparse with cleared XML elements and compact indexes"
+  },
+  "source": {
+    "memberships": 169527,
+    "stop_areas": 97270,
+    "stop_points": 436428
+  },
+  "source_geometry_policy": "publisher root coordinate first; then derived child-area centroid; then derived member StopPoint centroid; derived geometry is analysis-only"
+}

@@ -1,0 +1,314 @@
+{
+  "cycle_nodes": [],
+  "depth_distribution": {
+    "1": 93843,
+    "10": 1,
+    "11": 1,
+    "12": 1,
+    "13": 1,
+    "2": 3178,
+    "3": 180,
+    "4": 38,
+    "5": 9,
+    "6": 7,
+    "7": 5,
+    "8": 4,
+    "9": 2
+  },
+  "interpretation": "Depth is a publisher area-parent chain. The topmost area is used as a complex root only when the chain resolves; depth alone is not evidence that an ancestor is a user-facing station.",
+  "maximum_depth": 13,
+  "representative_chains": {
+    "13": [
+      {
+        "area_type": "GPBS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 2,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Frideswide Square",
+        "stop_area_identity": "naptan-stop-area:340G00001FSX"
+      },
+      {
+        "area_type": "GCLS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 14,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Gloucester Green Bus Station",
+        "stop_area_identity": "naptan-stop-area:340G04004GGX"
+      },
+      {
+        "area_type": "GCLS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 1,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "St Giles",
+        "stop_area_identity": "naptan-stop-area:340G00865SGX"
+      },
+      {
+        "area_type": "GCLS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 6,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "High Street (Carfax)",
+        "stop_area_identity": "naptan-stop-area:340G02074HSX"
+      },
+      {
+        "area_type": "GCLS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 16,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Westgate",
+        "stop_area_identity": "naptan-stop-area:340G02074WES"
+      },
+      {
+        "area_type": "GCLS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 2,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "George Street West",
+        "stop_area_identity": "naptan-stop-area:340G0000313W"
+      },
+      {
+        "area_type": "GCLS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 1,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "George Street Central",
+        "stop_area_identity": "naptan-stop-area:340G0000313C"
+      },
+      {
+        "area_type": "GCLS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 3,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "New Road",
+        "stop_area_identity": "naptan-stop-area:340G00003141"
+      },
+      {
+        "area_type": "GCLS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 4,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Park End Street",
+        "stop_area_identity": "naptan-stop-area:340GPKENDWES"
+      },
+      {
+        "area_type": "GCLS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 8,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "High Street (Queens Lane)",
+        "stop_area_identity": "naptan-stop-area:340G00001092"
+      },
+      {
+        "area_type": "GCLS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 6,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Oxford Railway Station",
+        "stop_area_identity": "naptan-stop-area:340G00001514"
+      },
+      {
+        "area_type": "GCLS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 11,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "St Aldates",
+        "stop_area_identity": "naptan-stop-area:340G00003140"
+      },
+      {
+        "area_type": "GRLS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 2,
+        "modes": [
+          "rail"
+        ],
+        "name": "Oxford Rail Station",
+        "stop_area_identity": "naptan-stop-area:910GOXFD"
+      }
+    ],
+    "2": [
+      {
+        "area_type": "GBCS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 6,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Temple Meads Station",
+        "stop_area_identity": "naptan-stop-area:010G0002"
+      },
+      {
+        "area_type": "GRLS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 2,
+        "modes": [
+          "rail"
+        ],
+        "name": "Bristol Temple Meads Rail Station",
+        "stop_area_identity": "naptan-stop-area:910GBRSTLTM"
+      }
+    ],
+    "3": [
+      {
+        "area_type": "GPBS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 3,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Bedford Railway Station",
+        "stop_area_identity": "naptan-stop-area:020G35124"
+      },
+      {
+        "area_type": "GBCS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 27,
+        "modes": [
+          "bus_coach",
+          "taxi"
+        ],
+        "name": "Bus Station",
+        "stop_area_identity": "naptan-stop-area:020GBEDBUS01"
+      },
+      {
+        "area_type": "GRLS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 2,
+        "modes": [
+          "rail"
+        ],
+        "name": "Bedford Rail Station",
+        "stop_area_identity": "naptan-stop-area:910GBEDFDM"
+      }
+    ],
+    "4": [
+      {
+        "area_type": "GPBS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 2,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "The Quadrant",
+        "stop_area_identity": "naptan-stop-area:021G13111"
+      },
+      {
+        "area_type": "GPBS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 3,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "The Square",
+        "stop_area_identity": "naptan-stop-area:021G13102"
+      },
+      {
+        "area_type": "GPBS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 2,
+        "modes": [
+          "bus_coach",
+          "taxi"
+        ],
+        "name": "West Street",
+        "stop_area_identity": "naptan-stop-area:021G13101"
+      },
+      {
+        "area_type": "GPBS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 3,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Church Street",
+        "stop_area_identity": "naptan-stop-area:021G13107"
+      }
+    ],
+    "6": [
+      {
+        "area_type": "GPBS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 2,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Burr Street",
+        "stop_area_identity": "naptan-stop-area:029G3802"
+      },
+      {
+        "area_type": "GPBS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 4,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Galaxy Centre",
+        "stop_area_identity": "naptan-stop-area:029G1214"
+      },
+      {
+        "area_type": "GPBS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 6,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Silver Street",
+        "stop_area_identity": "naptan-stop-area:029G1209"
+      },
+      {
+        "area_type": "GPBS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 9,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Church Street",
+        "stop_area_identity": "naptan-stop-area:029G1207"
+      },
+      {
+        "area_type": "GPBS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 3,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Park Square",
+        "stop_area_identity": "naptan-stop-area:029G1206"
+      },
+      {
+        "area_type": "GRLS",
+        "coordinate_scope": "PUBLISHER_STOPAREA_COORDINATE",
+        "member_count": 3,
+        "modes": [
+          "rail"
+        ],
+        "name": "Luton Rail Station",
+        "stop_area_identity": "naptan-stop-area:910GLUTON"
+      }
+    ]
+  }
+}

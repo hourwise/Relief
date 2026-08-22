@@ -1,0 +1,40 @@
+{
+  "encoding": "UTF-8 XML; replacement characters rejected; no normalization before hashing",
+  "frozen_n2_reference": {
+    "sha256": "6FC7E40E2AF3B30E9FD117BDAC313B58F3385BFF26517FD78D5554DA12B4183A",
+    "source_manifest": "docs/data/NAPTAN_N2_SOURCE_MANIFEST_2026-08-22.json"
+  },
+  "licence": {
+    "attribution": "Contains public sector information licensed under the Open Government Licence v3.0.",
+    "name": "Open Government Licence v3.0",
+    "reuse_note": "Published terms recorded; not a legal opinion.",
+    "url": "https://www.gov.uk/government/publications/national-public-transport-access-node-schema/naptan-and-nptg-data-sets-and-schema-guides"
+  },
+  "product": "NaPTAN national XML access-node and StopArea package",
+  "publisher": "UK Department for Transport",
+  "raw_bytes_repository_policy": "Raw national XML remains in disposable external cache and is not committed.",
+  "sources": [
+    {
+      "byte_size": 578991782,
+      "compression": "none",
+      "content_type": "application/xml",
+      "documentation_url": "https://beta-naptan.dft.gov.uk/download/national",
+      "filename": "NaPTAN.xml",
+      "format": "XML",
+      "matches_frozen_n2_sha256": true,
+      "retrieval_utc": "2026-08-22T14:48:39.4826193Z",
+      "role": "CORE_FOR_RELIEF",
+      "sha256": "6FC7E40E2AF3B30E9FD117BDAC313B58F3385BFF26517FD78D5554DA12B4183A",
+      "top_level_structures_observed": [
+        "StopPoints",
+        "StopAreas"
+      ],
+      "url": "https://naptan.api.dft.gov.uk/v1/access-nodes?dataFormat=xml"
+    }
+  ],
+  "supporting_official_documentation": {
+    "api_catalogue": "https://www.api.gov.uk/dft/national-public-transport-access-nodes-naptan-and-national-public-transport-gazetteer-nptg-api/",
+    "schema_url": "https://naptan.dft.gov.uk/naptan/schema/2.5/doc/NaPTANSchemaGuide-2.5-v0.67.pdf",
+    "swagger_url": "https://naptan.api.dft.gov.uk/swagger/v1/swagger.json"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "source": {
+    "n3_complex_profile": "docs/data/NAPTAN_N3_COMPLEX_PROFILE_2026-08-22.json",
+    "relief_candidate_baseline": "docs/data/NAPTAN_N2_RELIEF_DRY_RUN_2026-08-22.json",
+    "method": "N3 root normalisation is applied to the official hierarchy; canonical Relief candidate estimates reuse the frozen N2 read-only baseline because no full canonical facility snapshot is committed.",
+    "production_execution": false
+  },
+  "node_level_counts": {
+    "ambiguous_existing_relief_match": 824,
+    "likely_existing_relief_match": 48,
+    "likely_new_transport_place_candidate": 3459,
+    "supporting_only_or_excluded_nodes": 431035
+  },
+  "normalised_complex_level_profile": {
+    "total_normalised_complexes": 93751,
+    "empty_root_areas": 13928,
+    "single_area_complexes": 91757,
+    "parent_area_complexes": 559,
+    "multimodal_parent_complexes": 1435,
+    "unresolved_area_nodes_not_promoted_to_complex": 93,
+    "complexes_with_publisher_geometry": 81435,
+    "complexes_with_derived_geometry": 24,
+    "complexes_without_geometry": 12292,
+    "defect_affected_resolved_roots": 0,
+    "multi_parent_node_complexes": 73
+  },
+  "relief_candidate_estimates": {
+    "likely_existing_relief_transport_complex": 380,
+    "ambiguous_existing_relief_transport_complex": 1717,
+    "likely_new_transport_place_candidate": 72364,
+    "empty_stop_area": 13928,
+    "unresolved_no_area_geometry": 8881,
+    "basis": "frozen N2 StopArea-level dry-run estimate; not a production operation plan and not silently reinterpreted as facility count"
+  },
+  "production_mutation_plan": {
+    "facilities_inserts": 0,
+    "facilities_updates": 0,
+    "facility_source_inserts": 0,
+    "source_observations": 0,
+    "production_execution": false
+  },
+  "canonicalization_warning": "NaPTAN node counts and normalized complex counts are source entities, not Relief facility counts. Canonical reconciliation remains a separately authorized future operation."
+}
