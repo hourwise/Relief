@@ -272,11 +272,11 @@ insert into public.transport_source_place_parents (
 insert into public.transport_source_nodes (
   snapshot_id, publisher_identity, publisher_id, source_stop_type,
   normalized_mode, display_name, publisher_latitude, publisher_longitude,
-  coordinate_scope, source_attributes
+  coordinate_scope, source_attributes, updated_at
 ) values
-  ((select snapshot_a_id from n4b_context), 'naptan-stop-point:TEST123', 'TEST123', 'MKD', 'BUS', 'Test 123', 51.5001, -0.1201, 'TRANSPORT_STOP_LEVEL', '{"fixture":"A"}'),
-  ((select snapshot_a_id from n4b_context), 'naptan-stop-point:NODE_REMOVED', 'NODE_REMOVED', 'BCT', 'BUS', 'Removed in B', null, null, 'NONE', '{"fixture":"A"}'),
-  ((select snapshot_a_id from n4b_context), 'naptan-stop-point:NODE_CROSS', 'NODE_CROSS', 'MET', 'METRO', 'Cross root', null, null, 'NONE', '{"fixture":"A"}');
+  ((select snapshot_a_id from n4b_context), 'naptan-stop-point:TEST123', 'TEST123', 'MKD', 'BUS', 'Test 123', 51.5001, -0.1201, 'TRANSPORT_STOP_LEVEL', '{"fixture":"A"}', '2000-01-01 00:00:00+00'),
+  ((select snapshot_a_id from n4b_context), 'naptan-stop-point:NODE_REMOVED', 'NODE_REMOVED', 'BCT', 'BUS', 'Removed in B', null, null, 'NONE', '{"fixture":"A"}', '2000-01-01 00:00:00+00'),
+  ((select snapshot_a_id from n4b_context), 'naptan-stop-point:NODE_CROSS', 'NODE_CROSS', 'MET', 'METRO', 'Cross root', null, null, 'NONE', '{"fixture":"A"}', '2000-01-01 00:00:00+00');
 
 insert into public.transport_source_memberships (
   snapshot_id, node_id, place_id, publisher_node_identity,
@@ -529,7 +529,7 @@ begin
 end;
 $$;
 
--- Trigger behaviour must update updated_at on an existing row.
+-- Trigger behaviour must replace an explicit old updated_at value on update.
 do $$
 declare
   before_updated timestamptz;
