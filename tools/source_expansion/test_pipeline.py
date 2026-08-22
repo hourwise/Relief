@@ -25,6 +25,13 @@ from .tfl_human_adjudication import (
     assert_adjudication_invariants,
     build_adjudication_package,
 )
+from .tfl_existing_parent_observation_audit import (
+    AUDIT_CLASSIFICATION,
+    ROW_OUTCOMES,
+    assert_audit_invariants,
+    build_audit_package,
+    reproduce_cohort,
+)
 from .sheffield import build_sheffield_package
 from .tfl_detailed import normalize_tfl_feed, reconcile_toilets
 
@@ -307,6 +314,46 @@ class SourceExpansionTests(unittest.TestCase):
         self.assertFalse(package["invariants"]["source_id_only_unit_creation"])
         self.assertFalse(package["invariants"]["row_count_only_unit_creation"])
         self.assertFalse(package["approved_future_operations"]["executable"])
+
+    def test_tfl_existing_parent_audit_reproduces_28_entries_over_14_unique_rows(self) -> None:
+        repository_root = Path(__file__).resolve().parents[2]
+        readiness = json.loads((repository_root / "docs/data/RELIEF_TFL_TOILET_UNIT_PROMOTION_READINESS_2026-08-22.json").read_text(encoding="utf-8"))
+        batch_1 = json.loads((repository_root / "docs/data/RELIEF_TFL_HUMAN_ADJUDICATION_BATCH_1_2026-08-22.json").read_text(encoding="utf-8"))
+        cohort = reproduce_cohort(readiness, batch_1)
+        self.assertEqual(cohort["operation_entries_total"], 28)
+        self.assertEqual(cohort["source_link_operation_entries"], 14)
+        self.assertEqual(cohort["enrichment_operation_entries"], 14)
+        self.assertEqual(cohort["unique_source_rows"], 14)
+        self.assertEqual(cohort["batch_1_overlap_count"], 0)
+        self.assertEqual(cohort["new_parent_overlap_count"], 0)
+        self.assertEqual(len({row["source_record_id"] for row in cohort["unique_rows"]}), 14)
+
+    def test_tfl_existing_parent_observations_never_become_units(self) -> None:
+        repository_root = Path(__file__).resolve().parents[2]
+        readiness = json.loads((repository_root / "docs/data/RELIEF_TFL_TOILET_UNIT_PROMOTION_READINESS_2026-08-22.json").read_text(encoding="utf-8"))
+        package = build_audit_package(readiness)
+        self.assertEqual(package["classification"], AUDIT_CLASSIFICATION)
+        self.assertEqual(package["row_classification_counts"], {
+            "SAFE_FACILITY_LEVEL_OBSERVATION": 0,
+            "SAFE_EXISTING_MODEL_MAPPING": 0,
+            "REQUIRES_ADDITIVE_SOURCE_OBSERVATION_MODEL": 14,
+            "STILL_UNRESOLVED": 0,
+            "SOURCE_ROW_INVALID": 0,
+        })
+        self.assertEqual(package["proposed_future_operations"]["counts"]["toilet_unit_inserts"], 0)
+        self.assertEqual(package["proposed_future_operations"]["counts"]["canonical_facility_enrichments"], 0)
+        self.assertTrue(all(not row["physical_unit_asserted"] for row in package["rows"]))
+        self.assertTrue(all(row["outcome"] in ROW_OUTCOMES for row in package["rows"]))
+        assert_audit_invariants(package)
+
+    def test_tfl_existing_parent_audit_preserves_station_coordinate_precision_and_provenance(self) -> None:
+        repository_root = Path(__file__).resolve().parents[2]
+        readiness = json.loads((repository_root / "docs/data/RELIEF_TFL_TOILET_UNIT_PROMOTION_READINESS_2026-08-22.json").read_text(encoding="utf-8"))
+        package = build_audit_package(readiness)
+        self.assertTrue(package["invariants"]["station_coordinates_station_level_only"])
+        self.assertEqual(package["source"]["attribution"], "Data provided by Transport for London")
+        self.assertTrue(package["proposed_future_operations"]["executable"] is False)
+        self.assertEqual(package["production_safety"]["production_mutations"], 0)
 
 
 if __name__ == "__main__":
