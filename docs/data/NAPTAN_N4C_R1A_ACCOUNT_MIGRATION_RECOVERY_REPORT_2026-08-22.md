@@ -279,7 +279,9 @@ The earlier N4C-R1 evidence files remain preserved and were not rewritten.
 
 ## GIT RESULT
 
-Canonicalisation and evidence are ready for a narrow evidence commit. Protected files must remain unstaged. No production push or ledger repair was performed.
+Canonicalisation and evidence were committed in `06aa511b34e44ee2be83367fa3038c83ac21f478` with message `fix(db): reconcile account deletion migration history` and pushed normally to the required branch. Protected files remained unstaged. No production push or ledger repair was performed.
+
+The follow-up documentation commit records this final handoff; local and remote branch heads were verified equal after the push.
 
 ## FINAL CLASSIFICATION
 
