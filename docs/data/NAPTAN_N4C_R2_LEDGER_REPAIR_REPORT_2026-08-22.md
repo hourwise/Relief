@@ -299,7 +299,9 @@ No prior N4C, N4C-R1, or N4C-R1A evidence was rewritten.
 
 The N4C-R2 evidence was committed and pushed normally. Protected files were not staged.
 
-Commit and push status will be recorded after the final evidence validation and staged-diff review.
+- Commit A: `a0e0788d44ef30555502ca173cd6b0195d6dd5bf`
+- Push: passed normally to `origin/codex/toilet-map-apply-1a-production-deploy`
+- No amend, force-push, merge, rebase, reset, cherry-pick, or migration apply occurred.
 
 ## N4C READINESS
 
