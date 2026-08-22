@@ -206,11 +206,11 @@ N4B implementation and hosted-validation commits, in order:
 - 1d28233e0a8b08b2cd3b88630ef94f446ce07178 — make N4B trigger assertion deterministic
 - 644ff4915d39ec5347b1f51d0accc1de9d7015ca — avoid safety-scan self-match
 
-The final evidence commit is recorded after this report is staged and pushed.
+Final evidence commit: ab89c1b4c01cd6663179a4180083a801544df386.
 
 ## PUSH STATUS
 
-All implementation commits were pushed normally and non-force to the required branch. The final evidence commit will also be pushed non-force. No merge, rebase, amend, reset, or force-push was used.
+All implementation and evidence commits were pushed normally and non-force to the required branch. Final local and remote SHA are both ab89c1b4c01cd6663179a4180083a801544df386. No merge, rebase, amend, reset, or force-push was used.
 
 ## PRODUCTION SAFETY
 
@@ -241,4 +241,3 @@ N4C_AWAITING_SEPARATE_AUTHORIZATION
 TOTAL PRODUCTION MUTATIONS: 0
 
 This result is live disposable PostgreSQL/PostGIS validation only. It does not authorize N4C or any production apply.
-

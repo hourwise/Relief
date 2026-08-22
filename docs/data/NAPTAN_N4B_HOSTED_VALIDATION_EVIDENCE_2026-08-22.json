@@ -150,8 +150,8 @@
     "1d28233e0a8b08b2cd3b88630ef94f446ce07178",
     "644ff4915d39ec5347b1f51d0accc1de9d7015ca"
   ],
-  "final_local_sha": "pending-final-evidence-commit",
-  "final_remote_sha": "pending-final-evidence-commit",
+  "final_local_sha": "ab89c1b4c01cd6663179a4180083a801544df386",
+  "final_remote_sha": "ab89c1b4c01cd6663179a4180083a801544df386",
   "no_force_push": true,
   "total_production_mutations": 0
 }
