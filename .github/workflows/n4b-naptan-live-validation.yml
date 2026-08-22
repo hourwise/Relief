@@ -2,15 +2,12 @@ name: N4B NaPTAN Live Validation
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - codex/toilet-map-apply-1a-production-deploy
 
 permissions:
   contents: read
 
 env:
-  N4B_BASELINE_SHA: 28195ff47b8559ad6c65f7d4866b47f45870560a
+  N4B_BASELINE_SHA: 8627dbfd586df9069b2f73b0cc2d6543645fa950
   N4B_MIGRATION: supabase/migrations/20260822170000_naptan_transport_source_graph.sql
   N4B_MIGRATION_SHA256: 087A389B8CEAC021B12708BC55C39022CB38D5459510EFFB6CF057CEF232C44E
   SUPABASE_CLI_VERSION: 2.75.0
@@ -56,6 +53,38 @@ jobs:
           baseline_sha="$(git show "${N4B_BASELINE_SHA}:${N4B_MIGRATION}" | sha256sum | awk '{print toupper($1)}')"
           test "$baseline_sha" = "$N4B_MIGRATION_SHA256"
           echo "baseline_migration_sha256=$baseline_sha" | tee -a evidence/run-metadata.txt
+
+      - name: Verify committed Apply 1A evidence inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY' | tee evidence/apply-1a-evidence-inputs.txt
+          import json
+          from pathlib import Path
+          from tools.enrichment.apply_engine_1a import (
+              EXPECTED_APPROVED_MANIFEST_SHA256,
+              EXPECTED_APPROVED_PLAN_SHA256,
+              EXPECTED_SOURCE_CHECKSUM,
+              validate_manifest_identity,
+              validate_plan,
+              sha256_file,
+          )
+
+          root = Path.cwd()
+          plan_path = root / 'docs/data/TOILET_MAP_PROPOSED_APPLY_PLAN_2026-08.json'
+          manifest_path = root / 'docs/data/TOILET_MAP_APPLY_1A_MANIFEST.json'
+          plan = json.loads(plan_path.read_text(encoding='utf-8'))
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          plan_sha = sha256_file(plan_path)
+          validate_plan(plan, plan_sha)
+          validate_manifest_identity(manifest, plan_sha, EXPECTED_SOURCE_CHECKSUM)
+          assert manifest['manifest_sha256'] == EXPECTED_APPROVED_MANIFEST_SHA256
+          print(f'approved_plan_sha256={plan_sha}')
+          print(f'approved_manifest_sha256={manifest["manifest_sha256"]}')
+          print(f'approved_source_sha256={EXPECTED_SOURCE_CHECKSUM}')
+          print(f'approved_operation_count={len(manifest["operations"])}')
+          print('committed_apply_1a_evidence=PASS')
+          PY
 
       - name: Set up Python 3.12
         uses: actions/setup-python@v5
@@ -136,17 +165,52 @@ jobs:
           docker exec -e "PGPASSWORD=${admin_password}" "$db_container" psql -U supabase_admin -d postgres -v ON_ERROR_STOP=1 -c "grant supabase_admin to postgres;" 2>&1 | tee evidence/disposable-role-bootstrap.txt
           echo 'disposable_role_bootstrap=GRANT supabase_admin TO postgres' | tee -a evidence/run-metadata.txt
 
-      - name: Apply the full repository migration chain to a fresh database
+      - name: Apply canonical migrations through the historical Apply 1A seal boundary
         shell: bash
         run: |
           set -euo pipefail
-          supabase migration up --local --yes 2>&1 | tee evidence/migration-chain.txt
+          seal_migration='supabase/migrations/20260812190246_seal_apply_1a_execution_path.sql'
+          hold_dir="$RUNNER_TEMP/n4b-migrations-after-apply-1a-seal"
+          mkdir -p "$hold_dir"
+          found_seal=0
+          while IFS= read -r filename; do
+            if [[ "$filename" == "20260812190246_seal_apply_1a_execution_path.sql" ]]; then
+              found_seal=1
+            fi
+            if [[ "$found_seal" == 1 ]]; then
+              mv "supabase/migrations/$filename" "$hold_dir/$filename"
+            fi
+          done < <(find supabase/migrations -maxdepth 1 -type f -name '*.sql' -printf '%f\n' | sort)
+          test "$found_seal" = 1
+          echo 'pre_seal_last_migration=20260812124351_apply_1a_facilities_update_rls.sql' | tee evidence/migration-boundary.txt
+          echo 'resume_first_migration=20260812190246_seal_apply_1a_execution_path.sql' | tee -a evidence/migration-boundary.txt
+          supabase migration up --local --yes 2>&1 | tee evidence/migration-chain-pre-seal.txt
+          test ! -e "$seal_migration"
+          mv "$hold_dir"/*.sql supabase/migrations/
+          test -e "$seal_migration"
+
+      - name: Reconstruct the committed historical Apply 1A prerequisite in disposable PostgreSQL
+        shell: bash
+        run: |
+          set -euo pipefail
+          psql -X "$N4B_DB_URL" -v ON_ERROR_STOP=1 -f tools/enrichment/n4b_historical_apply_1a_bootstrap.sql 2>&1 | tee evidence/historical-apply-1a-bootstrap.txt
+          grep -q 'N4B_HISTORICAL_APPLY_1A_BOOTSTRAP_PASSED' evidence/historical-apply-1a-bootstrap.txt
+
+      - name: Resume canonical migration chain from the historical seal through N4A
+        shell: bash
+        run: |
+          set -euo pipefail
+          supabase migration up --local --yes 2>&1 | tee evidence/migration-chain-post-bootstrap.txt
+          grep -q '20260812190246_seal_apply_1a_execution_path.sql' evidence/migration-chain-post-bootstrap.txt
+          grep -q "$N4B_MIGRATION" evidence/migration-chain-post-bootstrap.txt
+          echo 'historical_seal_execution=PASS' | tee evidence/historical-seal-execution.txt
+          echo 'n4a_migration_execution=PASS' | tee -a evidence/historical-seal-execution.txt
 
       - name: Verify PostGIS active after migration chain
         shell: bash
         run: |
           set -euo pipefail
-          psql -X "$N4B_DB_URL" -v ON_ERROR_STOP=1 -Atc "select extname || '=' || extversion from pg_extension where extname = 'postgis';" | tee evidence/postgis-version.txt
+          psql -X "$N4B_DB_URL" -v ON_ERROR_STOP=1 -Atc "select version(); select postgis_full_version(); select extname || '=' || extversion from pg_extension where extname = 'postgis';" | tee evidence/postgis-version.txt
           test -s evidence/postgis-version.txt
 
       - name: Re-verify the sealed migration after bootstrap
