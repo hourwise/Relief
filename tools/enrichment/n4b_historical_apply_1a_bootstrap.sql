@@ -117,7 +117,7 @@ DO $$
 BEGIN
   IF (SELECT count(*) FROM private.relief_apply_1a_approved_operations) <> 48
      OR (SELECT count(DISTINCT facility_id) FROM private.relief_apply_1a_approved_operations) <> 25
-     OR (SELECT count(*) FROM public.facilities) <> 25
+     OR (SELECT count(*) FROM public.facilities) <> 26
      OR (SELECT count(*) FROM public.facility_sources) <> 25
      OR (SELECT count(*) FROM public.facilities WHERE publication_status = 'published') <> 25
      OR (SELECT count(*) FROM private.relief_apply_1a_approved_operations AS r
