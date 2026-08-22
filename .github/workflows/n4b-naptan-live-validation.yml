@@ -99,12 +99,18 @@ jobs:
         run: |
           set -euo pipefail
           pending_dir='supabase/migrations.n4b-pending'
+          pending_seed='supabase/seed.n4b-pending.sql'
           test ! -e "$pending_dir"
+          test ! -e "$pending_seed"
           mv supabase/migrations "$pending_dir"
           mkdir supabase/migrations
+          mv supabase/seed.sql "$pending_seed"
+          : > supabase/seed.sql
           restore_migrations() {
             rm -rf supabase/migrations
             mv "$pending_dir" supabase/migrations
+            rm -f supabase/seed.sql
+            mv "$pending_seed" supabase/seed.sql
           }
           trap restore_migrations EXIT
           supabase start --yes
