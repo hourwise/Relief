@@ -281,10 +281,17 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if grep -R -n -E 'bgwxrxkmyaihplaloely|supabase link|supabase db push|SUPABASE_SERVICE_ROLE_KEY|SUPABASE_DB_URL' .github/workflows tools/source_expansion/naptan_n4b_live_validation.sql; then
-            echo 'production reference or credential pattern found in N4B validation scope' >&2
-            exit 1
-          fi
+          production_ref='bgwxrxkmyaihplaloel''y'
+          forbidden_link='supabase ''link'
+          forbidden_db_push='supabase db ''push'
+          forbidden_service_key='SUPABASE_SERVICE_ROLE''_KEY'
+          forbidden_db_url='SUPABASE_DB''_URL'
+          for forbidden in "$production_ref" "$forbidden_link" "$forbidden_db_push" "$forbidden_service_key" "$forbidden_db_url"; do
+            if grep -R -n -F -- "$forbidden" .github/workflows tools/source_expansion/naptan_n4b_live_validation.sql; then
+              echo 'production reference or credential pattern found in N4B validation scope' >&2
+              exit 1
+            fi
+          done
           echo 'TOTAL PRODUCTION MUTATIONS: 0' | tee evidence/production-safety.txt
 
       - name: Upload N4B evidence
