@@ -1,0 +1,12 @@
+{
+  "document_type": "N4C-R2 post-repair real Supabase dry-run",
+  "command": "supabase db push --dry-run --linked",
+  "cli_version": "2.75.0",
+  "exit_code": 0,
+  "dry_run_only": true,
+  "exact_output": "Initialising login role...\nDRY RUN: migrations will *not* be pushed to the database.\nConnecting to remote database...\nWould push these migrations:\n • 20260822170000_naptan_transport_source_graph.sql\nFinished supabase db push.",
+  "pending_migrations": ["20260822170000_naptan_transport_source_graph.sql"],
+  "only_n4a_pending": true,
+  "include_all_used": false,
+  "n4a_applied": false
+}

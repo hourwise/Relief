@@ -1,0 +1,31 @@
+{
+  "document_type": "N4C-R2 validated and executed repair command manifest",
+  "project_ref": "bgwxrxkmyaihplaloely",
+  "cli": "supabase 2.75.0",
+  "operation_count": 10,
+  "all_execute_false_in_source_plan": true,
+  "approved_pairs": [
+    {"production_version":"20260814115817","local_version":"20260814113440","classification":"EXACT_EQUIVALENT_LOCAL_MIGRATION","confidence":"HIGH"},
+    {"production_version":"20260816210130","local_version":"20260816205543","classification":"SEMANTICALLY_EQUIVALENT_LOCAL_MIGRATION","confidence":"HIGH"},
+    {"production_version":"20260817062603","local_version":"20260816220000","classification":"EXACT_EQUIVALENT_LOCAL_MIGRATION","confidence":"HIGH"},
+    {"production_version":"20260821213435","local_version":"20260821211239","classification":"SEMANTICALLY_EQUIVALENT_LOCAL_MIGRATION","confidence":"HIGH"},
+    {"production_version":"20260822100920","local_version":"20260822092938","classification":"SEMANTICALLY_EQUIVALENT_LOCAL_MIGRATION","confidence":"HIGH"}
+  ],
+  "excluded_versions": ["20260814135046","20260822170000"],
+  "expected_schema_delta": 0,
+  "expected_application_data_delta": 0,
+  "expected_auth_delta": 0,
+  "expected_naptan_rows": 0,
+  "commands": [
+    {"sequence":1,"command":"supabase migration repair 20260814115817 --status reverted --linked --yes","version":"20260814115817","status":"reverted","equivalent":"20260814113440"},
+    {"sequence":2,"command":"supabase migration repair 20260814113440 --status applied --linked --yes","version":"20260814113440","status":"applied","equivalent":"20260814115817"},
+    {"sequence":3,"command":"supabase migration repair 20260816210130 --status reverted --linked --yes","version":"20260816210130","status":"reverted","equivalent":"20260816205543"},
+    {"sequence":4,"command":"supabase migration repair 20260816205543 --status applied --linked --yes","version":"20260816205543","status":"applied","equivalent":"20260816210130"},
+    {"sequence":5,"command":"supabase migration repair 20260817062603 --status reverted --linked --yes","version":"20260817062603","status":"reverted","equivalent":"20260816220000"},
+    {"sequence":6,"command":"supabase migration repair 20260816220000 --status applied --linked --yes","version":"20260816220000","status":"applied","equivalent":"20260817062603"},
+    {"sequence":7,"command":"supabase migration repair 20260821213435 --status reverted --linked --yes","version":"20260821213435","status":"reverted","equivalent":"20260821211239"},
+    {"sequence":8,"command":"supabase migration repair 20260821211239 --status applied --linked --yes","version":"20260821211239","status":"applied","equivalent":"20260821213435"},
+    {"sequence":9,"command":"supabase migration repair 20260822100920 --status reverted --linked --yes","version":"20260822100920","status":"reverted","equivalent":"20260822092938"},
+    {"sequence":10,"command":"supabase migration repair 20260822092938 --status applied --linked --yes","version":"20260822092938","status":"applied","equivalent":"20260822100920"}
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "document_type": "N4C-R2 repair execution evidence",
+  "execution_utc_date": "2026-08-22",
+  "commands_executed": 10,
+  "successful_commands": 10,
+  "failed_commands": 0,
+  "exit_codes": [0,0,0,0,0,0,0,0,0,0],
+  "results": [
+    {"sequence":1,"version":"20260814115817","status":"reverted","exit_code":0,"result":"Repaired migration history: [20260814115817] => reverted"},
+    {"sequence":2,"version":"20260814113440","status":"applied","exit_code":0,"result":"Repaired migration history: [20260814113440] => applied"},
+    {"sequence":3,"version":"20260816210130","status":"reverted","exit_code":0,"result":"Repaired migration history: [20260816210130] => reverted"},
+    {"sequence":4,"version":"20260816205543","status":"applied","exit_code":0,"result":"Repaired migration history: [20260816205543] => applied"},
+    {"sequence":5,"version":"20260817062603","status":"reverted","exit_code":0,"result":"Repaired migration history: [20260817062603] => reverted"},
+    {"sequence":6,"version":"20260816220000","status":"applied","exit_code":0,"result":"Repaired migration history: [20260816220000] => applied"},
+    {"sequence":7,"version":"20260821213435","status":"reverted","exit_code":0,"result":"Repaired migration history: [20260821213435] => reverted"},
+    {"sequence":8,"version":"20260821211239","status":"applied","exit_code":0,"result":"Repaired migration history: [20260821211239] => applied"},
+    {"sequence":9,"version":"20260822100920","status":"reverted","exit_code":0,"result":"Repaired migration history: [20260822100920] => reverted"},
+    {"sequence":10,"version":"20260822092938","status":"applied","exit_code":0,"result":"Repaired migration history: [20260822092938] => applied"}
+  ],
+  "metadata_only": true,
+  "historical_sql_executed": false,
+  "n4a_executed": false,
+  "schema_mutations": 0,
+  "application_data_mutations": 0,
+  "auth_mutations": 0,
+  "naptan_ingestion_rows": 0
+}

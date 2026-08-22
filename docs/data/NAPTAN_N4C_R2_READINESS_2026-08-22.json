@@ -1,0 +1,17 @@
+{
+  "document_type": "N4C-R2 N4C readiness assessment",
+  "classification": "N4C_PRODUCTION_SCHEMA_APPLY_READY_FOR_SEPARATE_AUTHORIZATION",
+  "conditions": {
+    "ten_authorized_repairs_succeeded": true,
+    "local_remote_histories_aligned_except_n4a": true,
+    "schema_mutations": 0,
+    "application_data_mutations": 0,
+    "auth_mutations": 0,
+    "security_mutations": 0,
+    "naptan_ingestion_rows": 0,
+    "n4a_hash_unchanged": true,
+    "real_dry_run_only_n4a": true
+  },
+  "n4c_authorized": false,
+  "n5_authorized": false
+}

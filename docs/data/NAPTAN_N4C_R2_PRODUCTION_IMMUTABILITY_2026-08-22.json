@@ -1,0 +1,19 @@
+{
+  "document_type": "N4C-R2 production schema and application-data immutability",
+  "project_ref": "bgwxrxkmyaihplaloely",
+  "counts_before": {"facilities":15620,"facility_sources":15634,"facility_source_observations":14,"import_runs":5,"toilet_map_import_staging":0,"toilet_units":0,"toilet_unit_sources":0},
+  "counts_after": {"facilities":15620,"facility_sources":15634,"facility_source_observations":14,"import_runs":5,"toilet_map_import_staging":0,"toilet_units":0,"toilet_unit_sources":0},
+  "count_deltas": {"facilities":0,"facility_sources":0,"facility_source_observations":0,"import_runs":0,"toilet_map_import_staging":0,"toilet_units":0,"toilet_unit_sources":0},
+  "n4a_tables_before": [],
+  "n4a_tables_after": [],
+  "postgres_before": "PostgreSQL 17.6 on aarch64-unknown-linux-gnu, compiled by gcc (GCC) 15.2.0, 64-bit",
+  "postgres_after": "PostgreSQL 17.6 on aarch64-unknown-linux-gnu, compiled by gcc (GCC) 15.2.0, 64-bit",
+  "postgis_before": "3.3.7",
+  "postgis_after": "3.3.7",
+  "extensions_before_after_equal": true,
+  "historical_sql_rerun": false,
+  "schema_mutations": 0,
+  "application_data_mutations": 0,
+  "auth_mutations": 0,
+  "naptan_ingestion_rows": 0
+}

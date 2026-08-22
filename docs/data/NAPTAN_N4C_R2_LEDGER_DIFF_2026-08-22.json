@@ -1,0 +1,17 @@
+{
+  "document_type": "N4C-R2 migration ledger before/after diff",
+  "metadata_only": true,
+  "changed_pairs": [
+    {"production_version":"20260814115817","before":"present","after":"reverted","local_equivalent":"20260814113440","local_after":"applied"},
+    {"production_version":"20260816210130","before":"present","after":"reverted","local_equivalent":"20260816205543","local_after":"applied"},
+    {"production_version":"20260817062603","before":"present","after":"reverted","local_equivalent":"20260816220000","local_after":"applied"},
+    {"production_version":"20260821213435","before":"present","after":"reverted","local_equivalent":"20260821211239","local_after":"applied"},
+    {"production_version":"20260822100920","before":"present","after":"reverted","local_equivalent":"20260822092938","local_after":"applied"}
+  ],
+  "unchanged": ["20260814135046","all pre-existing migrations before the five aliases"],
+  "n4a": {"version":"20260822170000","before":"absent","after":"absent"},
+  "row_count_before": 17,
+  "row_count_after": 17,
+  "schema_delta": 0,
+  "application_data_delta": 0
+}

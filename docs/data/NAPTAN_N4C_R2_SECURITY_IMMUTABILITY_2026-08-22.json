@@ -1,0 +1,18 @@
+{
+  "document_type": "N4C-R2 security-state immutability",
+  "project_ref": "bgwxrxkmyaihplaloely",
+  "rls_before_after_equal": true,
+  "audited_rls_tables": ["public.facilities","public.facility_sources","public.facility_source_observations","public.toilet_map_import_staging","public.toilet_units","public.toilet_unit_sources"],
+  "audited_rls_state": "enabled on all six audited tables; force_rls false",
+  "policies_before_after_equal": true,
+  "audited_policies": ["Published facilities are viewable by everyone","Published facility sources are viewable","Published toilet units are viewable"],
+  "account_functions_before_after_equal": true,
+  "account_function_fingerprints": [
+    {"signature":"check_my_account_deletion_subscription_guard()","definition_md5":"ba7d5db93a5f1225a5397e760ef50403","security_definer":true,"search_path":"","anon_execute":false,"authenticated_execute":true},
+    {"signature":"delete_my_account_data()","definition_md5":"0e1dc846cd3f16c773e3b76aec5f2bcb","security_definer":true,"search_path":"","anon_execute":false,"authenticated_execute":true}
+  ],
+  "audited_source_table_grants": "facility_source_observations and toilet_unit_sources retain service_role-only table privileges; no grant mutation command was executed",
+  "public_api_changed": false,
+  "auth_changed": false,
+  "security_mutations": 0
+}

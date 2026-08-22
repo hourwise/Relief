@@ -1,0 +1,28 @@
+{
+  "document_type": "N4C-R2 post-repair production migration ledger",
+  "project_ref": "bgwxrxkmyaihplaloely",
+  "row_count": 17,
+  "head": "20260822092938",
+  "n4a_present": false,
+  "migrations": [
+    {"version":"001","name":"initial_schema"},
+    {"version":"20260624","name":"community_features"},
+    {"version":"20260625","name":"premium_features"},
+    {"version":"20260701","name":"monetisation"},
+    {"version":"20260725","name":"facility_trust_and_import"},
+    {"version":"20260806000000","name":"live_schema_baseline"},
+    {"version":"20260806000100","name":"repair_find_nearest_facilities"},
+    {"version":"20260811164202","name":"apply_1a_audit_and_transaction"},
+    {"version":"20260812104919","name":"apply_1a_import_runs_rls"},
+    {"version":"20260812124351","name":"apply_1a_facilities_update_rls"},
+    {"version":"20260812190246","name":"seal_apply_1a_execution_path"},
+    {"version":"20260814113440","name":"governed_badge_awards"},
+    {"version":"20260814135046","name":"account_deletion_cleanup_contract"},
+    {"version":"20260816205543","name":"community_contract_hardening"},
+    {"version":"20260816220000","name":"governed_moderation_contract"},
+    {"version":"20260821211239","name":"add_toilet_unit_model"},
+    {"version":"20260822092938","name":"facility_source_observations"}
+  ],
+  "all_local_historical_versions_aligned": true,
+  "only_local_only_version": "20260822170000"
+}

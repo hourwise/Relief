@@ -1,0 +1,13 @@
+{
+  "document_type": "N4C-R2 N4A isolation proof",
+  "classification": "ONLY_N4A_PENDING_PROVEN",
+  "version": "20260822170000",
+  "filename": "20260822170000_naptan_transport_source_graph.sql",
+  "sha256": "087A389B8CEAC021B12708BC55C39022CB38D5459510EFFB6CF057CEF232C44E",
+  "real_cli_dry_run_exit_code": 0,
+  "pending_migrations": ["20260822170000_naptan_transport_source_graph.sql"],
+  "other_pending_migrations": [],
+  "production_ledger_contains_n4a": false,
+  "n4a_tables_present": false,
+  "n4a_executed": false
+}
