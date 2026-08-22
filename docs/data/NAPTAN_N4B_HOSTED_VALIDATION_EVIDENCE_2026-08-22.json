@@ -1,0 +1,157 @@
+{
+  "batch": "NAPTAN_N4B.1",
+  "classification": "LIVE_DATABASE_VALIDATION_PASSED",
+  "secondary_classification": "N4B_VALIDATION_PASSED",
+  "n4c_readiness": "N4C_AWAITING_SEPARATE_AUTHORIZATION",
+  "repository": "hourwise/Relief",
+  "branch": "codex/toilet-map-apply-1a-production-deploy",
+  "starting_local_sha": "8627dbfd586df9069b2f73b0cc2d6543645fa950",
+  "starting_remote_sha": "8627dbfd586df9069b2f73b0cc2d6543645fa950",
+  "remote_verification": {
+    "fetch_origin": "blocked by known Windows .git/FETCH_HEAD permission error",
+    "read_only_fallback": "git ls-remote origin refs/heads/codex/toilet-map-apply-1a-production-deploy",
+    "verified_sha": "8627dbfd586df9069b2f73b0cc2d6543645fa950"
+  },
+  "validated_commit_sha": "644ff4915d39ec5347b1f51d0accc1de9d7015ca",
+  "candidate_migration": "supabase/migrations/20260822170000_naptan_transport_source_graph.sql",
+  "candidate_sha256": "087A389B8CEAC021B12708BC55C39022CB38D5459510EFFB6CF057CEF232C44E",
+  "protected_files": {
+    ".easignore": "pre-existing modified; untouched, unstaged, uncommitted",
+    "app.json": "pre-existing modified; untouched, unstaged, uncommitted",
+    "docs/EAS_CONFIG_AUDIT.md": "pre-existing untracked; untouched, unstaged, uncommitted"
+  },
+  "historical_precondition": {
+    "classification": "REPOSITORY_BACKED_AND_REPRODUCIBLE",
+    "blocking_migration": "supabase/migrations/20260812190246_seal_apply_1a_execution_path.sql",
+    "failed_condition": "qualifying committed Apply 1A public.import_runs row count was 0; expected exactly 1",
+    "other_required_state": "private.relief_apply_1a_approved_operations exact 48-operation registry",
+    "authoritative_evidence": [
+      "supabase/migrations/20260811164202_apply_1a_audit_and_transaction.sql",
+      "tools/enrichment/disposable_apply_1a_fixture.sql",
+      "tools/enrichment/disposable_apply_1a_seed.sql",
+      "tools/enrichment/disposable_apply_1a_postcheck_fault.sql",
+      "tools/enrichment/test_apply_1a_sealing.py",
+      "docs/data/TOILET_MAP_APPLY_1A_MANIFEST.json",
+      "docs/data/TOILET_MAP_PROPOSED_APPLY_PLAN_2026-08.json",
+      "docs/data/TOILET_MAP_APPLY_1A_POST_APPLY_SEALING_EVIDENCE_2026-08-12.md"
+    ],
+    "production_access_used": false
+  },
+  "bootstrap": {
+    "file": "tools/enrichment/n4b_historical_apply_1a_bootstrap.sql",
+    "scope": "GitHub-hosted disposable CI only",
+    "pre_seal_last_migration": "20260812124351_apply_1a_facilities_update_rls.sql",
+    "resume_first_migration": "20260812190246_seal_apply_1a_execution_path.sql",
+    "canonical_command": "supabase migration up --local --yes",
+    "registry_rows": 48,
+    "qualifying_import_runs": 1,
+    "historical_apply_audit_history": "exact rollback then committed run; exact committed historical IDs rebinding",
+    "historical_migrations_skipped": false
+  },
+  "workflow": {
+    "name": "N4B NaPTAN Live Validation",
+    "file": ".github/workflows/n4b-naptan-live-validation.yml",
+    "trigger": "workflow_dispatch",
+    "runner": "ubuntu-latest",
+    "production_credentials": false,
+    "production_project_configured": false,
+    "production_link_or_remote_migration": false
+  },
+  "final_run": {
+    "run_id": 32590319699,
+    "run_url": "https://github.com/hourwise/Relief/actions/runs/32590319699",
+    "job_id": 97073021827,
+    "job_url": "https://github.com/hourwise/Relief/actions/runs/32590319699/job/97073021827",
+    "status": "success",
+    "workflow_steps_passed": 27,
+    "artifact_name": "n4b-live-validation-32590319699",
+    "artifact_id": 9480182011,
+    "artifact_url": "https://github.com/hourwise/Relief/actions/runs/32590319699/artifacts/9480182011",
+    "artifact_digest": "sha256:6bf987cec5f574480b58059f94c5997f7a8635b6664e4b0cba87eadba80e194a"
+  },
+  "material_attempts": [
+    {"run_id": 32588147118, "commit": "563f6adf193f39419f27fb9bbd6521f07ca3a3f4", "job_id": 97067555048, "result": "CI plan-byte representation check; no database started"},
+    {"run_id": 32588273496, "commit": "28d898009a61d39c96488ee07ed78dfedcbe68f6", "job_id": 97067859707, "result": "bootstrap facility expectation corrected from 25 to 26"},
+    {"run_id": 32588505785, "commit": "f7a09b8726e0b9fa5a1c80ebc832f7c163464fc0", "job_id": 97068437577, "result": "bootstrap published-facility expectation corrected from 25 to 26"},
+    {"run_id": 32588745893, "commit": "739a402fd3502ab93e94c109d14777b86a26ff93", "job_id": 97069088844, "result": "chain and N4A passed; migration-log basename assertion corrected"},
+    {"run_id": 32588975296, "commit": "966d2a18cdedd3dce0d9b2111086639ffe9eafc8", "job_id": 97069677334, "result": "psql variable inside dollar-quoted block corrected"},
+    {"run_id": 32589447364, "commit": "a6c3a6c05d50c900bd670242185541ea68ed131b", "job_id": 97070799686, "result": "malformed synthetic cross-snapshot tuple corrected"},
+    {"run_id": 32589752664, "commit": "b37ce56bfa183050ec6f79ee38d19dbd8b344e53", "job_id": 97071588485, "result": "transaction-stable NOW trigger assertion corrected"},
+    {"run_id": 32590047075, "commit": "1d28233e0a8b08b2cd3b88630ef94f446ce07178", "job_id": 97072334342, "result": "safety-scan self-match corrected"}
+  ],
+  "runtime": {
+    "runner_os": "Ubuntu 24.04.4 LTS",
+    "postgresql_server": "17.6",
+    "postgresql_client": "16.15",
+    "postgis": "3.3.7",
+    "supabase_cli": "2.75.0",
+    "node": "22.22.2",
+    "python": "3.12.14"
+  },
+  "migration_chain": {
+    "fresh_disposable_database": true,
+    "canonical_replay": "passed",
+    "historical_seal_execution": "passed exactly once",
+    "n4a_execution": "passed unchanged",
+    "post_chain_postgis": "passed",
+    "candidate_sha_rechecked_after_bootstrap": true
+  },
+  "database_assertions": {
+    "sql_harness": "N4B_LIVE_SQL_ASSERTIONS_PASSED",
+    "schema_catalog": "passed",
+    "constraints_keys_foreign_keys": "passed",
+    "indexes": "passed",
+    "triggers": "passed",
+    "rls_policies_grants": "passed",
+    "role_checks": {
+      "anon": "DENIED",
+      "authenticated": "DENIED",
+      "service_role": "READ_AND_ROLLBACK_WRITE"
+    },
+    "postgis_geography": "passed",
+    "hierarchy_and_cross_snapshot": "passed",
+    "duplicate_and_invalid_relationships": "passed",
+    "rollback": "passed",
+    "replay_idempotency": "passed"
+  },
+  "tests": {
+    "n4a_python": {"status": "passed", "passed": 14, "failed": 0},
+    "python_compilation": "passed",
+    "typescript_typecheck": "passed",
+    "js_ts_harness": {"status": "passed", "test_files": 24, "failed": 0},
+    "lint": {"status": "passed", "errors": 0, "warnings": 81}
+  },
+  "production_safety": {
+    "credentials_used": false,
+    "production_database_connected": false,
+    "production_sql": false,
+    "remote_migration": false,
+    "ingestion": false,
+    "canonical_facility_mutation": false,
+    "source_observation_mutation": false,
+    "toilet_unit_mutation": false,
+    "source_promotion": false,
+    "n3_refresh": false,
+    "n4c": false,
+    "total_mutations": 0
+  },
+  "final_hash_verification": {
+    "candidate_sha256": "087A389B8CEAC021B12708BC55C39022CB38D5459510EFFB6CF057CEF232C44E",
+    "unchanged": true
+  },
+  "commits": [
+    "563f6adf193f39419f27fb9bbd6521f07ca3a3f4",
+    "28d898009a61d39c96488ee07ed78dfedcbe68f6",
+    "f7a09b8726e0b9fa5a1c80ebc832f7c163464fc0",
+    "739a402fd3502ab93e94c109d14777b86a26ff93",
+    "966d2a18cdedd3dce0d9b2111086639ffe9eafc8",
+    "a6c3a6c05d50c900bd670242185541ea68ed131b",
+    "b37ce56bfa183050ec6f79ee38d19dbd8b344e53",
+    "1d28233e0a8b08b2cd3b88630ef94f446ce07178",
+    "644ff4915d39ec5347b1f51d0accc1de9d7015ca"
+  ],
+  "final_local_sha": "pending-final-evidence-commit",
+  "final_remote_sha": "pending-final-evidence-commit",
+  "no_force_push": true,
+  "total_production_mutations": 0
+}

@@ -1,0 +1,61 @@
+{
+  "batch": "NAPTAN_N4B.1",
+  "classification": "LIVE_DATABASE_VALIDATION_PASSED",
+  "repository": "hourwise/Relief",
+  "branch": "codex/toilet-map-apply-1a-production-deploy",
+  "starting_sha": "8627dbfd586df9069b2f73b0cc2d6543645fa950",
+  "validated_sha": "644ff4915d39ec5347b1f51d0accc1de9d7015ca",
+  "workflow": {
+    "name": "N4B NaPTAN Live Validation",
+    "run_id": 32590319699,
+    "job_id": 97073021827,
+    "runner": "Ubuntu 24.04.4 LTS",
+    "artifact_id": 9480182011,
+    "artifact_digest": "sha256:6bf987cec5f574480b58059f94c5997f7a8635b6664e4b0cba87eadba80e194a"
+  },
+  "runtime": {
+    "supabase_cli": "2.75.0",
+    "postgresql_server": "17.6",
+    "postgresql_client": "16.15",
+    "postgis": "3.3.7",
+    "node": "22.22.2",
+    "python": "3.12.14"
+  },
+  "candidate_migration": {
+    "path": "supabase/migrations/20260822170000_naptan_transport_source_graph.sql",
+    "sha256": "087A389B8CEAC021B12708BC55C39022CB38D5459510EFFB6CF057CEF232C44E",
+    "executed_unchanged": true
+  },
+  "historical_bootstrap": {
+    "path": "tools/enrichment/n4b_historical_apply_1a_bootstrap.sql",
+    "source": "committed Apply 1A registry, fixture, seed, fault, tests, manifest, plan, and sealing evidence",
+    "pre_seal_last_migration": "20260812124351_apply_1a_facilities_update_rls.sql",
+    "resume_first_migration": "20260812190246_seal_apply_1a_execution_path.sql",
+    "approved_operations": 48,
+    "qualifying_import_runs": 1,
+    "production_access": false
+  },
+  "database": {
+    "fresh_disposable_database": true,
+    "canonical_migration_chain": "passed",
+    "historical_seal": "passed exactly once",
+    "postgis_after_chain": "passed",
+    "live_sql": "N4B_LIVE_SQL_ASSERTIONS_PASSED",
+    "schema_constraints_indexes_triggers": "passed",
+    "rls_policies_grants": "passed",
+    "role_anon": "DENIED",
+    "role_authenticated": "DENIED",
+    "role_service_role": "READ_AND_ROLLBACK_WRITE",
+    "spatial_hierarchy_duplicate_invalid_rollback_replay": "passed"
+  },
+  "tests": {
+    "n4a_python": {"passed": 14, "failed": 0},
+    "python_compilation": "passed",
+    "typescript": "passed",
+    "js_ts_test_files": {"passed": 24, "failed": 0},
+    "lint_errors": 0,
+    "lint_warnings": 81
+  },
+  "production_mutations": 0,
+  "n4c": false
+}
