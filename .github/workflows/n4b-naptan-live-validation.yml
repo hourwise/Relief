@@ -1,0 +1,190 @@
+name: N4B NaPTAN Live Validation
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  N4B_BASELINE_SHA: 28195ff47b8559ad6c65f7d4866b47f45870560a
+  N4B_MIGRATION: supabase/migrations/20260822170000_naptan_transport_source_graph.sql
+  N4B_MIGRATION_SHA256: 087A389B8CEAC021B12708BC55C39022CB38D5459510EFFB6CF057CEF232C44E
+  SUPABASE_CLI_VERSION: 2.75.0
+  N4B_DB_URL: postgresql://postgres:postgres@127.0.0.1:54322/postgres
+
+jobs:
+  live-validation:
+    name: Disposable Supabase/PostGIS validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out the requested branch revision
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify repository and sealed input
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p evidence
+          local_sha="$(git rev-parse HEAD)"
+          remote_sha="$(git ls-remote origin "refs/heads/${GITHUB_REF_NAME}" | awk '{print $1}')"
+          migration_sha="$(sha256sum "$N4B_MIGRATION" | awk '{print toupper($1)}')"
+          {
+            echo "repository=${GITHUB_REPOSITORY}"
+            echo "workflow=${GITHUB_WORKFLOW}"
+            echo "run_id=${GITHUB_RUN_ID}"
+            echo "run_attempt=${GITHUB_RUN_ATTEMPT}"
+            echo "ref=${GITHUB_REF}"
+            echo "tested_sha=${local_sha}"
+            echo "remote_branch_sha=${remote_sha}"
+            echo "required_baseline_sha=${N4B_BASELINE_SHA}"
+            echo "migration=${N4B_MIGRATION}"
+            echo "migration_sha256=${migration_sha}"
+            echo "production_mutations=0"
+          } | tee evidence/run-metadata.txt
+          test "$GITHUB_REF_NAME" = "codex/toilet-map-apply-1a-production-deploy"
+          test "$remote_sha" = "$local_sha"
+          test "$migration_sha" = "$N4B_MIGRATION_SHA256"
+          git cat-file -e "${N4B_BASELINE_SHA}:${N4B_MIGRATION}"
+          baseline_sha="$(git show "${N4B_BASELINE_SHA}:${N4B_MIGRATION}" | sha256sum | awk '{print toupper($1)}')"
+          test "$baseline_sha" = "$N4B_MIGRATION_SHA256"
+          echo "baseline_migration_sha256=$baseline_sha" | tee -a evidence/run-metadata.txt
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Set up Node 22.22.2
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Set up Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: ${{ env.SUPABASE_CLI_VERSION }}
+
+      - name: Record hosted runtime versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo "runner_os=${RUNNER_OS}"
+            echo "runner_arch=${RUNNER_ARCH}"
+            echo "node=$(node --version)"
+            echo "python=$(python --version 2>&1)"
+            echo "supabase=$(supabase --version | head -n 1)"
+            echo "psql=$(psql --version)"
+          } | tee evidence/runtime-versions.txt
+
+      - name: Install JavaScript dependencies
+        shell: bash
+        run: npm ci
+
+      - name: Initialize disposable Supabase project configuration
+        shell: bash
+        run: supabase init --force --yes
+
+      - name: Start disposable Supabase stack
+        shell: bash
+        run: supabase start --yes
+
+      - name: Verify PostgreSQL and PostGIS
+        shell: bash
+        run: |
+          set -euo pipefail
+          psql -X "$N4B_DB_URL" -v ON_ERROR_STOP=1 -Atc "select version();" | tee evidence/postgresql-version.txt
+          psql -X "$N4B_DB_URL" -v ON_ERROR_STOP=1 -Atc "select extname || '=' || extversion from pg_extension where extname = 'postgis';" | tee evidence/postgis-version.txt
+          test -s evidence/postgis-version.txt
+
+      - name: Apply the full repository migration chain to a fresh database
+        shell: bash
+        run: |
+          set -euo pipefail
+          supabase db reset --local --no-seed 2>&1 | tee evidence/migration-chain.txt
+
+      - name: Re-verify the sealed migration after bootstrap
+        shell: bash
+        run: |
+          set -euo pipefail
+          migration_sha="$(sha256sum "$N4B_MIGRATION" | awk '{print toupper($1)}')"
+          echo "$migration_sha" | tee evidence/migration-sha256-after-bootstrap.txt
+          test "$migration_sha" = "$N4B_MIGRATION_SHA256"
+
+      - name: Run N4A deterministic Python validation
+        shell: bash
+        env:
+          PYTHONPATH: .
+        run: |
+          set -euo pipefail
+          python -m unittest tools.source_expansion.test_naptan_n4a -v 2>&1 | tee evidence/n4a-python-tests.txt
+          python -m py_compile tools/source_expansion/naptan_n4a.py tools/source_expansion/test_naptan_n4a.py
+          echo "python_compilation=PASS" | tee evidence/python-compilation.txt
+
+      - name: Run TypeScript validation
+        shell: bash
+        run: npm run typecheck 2>&1 | tee evidence/typescript-typecheck.txt
+
+      - name: Run JavaScript/TypeScript test harness
+        shell: bash
+        run: npm test 2>&1 | tee evidence/javascript-tests.txt
+
+      - name: Run repository lint validation
+        shell: bash
+        run: npm run lint 2>&1 | tee evidence/lint.txt
+
+      - name: Run live PostgreSQL/PostGIS N4B assertions
+        shell: bash
+        run: |
+          set -euo pipefail
+          psql -X "$N4B_DB_URL" -v ON_ERROR_STOP=1 -f tools/source_expansion/naptan_n4b_live_validation.sql 2>&1 | tee evidence/live-sql-assertions.txt
+
+      - name: Run actual role access checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          check_denied() {
+            local role="$1"
+            local output="evidence/role-${role}.txt"
+            if psql -X "$N4B_DB_URL" -v ON_ERROR_STOP=1 -c "set role ${role}; select count(*) from public.transport_source_snapshots;" >"$output" 2>&1; then
+              echo "${role}=UNEXPECTED_ACCESS" | tee -a evidence/role-access-summary.txt
+              return 1
+            fi
+            grep -Eqi 'permission denied|must be owner|not have permission' "$output"
+            echo "${role}=DENIED" | tee -a evidence/role-access-summary.txt
+          }
+          : > evidence/role-access-summary.txt
+          check_denied anon
+          check_denied authenticated
+          psql -X "$N4B_DB_URL" -v ON_ERROR_STOP=1 -c "set role service_role; select count(*) from public.transport_source_snapshots; begin; insert into public.transport_source_snapshots (source_namespace, product_name, source_snapshot_key, source_url, source_checksum_sha256, source_byte_size, retrieved_at, licence, attribution, parser_version) values ('n4b', 'service-role-fixture', 'n4b:sha256:$(printf 'c%.0s' {1..64})', 'https://example.invalid/n4b-service-role', '$(printf 'c%.0s' {1..64})', 0, now(), 'test', 'test', 'n4b-ci'); rollback;" > evidence/role-service_role.txt 2>&1
+          echo "service_role=READ_AND_ROLLBACK_WRITE" | tee -a evidence/role-access-summary.txt
+
+      - name: Confirm production safety invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -R -n -E 'bgwxrxkmyaihplaloely|supabase link|supabase db push|SUPABASE_SERVICE_ROLE_KEY|SUPABASE_DB_URL' .github/workflows tools/source_expansion/naptan_n4b_live_validation.sql; then
+            echo 'production reference or credential pattern found in N4B validation scope' >&2
+            exit 1
+          fi
+          echo 'TOTAL PRODUCTION MUTATIONS: 0' | tee evidence/production-safety.txt
+
+      - name: Upload N4B evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: n4b-live-validation-${{ github.run_id }}
+          path: evidence/
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Stop disposable Supabase stack
+        if: always()
+        shell: bash
+        run: supabase stop --no-backup --yes
