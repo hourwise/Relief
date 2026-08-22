@@ -1,0 +1,3967 @@
+{
+  "area_metadata": [
+    {
+      "administrative_area_code": "009",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.45918,
+      "longitude": -2.59254,
+      "member_count": 11,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Bristol Bus Station",
+      "normalized_name": "bristol bus station",
+      "publisher_id": "010G0001",
+      "source_identity": "naptan-stop-area:010G0001",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "009",
+      "area_type": "GBCS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.44867,
+      "longitude": -2.58399,
+      "member_count": 6,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Temple Meads Station",
+      "normalized_name": "temple meads station",
+      "publisher_id": "010G0002",
+      "source_identity": "naptan-stop-area:010G0002",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "009",
+      "area_type": "GBCS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.45599,
+      "longitude": -2.58183,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Old Market Street",
+      "normalized_name": "old market street",
+      "publisher_id": "010G0003",
+      "source_identity": "naptan-stop-area:010G0003",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "009",
+      "area_type": "GBCS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.49653,
+      "longitude": -2.59203,
+      "member_count": 4,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Southmead Hospital",
+      "normalized_name": "southmead hospital",
+      "publisher_id": "010G0004",
+      "source_identity": "naptan-stop-area:010G0004",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "009",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.45896,
+      "longitude": -2.59313,
+      "member_count": 8,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Bristol Bus Station",
+      "normalized_name": "bristol bus station",
+      "publisher_id": "010G0005",
+      "source_identity": "naptan-stop-area:010G0005",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "051",
+      "area_type": "GBCS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.53955,
+      "longitude": -2.40982,
+      "member_count": 5,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Yate Shopping Centre",
+      "normalized_name": "yate shopping centre",
+      "publisher_id": "017G0001",
+      "source_identity": "naptan-stop-area:017G0001",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "051",
+      "area_type": "GBCS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.52702,
+      "longitude": -2.5962,
+      "member_count": 8,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Bus Station",
+      "normalized_name": "bus station",
+      "publisher_id": "017G0002",
+      "source_identity": "naptan-stop-area:017G0002",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "051",
+      "area_type": "GBCS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.49985,
+      "longitude": -2.5461,
+      "member_count": 7,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Frenchay Campus",
+      "normalized_name": "frenchay campus",
+      "publisher_id": "017G0003",
+      "source_identity": "naptan-stop-area:017G0003",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "051",
+      "area_type": "GBCS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.46271,
+      "longitude": -2.50916,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Kings Chase Centre",
+      "normalized_name": "kings chase centre",
+      "publisher_id": "017G0004",
+      "source_identity": "naptan-stop-area:017G0004",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "051",
+      "area_type": "GBCS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.51446,
+      "longitude": -2.5439,
+      "member_count": 4,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Bristol Parkway Stn",
+      "normalized_name": "bristol parkway stn",
+      "publisher_id": "017G0005",
+      "source_identity": "naptan-stop-area:017G0005",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "001",
+      "area_type": "GBCS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.37783,
+      "longitude": -2.359,
+      "member_count": 16,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Bath Bus Station",
+      "normalized_name": "bath bus station",
+      "publisher_id": "018G0001",
+      "source_identity": "naptan-stop-area:018G0001",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "038",
+      "area_type": "GBCS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.36218,
+      "longitude": -2.90956,
+      "member_count": 4,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Worle Interchange",
+      "normalized_name": "worle interchange",
+      "publisher_id": "019G0001",
+      "source_identity": "naptan-stop-area:019G0001",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "038",
+      "area_type": "GBCS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.43558,
+      "longitude": -2.85199,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Triangle",
+      "normalized_name": "triangle",
+      "publisher_id": "019G0002",
+      "source_identity": "naptan-stop-area:019G0002",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "069",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.15791,
+      "longitude": -0.3521,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Willoughby Close",
+      "normalized_name": "willoughby close",
+      "publisher_id": "020G33094",
+      "source_identity": "naptan-stop-area:020G33094",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "069",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.15786,
+      "longitude": -0.35362,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "The Cross",
+      "normalized_name": "the cross",
+      "publisher_id": "020G33100",
+      "source_identity": "naptan-stop-area:020G33100",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "069",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.08602,
+      "longitude": -0.48942,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Manor Road",
+      "normalized_name": "manor road",
+      "publisher_id": "020G34041",
+      "source_identity": "naptan-stop-area:020G34041",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "069",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.13936,
+      "longitude": -0.48116,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Chaucer Road",
+      "normalized_name": "chaucer road",
+      "publisher_id": "020G35083",
+      "source_identity": "naptan-stop-area:020G35083",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "069",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.13622,
+      "longitude": -0.47808,
+      "member_count": 3,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Bedford Railway Station",
+      "normalized_name": "bedford railway station",
+      "publisher_id": "020G35124",
+      "source_identity": "naptan-stop-area:020G35124",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "069",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.12573,
+      "longitude": -0.45707,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Paradine Road",
+      "normalized_name": "paradine road",
+      "publisher_id": "020G35325",
+      "source_identity": "naptan-stop-area:020G35325",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "069",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.12534,
+      "longitude": -0.45822,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "London Road Methodist Chapel",
+      "normalized_name": "london road methodist chapel",
+      "publisher_id": "020G35648",
+      "source_identity": "naptan-stop-area:020G35648",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "069",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.127,
+      "longitude": -0.47071,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Bedford Hospital East",
+      "normalized_name": "bedford hospital east",
+      "publisher_id": "020G35715",
+      "source_identity": "naptan-stop-area:020G35715",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "069",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.1294,
+      "longitude": -0.47139,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Britannia Road",
+      "normalized_name": "britannia road",
+      "publisher_id": "020G35717",
+      "source_identity": "naptan-stop-area:020G35717",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "069",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.13188,
+      "longitude": -0.4653,
+      "member_count": 1,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "St John's Street",
+      "normalized_name": "st john s street",
+      "publisher_id": "020G35770",
+      "source_identity": "naptan-stop-area:020G35770",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "069",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.1309,
+      "longitude": -0.46586,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Kingsway Link",
+      "normalized_name": "kingsway link",
+      "publisher_id": "020G35771",
+      "source_identity": "naptan-stop-area:020G35771",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "069",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.12956,
+      "longitude": -0.47306,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Bedford Hospital West",
+      "normalized_name": "bedford hospital west",
+      "publisher_id": "020G35812",
+      "source_identity": "naptan-stop-area:020G35812",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "069",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.1327,
+      "longitude": -0.46654,
+      "member_count": 1,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Bedford College",
+      "normalized_name": "bedford college",
+      "publisher_id": "020G35817",
+      "source_identity": "naptan-stop-area:020G35817",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "069",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.06892,
+      "longitude": -0.52043,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Stewartby Railway Station",
+      "normalized_name": "stewartby railway station",
+      "publisher_id": "020G36080",
+      "source_identity": "naptan-stop-area:020G36080",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "069",
+      "area_type": "GBCS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.13742,
+      "longitude": -0.47139,
+      "member_count": 27,
+      "modes": [
+        "bus_coach",
+        "taxi"
+      ],
+      "modification": "revise",
+      "name": "Bus Station",
+      "normalized_name": "bus station",
+      "publisher_id": "020GBEDBUS01",
+      "source_identity": "naptan-stop-area:020GBEDBUS01",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "069",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.22165,
+      "longitude": -0.55435,
+      "member_count": 3,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Upper School",
+      "normalized_name": "upper school",
+      "publisher_id": "020GSHARNBRK",
+      "source_identity": "naptan-stop-area:020GSHARNBRK",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.85038,
+      "longitude": -0.37391,
+      "member_count": 3,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Chiltern Green Road",
+      "normalized_name": "chiltern green road",
+      "publisher_id": "021G12001",
+      "source_identity": "naptan-stop-area:021G12001",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.85576,
+      "longitude": -0.41436,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Bull Wood",
+      "normalized_name": "bull wood",
+      "publisher_id": "021G12007",
+      "source_identity": "naptan-stop-area:021G12007",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.8903,
+      "longitude": -0.48982,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Allenby Avenue",
+      "normalized_name": "allenby avenue",
+      "publisher_id": "021G13053",
+      "source_identity": "naptan-stop-area:021G13053",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.88548,
+      "longitude": -0.52235,
+      "member_count": 2,
+      "modes": [
+        "bus_coach",
+        "taxi"
+      ],
+      "modification": "new",
+      "name": "West Street",
+      "normalized_name": "west street",
+      "publisher_id": "021G13101",
+      "source_identity": "naptan-stop-area:021G13101",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.88471,
+      "longitude": -0.51909,
+      "member_count": 3,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "The Square",
+      "normalized_name": "the square",
+      "publisher_id": "021G13102",
+      "source_identity": "naptan-stop-area:021G13102",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.8865,
+      "longitude": -0.5195,
+      "member_count": 3,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Church Street",
+      "normalized_name": "church street",
+      "publisher_id": "021G13107",
+      "source_identity": "naptan-stop-area:021G13107",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.88663,
+      "longitude": -0.52195,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "The Quadrant",
+      "normalized_name": "the quadrant",
+      "publisher_id": "021G13111",
+      "source_identity": "naptan-stop-area:021G13111",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.88697,
+      "longitude": -0.51388,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Priory View",
+      "normalized_name": "priory view",
+      "publisher_id": "021G13114",
+      "source_identity": "naptan-stop-area:021G13114",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.88485,
+      "longitude": -0.52592,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "St Marys Church",
+      "normalized_name": "st marys church",
+      "publisher_id": "021G13119",
+      "source_identity": "naptan-stop-area:021G13119",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.85362,
+      "longitude": -0.44569,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Manor Road",
+      "normalized_name": "manor road",
+      "publisher_id": "021G13157",
+      "source_identity": "naptan-stop-area:021G13157",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.88747,
+      "longitude": -0.5078,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Boscombe Road",
+      "normalized_name": "boscombe road",
+      "publisher_id": "021G13258",
+      "source_identity": "naptan-stop-area:021G13258",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.87768,
+      "longitude": -0.50629,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Mayfield Stores",
+      "normalized_name": "mayfield stores",
+      "publisher_id": "021G13350",
+      "source_identity": "naptan-stop-area:021G13350",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.87838,
+      "longitude": -0.52355,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Queensbury Academy",
+      "normalized_name": "queensbury academy",
+      "publisher_id": "021G13404",
+      "source_identity": "naptan-stop-area:021G13404",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.86233,
+      "longitude": -0.47148,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Eden Brae Business Park",
+      "normalized_name": "eden brae business park",
+      "publisher_id": "021G13501",
+      "source_identity": "naptan-stop-area:021G13501",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.85559,
+      "longitude": -0.44422,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Woodside Road",
+      "normalized_name": "woodside road",
+      "publisher_id": "021G13518",
+      "source_identity": "naptan-stop-area:021G13518",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.85485,
+      "longitude": -0.4341,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Prebendal Drive",
+      "normalized_name": "prebendal drive",
+      "publisher_id": "021G13536",
+      "source_identity": "naptan-stop-area:021G13536",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.85485,
+      "longitude": -0.43359,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Crossroads",
+      "normalized_name": "crossroads",
+      "publisher_id": "021G13538",
+      "source_identity": "naptan-stop-area:021G13538",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.89235,
+      "longitude": -0.52984,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Westfield Road",
+      "normalized_name": "westfield road",
+      "publisher_id": "021G13606",
+      "source_identity": "naptan-stop-area:021G13606",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.88877,
+      "longitude": -0.52469,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Regent Street",
+      "normalized_name": "regent street",
+      "publisher_id": "021G13611",
+      "source_identity": "naptan-stop-area:021G13611",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.90498,
+      "longitude": -0.51599,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Drury Lane",
+      "normalized_name": "drury lane",
+      "publisher_id": "021G13663",
+      "source_identity": "naptan-stop-area:021G13663",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.91769,
+      "longitude": -0.50191,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "The Farmstead",
+      "normalized_name": "the farmstead",
+      "publisher_id": "021G13665",
+      "source_identity": "naptan-stop-area:021G13665",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.89633,
+      "longitude": -0.529,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "All Saints Academy",
+      "normalized_name": "all saints academy",
+      "publisher_id": "021G13702",
+      "source_identity": "naptan-stop-area:021G13702",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.90371,
+      "longitude": -0.52231,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Morrisons",
+      "normalized_name": "morrisons",
+      "publisher_id": "021G13708",
+      "source_identity": "naptan-stop-area:021G13708",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.91301,
+      "longitude": -0.50598,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Houstone School",
+      "normalized_name": "houstone school",
+      "publisher_id": "021G13720",
+      "source_identity": "naptan-stop-area:021G13720",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.9106,
+      "longitude": -0.50106,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Dolphin Drive",
+      "normalized_name": "dolphin drive",
+      "publisher_id": "021G13722",
+      "source_identity": "naptan-stop-area:021G13722",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.91117,
+      "longitude": -0.50731,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Lime Tree Primary Academy",
+      "normalized_name": "lime tree primary academy",
+      "publisher_id": "021G13724",
+      "source_identity": "naptan-stop-area:021G13724",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.8955,
+      "longitude": -0.50373,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "The Vale Academy",
+      "normalized_name": "the vale academy",
+      "publisher_id": "021G13755",
+      "source_identity": "naptan-stop-area:021G13755",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.91695,
+      "longitude": -0.67254,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Stoke Road",
+      "normalized_name": "stoke road",
+      "publisher_id": "021G14003",
+      "source_identity": "naptan-stop-area:021G14003",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.9167,
+      "longitude": -0.66954,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Tesco",
+      "normalized_name": "tesco",
+      "publisher_id": "021G14005",
+      "source_identity": "naptan-stop-area:021G14005",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.89758,
+      "longitude": -0.64282,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Slapton Road",
+      "normalized_name": "slapton road",
+      "publisher_id": "021G140143",
+      "source_identity": "naptan-stop-area:021G140143",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.91643,
+      "longitude": -0.67655,
+      "member_count": 1,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Leighton Buzzard Railway Station",
+      "normalized_name": "leighton buzzard railway station",
+      "publisher_id": "021G14015",
+      "source_identity": "naptan-stop-area:021G14015",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.91592,
+      "longitude": -0.67155,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "New Road",
+      "normalized_name": "new road",
+      "publisher_id": "021G14017",
+      "source_identity": "naptan-stop-area:021G14017",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.91327,
+      "longitude": -0.64462,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Lywood Road",
+      "normalized_name": "lywood road",
+      "publisher_id": "021G14030",
+      "source_identity": "naptan-stop-area:021G14030",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.89693,
+      "longitude": -0.63668,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Leighton Road",
+      "normalized_name": "leighton road",
+      "publisher_id": "021G14044",
+      "source_identity": "naptan-stop-area:021G14044",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.90803,
+      "longitude": -0.58423,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "All Saints' Church",
+      "normalized_name": "all saints church",
+      "publisher_id": "021G14061",
+      "source_identity": "naptan-stop-area:021G14061",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.91366,
+      "longitude": -0.67495,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Victoria Road",
+      "normalized_name": "victoria road",
+      "publisher_id": "021G14124",
+      "source_identity": "naptan-stop-area:021G14124",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.92069,
+      "longitude": -0.67457,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Golden Riddy South",
+      "normalized_name": "golden riddy south",
+      "publisher_id": "021G14484",
+      "source_identity": "naptan-stop-area:021G14484",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.91376,
+      "longitude": -0.68137,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Bunkers Lane",
+      "normalized_name": "bunkers lane",
+      "publisher_id": "021G14828",
+      "source_identity": "naptan-stop-area:021G14828",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.91615,
+      "longitude": -0.67918,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Southcourt Road",
+      "normalized_name": "southcourt road",
+      "publisher_id": "021G14839",
+      "source_identity": "naptan-stop-area:021G14839",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.92346,
+      "longitude": -0.67973,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Alwins Field",
+      "normalized_name": "alwins field",
+      "publisher_id": "021G14849",
+      "source_identity": "naptan-stop-area:021G14849",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.94561,
+      "longitude": -0.438,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Streatley Turn",
+      "normalized_name": "streatley turn",
+      "publisher_id": "021G15000",
+      "source_identity": "naptan-stop-area:021G15000",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.9142,
+      "longitude": -0.48292,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Vauxhall Warehouse",
+      "normalized_name": "vauxhall warehouse",
+      "publisher_id": "021G15100",
+      "source_identity": "naptan-stop-area:021G15100",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.94343,
+      "longitude": -0.53404,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "BP Garage",
+      "normalized_name": "bp garage",
+      "publisher_id": "021G15129",
+      "source_identity": "naptan-stop-area:021G15129",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.8787,
+      "longitude": -0.59307,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Park Lane",
+      "normalized_name": "park lane",
+      "publisher_id": "021G16021",
+      "source_identity": "naptan-stop-area:021G16021",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.85012,
+      "longitude": -0.49388,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Kensworth Primary School",
+      "normalized_name": "kensworth primary school",
+      "publisher_id": "021G16066",
+      "source_identity": "naptan-stop-area:021G16066",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.83029,
+      "longitude": -0.52068,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Studham Lower School",
+      "normalized_name": "studham lower school",
+      "publisher_id": "021G16104",
+      "source_identity": "naptan-stop-area:021G16104",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.90956,
+      "longitude": -0.65991,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Enterprise Way",
+      "normalized_name": "enterprise way",
+      "publisher_id": "021G16506",
+      "source_identity": "naptan-stop-area:021G16506",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.89148,
+      "longitude": -0.51291,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Chiltern Park",
+      "normalized_name": "chiltern park",
+      "publisher_id": "021G16521",
+      "source_identity": "naptan-stop-area:021G16521",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.91398,
+      "longitude": -0.65778,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Morrisons",
+      "normalized_name": "morrisons",
+      "publisher_id": "021G16523",
+      "source_identity": "naptan-stop-area:021G16523",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.89045,
+      "longitude": -0.51713,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Central Bedfordshire College",
+      "normalized_name": "central bedfordshire college",
+      "publisher_id": "021G16545",
+      "source_identity": "naptan-stop-area:021G16545",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.89402,
+      "longitude": -0.52498,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Portland Ride",
+      "normalized_name": "portland ride",
+      "publisher_id": "021G16547",
+      "source_identity": "naptan-stop-area:021G16547",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.89091,
+      "longitude": -0.51559,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "White Lion Retail Park",
+      "normalized_name": "white lion retail park",
+      "publisher_id": "021G16549",
+      "source_identity": "naptan-stop-area:021G16549",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.88827,
+      "longitude": -0.47438,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Stanton Road",
+      "normalized_name": "stanton road",
+      "publisher_id": "021G16551",
+      "source_identity": "naptan-stop-area:021G16551",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.8983,
+      "longitude": -0.52455,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Blackburn Road",
+      "normalized_name": "blackburn road",
+      "publisher_id": "021G16555",
+      "source_identity": "naptan-stop-area:021G16555",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.88431,
+      "longitude": -0.51841,
+      "member_count": 1,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Friars Walk",
+      "normalized_name": "friars walk",
+      "publisher_id": "021G16557",
+      "source_identity": "naptan-stop-area:021G16557",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.934,
+      "longitude": -0.59097,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Kings Arms Farm Park",
+      "normalized_name": "kings arms farm park",
+      "publisher_id": "021G16560",
+      "source_identity": "naptan-stop-area:021G16560",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.92084,
+      "longitude": -0.68227,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Knaves Hill",
+      "normalized_name": "knaves hill",
+      "publisher_id": "021G16562",
+      "source_identity": "naptan-stop-area:021G16562",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.91947,
+      "longitude": -0.67834,
+      "member_count": 1,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "St Mary's Way",
+      "normalized_name": "st mary s way",
+      "publisher_id": "021G16564",
+      "source_identity": "naptan-stop-area:021G16564",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.98837,
+      "longitude": -0.61946,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Duck Lane",
+      "normalized_name": "duck lane",
+      "publisher_id": "021G20006",
+      "source_identity": "naptan-stop-area:021G20006",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.98939,
+      "longitude": -0.61921,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "High Street",
+      "normalized_name": "high street",
+      "publisher_id": "021G20007",
+      "source_identity": "naptan-stop-area:021G20007",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.93089,
+      "longitude": -0.58627,
+      "member_count": 3,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Hockliffe Signals",
+      "normalized_name": "hockliffe signals",
+      "publisher_id": "021G20045",
+      "source_identity": "naptan-stop-area:021G20045",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.03279,
+      "longitude": -0.494,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Prince of Wales",
+      "normalized_name": "prince of wales",
+      "publisher_id": "021G20051",
+      "source_identity": "naptan-stop-area:021G20051",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.03182,
+      "longitude": -0.49705,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Alameda Road",
+      "normalized_name": "alameda road",
+      "publisher_id": "021G20052",
+      "source_identity": "naptan-stop-area:021G20052",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.03207,
+      "longitude": -0.49209,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Rectory Lane",
+      "normalized_name": "rectory lane",
+      "publisher_id": "021G20054",
+      "source_identity": "naptan-stop-area:021G20054",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.01386,
+      "longitude": -0.62849,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "The Square",
+      "normalized_name": "the square",
+      "publisher_id": "021G20081",
+      "source_identity": "naptan-stop-area:021G20081",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.02123,
+      "longitude": -0.63268,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Aspley Guise Railway Station",
+      "normalized_name": "aspley guise railway station",
+      "publisher_id": "021G20082",
+      "source_identity": "naptan-stop-area:021G20082",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.02653,
+      "longitude": -0.59419,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Ridgmont Railway Station",
+      "normalized_name": "ridgmont railway station",
+      "publisher_id": "021G20086",
+      "source_identity": "naptan-stop-area:021G20086",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.96276,
+      "longitude": -0.49615,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Railway Station",
+      "normalized_name": "railway station",
+      "publisher_id": "021G20088",
+      "source_identity": "naptan-stop-area:021G20088",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.96277,
+      "longitude": -0.49248,
+      "member_count": 3,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Memorial",
+      "normalized_name": "memorial",
+      "publisher_id": "021G20092",
+      "source_identity": "naptan-stop-area:021G20092",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.00463,
+      "longitude": -0.49879,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Woodland Middle School",
+      "normalized_name": "woodland middle school",
+      "publisher_id": "021G20115",
+      "source_identity": "naptan-stop-area:021G20115",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.00317,
+      "longitude": -0.49248,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Flitwick Bowls Club",
+      "normalized_name": "flitwick bowls club",
+      "publisher_id": "021G20170",
+      "source_identity": "naptan-stop-area:021G20170",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.0041,
+      "longitude": -0.49485,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Post Office",
+      "normalized_name": "post office",
+      "publisher_id": "021G20200",
+      "source_identity": "naptan-stop-area:021G20200",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.00911,
+      "longitude": -0.49829,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "The Ridgeway",
+      "normalized_name": "the ridgeway",
+      "publisher_id": "021G20202",
+      "source_identity": "naptan-stop-area:021G20202",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.01325,
+      "longitude": -0.50107,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Williams Way",
+      "normalized_name": "williams way",
+      "publisher_id": "021G20204",
+      "source_identity": "naptan-stop-area:021G20204",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GCLS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.02194,
+      "longitude": -0.49266,
+      "member_count": 4,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Aragon Road",
+      "normalized_name": "aragon road",
+      "publisher_id": "021G20281",
+      "source_identity": "naptan-stop-area:021G20281",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.02688,
+      "longitude": -0.494,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Arthur Street",
+      "normalized_name": "arthur street",
+      "publisher_id": "021G20299",
+      "source_identity": "naptan-stop-area:021G20299",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.00513,
+      "longitude": -0.4248,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Obelisk Way",
+      "normalized_name": "obelisk way",
+      "publisher_id": "021G20320",
+      "source_identity": "naptan-stop-area:021G20320",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.01432,
+      "longitude": -0.42659,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Newbury Lane",
+      "normalized_name": "newbury lane",
+      "publisher_id": "021G20326",
+      "source_identity": "naptan-stop-area:021G20326",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.0312,
+      "longitude": -0.47347,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Snow Hill",
+      "normalized_name": "snow hill",
+      "publisher_id": "021G20404",
+      "source_identity": "naptan-stop-area:021G20404",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.0432,
+      "longitude": -0.63656,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "The Swan",
+      "normalized_name": "the swan",
+      "publisher_id": "021G20525",
+      "source_identity": "naptan-stop-area:021G20525",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.0025,
+      "longitude": -0.49741,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Tesco",
+      "normalized_name": "tesco",
+      "publisher_id": "021G20660",
+      "source_identity": "naptan-stop-area:021G20660",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.01468,
+      "longitude": -0.4278,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Apple Tree Close",
+      "normalized_name": "apple tree close",
+      "publisher_id": "021G20708",
+      "source_identity": "naptan-stop-area:021G20708",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.02787,
+      "longitude": -0.42554,
+      "member_count": 1,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "The Flying Horse",
+      "normalized_name": "the flying horse",
+      "publisher_id": "021G21002",
+      "source_identity": "naptan-stop-area:021G21002",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.03185,
+      "longitude": -0.40714,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Jacques Lane",
+      "normalized_name": "jacques lane",
+      "publisher_id": "021G21021",
+      "source_identity": "naptan-stop-area:021G21021",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.98212,
+      "longitude": -0.39444,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "St Margaret's Church",
+      "normalized_name": "st margaret s church",
+      "publisher_id": "021G21040",
+      "source_identity": "naptan-stop-area:021G21040",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.98489,
+      "longitude": -0.36698,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Apsley End Road",
+      "normalized_name": "apsley end road",
+      "publisher_id": "021G21050",
+      "source_identity": "naptan-stop-area:021G21050",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.03736,
+      "longitude": -0.33974,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Scotgrange Meadow",
+      "normalized_name": "scotgrange meadow",
+      "publisher_id": "021G22004",
+      "source_identity": "naptan-stop-area:021G22004",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.03613,
+      "longitude": -0.31079,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Knolls Way",
+      "normalized_name": "knolls way",
+      "publisher_id": "021G22018",
+      "source_identity": "naptan-stop-area:021G22018",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.02817,
+      "longitude": -0.28732,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "The Crown - West",
+      "normalized_name": "the crown west",
+      "publisher_id": "021G22024",
+      "source_identity": "naptan-stop-area:021G22024",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.02815,
+      "longitude": -0.28593,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "The Crown - North",
+      "normalized_name": "the crown north",
+      "publisher_id": "021G22026",
+      "source_identity": "naptan-stop-area:021G22026",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.03774,
+      "longitude": -0.28558,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Newtown",
+      "normalized_name": "newtown",
+      "publisher_id": "021G22032",
+      "source_identity": "naptan-stop-area:021G22032",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.03763,
+      "longitude": -0.28726,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Mill Close",
+      "normalized_name": "mill close",
+      "publisher_id": "021G22034",
+      "source_identity": "naptan-stop-area:021G22034",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.03907,
+      "longitude": -0.30139,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "All Saints' Church",
+      "normalized_name": "all saints church",
+      "publisher_id": "021G22037",
+      "source_identity": "naptan-stop-area:021G22037",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.0251,
+      "longitude": -0.26417,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "The Old Oak",
+      "normalized_name": "the old oak",
+      "publisher_id": "021G22077",
+      "source_identity": "naptan-stop-area:021G22077",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.00928,
+      "longitude": -0.26351,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Cricketers Road",
+      "normalized_name": "cricketers road",
+      "publisher_id": "021G22087",
+      "source_identity": "naptan-stop-area:021G22087",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.00541,
+      "longitude": -0.26565,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "West Drive",
+      "normalized_name": "west drive",
+      "publisher_id": "021G22089",
+      "source_identity": "naptan-stop-area:021G22089",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.00301,
+      "longitude": -0.26615,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "London Row",
+      "normalized_name": "london row",
+      "publisher_id": "021G22091",
+      "source_identity": "naptan-stop-area:021G22091",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GCLS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.01996,
+      "longitude": -0.24364,
+      "member_count": 3,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Etonbury Academy",
+      "normalized_name": "etonbury academy",
+      "publisher_id": "021G22100",
+      "source_identity": "naptan-stop-area:021G22100",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.01649,
+      "longitude": -0.23144,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Meadow Way",
+      "normalized_name": "meadow way",
+      "publisher_id": "021G22118",
+      "source_identity": "naptan-stop-area:021G22118",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.01083,
+      "longitude": -0.38007,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "St Giles' Church",
+      "normalized_name": "st giles church",
+      "publisher_id": "021G22164",
+      "source_identity": "naptan-stop-area:021G22164",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.0157,
+      "longitude": -0.34212,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Fowlers Drive",
+      "normalized_name": "fowlers drive",
+      "publisher_id": "021G22195",
+      "source_identity": "naptan-stop-area:021G22195",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.0064,
+      "longitude": -0.32638,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "All Saints' Church",
+      "normalized_name": "all saints church",
+      "publisher_id": "021G22211",
+      "source_identity": "naptan-stop-area:021G22211",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.02575,
+      "longitude": -0.26597,
+      "member_count": 1,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Arlesey Railway Station",
+      "normalized_name": "arlesey railway station",
+      "publisher_id": "021G22213",
+      "source_identity": "naptan-stop-area:021G22213",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.02601,
+      "longitude": -0.2653,
+      "member_count": 1,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Arlesey Bridge",
+      "normalized_name": "arlesey bridge",
+      "publisher_id": "021G22220",
+      "source_identity": "naptan-stop-area:021G22220",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.0133,
+      "longitude": -0.25925,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Gothic Way Hail + Ride",
+      "normalized_name": "gothic way hail + ride",
+      "publisher_id": "021G22237",
+      "source_identity": "naptan-stop-area:021G22237",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.03563,
+      "longitude": -0.29869,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Miles Drive",
+      "normalized_name": "miles drive",
+      "publisher_id": "021G22239",
+      "source_identity": "naptan-stop-area:021G22239",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.00099,
+      "longitude": -0.35704,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Upton End Road",
+      "normalized_name": "upton end road",
+      "publisher_id": "021G22402",
+      "source_identity": "naptan-stop-area:021G22402",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.00714,
+      "longitude": -0.3041,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Bird In Hand",
+      "normalized_name": "bird in hand",
+      "publisher_id": "021G22500",
+      "source_identity": "naptan-stop-area:021G22500",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.00848,
+      "longitude": -0.23882,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Peggles Lane",
+      "normalized_name": "peggles lane",
+      "publisher_id": "021G22502",
+      "source_identity": "naptan-stop-area:021G22502",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.00986,
+      "longitude": -0.23266,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Speedwell Way",
+      "normalized_name": "speedwell way",
+      "publisher_id": "021G22504",
+      "source_identity": "naptan-stop-area:021G22504",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.0121,
+      "longitude": -0.22871,
+      "member_count": 1,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Community Centre",
+      "normalized_name": "community centre",
+      "publisher_id": "021G22508",
+      "source_identity": "naptan-stop-area:021G22508",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.01165,
+      "longitude": -0.22175,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Groveland Way",
+      "normalized_name": "groveland way",
+      "publisher_id": "021G22515",
+      "source_identity": "naptan-stop-area:021G22515",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.03437,
+      "longitude": -0.33173,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Queen Elizabeth Close",
+      "normalized_name": "queen elizabeth close",
+      "publisher_id": "021G22520",
+      "source_identity": "naptan-stop-area:021G22520",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.01953,
+      "longitude": -0.33618,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Orchard Close",
+      "normalized_name": "orchard close",
+      "publisher_id": "021G22522",
+      "source_identity": "naptan-stop-area:021G22522",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.06477,
+      "longitude": -0.61645,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Lodge Road",
+      "normalized_name": "lodge road",
+      "publisher_id": "021G23014",
+      "source_identity": "naptan-stop-area:021G23014",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.03426,
+      "longitude": -0.59772,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Shops",
+      "normalized_name": "shops",
+      "publisher_id": "021G23023",
+      "source_identity": "naptan-stop-area:021G23023",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.07586,
+      "longitude": -0.59611,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Crane Way",
+      "normalized_name": "crane way",
+      "publisher_id": "021G23500",
+      "source_identity": "naptan-stop-area:021G23500",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.04124,
+      "longitude": -0.55872,
+      "member_count": 1,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Lidlington Railway Station",
+      "normalized_name": "lidlington railway station",
+      "publisher_id": "021G24000",
+      "source_identity": "naptan-stop-area:021G24000",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.04002,
+      "longitude": -0.55702,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Oak Gardens",
+      "normalized_name": "oak gardens",
+      "publisher_id": "021G24002",
+      "source_identity": "naptan-stop-area:021G24002",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.04052,
+      "longitude": -0.55451,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Great Farm Close",
+      "normalized_name": "great farm close",
+      "publisher_id": "021G24006",
+      "source_identity": "naptan-stop-area:021G24006",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.06499,
+      "longitude": -0.54644,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Oat Piece",
+      "normalized_name": "oat piece",
+      "publisher_id": "021G24017",
+      "source_identity": "naptan-stop-area:021G24017",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.05369,
+      "longitude": -0.53275,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Millbrook Railway Station",
+      "normalized_name": "millbrook railway station",
+      "publisher_id": "021G24035",
+      "source_identity": "naptan-stop-area:021G24035",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.06585,
+      "longitude": -0.47702,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Mill Lane",
+      "normalized_name": "mill lane",
+      "publisher_id": "021G24051",
+      "source_identity": "naptan-stop-area:021G24051",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.08205,
+      "longitude": -0.48784,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Juniper Drive",
+      "normalized_name": "juniper drive",
+      "publisher_id": "021G24053",
+      "source_identity": "naptan-stop-area:021G24053",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.04586,
+      "longitude": -0.49776,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Lockheed Martin",
+      "normalized_name": "lockheed martin",
+      "publisher_id": "021G24060",
+      "source_identity": "naptan-stop-area:021G24060",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.06123,
+      "longitude": -0.37731,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Standalone Warren",
+      "normalized_name": "standalone warren",
+      "publisher_id": "021G24507",
+      "source_identity": "naptan-stop-area:021G24507",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.14639,
+      "longitude": -0.32169,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Park View",
+      "normalized_name": "park view",
+      "publisher_id": "021G24509",
+      "source_identity": "naptan-stop-area:021G24509",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.88566,
+      "longitude": -0.49791,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Jeans Way",
+      "normalized_name": "jeans way",
+      "publisher_id": "021G24517",
+      "source_identity": "naptan-stop-area:021G24517",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.9298,
+      "longitude": -0.55972,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "St Mary's Close",
+      "normalized_name": "st mary s close",
+      "publisher_id": "021G24521",
+      "source_identity": "naptan-stop-area:021G24521",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.17102,
+      "longitude": -0.30128,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "delete",
+      "name": "Station Road",
+      "normalized_name": "station road",
+      "publisher_id": "021G24527",
+      "source_identity": "naptan-stop-area:021G24527",
+      "status": "inactive"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.02749,
+      "longitude": -0.35646,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Gravenhurst Road",
+      "normalized_name": "gravenhurst road",
+      "publisher_id": "021G24542",
+      "source_identity": "naptan-stop-area:021G24542",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.97022,
+      "longitude": -0.47151,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Lovett Green",
+      "normalized_name": "lovett green",
+      "publisher_id": "021G24544",
+      "source_identity": "naptan-stop-area:021G24544",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GCLS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.96688,
+      "longitude": -0.48735,
+      "member_count": 3,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Harlington Upper School",
+      "normalized_name": "harlington upper school",
+      "publisher_id": "021G24545",
+      "source_identity": "naptan-stop-area:021G24545",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.9402,
+      "longitude": -0.47757,
+      "member_count": 3,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Streatley Road",
+      "normalized_name": "streatley road",
+      "publisher_id": "021G24547",
+      "source_identity": "naptan-stop-area:021G24547",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.93146,
+      "longitude": -0.47757,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Church Road",
+      "normalized_name": "church road",
+      "publisher_id": "021G24548",
+      "source_identity": "naptan-stop-area:021G24548",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.00185,
+      "longitude": -0.46439,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Greenfield Academy",
+      "normalized_name": "greenfield academy",
+      "publisher_id": "021G24552",
+      "source_identity": "naptan-stop-area:021G24552",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.02281,
+      "longitude": -0.33254,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "New Meppershall Care Home",
+      "normalized_name": "new meppershall care home",
+      "publisher_id": "021G24554",
+      "source_identity": "naptan-stop-area:021G24554",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.90861,
+      "longitude": -0.49909,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Conquest Road",
+      "normalized_name": "conquest road",
+      "publisher_id": "021G24558",
+      "source_identity": "naptan-stop-area:021G24558",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.91561,
+      "longitude": -0.42049,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Furze Close",
+      "normalized_name": "furze close",
+      "publisher_id": "021G24562",
+      "source_identity": "naptan-stop-area:021G24562",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.91251,
+      "longitude": -0.41452,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Troon Gardens",
+      "normalized_name": "troon gardens",
+      "publisher_id": "021G24564",
+      "source_identity": "naptan-stop-area:021G24564",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.91367,
+      "longitude": -0.41824,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Ingram Gardens",
+      "normalized_name": "ingram gardens",
+      "publisher_id": "021G24565",
+      "source_identity": "naptan-stop-area:021G24565",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.09244,
+      "longitude": -0.24185,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Sullivan Court",
+      "normalized_name": "sullivan court",
+      "publisher_id": "021G24568",
+      "source_identity": "naptan-stop-area:021G24568",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.98693,
+      "longitude": -0.37154,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Chalkley Bush Close",
+      "normalized_name": "chalkley bush close",
+      "publisher_id": "021G24572",
+      "source_identity": "naptan-stop-area:021G24572",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.91055,
+      "longitude": -0.54659,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Thorn Turn Depot",
+      "normalized_name": "thorn turn depot",
+      "publisher_id": "021G24577",
+      "source_identity": "naptan-stop-area:021G24577",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.92215,
+      "longitude": -0.67426,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Golden Riddy North",
+      "normalized_name": "golden riddy north",
+      "publisher_id": "021G24581",
+      "source_identity": "naptan-stop-area:021G24581",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.91654,
+      "longitude": -0.64459,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Brownslea",
+      "normalized_name": "brownslea",
+      "publisher_id": "021G24583",
+      "source_identity": "naptan-stop-area:021G24583",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.85139,
+      "longitude": -0.44691,
+      "member_count": 3,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Woodside View",
+      "normalized_name": "woodside view",
+      "publisher_id": "021G24584",
+      "source_identity": "naptan-stop-area:021G24584",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.8808,
+      "longitude": -0.5372,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Royce Close",
+      "normalized_name": "royce close",
+      "publisher_id": "021G24586",
+      "source_identity": "naptan-stop-area:021G24586",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.918,
+      "longitude": -0.64238,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Clipstone Crescent",
+      "normalized_name": "clipstone crescent",
+      "publisher_id": "021G24589",
+      "source_identity": "naptan-stop-area:021G24589",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.91697,
+      "longitude": -0.64221,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Midway",
+      "normalized_name": "midway",
+      "publisher_id": "021G24590",
+      "source_identity": "naptan-stop-area:021G24590",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.91605,
+      "longitude": -0.63955,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Russell Way",
+      "normalized_name": "russell way",
+      "publisher_id": "021G24591",
+      "source_identity": "naptan-stop-area:021G24591",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.91504,
+      "longitude": -0.64296,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Highfield Road",
+      "normalized_name": "highfield road",
+      "publisher_id": "021G24592",
+      "source_identity": "naptan-stop-area:021G24592",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.11256,
+      "longitude": -0.22223,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Church",
+      "normalized_name": "church",
+      "publisher_id": "021G24599",
+      "source_identity": "naptan-stop-area:021G24599",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.05643,
+      "longitude": -0.31081,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "The Green Man",
+      "normalized_name": "the green man",
+      "publisher_id": "021G24610",
+      "source_identity": "naptan-stop-area:021G24610",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.02947,
+      "longitude": -0.33292,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Polehanger Farm",
+      "normalized_name": "polehanger farm",
+      "publisher_id": "021G24611",
+      "source_identity": "naptan-stop-area:021G24611",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.08904,
+      "longitude": -0.24143,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Apollo Gardens",
+      "normalized_name": "apollo gardens",
+      "publisher_id": "021G24612",
+      "source_identity": "naptan-stop-area:021G24612",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.08671,
+      "longitude": -0.24184,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Ouse Way",
+      "normalized_name": "ouse way",
+      "publisher_id": "021G24613",
+      "source_identity": "naptan-stop-area:021G24613",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.09161,
+      "longitude": -0.25007,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Glebe Road",
+      "normalized_name": "glebe road",
+      "publisher_id": "021G24615",
+      "source_identity": "naptan-stop-area:021G24615",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.09589,
+      "longitude": -0.26482,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Mulberry Close",
+      "normalized_name": "mulberry close",
+      "publisher_id": "021G24616",
+      "source_identity": "naptan-stop-area:021G24616",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.09426,
+      "longitude": -0.26274,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Pine Close",
+      "normalized_name": "pine close",
+      "publisher_id": "021G24618",
+      "source_identity": "naptan-stop-area:021G24618",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.89751,
+      "longitude": -0.54148,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Barrie Avenue",
+      "normalized_name": "barrie avenue",
+      "publisher_id": "021G24620",
+      "source_identity": "naptan-stop-area:021G24620",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.12766,
+      "longitude": -0.22824,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Nursery Close",
+      "normalized_name": "nursery close",
+      "publisher_id": "021G24622",
+      "source_identity": "naptan-stop-area:021G24622",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.0078,
+      "longitude": -0.2199,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Norton Road",
+      "normalized_name": "norton road",
+      "publisher_id": "021G24624",
+      "source_identity": "naptan-stop-area:021G24624",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.03167,
+      "longitude": -0.52108,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Center Parcs Roundabout",
+      "normalized_name": "center parcs roundabout",
+      "publisher_id": "021G24627",
+      "source_identity": "naptan-stop-area:021G24627",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.89739,
+      "longitude": -0.64063,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Hill View Lane",
+      "normalized_name": "hill view lane",
+      "publisher_id": "021G24634",
+      "source_identity": "naptan-stop-area:021G24634",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.9213,
+      "longitude": -0.63081,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Sagan Rise",
+      "normalized_name": "sagan rise",
+      "publisher_id": "021G24642",
+      "source_identity": "naptan-stop-area:021G24642",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 51.84757,
+      "longitude": -0.44765,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "revise",
+      "name": "Woodside Animal Farm",
+      "normalized_name": "woodside animal farm",
+      "publisher_id": "021G24644",
+      "source_identity": "naptan-stop-area:021G24644",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.05814,
+      "longitude": -0.42238,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Applewood",
+      "normalized_name": "applewood",
+      "publisher_id": "021G25005",
+      "source_identity": "naptan-stop-area:021G25005",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.05542,
+      "longitude": -0.30363,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "The Crescent",
+      "normalized_name": "the crescent",
+      "publisher_id": "021G25106",
+      "source_identity": "naptan-stop-area:021G25106",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GPBS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.06468,
+      "longitude": -0.31482,
+      "member_count": 2,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Memorial",
+      "normalized_name": "memorial",
+      "publisher_id": "021G25132",
+      "source_identity": "naptan-stop-area:021G25132",
+      "status": "active"
+    },
+    {
+      "administrative_area_code": "151",
+      "area_type": "GCLS",
+      "coordinate_scope": "STOP_AREA_LEVEL",
+      "grid_type": "UKOS",
+      "latitude": 52.09264,
+      "longitude": -0.27219,
+      "member_count": 4,
+      "modes": [
+        "bus_coach"
+      ],
+      "modification": "new",
+      "name": "Sainsbury's",
+      "normalized_name": "sainsbury s",
+      "publisher_id": "021G26000",
+      "source_identity": "naptan-stop-area:021G26000",
+      "status": "active"
+    }
+  ],
+  "area_metadata_note": "First 200 deterministic examples only; national aggregates cover all areas.",
+  "hierarchy": {
+    "cycle_count": 0,
+    "cycle_nodes": [],
+    "max_depth": 13,
+    "multiple_parent_child_areas": 0,
+    "nested_area_structure_observed": true,
+    "orphan_parent_references": [
+      "naptan-stop-area:150G00003245",
+      "naptan-stop-area:150G00003245",
+      "naptan-stop-area:150G00003245",
+      "naptan-stop-area:150G00003245",
+      "naptan-stop-area:150G00003462",
+      "naptan-stop-area:150G00003462",
+      "naptan-stop-area:150G00003462",
+      "naptan-stop-area:150G00003464",
+      "naptan-stop-area:150G00003464",
+      "naptan-stop-area:150G00003468",
+      "naptan-stop-area:150G00003468",
+      "naptan-stop-area:150G00003485",
+      "naptan-stop-area:150G00003485",
+      "naptan-stop-area:150G00003505",
+      "naptan-stop-area:150G00003507",
+      "naptan-stop-area:150G00003507",
+      "naptan-stop-area:150G00003508",
+      "naptan-stop-area:150G00003508",
+      "naptan-stop-area:150G00003511",
+      "naptan-stop-area:150G00003541",
+      "naptan-stop-area:150G00003541",
+      "naptan-stop-area:150G00003545",
+      "naptan-stop-area:150G00003545",
+      "naptan-stop-area:150G00003547",
+      "naptan-stop-area:150G00003547",
+      "naptan-stop-area:150G00003551",
+      "naptan-stop-area:150G00003551",
+      "naptan-stop-area:150G00003553",
+      "naptan-stop-area:150G00003553",
+      "naptan-stop-area:150G00003557",
+      "naptan-stop-area:150G00003557",
+      "naptan-stop-area:150G00003559",
+      "naptan-stop-area:150G00003567",
+      "naptan-stop-area:150G00003567",
+      "naptan-stop-area:150G00003567",
+      "naptan-stop-area:150G00003567",
+      "naptan-stop-area:150G00003596",
+      "naptan-stop-area:150G00003596",
+      "naptan-stop-area:150G00003598",
+      "naptan-stop-area:150G00003598",
+      "naptan-stop-area:150G00003601",
+      "naptan-stop-area:150G00003601",
+      "naptan-stop-area:150G00003603",
+      "naptan-stop-area:150G00003603",
+      "naptan-stop-area:150G00003605",
+      "naptan-stop-area:150G00003605",
+      "naptan-stop-area:150G00003608",
+      "naptan-stop-area:150G00003608",
+      "naptan-stop-area:150G00003625",
+      "naptan-stop-area:150G00003625",
+      "naptan-stop-area:150G00003627",
+      "naptan-stop-area:150G00003627",
+      "naptan-stop-area:150G00003653",
+      "naptan-stop-area:150G00003653",
+      "naptan-stop-area:150G00003666",
+      "naptan-stop-area:150G00003666",
+      "naptan-stop-area:150G00003685",
+      "naptan-stop-area:150G00003685",
+      "naptan-stop-area:150G00003685",
+      "naptan-stop-area:150G00003685",
+      "naptan-stop-area:150G00003687",
+      "naptan-stop-area:150G00003687",
+      "naptan-stop-area:150G00003691",
+      "naptan-stop-area:150G00003691",
+      "naptan-stop-area:150G00003694",
+      "naptan-stop-area:150G00003694",
+      "naptan-stop-area:150G00003694",
+      "naptan-stop-area:150G00003698",
+      "naptan-stop-area:150G00003698",
+      "naptan-stop-area:150G00003725",
+      "naptan-stop-area:150G00003725",
+      "naptan-stop-area:210G9055",
+      "naptan-stop-area:269GLCC",
+      "naptan-stop-area:269GLCC",
+      "naptan-stop-area:269GLCC",
+      "naptan-stop-area:269GLCC",
+      "naptan-stop-area:269GLCC",
+      "naptan-stop-area:269GLCC",
+      "naptan-stop-area:269GLCC",
+      "naptan-stop-area:269GLCC",
+      "naptan-stop-area:330GBA0540",
+      "naptan-stop-area:330GBA0540",
+      "naptan-stop-area:330GBA0540",
+      "naptan-stop-area:330GBA0540",
+      "naptan-stop-area:330GBA0546",
+      "naptan-stop-area:330GBA0546",
+      "naptan-stop-area:330GBA0546",
+      "naptan-stop-area:330GBA0546",
+      "naptan-stop-area:910GMAGHNTH",
+      "naptan-stop-area:910GTHANETP",
+      "naptan-stop-area:930GRQP",
+      "naptan-stop-area:930GRWF"
+    ],
+    "parent_relationship_rows": 3519,
+    "root_area_count": 93751
+  },
+  "memberships": {
+    "distinct_stop_areas_with_children": 84885,
+    "distinct_stop_points_with_memberships": 168792,
+    "duplicate_memberships": 3,
+    "invalid_relationship_elements": 3,
+    "missing_stop_area_references": 1543,
+    "missing_stop_point_references": 0,
+    "publisher_declared": true,
+    "spatial_memberships_inferred": 0,
+    "total_rows": 169527
+  },
+  "missing_references": {
+    "stop_area_ids": [
+      "naptan-stop-area:061G19341",
+      "naptan-stop-area:061G19343",
+      "naptan-stop-area:075G71138",
+      "naptan-stop-area:075G71176",
+      "naptan-stop-area:075G71215",
+      "naptan-stop-area:075G71300",
+      "naptan-stop-area:076G5858",
+      "naptan-stop-area:077G72401",
+      "naptan-stop-area:077G72402",
+      "naptan-stop-area:077G72403",
+      "naptan-stop-area:077G72432",
+      "naptan-stop-area:077G72516",
+      "naptan-stop-area:077G72605",
+      "naptan-stop-area:077G72627",
+      "naptan-stop-area:077G72761",
+      "naptan-stop-area:077G72872",
+      "naptan-stop-area:077G72873",
+      "naptan-stop-area:077G72875",
+      "naptan-stop-area:077G72877",
+      "naptan-stop-area:077G72878",
+      "naptan-stop-area:078G74776",
+      "naptan-stop-area:078G74898",
+      "naptan-stop-area:078G74922",
+      "naptan-stop-area:079G73004",
+      "naptan-stop-area:079G73028",
+      "naptan-stop-area:079G73269",
+      "naptan-stop-area:100G00013475",
+      "naptan-stop-area:100G00014648",
+      "naptan-stop-area:100G00014721",
+      "naptan-stop-area:100GD0012126",
+      "naptan-stop-area:158G00000329",
+      "naptan-stop-area:210G100",
+      "naptan-stop-area:210G1001",
+      "naptan-stop-area:210G1002",
+      "naptan-stop-area:210G1003",
+      "naptan-stop-area:210G1004",
+      "naptan-stop-area:210G101",
+      "naptan-stop-area:210G1011",
+      "naptan-stop-area:210G1015",
+      "naptan-stop-area:210G1019",
+      "naptan-stop-area:210G1025",
+      "naptan-stop-area:210G1027",
+      "naptan-stop-area:210G1028",
+      "naptan-stop-area:210G1029",
+      "naptan-stop-area:210G1030",
+      "naptan-stop-area:210G1034",
+      "naptan-stop-area:210G1039",
+      "naptan-stop-area:210G1042",
+      "naptan-stop-area:210G1044",
+      "naptan-stop-area:210G1046",
+      "naptan-stop-area:210G1048",
+      "naptan-stop-area:210G1049",
+      "naptan-stop-area:210G105",
+      "naptan-stop-area:210G1051",
+      "naptan-stop-area:210G1053",
+      "naptan-stop-area:210G1054",
+      "naptan-stop-area:210G1056",
+      "naptan-stop-area:210G1057",
+      "naptan-stop-area:210G1058",
+      "naptan-stop-area:210G1063",
+      "naptan-stop-area:210G1065",
+      "naptan-stop-area:210G1074",
+      "naptan-stop-area:210G1075",
+      "naptan-stop-area:210G1076",
+      "naptan-stop-area:210G1078",
+      "naptan-stop-area:210G1080",
+      "naptan-stop-area:210G1081",
+      "naptan-stop-area:210G1083",
+      "naptan-stop-area:210G1084",
+      "naptan-stop-area:210G1085",
+      "naptan-stop-area:210G109",
+      "naptan-stop-area:210G1090",
+      "naptan-stop-area:210G1091",
+      "naptan-stop-area:210G1092",
+      "naptan-stop-area:210G1095",
+      "naptan-stop-area:210G1097",
+      "naptan-stop-area:210G1098",
+      "naptan-stop-area:210G1099",
+      "naptan-stop-area:210G1101",
+      "naptan-stop-area:210G1104",
+      "naptan-stop-area:210G1106",
+      "naptan-stop-area:210G1108",
+      "naptan-stop-area:210G1110",
+      "naptan-stop-area:210G1111",
+      "naptan-stop-area:210G1114",
+      "naptan-stop-area:210G112",
+      "naptan-stop-area:210G1120",
+      "naptan-stop-area:210G1122",
+      "naptan-stop-area:210G1127",
+      "naptan-stop-area:210G11281",
+      "naptan-stop-area:210G1129",
+      "naptan-stop-area:210G11303",
+      "naptan-stop-area:210G1131",
+      "naptan-stop-area:210G11316",
+      "naptan-stop-area:210G1132",
+      "naptan-stop-area:210G11337",
+      "naptan-stop-area:210G11344",
+      "naptan-stop-area:210G1135",
+      "naptan-stop-area:210G11362",
+      "naptan-stop-area:210G11363"
+    ],
+    "stop_point_ids": []
+  },
+  "performance": {
+    "measurement": "diagnostic runtime is reported in the human report; deterministic profile excludes elapsed time",
+    "memory_strategy": "iterparse; raw XML elements cleared at StopPoint/StopArea boundaries; compact identity/maps retained"
+  },
+  "source_file": "NaPTAN.xml",
+  "source_file_bytes": 578991782,
+  "stop_areas": {
+    "area_type_distribution": {
+      "GAIR": 83,
+      "GBCS": 481,
+      "GCCH": 2,
+      "GCLS": 5782,
+      "GFTD": 511,
+      "GOTH": 14,
+      "GPBS": 86541,
+      "GRLS": 2863,
+      "GTMU": 993
+    },
+    "complete_direct_wgs84_rows": 84415,
+    "derived_member_centroid_rows": 104,
+    "direct_grid_types": {
+      "UKOS": 91747
+    },
+    "duplicate_identity_rows": 0,
+    "maximum_members": 39,
+    "member_distribution": {
+      "0": 13928,
+      "1": 12744,
+      "10": 59,
+      "11": 25,
+      "12": 25,
+      "13": 25,
+      "14": 11,
+      "15": 18,
+      "16": 10,
+      "17": 9,
+      "18": 4,
+      "19": 10,
+      "2": 65085,
+      "20": 11,
+      "21": 5,
+      "22": 8,
+      "23": 5,
+      "24": 2,
+      "25": 9,
+      "26": 5,
+      "27": 2,
+      "28": 1,
+      "29": 4,
+      "3": 3103,
+      "30": 1,
+      "32": 2,
+      "34": 4,
+      "38": 1,
+      "39": 1,
+      "4": 1225,
+      "5": 444,
+      "6": 226,
+      "7": 118,
+      "8": 75,
+      "9": 65
+    },
+    "modes_by_area_count": {
+      "air": 81,
+      "bus_coach": 79154,
+      "ferry_port": 502,
+      "metro_tram_underground": 980,
+      "rail": 2725,
+      "taxi": 123
+    },
+    "modification_distribution": {
+      "": 5487,
+      "delete": 7258,
+      "new": 33055,
+      "revise": 51470
+    },
+    "multimodal_area_count": 214,
+    "multiple_members": 70598,
+    "one_member": 12744,
+    "status_distribution": {
+      "": 4012,
+      "active": 81079,
+      "inactive": 12172,
+      "pending": 7
+    },
+    "total": 97270,
+    "without_coordinates": 12751,
+    "zero_members": 13928
+  },
+  "stop_points": {
+    "complete_wgs84_rows": 399246,
+    "coordinate_scope": "TRANSPORT_STOP_LEVEL",
+    "duplicate_identity_rows": 0,
+    "missing_identity_rows": 0,
+    "modification_distribution": {
+      "": 35472,
+      "archive": 1062,
+      "delete": 20909,
+      "new": 138074,
+      "revise": 240911
+    },
+    "multiple_parents": 701,
+    "one_parent": 168091,
+    "parent_distribution": {
+      "0": 267636,
+      "1": 168091,
+      "2": 667,
+      "3": 34
+    },
+    "status_distribution": {
+      "active": 387866,
+      "inactive": 48561,
+      "pending": 1
+    },
+    "stop_type_distribution": {
+      "AIR": 70,
+      "BCE": 196,
+      "BCQ": 165,
+      "BCS": 4955,
+      "BCT": 417652,
+      "BST": 40,
+      "FBT": 345,
+      "FER": 505,
+      "FTD": 327,
+      "GAT": 84,
+      "MET": 987,
+      "PLT": 1633,
+      "RLY": 2715,
+      "RPL": 3,
+      "RSE": 4308,
+      "STR": 71,
+      "TMU": 1519,
+      "TXR": 853
+    },
+    "total": 436428,
+    "zero_parent": 267636
+  },
+  "top_level_structures_observed": [
+    "StopPoints",
+    "StopAreas"
+  ]
+}

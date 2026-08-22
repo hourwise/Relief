@@ -1,0 +1,302 @@
+{
+  "node_level_counts": {
+    "ambiguous_existing_relief_match": 824,
+    "likely_existing_relief_match": 48,
+    "likely_new_transport_place_candidate": 3459,
+    "supporting_only_or_excluded_nodes": 431035
+  },
+  "production_mutation_plan": {
+    "facilities_inserts": 0,
+    "facilities_updates": 0,
+    "facility_sources_inserts": 0,
+    "production_execution": false,
+    "source_observations_inserts": 0
+  },
+  "source": "official StopArea hierarchy; no production snapshot mutation",
+  "transport_complex_examples": {
+    "ambiguous_existing_relief_transport_complex": [
+      {
+        "candidate_facility_id": "9b86283e-8bfb-48d9-917b-620b57239cf2",
+        "member_count": 5,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Yate Shopping Centre",
+        "stop_area_identity": "naptan-stop-area:017G0001"
+      },
+      {
+        "candidate_facility_id": "96385b19-481c-48f5-bb82-4dbe267ec2da",
+        "member_count": 2,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Kings Chase Centre",
+        "stop_area_identity": "naptan-stop-area:017G0004"
+      },
+      {
+        "candidate_facility_id": "e9149833-a635-46f5-a2f3-f59b13afeec7",
+        "member_count": 4,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Bristol Parkway Stn",
+        "stop_area_identity": "naptan-stop-area:017G0005"
+      },
+      {
+        "candidate_facility_id": "6978d8a4-7625-4662-8f01-6321e5bae29d",
+        "member_count": 16,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Bath Bus Station",
+        "stop_area_identity": "naptan-stop-area:018G0001"
+      },
+      {
+        "candidate_facility_id": "71027742-a6f0-4e8f-97fc-99cf82736c3d",
+        "member_count": 3,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Bedford Railway Station",
+        "stop_area_identity": "naptan-stop-area:020G35124"
+      },
+      {
+        "candidate_facility_id": "98fe106f-69f9-4dd2-9eae-e62416ab7349",
+        "member_count": 1,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Leighton Buzzard Railway Station",
+        "stop_area_identity": "naptan-stop-area:021G14015"
+      },
+      {
+        "candidate_facility_id": "8b9f2238-010f-4002-bc08-c9ec933a2478",
+        "member_count": 4,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Luton Airport Parkway Railway Station",
+        "stop_area_identity": "naptan-stop-area:029G0202"
+      },
+      {
+        "candidate_facility_id": "dede69cd-1cb3-48a3-9aee-2bff4b86484e",
+        "member_count": 4,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Leagrave Railway station",
+        "stop_area_identity": "naptan-stop-area:029G3157"
+      },
+      {
+        "candidate_facility_id": "af39baea-55e2-44df-8203-eaf8684e1b6a",
+        "member_count": 2,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Wokingham Station Interchange",
+        "stop_area_identity": "naptan-stop-area:035G59890001"
+      },
+      {
+        "candidate_facility_id": "af39baea-55e2-44df-8203-eaf8684e1b6a",
+        "member_count": 2,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Wokingham Hospital",
+        "stop_area_identity": "naptan-stop-area:035G76120002"
+      }
+    ],
+    "likely_existing_relief_transport_complex": [
+      {
+        "candidate_facility_id": "28903ee9-774a-40a8-ae26-dab29813c9b4",
+        "member_count": 4,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Southmead Hospital",
+        "stop_area_identity": "naptan-stop-area:010G0004"
+      },
+      {
+        "candidate_facility_id": "4cef3a74-1735-4dc3-94fa-39f9c1880e38",
+        "member_count": 27,
+        "modes": [
+          "bus_coach",
+          "taxi"
+        ],
+        "name": "Bus Station",
+        "stop_area_identity": "naptan-stop-area:020GBEDBUS01"
+      },
+      {
+        "candidate_facility_id": "0e0edea1-3ca4-4836-a3b1-75821032c2da",
+        "member_count": 2,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Beale Wildlife Park",
+        "stop_area_identity": "naptan-stop-area:030G50390001"
+      },
+      {
+        "candidate_facility_id": "fa1c14ea-e96d-4aba-a8f7-a861621ac5f9",
+        "member_count": 3,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Earley Station",
+        "stop_area_identity": "naptan-stop-area:035G75060001"
+      },
+      {
+        "candidate_facility_id": "af39baea-55e2-44df-8203-eaf8684e1b6a",
+        "member_count": 1,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Wokingham Station",
+        "stop_area_identity": "naptan-stop-area:035G79440001"
+      },
+      {
+        "candidate_facility_id": "b2c9102a-eb61-465b-be5f-b0c10b44073f",
+        "member_count": 2,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Waitrose",
+        "stop_area_identity": "naptan-stop-area:035G91100001"
+      },
+      {
+        "candidate_facility_id": "e7077520-c68b-4f07-b308-551b17310a44",
+        "member_count": 2,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Twyford Station",
+        "stop_area_identity": "naptan-stop-area:035G91120001"
+      },
+      {
+        "candidate_facility_id": "8de30bc3-5ef3-46f2-9a27-390967bd231e",
+        "member_count": 2,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Windsor & Eton Riverside Station",
+        "stop_area_identity": "naptan-stop-area:036G00006227"
+      },
+      {
+        "candidate_facility_id": "15b0d4c9-590f-407d-b510-7ae9ee9949ee",
+        "member_count": 10,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Slough Bus Station",
+        "stop_area_identity": "naptan-stop-area:037G0521"
+      },
+      {
+        "candidate_facility_id": "b4b90fe1-ff8d-47f5-bba3-154df5ee35d3",
+        "member_count": 15,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Bus Station",
+        "stop_area_identity": "naptan-stop-area:040G00004658"
+      }
+    ],
+    "likely_new_transport_place_candidate": [
+      {
+        "candidate_facility_id": null,
+        "member_count": 6,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Temple Meads Station",
+        "stop_area_identity": "naptan-stop-area:010G0002"
+      },
+      {
+        "candidate_facility_id": null,
+        "member_count": 2,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Old Market Street",
+        "stop_area_identity": "naptan-stop-area:010G0003"
+      },
+      {
+        "candidate_facility_id": null,
+        "member_count": 11,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Bristol Bus Station",
+        "stop_area_identity": "naptan-stop-area:010G0001"
+      },
+      {
+        "candidate_facility_id": null,
+        "member_count": 8,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Bristol Bus Station",
+        "stop_area_identity": "naptan-stop-area:010G0005"
+      },
+      {
+        "candidate_facility_id": null,
+        "member_count": 8,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Bus Station",
+        "stop_area_identity": "naptan-stop-area:017G0002"
+      },
+      {
+        "candidate_facility_id": null,
+        "member_count": 7,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Frenchay Campus",
+        "stop_area_identity": "naptan-stop-area:017G0003"
+      },
+      {
+        "candidate_facility_id": null,
+        "member_count": 4,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Worle Interchange",
+        "stop_area_identity": "naptan-stop-area:019G0001"
+      },
+      {
+        "candidate_facility_id": null,
+        "member_count": 2,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Triangle",
+        "stop_area_identity": "naptan-stop-area:019G0002"
+      },
+      {
+        "candidate_facility_id": null,
+        "member_count": 2,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "Willoughby Close",
+        "stop_area_identity": "naptan-stop-area:020G33094"
+      },
+      {
+        "candidate_facility_id": null,
+        "member_count": 2,
+        "modes": [
+          "bus_coach"
+        ],
+        "name": "The Cross",
+        "stop_area_identity": "naptan-stop-area:020G33100"
+      }
+    ]
+  },
+  "transport_complex_level_counts": {
+    "ambiguous_existing_relief_transport_complex": 1717,
+    "empty_stop_area": 13928,
+    "likely_existing_relief_transport_complex": 380,
+    "likely_new_transport_place_candidate": 72364,
+    "unresolved_no_area_geometry": 8881
+  }
+}
