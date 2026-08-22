@@ -1,0 +1,1248 @@
+{
+  "branch": "codex/toilet-map-apply-1a-production-deploy",
+  "classification": "GOVERNED / DECLARATIVE PLAN / PHYSICAL-UNIT PROMOTION NOT AUTHORIZED",
+  "document_type": "RELIEF_TFL_EXISTING_PARENT_OBSERVATION_APPLY_PLAN",
+  "import_run_decision": {
+    "classification": "IMPORT_RUN_NOT_REQUIRED",
+    "create_count": 0,
+    "reason": "facility_source_observations has no import_runs relationship; existing import_runs apply_1a governance is specific to Toilet Map UK and cannot represent this TfL apply."
+  },
+  "operation_counts": {
+    "canonical_facility_updates": 0,
+    "facility_inserts": 0,
+    "facility_source_inserts_maximum": 14,
+    "import_runs": 0,
+    "source_observation_inserts": 14,
+    "toilet_unit_inserts": 0,
+    "toilet_unit_source_links": 0
+  },
+  "operations": [
+    {
+      "canonical_facility_id": "2c01eed7-f892-4717-b608-d1b1566a4f73",
+      "canonical_facility_name": "Barking Riverside Station, WITHIN BARRIER",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_refs": [
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_SOURCE_OBSERVATION_AUDIT_2026-08-22.json",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json"
+      ],
+      "facility_source_id": null,
+      "observation_action": "CREATE_OBSERVATION",
+      "observation_key": "tfl:910GBARKRIV:toilet:1",
+      "observed_attributes": {
+        "coordinate_scope": "STATION_LEVEL",
+        "physical_unit_asserted": false,
+        "provenance": {
+          "attribution": "Data provided by Transport for London",
+          "frozen_source": {
+            "reconciliation_sha256": "65cc9cc8c41b7b3a003524610b674c7f2eae96ff7fe5116f38f2d2856cb777cb",
+            "zip_bytes": 186973,
+            "zip_retrieval_utc": "2026-08-21T06:08:20.1476469Z",
+            "zip_sha256": "19c50772febd1a3d7625f59e079b7590c5da4ed70424d6f552cfd7db1611e2ce",
+            "zip_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+          },
+          "licence_identifier": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+          "licence_url": "https://tfl.gov.uk/corporate/terms-and-conditions/transport-data-service",
+          "os_derived_data_attribution": "Contains OS data © Crown copyright and database rights 2016 and Geomni UK Map data © and database rights [2019]",
+          "source_id": "tfl_detailed_station_data",
+          "source_name": "TfL detailed station data — station facilities and toilets",
+          "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip",
+          "transport_data_terms_attribution": "Powered by TfL Open Data"
+        },
+        "source_facts": {
+          "fee_status": "FREE",
+          "has_baby_changing": true,
+          "inside_gateline": true,
+          "is_accessible": true,
+          "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+          "source_record_id": "tfl:910GBARKRIV:toilet:1",
+          "source_row_number": 403,
+          "stable_tfl_station_id": "910GBARKRIV",
+          "stable_tfl_toilet_id": "1",
+          "station_coordinates": {
+            "latitude": 51.51967,
+            "longitude": 0.1167475,
+            "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+            "station_point_count": 6
+          },
+          "station_name": "Barking Riverside",
+          "station_public_location": "London, TfL station network",
+          "tfl_management_status": "MANAGED_BY_TFL",
+          "toilet_location_description": null,
+          "toilet_type": "UNISEX"
+        },
+        "source_identity": {
+          "Id": "1",
+          "StationUniqueId": "910GBARKRIV",
+          "source_record_id": "tfl:910GBARKRIV:toilet:1"
+        },
+        "unit_link_status": "UNLINKED"
+      },
+      "observed_attributes_sha256": "86afbfe7a3e40a933f9c9e8ffb82783e18a28b8381b4bf71a7a5f29865d82b65",
+      "physical_unit_asserted": false,
+      "source_identity": {
+        "Id": "1",
+        "StationUniqueId": "910GBARKRIV",
+        "source_record_id": "tfl:910GBARKRIV:toilet:1"
+      },
+      "source_link_action": "CREATE_SOURCE_LINK",
+      "source_link_payload": {
+        "facility_id": "2c01eed7-f892-4717-b608-d1b1566a4f73",
+        "import_run_id": null,
+        "is_current": true,
+        "raw_data": null,
+        "source_licence": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+        "source_name": "TfL detailed station data — station facilities and toilets",
+        "source_record_id": "tfl:910GBARKRIV:toilet:1",
+        "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+      },
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:910GBARKRIV:toilet:1",
+      "toilet_unit_id": null,
+      "unit_link_status": "UNLINKED"
+    },
+    {
+      "canonical_facility_id": "57651d54-0715-457d-a8d6-4cea7a9f63bb",
+      "canonical_facility_name": "Tesco Extra Romford Goodmayes",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_refs": [
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_SOURCE_OBSERVATION_AUDIT_2026-08-22.json",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json"
+      ],
+      "facility_source_id": null,
+      "observation_action": "CREATE_OBSERVATION",
+      "observation_key": "tfl:910GGODMAYS:toilet:1",
+      "observed_attributes": {
+        "coordinate_scope": "STATION_LEVEL",
+        "physical_unit_asserted": false,
+        "provenance": {
+          "attribution": "Data provided by Transport for London",
+          "frozen_source": {
+            "reconciliation_sha256": "65cc9cc8c41b7b3a003524610b674c7f2eae96ff7fe5116f38f2d2856cb777cb",
+            "zip_bytes": 186973,
+            "zip_retrieval_utc": "2026-08-21T06:08:20.1476469Z",
+            "zip_sha256": "19c50772febd1a3d7625f59e079b7590c5da4ed70424d6f552cfd7db1611e2ce",
+            "zip_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+          },
+          "licence_identifier": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+          "licence_url": "https://tfl.gov.uk/corporate/terms-and-conditions/transport-data-service",
+          "os_derived_data_attribution": "Contains OS data © Crown copyright and database rights 2016 and Geomni UK Map data © and database rights [2019]",
+          "source_id": "tfl_detailed_station_data",
+          "source_name": "TfL detailed station data — station facilities and toilets",
+          "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip",
+          "transport_data_terms_attribution": "Powered by TfL Open Data"
+        },
+        "source_facts": {
+          "fee_status": "FREE",
+          "has_baby_changing": false,
+          "inside_gateline": false,
+          "is_accessible": true,
+          "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+          "source_record_id": "tfl:910GGODMAYS:toilet:1",
+          "source_row_number": 28,
+          "stable_tfl_station_id": "910GGODMAYS",
+          "stable_tfl_toilet_id": "1",
+          "station_coordinates": {
+            "latitude": 51.565577,
+            "longitude": 0.110904,
+            "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+            "station_point_count": 7
+          },
+          "station_name": "Goodmayes",
+          "station_public_location": "London, TfL station network",
+          "tfl_management_status": "MANAGED_BY_TFL",
+          "toilet_location_description": "Located in ticket hall",
+          "toilet_type": "UNISEX"
+        },
+        "source_identity": {
+          "Id": "1",
+          "StationUniqueId": "910GGODMAYS",
+          "source_record_id": "tfl:910GGODMAYS:toilet:1"
+        },
+        "unit_link_status": "UNLINKED"
+      },
+      "observed_attributes_sha256": "8fdeeb0b7b98575e347d48b3c52afeff15f0f872bc67b04bfde5dd34e4e75049",
+      "physical_unit_asserted": false,
+      "source_identity": {
+        "Id": "1",
+        "StationUniqueId": "910GGODMAYS",
+        "source_record_id": "tfl:910GGODMAYS:toilet:1"
+      },
+      "source_link_action": "CREATE_SOURCE_LINK",
+      "source_link_payload": {
+        "facility_id": "57651d54-0715-457d-a8d6-4cea7a9f63bb",
+        "import_run_id": null,
+        "is_current": true,
+        "raw_data": null,
+        "source_licence": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+        "source_name": "TfL detailed station data — station facilities and toilets",
+        "source_record_id": "tfl:910GGODMAYS:toilet:1",
+        "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+      },
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:910GGODMAYS:toilet:1",
+      "toilet_unit_id": null,
+      "unit_link_status": "UNLINKED"
+    },
+    {
+      "canonical_facility_id": "81313ce2-a8fa-4fda-94ae-8c89e8339d71",
+      "canonical_facility_name": "Hanwell Rail Station",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_refs": [
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_SOURCE_OBSERVATION_AUDIT_2026-08-22.json",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json"
+      ],
+      "facility_source_id": null,
+      "observation_action": "CREATE_OBSERVATION",
+      "observation_key": "tfl:910GHANWELL:toilet:1",
+      "observed_attributes": {
+        "coordinate_scope": "STATION_LEVEL",
+        "physical_unit_asserted": false,
+        "provenance": {
+          "attribution": "Data provided by Transport for London",
+          "frozen_source": {
+            "reconciliation_sha256": "65cc9cc8c41b7b3a003524610b674c7f2eae96ff7fe5116f38f2d2856cb777cb",
+            "zip_bytes": 186973,
+            "zip_retrieval_utc": "2026-08-21T06:08:20.1476469Z",
+            "zip_sha256": "19c50772febd1a3d7625f59e079b7590c5da4ed70424d6f552cfd7db1611e2ce",
+            "zip_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+          },
+          "licence_identifier": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+          "licence_url": "https://tfl.gov.uk/corporate/terms-and-conditions/transport-data-service",
+          "os_derived_data_attribution": "Contains OS data © Crown copyright and database rights 2016 and Geomni UK Map data © and database rights [2019]",
+          "source_id": "tfl_detailed_station_data",
+          "source_name": "TfL detailed station data — station facilities and toilets",
+          "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip",
+          "transport_data_terms_attribution": "Powered by TfL Open Data"
+        },
+        "source_facts": {
+          "fee_status": "FREE",
+          "has_baby_changing": false,
+          "inside_gateline": true,
+          "is_accessible": true,
+          "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+          "source_record_id": "tfl:910GHANWELL:toilet:1",
+          "source_row_number": 33,
+          "stable_tfl_station_id": "910GHANWELL",
+          "stable_tfl_toilet_id": "1",
+          "station_coordinates": {
+            "latitude": 51.511926,
+            "longitude": -0.338359,
+            "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+            "station_point_count": 6
+          },
+          "station_name": "Hanwell",
+          "station_public_location": "London, TfL station network",
+          "tfl_management_status": "MANAGED_BY_TFL",
+          "toilet_location_description": "Located on platform 3",
+          "toilet_type": "UNISEX"
+        },
+        "source_identity": {
+          "Id": "1",
+          "StationUniqueId": "910GHANWELL",
+          "source_record_id": "tfl:910GHANWELL:toilet:1"
+        },
+        "unit_link_status": "UNLINKED"
+      },
+      "observed_attributes_sha256": "21947617a64c8b4331b6cbcd2c10021e7b9c49feebf21312f192c5cc3a666915",
+      "physical_unit_asserted": false,
+      "source_identity": {
+        "Id": "1",
+        "StationUniqueId": "910GHANWELL",
+        "source_record_id": "tfl:910GHANWELL:toilet:1"
+      },
+      "source_link_action": "CREATE_SOURCE_LINK",
+      "source_link_payload": {
+        "facility_id": "81313ce2-a8fa-4fda-94ae-8c89e8339d71",
+        "import_run_id": null,
+        "is_current": true,
+        "raw_data": null,
+        "source_licence": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+        "source_name": "TfL detailed station data — station facilities and toilets",
+        "source_record_id": "tfl:910GHANWELL:toilet:1",
+        "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+      },
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:910GHANWELL:toilet:1",
+      "toilet_unit_id": null,
+      "unit_link_status": "UNLINKED"
+    },
+    {
+      "canonical_facility_id": "ac3ea7e2-c181-4195-8814-19787409c739",
+      "canonical_facility_name": "Manor Park Library",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_refs": [
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_SOURCE_OBSERVATION_AUDIT_2026-08-22.json",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json"
+      ],
+      "facility_source_id": null,
+      "observation_action": "CREATE_OBSERVATION",
+      "observation_key": "tfl:910GMANRPK:toilet:1",
+      "observed_attributes": {
+        "coordinate_scope": "STATION_LEVEL",
+        "physical_unit_asserted": false,
+        "provenance": {
+          "attribution": "Data provided by Transport for London",
+          "frozen_source": {
+            "reconciliation_sha256": "65cc9cc8c41b7b3a003524610b674c7f2eae96ff7fe5116f38f2d2856cb777cb",
+            "zip_bytes": 186973,
+            "zip_retrieval_utc": "2026-08-21T06:08:20.1476469Z",
+            "zip_sha256": "19c50772febd1a3d7625f59e079b7590c5da4ed70424d6f552cfd7db1611e2ce",
+            "zip_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+          },
+          "licence_identifier": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+          "licence_url": "https://tfl.gov.uk/corporate/terms-and-conditions/transport-data-service",
+          "os_derived_data_attribution": "Contains OS data © Crown copyright and database rights 2016 and Geomni UK Map data © and database rights [2019]",
+          "source_id": "tfl_detailed_station_data",
+          "source_name": "TfL detailed station data — station facilities and toilets",
+          "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip",
+          "transport_data_terms_attribution": "Powered by TfL Open Data"
+        },
+        "source_facts": {
+          "fee_status": "FREE",
+          "has_baby_changing": false,
+          "inside_gateline": false,
+          "is_accessible": true,
+          "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+          "source_record_id": "tfl:910GMANRPK:toilet:1",
+          "source_row_number": 48,
+          "stable_tfl_station_id": "910GMANRPK",
+          "stable_tfl_toilet_id": "1",
+          "station_coordinates": {
+            "latitude": 51.55226,
+            "longitude": 0.046274,
+            "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+            "station_point_count": 7
+          },
+          "station_name": "Manor Park",
+          "station_public_location": "London, TfL station network",
+          "tfl_management_status": "MANAGED_BY_TFL",
+          "toilet_location_description": "Located in ticket hall",
+          "toilet_type": "UNISEX"
+        },
+        "source_identity": {
+          "Id": "1",
+          "StationUniqueId": "910GMANRPK",
+          "source_record_id": "tfl:910GMANRPK:toilet:1"
+        },
+        "unit_link_status": "UNLINKED"
+      },
+      "observed_attributes_sha256": "b802ebd64547add997a2cd697d502ea4a73a3c159b4a2782d09d093afd3bdc3d",
+      "physical_unit_asserted": false,
+      "source_identity": {
+        "Id": "1",
+        "StationUniqueId": "910GMANRPK",
+        "source_record_id": "tfl:910GMANRPK:toilet:1"
+      },
+      "source_link_action": "CREATE_SOURCE_LINK",
+      "source_link_payload": {
+        "facility_id": "ac3ea7e2-c181-4195-8814-19787409c739",
+        "import_run_id": null,
+        "is_current": true,
+        "raw_data": null,
+        "source_licence": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+        "source_name": "TfL detailed station data — station facilities and toilets",
+        "source_record_id": "tfl:910GMANRPK:toilet:1",
+        "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+      },
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:910GMANRPK:toilet:1",
+      "toilet_unit_id": null,
+      "unit_link_status": "UNLINKED"
+    },
+    {
+      "canonical_facility_id": "f4ab26f6-4177-4338-a7e0-85ac651b9bf0",
+      "canonical_facility_name": "Seven Kings",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_refs": [
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_SOURCE_OBSERVATION_AUDIT_2026-08-22.json",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json"
+      ],
+      "facility_source_id": null,
+      "observation_action": "CREATE_OBSERVATION",
+      "observation_key": "tfl:910GSVNKNGS:toilet:1",
+      "observed_attributes": {
+        "coordinate_scope": "STATION_LEVEL",
+        "physical_unit_asserted": false,
+        "provenance": {
+          "attribution": "Data provided by Transport for London",
+          "frozen_source": {
+            "reconciliation_sha256": "65cc9cc8c41b7b3a003524610b674c7f2eae96ff7fe5116f38f2d2856cb777cb",
+            "zip_bytes": 186973,
+            "zip_retrieval_utc": "2026-08-21T06:08:20.1476469Z",
+            "zip_sha256": "19c50772febd1a3d7625f59e079b7590c5da4ed70424d6f552cfd7db1611e2ce",
+            "zip_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+          },
+          "licence_identifier": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+          "licence_url": "https://tfl.gov.uk/corporate/terms-and-conditions/transport-data-service",
+          "os_derived_data_attribution": "Contains OS data © Crown copyright and database rights 2016 and Geomni UK Map data © and database rights [2019]",
+          "source_id": "tfl_detailed_station_data",
+          "source_name": "TfL detailed station data — station facilities and toilets",
+          "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip",
+          "transport_data_terms_attribution": "Powered by TfL Open Data"
+        },
+        "source_facts": {
+          "fee_status": "FREE",
+          "has_baby_changing": false,
+          "inside_gateline": true,
+          "is_accessible": true,
+          "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+          "source_record_id": "tfl:910GSVNKNGS:toilet:1",
+          "source_row_number": 72,
+          "stable_tfl_station_id": "910GSVNKNGS",
+          "stable_tfl_toilet_id": "1",
+          "station_coordinates": {
+            "latitude": 51.563937,
+            "longitude": 0.097077,
+            "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+            "station_point_count": 8
+          },
+          "station_name": "Seven Kings",
+          "station_public_location": "London, TfL station network",
+          "tfl_management_status": "MANAGED_BY_TFL",
+          "toilet_location_description": "Located on Footbridge",
+          "toilet_type": "UNISEX"
+        },
+        "source_identity": {
+          "Id": "1",
+          "StationUniqueId": "910GSVNKNGS",
+          "source_record_id": "tfl:910GSVNKNGS:toilet:1"
+        },
+        "unit_link_status": "UNLINKED"
+      },
+      "observed_attributes_sha256": "a324b1874c41a5045ca201e692c172fffe04f899700292e45221e180d94ec5bf",
+      "physical_unit_asserted": false,
+      "source_identity": {
+        "Id": "1",
+        "StationUniqueId": "910GSVNKNGS",
+        "source_record_id": "tfl:910GSVNKNGS:toilet:1"
+      },
+      "source_link_action": "CREATE_SOURCE_LINK",
+      "source_link_payload": {
+        "facility_id": "f4ab26f6-4177-4338-a7e0-85ac651b9bf0",
+        "import_run_id": null,
+        "is_current": true,
+        "raw_data": null,
+        "source_licence": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+        "source_name": "TfL detailed station data — station facilities and toilets",
+        "source_record_id": "tfl:910GSVNKNGS:toilet:1",
+        "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+      },
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:910GSVNKNGS:toilet:1",
+      "toilet_unit_id": null,
+      "unit_link_status": "UNLINKED"
+    },
+    {
+      "canonical_facility_id": "3e7c3df4-cd5d-4d3f-9020-d25c177310f2",
+      "canonical_facility_name": "Battersea Power Station (Tube Station)",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_refs": [
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_SOURCE_OBSERVATION_AUDIT_2026-08-22.json",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json"
+      ],
+      "facility_source_id": null,
+      "observation_action": "CREATE_OBSERVATION",
+      "observation_key": "tfl:940GZZBPSUST:toilet:1",
+      "observed_attributes": {
+        "coordinate_scope": "STATION_LEVEL",
+        "physical_unit_asserted": false,
+        "provenance": {
+          "attribution": "Data provided by Transport for London",
+          "frozen_source": {
+            "reconciliation_sha256": "65cc9cc8c41b7b3a003524610b674c7f2eae96ff7fe5116f38f2d2856cb777cb",
+            "zip_bytes": 186973,
+            "zip_retrieval_utc": "2026-08-21T06:08:20.1476469Z",
+            "zip_sha256": "19c50772febd1a3d7625f59e079b7590c5da4ed70424d6f552cfd7db1611e2ce",
+            "zip_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+          },
+          "licence_identifier": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+          "licence_url": "https://tfl.gov.uk/corporate/terms-and-conditions/transport-data-service",
+          "os_derived_data_attribution": "Contains OS data © Crown copyright and database rights 2016 and Geomni UK Map data © and database rights [2019]",
+          "source_id": "tfl_detailed_station_data",
+          "source_name": "TfL detailed station data — station facilities and toilets",
+          "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip",
+          "transport_data_terms_attribution": "Powered by TfL Open Data"
+        },
+        "source_facts": {
+          "fee_status": "FREE",
+          "has_baby_changing": true,
+          "inside_gateline": true,
+          "is_accessible": true,
+          "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+          "source_record_id": "tfl:940GZZBPSUST:toilet:1",
+          "source_row_number": 402,
+          "stable_tfl_station_id": "940GZZBPSUST",
+          "stable_tfl_toilet_id": "1",
+          "station_coordinates": {
+            "latitude": 51.479809,
+            "longitude": -0.142421,
+            "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+            "station_point_count": 9
+          },
+          "station_name": "Battersea Power Station",
+          "station_public_location": "London, TfL station network",
+          "tfl_management_status": "MANAGED_BY_TFL",
+          "toilet_location_description": "Located in ticket hall",
+          "toilet_type": "UNISEX"
+        },
+        "source_identity": {
+          "Id": "1",
+          "StationUniqueId": "940GZZBPSUST",
+          "source_record_id": "tfl:940GZZBPSUST:toilet:1"
+        },
+        "unit_link_status": "UNLINKED"
+      },
+      "observed_attributes_sha256": "7fcd8f216dd66df4c8c2445376a79c563144c4161d3f69113e17a37158618cf7",
+      "physical_unit_asserted": false,
+      "source_identity": {
+        "Id": "1",
+        "StationUniqueId": "940GZZBPSUST",
+        "source_record_id": "tfl:940GZZBPSUST:toilet:1"
+      },
+      "source_link_action": "CREATE_SOURCE_LINK",
+      "source_link_payload": {
+        "facility_id": "3e7c3df4-cd5d-4d3f-9020-d25c177310f2",
+        "import_run_id": null,
+        "is_current": true,
+        "raw_data": null,
+        "source_licence": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+        "source_name": "TfL detailed station data — station facilities and toilets",
+        "source_record_id": "tfl:940GZZBPSUST:toilet:1",
+        "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+      },
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:940GZZBPSUST:toilet:1",
+      "toilet_unit_id": null,
+      "unit_link_status": "UNLINKED"
+    },
+    {
+      "canonical_facility_id": "9265243e-1bea-4137-af73-ab564aa7c1eb",
+      "canonical_facility_name": "Finchley Central Station",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_refs": [
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_SOURCE_OBSERVATION_AUDIT_2026-08-22.json",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json"
+      ],
+      "facility_source_id": null,
+      "observation_action": "CREATE_OBSERVATION",
+      "observation_key": "tfl:940GZZLUFYC:toilet:3",
+      "observed_attributes": {
+        "coordinate_scope": "STATION_LEVEL",
+        "physical_unit_asserted": false,
+        "provenance": {
+          "attribution": "Data provided by Transport for London",
+          "frozen_source": {
+            "reconciliation_sha256": "65cc9cc8c41b7b3a003524610b674c7f2eae96ff7fe5116f38f2d2856cb777cb",
+            "zip_bytes": 186973,
+            "zip_retrieval_utc": "2026-08-21T06:08:20.1476469Z",
+            "zip_sha256": "19c50772febd1a3d7625f59e079b7590c5da4ed70424d6f552cfd7db1611e2ce",
+            "zip_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+          },
+          "licence_identifier": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+          "licence_url": "https://tfl.gov.uk/corporate/terms-and-conditions/transport-data-service",
+          "os_derived_data_attribution": "Contains OS data © Crown copyright and database rights 2016 and Geomni UK Map data © and database rights [2019]",
+          "source_id": "tfl_detailed_station_data",
+          "source_name": "TfL detailed station data — station facilities and toilets",
+          "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip",
+          "transport_data_terms_attribution": "Powered by TfL Open Data"
+        },
+        "source_facts": {
+          "fee_status": "FREE",
+          "has_baby_changing": false,
+          "inside_gateline": true,
+          "is_accessible": true,
+          "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+          "source_record_id": "tfl:940GZZLUFYC:toilet:3",
+          "source_row_number": 140,
+          "stable_tfl_station_id": "940GZZLUFYC",
+          "stable_tfl_toilet_id": "3",
+          "station_coordinates": {
+            "latitude": 51.6010685,
+            "longitude": -0.1925825,
+            "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+            "station_point_count": 8
+          },
+          "station_name": "Finchley Central",
+          "station_public_location": "London, TfL station network",
+          "tfl_management_status": "MANAGED_BY_TFL",
+          "toilet_location_description": "Located on platform 3",
+          "toilet_type": "UNISEX"
+        },
+        "source_identity": {
+          "Id": "3",
+          "StationUniqueId": "940GZZLUFYC",
+          "source_record_id": "tfl:940GZZLUFYC:toilet:3"
+        },
+        "unit_link_status": "UNLINKED"
+      },
+      "observed_attributes_sha256": "1a47419902977600a8410aad6d51ca690df2d0931b3f55faae3c319947ea9adf",
+      "physical_unit_asserted": false,
+      "source_identity": {
+        "Id": "3",
+        "StationUniqueId": "940GZZLUFYC",
+        "source_record_id": "tfl:940GZZLUFYC:toilet:3"
+      },
+      "source_link_action": "CREATE_SOURCE_LINK",
+      "source_link_payload": {
+        "facility_id": "9265243e-1bea-4137-af73-ab564aa7c1eb",
+        "import_run_id": null,
+        "is_current": true,
+        "raw_data": null,
+        "source_licence": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+        "source_name": "TfL detailed station data — station facilities and toilets",
+        "source_record_id": "tfl:940GZZLUFYC:toilet:3",
+        "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+      },
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:940GZZLUFYC:toilet:3",
+      "toilet_unit_id": null,
+      "unit_link_status": "UNLINKED"
+    },
+    {
+      "canonical_facility_id": "84161c85-79a5-4e8d-9e77-d275f1f3199c",
+      "canonical_facility_name": "Ruislip Gardens Underground Station",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_refs": [
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_SOURCE_OBSERVATION_AUDIT_2026-08-22.json",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json"
+      ],
+      "facility_source_id": null,
+      "observation_action": "CREATE_OBSERVATION",
+      "observation_key": "tfl:940GZZLURSG:toilet:1",
+      "observed_attributes": {
+        "coordinate_scope": "STATION_LEVEL",
+        "physical_unit_asserted": false,
+        "provenance": {
+          "attribution": "Data provided by Transport for London",
+          "frozen_source": {
+            "reconciliation_sha256": "65cc9cc8c41b7b3a003524610b674c7f2eae96ff7fe5116f38f2d2856cb777cb",
+            "zip_bytes": 186973,
+            "zip_retrieval_utc": "2026-08-21T06:08:20.1476469Z",
+            "zip_sha256": "19c50772febd1a3d7625f59e079b7590c5da4ed70424d6f552cfd7db1611e2ce",
+            "zip_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+          },
+          "licence_identifier": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+          "licence_url": "https://tfl.gov.uk/corporate/terms-and-conditions/transport-data-service",
+          "os_derived_data_attribution": "Contains OS data © Crown copyright and database rights 2016 and Geomni UK Map data © and database rights [2019]",
+          "source_id": "tfl_detailed_station_data",
+          "source_name": "TfL detailed station data — station facilities and toilets",
+          "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip",
+          "transport_data_terms_attribution": "Powered by TfL Open Data"
+        },
+        "source_facts": {
+          "fee_status": "FREE",
+          "has_baby_changing": false,
+          "inside_gateline": false,
+          "is_accessible": true,
+          "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+          "source_record_id": "tfl:940GZZLURSG:toilet:1",
+          "source_row_number": 213,
+          "stable_tfl_station_id": "940GZZLURSG",
+          "stable_tfl_toilet_id": "1",
+          "station_coordinates": {
+            "latitude": 51.560604,
+            "longitude": -0.410839,
+            "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+            "station_point_count": 7
+          },
+          "station_name": "Ruislip Gardens",
+          "station_public_location": "London, TfL station network",
+          "tfl_management_status": "MANAGED_BY_TFL",
+          "toilet_location_description": "Located in ticket hall",
+          "toilet_type": "UNISEX"
+        },
+        "source_identity": {
+          "Id": "1",
+          "StationUniqueId": "940GZZLURSG",
+          "source_record_id": "tfl:940GZZLURSG:toilet:1"
+        },
+        "unit_link_status": "UNLINKED"
+      },
+      "observed_attributes_sha256": "599c8f00fb013095b7750d819828676b3cdbb99963d102af64002a7ccf6d6327",
+      "physical_unit_asserted": false,
+      "source_identity": {
+        "Id": "1",
+        "StationUniqueId": "940GZZLURSG",
+        "source_record_id": "tfl:940GZZLURSG:toilet:1"
+      },
+      "source_link_action": "CREATE_SOURCE_LINK",
+      "source_link_payload": {
+        "facility_id": "84161c85-79a5-4e8d-9e77-d275f1f3199c",
+        "import_run_id": null,
+        "is_current": true,
+        "raw_data": null,
+        "source_licence": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+        "source_name": "TfL detailed station data — station facilities and toilets",
+        "source_record_id": "tfl:940GZZLURSG:toilet:1",
+        "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+      },
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:940GZZLURSG:toilet:1",
+      "toilet_unit_id": null,
+      "unit_link_status": "UNLINKED"
+    },
+    {
+      "canonical_facility_id": "c31820e7-2009-43be-9c8a-5437034b7469",
+      "canonical_facility_name": "The Bank of England Museum",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_refs": [
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_SOURCE_OBSERVATION_AUDIT_2026-08-22.json",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json"
+      ],
+      "facility_source_id": null,
+      "observation_action": "CREATE_OBSERVATION",
+      "observation_key": "tfl:HUBBAN:toilet:1",
+      "observed_attributes": {
+        "coordinate_scope": "STATION_LEVEL",
+        "physical_unit_asserted": false,
+        "provenance": {
+          "attribution": "Data provided by Transport for London",
+          "frozen_source": {
+            "reconciliation_sha256": "65cc9cc8c41b7b3a003524610b674c7f2eae96ff7fe5116f38f2d2856cb777cb",
+            "zip_bytes": 186973,
+            "zip_retrieval_utc": "2026-08-21T06:08:20.1476469Z",
+            "zip_sha256": "19c50772febd1a3d7625f59e079b7590c5da4ed70424d6f552cfd7db1611e2ce",
+            "zip_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+          },
+          "licence_identifier": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+          "licence_url": "https://tfl.gov.uk/corporate/terms-and-conditions/transport-data-service",
+          "os_derived_data_attribution": "Contains OS data © Crown copyright and database rights 2016 and Geomni UK Map data © and database rights [2019]",
+          "source_id": "tfl_detailed_station_data",
+          "source_name": "TfL detailed station data — station facilities and toilets",
+          "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip",
+          "transport_data_terms_attribution": "Powered by TfL Open Data"
+        },
+        "source_facts": {
+          "fee_status": "FREE",
+          "has_baby_changing": false,
+          "inside_gateline": true,
+          "is_accessible": true,
+          "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+          "source_record_id": "tfl:HUBBAN:toilet:1",
+          "source_row_number": 271,
+          "stable_tfl_station_id": "HUBBAN",
+          "stable_tfl_toilet_id": "1",
+          "station_coordinates": {
+            "latitude": 51.512893,
+            "longitude": -0.088312,
+            "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+            "station_point_count": 33
+          },
+          "station_name": "Bank",
+          "station_public_location": "London, TfL station network",
+          "tfl_management_status": "MANAGED_BY_TFL",
+          "toilet_location_description": "Located at Cannon Street ticket hall",
+          "toilet_type": "UNISEX"
+        },
+        "source_identity": {
+          "Id": "1",
+          "StationUniqueId": "HUBBAN",
+          "source_record_id": "tfl:HUBBAN:toilet:1"
+        },
+        "unit_link_status": "UNLINKED"
+      },
+      "observed_attributes_sha256": "8a8f7fb96a7323a736ff74be04f613a9d0bdf0cce4d89b089d93ca928c975f9c",
+      "physical_unit_asserted": false,
+      "source_identity": {
+        "Id": "1",
+        "StationUniqueId": "HUBBAN",
+        "source_record_id": "tfl:HUBBAN:toilet:1"
+      },
+      "source_link_action": "CREATE_SOURCE_LINK",
+      "source_link_payload": {
+        "facility_id": "c31820e7-2009-43be-9c8a-5437034b7469",
+        "import_run_id": null,
+        "is_current": true,
+        "raw_data": null,
+        "source_licence": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+        "source_name": "TfL detailed station data — station facilities and toilets",
+        "source_record_id": "tfl:HUBBAN:toilet:1",
+        "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+      },
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:HUBBAN:toilet:1",
+      "toilet_unit_id": null,
+      "unit_link_status": "UNLINKED"
+    },
+    {
+      "canonical_facility_id": "42d071c4-f774-4ec8-8d03-af03b459815e",
+      "canonical_facility_name": "Elmers End Station",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_refs": [
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_SOURCE_OBSERVATION_AUDIT_2026-08-22.json",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json"
+      ],
+      "facility_source_id": null,
+      "observation_action": "CREATE_OBSERVATION",
+      "observation_key": "tfl:HUBELM:toilet:1",
+      "observed_attributes": {
+        "coordinate_scope": "STATION_LEVEL",
+        "physical_unit_asserted": false,
+        "provenance": {
+          "attribution": "Data provided by Transport for London",
+          "frozen_source": {
+            "reconciliation_sha256": "65cc9cc8c41b7b3a003524610b674c7f2eae96ff7fe5116f38f2d2856cb777cb",
+            "zip_bytes": 186973,
+            "zip_retrieval_utc": "2026-08-21T06:08:20.1476469Z",
+            "zip_sha256": "19c50772febd1a3d7625f59e079b7590c5da4ed70424d6f552cfd7db1611e2ce",
+            "zip_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+          },
+          "licence_identifier": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+          "licence_url": "https://tfl.gov.uk/corporate/terms-and-conditions/transport-data-service",
+          "os_derived_data_attribution": "Contains OS data © Crown copyright and database rights 2016 and Geomni UK Map data © and database rights [2019]",
+          "source_id": "tfl_detailed_station_data",
+          "source_name": "TfL detailed station data — station facilities and toilets",
+          "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip",
+          "transport_data_terms_attribution": "Powered by TfL Open Data"
+        },
+        "source_facts": {
+          "fee_status": "FREE",
+          "has_baby_changing": false,
+          "inside_gateline": false,
+          "is_accessible": false,
+          "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+          "source_record_id": "tfl:HUBELM:toilet:1",
+          "source_row_number": 304,
+          "stable_tfl_station_id": "HUBELM",
+          "stable_tfl_toilet_id": "1",
+          "station_coordinates": {
+            "latitude": 51.398354,
+            "longitude": -0.049555,
+            "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+            "station_point_count": 7
+          },
+          "station_name": "Elmers End",
+          "station_public_location": "London, TfL station network",
+          "tfl_management_status": "NOT_MANAGED_BY_TFL",
+          "toilet_location_description": "Located in National Rail station",
+          "toilet_type": "MALE"
+        },
+        "source_identity": {
+          "Id": "1",
+          "StationUniqueId": "HUBELM",
+          "source_record_id": "tfl:HUBELM:toilet:1"
+        },
+        "unit_link_status": "UNLINKED"
+      },
+      "observed_attributes_sha256": "ef136f728f34ba0117dffdeb73c0bdf1bd5861cd1e79a976ba21d36f2ca5c4d2",
+      "physical_unit_asserted": false,
+      "source_identity": {
+        "Id": "1",
+        "StationUniqueId": "HUBELM",
+        "source_record_id": "tfl:HUBELM:toilet:1"
+      },
+      "source_link_action": "CREATE_SOURCE_LINK",
+      "source_link_payload": {
+        "facility_id": "42d071c4-f774-4ec8-8d03-af03b459815e",
+        "import_run_id": null,
+        "is_current": true,
+        "raw_data": null,
+        "source_licence": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+        "source_name": "TfL detailed station data — station facilities and toilets",
+        "source_record_id": "tfl:HUBELM:toilet:1",
+        "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+      },
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:HUBELM:toilet:1",
+      "toilet_unit_id": null,
+      "unit_link_status": "UNLINKED"
+    },
+    {
+      "canonical_facility_id": "1c8c9b32-b2f3-4791-bfdc-4d984c06132b",
+      "canonical_facility_name": "Mitcham Junction Station",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_refs": [
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_SOURCE_OBSERVATION_AUDIT_2026-08-22.json",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json"
+      ],
+      "facility_source_id": null,
+      "observation_action": "CREATE_OBSERVATION",
+      "observation_key": "tfl:HUBMJT:toilet:1",
+      "observed_attributes": {
+        "coordinate_scope": "STATION_LEVEL",
+        "physical_unit_asserted": false,
+        "provenance": {
+          "attribution": "Data provided by Transport for London",
+          "frozen_source": {
+            "reconciliation_sha256": "65cc9cc8c41b7b3a003524610b674c7f2eae96ff7fe5116f38f2d2856cb777cb",
+            "zip_bytes": 186973,
+            "zip_retrieval_utc": "2026-08-21T06:08:20.1476469Z",
+            "zip_sha256": "19c50772febd1a3d7625f59e079b7590c5da4ed70424d6f552cfd7db1611e2ce",
+            "zip_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+          },
+          "licence_identifier": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+          "licence_url": "https://tfl.gov.uk/corporate/terms-and-conditions/transport-data-service",
+          "os_derived_data_attribution": "Contains OS data © Crown copyright and database rights 2016 and Geomni UK Map data © and database rights [2019]",
+          "source_id": "tfl_detailed_station_data",
+          "source_name": "TfL detailed station data — station facilities and toilets",
+          "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip",
+          "transport_data_terms_attribution": "Powered by TfL Open Data"
+        },
+        "source_facts": {
+          "fee_status": "FREE",
+          "has_baby_changing": false,
+          "inside_gateline": false,
+          "is_accessible": true,
+          "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+          "source_record_id": "tfl:HUBMJT:toilet:1",
+          "source_row_number": 336,
+          "stable_tfl_station_id": "HUBMJT",
+          "stable_tfl_toilet_id": "1",
+          "station_coordinates": {
+            "latitude": 51.392959,
+            "longitude": -0.157857,
+            "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+            "station_point_count": 7
+          },
+          "station_name": "Mitcham Junction",
+          "station_public_location": "London, TfL station network",
+          "tfl_management_status": "NOT_MANAGED_BY_TFL",
+          "toilet_location_description": "Located in National Rail station",
+          "toilet_type": "UNISEX"
+        },
+        "source_identity": {
+          "Id": "1",
+          "StationUniqueId": "HUBMJT",
+          "source_record_id": "tfl:HUBMJT:toilet:1"
+        },
+        "unit_link_status": "UNLINKED"
+      },
+      "observed_attributes_sha256": "2649cfe8f79ab33877926c3925fba52147f95c4b00b7dedd6a5515696b15ddc5",
+      "physical_unit_asserted": false,
+      "source_identity": {
+        "Id": "1",
+        "StationUniqueId": "HUBMJT",
+        "source_record_id": "tfl:HUBMJT:toilet:1"
+      },
+      "source_link_action": "CREATE_SOURCE_LINK",
+      "source_link_payload": {
+        "facility_id": "1c8c9b32-b2f3-4791-bfdc-4d984c06132b",
+        "import_run_id": null,
+        "is_current": true,
+        "raw_data": null,
+        "source_licence": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+        "source_name": "TfL detailed station data — station facilities and toilets",
+        "source_record_id": "tfl:HUBMJT:toilet:1",
+        "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+      },
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:HUBMJT:toilet:1",
+      "toilet_unit_id": null,
+      "unit_link_status": "UNLINKED"
+    },
+    {
+      "canonical_facility_id": "89f4cda8-9735-41ef-a1ef-d451d370e966",
+      "canonical_facility_name": "Sainsbury's South Ruislip",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_refs": [
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_SOURCE_OBSERVATION_AUDIT_2026-08-22.json",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json"
+      ],
+      "facility_source_id": null,
+      "observation_action": "CREATE_OBSERVATION",
+      "observation_key": "tfl:HUBSRU:toilet:1",
+      "observed_attributes": {
+        "coordinate_scope": "STATION_LEVEL",
+        "physical_unit_asserted": false,
+        "provenance": {
+          "attribution": "Data provided by Transport for London",
+          "frozen_source": {
+            "reconciliation_sha256": "65cc9cc8c41b7b3a003524610b674c7f2eae96ff7fe5116f38f2d2856cb777cb",
+            "zip_bytes": 186973,
+            "zip_retrieval_utc": "2026-08-21T06:08:20.1476469Z",
+            "zip_sha256": "19c50772febd1a3d7625f59e079b7590c5da4ed70424d6f552cfd7db1611e2ce",
+            "zip_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+          },
+          "licence_identifier": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+          "licence_url": "https://tfl.gov.uk/corporate/terms-and-conditions/transport-data-service",
+          "os_derived_data_attribution": "Contains OS data © Crown copyright and database rights 2016 and Geomni UK Map data © and database rights [2019]",
+          "source_id": "tfl_detailed_station_data",
+          "source_name": "TfL detailed station data — station facilities and toilets",
+          "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip",
+          "transport_data_terms_attribution": "Powered by TfL Open Data"
+        },
+        "source_facts": {
+          "fee_status": "FREE",
+          "has_baby_changing": false,
+          "inside_gateline": true,
+          "is_accessible": true,
+          "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+          "source_record_id": "tfl:HUBSRU:toilet:1",
+          "source_row_number": 358,
+          "stable_tfl_station_id": "HUBSRU",
+          "stable_tfl_toilet_id": "1",
+          "station_coordinates": {
+            "latitude": 51.556956,
+            "longitude": -0.398915,
+            "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+            "station_point_count": 9
+          },
+          "station_name": "South Ruislip",
+          "station_public_location": "London, TfL station network",
+          "tfl_management_status": "MANAGED_BY_TFL",
+          "toilet_location_description": "Located in ticket hall",
+          "toilet_type": "UNISEX"
+        },
+        "source_identity": {
+          "Id": "1",
+          "StationUniqueId": "HUBSRU",
+          "source_record_id": "tfl:HUBSRU:toilet:1"
+        },
+        "unit_link_status": "UNLINKED"
+      },
+      "observed_attributes_sha256": "5943feb41978a837160933ba1b21c8c39629d827fe7031099ac39bb7c2cb2df4",
+      "physical_unit_asserted": false,
+      "source_identity": {
+        "Id": "1",
+        "StationUniqueId": "HUBSRU",
+        "source_record_id": "tfl:HUBSRU:toilet:1"
+      },
+      "source_link_action": "CREATE_SOURCE_LINK",
+      "source_link_payload": {
+        "facility_id": "89f4cda8-9735-41ef-a1ef-d451d370e966",
+        "import_run_id": null,
+        "is_current": true,
+        "raw_data": null,
+        "source_licence": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+        "source_name": "TfL detailed station data — station facilities and toilets",
+        "source_record_id": "tfl:HUBSRU:toilet:1",
+        "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+      },
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:HUBSRU:toilet:1",
+      "toilet_unit_id": null,
+      "unit_link_status": "UNLINKED"
+    },
+    {
+      "canonical_facility_id": "c554adc3-aa75-46ea-a142-917042d49fde",
+      "canonical_facility_name": "Tottenham Court Road Underground Station",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_refs": [
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_SOURCE_OBSERVATION_AUDIT_2026-08-22.json",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json"
+      ],
+      "facility_source_id": null,
+      "observation_action": "CREATE_OBSERVATION",
+      "observation_key": "tfl:HUBTCR:toilet:1",
+      "observed_attributes": {
+        "coordinate_scope": "STATION_LEVEL",
+        "physical_unit_asserted": false,
+        "provenance": {
+          "attribution": "Data provided by Transport for London",
+          "frozen_source": {
+            "reconciliation_sha256": "65cc9cc8c41b7b3a003524610b674c7f2eae96ff7fe5116f38f2d2856cb777cb",
+            "zip_bytes": 186973,
+            "zip_retrieval_utc": "2026-08-21T06:08:20.1476469Z",
+            "zip_sha256": "19c50772febd1a3d7625f59e079b7590c5da4ed70424d6f552cfd7db1611e2ce",
+            "zip_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+          },
+          "licence_identifier": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+          "licence_url": "https://tfl.gov.uk/corporate/terms-and-conditions/transport-data-service",
+          "os_derived_data_attribution": "Contains OS data © Crown copyright and database rights 2016 and Geomni UK Map data © and database rights [2019]",
+          "source_id": "tfl_detailed_station_data",
+          "source_name": "TfL detailed station data — station facilities and toilets",
+          "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip",
+          "transport_data_terms_attribution": "Powered by TfL Open Data"
+        },
+        "source_facts": {
+          "fee_status": "FREE",
+          "has_baby_changing": false,
+          "inside_gateline": false,
+          "is_accessible": true,
+          "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+          "source_record_id": "tfl:HUBTCR:toilet:1",
+          "source_row_number": 362,
+          "stable_tfl_station_id": "HUBTCR",
+          "stable_tfl_toilet_id": "1",
+          "station_coordinates": {
+            "latitude": 51.515972,
+            "longitude": -0.130416,
+            "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+            "station_point_count": 27
+          },
+          "station_name": "Tottenham Court Road",
+          "station_public_location": "London, TfL station network",
+          "tfl_management_status": "MANAGED_BY_TFL",
+          "toilet_location_description": "Located in ticket hall",
+          "toilet_type": "UNISEX"
+        },
+        "source_identity": {
+          "Id": "1",
+          "StationUniqueId": "HUBTCR",
+          "source_record_id": "tfl:HUBTCR:toilet:1"
+        },
+        "unit_link_status": "UNLINKED"
+      },
+      "observed_attributes_sha256": "a94f9406f0c559d71c703da6444a01cd32de9a484b2af36801d0218a1c8a16a0",
+      "physical_unit_asserted": false,
+      "source_identity": {
+        "Id": "1",
+        "StationUniqueId": "HUBTCR",
+        "source_record_id": "tfl:HUBTCR:toilet:1"
+      },
+      "source_link_action": "CREATE_SOURCE_LINK",
+      "source_link_payload": {
+        "facility_id": "c554adc3-aa75-46ea-a142-917042d49fde",
+        "import_run_id": null,
+        "is_current": true,
+        "raw_data": null,
+        "source_licence": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+        "source_name": "TfL detailed station data — station facilities and toilets",
+        "source_record_id": "tfl:HUBTCR:toilet:1",
+        "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+      },
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:HUBTCR:toilet:1",
+      "toilet_unit_id": null,
+      "unit_link_status": "UNLINKED"
+    },
+    {
+      "canonical_facility_id": "9dc4103c-fbc2-4ed5-82fe-8a11f1dd18c8",
+      "canonical_facility_name": "Idea Store Whitechapel",
+      "coordinate_scope": "STATION_LEVEL",
+      "evidence_refs": [
+        "docs/data/RELIEF_TFL_EXISTING_PARENT_SOURCE_OBSERVATION_AUDIT_2026-08-22.json",
+        "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json"
+      ],
+      "facility_source_id": null,
+      "observation_action": "CREATE_OBSERVATION",
+      "observation_key": "tfl:HUBZWL:toilet:1",
+      "observed_attributes": {
+        "coordinate_scope": "STATION_LEVEL",
+        "physical_unit_asserted": false,
+        "provenance": {
+          "attribution": "Data provided by Transport for London",
+          "frozen_source": {
+            "reconciliation_sha256": "65cc9cc8c41b7b3a003524610b674c7f2eae96ff7fe5116f38f2d2856cb777cb",
+            "zip_bytes": 186973,
+            "zip_retrieval_utc": "2026-08-21T06:08:20.1476469Z",
+            "zip_sha256": "19c50772febd1a3d7625f59e079b7590c5da4ed70424d6f552cfd7db1611e2ce",
+            "zip_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+          },
+          "licence_identifier": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+          "licence_url": "https://tfl.gov.uk/corporate/terms-and-conditions/transport-data-service",
+          "os_derived_data_attribution": "Contains OS data © Crown copyright and database rights 2016 and Geomni UK Map data © and database rights [2019]",
+          "source_id": "tfl_detailed_station_data",
+          "source_name": "TfL detailed station data — station facilities and toilets",
+          "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip",
+          "transport_data_terms_attribution": "Powered by TfL Open Data"
+        },
+        "source_facts": {
+          "fee_status": "FREE",
+          "has_baby_changing": true,
+          "inside_gateline": true,
+          "is_accessible": true,
+          "positional_precision": "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED",
+          "source_record_id": "tfl:HUBZWL:toilet:1",
+          "source_row_number": 400,
+          "stable_tfl_station_id": "HUBZWL",
+          "stable_tfl_toilet_id": "1",
+          "station_coordinates": {
+            "latitude": 51.519578,
+            "longitude": -0.059911,
+            "precision": "STATION_LEVEL_MEDIAN_OF_STATION_POINTS",
+            "station_point_count": 15
+          },
+          "station_name": "Whitechapel",
+          "station_public_location": "London, TfL station network",
+          "tfl_management_status": "MANAGED_BY_TFL",
+          "toilet_location_description": null,
+          "toilet_type": "UNISEX"
+        },
+        "source_identity": {
+          "Id": "1",
+          "StationUniqueId": "HUBZWL",
+          "source_record_id": "tfl:HUBZWL:toilet:1"
+        },
+        "unit_link_status": "UNLINKED"
+      },
+      "observed_attributes_sha256": "d5c77e180820441c493e4f4bcdf2793cf3ae04401032fdaa835b5a641c495cba",
+      "physical_unit_asserted": false,
+      "source_identity": {
+        "Id": "1",
+        "StationUniqueId": "HUBZWL",
+        "source_record_id": "tfl:HUBZWL:toilet:1"
+      },
+      "source_link_action": "CREATE_SOURCE_LINK",
+      "source_link_payload": {
+        "facility_id": "9dc4103c-fbc2-4ed5-82fe-8a11f1dd18c8",
+        "import_run_id": null,
+        "is_current": true,
+        "raw_data": null,
+        "source_licence": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+        "source_name": "TfL detailed station data — station facilities and toilets",
+        "source_record_id": "tfl:HUBZWL:toilet:1",
+        "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+      },
+      "source_name": "TfL detailed station data — station facilities and toilets",
+      "source_record_id": "tfl:HUBZWL:toilet:1",
+      "toilet_unit_id": null,
+      "unit_link_status": "UNLINKED"
+    }
+  ],
+  "plan_sha256": "ed1aa9e7e5b54c65c18acd4c2d2ff4909782ff92383ed04ac910558642246a0e",
+  "planned_operations": {
+    "canonical_enrichments": 0,
+    "canonical_facility_updates": 0,
+    "facility_inserts": 0,
+    "facility_source_inserts": 14,
+    "import_runs": 0,
+    "source_observation_inserts": 14,
+    "toilet_unit_inserts": 0,
+    "toilet_unit_source_links": 0
+  },
+  "preflight": {
+    "canonical_facility_groups": 14,
+    "canonical_facility_ids_verified": 14,
+    "canonical_snapshot_md5": "2aa9b2f8e2ff00609c59c58058fad093",
+    "conflicting_source_links": 0,
+    "counts": {
+      "facilities": 15620,
+      "facility_source_observations": 0,
+      "facility_sources": 15620,
+      "import_runs": 5,
+      "toilet_map_import_staging": 0,
+      "toilet_unit_sources": 0,
+      "toilet_units": 0
+    },
+    "duplicate_exact_source_links": 0,
+    "duplicate_observations": 0,
+    "existing_exact_source_links": 0,
+    "existing_identical_observations": 0,
+    "existing_observations": 0,
+    "missing_source_links": 14,
+    "parents_present": 14,
+    "production_project_ref": "bgwxrxkmyaihplaloely"
+  },
+  "production_apply": {
+    "executable": false,
+    "physical_unit_promotion_authorized": false,
+    "production_mutations_before_apply": 0
+  },
+  "repository": "hourwise/Relief",
+  "scope": {
+    "batch_1_contamination": 0,
+    "canonical_facility_groups": 14,
+    "new_parent_contamination": 0,
+    "prior_operation_entries": 28,
+    "station_groups": 14,
+    "unique_source_observations": 14
+  },
+  "source": {
+    "attribution": "Data provided by Transport for London",
+    "frozen_source": {
+      "reconciliation_sha256": "65cc9cc8c41b7b3a003524610b674c7f2eae96ff7fe5116f38f2d2856cb777cb",
+      "zip_bytes": 186973,
+      "zip_retrieval_utc": "2026-08-21T06:08:20.1476469Z",
+      "zip_sha256": "19c50772febd1a3d7625f59e079b7590c5da4ed70424d6f552cfd7db1611e2ce",
+      "zip_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip"
+    },
+    "licence_identifier": "TfL Transport Data Service terms, based on OGL 2.0 with TfL amendments",
+    "licence_url": "https://tfl.gov.uk/corporate/terms-and-conditions/transport-data-service",
+    "os_derived_data_attribution": "Contains OS data © Crown copyright and database rights 2016 and Geomni UK Map data © and database rights [2019]",
+    "source_id": "tfl_detailed_station_data",
+    "source_name": "TfL detailed station data — station facilities and toilets",
+    "source_url": "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip",
+    "transport_data_terms_attribution": "Powered by TfL Open Data"
+  }
+}
