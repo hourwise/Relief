@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+from pathlib import Path
 import unittest
 
 from .pipeline import analyze_duplicates, build_report, normalize_esd_rows, normalize_tfl_bus_rows
@@ -17,6 +19,11 @@ from .tfl_unit_readiness import (
     build_readiness_package,
     classify_insert_row,
     json_safe,
+)
+from .tfl_human_adjudication import (
+    BATCH_CLASSIFICATION,
+    assert_adjudication_invariants,
+    build_adjudication_package,
 )
 from .sheffield import build_sheffield_package
 from .tfl_detailed import normalize_tfl_feed, reconcile_toilets
@@ -235,6 +242,71 @@ class SourceExpansionTests(unittest.TestCase):
         self.assertEqual(result["proposal_payloads"]["future_mutation_counts"]["facility_mutations"], 0)
         self.assertTrue(result["operations_not_executed"])
         self.assertFalse(result["tfl_promotion"])
+
+    def test_tfl_batch_one_reproduces_exact_frozen_9_plus_49_cohort(self) -> None:
+        repository_root = Path(__file__).resolve().parents[2]
+        frozen_path = repository_root / "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json"
+        report = json.loads(frozen_path.read_text(encoding="utf-8"))
+        package = build_adjudication_package(report, {
+            "counts": {
+                "facilities": 15620,
+                "facility_sources": 15620,
+                "import_runs": 5,
+                "toilet_map_import_staging": 0,
+                "toilet_units": 0,
+                "toilet_unit_sources": 0,
+            }
+        })
+        self.assertEqual(package["classification"], BATCH_CLASSIFICATION)
+        self.assertEqual(package["scope"]["source_rows"], 58)
+        self.assertEqual(len(package["new_parent_adjudications"]), 9)
+        self.assertEqual(len(package["physical_unit_adjudications"]), 49)
+        identities = [
+            item["source_identity"]["source_record_id"]
+            for item in package["new_parent_adjudications"] + package["physical_unit_adjudications"]
+        ]
+        self.assertEqual(len(identities), len(set(identities)))
+        self.assertEqual(package["invariants"]["source_identity_duplicates"], 0)
+
+    def test_tfl_batch_one_unresolved_rows_have_zero_operations_and_no_toilet_precision(self) -> None:
+        repository_root = Path(__file__).resolve().parents[2]
+        report = json.loads((repository_root / "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json").read_text(encoding="utf-8"))
+        package = build_adjudication_package(report, {"counts": {
+            "facilities": 15620, "facility_sources": 15620, "import_runs": 5,
+            "toilet_map_import_staging": 0, "toilet_units": 0, "toilet_unit_sources": 0,
+        }})
+        assert_adjudication_invariants(package)
+        self.assertEqual(package["approved_future_operations"]["counts"], {
+            "facility_inserts": 0,
+            "facility_source_links": 0,
+            "toilet_unit_inserts": 0,
+            "toilet_unit_source_links": 0,
+        })
+        self.assertTrue(all(
+            row["decision"] == "STILL_UNRESOLVED"
+            for row in package["new_parent_adjudications"] + package["physical_unit_adjudications"]
+        ))
+        self.assertTrue(all(
+            row["source_fields"]["positional_precision"] == "STATION_LEVEL_ONLY; TOILET_COORDINATES_NOT_PROVIDED"
+            for row in package["new_parent_adjudications"] + package["physical_unit_adjudications"]
+        ))
+
+    def test_tfl_batch_one_preserves_rows_without_gender_id_or_row_count_collapse(self) -> None:
+        repository_root = Path(__file__).resolve().parents[2]
+        report = json.loads((repository_root / "tools/source_expansion/cache/tfl-detailed-2026-08-21/tfl-reconciliation.json").read_text(encoding="utf-8"))
+        package = build_adjudication_package(report, {"counts": {
+            "facilities": 15620, "facility_sources": 15620, "import_runs": 5,
+            "toilet_map_import_staging": 0, "toilet_units": 0, "toilet_unit_sources": 0,
+        }})
+        for topology in package["station_topologies"]:
+            source_ids = [row["source_record_id"] for row in topology["source_rows"]]
+            self.assertEqual(len(source_ids), len(set(source_ids)))
+            self.assertEqual(topology["source_rows_to_physical_units"], {})
+            self.assertIsNone(topology["proposed_physical_unit_count"])
+        self.assertFalse(package["invariants"]["gender_only_unit_creation"])
+        self.assertFalse(package["invariants"]["source_id_only_unit_creation"])
+        self.assertFalse(package["invariants"]["row_count_only_unit_creation"])
+        self.assertFalse(package["approved_future_operations"]["executable"])
 
 
 if __name__ == "__main__":
