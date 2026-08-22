@@ -210,7 +210,7 @@ jobs:
           set -euo pipefail
           supabase migration up --local --yes 2>&1 | tee evidence/migration-chain-post-bootstrap.txt
           grep -q '20260812190246_seal_apply_1a_execution_path.sql' evidence/migration-chain-post-bootstrap.txt
-          grep -q "$N4B_MIGRATION" evidence/migration-chain-post-bootstrap.txt
+          grep -q "$(basename "$N4B_MIGRATION")" evidence/migration-chain-post-bootstrap.txt
           echo 'historical_seal_execution=PASS' | tee evidence/historical-seal-execution.txt
           echo 'n4a_migration_execution=PASS' | tee -a evidence/historical-seal-execution.txt
 
