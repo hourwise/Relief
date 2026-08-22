@@ -117,13 +117,13 @@ jobs:
           restore_migrations
           trap - EXIT
 
-      - name: Verify PostgreSQL and PostGIS
+      - name: Verify PostgreSQL runtime and PostGIS availability
         shell: bash
         run: |
           set -euo pipefail
           psql -X "$N4B_DB_URL" -v ON_ERROR_STOP=1 -Atc "select version();" | tee evidence/postgresql-version.txt
-          psql -X "$N4B_DB_URL" -v ON_ERROR_STOP=1 -Atc "select extname || '=' || extversion from pg_extension where extname = 'postgis';" | tee evidence/postgis-version.txt
-          test -s evidence/postgis-version.txt
+          psql -X "$N4B_DB_URL" -v ON_ERROR_STOP=1 -Atc "select name || '=' || coalesce(default_version, '') from pg_available_extensions where name = 'postgis';" | tee evidence/postgis-availability.txt
+          test -s evidence/postgis-availability.txt
 
       - name: Bootstrap disposable migration executor role
         shell: bash
@@ -139,6 +139,13 @@ jobs:
         run: |
           set -euo pipefail
           supabase db reset --local --no-seed 2>&1 | tee evidence/migration-chain.txt
+
+      - name: Verify PostGIS active after migration chain
+        shell: bash
+        run: |
+          set -euo pipefail
+          psql -X "$N4B_DB_URL" -v ON_ERROR_STOP=1 -Atc "select extname || '=' || extversion from pg_extension where extname = 'postgis';" | tee evidence/postgis-version.txt
+          test -s evidence/postgis-version.txt
 
       - name: Re-verify the sealed migration after bootstrap
         shell: bash
