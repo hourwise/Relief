@@ -1,0 +1,21 @@
+{
+  "document_type": "N4C-R1A account migration lineage evidence",
+  "classification": "LOCAL_V1_SUPERSEDED_BY_PRODUCTION_V2",
+  "confidence": "HIGH",
+  "basis": [
+    "The production ledger has one row at 20260814135046 and retains the exact SQL statement.",
+    "The recovered production statement has the same SQL body as the local file except the successful-cleanup contract literal is 20260814.2 instead of 20260814.1.",
+    "The local v1 file is absent from the production migration ledger.",
+    "The production row is a single migration, not a separate follow-up row.",
+    "Git history shows the local file originated as v1 and later gained the subscription guard while retaining the v1 success label.",
+    "Current deployment documentation describes the guarded account-deletion path as deployed, while current application code does not require the stale v1 label."
+  ],
+  "git_chain": [
+    {"commit":"319cafaf539b8caec1741f059d7ebc918861ee7a","subject":"feat(account): add governed deletion contract","effect":"initial v1 cleanup contract"},
+    {"commit":"04fac791e1bd3a05ac6d91460bcae6bb51f11a6f","subject":"fix(account): fail closed on subscription history","effect":"adds guard and blocked v2 response; successful response remained v1"},
+    {"commit":"eb68ee3333f87c959f4178f2ed6a6882e47cd88f","subject":"docs(account): record guarded production status","effect":"documents deployed guarded path"}
+  ],
+  "unreachable_git_search": "No exact production-version migration blob was found in reachable or inspected unreachable Git objects; the production ledger SQL is the authoritative recovered source.",
+  "production_variant_is_followup_row": false,
+  "lineage_unresolved": false
+}

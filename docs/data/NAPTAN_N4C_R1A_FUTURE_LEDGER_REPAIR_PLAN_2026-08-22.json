@@ -1,0 +1,22 @@
+{
+  "document_type": "N4C-R1A future ledger repair plan",
+  "status": "READY_FOR_SEPARATE_AUTHORIZATION",
+  "commands_executed": [],
+  "production_mutations": 0,
+  "migration_ledger_mutations": 0,
+  "schema_delta": 0,
+  "application_data_delta": 0,
+  "commands": [
+    {"execute":false,"version":"20260814115817","status":"reverted","reason":"Replace production badge deployment timestamp with proven local equivalent 20260814113440.","equivalent_local_version":"20260814113440","confidence":"HIGH"},
+    {"execute":false,"version":"20260814113440","status":"applied","reason":"Record the proven local badge migration under its repository version.","production_version":"20260814115817","confidence":"HIGH"},
+    {"execute":false,"version":"20260816210130","status":"reverted","reason":"Replace production community deployment timestamp with proven local equivalent 20260816205543.","equivalent_local_version":"20260816205543","confidence":"HIGH"},
+    {"execute":false,"version":"20260816205543","status":"applied","reason":"Record the proven local community migration under its repository version.","production_version":"20260816210130","confidence":"HIGH"},
+    {"execute":false,"version":"20260817062603","status":"reverted","reason":"Replace production moderation deployment timestamp with proven local equivalent 20260816220000.","equivalent_local_version":"20260816220000","confidence":"HIGH"},
+    {"execute":false,"version":"20260816220000","status":"applied","reason":"Record the proven local moderation migration under its repository version.","production_version":"20260817062603","confidence":"HIGH"},
+    {"execute":false,"version":"20260821213435","status":"reverted","reason":"Replace production toilet-unit deployment timestamp with proven local equivalent 20260821211239.","equivalent_local_version":"20260821211239","confidence":"HIGH"},
+    {"execute":false,"version":"20260821211239","status":"applied","reason":"Record the proven local toilet-unit migration under its repository version.","production_version":"20260821213435","confidence":"HIGH"},
+    {"execute":false,"version":"20260822100920","status":"reverted","reason":"Replace production source-observation deployment timestamp with proven local equivalent 20260822092938.","equivalent_local_version":"20260822092938","confidence":"HIGH"},
+    {"execute":false,"version":"20260822092938","status":"applied","reason":"Record the proven local source-observation migration under its repository version.","production_version":"20260822100920","confidence":"HIGH"}
+  ],
+  "prohibited_in_this_batch": ["supabase migration repair","supabase db push without --dry-run","manual schema_migrations edits","N4A apply"]
+}

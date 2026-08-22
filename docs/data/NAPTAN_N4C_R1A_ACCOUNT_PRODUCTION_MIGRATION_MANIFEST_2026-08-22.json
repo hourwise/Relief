@@ -1,0 +1,33 @@
+{
+  "document_type": "N4C-R1A recovered production account migration manifest",
+  "production_project_ref": "bgwxrxkmyaihplaloely",
+  "version": "20260814135046",
+  "name": "account_deletion_cleanup_contract",
+  "statement_count": 1,
+  "recovery_method": "Read-only select of supabase_migrations.schema_migrations.statements for the exact version; no recovered SQL was executed.",
+  "production_statement_bytes": 7025,
+  "production_statement_md5": "86accd93b46b873626465a9025e7d33c",
+  "production_statement_sha256": "432d61cc4784f741d9c09c3a905cdd84a9d17244dfb5231fd87e3a8a4c32df0a",
+  "repository_file": "supabase/migrations/20260814135046_account_deletion_cleanup_contract.sql",
+  "repository_file_sha256_including_terminal_newline": "5E432EEB7DC2DA9A1A3F2FE6072FCAC6E637E67216496C79BA355694370C5B23",
+  "repository_sql_body_md5": "86accd93b46b873626465a9025e7d33c",
+  "repository_sql_body_sha256": "432d61cc4784f741d9c09c3a905cdd84a9d17244dfb5231fd87e3a8a4c32df0a",
+  "exact_body_match": true,
+  "superseded_local_file": "supabase/migrations/20260814124706_account_deletion_cleanup_contract.sql",
+  "superseded_local_sha256": "854C2ECD3F1EB9A43809710CF7887375BD02DB7FA4A0A98A868303743D27627F",
+  "superseded_local_bytes": 7026,
+  "preserved_copy": "docs/data/NAPTAN_N4C_R1A_SUPERSEDED_ACCOUNT_MIGRATION_V1_2026-08-22.sql",
+  "production_contract_versions": ["20260814.2"],
+  "catalog_functions": [
+    {"signature":"check_my_account_deletion_subscription_guard()","security_definer":true,"search_path":"","anon_execute":false,"authenticated_execute":true,"definition_md5":"ba7d5db93a5f1225a5397e760ef50403"},
+    {"signature":"delete_my_account_data()","security_definer":true,"search_path":"","anon_execute":false,"authenticated_execute":true,"definition_md5":"0e1dc846cd3f16c773e3b76aec5f2bcb"}
+  ],
+  "affected_objects": [
+    "public.check_my_account_deletion_subscription_guard()",
+    "public.delete_my_account_data()",
+    "authenticated EXECUTE grants",
+    "anon and PUBLIC EXECUTE revocations"
+  ],
+  "dml_characteristics": "No top-level application DML; stored functions contain guarded account-scoped UPDATE/DELETE behavior executed only by a caller and not invoked by this batch.",
+  "credentials_or_sql_executed": false
+}

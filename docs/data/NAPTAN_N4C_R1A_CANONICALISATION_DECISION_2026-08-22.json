@@ -1,0 +1,28 @@
+{
+  "document_type": "N4C-R1A repository canonicalisation decision",
+  "repository_canonicalisation": "REPOSITORY_MIGRATION_HISTORY_CANONICALISED",
+  "historical_lineage": "LOCAL_V1_SUPERSEDED_BY_PRODUCTION_V2",
+  "decision": "Replace the executable local account migration version with the exact production-applied version and preserve the superseded v1 bytes outside supabase/migrations.",
+  "active_change": {
+    "removed": "supabase/migrations/20260814124706_account_deletion_cleanup_contract.sql",
+    "added": "supabase/migrations/20260814135046_account_deletion_cleanup_contract.sql",
+    "added_body_matches_production": true
+  },
+  "historical_preservation": {
+    "path": "docs/data/NAPTAN_N4C_R1A_SUPERSEDED_ACCOUNT_MIGRATION_V1_2026-08-22.sql",
+    "sha256": "854C2ECD3F1EB9A43809710CF7887375BD02DB7FA4A0A98A868303743D27627F",
+    "bytes": 7026
+  },
+  "related_updates": [
+    "__tests__/accountDeletion.test.ts",
+    "docs/ACCOUNT_DELETION_CONTRACT.md",
+    "docs/FEATURE_TEST_READINESS.md",
+    "docs/FEATURE_MATRIX.md"
+  ],
+  "production_changes": 0,
+  "ledger_changes": 0,
+  "n4a_changed": false,
+  "canonicalisation_safe": true,
+  "five_timestamp_aliases_renamed": false,
+  "reason_five_aliases_remain": "Their SQL equivalence is settled, but ledger metadata repair is outside this batch and repository renaming is not required to recover the account migration."
+}

@@ -14,7 +14,7 @@ import { assertEqual, assertTrue, section } from './helpers/harness';
 section('account deletion security contract');
 
 const deletionMigration = readFileSync(
-  new URL('../supabase/migrations/20260814124706_account_deletion_cleanup_contract.sql', import.meta.url),
+  new URL('../supabase/migrations/20260814135046_account_deletion_cleanup_contract.sql', import.meta.url),
   'utf8',
 );
 const deletionEdgeFunction = readFileSync(

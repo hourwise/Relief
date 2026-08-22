@@ -1,0 +1,21 @@
+{
+  "document_type": "N4C-R1A deterministic validation results",
+  "focused_validator": "tools/source_expansion/naptan_n4c_r1a_validate.py",
+  "focused_validator_result": "passed",
+  "python_compilation": "passed",
+  "json_artifact_parsing": "passed",
+  "active_inventory_uniqueness": "passed",
+  "account_body_fingerprint": "passed",
+  "superseded_v1_preservation": "passed",
+  "settled_five_aliases": "preserved",
+  "sealed_n4a_hash": "passed",
+  "production_write_path": "none",
+  "migration_repair_execution_path": "none",
+  "account_deletion_relevant_test": "passed: 18 assertions",
+  "repository_test_harness": "passed: 24 test files, 0 failures",
+  "typescript_typecheck": "passed: tsc --noEmit",
+  "expo_android_native_validation": "not run; out of scope",
+  "production_mutations": 0,
+  "migration_ledger_mutations": 0,
+  "naptan_ingestion_rows": 0
+}

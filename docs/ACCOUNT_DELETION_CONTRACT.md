@@ -120,7 +120,7 @@ support/data-request path until the long-term retention design is approved.
 
 ## Source files
 
-- `supabase/migrations/20260814124706_account_deletion_cleanup_contract.sql`
+- `supabase/migrations/20260814135046_account_deletion_cleanup_contract.sql`
 - `supabase/functions/delete-account/contract.ts`
 - `supabase/functions/delete-account/index.ts`
 - `src/services/accountDeletion.ts`

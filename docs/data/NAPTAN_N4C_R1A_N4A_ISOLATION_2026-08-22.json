@@ -1,0 +1,15 @@
+{
+  "document_type": "N4C-R1A N4A isolation model",
+  "classification": "ONLY_N4A_PENDING_AFTER_LEDGER_REPAIR",
+  "sealed_version": "20260822170000",
+  "sealed_n4a_sha256": "087A389B8CEAC021B12708BC55C39022CB38D5459510EFFB6CF057CEF232C44E",
+  "repository_account_version": "20260814135046",
+  "production_account_version": "20260814135046",
+  "account_variant_reconciled": true,
+  "real_dry_run_proves_only_n4a": false,
+  "real_dry_run_blocker": "Five previously proven deployment-timestamp aliases remain in the production ledger/local directory mismatch.",
+  "remaining_production_only": ["20260814115817","20260816210130","20260817062603","20260821213435","20260822100920"],
+  "remaining_local_only_before_n4a": ["20260814113440","20260816205543","20260816220000","20260821211239","20260822092938"],
+  "model_basis": "After the separately authorized five-pair ledger repair, the canonical repository has no unresolved account migration and the only genuinely new migration is sealed N4A.",
+  "production_or_ledger_mutations": 0
+}

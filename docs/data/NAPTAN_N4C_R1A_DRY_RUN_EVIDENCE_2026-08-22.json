@@ -1,0 +1,14 @@
+{
+  "document_type": "N4C-R1A Supabase dry-run evidence",
+  "cli_version": "2.75.0",
+  "command": "supabase db push --dry-run --linked",
+  "executed": true,
+  "writes_performed": false,
+  "result": "blocked_by_remaining_remote_versions",
+  "exact_output": "Remote migration versions not found in local migrations directory.\n\nMake sure your local git repo is up-to-date. If the error persists, try repairing the migration history table: supabase migration repair --status reverted 20260814115817 20260816210130 20260817062603 20260821213435 20260822100920",
+  "account_version_now_aligned": true,
+  "remaining_remote_only_versions": ["20260814115817","20260816210130","20260817062603","20260821213435","20260822100920"],
+  "n4a_proposed_by_dry_run": false,
+  "include_all_used": false,
+  "repair_executed": false
+}

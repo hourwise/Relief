@@ -1,0 +1,32 @@
+{
+  "document_type": "N4C-R1A account-deletion v1/v2 semantic diff",
+  "local_v1": "20260814124706_account_deletion_cleanup_contract.sql",
+  "production_v2": "20260814135046_account_deletion_cleanup_contract.sql",
+  "local_v1_sha256": "854C2ECD3F1EB9A43809710CF7887375BD02DB7FA4A0A98A868303743D27627F",
+  "production_v2_statement_sha256": "432d61cc4784f741d9c09c3a905cdd84a9d17244dfb5231fd87e3a8a4c32df0a",
+  "differences": [
+    {
+      "category": "version_metadata",
+      "local_behavior": "Successful eligible-account cleanup returns contract_version 20260814.1.",
+      "production_behavior": "Successful eligible-account cleanup returns contract_version 20260814.2.",
+      "impact": "Observable contract-version difference; production is the current authoritative contract.",
+      "production_stricter_or_safer": false,
+      "local_stale": true,
+      "coexistence": "Unsafe as active migrations because replaying local v1 after production v2 would replace the function with the stale success label.",
+      "replay_local_after_production": "Behavioral drift, although no application data is directly changed by migration replay.",
+      "replay_production_after_local": "Restores the production version label; still not an authorized production operation."
+    }
+  ],
+  "equivalent_behavior": [
+    "subscription-history guard and fail-closed code",
+    "guard-before-cleanup ordering",
+    "reviewer/reporter/creator anonymisation updates",
+    "owned-row cleanup ordering",
+    "subscription and payment-history retention safeguard",
+    "security-definer and empty search_path settings",
+    "exception behavior and transaction semantics",
+    "function grants and anonymous/public execute revocations"
+  ],
+  "formatting_only": "The production ledger statement is stored without a terminal newline; the repository migration uses the normal terminal newline convention. SQL body fingerprints match exactly after excluding that terminal newline.",
+  "material_difference_count": 1
+}

@@ -1,0 +1,30 @@
+{
+  "document_type": "N4C-R1A active canonical migration inventory",
+  "repository_sha": "f444d2b34ad9acd8d330786d776cc03832ed6f93",
+  "active_migration_count": 18,
+  "duplicate_versions": [],
+  "duplicate_names": [],
+  "migrations": [
+    {"version":"001","filename":"001_initial_schema.sql","status":"shared"},
+    {"version":"20260624","filename":"20260624_community_features.sql","status":"shared"},
+    {"version":"20260625","filename":"20260625_premium_features.sql","status":"shared"},
+    {"version":"20260701","filename":"20260701_monetisation.sql","status":"shared"},
+    {"version":"20260725","filename":"20260725_facility_trust_and_import.sql","status":"shared"},
+    {"version":"20260806000000","filename":"20260806000000_live_schema_baseline.sql","status":"shared"},
+    {"version":"20260806000100","filename":"20260806000100_repair_find_nearest_facilities.sql","status":"shared"},
+    {"version":"20260811164202","filename":"20260811164202_apply_1a_audit_and_transaction.sql","status":"shared"},
+    {"version":"20260812104919","filename":"20260812104919_apply_1a_import_runs_rls.sql","status":"shared"},
+    {"version":"20260812124351","filename":"20260812124351_apply_1a_facilities_update_rls.sql","status":"shared"},
+    {"version":"20260812190246","filename":"20260812190246_seal_apply_1a_execution_path.sql","status":"shared"},
+    {"version":"20260814113440","filename":"20260814113440_governed_badge_awards.sql","status":"local alias; future ledger repair candidate"},
+    {"version":"20260814135046","filename":"20260814135046_account_deletion_cleanup_contract.sql","status":"canonical production version"},
+    {"version":"20260816205543","filename":"20260816205543_community_contract_hardening.sql","status":"local alias; future ledger repair candidate"},
+    {"version":"20260816220000","filename":"20260816220000_governed_moderation_contract.sql","status":"local alias; future ledger repair candidate"},
+    {"version":"20260821211239","filename":"20260821211239_add_toilet_unit_model.sql","status":"local alias; future ledger repair candidate"},
+    {"version":"20260822092938","filename":"20260822092938_facility_source_observations.sql","status":"local alias; future ledger repair candidate"},
+    {"version":"20260822170000","filename":"20260822170000_naptan_transport_source_graph.sql","status":"sealed N4A; local-only pending"}
+  ],
+  "production_only_versions_remaining": ["20260814115817","20260816210130","20260817062603","20260821213435","20260822100920"],
+  "local_only_versions_remaining": ["20260814113440","20260816205543","20260816220000","20260821211239","20260822092938","20260822170000"],
+  "account_version_reconciled": true
+}
