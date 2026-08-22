@@ -120,7 +120,26 @@ N3 performed no production mutation, migration, RPC apply, ingestion, source-lin
 
 **TOTAL PRODUCTION MUTATIONS: 0**
 
-Focused N3 tests passed (9). Python compilation, JSON generation and source-hash verification passed. N1/N2 evidence was reused without modification. The remaining repository validation and read-only production verification are recorded in the transaction handoff.
+Read-only production verification against `bgwxrxkmyaihplaloely` returned: facilities 15,620; facility_sources 15,634; import_runs 5; toilet_map_import_staging 0; toilet_units 0; toilet_unit_sources 0; facility_source_observations 14. These match the beginning of N3. `facility_source_observations`, `toilet_units` and `toilet_unit_sources` retained RLS enabled. The private source-observation and unit-source tables retained no public/anon/authenticated policies or table grants; the existing published-toilet-unit SELECT policy and public unit grants were unchanged. No public API exposure was added.
+
+Validation actually run:
+
+- `python -m unittest tools.source_expansion.test_naptan_n3`: 9 passed.
+- `python -m unittest discover -s tools/source_expansion -t . -p 'test_*.py'`: 65 passed, 0 failed.
+- explicit `python -m py_compile` over all `tools/source_expansion/*.py`: passed.
+- `npm.cmd run typecheck`: passed.
+- `npm.cmd test`: 24 test files passed, 0 failed.
+- JSON parsing and N3 invariants: passed (source totals, 93,751 complexes, 509 TfL stations, zero mutation plan).
+- national N3 replay: all five derived JSON SHA-256 values byte-stable on rerun.
+- `git diff --check`: passed.
+- bounded secret-pattern scan: passed.
+- executable mutation-pattern scan: passed.
+
+No EAS, Expo prebuild, Gradle, Android, APK, emulator or native build tooling was invoked. N1/N2 evidence was reused without modification. The raw N3 cache was removed after validation.
+
+## Task-owned files
+
+The bounded commit contains exactly 13 N3 files: the source manifest, complex/multi-parent/deep/TfL/dry-run JSON evidence, three Markdown contracts plus this report, the streaming parser, fixture and focused tests. No national raw XML or CSV was committed. The protected `.easignore`, `app.json` and `docs/EAS_CONFIG_AUDIT.md` changes remain unstaged and uncommitted.
 
 ## Decision gates
 
