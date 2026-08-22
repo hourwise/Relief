@@ -1,7 +1,8 @@
-// The two additive toilet-unit tables below describe the live contract from
-// supabase/migrations/20260821211239_add_toilet_unit_model.sql, deployed as
-// Supabase migration 20260821213435. The live schema was re-introspected after
-// deployment; no child or source rows were created by the deployment.
+// Additive data contracts. The toilet-unit tables describe the deployed child
+// model from supabase/migrations/20260821211239_add_toilet_unit_model.sql.
+// facility_source_observations is described by the local-only migration
+// supabase/migrations/20260822092938_facility_source_observations.sql and is
+// not deployed to production by this transaction.
 export type Json =
   | string
   | number
@@ -460,6 +461,75 @@ export type Database = {
             columns: ["import_run_id"]
             isOneToOne: false
             referencedRelation: "import_runs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      facility_source_observations: {
+        Row: {
+          coordinate_scope: string
+          created_at: string
+          facility_source_id: string
+          first_seen_at: string
+          id: string
+          is_current: boolean
+          last_seen_at: string
+          observation_key: string
+          observation_kind: string
+          observed_attributes: Json
+          physical_unit_asserted: boolean
+          source_schema_version: string | null
+          toilet_unit_id: string | null
+          unit_link_status: string
+          updated_at: string
+        }
+        Insert: {
+          coordinate_scope?: string
+          created_at?: string
+          facility_source_id: string
+          first_seen_at?: string
+          id?: string
+          is_current?: boolean
+          last_seen_at?: string
+          observation_key: string
+          observation_kind?: string
+          observed_attributes?: Json
+          physical_unit_asserted?: boolean
+          source_schema_version?: string | null
+          toilet_unit_id?: string | null
+          unit_link_status?: string
+          updated_at?: string
+        }
+        Update: {
+          coordinate_scope?: string
+          created_at?: string
+          facility_source_id?: string
+          first_seen_at?: string
+          id?: string
+          is_current?: boolean
+          last_seen_at?: string
+          observation_key?: string
+          observation_kind?: string
+          observed_attributes?: Json
+          physical_unit_asserted?: boolean
+          source_schema_version?: string | null
+          toilet_unit_id?: string | null
+          unit_link_status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "facility_source_observations_facility_source_id_fkey"
+            columns: ["facility_source_id"]
+            isOneToOne: false
+            referencedRelation: "facility_sources"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "facility_source_observations_toilet_unit_id_fkey"
+            columns: ["toilet_unit_id"]
+            isOneToOne: false
+            referencedRelation: "toilet_units"
             referencedColumns: ["id"]
           },
         ]
