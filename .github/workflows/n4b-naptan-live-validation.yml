@@ -96,7 +96,20 @@ jobs:
 
       - name: Start disposable Supabase stack
         shell: bash
-        run: supabase start --yes
+        run: |
+          set -euo pipefail
+          pending_dir='supabase/migrations.n4b-pending'
+          test ! -e "$pending_dir"
+          mv supabase/migrations "$pending_dir"
+          mkdir supabase/migrations
+          restore_migrations() {
+            rm -rf supabase/migrations
+            mv "$pending_dir" supabase/migrations
+          }
+          trap restore_migrations EXIT
+          supabase start --yes
+          restore_migrations
+          trap - EXIT
 
       - name: Verify PostgreSQL and PostGIS
         shell: bash
