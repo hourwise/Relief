@@ -1,0 +1,24 @@
+{
+  "batch": "NAPTAN_N4A",
+  "fixtures": [
+    {"name": "naptan_n4a_snapshot_a.json", "purpose": "multi-parent, deep hierarchy, unresolved parent, empty area"},
+    {"name": "naptan_n4a_snapshot_b.json", "purpose": "rename, geometry correction, add/remove node, membership change, resolved parent"}
+  ],
+  "replay_contract": {
+    "same_snapshot_first_plan": "creates logical keys only in a governed future transaction",
+    "same_snapshot_second_plan": "zero new snapshot/place/node/membership/parent keys",
+    "source_values": "snapshot-scoped and historical; never overwritten across snapshots",
+    "production_execution": false
+  },
+  "snapshot_change_cases": [
+    "unchanged node", "renamed node", "changed geometry", "new node", "removed node", "changed membership", "resolved missing parent", "status/lifecycle change"
+  ],
+  "projection_safety": {
+    "publisher_graph_preserved": true,
+    "multi_parent_preserved": true,
+    "cross_root_parent_not_collapsed": true,
+    "derived_complex_rows_persisted_in_n4a": false,
+    "canonical_facilities_created": 0,
+    "production_mutations": 0
+  }
+}

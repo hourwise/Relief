@@ -1,0 +1,39 @@
+{
+  "metadata": {
+    "source_namespace": "naptan",
+    "source_snapshot_key": "naptan:sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "source_checksum_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "ingestion_state": "CAPTURED",
+    "parser_version": "n4a-fixture-1"
+  },
+  "places": [
+    {"publisher_identity": "naptan-stop-area:ROOT", "publisher_id": "ROOT", "display_name": "Root Interchange", "source_type": "INT", "coordinate_scope": "STOP_AREA_LEVEL", "publisher_latitude": 51.5005, "publisher_longitude": -0.1005},
+    {"publisher_identity": "naptan-stop-area:RAIL", "publisher_id": "RAIL", "display_name": "Rail Station Renamed", "source_type": "RLY", "coordinate_scope": "STOP_AREA_LEVEL", "publisher_latitude": 51.5006, "publisher_longitude": -0.1006},
+    {"publisher_identity": "naptan-stop-area:METRO", "publisher_id": "METRO", "display_name": "Metro Station", "source_type": "MET", "coordinate_scope": "NONE", "publisher_latitude": null, "publisher_longitude": null},
+    {"publisher_identity": "naptan-stop-area:DEEP1", "publisher_id": "DEEP1", "display_name": "Deep One", "source_type": "RLY", "coordinate_scope": "NONE", "publisher_latitude": null, "publisher_longitude": null},
+    {"publisher_identity": "naptan-stop-area:DEEP2", "publisher_id": "DEEP2", "display_name": "Deep Two", "source_type": "RLY", "coordinate_scope": "NONE", "publisher_latitude": null, "publisher_longitude": null},
+    {"publisher_identity": "naptan-stop-area:DEEP3", "publisher_id": "DEEP3", "display_name": "Deep Three", "source_type": "RLY", "coordinate_scope": "NONE", "publisher_latitude": null, "publisher_longitude": null},
+    {"publisher_identity": "naptan-stop-area:MISSING_PARENT", "publisher_id": "MISSING_PARENT", "display_name": "Now Resolved Parent", "source_type": "INT", "coordinate_scope": "NONE", "publisher_latitude": null, "publisher_longitude": null},
+    {"publisher_identity": "naptan-stop-area:EMPTY", "publisher_id": "EMPTY", "display_name": "Empty Area", "source_type": "RLY", "coordinate_scope": "NONE", "publisher_latitude": null, "publisher_longitude": null}
+  ],
+  "nodes": [
+    {"publisher_identity": "naptan-stop-point:N1", "publisher_id": "N1", "display_name": "Rail Platform 1 Renamed", "source_stop_type": "PLT", "coordinate_scope": "TRANSPORT_STOP_LEVEL", "publisher_latitude": 51.5007, "publisher_longitude": -0.1007},
+    {"publisher_identity": "naptan-stop-point:N2", "publisher_id": "N2", "display_name": "Shared Entrance", "source_stop_type": "GAT", "coordinate_scope": "TRANSPORT_STOP_LEVEL", "publisher_latitude": 51.5003, "publisher_longitude": -0.1003},
+    {"publisher_identity": "naptan-stop-point:N3", "publisher_id": "N3", "display_name": "Cross Complex Node", "source_stop_type": "PLT", "coordinate_scope": "NONE", "publisher_latitude": null, "publisher_longitude": null},
+    {"publisher_identity": "naptan-stop-point:N5", "publisher_id": "N5", "display_name": "New Platform", "source_stop_type": "PLT", "coordinate_scope": "NONE", "publisher_latitude": null, "publisher_longitude": null}
+  ],
+  "memberships": [
+    {"publisher_node_identity": "naptan-stop-point:N1", "publisher_place_identity": "naptan-stop-area:RAIL", "resolution_status": "RESOLVED", "duplicate_occurrence_count": 1},
+    {"publisher_node_identity": "naptan-stop-point:N2", "publisher_place_identity": "naptan-stop-area:ROOT", "resolution_status": "RESOLVED", "duplicate_occurrence_count": 1},
+    {"publisher_node_identity": "naptan-stop-point:N3", "publisher_place_identity": "naptan-stop-area:RAIL", "resolution_status": "RESOLVED", "duplicate_occurrence_count": 1},
+    {"publisher_node_identity": "naptan-stop-point:N5", "publisher_place_identity": "naptan-stop-area:RAIL", "resolution_status": "RESOLVED", "duplicate_occurrence_count": 1}
+  ],
+  "parents": [
+    {"publisher_child_identity": "naptan-stop-area:RAIL", "publisher_parent_identity": "naptan-stop-area:ROOT", "resolution_status": "RESOLVED", "duplicate_occurrence_count": 1},
+    {"publisher_child_identity": "naptan-stop-area:METRO", "publisher_parent_identity": "naptan-stop-area:ROOT", "resolution_status": "RESOLVED", "duplicate_occurrence_count": 1},
+    {"publisher_child_identity": "naptan-stop-area:DEEP1", "publisher_parent_identity": "naptan-stop-area:RAIL", "resolution_status": "RESOLVED", "duplicate_occurrence_count": 1},
+    {"publisher_child_identity": "naptan-stop-area:DEEP2", "publisher_parent_identity": "naptan-stop-area:DEEP1", "resolution_status": "RESOLVED", "duplicate_occurrence_count": 1},
+    {"publisher_child_identity": "naptan-stop-area:DEEP3", "publisher_parent_identity": "naptan-stop-area:DEEP2", "resolution_status": "RESOLVED", "duplicate_occurrence_count": 1},
+    {"publisher_child_identity": "naptan-stop-area:DEEP3", "publisher_parent_identity": "naptan-stop-area:MISSING_PARENT", "resolution_status": "RESOLVED", "duplicate_occurrence_count": 1}
+  ]
+}

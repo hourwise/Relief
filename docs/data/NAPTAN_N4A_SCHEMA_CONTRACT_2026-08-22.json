@@ -1,0 +1,97 @@
+{
+  "batch": "NAPTAN_N4A",
+  "classification": "CANDIDATE_SCHEMA_NOT_DEPLOYED",
+  "normalized_complex_decision": "DETERMINISTIC_PROJECTION",
+  "source_namespace": "naptan",
+  "production_execution": false,
+  "tables": [
+    {
+      "name": "transport_source_snapshots",
+      "purpose": "Immutable source capture identity and replay lifecycle metadata.",
+      "primary_key": "id uuid",
+      "publisher_identity": null,
+      "unique_constraints": ["source_snapshot_key", "(source_namespace, source_checksum_sha256)"],
+      "foreign_keys": [],
+      "idempotency_key": "source_snapshot_key = <namespace>:sha256:<lowercase sha256>",
+      "lifecycle": ["CAPTURED", "VALIDATING", "VALIDATED", "INGESTED", "FAILED", "SUPERSEDED"],
+      "security": {"rls": true, "public": false, "anon": false, "authenticated": false, "service_role": "all"}
+    },
+    {
+      "name": "transport_source_places",
+      "purpose": "Snapshot-scoped publisher StopArea facts; not a Relief facility and not a derived complex.",
+      "primary_key": "id uuid",
+      "publisher_identity": "(snapshot_id, publisher_identity), normally naptan-stop-area:<UPPER StopAreaCode>",
+      "unique_constraints": ["(snapshot_id, id)", "(snapshot_id, publisher_identity)"],
+      "foreign_keys": ["snapshot_id -> transport_source_snapshots.id ON DELETE RESTRICT"],
+      "idempotency_key": "(snapshot_id, publisher_identity)",
+      "geometry": {"publisher_location": "generated WGS84 point", "coordinate_scope": ["NONE", "STOP_AREA_LEVEL"], "derived_geometry": "not stored here"},
+      "security": {"rls": true, "public": false, "anon": false, "authenticated": false, "service_role": "all"}
+    },
+    {
+      "name": "transport_source_nodes",
+      "purpose": "Snapshot-scoped publisher StopPoint/access-node facts; not a Relief facility.",
+      "primary_key": "id uuid",
+      "publisher_identity": "(snapshot_id, publisher_identity), normally naptan-stop-point:<UPPER ATCOCode>",
+      "unique_constraints": ["(snapshot_id, id)", "(snapshot_id, publisher_identity)"],
+      "foreign_keys": ["snapshot_id -> transport_source_snapshots.id ON DELETE RESTRICT"],
+      "idempotency_key": "(snapshot_id, publisher_identity)",
+      "geometry": {"publisher_location": "generated WGS84 point", "coordinate_scope": ["NONE", "TRANSPORT_STOP_LEVEL"], "derived_geometry": "not stored here"},
+      "security": {"rls": true, "public": false, "anon": false, "authenticated": false, "service_role": "all"}
+    },
+    {
+      "name": "transport_source_memberships",
+      "purpose": "Every publisher StopPoint-to-StopArea membership, including all multi-parent memberships.",
+      "primary_key": "id uuid",
+      "publisher_identity": "membership_key = publisher_node_identity|publisher_place_identity",
+      "unique_constraints": ["(snapshot_id, membership_key)"],
+      "foreign_keys": ["(snapshot_id, node_id) -> transport_source_nodes", "(snapshot_id, place_id) -> transport_source_places"],
+      "idempotency_key": "(snapshot_id, membership_key)",
+      "unresolved_references": "raw publisher identities retained; resolved FKs nullable; resolution_status explicit",
+      "duplicate_policy": "coalesce exact duplicate publisher edges and retain duplicate_occurrence_count",
+      "security": {"rls": true, "public": false, "anon": false, "authenticated": false, "service_role": "all"}
+    },
+    {
+      "name": "transport_source_place_parents",
+      "purpose": "Publisher StopArea parent edges with no depth limit.",
+      "primary_key": "id uuid",
+      "publisher_identity": "parent_edge_key = publisher_child_identity|publisher_parent_identity",
+      "unique_constraints": ["(snapshot_id, parent_edge_key)"],
+      "foreign_keys": ["(snapshot_id, child_place_id) -> transport_source_places", "(snapshot_id, parent_place_id) -> transport_source_places"],
+      "idempotency_key": "(snapshot_id, parent_edge_key)",
+      "unresolved_references": "raw publisher identities retained; resolved FKs nullable; resolution_status explicit",
+      "cycle_policy": "graph validator quarantines affected snapshot/graph; SQL does not truncate or choose a parent",
+      "security": {"rls": true, "public": false, "anon": false, "authenticated": false, "service_role": "all"}
+    }
+  ],
+  "derived_entities": {
+    "normalized_transport_complex": "deterministic projection over resolved publisher place-parent edges; no N4A table",
+    "canonical_reconciliation": "separate future governed model; no facilities FK or reconciliation writes in N4A"
+  },
+  "indexes": [
+    "snapshot namespace/state/retrieval",
+    "snapshot-scoped place and node identity",
+    "place name/status/location",
+    "node type/mode/status/location",
+    "membership place/node/unresolved status",
+    "parent child/parent/unresolved status"
+  ],
+  "estimated_current_snapshot_rows": {
+    "snapshots": 1,
+    "places": 97270,
+    "nodes": 436428,
+    "memberships_after_exact_duplicate_coalescing": 169524,
+    "duplicate_membership_occurrences_preserved_as_count": 3,
+    "place_parent_edges": 3519,
+    "unresolved_member_parent_references": 1543,
+    "unresolved_area_parent_references": 41,
+    "normalized_complex_projection_rows": 93751
+  },
+  "migration": {
+    "filename": "supabase/migrations/20260822170000_naptan_transport_source_graph.sql",
+    "sha256": "087A389B8CEAC021B12708BC55C39022CB38D5459510EFFB6CF057CEF232C44E",
+    "candidate_only": true,
+    "contains_source_ingestion": false,
+    "contains_canonical_facility_dml": false,
+    "contains_public_policies": false
+  }
+}
