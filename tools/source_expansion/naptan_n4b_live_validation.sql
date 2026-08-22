@@ -406,7 +406,7 @@ begin
     normalized_name, publisher_latitude, publisher_longitude, coordinate_scope
   ) values
     (snapshot_b_id, 'naptan-stop-area:DEEP0', 'DEEP0', 'Deep 0 renamed', 'deep 0 renamed', 51.6000, -0.1300, 'STOP_AREA_LEVEL'),
-    (snapshot_b_id, 'naptan-stop-area:NEW', 'NEW', 'New place', 'new place', 'NONE');
+    (snapshot_b_id, 'naptan-stop-area:NEW', 'NEW', 'New place', 'new place', null, null, 'NONE');
 
   insert into public.transport_source_nodes (
     snapshot_id, publisher_identity, publisher_id, source_stop_type,
