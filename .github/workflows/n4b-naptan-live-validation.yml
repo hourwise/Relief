@@ -140,7 +140,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          supabase db reset --local --no-seed 2>&1 | tee evidence/migration-chain.txt
+          supabase migration up --local --yes 2>&1 | tee evidence/migration-chain.txt
 
       - name: Verify PostGIS active after migration chain
         shell: bash
