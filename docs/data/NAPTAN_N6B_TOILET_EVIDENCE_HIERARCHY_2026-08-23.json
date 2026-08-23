@@ -1,0 +1,25 @@
+{
+  "automatic_promotion": false,
+  "tiers": [
+    {
+      "allowed_future_use": "may support a bounded review of an actual toilet facility or unit; never automatic transport-place creation",
+      "name": "DIRECT_OFFICIAL_TOILET_EVIDENCE",
+      "tier": "A"
+    },
+    {
+      "allowed_future_use": "NaPTAN identity/geography may support a future link review; it does not prove the transport complex is the toilet",
+      "name": "EXISTING_RELIEF_CANONICAL_TOILET_EVIDENCE",
+      "tier": "B"
+    },
+    {
+      "allowed_future_use": "supporting context and candidate generation only",
+      "name": "STRONG_PLACE_RECONCILIATION_ONLY",
+      "tier": "C"
+    },
+    {
+      "allowed_future_use": "never sufficient for canonical promotion",
+      "name": "PROXIMITY_OR_CONTEXT_ONLY",
+      "tier": "D"
+    }
+  ]
+}

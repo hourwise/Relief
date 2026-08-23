@@ -1,0 +1,16 @@
+{
+  "classification": "N6C_BOUNDED_ADJUDICATION_SCOPE_DEFINED",
+  "exclusions": [
+    "all 4163 proposed-new complexes",
+    "ordinary 75920 bus/coach complexes",
+    "automatic canonical writes",
+    "new place schema"
+  ],
+  "execution_mode": "read-only/human-adjudication planning; any later promotion requires a separate authorization",
+  "inclusion_rule": "review only the N6A 51 proposed existing-canonical candidates and 9 ambiguous/collision cases; retain source identity, facility identity, evidence dimensions, and vetoes",
+  "population": {
+    "ambiguous_collision_cases": 9,
+    "proposed_existing_links": 51,
+    "total_cases": 60
+  }
+}

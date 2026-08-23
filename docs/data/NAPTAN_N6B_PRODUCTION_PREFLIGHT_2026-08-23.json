@@ -1,0 +1,13 @@
+{
+  "branch": "codex/toilet-map-apply-1a-production-deploy",
+  "migration_dry_run": "Remote database is up to date.",
+  "migration_head": "20260822170000",
+  "production_write_capability": false,
+  "project": "Relief",
+  "project_ref": "bgwxrxkmyaihplaloely",
+  "read_only": true,
+  "repository": "hourwise/Relief",
+  "sealed_n4a_sha256": "087A389B8CEAC021B12708BC55C39022CB38D5459510EFFB6CF057CEF232C44E",
+  "starting_local_sha": "5ff54eba5ca248d818c9f0ba6af01df98e54ce80",
+  "starting_remote_sha": "5ff54eba5ca248d818c9f0ba6af01df98e54ce80"
+}

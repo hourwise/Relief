@@ -1,0 +1,6 @@
+{
+  "current_model": "facilities represents actual toilet facilities; transport complexes are not equivalent entities",
+  "future_option": "a separate place/transport entity may be considered in a separately authorized product/schema decision",
+  "recommendation": "retain facility-only canonical writes for now and keep NaPTAN as private source/context evidence",
+  "schema_change_in_n6b": false
+}

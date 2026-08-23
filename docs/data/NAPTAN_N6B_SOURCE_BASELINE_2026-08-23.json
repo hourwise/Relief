@@ -1,0 +1,17 @@
+{
+  "hierarchy_cycles": 0,
+  "hierarchy_max_depth": 13,
+  "missing_membership_parent_identities": 1543,
+  "missing_parent_identities": 41,
+  "source_graph_counts": {
+    "memberships": 169527,
+    "nodes": 436428,
+    "parents": 3519,
+    "places": 97270,
+    "snapshots": 1,
+    "total": 706745
+  },
+  "source_graph_mutations": 0,
+  "unresolved_memberships": 2804,
+  "unresolved_parent_edges": 92
+}

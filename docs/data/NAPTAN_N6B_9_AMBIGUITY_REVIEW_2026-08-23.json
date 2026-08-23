@@ -1,0 +1,710 @@
+{
+  "cases": [
+    {
+      "ambiguity_reason": "multiple plausible canonical facilities or a canonical facility claimed by multiple source complexes; nearest distance is not a tie-breaker",
+      "candidate_count_for_complex": 1,
+      "competing_facilities": [
+        {
+          "distance_metres": 78.2,
+          "exact_normalized_name": true,
+          "existing_provenance": [
+            "Toilet Map UK"
+          ],
+          "facility_id": "9c925ea8-1d84-490d-85bb-de71db1cdf93",
+          "facility_name": "Falkirk Grahamston Station",
+          "source_token_subset": true
+        }
+      ],
+      "competing_source_complex_count_for_facility": 2,
+      "competing_source_complexes": [
+        "naptan-stop-area:669G1400311",
+        "naptan-stop-area:669GFALKRKG1"
+      ],
+      "complex_identity": "naptan-stop-area:669G1400311",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "distance_metres": 78.2,
+      "exact_normalized_name": true,
+      "existing_provenance": [
+        "Toilet Map UK"
+      ],
+      "explicit_toilet_evidence": true,
+      "facility_collision": true,
+      "facility_id": "9c925ea8-1d84-490d-85bb-de71db1cdf93",
+      "facility_latitude": 56.002504,
+      "facility_longitude": -3.785053,
+      "facility_name": "Falkirk Grahamston Station",
+      "generic_name_guard": true,
+      "n6a_classification": "AMBIGUOUS_CANONICAL_MATCH",
+      "n6b_recommendation": "REQUIRES_HUMAN_ADJUDICATION",
+      "relation_appearance": "indeterminate",
+      "root_parent_context": {
+        "complex_type": "SINGLE_AREA_COMPLEX",
+        "source_area_ids": [
+          "naptan-stop-area:669G1400311"
+        ],
+        "source_defects": [],
+        "source_stop_area_count": 1,
+        "source_stop_point_count": 4
+      },
+      "root_stop_area_identity": "naptan-stop-area:669G1400311",
+      "source_area_ids": [
+        "naptan-stop-area:669G1400311"
+      ],
+      "source_defects": [],
+      "source_geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "source_latitude": 56.002216,
+      "source_longitude": -3.783905,
+      "source_mode": "multimodal",
+      "source_modes": [
+        "bus_coach",
+        "rail",
+        "taxi"
+      ],
+      "source_name": "Falkirk Grahamston Station",
+      "source_node_ids": [
+        "naptan:66901002012",
+        "naptan:66901400311",
+        "naptan:66908003900",
+        "naptan:6690FALKRKG2"
+      ],
+      "source_normalized_name": "falkirk grahamston station",
+      "source_stop_area_count": 1,
+      "source_stop_point_count": 4,
+      "source_token_subset": true,
+      "source_type": "GCLS",
+      "stable_candidate_key": "naptan:sha256:6fc7e40e2af3b30e9fd117bdac313b58f3385bff26517fd78d5554da12b4183a|naptan-stop-area:669G1400311|9c925ea8-1d84-490d-85bb-de71db1cdf93",
+      "tfl_evidence": false
+    },
+    {
+      "ambiguity_reason": "multiple plausible canonical facilities or a canonical facility claimed by multiple source complexes; nearest distance is not a tie-breaker",
+      "candidate_count_for_complex": 1,
+      "competing_facilities": [
+        {
+          "distance_metres": 23.4,
+          "exact_normalized_name": false,
+          "existing_provenance": [
+            "Toilet Map UK"
+          ],
+          "facility_id": "92eb4829-7b40-452b-b07e-c9fb6f9eb79b",
+          "facility_name": "Oakwood Underground Station",
+          "source_token_subset": true
+        }
+      ],
+      "competing_source_complex_count_for_facility": 2,
+      "competing_source_complexes": [
+        "naptan-stop-area:910GENFCOAK",
+        "naptan-stop-area:940GZZLUOAK"
+      ],
+      "complex_identity": "naptan-stop-area:910GENFCOAK",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "distance_metres": 23.4,
+      "exact_normalized_name": false,
+      "existing_provenance": [
+        "Toilet Map UK"
+      ],
+      "explicit_toilet_evidence": true,
+      "facility_collision": true,
+      "facility_id": "92eb4829-7b40-452b-b07e-c9fb6f9eb79b",
+      "facility_latitude": 51.647691,
+      "facility_longitude": -0.131848,
+      "facility_name": "Oakwood Underground Station",
+      "generic_name_guard": true,
+      "n6a_classification": "AMBIGUOUS_CANONICAL_MATCH",
+      "n6b_recommendation": "REQUIRES_HUMAN_ADJUDICATION",
+      "relation_appearance": "indeterminate",
+      "root_parent_context": {
+        "complex_type": "SINGLE_AREA_COMPLEX",
+        "source_area_ids": [
+          "naptan-stop-area:910GENFCOAK"
+        ],
+        "source_defects": [],
+        "source_stop_area_count": 1,
+        "source_stop_point_count": 1
+      },
+      "root_stop_area_identity": "naptan-stop-area:910GENFCOAK",
+      "source_area_ids": [
+        "naptan-stop-area:910GENFCOAK"
+      ],
+      "source_defects": [],
+      "source_geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "source_latitude": 51.64772560656,
+      "source_longitude": -0.13218237487,
+      "source_mode": "rail",
+      "source_modes": [
+        "rail"
+      ],
+      "source_name": "Oakwood Station",
+      "source_node_ids": [
+        "naptan:9100ENFCOAK"
+      ],
+      "source_normalized_name": "oakwood station",
+      "source_stop_area_count": 1,
+      "source_stop_point_count": 1,
+      "source_token_subset": true,
+      "source_type": "GRLS",
+      "stable_candidate_key": "naptan:sha256:6fc7e40e2af3b30e9fd117bdac313b58f3385bff26517fd78d5554da12b4183a|naptan-stop-area:910GENFCOAK|92eb4829-7b40-452b-b07e-c9fb6f9eb79b",
+      "tfl_evidence": false
+    },
+    {
+      "ambiguity_reason": "multiple plausible canonical facilities or a canonical facility claimed by multiple source complexes; nearest distance is not a tie-breaker",
+      "candidate_count_for_complex": 1,
+      "competing_facilities": [
+        {
+          "distance_metres": 88.9,
+          "exact_normalized_name": true,
+          "existing_provenance": [
+            "Toilet Map UK"
+          ],
+          "facility_id": "c3707735-de99-4f5d-9927-5860faf93050",
+          "facility_name": "Dunoon Ferry Terminal",
+          "source_token_subset": true
+        }
+      ],
+      "competing_source_complex_count_for_facility": 2,
+      "competing_source_complexes": [
+        "naptan-stop-area:607G0005",
+        "naptan-stop-area:930GDNU"
+      ],
+      "complex_identity": "naptan-stop-area:930GDNU",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "distance_metres": 88.9,
+      "exact_normalized_name": true,
+      "existing_provenance": [
+        "Toilet Map UK"
+      ],
+      "explicit_toilet_evidence": true,
+      "facility_collision": true,
+      "facility_id": "c3707735-de99-4f5d-9927-5860faf93050",
+      "facility_latitude": 55.945968,
+      "facility_longitude": -4.922411,
+      "facility_name": "Dunoon Ferry Terminal",
+      "generic_name_guard": true,
+      "n6a_classification": "AMBIGUOUS_CANONICAL_MATCH",
+      "n6b_recommendation": "REQUIRES_HUMAN_ADJUDICATION",
+      "relation_appearance": "indeterminate",
+      "root_parent_context": {
+        "complex_type": "SINGLE_AREA_COMPLEX",
+        "source_area_ids": [
+          "naptan-stop-area:930GDNU"
+        ],
+        "source_defects": [],
+        "source_stop_area_count": 1,
+        "source_stop_point_count": 1
+      },
+      "root_stop_area_identity": "naptan-stop-area:930GDNU",
+      "source_area_ids": [
+        "naptan-stop-area:930GDNU"
+      ],
+      "source_defects": [],
+      "source_geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "source_latitude": 55.94647812901,
+      "source_longitude": -4.92131094514,
+      "source_mode": "ferry_port",
+      "source_modes": [
+        "ferry_port"
+      ],
+      "source_name": "Dunoon Ferry Terminal",
+      "source_node_ids": [
+        "naptan:9300DNU"
+      ],
+      "source_normalized_name": "dunoon ferry terminal",
+      "source_stop_area_count": 1,
+      "source_stop_point_count": 1,
+      "source_token_subset": true,
+      "source_type": "GFTD",
+      "stable_candidate_key": "naptan:sha256:6fc7e40e2af3b30e9fd117bdac313b58f3385bff26517fd78d5554da12b4183a|naptan-stop-area:930GDNU|c3707735-de99-4f5d-9927-5860faf93050",
+      "tfl_evidence": false
+    },
+    {
+      "ambiguity_reason": "multiple plausible canonical facilities or a canonical facility claimed by multiple source complexes; nearest distance is not a tie-breaker",
+      "candidate_count_for_complex": 2,
+      "competing_facilities": [
+        {
+          "distance_metres": 287.0,
+          "exact_normalized_name": false,
+          "existing_provenance": [
+            "Toilet Map UK"
+          ],
+          "facility_id": "4b7595b8-2517-45e6-b21d-9564a7f9b1b1",
+          "facility_name": "Mshed, Prince's Wharf, Wapping Road, BS1 4RN",
+          "source_token_subset": true
+        },
+        {
+          "distance_metres": 287.0,
+          "exact_normalized_name": false,
+          "existing_provenance": [
+            "Toilet Map UK"
+          ],
+          "facility_id": "d62f245e-4e5f-4ea2-aa6c-9185511093b9",
+          "facility_name": "Mshed, Prince's Wharf, Wapping Road, BS1 4RN",
+          "source_token_subset": true
+        }
+      ],
+      "competing_source_complex_count_for_facility": 1,
+      "competing_source_complexes": [
+        "naptan-stop-area:930GWWH"
+      ],
+      "complex_identity": "naptan-stop-area:930GWWH",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "distance_metres": 287.0,
+      "exact_normalized_name": false,
+      "existing_provenance": [
+        "Toilet Map UK"
+      ],
+      "explicit_toilet_evidence": true,
+      "facility_collision": false,
+      "facility_id": "4b7595b8-2517-45e6-b21d-9564a7f9b1b1",
+      "facility_latitude": 51.447621,
+      "facility_longitude": -2.598269,
+      "facility_name": "Mshed, Prince's Wharf, Wapping Road, BS1 4RN",
+      "generic_name_guard": true,
+      "n6a_classification": "AMBIGUOUS_CANONICAL_MATCH",
+      "n6b_recommendation": "REQUIRES_HUMAN_ADJUDICATION",
+      "relation_appearance": "indeterminate",
+      "root_parent_context": {
+        "complex_type": "SINGLE_AREA_COMPLEX",
+        "source_area_ids": [
+          "naptan-stop-area:930GWWH"
+        ],
+        "source_defects": [],
+        "source_stop_area_count": 1,
+        "source_stop_point_count": 3
+      },
+      "root_stop_area_identity": "naptan-stop-area:930GWWH",
+      "source_area_ids": [
+        "naptan-stop-area:930GWWH"
+      ],
+      "source_defects": [],
+      "source_geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "source_latitude": 51.44735604145,
+      "source_longitude": -2.60238791472,
+      "source_mode": "ferry_port",
+      "source_modes": [
+        "ferry_port"
+      ],
+      "source_name": "Wapping Wharf",
+      "source_node_ids": [
+        "naptan:0100WWH0",
+        "naptan:9300WWH",
+        "naptan:9300WWH1"
+      ],
+      "source_normalized_name": "wapping wharf",
+      "source_stop_area_count": 1,
+      "source_stop_point_count": 3,
+      "source_token_subset": true,
+      "source_type": "GFTD",
+      "stable_candidate_key": "naptan:sha256:6fc7e40e2af3b30e9fd117bdac313b58f3385bff26517fd78d5554da12b4183a|naptan-stop-area:930GWWH|4b7595b8-2517-45e6-b21d-9564a7f9b1b1",
+      "tfl_evidence": false
+    },
+    {
+      "ambiguity_reason": "multiple plausible canonical facilities or a canonical facility claimed by multiple source complexes; nearest distance is not a tie-breaker",
+      "candidate_count_for_complex": 2,
+      "competing_facilities": [
+        {
+          "distance_metres": 29.5,
+          "exact_normalized_name": true,
+          "existing_provenance": [
+            "Toilet Map UK"
+          ],
+          "facility_id": "664742fa-b2d2-43d4-a3c0-cb57b3de253e",
+          "facility_name": "Cockfosters Underground Station",
+          "source_token_subset": true
+        },
+        {
+          "distance_metres": 49.0,
+          "exact_normalized_name": true,
+          "existing_provenance": [
+            "Toilet Map UK"
+          ],
+          "facility_id": "806da82e-32d9-464e-a55a-7197fc5839ff",
+          "facility_name": "Cockfosters Underground Station",
+          "source_token_subset": true
+        }
+      ],
+      "competing_source_complex_count_for_facility": 1,
+      "competing_source_complexes": [
+        "naptan-stop-area:940GZZLUCKS"
+      ],
+      "complex_identity": "naptan-stop-area:940GZZLUCKS",
+      "complex_type": "MULTIMODAL_PARENT_COMPLEX",
+      "distance_metres": 29.5,
+      "exact_normalized_name": true,
+      "existing_provenance": [
+        "Toilet Map UK"
+      ],
+      "explicit_toilet_evidence": true,
+      "facility_collision": false,
+      "facility_id": "664742fa-b2d2-43d4-a3c0-cb57b3de253e",
+      "facility_latitude": 51.65155,
+      "facility_longitude": -0.149596,
+      "facility_name": "Cockfosters Underground Station",
+      "generic_name_guard": true,
+      "n6a_classification": "AMBIGUOUS_CANONICAL_MATCH",
+      "n6b_recommendation": "REQUIRES_HUMAN_ADJUDICATION",
+      "relation_appearance": "indeterminate",
+      "root_parent_context": {
+        "complex_type": "MULTIMODAL_PARENT_COMPLEX",
+        "source_area_ids": [
+          "naptan-stop-area:490G00053N2",
+          "naptan-stop-area:940GZZLUCKS"
+        ],
+        "source_defects": [],
+        "source_stop_area_count": 2,
+        "source_stop_point_count": 9
+      },
+      "root_stop_area_identity": "naptan-stop-area:940GZZLUCKS",
+      "source_area_ids": [
+        "naptan-stop-area:490G00053N2",
+        "naptan-stop-area:940GZZLUCKS"
+      ],
+      "source_defects": [],
+      "source_geometry_scope": "PUBLISHER_PARENT_AREA_COORDINATE",
+      "source_latitude": 51.65151960589,
+      "source_longitude": -0.14917108666,
+      "source_mode": "multimodal",
+      "source_modes": [
+        "bus_coach",
+        "metro_tram_underground"
+      ],
+      "source_name": "Cockfosters Underground Station",
+      "source_node_ids": [
+        "naptan:490000053A",
+        "naptan:490000053B",
+        "naptan:490000053N2",
+        "naptan:4900ZZLUCKS1",
+        "naptan:4900ZZLUCKS2",
+        "naptan:4900ZZLUCKS3",
+        "naptan:4900ZZLUCKS4",
+        "naptan:9400ZZLUCKS",
+        "naptan:9400ZZLUCKS1"
+      ],
+      "source_normalized_name": "cockfosters underground station",
+      "source_stop_area_count": 2,
+      "source_stop_point_count": 9,
+      "source_token_subset": true,
+      "source_type": "GTMU",
+      "stable_candidate_key": "naptan:sha256:6fc7e40e2af3b30e9fd117bdac313b58f3385bff26517fd78d5554da12b4183a|naptan-stop-area:940GZZLUCKS|664742fa-b2d2-43d4-a3c0-cb57b3de253e",
+      "tfl_evidence": false
+    },
+    {
+      "ambiguity_reason": "multiple plausible canonical facilities or a canonical facility claimed by multiple source complexes; nearest distance is not a tie-breaker",
+      "candidate_count_for_complex": 1,
+      "competing_facilities": [
+        {
+          "distance_metres": 83.4,
+          "exact_normalized_name": false,
+          "existing_provenance": [
+            "Toilet Map UK"
+          ],
+          "facility_id": "239d988d-7e02-49e0-ae8c-d4ef81d73083",
+          "facility_name": "Canary Wharf (Jubilee Line) underground station (ticket entrance area) (unpaid area) (accessible toilet only)",
+          "source_token_subset": true
+        }
+      ],
+      "competing_source_complex_count_for_facility": 2,
+      "competing_source_complexes": [
+        "naptan-stop-area:490G000917",
+        "naptan-stop-area:940GZZLUCYF"
+      ],
+      "complex_identity": "naptan-stop-area:940GZZLUCYF",
+      "complex_type": "MULTIMODAL_PARENT_COMPLEX",
+      "distance_metres": 83.4,
+      "exact_normalized_name": false,
+      "existing_provenance": [
+        "Toilet Map UK"
+      ],
+      "explicit_toilet_evidence": true,
+      "facility_collision": true,
+      "facility_id": "239d988d-7e02-49e0-ae8c-d4ef81d73083",
+      "facility_latitude": 51.503532085,
+      "facility_longitude": -0.019448746,
+      "facility_name": "Canary Wharf (Jubilee Line) underground station (ticket entrance area) (unpaid area) (accessible toilet only)",
+      "generic_name_guard": true,
+      "n6a_classification": "AMBIGUOUS_CANONICAL_MATCH",
+      "n6b_recommendation": "REQUIRES_HUMAN_ADJUDICATION",
+      "relation_appearance": "indeterminate",
+      "root_parent_context": {
+        "complex_type": "MULTIMODAL_PARENT_COMPLEX",
+        "source_area_ids": [
+          "naptan-stop-area:490G00038F",
+          "naptan-stop-area:490G00038G",
+          "naptan-stop-area:940GZZLUCYF"
+        ],
+        "source_defects": [],
+        "source_stop_area_count": 3,
+        "source_stop_point_count": 8
+      },
+      "root_stop_area_identity": "naptan-stop-area:940GZZLUCYF",
+      "source_area_ids": [
+        "naptan-stop-area:490G00038F",
+        "naptan-stop-area:490G00038G",
+        "naptan-stop-area:940GZZLUCYF"
+      ],
+      "source_defects": [],
+      "source_geometry_scope": "PUBLISHER_PARENT_AREA_COORDINATE",
+      "source_latitude": 51.50348751295,
+      "source_longitude": -0.01824598925,
+      "source_mode": "multimodal",
+      "source_modes": [
+        "bus_coach",
+        "metro_tram_underground"
+      ],
+      "source_name": "Canary Wharf Underground Station",
+      "source_node_ids": [
+        "naptan:490000038F",
+        "naptan:490000038G",
+        "naptan:490000038Z",
+        "naptan:4900ZZLUCYF1",
+        "naptan:4900ZZLUCYF2",
+        "naptan:4900ZZLUCYF3",
+        "naptan:9400ZZLUCYF",
+        "naptan:9400ZZLUCYF1"
+      ],
+      "source_normalized_name": "canary wharf underground station",
+      "source_stop_area_count": 3,
+      "source_stop_point_count": 8,
+      "source_token_subset": true,
+      "source_type": "GTMU",
+      "stable_candidate_key": "naptan:sha256:6fc7e40e2af3b30e9fd117bdac313b58f3385bff26517fd78d5554da12b4183a|naptan-stop-area:940GZZLUCYF|239d988d-7e02-49e0-ae8c-d4ef81d73083",
+      "tfl_evidence": false
+    },
+    {
+      "ambiguity_reason": "multiple plausible canonical facilities or a canonical facility claimed by multiple source complexes; nearest distance is not a tie-breaker",
+      "candidate_count_for_complex": 1,
+      "competing_facilities": [
+        {
+          "distance_metres": 11.9,
+          "exact_normalized_name": true,
+          "existing_provenance": [
+            "Toilet Map UK"
+          ],
+          "facility_id": "e94ba031-a9e0-4f36-b08e-cdd53785b81d",
+          "facility_name": "Hillingdon Underground Station",
+          "source_token_subset": true
+        }
+      ],
+      "competing_source_complex_count_for_facility": 2,
+      "competing_source_complexes": [
+        "naptan-stop-area:910GHLNDBUS",
+        "naptan-stop-area:940GZZLUHGD"
+      ],
+      "complex_identity": "naptan-stop-area:940GZZLUHGD",
+      "complex_type": "MULTIMODAL_PARENT_COMPLEX",
+      "distance_metres": 11.9,
+      "exact_normalized_name": true,
+      "existing_provenance": [
+        "Toilet Map UK"
+      ],
+      "explicit_toilet_evidence": true,
+      "facility_collision": true,
+      "facility_id": "e94ba031-a9e0-4f36-b08e-cdd53785b81d",
+      "facility_latitude": 51.553714,
+      "facility_longitude": -0.45,
+      "facility_name": "Hillingdon Underground Station",
+      "generic_name_guard": true,
+      "n6a_classification": "AMBIGUOUS_CANONICAL_MATCH",
+      "n6b_recommendation": "REQUIRES_HUMAN_ADJUDICATION",
+      "relation_appearance": "indeterminate",
+      "root_parent_context": {
+        "complex_type": "MULTIMODAL_PARENT_COMPLEX",
+        "source_area_ids": [
+          "naptan-stop-area:490G00111B",
+          "naptan-stop-area:940GZZLUHGD"
+        ],
+        "source_defects": [],
+        "source_stop_area_count": 2,
+        "source_stop_point_count": 10
+      },
+      "root_stop_area_identity": "naptan-stop-area:940GZZLUHGD",
+      "source_area_ids": [
+        "naptan-stop-area:490G00111B",
+        "naptan-stop-area:940GZZLUHGD"
+      ],
+      "source_defects": [],
+      "source_geometry_scope": "PUBLISHER_PARENT_AREA_COORDINATE",
+      "source_latitude": 51.55371461124,
+      "source_longitude": -0.44982796356,
+      "source_mode": "multimodal",
+      "source_modes": [
+        "bus_coach",
+        "metro_tram_underground"
+      ],
+      "source_name": "Hillingdon Underground Station",
+      "source_node_ids": [
+        "naptan:490000111B",
+        "naptan:490000111N",
+        "naptan:490000111S",
+        "naptan:4900ZZLUHGD1",
+        "naptan:4900ZZLUHGD2",
+        "naptan:4900ZZLUHGD3",
+        "naptan:4900ZZLUHGD4",
+        "naptan:9400ZZLUHGD",
+        "naptan:9400ZZLUHGD1",
+        "naptan:9400ZZLUHGD2"
+      ],
+      "source_normalized_name": "hillingdon underground station",
+      "source_stop_area_count": 2,
+      "source_stop_point_count": 10,
+      "source_token_subset": true,
+      "source_type": "GTMU",
+      "stable_candidate_key": "naptan:sha256:6fc7e40e2af3b30e9fd117bdac313b58f3385bff26517fd78d5554da12b4183a|naptan-stop-area:940GZZLUHGD|e94ba031-a9e0-4f36-b08e-cdd53785b81d",
+      "tfl_evidence": false
+    },
+    {
+      "ambiguity_reason": "multiple plausible canonical facilities or a canonical facility claimed by multiple source complexes; nearest distance is not a tie-breaker",
+      "candidate_count_for_complex": 1,
+      "competing_facilities": [
+        {
+          "distance_metres": 54.9,
+          "exact_normalized_name": true,
+          "existing_provenance": [
+            "Toilet Map UK"
+          ],
+          "facility_id": "d811812a-c2d4-4401-a06a-76a02c0a5ce1",
+          "facility_name": "North Greenwich Underground Station",
+          "source_token_subset": true
+        }
+      ],
+      "competing_source_complex_count_for_facility": 2,
+      "competing_source_complexes": [
+        "naptan-stop-area:490G000682",
+        "naptan-stop-area:940GZZLUNGW"
+      ],
+      "complex_identity": "naptan-stop-area:940GZZLUNGW",
+      "complex_type": "SINGLE_AREA_COMPLEX",
+      "distance_metres": 54.9,
+      "exact_normalized_name": true,
+      "existing_provenance": [
+        "Toilet Map UK"
+      ],
+      "explicit_toilet_evidence": true,
+      "facility_collision": true,
+      "facility_id": "d811812a-c2d4-4401-a06a-76a02c0a5ce1",
+      "facility_latitude": 51.500016,
+      "facility_longitude": 0.003975,
+      "facility_name": "North Greenwich Underground Station",
+      "generic_name_guard": true,
+      "n6a_classification": "AMBIGUOUS_CANONICAL_MATCH",
+      "n6b_recommendation": "REQUIRES_HUMAN_ADJUDICATION",
+      "relation_appearance": "indeterminate",
+      "root_parent_context": {
+        "complex_type": "SINGLE_AREA_COMPLEX",
+        "source_area_ids": [
+          "naptan-stop-area:940GZZLUNGW"
+        ],
+        "source_defects": [],
+        "source_stop_area_count": 1,
+        "source_stop_point_count": 6
+      },
+      "root_stop_area_identity": "naptan-stop-area:940GZZLUNGW",
+      "source_area_ids": [
+        "naptan-stop-area:940GZZLUNGW"
+      ],
+      "source_defects": [],
+      "source_geometry_scope": "PUBLISHER_STOPAREA_COORDINATE",
+      "source_latitude": 51.50046970308,
+      "source_longitude": 0.00428727623,
+      "source_mode": "metro_tram_underground",
+      "source_modes": [
+        "metro_tram_underground"
+      ],
+      "source_name": "North Greenwich Underground Station",
+      "source_node_ids": [
+        "naptan:4900ZZLUNGW1",
+        "naptan:4900ZZLUNGW2",
+        "naptan:4900ZZLUNGW3",
+        "naptan:9400ZZLUNGW",
+        "naptan:9400ZZLUNGW1",
+        "naptan:9400ZZLUNGW2"
+      ],
+      "source_normalized_name": "north greenwich underground station",
+      "source_stop_area_count": 1,
+      "source_stop_point_count": 6,
+      "source_token_subset": true,
+      "source_type": "GTMU",
+      "stable_candidate_key": "naptan:sha256:6fc7e40e2af3b30e9fd117bdac313b58f3385bff26517fd78d5554da12b4183a|naptan-stop-area:940GZZLUNGW|d811812a-c2d4-4401-a06a-76a02c0a5ce1",
+      "tfl_evidence": false
+    },
+    {
+      "ambiguity_reason": "multiple plausible canonical facilities or a canonical facility claimed by multiple source complexes; nearest distance is not a tie-breaker",
+      "candidate_count_for_complex": 1,
+      "competing_facilities": [
+        {
+          "distance_metres": 23.4,
+          "exact_normalized_name": true,
+          "existing_provenance": [
+            "Toilet Map UK"
+          ],
+          "facility_id": "92eb4829-7b40-452b-b07e-c9fb6f9eb79b",
+          "facility_name": "Oakwood Underground Station",
+          "source_token_subset": true
+        }
+      ],
+      "competing_source_complex_count_for_facility": 2,
+      "competing_source_complexes": [
+        "naptan-stop-area:910GENFCOAK",
+        "naptan-stop-area:940GZZLUOAK"
+      ],
+      "complex_identity": "naptan-stop-area:940GZZLUOAK",
+      "complex_type": "MULTIMODAL_PARENT_COMPLEX",
+      "distance_metres": 23.4,
+      "exact_normalized_name": true,
+      "existing_provenance": [
+        "Toilet Map UK"
+      ],
+      "explicit_toilet_evidence": true,
+      "facility_collision": true,
+      "facility_id": "92eb4829-7b40-452b-b07e-c9fb6f9eb79b",
+      "facility_latitude": 51.647691,
+      "facility_longitude": -0.131848,
+      "facility_name": "Oakwood Underground Station",
+      "generic_name_guard": true,
+      "n6a_classification": "AMBIGUOUS_CANONICAL_MATCH",
+      "n6b_recommendation": "REQUIRES_HUMAN_ADJUDICATION",
+      "relation_appearance": "indeterminate",
+      "root_parent_context": {
+        "complex_type": "MULTIMODAL_PARENT_COMPLEX",
+        "source_area_ids": [
+          "naptan-stop-area:490G00168A",
+          "naptan-stop-area:940GZZLUOAK"
+        ],
+        "source_defects": [],
+        "source_stop_area_count": 2,
+        "source_stop_point_count": 7
+      },
+      "root_stop_area_identity": "naptan-stop-area:940GZZLUOAK",
+      "source_area_ids": [
+        "naptan-stop-area:490G00168A",
+        "naptan-stop-area:940GZZLUOAK"
+      ],
+      "source_defects": [],
+      "source_geometry_scope": "PUBLISHER_PARENT_AREA_COORDINATE",
+      "source_latitude": 51.64772560656,
+      "source_longitude": -0.13218237487,
+      "source_mode": "multimodal",
+      "source_modes": [
+        "bus_coach",
+        "metro_tram_underground"
+      ],
+      "source_name": "Oakwood Underground Station",
+      "source_node_ids": [
+        "naptan:490000168A",
+        "naptan:490000168B",
+        "naptan:490000168Y",
+        "naptan:490000168Z",
+        "naptan:4900ZZLUOAK1",
+        "naptan:9400ZZLUOAK",
+        "naptan:9400ZZLUOAK1"
+      ],
+      "source_normalized_name": "oakwood underground station",
+      "source_stop_area_count": 2,
+      "source_stop_point_count": 7,
+      "source_token_subset": true,
+      "source_type": "GTMU",
+      "stable_candidate_key": "naptan:sha256:6fc7e40e2af3b30e9fd117bdac313b58f3385bff26517fd78d5554da12b4183a|naptan-stop-area:940GZZLUOAK|92eb4829-7b40-452b-b07e-c9fb6f9eb79b",
+      "tfl_evidence": false
+    }
+  ],
+  "count": 9,
+  "production_writes": 0
+}

@@ -1,0 +1,146 @@
+{
+  "air": {
+    "complexes": 65,
+    "computed_complexes": 65,
+    "computed_exact_name_candidate_rows": 6,
+    "explicit_toilet_evidence_interpretation": "existing canonical facility provenance is toilet evidence; no independent evidence is imputed to proposed-new complexes",
+    "generic_name_complexes": 0,
+    "generic_name_rate": 0.0,
+    "n6a_candidate_pairs_500m": 7,
+    "n6a_classifications": {
+      "ambiguous": 2,
+      "existing": 0,
+      "no_action": 0,
+      "proposed_match": 5,
+      "proposed_new": 58,
+      "supporting": 0
+    },
+    "n6a_complexes_with_candidates_500m": 7
+  },
+  "bus_coach": {
+    "complexes": 75920,
+    "computed_complexes": 75920,
+    "computed_exact_name_candidate_rows": 242,
+    "explicit_toilet_evidence_interpretation": "existing canonical facility provenance is toilet evidence; no independent evidence is imputed to proposed-new complexes",
+    "generic_name_complexes": 373,
+    "generic_name_rate": 0.004913,
+    "n6a_candidate_pairs_500m": 581,
+    "n6a_classifications": {
+      "ambiguous": 0,
+      "existing": 0,
+      "no_action": 0,
+      "proposed_match": 0,
+      "proposed_new": 0,
+      "supporting": 75920
+    },
+    "n6a_complexes_with_candidates_500m": 545
+  },
+  "ferry_port": {
+    "complexes": 470,
+    "computed_complexes": 470,
+    "computed_exact_name_candidate_rows": 4,
+    "explicit_toilet_evidence_interpretation": "existing canonical facility provenance is toilet evidence; no independent evidence is imputed to proposed-new complexes",
+    "generic_name_complexes": 0,
+    "generic_name_rate": 0.0,
+    "n6a_candidate_pairs_500m": 8,
+    "n6a_classifications": {
+      "ambiguous": 2,
+      "existing": 0,
+      "no_action": 0,
+      "proposed_match": 5,
+      "proposed_new": 462,
+      "supporting": 1
+    },
+    "n6a_complexes_with_candidates_500m": 7
+  },
+  "metro_tram_underground": {
+    "complexes": 641,
+    "computed_complexes": 641,
+    "computed_exact_name_candidate_rows": 1,
+    "explicit_toilet_evidence_interpretation": "existing canonical facility provenance is toilet evidence; no independent evidence is imputed to proposed-new complexes",
+    "generic_name_complexes": 0,
+    "generic_name_rate": 0.0,
+    "n6a_candidate_pairs_500m": 1,
+    "n6a_classifications": {
+      "ambiguous": 0,
+      "existing": 0,
+      "no_action": 0,
+      "proposed_match": 1,
+      "proposed_new": 640,
+      "supporting": 0
+    },
+    "n6a_complexes_with_candidates_500m": 1
+  },
+  "multimodal": {
+    "complexes": 1541,
+    "computed_complexes": 1541,
+    "computed_exact_name_candidate_rows": 27,
+    "explicit_toilet_evidence_interpretation": "existing canonical facility provenance is toilet evidence; no independent evidence is imputed to proposed-new complexes",
+    "generic_name_complexes": 1,
+    "generic_name_rate": 0.000649,
+    "n6a_candidate_pairs_500m": 39,
+    "n6a_classifications": {
+      "ambiguous": 4,
+      "existing": 0,
+      "no_action": 0,
+      "proposed_match": 34,
+      "proposed_new": 1500,
+      "supporting": 3
+    },
+    "n6a_complexes_with_candidates_500m": 38
+  },
+  "no_mode": {
+    "complexes": 13591,
+    "computed_complexes": 13591,
+    "computed_exact_name_candidate_rows": 28,
+    "explicit_toilet_evidence_interpretation": "existing canonical facility provenance is toilet evidence; no independent evidence is imputed to proposed-new complexes",
+    "generic_name_complexes": 33,
+    "generic_name_rate": 0.002428,
+    "n6a_candidate_pairs_500m": 52,
+    "n6a_classifications": {
+      "ambiguous": 0,
+      "existing": 0,
+      "no_action": 13591,
+      "proposed_match": 0,
+      "proposed_new": 0,
+      "supporting": 0
+    },
+    "n6a_complexes_with_candidates_500m": 49
+  },
+  "rail": {
+    "complexes": 1519,
+    "computed_complexes": 1519,
+    "computed_exact_name_candidate_rows": 5,
+    "explicit_toilet_evidence_interpretation": "existing canonical facility provenance is toilet evidence; no independent evidence is imputed to proposed-new complexes",
+    "generic_name_complexes": 0,
+    "generic_name_rate": 0.0,
+    "n6a_candidate_pairs_500m": 7,
+    "n6a_classifications": {
+      "ambiguous": 1,
+      "existing": 0,
+      "no_action": 0,
+      "proposed_match": 6,
+      "proposed_new": 1503,
+      "supporting": 9
+    },
+    "n6a_complexes_with_candidates_500m": 7
+  },
+  "taxi": {
+    "complexes": 4,
+    "computed_complexes": 4,
+    "computed_exact_name_candidate_rows": 0,
+    "explicit_toilet_evidence_interpretation": "existing canonical facility provenance is toilet evidence; no independent evidence is imputed to proposed-new complexes",
+    "generic_name_complexes": 0,
+    "generic_name_rate": 0.0,
+    "n6a_candidate_pairs_500m": 0,
+    "n6a_classifications": {
+      "ambiguous": 0,
+      "existing": 0,
+      "no_action": 4,
+      "proposed_match": 0,
+      "proposed_new": 0,
+      "supporting": 0
+    },
+    "n6a_complexes_with_candidates_500m": 0
+  }
+}

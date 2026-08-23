@@ -1,0 +1,10 @@
+{
+  "air": "terminal-specific toilet evidence required; airport root cannot stand in for multiple toilet locations",
+  "bus_coach": "ordinary roadside stops remain SUPPORTING_SOURCE_ONLY; bus/coach stations and interchanges still need direct toilet evidence and review",
+  "ferry_port": "terminal/pier identity is supporting context; direct facility evidence required for a new canonical toilet",
+  "metro_tram_underground": "use TfL/official toilet evidence for actual toilets; retain subplace and gateline context; no station-as-toilet shortcut",
+  "multimodal": "subplace-aware review required; do not collapse multiple physical toilet locations into the root interchange",
+  "no_mode": "NO_ACTION unless independent product and toilet evidence exists",
+  "rail": "existing canonical links require bounded review; new canonical transport facility requires direct toilet evidence; station identity alone is insufficient",
+  "taxi": "NO_ACTION by default; no canonical facility role from NaPTAN identity"
+}

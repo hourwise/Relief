@@ -1,0 +1,80 @@
+{
+  "decision": "TfL can supply direct toilet evidence and NaPTAN can supply station/complex identity context, but neither source alone proves that a station root is one canonical toilet facility",
+  "existing_observation_audit": {
+    "existing_tfl_observations": 14,
+    "existing_tfl_source_names": [
+      "TfL detailed station data � station facilities and toilets"
+    ],
+    "interpretation": "The five strict candidates are audit evidence only. Existing TfL provenance does not authorize NaPTAN linkage, and the nine no-candidate cases are not forced into a relationship. Child-area/subplace evidence remains a separate human-review input.",
+    "production_read_only": true,
+    "production_writes": 0,
+    "representative_candidates": [
+      {
+        "complex": "Hanwell Rail Station",
+        "distance_m": 11.8,
+        "evidence": "exact_normalized_name",
+        "facility": "Hanwell Rail Station",
+        "mode": "multimodal"
+      },
+      {
+        "complex": "Ruislip Gardens Underground Station",
+        "distance_m": 8.5,
+        "evidence": "exact_normalized_name",
+        "facility": "Ruislip Gardens Underground Station",
+        "mode": "multimodal"
+      },
+      {
+        "complex": "Tottenham Court Road Underground Station",
+        "distance_m": 22.7,
+        "evidence": "exact_normalized_name",
+        "facility": "Tottenham Court Road Underground Station",
+        "mode": "multimodal"
+      },
+      {
+        "complex": "Battersea Power Station",
+        "distance_m": 158.0,
+        "evidence": "source_token_subset_only",
+        "facility": "Battersea Power Station (Tube Station)",
+        "mode": "bus_coach"
+      },
+      {
+        "complex": "Goodmayes Tesco",
+        "distance_m": 156.5,
+        "evidence": "source_token_subset_only",
+        "facility": "Tesco Extra Romford Goodmayes",
+        "mode": "bus_coach"
+      }
+    ],
+    "strict_root_name_geometry_candidate_audit": {
+      "exact_normalized_name": 3,
+      "facilities_with_a_candidate": 5,
+      "no_strict_candidate": 9,
+      "source_token_subset_only": 2
+    }
+  },
+  "frozen_reproduction": {
+    "actual_n3_counts": {
+      "AMBIGUOUS_COMPLEX": 2,
+      "HIGH_CONFIDENCE_COMPLEX_MATCH": 47,
+      "HIGH_CONFIDENCE_SUBPLACE_MATCH": 7,
+      "MULTIMODAL_COMPLEX_MATCH": 104,
+      "NO_MATCH": 349
+    },
+    "exact_official_identifier_matches": 0,
+    "expected_n3_counts": {
+      "AMBIGUOUS_COMPLEX": 2,
+      "HIGH_CONFIDENCE_COMPLEX_MATCH": 47,
+      "HIGH_CONFIDENCE_SUBPLACE_MATCH": 7,
+      "MULTIMODAL_COMPLEX_MATCH": 104,
+      "NO_MATCH": 349
+    },
+    "facility_creation_authorized": false,
+    "frozen_n2_candidate_identities_rechecked": 188,
+    "frozen_station_count": 509,
+    "n2_ambiguity_resolved": 28,
+    "n2_to_n3_changes_reproduced": true,
+    "production_read_only": true,
+    "source": "production transport-source graph, using the committed frozen N2 candidate roster and N3 root-resolution semantics"
+  },
+  "writes": 0
+}
