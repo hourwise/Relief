@@ -12,13 +12,13 @@ import {
   TextInput,
   Switch,
   Alert,
-  ActivityIndicator,
-  TouchableOpacity,
 } from 'react-native';
 import { colors, typography, spacing, borderRadius } from '../theme';
 import { Button } from '../components';
 import { submitFacility } from '../services/community';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { useLocation } from '../hooks/useLocation';
+import { getFacilitySubmissionCoordinates } from '../utils/facilityCoordinates';
 
 interface AmenityToggle {
   label: string;
@@ -38,7 +38,11 @@ const AMENITIES: AmenityToggle[] = [
 
 export const AddFacilityScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp<any>>();
+  const { location, status: locationStatus, refreshLocation } = useLocation({
+    autoRefresh: false,
+  });
   const [loading, setLoading] = useState(false);
+  const [locationRefreshing, setLocationRefreshing] = useState(false);
   const [step, setStep] = useState(1); // 1: basic info, 2: amenities, 3: review
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
@@ -56,6 +60,15 @@ export const AddFacilityScreen: React.FC = () => {
 
   const toggleAmenity = (key: string) => {
     setAmenities((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const handleLocationRefresh = async () => {
+    setLocationRefreshing(true);
+    try {
+      await refreshLocation();
+    } finally {
+      setLocationRefreshing(false);
+    }
   };
 
   const validateStep1 = (): boolean => {
@@ -81,15 +94,22 @@ export const AddFacilityScreen: React.FC = () => {
   const handleSubmit = async () => {
     if (!validateStep1()) return;
 
+    const coordinates = getFacilitySubmissionCoordinates(location);
+    if (!coordinates) {
+      Alert.alert(
+        'Location required',
+        'Choose your current location before submitting this facility. A valid map position is required for review.',
+      );
+      return;
+    }
+
     setLoading(true);
 
-    // Use approximate coords from town for now (user can refine later)
-    // In production, geocode the address
     const result = await submitFacility({
       name: name.trim(),
       address: address.trim(),
-      latitude: 0, // Will be geocoded server-side
-      longitude: 0,
+      latitude: coordinates.latitude,
+      longitude: coordinates.longitude,
       postcode: postcode.trim().toUpperCase(),
       town: town.trim(),
       country: 'United Kingdom',
@@ -211,6 +231,28 @@ export const AddFacilityScreen: React.FC = () => {
                 placeholderTextColor={colors.textMuted}
               />
             </View>
+          </View>
+
+          <Text style={styles.label}>Location *</Text>
+          <View style={styles.locationCard}>
+            <Text style={styles.locationText}>
+              {getFacilitySubmissionCoordinates(location)
+                ? `Location selected: ${location!.latitude.toFixed(6)}, ${location!.longitude.toFixed(6)}`
+                : locationStatus === 'denied'
+                ? 'Location permission is required to submit. You can retry.'
+                : locationStatus === 'unavailable'
+                ? 'A location fix was unavailable. Retry before submitting.'
+                : locationStatus === 'loading'
+                ? 'Getting a location fix...'
+                : 'Choose your current location before submitting.'}
+            </Text>
+            <Button
+              title={location ? 'Refresh my location' : 'Use my current location'}
+              onPress={() => void handleLocationRefresh()}
+              loading={locationRefreshing}
+              variant="outline"
+              fullWidth
+            />
           </View>
 
           <Text style={styles.label}>Access Notes</Text>
@@ -336,6 +378,14 @@ export const AddFacilityScreen: React.FC = () => {
             <ReviewRow label="Address" value={address} />
             <ReviewRow label="Postcode" value={postcode} />
             <ReviewRow label="Town" value={town} />
+            <ReviewRow
+              label="Location"
+              value={
+                getFacilitySubmissionCoordinates(location)
+                  ? `${location!.latitude.toFixed(6)}, ${location!.longitude.toFixed(6)}`
+                  : 'Required before submission'
+              }
+            />
             <ReviewRow label="Free" value={isFree ? 'Yes' : 'No'} />
             {!isFree && <ReviewRow label="Price" value={priceNote} />}
             <ReviewRow label="Access Notes" value={accessNotes} />
@@ -370,6 +420,7 @@ export const AddFacilityScreen: React.FC = () => {
               title="Submit"
               onPress={handleSubmit}
               loading={loading}
+              disabled={!getFacilitySubmissionCoordinates(location)}
               style={styles.halfButton}
             />
           </View>
@@ -508,6 +559,19 @@ const styles = StyleSheet.create({
   },
   nextButton: {
     marginTop: spacing.xl,
+  },
+  locationCard: {
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    borderColor: colors.gray200,
+    borderRadius: borderRadius.md,
+    padding: spacing.md,
+    gap: spacing.md,
+  },
+  locationText: {
+    ...typography.bodySmall,
+    color: colors.textSecondary,
+    lineHeight: 20,
   },
   buttonRow: {
     flexDirection: 'row',
