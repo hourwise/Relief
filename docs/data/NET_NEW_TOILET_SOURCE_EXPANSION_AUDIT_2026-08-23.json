@@ -1,0 +1,492 @@
+{
+  "audit": "RELIEF NET-NEW TOILET SOURCE EXPANSION",
+  "audit_date": "2026-08-23",
+  "classification": "READ_ONLY_SOURCE_DISCOVERY_AND_NET_NEW_YIELD_AUDIT",
+  "repository": "hourwise/Relief",
+  "branch": "codex/toilet-map-apply-1a-production-deploy",
+  "starting_local_sha": "9f053c18fa4e4d18ccc043a1d889452260092b15",
+  "starting_remote_sha": "9f053c18fa4e4d18ccc043a1d889452260092b15",
+  "remote_verification": "git fetch origin plus git ls-remote refs/heads/codex/toilet-map-apply-1a-production-deploy",
+  "protected_files": [
+    ".easignore",
+    "app.json",
+    "docs/EAS_CONFIG_AUDIT.md"
+  ],
+  "production": {
+    "project_name": "Relief",
+    "project_ref": "bgwxrxkmyaihplaloely",
+    "status": "ACTIVE_HEALTHY",
+    "region": "eu-central-1",
+    "postgresql": "17.6.1.127",
+    "postgis": "3.3.7",
+    "pgcrypto": "1.3",
+    "migration_head": "20260822170000",
+    "read_only_verification": true,
+    "canonical_baseline": {
+      "facilities": 15620,
+      "facility_sources": 15634,
+      "facility_source_observations": 14,
+      "toilet_units": 0,
+      "import_runs": 5,
+      "toilet_map_import_staging": 0,
+      "toilet_unit_sources": 0
+    },
+    "source_graph_baseline": {
+      "transport_source_snapshots": 1,
+      "transport_source_places": 97270,
+      "transport_source_nodes": 436428,
+      "transport_source_memberships": 169527,
+      "transport_source_place_parents": 3519,
+      "total": 706745
+    },
+    "source_graph_delta": 0,
+    "canonical_mutation_delta": 0,
+    "total_production_mutations": 0
+  },
+  "current_provenance": {
+    "facility_sources_by_source_name": [
+      {
+        "source_name": "Toilet Map UK",
+        "rows": 15620,
+        "distinct_facilities": 15620
+      },
+      {
+        "source_name": "TfL detailed station data � station facilities and toilets",
+        "rows": 14,
+        "distinct_facilities": 14
+      }
+    ],
+    "interpretation": "The production provenance surface proves the current primary source label but does not preserve the upstream component lineage of Toilet Map UK. OSM, council and Changing Places overlap with the 15,620 baseline is therefore not exactly measurable from current provenance alone.",
+    "evidence_limit": "Do not assume the current Toilet Map UK set is independent of OSM, council or community data. Treat those overlaps as uncertain and use conservative ranges."
+  },
+  "sealed_n4a": {
+    "path": "supabase/migrations/20260822170000_naptan_transport_source_graph.sql",
+    "sha256": "087A389B8CEAC021B12708BC55C39022CB38D5459510EFFB6CF057CEF232C44E",
+    "unchanged": true
+  },
+  "sources": [
+    {
+      "rank": 1,
+      "source_id": "local_authority_ogl_public_toilets",
+      "classification": "HIGH_VALUE_SOURCE",
+      "publisher_group": "UK local authorities",
+      "representative_sources": [
+        "https://www.data.gov.uk/dataset/1e172d53-a4d2-4da3-8fe7-206537f0611d/public-toilets-sheffield",
+        "https://www.data.gov.uk/dataset/1a2906ba-ecb1-4a2b-b89c-3a4b34812c4c/changing-places-toilets-in-leeds",
+        "https://www.data.gov.uk/dataset/31f3a068-9505-4da2-88b3-8bfb3d53171d/public-toilets14",
+        "https://schemas.opendata.esd.org.uk/publictoilets"
+      ],
+      "direct_toilet_evidence": true,
+      "scale": {
+        "verified_representative_records": 41,
+        "verified_representative_geolocated": 41,
+        "programme_indicator": "The national public-toilets schema page relates to 579 public-toilet services; this is a service/catalogue indicator, not a national record count.",
+        "national_record_total": "NOT_VERIFIED"
+      },
+      "overlap_audit": {
+        "method": "Existing committed Sheffield read-only package: coordinate comparison against the 15,620 canonical facilities using an approximate 100 m latitude/longitude window; source identity matching remained exact-only.",
+        "sheffield_likely_existing_within_approx_100m": 18,
+        "sheffield_without_nearby_existing_facility": 23,
+        "sheffield_exact_source_links": 0,
+        "sheffield_name_quality": "41 of 41 records had missing names and were not ingestion-ready.",
+        "national_overlap": "NOT_EXACTLY_MEASURABLE"
+      },
+      "CONSERVATIVE_NET_NEW": {
+        "min": 100,
+        "max": 600,
+        "basis": "Conditional programme estimate after selecting current, name-bearing, coordinate-bearing OGL datasets across multiple councils; the audited Sheffield sample alone has zero ready-to-ingest records because every name is missing."
+      },
+      "UPPER_BOUND_NET_NEW": {
+        "min": 100,
+        "max": 1500,
+        "basis": "Requires several councils, current records and successful deduplication; not a measured national count."
+      },
+      "value_band": "MODERATE_YIELD",
+      "access": "Several machine-readable council datasets are publicly discoverable; each resource still needs current field, CRS, freshness and row-identity checks.",
+      "licensing": {
+        "licence": "Open Government Licence v3.0 where explicitly stated by the publisher/resource",
+        "attribution": "Contains public sector information licensed under the Open Government Licence.",
+        "share_alike": "No general OGL share-alike requirement identified",
+        "commercial_use": "Permitted under OGL subject to its terms",
+        "api_or_reuse_terms": "Dataset/resource-specific; GLA catalogue page currently reports Licence not set even though the portal states OGL by default.",
+        "uncertainty": "LEGAL_REVIEW_REQUIRED for each resource whose licence is not explicit at resource level"
+      },
+      "engineering_effort": "MEDIUM",
+      "time_to_toilets": "FASTEST credible path once name-bearing OGL resources are selected: source adapters, normalization and conservative overlap review.",
+      "recommendation": "Start with a small batch of explicit-OGL, coordinate-bearing, name-bearing council resources. Do not use the Sheffield sample as an automatic source because its 41 names are absent."
+    },
+    {
+      "rank": 2,
+      "source_id": "openstreetmap_amenity_toilets",
+      "classification": "HIGH_VALUE_SOURCE",
+      "publisher_group": "OpenStreetMap contributors / OSMF",
+      "representative_sources": [
+        "https://wiki.openstreetmap.org/wiki/Tag%3Aamenity%3Dtoilets",
+        "https://osmfoundation.org/wiki/Licence/Licence_and_Legal_FAQ",
+        "https://osmfoundation.org/wiki/Licence/Community_Guidelines/Produced_Work_-_Guideline",
+        "https://www.spendapenny.uk/toilet-deserts"
+      ],
+      "direct_toilet_evidence": true,
+      "scale": {
+        "direct_osm_count": "NOT_EXTRACTED_IN_THIS_AUDIT",
+        "public_scale_indicator": "A third-party composite reports 19,514 publicly accessible facilities as of 2026-07-05; it combines Great British Public Toilet Map, OSM and community reports and is not an authoritative OSM count.",
+        "metadata_quality": "Potentially rich (access, fee, opening_hours, wheelchair, operator), but completeness and freshness vary by mapper and feature."
+      },
+      "overlap_audit": {
+        "method": "No bulk OSM extract was committed or loaded. Overlap is bounded from the current Toilet Map UK-only provenance label and the third-party composite scale indicator; exact source-record overlap is not claimed.",
+        "likely_existing": "UNKNOWN_HIGH_PRIOR_OVERLAP",
+        "likely_net_new": "NOT_EXACTLY_MEASURABLE",
+        "ambiguity": "High without a content-addressed extract and stable OSM identifiers; OSM records may already be represented in Toilet Map UK."
+      },
+      "CONSERVATIVE_NET_NEW": {
+        "min": 300,
+        "max": 800,
+        "basis": "Cautious range after allowing for substantial overlap with the existing 15,620 and excluding unverified/incomplete features."
+      },
+      "UPPER_BOUND_NET_NEW": {
+        "min": 800,
+        "max": 2500,
+        "basis": "Scenario range only; requires a current extract, quality filters and a measured overlap join."
+      },
+      "value_band": "HIGH_YIELD",
+      "access": "Public OSM data/query routes exist, but a bulk extraction was not treated as completed evidence in this audit.",
+      "licensing": {
+        "licence": "Open Database Licence 1.0 (ODbL)",
+        "attribution": "OpenStreetMap attribution and ODbL notice are required as applicable",
+        "share_alike": "OSM/Derivative Database share-alike obligations may apply; Produced Work and Collective/Derivative Database classification must be reviewed.",
+        "commercial_use": "Permitted under ODbL, subject to attribution/share-alike obligations",
+        "api_or_reuse_terms": "Use must comply with the selected extract/API provider terms and ODbL; no assumption of unlimited bulk querying",
+        "uncertainty": "LEGAL_REVIEW_REQUIRED"
+      },
+      "engineering_effort": "HIGH",
+      "time_to_toilets": "Potentially quick to extract, but slower to production because the Relief database/source-separation and attribution architecture must be approved first.",
+      "recommendation": "Keep as the largest potential yield, but do not ingest until legal review decides whether the retained records form a Derivative Database, a Collective Database component, or a Produced Work workflow."
+    },
+    {
+      "rank": 3,
+      "source_id": "changing_places_official_register",
+      "classification": "BLOCKED_BY_LICENSING",
+      "publisher_group": "Changing Places Toilets / PAMIS campaign",
+      "representative_sources": [
+        "https://www.changing-places.org/find?toilet=695",
+        "https://www.changing-places.org/terms-and-conditions",
+        "https://www.data.gov.uk/dataset/1a2906ba-ecb1-4a2b-b89c-3a4b34812c4c/changing-places-toilets-in-leeds"
+      ],
+      "direct_toilet_evidence": true,
+      "scale": {
+        "active_registered_count": 2675,
+        "count_note": "Official map count observed 2026-08-23; it is a live display and may change.",
+        "representative_open_data_count": "Leeds is a small historical OGL example; it is not a national feed."
+      },
+      "overlap_audit": {
+        "method": "No bulk official register export with stable reusable identifiers was available in this audit; overlap with the existing Toilet Map UK set cannot be joined exactly.",
+        "likely_existing": "UNKNOWN_LIKELY_SUBSTANTIAL",
+        "likely_net_new": "NOT_EXACTLY_MEASURABLE",
+        "accessibility_value": "Very high: the source is specifically about direct Changing Places facilities, not inferred transport/venue identity."
+      },
+      "CONSERVATIVE_NET_NEW": {
+        "min": 150,
+        "max": 500,
+        "basis": "Cautious post-overlap range for active registered facilities not already in the baseline; it is conditional on a permissioned bulk extract and stable row identity."
+      },
+      "UPPER_BOUND_NET_NEW": {
+        "min": 500,
+        "max": 1000,
+        "basis": "Scenario range only; no exact overlap join was available."
+      },
+      "value_band": "MODERATE_YIELD",
+      "access": "Public map is readable; no public bulk API/export and reuse terms sufficient for ingestion were established.",
+      "licensing": {
+        "licence": "Not established for bulk reuse from the public map/terms pages",
+        "attribution": "Publisher/campaign attribution would be required; exact bulk attribution wording not established",
+        "share_alike": "Unknown",
+        "commercial_use": "Unknown",
+        "api_or_reuse_terms": "Permission/API/export terms required",
+        "uncertainty": "LEGAL_REVIEW_REQUIRED"
+      },
+      "engineering_effort": "MEDIUM",
+      "time_to_toilets": "Fast after written permission and stable export; blocked before that.",
+      "recommendation": "Request written bulk-reuse permission and a stable export/API with record identifiers. Treat as a high-value accessibility complement, not a source that may be scraped."
+    },
+    {
+      "rank": 4,
+      "source_id": "tfl_detailed_station_toilets",
+      "classification": "LOW_VALUE_SOURCE",
+      "publisher_group": "Transport for London",
+      "representative_sources": [
+        "https://api.tfl.gov.uk/stationdata/tfl-stationdata-detailed.zip",
+        "https://tfl.gov.uk/corporate/terms-and-conditions/transport-data-service"
+      ],
+      "direct_toilet_evidence": true,
+      "scale": {
+        "stations": 509,
+        "toilet_rows": 410,
+        "rows_with_usable_station_coordinates": 410,
+        "multiple_toilet_station_count": 147
+      },
+      "overlap_audit": {
+        "method": "Existing committed TfL feed package compared each stable (StationUniqueId, Id) row with the read-only 15,620-facility snapshot using identity/name/address/station-level geometry and provenance; station-level coordinates were supporting evidence only.",
+        "high_confidence_existing": 305,
+        "review_match": 33,
+        "quarantine": 14,
+        "distinct_new_candidates": 58,
+        "exact_tfl_source_id_matches": 0,
+        "production_operations_executed": 0
+      },
+      "CONSERVATIVE_NET_NEW": {
+        "min": 0,
+        "max": 20,
+        "basis": "No new canonical toilet is safe without resolving the station-level precision and multi-toilet facility-model boundary."
+      },
+      "UPPER_BOUND_NET_NEW": {
+        "min": 20,
+        "max": 58,
+        "basis": "The prior package identified 58 distinct-new candidates, but these remain proposals requiring separate model review and authorization."
+      },
+      "value_band": "LOW_YIELD",
+      "access": "Official detailed ZIP was retrievable in the committed preparation package without an API key.",
+      "licensing": {
+        "licence": "TfL Transport Data Service terms based on OGL 2.0 with TfL amendments",
+        "attribution": "Powered by TfL Open Data; retain OS/Geomni attribution where applicable",
+        "share_alike": "No general OGL share-alike requirement identified",
+        "commercial_use": "Permitted subject to the TfL terms",
+        "api_or_reuse_terms": "Registration, attribution, non-endorsement and request-rate requirements; terms may change",
+        "uncertainty": "LOW, subject to current terms"
+      },
+      "engineering_effort": "MEDIUM",
+      "time_to_toilets": "Fastest direct feed already prepared, but yield is bounded and physical-unit/model review is the dominant risk.",
+      "recommendation": "Use only as a small separately governed physical-unit/source audit. It is not the primary net-new expansion path."
+    },
+    {
+      "rank": 5,
+      "source_id": "national_rail_station_facilities",
+      "classification": "BLOCKED_BY_ACCESS",
+      "publisher_group": "National Rail / RDG",
+      "representative_sources": [
+        "https://www.nationalrail.co.uk/developers/",
+        "https://assets.nationalrail.co.uk/e8xgegruud3g/oYB6snjp0EEEgtgH2d8i3/9fac3cba35e848b2c857307ddf6efaf7/Stations-40_XML_Feed_v2_Open.pdf"
+      ],
+      "direct_toilet_evidence": true,
+      "scale": {
+        "station_record_count": "NOT_RETRIEVED",
+        "schema_evidence": "The Stations V4 XML schema contains a Toilets Available field and location note, including NationalKeyToilets fields.",
+        "opportunity": "Station facility facts could complement the baseline, but current accessible row count is not proven."
+      },
+      "overlap_audit": {
+        "method": "No registered current feed was available; no overlap or net-new records are claimed.",
+        "likely_existing": "UNKNOWN",
+        "likely_net_new": "NOT_MEASURED"
+      },
+      "CONSERVATIVE_NET_NEW": {
+        "min": 0,
+        "max": 0,
+        "basis": "No production-ready feed or reuse terms were available."
+      },
+      "UPPER_BOUND_NET_NEW": {
+        "min": 0,
+        "max": 150,
+        "basis": "Planning scenario only after registered access, license review and overlap measurement."
+      },
+      "value_band": "ZERO_OR_NEGLIGIBLE_YIELD",
+      "access": "Registered portal/self-sign-up required; no current permissioned feed was available in this audit.",
+      "licensing": {
+        "licence": "NRE/RDG feed terms not obtained",
+        "attribution": "To be confirmed through registered feed terms",
+        "share_alike": "Unknown",
+        "commercial_use": "Unknown",
+        "api_or_reuse_terms": "Registered portal terms and rate limits required",
+        "uncertainty": "LEGAL_REVIEW_REQUIRED"
+      },
+      "engineering_effort": "MEDIUM",
+      "time_to_toilets": "Blocked until account/access and terms are obtained.",
+      "recommendation": "Keep as a later permissioned enrichment source; do not scrape or estimate yield as current coverage."
+    },
+    {
+      "rank": 6,
+      "source_id": "toilet_map_uk_current_baseline",
+      "classification": "LOW_VALUE_SOURCE",
+      "publisher_group": "Toilet Map UK",
+      "representative_sources": [
+        "https://www.toiletmap.org.uk/dataset",
+        "https://github.com/public-convenience-ltd/toiletmap"
+      ],
+      "direct_toilet_evidence": true,
+      "scale": {
+        "production_rows": 15620,
+        "dataset_update_observed": "19/08/2026",
+        "source_role": "Current baseline provenance, not a net-new source"
+      },
+      "overlap_audit": {
+        "method": "Exact production source-name aggregate.",
+        "likely_existing": 15620,
+        "likely_net_new": 0,
+        "ambiguity": "A refreshed export could differ, but no additional count is claimed without a content-addressed export and exact join."
+      },
+      "CONSERVATIVE_NET_NEW": {
+        "min": 0,
+        "max": 0,
+        "basis": "Already supplies the entire current canonical facility source label."
+      },
+      "UPPER_BOUND_NET_NEW": {
+        "min": 0,
+        "max": 100,
+        "basis": "Only a possible refresh delta; not a credible expansion estimate."
+      },
+      "value_band": "ZERO_OR_NEGLIGIBLE_YIELD",
+      "access": "Public dataset download is available.",
+      "licensing": {
+        "licence": "Creative Commons Attribution 4.0 International",
+        "attribution": "Contains data from the Toilet Map © 2025 –CC BY 4.0 (Creative Commons Attribution 4.0 International)",
+        "share_alike": "No CC BY share-alike requirement",
+        "commercial_use": "The dataset page permits selling/adapting subject to attribution",
+        "api_or_reuse_terms": "Dataset page terms apply; retain change notice",
+        "uncertainty": "LOW"
+      },
+      "engineering_effort": "LOW",
+      "time_to_toilets": "Fast to refresh but does not answer the net-new question.",
+      "recommendation": "Do not count a refresh as source expansion. Use only for future baseline maintenance."
+    },
+    {
+      "rank": 7,
+      "source_id": "wales_scotland_northern_ireland_public_toilets",
+      "classification": "BLOCKED_BY_LICENSING",
+      "publisher_group": "Devolved/national public-sector portals",
+      "representative_sources": [
+        "https://datamap.gov.wales/layers/geonode%3Anational_toilet_map/metadata_detail",
+        "https://data.gov.scot/",
+        "https://www.opendatani.gov.uk/"
+      ],
+      "direct_toilet_evidence": "POTENTIAL_DIRECT_EVIDENCE_BUT_NOT_VERIFIED_AS_REUSABLE",
+      "scale": {
+        "record_count": "NOT_VERIFIED"
+      },
+      "overlap_audit": {
+        "method": "Catalogue/metadata discovery only; no current reusable facility feed loaded.",
+        "likely_existing": "UNKNOWN",
+        "likely_net_new": "NOT_MEASURED"
+      },
+      "CONSERVATIVE_NET_NEW": {
+        "min": 0,
+        "max": 0,
+        "basis": "No verified reusable feed in this audit."
+      },
+      "UPPER_BOUND_NET_NEW": {
+        "min": 0,
+        "max": 1000,
+        "basis": "Not a measured count; requires source-specific access, licensing and overlap work."
+      },
+      "value_band": "ZERO_OR_NEGLIGIBLE_YIELD",
+      "access": "Portal-level discovery did not prove a current reusable coordinate-bearing facility feed.",
+      "licensing": {
+        "licence": "Publisher/layer-specific; Wales metadata names PSGA, Scotland/NI source not selected",
+        "attribution": "To be confirmed",
+        "share_alike": "Unknown",
+        "commercial_use": "Unknown",
+        "api_or_reuse_terms": "Permission and layer terms required",
+        "uncertainty": "LEGAL_REVIEW_REQUIRED"
+      },
+      "engineering_effort": "HIGH",
+      "time_to_toilets": "Longer than OGL council sources because access and licensing are unresolved.",
+      "recommendation": "Do not select until a named current facility feed and explicit reuse permission are established."
+    }
+  ],
+  "combined_opportunity": {
+    "preferred_components": [
+      "local_authority_ogl_public_toilets",
+      "openstreetmap_amenity_toilets",
+      "changing_places_official_register"
+    ],
+    "deduplication_warning": "Do not add source ranges arithmetically. The current Toilet Map UK provenance may already incorporate council, OSM and community data, and Changing Places is likely to overlap with it.",
+    "CONSERVATIVE_NET_NEW": {
+      "min": 400,
+      "max": 900,
+      "basis": "Conditional deduplicated programme estimate after at least one name-bearing OGL batch plus permissioned/legally cleared complementary sources."
+    },
+    "UPPER_BOUND_NET_NEW": {
+      "min": 1000,
+      "max": 3000,
+      "basis": "Scenario range only; requires measured extracts, legal gates and successful overlap resolution."
+    },
+    "expected_baseline_after_bounded_combined_batch": {
+      "min": 16020,
+      "max": 16520
+    }
+  },
+  "growth_targets": [
+    {
+      "target_baseline": 16000,
+      "additional_toilets_required": 380,
+      "best_path": "A cluster of current explicit-OGL council feeds, supplemented by the separately reviewed TfL distinct-new candidates.",
+      "plausible": "YES",
+      "qualification": "The Sheffield sample alone cannot deliver this because all 41 names are missing; a name-bearing council selection is required."
+    },
+    {
+      "target_baseline": 17000,
+      "additional_toilets_required": 1380,
+      "best_path": "National OGL council programme plus legally cleared OSM and/or permissioned Changing Places data.",
+      "plausible": "YES",
+      "qualification": "Programme-scale only; not credible as the immediate next single batch and dependent on unresolved legal/access gates."
+    },
+    {
+      "target_baseline": 20000,
+      "additional_toilets_required": 4380,
+      "best_path": "A larger national multi-source programme including OGL councils, OSM, Changing Places and permissioned transport feeds.",
+      "plausible": "NO",
+      "qualification": "Not credible for the next bounded batch; would require a separate national source programme and measured overlap."
+    }
+  ],
+  "top_three_opportunities": [
+    {
+      "source_id": "local_authority_ogl_public_toilets",
+      "CONSERVATIVE_NET_NEW": "100-600 conditional; 0 ready in audited Sheffield sample",
+      "legal_access": "Best current path when the individual resource explicitly states OGL and has usable fields",
+      "engineering_effort": "MEDIUM",
+      "likely_time_to_production": "2-6 weeks for a bounded multi-council source batch after source selection",
+      "major_risk": "Fragmented schemas, missing names/CRS/status and high overlap"
+    },
+    {
+      "source_id": "openstreetmap_amenity_toilets",
+      "CONSERVATIVE_NET_NEW": "300-800 estimate",
+      "legal_access": "Publicly accessible but ODbL architecture/legal review required",
+      "engineering_effort": "HIGH",
+      "likely_time_to_production": "4-8 weeks after legal/architecture decision",
+      "major_risk": "Derivative/collective database classification and high unknown overlap"
+    },
+    {
+      "source_id": "changing_places_official_register",
+      "CONSERVATIVE_NET_NEW": "150-500 estimate",
+      "legal_access": "Direct official evidence but bulk reuse permission/API not established",
+      "engineering_effort": "MEDIUM",
+      "likely_time_to_production": "2-6 weeks after written permission/export",
+      "major_risk": "No stable bulk reuse contract and likely substantial overlap"
+    }
+  ],
+  "recommended_next_source": {
+    "classification": "PROCEED_WITH_SOURCE_LOCAL_AUTHORITY_OGL",
+    "why": "It is the only source family with a credible combination of direct toilet evidence, clear licensing on selected resources, public machine-readable examples and a low/medium-effort path. The first batch must choose name-bearing current OGL resources; the audited Sheffield resource is a quality warning, not an ingestible win.",
+    "smallest_next_implementation_batch": "Select two to five current coordinate-bearing council resources with explicit OGL, stable row identifiers and names; download content-addressed snapshots; normalize without production writes; measure exact overlap; stop if names/CRS/licence/status are insufficient.",
+    "not_authorized_here": true
+  },
+  "validation": {
+    "production_reads": "Completed through read-only Supabase project metadata, migration, extension and aggregate SQL checks.",
+    "source_hashes": "Existing Sheffield and TfL preparation hashes were reused; no new raw national source was downloaded.",
+    "overlap_method": "Deterministic existing-source aggregate plus committed Sheffield/TfL evidence; no random sampling.",
+    "json_parse": "PASS",
+    "deterministic_repeatability": "PASS for reused committed preparation evidence and fixed estimates",
+    "git_diff_check": "PASS before audit changes",
+    "secret_scan": "PASS; no credentials, tokens, passwords or connection strings included",
+    "mobile_builds": "NOT RUN by scope"
+  },
+  "production_safety": {
+    "TOTAL_PRODUCTION_MUTATIONS": 0,
+    "TOTAL_CANONICAL_FACILITY_MUTATIONS": 0,
+    "TOTAL_SOURCE_GRAPH_MUTATIONS": 0,
+    "TOTAL_AUTH_MUTATIONS": 0,
+    "TOTAL_SCHEMA_MUTATIONS": 0,
+    "migration_ledger_mutations": 0,
+    "raw_large_datasets_committed": false,
+    "canonical_reconciliation_started": false,
+    "ingestion_started": false
+  },
+  "final_classification": "PROCEED_WITH_SOURCE_LOCAL_AUTHORITY_OGL"
+}
