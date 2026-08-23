@@ -247,7 +247,10 @@ The raw XML was not committed. The sealed N4A migration, protected files, and pr
 
 ## GIT
 
-The evidence commit is intentionally finalized only after the final hash, protected-file, staged-diff, and remote-branch checks. No merge, rebase, reset, amend, cherry-pick, or force-push is permitted.
+- Commit A: `efc1179` — `feat(data): ingest governed national NaPTAN graph`.
+- Commit B: the final evidence/report finalization commit containing this update.
+- Commit A was pushed normally; no merge, rebase, reset, amend, cherry-pick, or force-push was used.
+- The final local and remote branch SHAs are verified after Commit B.
 
 ## REQUIRED CLASSIFICATIONS
 
