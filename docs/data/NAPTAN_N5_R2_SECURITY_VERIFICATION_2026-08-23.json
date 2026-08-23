@@ -1,0 +1,25 @@
+{
+  "tables": [
+    "transport_source_snapshots",
+    "transport_source_places",
+    "transport_source_nodes",
+    "transport_source_memberships",
+    "transport_source_place_parents"
+  ],
+  "rls_enabled": true,
+  "rls_force_enabled": false,
+  "policies": 0,
+  "direct_public_privileges": 0,
+  "direct_anon_privileges": 0,
+  "direct_authenticated_privileges": 0,
+  "service_role_grants_present": true,
+  "post_load_schema_mutations": 0,
+  "catalog_audit": {
+    "indexes": 27,
+    "triggers": 5,
+    "constraints": 61,
+    "postgis": "3.3.7",
+    "pgcrypto": "1.3"
+  },
+  "security_advisor_note": "Existing project-wide advisor findings (including intentional RLS-without-policy on private tables, public spatial_ref_sys, public PostGIS extension, and unrelated function warnings) were observed and not remediated in N5-R2. No N5-R2 policy, view, RPC, grant, or RLS change was made."
+}

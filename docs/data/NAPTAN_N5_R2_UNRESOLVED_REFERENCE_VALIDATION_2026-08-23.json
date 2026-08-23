@@ -1,0 +1,16 @@
+{
+  "membership": {
+    "unresolved_logical_edges": 2804,
+    "distinct_missing_stop_area_identities": 1543,
+    "resolution_status": "UNRESOLVED_MISSING_PLACE"
+  },
+  "parent_edges": {
+    "stored_edges": 3519,
+    "unresolved_edges": 92,
+    "distinct_missing_parent_identities": 41,
+    "duplicate_parent_edges": 0,
+    "resolution_status": "UNRESOLVED_MISSING_PARENT"
+  },
+  "placeholder_stop_areas_created": 0,
+  "cross_snapshot_resolved_relationships": 0
+}

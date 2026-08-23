@@ -1,0 +1,20 @@
+{
+  "raw_publisher_membership_elements_represented": 169530,
+  "unique_membership_keys": 169527,
+  "stored_membership_rows": 169527,
+  "duplicate_extra_occurrences": 3,
+  "duplicate_rows_with_total_occurrence_count_2": 3,
+  "ordinary_rows_with_occurrence_count_1": 169524,
+  "duplicate_keys": [
+    "naptan-stop-point:64801285|naptan-stop-area:648G1285",
+    "naptan-stop-point:64804134|naptan-stop-area:648G221434",
+    "naptan-stop-point:64804135|naptan-stop-area:648G221434"
+  ],
+  "duplicate_key_occurrence_counts": {
+    "naptan-stop-point:64801285|naptan-stop-area:648G1285": 2,
+    "naptan-stop-point:64804134|naptan-stop-area:648G221434": 2,
+    "naptan-stop-point:64804135|naptan-stop-area:648G221434": 2
+  },
+  "no_valid_unique_membership_discarded": true,
+  "validation_method": "production SQL aggregate plus exact-row readback comparison"
+}

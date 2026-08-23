@@ -1,0 +1,124 @@
+{
+  "apply_required": true,
+  "attribution": "Contains public sector information licensed under the Open Government Licence v3.0.",
+  "classification": "CORRECTED_N5_R1_CONTRACT_REPRODUCED",
+  "complex_type_distribution": {
+    "MULTIMODAL_PARENT_COMPLEX": 1435,
+    "PARENT_AREA_COMPLEX": 559,
+    "SINGLE_AREA_COMPLEX": 91757
+  },
+  "contract_version": "N5-R1-2026-08-23",
+  "duplicate_membership_counts": {
+    "naptan-stop-point:64801285|naptan-stop-area:648G1285": 2,
+    "naptan-stop-point:64804134|naptan-stop-area:648G221434": 2,
+    "naptan-stop-point:64804135|naptan-stop-area:648G221434": 2
+  },
+  "duplicate_membership_keys": [
+    "naptan-stop-point:64801285|naptan-stop-area:648G1285",
+    "naptan-stop-point:64804134|naptan-stop-area:648G221434",
+    "naptan-stop-point:64804135|naptan-stop-area:648G221434"
+  ],
+  "expected_counts": {
+    "memberships": 169527,
+    "nodes": 436428,
+    "parent_edges": 3519,
+    "places": 97270,
+    "snapshots": 1,
+    "total_stored_source_graph_rows": 706745
+  },
+  "licence": "Open Government Licence v3.0",
+  "mode_distribution": {
+    "air": 65,
+    "bus_coach": 75920,
+    "ferry_port": 470,
+    "metro_tram_underground": 641,
+    "multimodal": 1541,
+    "no_mode": 13591,
+    "rail": 1519,
+    "taxi": 4
+  },
+  "mutation_table_allowlist": [
+    "transport_source_snapshots",
+    "transport_source_places",
+    "transport_source_nodes",
+    "transport_source_memberships",
+    "transport_source_place_parents"
+  ],
+  "n3_projection": {
+    "cross_complex_or_unresolved_multi_parent_nodes": 628,
+    "hierarchy_cycles": 0,
+    "maximum_hierarchy_depth": 13,
+    "multi_parent_nodes": 701,
+    "multimodal_parent_complexes": 1435,
+    "normalized_complexes": 93751,
+    "parent_area_complexes": 559,
+    "shared_root_multi_parent_nodes": 73,
+    "single_area_complexes": 91757,
+    "unresolved_area_nodes": 93
+  },
+  "parser_version": "relief.naptan.n5-r2.v1",
+  "production_mutations_in_plan": 0,
+  "prohibited_tables": [
+    "facilities",
+    "facility_source_observations",
+    "facility_sources",
+    "import_runs",
+    "toilet_map_import_staging",
+    "toilet_unit_sources",
+    "toilet_units"
+  ],
+  "proposed_new_rows": {
+    "memberships": 169527,
+    "nodes": 436428,
+    "parent_edges": 3519,
+    "places": 97270,
+    "snapshots": 1
+  },
+  "retrieved_at": "2026-08-22T14:48:39.4826193Z",
+  "source": {
+    "byte_size": 578991782,
+    "exact": true,
+    "expected_byte_size": 578991782,
+    "expected_sha256": "6FC7E40E2AF3B30E9FD117BDAC313B58F3385BFF26517FD78D5554DA12B4183A",
+    "sha256": "6FC7E40E2AF3B30E9FD117BDAC313B58F3385BFF26517FD78D5554DA12B4183A"
+  },
+  "source_snapshot_key": "naptan:sha256:6fc7e40e2af3b30e9fd117bdac313b58f3385bff26517fd78d5554da12b4183a",
+  "source_url": "https://naptan.api.dft.gov.uk/v1/access-nodes?dataFormat=xml",
+  "superseded_membership_expectation_not_used": true,
+  "target_counts_before_write": {
+    "transport_source_memberships": 0,
+    "transport_source_nodes": 0,
+    "transport_source_place_parents": 0,
+    "transport_source_places": 0,
+    "transport_source_snapshots": 0
+  },
+  "values": {
+    "cross_complex_or_unresolved_multi_parent_nodes": 628,
+    "distinct_missing_area_parent_identity_count": 41,
+    "distinct_missing_member_parent_identity_count": 1543,
+    "duplicate_membership_extra_occurrence_count": 3,
+    "hierarchy_cycles": 0,
+    "maximum_hierarchy_depth": 13,
+    "multi_parent_nodes": 701,
+    "multimodal_parent_complexes": 1435,
+    "normalized_complexes": 93751,
+    "parent_area_complexes": 559,
+    "publisher_membership_element_count": 169530,
+    "publisher_parent_element_count": 3519,
+    "shared_root_multi_parent_nodes": 73,
+    "single_area_complexes": 91757,
+    "source_snapshot_rows": 1,
+    "stop_area_rows": 97270,
+    "stop_point_rows": 436428,
+    "stored_membership_row_count": 169527,
+    "stored_parent_row_count": 3519,
+    "three_parent_nodes": 34,
+    "total_stored_source_graph_rows": 706745,
+    "two_parent_nodes": 667,
+    "unique_membership_key_count": 169527,
+    "unique_parent_edge_count": 3519,
+    "unresolved_area_nodes": 93,
+    "unresolved_membership_edge_count": 2804,
+    "unresolved_parent_edge_count": 92
+  }
+}

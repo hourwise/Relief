@@ -1,0 +1,9 @@
+{
+  "source_graph_ingestion": "PASSED",
+  "read_only_projection_validation": "PASSED",
+  "second_pass": "SECOND_PASS_ZERO_MUTATIONS",
+  "canonical_relief_data_changed": false,
+  "n6_execution": false,
+  "classification": "N6_READ_ONLY_RECONCILIATION_PLANNING_READY_FOR_SEPARATE_AUTHORIZATION",
+  "next_stage_authorization": "N6 remains separately unauthorized; no reconciliation planning or canonical mutation was executed in N5-R2."
+}

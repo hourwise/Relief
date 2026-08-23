@@ -1,0 +1,30 @@
+{
+  "classification": "NATIONAL_SOURCE_GRAPH_INGESTED",
+  "project": "Relief",
+  "project_ref": "bgwxrxkmyaihplaloely",
+  "base_url": "https://bgwxrxkmyaihplaloely.supabase.co",
+  "source_sha256": "6FC7E40E2AF3B30E9FD117BDAC313B58F3385BFF26517FD78D5554DA12B4183A",
+  "sealed_n4a_sha256": "087A389B8CEAC021B12708BC55C39022CB38D5459510EFFB6CF057CEF232C44E",
+  "snapshot_id": "dd7b1ff9-b849-4291-a80e-9dc2b2241b9a",
+  "ingestion_state": "INGESTED",
+  "batch_size": 2000,
+  "chunk_count": 355,
+  "retry_count": 0,
+  "execution_elapsed_seconds": 795.819,
+  "committed_inserts": {
+    "transport_source_snapshots": 1,
+    "transport_source_places": 97270,
+    "transport_source_nodes": 436428,
+    "transport_source_memberships": 169527,
+    "transport_source_place_parents": 3519,
+    "total_source_graph_inserts": 706745
+  },
+  "allowlisted_tables_only": true,
+  "non_source_production_mutations": 0,
+  "schema_mutations": 0,
+  "migration_ledger_mutations": 0,
+  "second_pass": "SECOND_PASS_ZERO_MUTATIONS",
+  "superseded_169524_expectation_used": false,
+  "raw_xml_persisted": false,
+  "secrets_persisted": false
+}

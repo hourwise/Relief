@@ -1,0 +1,12 @@
+{
+  "maximum_hierarchy_depth": 13,
+  "hierarchy_cycles": 0,
+  "multi_parent_nodes": 701,
+  "two_parent_nodes": 667,
+  "three_parent_nodes": 34,
+  "shared_root_multi_parent_nodes": 73,
+  "cross_complex_or_unresolved_multi_parent_nodes": 628,
+  "production_sql_depth": 13,
+  "production_sql_cycle_paths": 0,
+  "validation_method": "committed N3/N5-R1 projection plus production recursive read-only check"
+}

@@ -1,0 +1,23 @@
+{
+  "before_after": {
+    "facilities": {"before": 15620, "after": 15620, "delta": 0},
+    "facility_sources": {"before": 15634, "after": 15634, "delta": 0},
+    "facility_source_observations": {"before": 14, "after": 14, "delta": 0},
+    "import_runs": {"before": 5, "after": 5, "delta": 0},
+    "toilet_map_import_staging": {"before": 0, "after": 0, "delta": 0},
+    "toilet_units": {"before": 0, "after": 0, "delta": 0},
+    "toilet_unit_sources": {"before": 0, "after": 0, "delta": 0}
+  },
+  "canonical_facility_inserts": 0,
+  "canonical_facility_updates": 0,
+  "facility_source_inserts": 0,
+  "facility_source_observation_mutations": 0,
+  "import_run_mutations": 0,
+  "toilet_unit_mutations": 0,
+  "toilet_unit_source_mutations": 0,
+  "tfl_observation_mutations": 0,
+  "auth_mutations": 0,
+  "schema_mutations": 0,
+  "migration_ledger_mutations": 0,
+  "naptan_ingestion_rows_created_outside_source_graph": 0
+}

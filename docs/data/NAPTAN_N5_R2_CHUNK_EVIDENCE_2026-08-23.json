@@ -1,0 +1,14 @@
+{
+  "batch_size": 2000,
+  "total_chunks": 355,
+  "retry_count": 0,
+  "status": "SUCCEEDED",
+  "tables": [
+    {"table": "transport_source_places", "chunks": 49, "planned_rows": 97270, "attempted_rows": 97270, "inserted_rows": 97270, "elapsed_seconds": 36.949, "slowest_chunk_seconds": 1.579, "retries": 0},
+    {"table": "transport_source_nodes", "chunks": 219, "planned_rows": 436428, "attempted_rows": 436428, "inserted_rows": 436428, "elapsed_seconds": 181.225, "slowest_chunk_seconds": 6.976, "retries": 0},
+    {"table": "transport_source_memberships", "chunks": 85, "planned_rows": 169527, "attempted_rows": 169527, "inserted_rows": 169527, "elapsed_seconds": 94.734, "slowest_chunk_seconds": 4.852, "retries": 0},
+    {"table": "transport_source_place_parents", "chunks": 2, "planned_rows": 3519, "attempted_rows": 3519, "inserted_rows": 3519, "elapsed_seconds": 1.783, "slowest_chunk_seconds": 0.987, "retries": 0}
+  ],
+  "snapshot_insert": {"table": "transport_source_snapshots", "chunks": 0, "inserted_rows": 1, "status": "COMMITTED"},
+  "failure_recovery_required": false
+}

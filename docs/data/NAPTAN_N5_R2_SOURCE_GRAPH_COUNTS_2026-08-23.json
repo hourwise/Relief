@@ -1,0 +1,19 @@
+{
+  "source_graph_counts": {
+    "transport_source_snapshots": 1,
+    "transport_source_places": 97270,
+    "transport_source_nodes": 436428,
+    "transport_source_memberships": 169527,
+    "transport_source_place_parents": 3519,
+    "total_stored_source_graph_rows": 706745
+  },
+  "expected": {
+    "transport_source_snapshots": 1,
+    "transport_source_places": 97270,
+    "transport_source_nodes": 436428,
+    "transport_source_memberships": 169527,
+    "transport_source_place_parents": 3519,
+    "total_stored_source_graph_rows": 706745
+  },
+  "count_mismatch": false
+}

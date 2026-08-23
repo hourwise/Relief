@@ -1,0 +1,21 @@
+{
+  "classification": "DETERMINISTIC_PROJECTION",
+  "persisted_as_source_rows": false,
+  "normalized_complexes": 93751,
+  "single_area_complexes": 91757,
+  "parent_area_complexes": 559,
+  "multimodal_parent_complexes": 1435,
+  "unresolved_area_nodes": 93,
+  "mode_distribution": {
+    "bus_coach": 75920,
+    "multimodal": 1541,
+    "no_mode": 13591,
+    "metro_tram_underground": 641,
+    "rail": 1519,
+    "ferry_port": 470,
+    "air": 65,
+    "taxi": 4
+  },
+  "production_equivalence": "The exact-row production comparison matched every explicit source fact and relationship key used by the committed N3 projection.",
+  "canonical_mutations": 0
+}

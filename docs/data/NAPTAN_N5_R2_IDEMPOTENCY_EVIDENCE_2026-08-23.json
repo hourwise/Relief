@@ -1,0 +1,29 @@
+{
+  "canonical_changes": 0,
+  "checks": {
+    "membership_differences": [],
+    "node_differences": [],
+    "parent_differences": [],
+    "place_differences": [],
+    "snapshot_metadata_differences": {}
+  },
+  "classification": "SECOND_PASS_ZERO_MUTATIONS",
+  "conflicts": 0,
+  "differing_existing_publisher_rows": 0,
+  "gratuitous_updates": 0,
+  "production_rows_compared": {
+    "memberships": 169527,
+    "nodes": 436428,
+    "parent_edges": 3519,
+    "places": 97270,
+    "snapshots": 1
+  },
+  "proposed_new_rows": {
+    "memberships": 0,
+    "nodes": 0,
+    "parent_edges": 0,
+    "places": 0,
+    "snapshots": 0
+  },
+  "read_only": true
+}

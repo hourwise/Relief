@@ -1,0 +1,14 @@
+{
+  "source_bytes": 578991782,
+  "planner_elapsed_seconds": 91.474,
+  "planner_stored_rows_per_second": 7726.18,
+  "production_apply_elapsed_seconds": 795.819,
+  "chunk_post_elapsed_seconds": 314.691,
+  "chunk_insert_rows_per_second": 2245.34,
+  "total_stored_source_graph_rows": 706745,
+  "chunk_count": 355,
+  "batch_size": 2000,
+  "retry_count": 0,
+  "slowest_chunk_seconds": 6.976,
+  "note": "Apply elapsed time includes exact-source parse, production identity-map reads, chunked inserts, snapshot lifecycle update, and final count verification."
+}

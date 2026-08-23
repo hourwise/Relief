@@ -1,0 +1,18 @@
+{
+  "publisher": "UK Department for Transport",
+  "product": "National NaPTAN XML access-node / StopArea dataset",
+  "source_url": "https://naptan.api.dft.gov.uk/v1/access-nodes?dataFormat=xml",
+  "cache_path": "C:\\Temp\\relief-n5\\NaPTAN.xml",
+  "retrieval_utc": "2026-08-22T14:48:39.4826193Z",
+  "byte_size": 578991782,
+  "sha256": "6FC7E40E2AF3B30E9FD117BDAC313B58F3385BFF26517FD78D5554DA12B4183A",
+  "expected_byte_size": 578991782,
+  "expected_sha256": "6FC7E40E2AF3B30E9FD117BDAC313B58F3385BFF26517FD78D5554DA12B4183A",
+  "exact": true,
+  "encoding": "UTF-8 XML",
+  "licence": "Open Government Licence v3.0",
+  "attribution": "Contains public sector information licensed under the Open Government Licence v3.0.",
+  "raw_xml_committed": false,
+  "raw_xml_staged": false,
+  "parser": "tools/source_expansion/naptan_n5_r2.py using committed N3 parser and N5-R1 keyed-count semantics"
+}
