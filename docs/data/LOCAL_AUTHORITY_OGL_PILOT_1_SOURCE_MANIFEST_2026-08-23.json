@@ -1,0 +1,51 @@
+{
+  "tool_version": "relief.local-authority-ogl-pilot-1.v1",
+  "classification": "LOCAL_AUTHORITY_OGL_PILOT_1 — READ-ONLY SOURCE SELECTION / NORMALIZATION / NET-NEW PROOF",
+  "production_write_capability": false,
+  "sources": [
+    {
+      "source_id": "city-of-york-public-toilets",
+      "publisher": "City of York Council",
+      "dataset": "Location of Public Toilets in York",
+      "catalogue_url": "https://www.data.gov.uk/dataset/e49697a4-da67-429a-ac02-2a3d32023a12/public-toilets",
+      "resource_url": "https://maps.york.gov.uk/arcgis/rest/services/Public/LV_TranStreetCare/MapServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&f=geojson",
+      "licence": "Open Government Licence v3.0",
+      "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "catalogue_last_updated": "2022-03-09",
+      "attribution": "Contains public sector information licensed under the Open Government Licence v3.0.",
+      "retrieved_at_utc": "2026-08-23T17:30:13Z",
+      "byte_size": 6495,
+      "sha256": "1da412b6731b8c07ced75a663098d9dee55cba4747503399b588572c2c4b5b12",
+      "media_type": "application/geo+json",
+      "feature_count": 18,
+      "record_type_counts": {
+        "Public toilets": 11,
+        "Changing Places": 7
+      },
+      "source_status": "SELECTED_FOR_PILOT"
+    },
+    {
+      "source_id": "causeway-coast-and-glens-public-toilets",
+      "publisher": "Causeway Coast and Glens Borough Council / OpenDataNI",
+      "dataset": "Public Toilet Locations in Causeway Coast and Glens",
+      "catalogue_url": "https://www.data.gov.uk/dataset/62eab2d2-2627-4616-8f12-412b48c80e35/public-toilet-locations-in-causeway-coast-and-glens11",
+      "resource_url": "https://services.arcgis.com/kNPftFdcdm7bfDuO/arcgis/rest/services/Public_Toilets_CCGBC/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&f=geojson",
+      "licence": "Open Government Licence v3.0",
+      "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "catalogue_last_updated": "2024-07-27",
+      "service_metadata_last_edit": "2026-03-19",
+      "attribution": "Contains public sector information licensed under the Open Government Licence v3.0.",
+      "retrieved_at_utc": "2026-08-23T17:30:13Z",
+      "byte_size": 33341,
+      "sha256": "50eabf55fa58be22bcd09d1f9d0d94a61b17278e7f3434ad832b4df9cb884279",
+      "media_type": "application/geo+json",
+      "feature_count": 52,
+      "record_type_counts": {
+        "Public toilets": 52
+      },
+      "source_status": "SELECTED_FOR_PILOT"
+    }
+  ],
+  "download_note": "Local Windows certificate validation failed for the official ArcGIS HTTPS hostnames; bytes were captured from the same official HTTPS resource URLs with disposable verification-disabled fallback. Re-fetch with normal certificate validation is required before any production ingestion.",
+  "expected_record_count": 70
+}

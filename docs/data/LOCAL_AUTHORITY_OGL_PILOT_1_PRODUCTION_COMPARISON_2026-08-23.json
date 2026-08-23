@@ -1,0 +1,1313 @@
+{
+  "tool_version": "relief.local-authority-ogl-pilot-1.v1",
+  "production_project": "Relief",
+  "production_project_ref": "bgwxrxkmyaihplaloely",
+  "read_only_query": true,
+  "query_scope": "nearest facility by facilities.location KNN followed by bounded name/postcode/proximity guard",
+  "guard": {
+    "existing_or_duplicate": "exact normalized postcode OR distance <= 100m OR source-name token subset within 250m",
+    "broad_candidate": "no existing guard matched",
+    "conservative_net_new": "broad candidate with nearest facility distance > 250m",
+    "proximity_only_is_not_proof": true
+  },
+  "aggregate": {
+    "total_records": 70,
+    "by_source": {
+      "causeway-coast-and-glens-public-toilets": 52,
+      "city-of-york-public-toilets": 18
+    },
+    "likely_existing_or_duplicate": 59,
+    "credible_net_new_candidate": 11,
+    "conservative_net_new": 9
+  },
+  "records": [
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:0a0ebddf-c2e4-4f49-adeb-5653160a122c",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Dunseverick Harbour",
+      "source_postcode": "BT57 8SY",
+      "nearest_facility_id": "5ac72c4e-fe47-4339-abc3-76b153657a79",
+      "nearest_facility_name": "Dunseverick Harbour Public Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "14.5",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:0f327208-5e58-41b3-a426-7e1e244ce3f0",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Market Street - Automatic PC (x1)",
+      "source_postcode": "BT54 6DP",
+      "nearest_facility_id": "16b05ecf-1ae5-46d6-9755-5ca601cc7b62",
+      "nearest_facility_name": "Market Street Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "16.3",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": false,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:142c9d7c-ab8c-4d99-8e00-1f3bf7bd353b",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Main Street Public Toilets",
+      "source_postcode": "BT53 8RQ",
+      "nearest_facility_id": "817cf5e4-ff2d-422f-b5a5-348a32e63587",
+      "nearest_facility_name": "Main Street Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "6.3",
+      "exact_normalized_name": true,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:16f16fbb-a74f-4169-889c-766ce2a556d6",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Downhill Beach",
+      "source_postcode": "BT51 4RP",
+      "nearest_facility_id": "e096c466-e57a-4e02-b9f3-f1b8606ca6df",
+      "nearest_facility_name": "Downhill Beach Public Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "0.9",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:2198cfe4-7b8f-4c1a-9a4b-2a2911800002",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Main Street",
+      "source_postcode": "BT47 4TD",
+      "nearest_facility_id": "2b0ee9dc-6ed3-4be5-b18e-e00186d617a6",
+      "nearest_facility_name": "Main Street Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "2.7",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:22d31475-84ed-4407-abd0-2d720bad450f",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Megaw Park",
+      "source_postcode": "BT53 6BP",
+      "nearest_facility_id": "a9bd3d9e-19ca-4c11-84bd-c14d61751bf9",
+      "nearest_facility_name": "Megaw Park Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "22.8",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:33a31c50-39b5-470e-a583-f1fd6963c966",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Riverside Park",
+      "source_postcode": "BT53 7AG",
+      "nearest_facility_id": "712ff2b8-8a64-4324-85c8-6818700680b0",
+      "nearest_facility_name": "Riverside Park Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "25.3",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:3b818c7f-8d72-4446-beb4-8948ee28368b",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Whiterocks Beach",
+      "source_postcode": "BT56 8NA",
+      "nearest_facility_id": "bd116d7b-078d-4abf-916c-6fe96ce335fc",
+      "nearest_facility_name": "Whiterocks Beach Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "1.9",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:4107d413-37eb-4ee3-87a9-e8269903e638",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Cottage Wood Park",
+      "source_postcode": "BT44 0NB",
+      "nearest_facility_id": "f00dd68a-1eed-4770-aea1-1b937123b8dc",
+      "nearest_facility_name": "Cottage Wood Park Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "11.7",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:419a08c1-1b47-41eb-afa6-1ca4fd510219",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Christie Park",
+      "source_postcode": "BT51 3AB",
+      "nearest_facility_id": "4b861d9f-1632-4af9-884d-1969f9438365",
+      "nearest_facility_name": "Christie Park Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "29.3",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:4e190354-ad3f-4288-93ef-7d687a111f99",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Flowerfield",
+      "source_postcode": "BT55 7HU",
+      "nearest_facility_id": "e9303b0d-50f8-43f7-b57b-0f5a38a645a2",
+      "nearest_facility_name": "Tesco Portstewart Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "339.2",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": false,
+      "candidate_status": "CREDIBLE_NET_NEW_CANDIDATE",
+      "conservative_net_new": true,
+      "guard_reasons": []
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:546c827c-111e-46d9-9a5a-841c8d059ae0",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Causeway Coast and Glens Borough Council Offices",
+      "source_postcode": "BT54 6QH",
+      "nearest_facility_id": "3a85b710-746c-4133-8ded-682bdf89a23f",
+      "nearest_facility_name": "Causeway Coast and Glens Borough Council Offices",
+      "nearest_facility_postcode": null,
+      "distance_m": "16.9",
+      "exact_normalized_name": true,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:597db624-bdca-4f18-aadd-8361fb53ebfa",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Harbour Road",
+      "source_postcode": "BT55 7GF",
+      "nearest_facility_id": "d4931bd9-bbf2-4c0d-8cb4-ea8fb5f15abe",
+      "nearest_facility_name": "Atlantic Circle, Harbour Road",
+      "nearest_facility_postcode": null,
+      "distance_m": "6.2",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:5f4f36db-72ee-415f-b44d-89d8a8d118c8",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Visitor Information Centre",
+      "source_postcode": "BT54 6BT",
+      "nearest_facility_id": "74d268b7-0bc0-4530-8816-566823e3280b",
+      "nearest_facility_name": "Visitor Information Centre Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "8.5",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:6537cd15-29ec-49f6-92d1-00ebbf4d2c92",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Marina Car Park - Automatic PC  (x2)",
+      "source_postcode": "BT54 6BT",
+      "nearest_facility_id": "ad2a234c-16a6-456d-9770-165f117f933d",
+      "nearest_facility_name": "Marina Car Park",
+      "nearest_facility_postcode": null,
+      "distance_m": "8.4",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": false,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:6c84cfb2-9921-4dca-a300-b5f976cf6e5e",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Beach Car Park",
+      "source_postcode": "BT44 0QS",
+      "nearest_facility_id": "99a3a022-4869-4264-8f6a-0942406f7dab",
+      "nearest_facility_name": "Beach Car Park Public Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "11.0",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:6eb39a0d-3823-4b59-b3fb-fd297f6c5e61",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Seafront Centre",
+      "source_postcode": "BT54 6QH",
+      "nearest_facility_id": "e4bba428-c8cf-4891-9e4f-73c307228a28",
+      "nearest_facility_name": "Seafront Centre Public Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "18.3",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:70dad344-ca2b-40ec-830c-afb2c9523849",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Kinbane Castle",
+      "source_postcode": "BT54 6LP",
+      "nearest_facility_id": "744f8228-10cb-47b4-bb1c-19dfd35b6f83",
+      "nearest_facility_name": "Kinbane Castle Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "105.9",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:75483876-8b90-4e3d-8668-68373a4576e1",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Harbour Car Park",
+      "source_postcode": "BT54 6BW",
+      "nearest_facility_id": "2e026895-fc99-40f6-bc0e-c6e40b0286b5",
+      "nearest_facility_name": "Harbour Car Park Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "46.1",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:786ef7e9-1ece-430f-8c8c-d267c4e0e4e1",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Harbour",
+      "source_postcode": "BT56 8DF",
+      "nearest_facility_id": "54e333d0-dbb9-4fc2-8934-e39c7da1547b",
+      "nearest_facility_name": "Harbour Public Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "41.4",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:7c98279a-5f0f-4c9c-926e-2ca25639b1ce",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Beach Car Park",
+      "source_postcode": "BT44 0PX",
+      "nearest_facility_id": "3998e183-2ff2-4f9d-95f9-413d08ebbcfc",
+      "nearest_facility_name": "Beach Car Park",
+      "nearest_facility_postcode": null,
+      "distance_m": "18.9",
+      "exact_normalized_name": true,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:8223c83c-52c4-41a7-a122-dd9f9e386efc",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Castlerock Promenade",
+      "source_postcode": "BT51 4RF",
+      "nearest_facility_id": "3154e2d9-4e3a-4d02-96c2-d4b290ed6167",
+      "nearest_facility_name": "Castlerock Promenade Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "15.0",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:8b274122-9bbd-4cd2-80a4-175289a8f621",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Quay Road Sports Complex",
+      "source_postcode": "BT54 6BJ",
+      "nearest_facility_id": "638ba52c-b958-40fa-a52e-75e9932007b9",
+      "nearest_facility_name": "Quay Road Sports Complex",
+      "nearest_facility_postcode": null,
+      "distance_m": "9.6",
+      "exact_normalized_name": true,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:8e8d96dc-46fd-4c6a-9677-1492bf1fc6a0",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Ballintoy Harbour",
+      "source_postcode": "BT54 6NA",
+      "nearest_facility_id": "ca0d450e-a902-409a-9e27-3748c6ca7984",
+      "nearest_facility_name": "Ballintoy Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "34.6",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": false,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:8ee35abe-38dc-4a7b-bddf-bac3d5c7fae7",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Harbour",
+      "source_postcode": "BT56 8DG",
+      "nearest_facility_id": "618038ee-f522-4454-aeaf-23f4ab2fcb83",
+      "nearest_facility_name": "Harbour Public Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "10.9",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:90ca1688-4a26-4c03-b55c-af492fa1c921",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Rasharkin Cemetery",
+      "source_postcode": "BT44 8SD",
+      "nearest_facility_id": "c0c5e851-84a5-4a87-9646-1a5bcb5c55d1",
+      "nearest_facility_name": "Rasharkin , Bridge Street Public Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "837.2",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": false,
+      "candidate_status": "CREDIBLE_NET_NEW_CANDIDATE",
+      "conservative_net_new": true,
+      "guard_reasons": []
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:9117f2d7-ec65-4d58-963d-0f16385379e2",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Bridge Street",
+      "source_postcode": "BT44 8QA",
+      "nearest_facility_id": "c0c5e851-84a5-4a87-9646-1a5bcb5c55d1",
+      "nearest_facility_name": "Rasharkin , Bridge Street Public Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "17.4",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:91ae5a2b-dfec-4f50-92e9-d167137f30e2",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Bridge Street",
+      "source_postcode": "BT51 5AF",
+      "nearest_facility_id": "833dfa4c-6902-45ae-b33e-5caf8d5af8b6",
+      "nearest_facility_name": "Bridge Street Public Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "0.6",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:92d90c43-4781-4cb9-b148-49923512fbbe",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "East Strand",
+      "source_postcode": "BT56 8AD",
+      "nearest_facility_id": "be5515e2-b348-41d8-aaaf-f13c4f17d227",
+      "nearest_facility_name": "Portrush East Strand",
+      "nearest_facility_postcode": null,
+      "distance_m": "15.7",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:9360f5ae-80c6-4429-9b61-582e03a4ceb6",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Recreation Grounds",
+      "source_postcode": "BT56 8BE",
+      "nearest_facility_id": "9f3e09d0-1c45-41cf-a100-da4ea633f78e",
+      "nearest_facility_name": "Landsdowne Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "104.8",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": false,
+      "candidate_status": "CREDIBLE_NET_NEW_CANDIDATE",
+      "conservative_net_new": false,
+      "guard_reasons": []
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:93d4d599-eab4-4c48-aa98-1165e62baf97",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Mill Street Car Park",
+      "source_postcode": "BT44 0RR",
+      "nearest_facility_id": "c69a0bd0-0b53-4412-b83a-f1db523b1a19",
+      "nearest_facility_name": "Bridge Street Car Park Public Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "20.6",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": false,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:95eeaad0-3100-417a-ad98-d8254dc6c84e",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Park Street",
+      "source_postcode": "BT52 1BD",
+      "nearest_facility_id": "2f633450-1524-433b-81f7-af64ee9896d9",
+      "nearest_facility_name": "Park Street Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "12.9",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:982ed239-6ccb-4ae9-a25b-bf5dc4e424b7",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Long Commons",
+      "source_postcode": "BT52 1EG",
+      "nearest_facility_id": "1a680038-b9dc-473f-a524-389183bb7601",
+      "nearest_facility_name": "Long Commons Public Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "26.3",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:9d14a781-3dfa-4c6f-9d34-387499f41113",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Dundarave",
+      "source_postcode": "BT57 8QA",
+      "nearest_facility_id": "f123f2ae-c9db-4e28-a435-b063cc07b38a",
+      "nearest_facility_name": "Dundarave, Main Street Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "3.6",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:9f7d5a10-1fa6-451d-b2cd-3cfc8f10b8a5",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Main Street",
+      "source_postcode": "BT49 0EX",
+      "nearest_facility_id": "36f79777-a206-4efc-8f4f-ebeecba4ab0f",
+      "nearest_facility_name": "Limavadi Main Street Public Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "22.1",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:aa6440df-0f4b-462f-9547-5236adfc9299",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Portstewart Crescent",
+      "source_postcode": "BT55 7AB",
+      "nearest_facility_id": "d4931bd9-bbf2-4c0d-8cb4-ea8fb5f15abe",
+      "nearest_facility_name": "Atlantic Circle, Harbour Road",
+      "nearest_facility_postcode": null,
+      "distance_m": "563.5",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": false,
+      "candidate_status": "CREDIBLE_NET_NEW_CANDIDATE",
+      "conservative_net_new": true,
+      "guard_reasons": []
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:aab3b551-def9-4310-8bf2-d8a1ce871883",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Beach",
+      "source_postcode": "BT57 8RT",
+      "nearest_facility_id": "14b97c4b-7981-4b81-9159-4964a3331228",
+      "nearest_facility_name": "Runkerry Beach Car Park",
+      "nearest_facility_postcode": null,
+      "distance_m": "0.4",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:aafbbc6d-eb8d-4fd7-940b-21ed5a87eabf",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Beach Layby",
+      "source_postcode": "BT44 0NG",
+      "nearest_facility_id": "dac4acc2-d538-453b-adf8-ee76672b1733",
+      "nearest_facility_name": "Beach Layby Public Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "42.8",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:ada0a447-8aad-47a9-afb3-dfbf9fb81712",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Glenhead Road",
+      "source_postcode": "BT49 9JS",
+      "nearest_facility_id": "667dbc3f-a16d-4a70-a91c-3c2961901487",
+      "nearest_facility_name": "Glenhead Road Public Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "12.7",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:b6d5556c-072a-4aea-80f9-eecea86bb140",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Castle Street",
+      "source_postcode": "BT53 6JT",
+      "nearest_facility_id": "4d606647-c7c7-4c78-a7ab-8c4323d73b3b",
+      "nearest_facility_name": "Castle Street Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "35.0",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:b7f28951-e7bd-4584-bbb3-e8cdfbadc60f",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Rathlin Island",
+      "source_postcode": "BT54 6RT",
+      "nearest_facility_id": "332847e8-f4b0-4f0f-9dde-84d76eea959d",
+      "nearest_facility_name": "Rathlin Island",
+      "nearest_facility_postcode": null,
+      "distance_m": "1.4",
+      "exact_normalized_name": true,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:bf2592b8-b3f3-4028-9575-8be4c8682d97",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "West Bay",
+      "source_postcode": "BT56 8DY",
+      "nearest_facility_id": "34cf8257-8a66-4ebb-8359-648846769437",
+      "nearest_facility_name": "West Bay Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "7.7",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:c1712e50-a1b2-4746-b202-e4878817f35c",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Townhead Street",
+      "source_postcode": "BT53 6BE",
+      "nearest_facility_id": "9eab9ba0-f53d-4e4b-9223-9a96d7a59dd9",
+      "nearest_facility_name": "Townhead Street Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "1.5",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:c401769e-bbd8-4890-ac6b-6beadcfcd123",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "The Arc",
+      "source_postcode": "BT49 0LQ",
+      "nearest_facility_id": "b20ea03c-546c-4559-933b-30344f22c12a",
+      "nearest_facility_name": "The Arc Public Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "85.5",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:c7262982-873d-4c2a-9213-3a9380e72ce0",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Garvagh Road",
+      "source_postcode": "BT51 5QL",
+      "nearest_facility_id": "5397b0c8-8692-4ce1-8d23-84dc97ff44a1",
+      "nearest_facility_name": "Garvagh Road Public Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "8.7",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:cb96dce8-7040-43bf-9396-14a410fa9a16",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Main Street",
+      "source_postcode": "BT44 9LF",
+      "nearest_facility_id": "723ef256-70d3-4dd5-97b3-f451983088a8",
+      "nearest_facility_name": "Main Street Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "15.5",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:d62d9351-a828-4e1a-aedd-e46a8ea98896",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Catherine Street",
+      "source_postcode": "BT49 9BD",
+      "nearest_facility_id": "6ff2a02f-9f73-4a7a-85d2-da5aada9950f",
+      "nearest_facility_name": "Catherine Street Public Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "29.9",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:e2f416e4-eb86-4507-990a-8b25fc13f72e",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Portballintrae Harbour",
+      "source_postcode": "BT57 8RT",
+      "nearest_facility_id": "97ca1b5a-0cea-4852-a24f-60c5671c447b",
+      "nearest_facility_name": "Portballintrae Harbour Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "19.2",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:e9724c6d-0575-4321-b05e-8f3dd0818438",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Cushendall Caravan Park",
+      "source_postcode": "BT44 0QW",
+      "nearest_facility_id": "7b09a7c1-5365-4f6b-bf39-fc42d0fd86d8",
+      "nearest_facility_name": "Cushendall Caravan Park Public Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "0.7",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:f3e7a0b5-c1e2-4382-b169-c81dc2460c6d",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Dunluce Car Park",
+      "source_postcode": "BT56 8DW",
+      "nearest_facility_id": "be5515e2-b348-41d8-aaaf-f13c4f17d227",
+      "nearest_facility_name": "Portrush East Strand",
+      "nearest_facility_postcode": null,
+      "distance_m": "250.1",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": false,
+      "candidate_status": "CREDIBLE_NET_NEW_CANDIDATE",
+      "conservative_net_new": true,
+      "guard_reasons": []
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:f992a8fb-08b6-4e8c-88a8-957ad4cf517d",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Main Street Toilets",
+      "source_postcode": "BT54 6LX",
+      "nearest_facility_id": "bff87b1f-3f4a-458a-8180-b42f2fc10df8",
+      "nearest_facility_name": "Main Street Public Toilets",
+      "nearest_facility_postcode": null,
+      "distance_m": "59.8",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Public Toilet Locations in Causeway Coast and Glens:fbd54f1d-5a69-446f-84ac-3e04d79de77c",
+      "source_namespace": "causeway-coast-and-glens-public-toilets",
+      "source_name": "Town Hall",
+      "source_postcode": "BT55 7AG",
+      "nearest_facility_id": "d4931bd9-bbf2-4c0d-8cb4-ea8fb5f15abe",
+      "nearest_facility_name": "Atlantic Circle, Harbour Road",
+      "nearest_facility_postcode": null,
+      "distance_m": "503.6",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": false,
+      "candidate_status": "CREDIBLE_NET_NEW_CANDIDATE",
+      "conservative_net_new": true,
+      "guard_reasons": []
+    },
+    {
+      "source_record_id": "Location of Public Toilets in York:321",
+      "source_namespace": "city-of-york-public-toilets",
+      "source_name": "St Leonard's Place",
+      "source_postcode": "YO1 2EW",
+      "nearest_facility_id": "1f288cb7-d055-450e-bba1-b009c7ad16e1",
+      "nearest_facility_name": "Exhibition Square (St Leonard's Place)",
+      "nearest_facility_postcode": null,
+      "distance_m": "12.1",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Location of Public Toilets in York:322",
+      "source_namespace": "city-of-york-public-toilets",
+      "source_name": "Rougier Street",
+      "source_postcode": "YO1 6JB",
+      "nearest_facility_id": "4adc1c01-55ae-4c13-a333-7a382791e8de",
+      "nearest_facility_name": "Rougier Street",
+      "nearest_facility_postcode": null,
+      "distance_m": "2.1",
+      "exact_normalized_name": true,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Location of Public Toilets in York:324",
+      "source_namespace": "city-of-york-public-toilets",
+      "source_name": "Haxby, town centre",
+      "source_postcode": "YO32 2LU",
+      "nearest_facility_id": "6346a8a5-e671-4fe5-a1a0-2f63c13424bd",
+      "nearest_facility_name": "Unnamed Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "1.1",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": false,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M"
+      ]
+    },
+    {
+      "source_record_id": "Location of Public Toilets in York:325",
+      "source_namespace": "city-of-york-public-toilets",
+      "source_name": "Coppergate Shopping Centre",
+      "source_postcode": "YO1 6NY",
+      "nearest_facility_id": "5a97e508-bce0-42cd-b724-43f0efde693b",
+      "nearest_facility_name": "Coppergate Shopping Centre",
+      "nearest_facility_postcode": null,
+      "distance_m": "20.5",
+      "exact_normalized_name": true,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Location of Public Toilets in York:326",
+      "source_namespace": "city-of-york-public-toilets",
+      "source_name": "Nunnery Lane",
+      "source_postcode": "YO23 1AB",
+      "nearest_facility_id": "7f6ec8e9-deef-4d4b-a245-98173dc6540b",
+      "nearest_facility_name": "Nunnery Lane",
+      "nearest_facility_postcode": null,
+      "distance_m": "1.1",
+      "exact_normalized_name": true,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Location of Public Toilets in York:327",
+      "source_namespace": "city-of-york-public-toilets",
+      "source_name": "St George's Field",
+      "source_postcode": "YO1 9WJ",
+      "nearest_facility_id": "b560976d-7a8b-4fe2-9dd8-a1a5cd6f5fd2",
+      "nearest_facility_name": "Unnamed Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "3.5",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": false,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M"
+      ]
+    },
+    {
+      "source_record_id": "Location of Public Toilets in York:328",
+      "source_namespace": "city-of-york-public-toilets",
+      "source_name": "Union Terrace",
+      "source_postcode": "YO31 7EL",
+      "nearest_facility_id": "d47ccc98-3067-40b6-9ad1-e6f4fc4c3ee6",
+      "nearest_facility_name": "Union Terrace",
+      "nearest_facility_postcode": null,
+      "distance_m": "1.4",
+      "exact_normalized_name": true,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Location of Public Toilets in York:330",
+      "source_namespace": "city-of-york-public-toilets",
+      "source_name": "Front Street",
+      "source_postcode": "YO24 3BZ",
+      "nearest_facility_id": "07c8e4db-3f28-422a-9e96-74e442af046a",
+      "nearest_facility_name": "Unnamed Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "1098.1",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": false,
+      "candidate_status": "CREDIBLE_NET_NEW_CANDIDATE",
+      "conservative_net_new": true,
+      "guard_reasons": []
+    },
+    {
+      "source_record_id": "Location of Public Toilets in York:331",
+      "source_namespace": "city-of-york-public-toilets",
+      "source_name": "Silver Street",
+      "source_postcode": "YO1 8RY",
+      "nearest_facility_id": "9833fdf6-c144-49da-86e9-9e0cc2b26ab0",
+      "nearest_facility_name": "Silver Street",
+      "nearest_facility_postcode": null,
+      "distance_m": "6.0",
+      "exact_normalized_name": true,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Location of Public Toilets in York:332",
+      "source_namespace": "city-of-york-public-toilets",
+      "source_name": "York Explore Library",
+      "source_postcode": "YO1 7DS",
+      "nearest_facility_id": "4e4b2ca2-d991-475d-8bc3-8ede0443e595",
+      "nearest_facility_name": "York library",
+      "nearest_facility_postcode": null,
+      "distance_m": "17.5",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": false,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M"
+      ]
+    },
+    {
+      "source_record_id": "Location of Public Toilets in York:334",
+      "source_namespace": "city-of-york-public-toilets",
+      "source_name": "West Bank Park",
+      "source_postcode": "YO24 4NS",
+      "nearest_facility_id": "07c8e4db-3f28-422a-9e96-74e442af046a",
+      "nearest_facility_name": "Unnamed Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "0.6",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": false,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M"
+      ]
+    },
+    {
+      "source_record_id": "Location of Public Toilets in York:335",
+      "source_namespace": "city-of-york-public-toilets",
+      "source_name": "Rowntree Park",
+      "source_postcode": "YO23 1JQ",
+      "nearest_facility_id": "15c425c0-625f-4d47-aca5-723adf87f68b",
+      "nearest_facility_name": "Rowntree Park",
+      "nearest_facility_postcode": null,
+      "distance_m": "1.9",
+      "exact_normalized_name": true,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Location of Public Toilets in York:336",
+      "source_namespace": "city-of-york-public-toilets",
+      "source_name": "York Station",
+      "source_postcode": "YO24 1AB",
+      "nearest_facility_id": "2395ba46-cdad-4010-ba49-0ddd202a48d1",
+      "nearest_facility_name": "York Station (Platform 8)",
+      "nearest_facility_postcode": null,
+      "distance_m": "54.4",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    },
+    {
+      "source_record_id": "Location of Public Toilets in York:337",
+      "source_namespace": "city-of-york-public-toilets",
+      "source_name": "Energise Leisure Centre",
+      "source_postcode": "YO24 3DX",
+      "nearest_facility_id": "07c8e4db-3f28-422a-9e96-74e442af046a",
+      "nearest_facility_name": "Unnamed Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "1163.7",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": false,
+      "candidate_status": "CREDIBLE_NET_NEW_CANDIDATE",
+      "conservative_net_new": true,
+      "guard_reasons": []
+    },
+    {
+      "source_record_id": "Location of Public Toilets in York:338",
+      "source_namespace": "city-of-york-public-toilets",
+      "source_name": "McArthurGlen Designer Outlet York",
+      "source_postcode": "YO19 4TA",
+      "nearest_facility_id": "bd5a58e2-d25b-42e8-a9cd-aa70fcbfcdbe",
+      "nearest_facility_name": "Unnamed Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "2053.6",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": false,
+      "candidate_status": "CREDIBLE_NET_NEW_CANDIDATE",
+      "conservative_net_new": true,
+      "guard_reasons": []
+    },
+    {
+      "source_record_id": "Location of Public Toilets in York:339",
+      "source_namespace": "city-of-york-public-toilets",
+      "source_name": "York Leisure Centre",
+      "source_postcode": "YO32 9AF",
+      "nearest_facility_id": "63bca335-ac2c-42f8-9b8f-503a01c699e3",
+      "nearest_facility_name": "Unnamed Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "209.4",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": false,
+      "candidate_status": "CREDIBLE_NET_NEW_CANDIDATE",
+      "conservative_net_new": false,
+      "guard_reasons": []
+    },
+    {
+      "source_record_id": "Location of Public Toilets in York:340",
+      "source_namespace": "city-of-york-public-toilets",
+      "source_name": "New Earswick Folk Hall",
+      "source_postcode": "YO32 4AQ",
+      "nearest_facility_id": "63bca335-ac2c-42f8-9b8f-503a01c699e3",
+      "nearest_facility_name": "Unnamed Toilet",
+      "nearest_facility_postcode": null,
+      "distance_m": "1569.7",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": false,
+      "candidate_status": "CREDIBLE_NET_NEW_CANDIDATE",
+      "conservative_net_new": true,
+      "guard_reasons": []
+    },
+    {
+      "source_record_id": "Location of Public Toilets in York:341",
+      "source_namespace": "city-of-york-public-toilets",
+      "source_name": "York Hospital",
+      "source_postcode": "YO31 8HE",
+      "nearest_facility_id": "094dffee-fb76-45d3-b5f1-ed60d60cbadf",
+      "nearest_facility_name": "York District Hospital",
+      "nearest_facility_postcode": null,
+      "distance_m": "7.1",
+      "exact_normalized_name": false,
+      "exact_postcode": false,
+      "token_subset": true,
+      "candidate_status": "LIKELY_EXISTING_OR_DUPLICATE",
+      "conservative_net_new": false,
+      "guard_reasons": [
+        "WITHIN_100M",
+        "TOKEN_SUBSET_WITHIN_250M"
+      ]
+    }
+  ]
+}
