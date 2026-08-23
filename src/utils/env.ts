@@ -24,6 +24,8 @@ export const API_TIMEOUT = 10000;
  * does not grant service credentials or bypass production authorization.
  */
 export const RELIEF_TEST_MODE = process.env.EXPO_PUBLIC_RELIEF_TEST_MODE === 'true';
+export const PAYMENTS_ENABLED = process.env.EXPO_PUBLIC_PAYMENTS_ENABLED === 'true';
+export const QA_PREMIUM_OVERRIDE = process.env.EXPO_PUBLIC_QA_PREMIUM_OVERRIDE === 'true';
 
 // Feature flags
 export const FEATURES = {

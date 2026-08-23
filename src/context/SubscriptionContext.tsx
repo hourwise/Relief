@@ -19,10 +19,12 @@ import {
   getServerSideEntitlement,
   restorePurchases as rcRestorePurchases,
   purchasePackage,
+  isRevenueCatConfigured,
 } from '../services/revenuecat';
 import { getCurrentUser, onAuthStateChange } from '../services/auth';
 import type { PurchasesPackage, CustomerInfo } from 'react-native-purchases';
-import { RELIEF_TEST_MODE } from '../utils/env';
+import { PAYMENTS_ENABLED, QA_PREMIUM_OVERRIDE, RELIEF_TEST_MODE } from '../utils/env';
+import { resolvePaymentState, type PaymentState } from '../utils/paymentState';
 
 // ============================================================
 // Constants
@@ -55,6 +57,7 @@ interface SubscriptionState {
 }
 
 interface SubscriptionContextValue extends SubscriptionState {
+  paymentState: PaymentState;
   refreshEntitlements: () => Promise<void>;
   purchase: (pack: PurchasesPackage) => Promise<{ success: boolean; error?: string }>;
   restore: () => Promise<{ success: boolean; error?: string }>;
@@ -104,6 +107,12 @@ const defaultState: SubscriptionState = {
 // ============================================================
 const SubscriptionContext = createContext<SubscriptionContextValue>({
   ...defaultState,
+  paymentState: resolvePaymentState({
+    reliefTestMode: false,
+    paymentsEnabled: false,
+    qaPremiumOverride: false,
+    revenueCatConfigured: false,
+  }),
   refreshEntitlements: async () => {},
   purchase: async () => ({ success: false }),
   restore: async () => ({ success: false }),
@@ -164,6 +173,12 @@ async function clearCachedEntitlement(): Promise<void> {
 export const SubscriptionProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [state, setState] = useState<SubscriptionState>(defaultState);
   const initialisedRef = useRef(false);
+  const paymentState = resolvePaymentState({
+    reliefTestMode: RELIEF_TEST_MODE,
+    paymentsEnabled: PAYMENTS_ENABLED,
+    qaPremiumOverride: QA_PREMIUM_OVERRIDE,
+    revenueCatConfigured: isRevenueCatConfigured(),
+  });
 
   // Build state from entitlements
   const buildState = useCallback((tier: SubscriptionTier, isActive: boolean, customerInfo?: CustomerInfo): SubscriptionState => {
@@ -201,6 +216,14 @@ export const SubscriptionProvider: React.FC<{ children: React.ReactNode }> = ({ 
   // Refresh entitlements (from RevenueCat SDK + Supabase fallback)
   const refreshEntitlements = useCallback(async () => {
     setState(prev => ({ ...prev, loading: true }));
+
+    // Do not query RevenueCat or the server when billing is disabled. QA
+    // premium is a UI-only authority and must never become a fake receipt or
+    // production entitlement.
+    if (!paymentState.realPaymentsActive) {
+      setState(buildState('free', false));
+      return;
+    }
 
     try {
       // Try RevenueCat SDK first
@@ -247,25 +270,31 @@ export const SubscriptionProvider: React.FC<{ children: React.ReactNode }> = ({ 
         setState(prev => ({ ...prev, loading: false }));
       }
     }
-  }, [buildState]);
+  }, [buildState, paymentState.realPaymentsActive]);
 
   // Purchase
   const purchase = useCallback(async (pack: PurchasesPackage) => {
+    if (!paymentState.canPurchase) {
+      return { success: false, error: paymentState.statusMessage };
+    }
     const result = await purchasePackage(pack);
     if (result.success) {
       await refreshEntitlements();
     }
     return result;
-  }, [refreshEntitlements]);
+  }, [paymentState.canPurchase, paymentState.statusMessage, refreshEntitlements]);
 
   // Restore (4.16)
   const restore = useCallback(async () => {
+    if (!paymentState.canRestore) {
+      return { success: false, error: paymentState.statusMessage };
+    }
     const result = await rcRestorePurchases();
     if (result.success) {
       await refreshEntitlements();
     }
     return result;
-  }, [refreshEntitlements]);
+  }, [paymentState.canRestore, paymentState.statusMessage, refreshEntitlements]);
 
   // Sign out and reset
   const signOutAndReset = useCallback(async () => {
@@ -278,11 +307,13 @@ export const SubscriptionProvider: React.FC<{ children: React.ReactNode }> = ({ 
     }
   }, []);
 
-  // Test mode deliberately unlocks the UI without claiming a purchase. Normal
-  // builds keep premium features locked until a real entitlement exists.
   const isFeatureLocked = useCallback((_feature: PremiumFeature): boolean => {
-    return !RELIEF_TEST_MODE && !(state.isActive && state.tier !== 'free');
-  }, [state.isActive, state.tier]);
+    const realEntitlementActive =
+      paymentState.entitlementSource === 'REVENUECAT' &&
+      state.isActive &&
+      state.tier !== 'free';
+    return paymentState.entitlementSource !== 'QA_OVERRIDE' && !realEntitlementActive;
+  }, [paymentState.entitlementSource, state.isActive, state.tier]);
 
   // Initialise on mount
   // RevenueCat disabled during testing — skip init, use free tier
@@ -308,6 +339,7 @@ export const SubscriptionProvider: React.FC<{ children: React.ReactNode }> = ({ 
 
   const value: SubscriptionContextValue = {
     ...state,
+    paymentState,
     refreshEntitlements,
     purchase,
     restore,

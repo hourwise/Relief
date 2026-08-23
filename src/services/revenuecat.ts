@@ -15,8 +15,12 @@ import { supabase } from './supabase';
 import { getCurrentUser } from './auth';
 
 // RevenueCat API keys — configure in .env
-const REVENUECAT_API_KEY_IOS = process.env.EXPO_PUBLIC_REVENUECAT_API_KEY_IOS || '';
-const REVENUECAT_API_KEY_ANDROID = process.env.EXPO_PUBLIC_REVENUECAT_API_KEY_ANDROID || '';
+export const REVENUECAT_API_KEY_IOS = process.env.EXPO_PUBLIC_REVENUECAT_API_KEY_IOS || '';
+export const REVENUECAT_API_KEY_ANDROID = process.env.EXPO_PUBLIC_REVENUECAT_API_KEY_ANDROID || '';
+
+export function isRevenueCatConfigured(): boolean {
+  return Boolean(REVENUECAT_API_KEY_IOS || REVENUECAT_API_KEY_ANDROID);
+}
 
 export type SubscriptionTier = 'free' | 'basic' | 'plus';
 

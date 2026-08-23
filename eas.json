@@ -8,7 +8,9 @@
       "environment": "preview",
       "distribution": "internal",
       "env": {
-        "EXPO_PUBLIC_RELIEF_TEST_MODE": "true"
+        "EXPO_PUBLIC_RELIEF_TEST_MODE": "true",
+        "EXPO_PUBLIC_PAYMENTS_ENABLED": "false",
+        "EXPO_PUBLIC_QA_PREMIUM_OVERRIDE": "true"
       },
       "android": {
         "buildType": "apk"

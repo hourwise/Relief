@@ -85,15 +85,19 @@ const PLANS: PlanInfo[] = [
 
 export const PaywallScreen: React.FC = () => {
   const navigation = useNavigation();
-  const { tier, isActive, purchase, restore, loading } = useSubscription();
+  const { tier, isActive, purchase, restore, loading, paymentState } = useSubscription();
   const [selectedPlan, setSelectedPlan] = useState<PlanType>('plus_monthly');
   const [purchasing, setPurchasing] = useState(false);
   const [restoring, setRestoring] = useState(false);
   const [offerings, setOfferings] = useState<PurchasesOffering | null>(null);
 
   useEffect(() => {
-    loadOfferings();
-  }, []);
+    if (paymentState.canPurchase) {
+      loadOfferings();
+    } else {
+      setOfferings(null);
+    }
+  }, [paymentState.canPurchase]);
 
   const loadOfferings = async () => {
     const current = await getOfferings();
@@ -101,6 +105,10 @@ export const PaywallScreen: React.FC = () => {
   };
 
   const handlePurchase = async () => {
+    if (!paymentState.canPurchase) {
+      Alert.alert('Purchases unavailable', paymentState.statusMessage);
+      return;
+    }
     if (!offerings) {
       Alert.alert('Error', 'Unable to load purchase options. Please try again.');
       return;
@@ -156,6 +164,10 @@ export const PaywallScreen: React.FC = () => {
   };
 
   const handleRestore = async () => {
+    if (!paymentState.canRestore) {
+      Alert.alert('Restore unavailable', paymentState.statusMessage);
+      return;
+    }
     setRestoring(true);
     const result = await restore();
     setRestoring(false);
@@ -222,6 +234,7 @@ export const PaywallScreen: React.FC = () => {
         <Text style={styles.headerSubtext}>
           Get the most out of Relief with premium features
         </Text>
+        <Text style={styles.paymentStatus}>{paymentState.statusMessage}</Text>
       </View>
 
       {/* Plan Selection */}
@@ -271,7 +284,9 @@ export const PaywallScreen: React.FC = () => {
       {/* Purchase Button */}
       <Button
         title={
-          selectedPlan === 'basic'
+          !paymentState.canPurchase
+            ? 'Purchases disabled in this build'
+            : selectedPlan === 'basic'
             ? 'Get Basic Access — £1.99'
             : selectedPlan === 'plus_monthly'
             ? 'Subscribe — £1.99/month'
@@ -279,25 +294,27 @@ export const PaywallScreen: React.FC = () => {
         }
         onPress={handlePurchase}
         loading={purchasing}
+        disabled={!paymentState.canPurchase}
         fullWidth
         style={styles.purchaseButton}
       />
 
       {/* Restore */}
       <Button
-        title="Restore Purchases"
+        title={paymentState.canRestore ? 'Restore Purchases' : 'Restore disabled in this build'}
         onPress={handleRestore}
         variant="outline"
         loading={restoring}
+        disabled={!paymentState.canRestore}
         fullWidth
         style={styles.restoreButton}
       />
 
       {/* Footer */}
       <Text style={styles.footerText}>
-        Your purchase will be processed through your App Store or Google Play account.
-        Subscriptions auto-renew unless cancelled at least 24 hours before the end of
-        the current period. Manage subscriptions in your account settings.
+        {paymentState.canPurchase
+          ? 'Your purchase will be processed through your App Store or Google Play account. Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current period. Manage subscriptions in your account settings.'
+          : 'This build does not start purchases, restore transactions, or create payment records.'}
       </Text>
     </ScrollView>
   );
@@ -331,6 +348,12 @@ const styles = StyleSheet.create({
     ...typography.bodySmall,
     color: colors.textSecondary,
     textAlign: 'center',
+  },
+  paymentStatus: {
+    ...typography.caption,
+    color: colors.warning,
+    textAlign: 'center',
+    marginTop: spacing.md,
   },
   plansContainer: {
     gap: spacing.lg,
