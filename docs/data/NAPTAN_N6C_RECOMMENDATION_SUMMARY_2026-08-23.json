@@ -1,0 +1,53 @@
+{
+  "by_mode": {
+    "air": {
+      "PENDING_HUMAN_REVIEW": 2,
+      "RECOMMEND_EXISTING_CANONICAL_LINK": 3,
+      "RECOMMEND_SUBPLACE_REVIEW": 2
+    },
+    "ferry_port": {
+      "PENDING_HUMAN_REVIEW": 1,
+      "RECOMMEND_COLLISION_REVIEW": 2,
+      "RECOMMEND_EXISTING_CANONICAL_LINK": 1,
+      "RECOMMEND_SUBPLACE_REVIEW": 3
+    },
+    "metro_tram_underground": {
+      "RECOMMEND_COLLISION_REVIEW": 1
+    },
+    "multimodal": {
+      "RECOMMEND_COLLISION_REVIEW": 5,
+      "RECOMMEND_SUBPLACE_REVIEW": 33
+    },
+    "rail": {
+      "RECOMMEND_COLLISION_REVIEW": 1,
+      "RECOMMEND_EXISTING_CANONICAL_LINK": 1,
+      "RECOMMEND_SUBPLACE_REVIEW": 5
+    }
+  },
+  "downstream_eligibility": {
+    "REVIEW_ONLY_NOT_AUTHORIZED": 60
+  },
+  "human_decision_counts": {
+    "PENDING_HUMAN_REVIEW": 60
+  },
+  "human_decisions_pending": 60,
+  "machine_recommendation_counts": {
+    "PENDING_HUMAN_REVIEW": 3,
+    "RECOMMEND_COLLISION_REVIEW": 9,
+    "RECOMMEND_EXISTING_CANONICAL_LINK": 5,
+    "RECOMMEND_SUBPLACE_REVIEW": 43
+  },
+  "machine_recommendations_are_not_human_decisions": true,
+  "production_mutations": 0,
+  "scope": {
+    "ambiguous_collision_cases": 9,
+    "excluded_ordinary_bus_coach_complexes": 75920,
+    "excluded_proposed_new_complexes": 4163,
+    "proposed_existing_canonical_cases": 51,
+    "total_cases": 60
+  },
+  "source_classification_counts": {
+    "AMBIGUOUS_CANONICAL_MATCH": 9,
+    "PROPOSED_CANONICAL_MATCH": 51
+  }
+}

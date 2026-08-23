@@ -1,0 +1,34 @@
+{
+  "auth_mutations": 0,
+  "before_after_counts_equal": true,
+  "canonical_counts": {
+    "facilities": 15620,
+    "facility_source_observations": 14,
+    "facility_sources": 15634,
+    "import_runs": 5,
+    "toilet_map_import_staging": 0,
+    "toilet_unit_sources": 0,
+    "toilet_units": 0
+  },
+  "canonical_facility_inserts": 0,
+  "canonical_facility_updates": 0,
+  "facility_source_inserts": 0,
+  "facility_source_observation_mutations": 0,
+  "import_run_mutations": 0,
+  "migration_ledger_mutations": 0,
+  "production_write_capability": false,
+  "read_only": true,
+  "schema_mutations": 0,
+  "source_counts": {
+    "memberships": 169527,
+    "nodes": 436428,
+    "parents": 3519,
+    "places": 97270,
+    "snapshots": 1,
+    "total": 706745
+  },
+  "source_graph_mutations": 0,
+  "tfl_observation_mutations": 0,
+  "toilet_unit_mutations": 0,
+  "total_production_mutations": 0
+}

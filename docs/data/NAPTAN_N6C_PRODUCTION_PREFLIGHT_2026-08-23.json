@@ -1,0 +1,89 @@
+{
+  "branch": "codex/toilet-map-apply-1a-production-deploy",
+  "canonical_counts": {
+    "facilities": 15620,
+    "facility_source_observations": 14,
+    "facility_sources": 15634,
+    "import_runs": 5,
+    "toilet_map_import_staging": 0,
+    "toilet_unit_sources": 0,
+    "toilet_units": 0
+  },
+  "database_version": "17.6.1.127",
+  "direct_public_anon_authenticated_privileges": false,
+  "direct_service_role_privileges": [
+    "DELETE",
+    "INSERT",
+    "REFERENCES",
+    "SELECT",
+    "TRIGGER",
+    "TRUNCATE",
+    "UPDATE"
+  ],
+  "migration_chain_synchronized": true,
+  "migration_dry_run": "Remote database is up to date.",
+  "migration_head": "20260822170000",
+  "n6a_baseline_preserved": true,
+  "n6b_manifest_total_production_mutations": 0,
+  "n6b_source_graph_baseline_reproduced": true,
+  "pgcrypto_version": "1.3",
+  "postgis_full_version": "POSTGIS=\"3.3.7 a0c7967\" [EXTENSION] PGSQL=\"170\" GEOS=\"3.14.1-CAPI-1.20.5\" PROJ=\"9.7.1\" LIBXML=\"2.15.1\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.2\" WAGYU=\"0.5.0 (Internal)\"",
+  "postgis_version": "3.3.7",
+  "postgres_version": "17.6",
+  "production_mutations": 0,
+  "project": "Relief",
+  "project_ref": "bgwxrxkmyaihplaloely",
+  "project_status": "ACTIVE_HEALTHY",
+  "provenance_source_names": [
+    "TfL detailed station data � station facilities and toilets",
+    "Toilet Map UK"
+  ],
+  "read_only": true,
+  "region": "eu-central-1",
+  "repository": "hourwise/Relief",
+  "sealed_n4a_sha256": "087A389B8CEAC021B12708BC55C39022CB38D5459510EFFB6CF057CEF232C44E",
+  "source_graph_counts": {
+    "total": 706745,
+    "transport_source_memberships": 169527,
+    "transport_source_nodes": 436428,
+    "transport_source_place_parents": 3519,
+    "transport_source_places": 97270,
+    "transport_source_snapshots": 1
+  },
+  "source_graph_invariants": {
+    "cross_complex_or_unresolved_multi_parent_nodes": 628,
+    "hierarchy_cycles": 0,
+    "hierarchy_max_depth": 13,
+    "missing_membership_parent_identities": 1543,
+    "missing_parent_identities": 41,
+    "multi_parent_nodes": 701,
+    "shared_root_multi_parent_nodes": 73,
+    "unresolved_membership_edges": 2804,
+    "unresolved_parent_edges": 92
+  },
+  "source_policy_counts": {
+    "transport_source_memberships": 0,
+    "transport_source_nodes": 0,
+    "transport_source_place_parents": 0,
+    "transport_source_places": 0,
+    "transport_source_snapshots": 0
+  },
+  "source_rls": {
+    "transport_source_memberships": true,
+    "transport_source_nodes": true,
+    "transport_source_place_parents": true,
+    "transport_source_places": true,
+    "transport_source_snapshots": true
+  },
+  "source_snapshot": {
+    "attribution": "Contains public sector information licensed under the Open Government Licence v3.0.",
+    "byte_size": 578991782,
+    "licence": "Open Government Licence v3.0",
+    "product": "NaPTAN national XML access-node and StopArea package",
+    "publisher": "UK Department for Transport",
+    "sha256": "6FC7E40E2AF3B30E9FD117BDAC313B58F3385BFF26517FD78D5554DA12B4183A",
+    "snapshot_key": "naptan:sha256:6fc7e40e2af3b30e9fd117bdac313b58f3385bff26517fd78d5554da12b4183a"
+  },
+  "starting_local_sha": "fead5b71aa8e3170733a85f3a49bb1ee23d166c6",
+  "starting_remote_sha": "fead5b71aa8e3170733a85f3a49bb1ee23d166c6"
+}
