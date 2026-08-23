@@ -15,6 +15,8 @@ The N6A production-backed results remain authoritative and unchanged: 93,751 nor
 
 Source graph counts remain 1 snapshot, 97,270 places, 436,428 nodes, 169,527 memberships, and 3,519 parent edges (706,745 total). No N6B production DML was executed.
 
+The governed snapshot is `naptan:sha256:6fc7e40e2af3b30e9fd117bdac313b58f3385bff26517fd78d5554da12b4183a`, 578,991,782 bytes, SHA-256 `6FC7E40E2AF3B30E9FD117BDAC313B58F3385BFF26517FD78D5554DA12B4183A`, published by the UK Department for Transport under OGL v3.0 with the required attribution. The exact bytes were verified locally and the production snapshot metadata was checked read-only.
+
 ## Mode cohort analysis
 
 | Mode | Complexes | Candidate complexes at 500m | N6A proposed | N6A ambiguous | N6A proposed-new | N6A supporting | N6A no-action | Generic-name complexes |

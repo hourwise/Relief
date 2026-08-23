@@ -1,4 +1,14 @@
 {
+  "source_snapshot": {
+    "snapshot_key": "naptan:sha256:6fc7e40e2af3b30e9fd117bdac313b58f3385bff26517fd78d5554da12b4183a",
+    "publisher": "UK Department for Transport",
+    "product": "NaPTAN national XML access-node and StopArea package",
+    "byte_size": 578991782,
+    "sha256": "6FC7E40E2AF3B30E9FD117BDAC313B58F3385BFF26517FD78D5554DA12B4183A",
+    "licence": "Open Government Licence v3.0",
+    "attribution": "Contains public sector information licensed under the Open Government Licence v3.0.",
+    "production_snapshot_state": "INGESTED"
+  },
   "hierarchy_cycles": 0,
   "hierarchy_max_depth": 13,
   "missing_membership_parent_identities": 1543,
