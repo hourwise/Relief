@@ -1,0 +1,29 @@
+{
+  "production_read_only": true,
+  "query_design": "indexed source-name narrowing plus PostGIS ST_DWithin/ST_Distance; recursive hierarchy CTE; bounded radius 500m; no unbounded complex/facility Cartesian join",
+  "indexes_observed": [
+    "idx_transport_source_places_snapshot_name",
+    "facilities_location_gix",
+    "idx_transport_source_places_location"
+  ],
+  "explain_analyze_probe": {
+    "query": "exact normalized source name plus 500m facility geography",
+    "planning_ms": 33.339,
+    "execution_ms": 16.977,
+    "actual_candidate_rows": 2,
+    "shared_hit_blocks": 903,
+    "shared_read_blocks": 0,
+    "mutation": false
+  },
+  "round_trip_probe_ms": [5547, 4883, 3906],
+  "round_trip_probe_median_ms": 4883,
+  "full_analysis_observations": {
+    "production_projection_query_seconds": 28.2,
+    "candidate_scale_query_seconds": 24.3,
+    "radius_audit_query_seconds": 18.9,
+    "tfl_mapping_query_seconds": 17.1
+  },
+  "interpretation": "round-trip timings include the governed SQL transport; database EXPLAIN timing is reported separately",
+  "new_indexes": 0,
+  "production_writes": 0
+}

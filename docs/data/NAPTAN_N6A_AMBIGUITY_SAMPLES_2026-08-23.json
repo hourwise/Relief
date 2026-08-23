@@ -1,0 +1,24 @@
+{
+  "bounded_samples": {
+    "ambiguous": [
+      {"complex": "Cockfosters Underground Station", "reason": "two canonical facilities with same name within 49.1m"},
+      {"complex": "Wapping Wharf", "reason": "two canonical facilities share the same address/name and distance"},
+      {"complex": "Oakwood Underground Station", "reason": "facility collision with distinct Oakwood source complexes"},
+      {"complex": "Oakwood Station", "reason": "facility collision with distinct Oakwood source complexes"}
+    ],
+    "false_positive_risks": [
+      {"source": "Bus Station", "risk": "generic name and nearby named bus facility"},
+      {"source": "Falkirk Asda", "risk": "token-subset ordering/retailer name is not identity proof"},
+      {"source": "Queensmere Centre", "risk": "shopping-centre name overlap is not transport identity proof"},
+      {"source": "Wapping Wharf", "risk": "address-level duplicate canonical facilities"}
+    ],
+    "false_negative_risks": [
+      "subplace versus root naming",
+      "suffixes such as Station, Rail Station, DLR Station and Underground Station",
+      "source complexes with no root publisher coordinate",
+      "multimodal roots whose strongest label exists only on a child area"
+    ]
+  },
+  "human_review_required": true,
+  "production_writes": 0
+}

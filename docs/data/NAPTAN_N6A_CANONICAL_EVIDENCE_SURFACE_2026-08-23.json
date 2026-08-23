@@ -1,0 +1,57 @@
+{
+  "batch": "N6A",
+  "production_read_only": true,
+  "facilities_columns_used": [
+    "id",
+    "name",
+    "address",
+    "latitude",
+    "longitude",
+    "postcode",
+    "town",
+    "location geography",
+    "field_provenance jsonb"
+  ],
+  "facility_field_coverage": {
+    "facilities": 15620,
+    "geometry_available": 15620,
+    "geometry_unavailable": 0,
+    "postcode_available": 0,
+    "address_available": 0,
+    "town_available": 15012
+  },
+  "provenance_columns_used": [
+    "facility_sources.source_name",
+    "facility_sources.source_record_id",
+    "facility_sources.source_url",
+    "facility_sources.source_licence",
+    "facility_sources.is_current",
+    "facility_source_observations.observation_kind",
+    "facility_source_observations.observed_attributes"
+  ],
+  "existing_source_names": {
+    "TfL detailed station data � station facilities and toilets": 14,
+    "Toilet Map UK": 15620
+  },
+  "naptan_identifier_audit": {
+    "source_name_rows": 0,
+    "source_record_id_rows": 0,
+    "shared_official_identifier_matches": 0,
+    "classification": "NO_SHARED_OFFICIAL_IDENTIFIER"
+  },
+  "usable_evidence": [
+    "official identifier evidence when represented in both systems",
+    "conservative normalized facility/source names",
+    "publisher StopArea root coordinates only for the primary candidate query",
+    "canonical geography",
+    "town where present",
+    "existing provenance namespace and source record",
+    "transport hierarchy and mode from the source projection"
+  ],
+  "unavailable_or_not_authorized": [
+    "canonical postcode/address evidence is absent",
+    "canonical transport mode/type is not a facility column",
+    "no NaPTAN provenance exists to treat as authoritative",
+    "no candidate or projection was persisted"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "normalized_complexes": 93751,
+  "root_publisher_geometry_available": 81435,
+  "root_publisher_geometry_unavailable": 12316,
+  "canonical_facilities": 15620,
+  "name_only_audit": {
+    "candidate_pairs": 7364,
+    "complexes_with_zero_named": 91626,
+    "complexes_with_one_named": 1067,
+    "complexes_with_multiple_named": 1058
+  },
+  "bounded_name_and_geometry_generator": {
+    "radius_metres": 500,
+    "candidate_pairs": 695,
+    "complexes_with_zero_candidates": 93097,
+    "complexes_with_one_candidate": 619,
+    "complexes_with_multiple_candidates": 35,
+    "candidate_count_distribution": {"0": 93097, "1": 619, "2": 31, "3": 2, "4": 2},
+    "candidate_facilities": 662,
+    "facilities_with_zero_candidates": 14958,
+    "facilities_with_one_candidate": 632,
+    "facilities_with_multiple_candidates": 30,
+    "maximum_competing_complexes_for_one_facility": 4,
+    "minimum_distance_m": 0.15384987,
+    "median_minimum_distance_m": 83.856523815,
+    "p95_minimum_distance_m": 368.7346814175,
+    "maximum_minimum_distance_m": 495.14049155
+  },
+  "radius_audit": {
+    "pairs_25m": 80,
+    "pairs_50m": 205,
+    "pairs_100m": 383,
+    "pairs_250m": 600,
+    "pairs_500m": 695,
+    "complexes_with_candidate_at_500m": 654
+  },
+  "by_mode": {
+    "air": {"complexes": 65, "pairs_500m": 7, "complexes_500m": 7},
+    "bus_coach": {"complexes": 75920, "pairs_500m": 581, "complexes_500m": 545},
+    "ferry_port": {"complexes": 470, "pairs_500m": 8, "complexes_500m": 7},
+    "metro_tram_underground": {"complexes": 641, "pairs_500m": 1, "complexes_500m": 1},
+    "multimodal": {"complexes": 1541, "pairs_500m": 39, "complexes_500m": 38},
+    "no_mode": {"complexes": 13591, "pairs_500m": 52, "complexes_500m": 49},
+    "rail": {"complexes": 1519, "pairs_500m": 7, "complexes_500m": 7},
+    "taxi": {"complexes": 4, "pairs_500m": 0, "complexes_500m": 0}
+  },
+  "analysis_only": true
+}

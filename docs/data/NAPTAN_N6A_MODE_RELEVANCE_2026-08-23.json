@@ -1,0 +1,33 @@
+{
+  "policy_status": "analytical_only_product_decision_required",
+  "mode_policy": {
+    "rail": "potentially high relevance; candidate evidence still requires review",
+    "metro_tram_underground": "potentially high relevance; candidate evidence still requires review",
+    "multimodal": "potentially high relevance but complex/subplace ambiguity retained",
+    "ferry_port": "potentially high relevance; terminal/pier distinctions retained",
+    "air": "potentially high relevance; candidate evidence still requires review",
+    "bus_coach": "default SUPPORTING_SOURCE_ONLY to prevent bus-stop canonical explosion",
+    "no_mode": "NO_ACTION unless separate evidence exists",
+    "taxi": "NO_ACTION unless separate evidence exists"
+  },
+  "classification_totals": {
+    "EXISTING_CANONICAL_MATCH": 0,
+    "PROPOSED_CANONICAL_MATCH": 51,
+    "AMBIGUOUS_CANONICAL_MATCH": 9,
+    "PROPOSED_NEW_TRANSPORT_PLACE": 4163,
+    "SUPPORTING_SOURCE_ONLY": 75933,
+    "CONFLICT": 0,
+    "NO_ACTION": 13595
+  },
+  "by_mode": {
+    "air": {"existing": 0, "proposed_match": 5, "ambiguous": 2, "proposed_new": 58, "supporting": 0, "no_action": 0},
+    "bus_coach": {"existing": 0, "proposed_match": 0, "ambiguous": 0, "proposed_new": 0, "supporting": 75920, "no_action": 0},
+    "ferry_port": {"existing": 0, "proposed_match": 5, "ambiguous": 2, "proposed_new": 462, "supporting": 1, "no_action": 0},
+    "metro_tram_underground": {"existing": 0, "proposed_match": 1, "ambiguous": 0, "proposed_new": 640, "supporting": 0, "no_action": 0},
+    "multimodal": {"existing": 0, "proposed_match": 34, "ambiguous": 4, "proposed_new": 1500, "supporting": 3, "no_action": 0},
+    "no_mode": {"existing": 0, "proposed_match": 0, "ambiguous": 0, "proposed_new": 0, "supporting": 0, "no_action": 13591},
+    "rail": {"existing": 0, "proposed_match": 6, "ambiguous": 1, "proposed_new": 1503, "supporting": 9, "no_action": 0},
+    "taxi": {"existing": 0, "proposed_match": 0, "ambiguous": 0, "proposed_new": 0, "supporting": 0, "no_action": 4}
+  },
+  "warning": "4163 proposed-new analytical rows demonstrate that mass canonical expansion is not an authorized or bounded product decision"
+}

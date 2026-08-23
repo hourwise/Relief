@@ -1,0 +1,40 @@
+{
+  "outcomes": [
+    "EXISTING_CANONICAL_MATCH",
+    "PROPOSED_CANONICAL_MATCH",
+    "AMBIGUOUS_CANONICAL_MATCH",
+    "PROPOSED_NEW_TRANSPORT_PLACE",
+    "SUPPORTING_SOURCE_ONLY",
+    "CONFLICT",
+    "NO_ACTION"
+  ],
+  "precedence": [
+    "conflicting official identifier is a hard CONFLICT",
+    "shared official identifier is EXISTING_CANONICAL_MATCH",
+    "competing canonical candidates or facility collision is AMBIGUOUS_CANONICAL_MATCH",
+    "unique exact normalized name plus distance <=250m is PROPOSED_CANONICAL_MATCH",
+    "unique source-token-subset name plus distance <=100m is PROPOSED_CANONICAL_MATCH",
+    "high-value source complex with publisher geometry and no credible candidate is PROPOSED_NEW_TRANSPORT_PLACE",
+    "ordinary bus/coach source evidence defaults to SUPPORTING_SOURCE_ONLY",
+    "no-mode and taxi evidence defaults to NO_ACTION"
+  ],
+  "hard_vetoes": [
+    "proximity without compatible name or official identifier",
+    "generic source name without corroborating evidence",
+    "competing candidates",
+    "facility claimed by multiple distinct source complexes",
+    "unresolved source hierarchy or unavailable source geometry for a decisive proposal",
+    "conflicting official identifiers"
+  ],
+  "score_dimensions": [
+    "official_identifier",
+    "existing_provenance",
+    "exact_normalized_name",
+    "source_token_subset",
+    "distance_band",
+    "hierarchy_resolution",
+    "candidate_count",
+    "facility_collision"
+  ],
+  "classification_is_analysis_only": true
+}

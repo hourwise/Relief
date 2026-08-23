@@ -1,0 +1,20 @@
+{
+  "production_read_only": true,
+  "existing_tfl_observations": 14,
+  "existing_tfl_source_names": ["TfL detailed station data � station facilities and toilets"],
+  "strict_root_name_geometry_candidate_audit": {
+    "facilities_with_a_candidate": 5,
+    "exact_normalized_name": 3,
+    "source_token_subset_only": 2,
+    "no_strict_candidate": 9
+  },
+  "representative_candidates": [
+    {"facility": "Hanwell Rail Station", "complex": "Hanwell Rail Station", "mode": "multimodal", "evidence": "exact_normalized_name", "distance_m": 11.8},
+    {"facility": "Ruislip Gardens Underground Station", "complex": "Ruislip Gardens Underground Station", "mode": "multimodal", "evidence": "exact_normalized_name", "distance_m": 8.5},
+    {"facility": "Tottenham Court Road Underground Station", "complex": "Tottenham Court Road Underground Station", "mode": "multimodal", "evidence": "exact_normalized_name", "distance_m": 22.7},
+    {"facility": "Battersea Power Station (Tube Station)", "complex": "Battersea Power Station", "mode": "bus_coach", "evidence": "source_token_subset_only", "distance_m": 158.0},
+    {"facility": "Tesco Extra Romford Goodmayes", "complex": "Goodmayes Tesco", "mode": "bus_coach", "evidence": "source_token_subset_only", "distance_m": 156.5}
+  ],
+  "interpretation": "The five strict candidates are audit evidence only. Existing TfL provenance does not authorize NaPTAN linkage, and the nine no-candidate cases are not forced into a relationship. Child-area/subplace evidence remains a separate human-review input.",
+  "production_writes": 0
+}

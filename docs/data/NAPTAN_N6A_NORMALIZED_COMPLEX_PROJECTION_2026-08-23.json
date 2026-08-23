@@ -1,0 +1,38 @@
+{
+  "classification": "DETERMINISTIC_PROJECTION",
+  "production_read_only": true,
+  "persisted_as_source_rows": false,
+  "projection_rebuilt_from": [
+    "transport_source_places",
+    "transport_source_nodes",
+    "transport_source_memberships",
+    "transport_source_place_parents"
+  ],
+  "normalized_complexes": 93751,
+  "single_area_complexes": 91757,
+  "parent_area_complexes": 559,
+  "multimodal_parent_complexes": 1435,
+  "unresolved_area_nodes": 93,
+  "root_publisher_geometry_available": 81435,
+  "root_publisher_geometry_unavailable": 12316,
+  "mode_distribution": {
+    "bus_coach": 75920,
+    "multimodal": 1541,
+    "no_mode": 13591,
+    "metro_tram_underground": 641,
+    "rail": 1519,
+    "ferry_port": 470,
+    "air": 65,
+    "taxi": 4
+  },
+  "hierarchy": {
+    "maximum_depth": 13,
+    "cycles": 0,
+    "multi_parent_nodes": 701,
+    "two_parent_nodes": 667,
+    "three_parent_nodes": 34,
+    "shared_root_multi_parent_nodes": 73,
+    "cross_complex_or_unresolved_multi_parent_nodes": 628
+  },
+  "canonical_mutations": 0
+}

@@ -1,0 +1,20 @@
+{
+  "source_complex_to_multiple_facilities": {
+    "count": 2,
+    "examples": [
+      {"complex": "Cockfosters Underground Station", "facilities": 2, "distances_m": [29.6, 49.1]},
+      {"complex": "Wapping Wharf", "facilities": 2, "distances_m": [287.9, 287.9]}
+    ]
+  },
+  "facility_to_multiple_complexes": {
+    "count": 30,
+    "maximum_competing_complexes": 4,
+    "representative": {
+      "facility": "Oakwood Underground Station",
+      "competing_complexes": ["Oakwood Underground Station", "Oakwood Station"],
+      "distances_m": [23.5, 23.5]
+    }
+  },
+  "classification_effect": "collisions are AMBIGUOUS_CANONICAL_MATCH and are not promoted to a best candidate",
+  "production_writes": 0
+}

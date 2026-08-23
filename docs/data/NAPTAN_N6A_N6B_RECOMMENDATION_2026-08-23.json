@@ -1,0 +1,20 @@
+{
+  "classification": "N6B_CANONICAL_PROMOTION_NOT_READY",
+  "product_scope_classification": "TRANSPORT_CANONICAL_SCOPE_REQUIRES_PRODUCT_DECISION",
+  "recommendation": "Do not promote canonical rows in the next transaction. First decide whether Relief should represent any transport places and, if so, define a small named high-value cohort.",
+  "bounded_future_population": {
+    "read_only_existing_match_proposals_for_adjudication": 51,
+    "ambiguous_cases_for_adjudication": 9,
+    "proposed_new_cases_requiring_product_policy": 4163,
+    "ordinary_bus_coach_supporting_only": 75920
+  },
+  "safest_next_transaction": "N6B human adjudication of a small, explicitly selected high-value sample; no automatic promotion and no mass new-place creation",
+  "required_before_promotion": [
+    "product decision on transport canonical scope",
+    "review of the 51 proposed existing links",
+    "review of the 9 collision/ambiguity cases",
+    "child-area/subplace evidence for known TfL cases where root geometry is unavailable",
+    "separate authorization for any facility or facility_sources mutation"
+  ],
+  "schema_change": "not recommended by N6A; no persistence is required for this bounded analysis"
+}

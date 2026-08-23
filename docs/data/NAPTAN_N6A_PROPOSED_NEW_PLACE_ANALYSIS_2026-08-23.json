@@ -1,0 +1,20 @@
+{
+  "analysis_only": true,
+  "proposed_new_total": 4163,
+  "by_mode": {
+    "air": 58,
+    "ferry_port": 462,
+    "metro_tram_underground": 640,
+    "multimodal": 1500,
+    "rail": 1503
+  },
+  "reason": "high-value-mode source complexes with root publisher geometry and no bounded name-compatible canonical candidate within 500m",
+  "product_relevance": "not sufficient to authorize creation; the scale requires a product policy decision and likely a much narrower named-station/terminal cohort",
+  "policy_options_for_future_governance": [
+    "rail/metro/ferry/airport named facilities only",
+    "multimodal hubs only",
+    "require independent toilet/source-observation evidence",
+    "supporting-source-only until canonical transport scope is decided"
+  ],
+  "canonical_inserts": 0
+}

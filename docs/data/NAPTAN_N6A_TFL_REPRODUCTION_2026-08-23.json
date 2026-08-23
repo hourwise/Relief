@@ -1,0 +1,24 @@
+{
+  "production_read_only": true,
+  "frozen_station_count": 509,
+  "frozen_n2_candidate_identities_rechecked": 188,
+  "actual_n3_counts": {
+    "HIGH_CONFIDENCE_COMPLEX_MATCH": 47,
+    "HIGH_CONFIDENCE_SUBPLACE_MATCH": 7,
+    "MULTIMODAL_COMPLEX_MATCH": 104,
+    "AMBIGUOUS_COMPLEX": 2,
+    "NO_MATCH": 349
+  },
+  "expected_n3_counts": {
+    "HIGH_CONFIDENCE_COMPLEX_MATCH": 47,
+    "HIGH_CONFIDENCE_SUBPLACE_MATCH": 7,
+    "MULTIMODAL_COMPLEX_MATCH": 104,
+    "AMBIGUOUS_COMPLEX": 2,
+    "NO_MATCH": 349
+  },
+  "n2_ambiguity_resolved": 28,
+  "exact_official_identifier_matches": 0,
+  "n2_to_n3_changes_reproduced": true,
+  "facility_creation_authorized": false,
+  "source": "production transport-source graph, using the committed frozen N2 candidate roster and N3 root-resolution semantics"
+}

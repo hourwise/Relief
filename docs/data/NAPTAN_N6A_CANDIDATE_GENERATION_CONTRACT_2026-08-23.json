@@ -1,0 +1,24 @@
+{
+  "production_write_capability": false,
+  "primary_unit": "normalized transport complex",
+  "candidate_identity": "<snapshot_key>|<complex_identity>|<facility_id>",
+  "source_geometry_policy": "publisher root StopArea coordinates only for the primary full-scale candidate query; no analysis-derived centroid is treated as publisher geometry",
+  "name_normalization": "NFKC, casefold, committed punctuation normalization, whitespace collapse",
+  "name_evidence": {
+    "exact_normalized_name": true,
+    "source_token_subset": "allowed only with at least two source tokens",
+    "meaningful_transport_tokens_preserved": ["central", "north", "south", "east", "west", "terminal"]
+  },
+  "geography_bands_metres": [25, 50, 100, 250, 500, 1000, 5000],
+  "primary_bounded_radius_metres": 500,
+  "candidate_generation": "name-compatible pairs narrowed by indexed PostGIS distance; no all-complexes x all-facilities Cartesian join",
+  "candidate_generation_does_not_claim": [
+    "canonical identity",
+    "facility creation authorization",
+    "source provenance creation",
+    "canonical write readiness"
+  ],
+  "proximity_only_veto": true,
+  "generic_name_guard": ["central", "central station", "church", "high street", "hospital", "station"],
+  "production_persistence": false
+}
