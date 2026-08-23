@@ -279,14 +279,19 @@ def load_fixture(path: Path) -> dict[str, Any]:
 
 def national_scale_estimate() -> dict[str, Any]:
     return {
+        "count_contract": "N5-R1-2026-08-23",
         "snapshot_rows": 1,
         "source_place_rows": 97270,
         "source_node_rows": 436428,
-        "membership_rows_after_exact_duplicate_coalescing": 169524,
+        "publisher_membership_element_rows": 169530,
+        "unique_membership_key_rows": 169527,
+        "membership_rows_after_exact_duplicate_coalescing": 169527,
         "membership_duplicate_occurrence_total": 3,
         "parent_edge_rows": 3519,
-        "unresolved_member_parent_reference_rows": 1543,
-        "unresolved_area_parent_reference_rows": 41,
+        "unresolved_member_parent_edge_rows": 2804,
+        "distinct_missing_member_parent_identity_rows": 1543,
+        "unresolved_area_parent_edge_rows": 92,
+        "distinct_missing_area_parent_identity_rows": 41,
         "normalized_projection_rows": 93751,
         "normalized_projection_persistence": "none in N4A; deterministic projection only",
         "note": "Counts are one current national snapshot; future snapshots append source facts and repeat edge rows per snapshot.",

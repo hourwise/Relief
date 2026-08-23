@@ -1,0 +1,83 @@
+{
+  "comparisons": {
+    "method_a_duplicate_equals_method_c_duplicate": true,
+    "method_a_raw_equals_method_b_raw": true,
+    "method_a_unique_equals_method_c_unique": true,
+    "method_b_raw_equals_method_c_raw": true,
+    "parent_raw_equals_method_c_parent_raw": true
+  },
+  "definitions": {
+    "duplicate_membership_extra_occurrence_count": "Occurrences beyond the first for each unique membership key.",
+    "publisher_membership_element_count": "StopAreaRef XML elements physically present in StopPoint records.",
+    "stored_membership_row_count": "Expected transport_source_memberships rows; one row per unique key.",
+    "unique_membership_key_count": "Distinct naptan-stop-point:<ATCO>|naptan-stop-area:<StopAreaCode> keys."
+  },
+  "method_a": {
+    "complex_type_distribution": {
+      "MULTIMODAL_PARENT_COMPLEX": 1435,
+      "PARENT_AREA_COMPLEX": 559,
+      "SINGLE_AREA_COMPLEX": 91757
+    },
+    "cross_complex_or_unresolved_multi_parent_nodes": 628,
+    "derived_publisher_membership_element_count": 169530,
+    "distinct_missing_area_parent_identity_count": 41,
+    "distinct_missing_member_parent_identity_count": 1543,
+    "duplicate_membership_extra_occurrence_count": 3,
+    "hierarchy_cycles": 0,
+    "independence": "existing committed N3 parser and projection; not changed by N5-R1",
+    "maximum_hierarchy_depth": 13,
+    "method": "A_EXISTING_COMMITTED_N3_PARSER_UNCHANGED",
+    "mode_distribution": {
+      "air": 65,
+      "bus_coach": 75920,
+      "ferry_port": 470,
+      "metro_tram_underground": 641,
+      "multimodal": 1541,
+      "no_mode": 13591,
+      "rail": 1519,
+      "taxi": 4
+    },
+    "multi_parent_nodes": 701,
+    "normalized_complexes": 93751,
+    "parse_seconds": 68.146,
+    "publisher_parent_element_count": 3519,
+    "shared_root_multi_parent_nodes": 73,
+    "stop_areas": 97270,
+    "stop_points": 436428,
+    "total_seconds": 72.702,
+    "unique_membership_key_count": 169527,
+    "unresolved_area_nodes": 93
+  },
+  "method_b": {
+    "blank_membership_elements": 0,
+    "blank_parent_elements": 0,
+    "independence": "iterparse element counter; no N3 identity maps or normalization",
+    "method": "B_DIRECT_STREAMING_XML_ELEMENT_COUNTER",
+    "publisher_membership_element_count": 169530,
+    "publisher_parent_element_count": 3519,
+    "seconds": 37.499,
+    "stop_areas": 97270,
+    "stop_points": 436428
+  },
+  "method_c_summary": {
+    "distinct_missing_member_parent_identity_count": 1543,
+    "duplicate_membership_extra_occurrence_count": 3,
+    "publisher_membership_element_count": 169530,
+    "stored_membership_row_count": 169527,
+    "unique_membership_key_count": 169527,
+    "unresolved_membership_edge_count": 2804
+  },
+  "old_contract_arithmetic_test": {
+    "observed_logical": 169527,
+    "observed_raw": 169530,
+    "old_contract_is_supported": false,
+    "old_raw_minus_duplicates": 169524
+  },
+  "source": {
+    "byte_size": 578991782,
+    "exact": true,
+    "expected_byte_size": 578991782,
+    "expected_sha256": "6FC7E40E2AF3B30E9FD117BDAC313B58F3385BFF26517FD78D5554DA12B4183A",
+    "sha256": "6FC7E40E2AF3B30E9FD117BDAC313B58F3385BFF26517FD78D5554DA12B4183A"
+  }
+}

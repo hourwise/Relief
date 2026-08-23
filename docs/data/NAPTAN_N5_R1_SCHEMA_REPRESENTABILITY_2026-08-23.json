@@ -1,0 +1,32 @@
+{
+  "live_catalog_audit": {
+    "membership_nullable_node_and_place": true,
+    "parent_nullable_child_and_parent": true,
+    "policies": [],
+    "public_anon_authenticated_grants": false,
+    "service_role_has_all_table_privileges": true,
+    "target_tables_rls_enabled": true,
+    "unique_membership_snapshot_key": true,
+    "unique_parent_snapshot_key": true
+  },
+  "static_migration_audit": {
+    "checks": {
+      "membership_duplicate_count": true,
+      "membership_nullable_node": true,
+      "membership_nullable_place": true,
+      "membership_unique_key": true,
+      "membership_unresolved_status": true,
+      "parent_duplicate_count": true,
+      "parent_nullable_child": true,
+      "parent_nullable_parent": true,
+      "parent_unique_key": true,
+      "parent_unresolved_status": true
+    },
+    "classification": "N4A_SCHEMA_SUPPORTS_CORRECTED_COUNTS",
+    "migration_path": "supabase/migrations/20260822170000_naptan_transport_source_graph.sql",
+    "migration_sha256": "087A389B8CEAC021B12708BC55C39022CB38D5459510EFFB6CF057CEF232C44E",
+    "reason": "One row per unique membership/parent key, duplicate occurrence metadata, nullable unresolved FKs, and no one-parent-per-node constraint.",
+    "required_sha256": "087A389B8CEAC021B12708BC55C39022CB38D5459510EFFB6CF057CEF232C44E",
+    "sealed_hash_exact": true
+  }
+}

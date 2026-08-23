@@ -1,0 +1,45 @@
+{
+  "authoritative": true,
+  "contract_version": "N5-R1-2026-08-23",
+  "root_cause_classification": "MULTIPLE_DEFECTS",
+  "semantics": {
+    "distinct_missing_area_parent_identity_count": "Unique missing parent StopArea identities.",
+    "distinct_missing_member_parent_identity_count": "Unique missing StopArea identities referenced by unresolved membership edges.",
+    "duplicate_occurrence_count": "Total raw occurrences for the logical key; each duplicated key has value 2.",
+    "unresolved_membership_edge_count": "Logical unique membership rows whose place identity is missing.",
+    "unresolved_parent_edge_count": "Logical unique StopArea-parent edges whose parent identity is missing."
+  },
+  "source": {
+    "byte_size": 578991782,
+    "exact": true,
+    "expected_byte_size": 578991782,
+    "expected_sha256": "6FC7E40E2AF3B30E9FD117BDAC313B58F3385BFF26517FD78D5554DA12B4183A",
+    "sha256": "6FC7E40E2AF3B30E9FD117BDAC313B58F3385BFF26517FD78D5554DA12B4183A"
+  },
+  "supersedes": [
+    "docs/data/NAPTAN_N4A_SCHEMA_CONTRACT_2026-08-22.json estimated_current_snapshot_rows.memberships_after_exact_duplicate_coalescing=169524",
+    "tools/source_expansion/naptan_n4a.py pre-N5-R1 national_scale_estimate"
+  ],
+  "values": {
+    "distinct_missing_area_parent_identity_count": 41,
+    "distinct_missing_member_parent_identity_count": 1543,
+    "duplicate_membership_extra_occurrence_count": 3,
+    "duplicate_occurrence_column_semantics": "total_occurrences_per_logical_key; duplicate pair rows have value 2",
+    "hierarchy_cycles": 0,
+    "maximum_hierarchy_depth": 13,
+    "multi_parent_nodes": 701,
+    "normalized_complexes": 93751,
+    "publisher_membership_element_count": 169530,
+    "publisher_parent_element_count": 3519,
+    "source_snapshot_rows": 1,
+    "stop_area_rows": 97270,
+    "stop_point_rows": 436428,
+    "stored_membership_row_count": 169527,
+    "stored_parent_row_count": 3519,
+    "total_stored_source_graph_rows": 706745,
+    "unique_membership_key_count": 169527,
+    "unique_parent_edge_count": 3519,
+    "unresolved_membership_edge_count": 2804,
+    "unresolved_parent_edge_count": 92
+  }
+}

@@ -114,7 +114,14 @@ class NaptanN4ATests(unittest.TestCase):
         estimate = naptan_n4a.national_scale_estimate()
         self.assertEqual(estimate["source_place_rows"], 97270)
         self.assertEqual(estimate["source_node_rows"], 436428)
-        self.assertEqual(estimate["membership_rows_after_exact_duplicate_coalescing"], 169524)
+        self.assertEqual(estimate["publisher_membership_element_rows"], 169530)
+        self.assertEqual(estimate["unique_membership_key_rows"], 169527)
+        self.assertEqual(estimate["membership_rows_after_exact_duplicate_coalescing"], 169527)
+        self.assertEqual(estimate["membership_duplicate_occurrence_total"], 3)
+        self.assertEqual(estimate["unresolved_member_parent_edge_rows"], 2804)
+        self.assertEqual(estimate["distinct_missing_member_parent_identity_rows"], 1543)
+        self.assertEqual(estimate["unresolved_area_parent_edge_rows"], 92)
+        self.assertEqual(estimate["distinct_missing_area_parent_identity_rows"], 41)
         self.assertEqual(estimate["normalized_projection_persistence"], "none in N4A; deterministic projection only")
 
     def test_no_production_mutation_surface_in_module(self) -> None:

@@ -1,0 +1,63 @@
+{
+  "duplicate_memberships": [
+    {
+      "duplicate_extra_occurrence_count": 1,
+      "membership_key": "naptan-stop-point:64801285|naptan-stop-area:648G1285",
+      "publisher_node_identity": "naptan-stop-point:64801285",
+      "publisher_place_identity": "naptan-stop-area:648G1285",
+      "raw_occurrence_count": 2,
+      "source_occurrences": [
+        {
+          "reference_sequence": 1,
+          "stop_point_sequence": 411310
+        },
+        {
+          "reference_sequence": 2,
+          "stop_point_sequence": 411310
+        }
+      ]
+    },
+    {
+      "duplicate_extra_occurrence_count": 1,
+      "membership_key": "naptan-stop-point:64804134|naptan-stop-area:648G221434",
+      "publisher_node_identity": "naptan-stop-point:64804134",
+      "publisher_place_identity": "naptan-stop-area:648G221434",
+      "raw_occurrence_count": 2,
+      "source_occurrences": [
+        {
+          "reference_sequence": 1,
+          "stop_point_sequence": 412887
+        },
+        {
+          "reference_sequence": 2,
+          "stop_point_sequence": 412887
+        }
+      ]
+    },
+    {
+      "duplicate_extra_occurrence_count": 1,
+      "membership_key": "naptan-stop-point:64804135|naptan-stop-area:648G221434",
+      "publisher_node_identity": "naptan-stop-point:64804135",
+      "publisher_place_identity": "naptan-stop-area:648G221434",
+      "raw_occurrence_count": 2,
+      "source_occurrences": [
+        {
+          "reference_sequence": 1,
+          "stop_point_sequence": 412888
+        },
+        {
+          "reference_sequence": 2,
+          "stop_point_sequence": 412888
+        }
+      ]
+    }
+  ],
+  "source": {
+    "byte_size": 578991782,
+    "exact": true,
+    "expected_byte_size": 578991782,
+    "expected_sha256": "6FC7E40E2AF3B30E9FD117BDAC313B58F3385BFF26517FD78D5554DA12B4183A",
+    "sha256": "6FC7E40E2AF3B30E9FD117BDAC313B58F3385BFF26517FD78D5554DA12B4183A"
+  },
+  "total_duplicate_extra_occurrences": 3
+}

@@ -1,0 +1,34 @@
+{
+  "classification": "MULTIPLE_DEFECTS",
+  "earliest_169524": {
+    "commit": "28195ff47b8559ad6c65f7d4866b47f45870560a",
+    "field": "membership_rows_after_exact_duplicate_coalescing",
+    "file": "tools/source_expansion/naptan_n4a.py",
+    "function": "national_scale_estimate",
+    "origin": "hard-coded N4A national-scale estimate",
+    "subject": "feat(data): define NaPTAN source graph schema",
+    "value": 169524
+  },
+  "propagation": "N4A copied the existing 169527 logical/set-based count, labelled it as post-deduplication, then subtracted duplicate extras again to produce 169524. N3 itself records 169527 unique keys and 3 duplicate occurrences.",
+  "upstream_169527": [
+    {
+      "file": "docs/data/NAPTAN_N2_HIERARCHY_REPORT_2026-08-22.md",
+      "meaning": "N2 logical membership rows"
+    },
+    {
+      "field": "memberships.total_rows",
+      "file": "docs/data/NAPTAN_N2_HIERARCHY_PROFILE_2026-08-22.json",
+      "value": 169527
+    },
+    {
+      "field": "source.memberships",
+      "file": "docs/data/NAPTAN_N3_COMPLEX_PROFILE_2026-08-22.json",
+      "value": 169527
+    },
+    {
+      "file": "docs/data/NAPTAN_N3_TRANSPORT_COMPLEX_REPORT_2026-08-22.md",
+      "value": 169527,
+      "wording": "publisher-declared memberships"
+    }
+  ]
+}
