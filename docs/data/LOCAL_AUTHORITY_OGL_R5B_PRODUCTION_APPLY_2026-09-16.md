@@ -95,4 +95,4 @@ Production identity remained Relief / `bgwxrxkmyaihplaloely` / `eu-central-1`, `
 
 No credentials, raw source downloads, or proprietary source payloads were committed. Rail, NaPTAN expansion, commercial, heritage, and other unrelated work remained out of scope.
 
-**TOTAL PRODUCTION MUTATIONS:** 24 persistent rows in the authorized tables: 23 facilities, 23 facility-source links, and 1 audit row; no other production mutation categories occurred. **N5/Rail/other unrelated production mutations: 0.**
+**TOTAL AUTHORIZED PRODUCTION INSERTS:** 47 persistent rows in the authorized tables: 23 facilities, 23 facility-source links, and 1 audit row; no other production mutation categories occurred. **UNRELATED PRODUCTION MUTATIONS: 0.**
