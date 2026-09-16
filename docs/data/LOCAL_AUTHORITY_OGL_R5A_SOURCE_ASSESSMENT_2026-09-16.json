@@ -1,0 +1,216 @@
+{
+  "batch": "R5A",
+  "scope": "bounded source acquisition and read-only comparison; no production mutation",
+  "retrieval_utc": "2026-09-16T14:54:48.6177123Z",
+  "production_baseline": {
+    "project": "Relief",
+    "ref": "bgwxrxkmyaihplaloely",
+    "region": "eu-central-1",
+    "status": "ACTIVE_HEALTHY",
+    "facilities": 15709,
+    "facility_sources": 15723,
+    "facility_source_observations": 14,
+    "import_runs": 6,
+    "toilet_units": 0,
+    "toilet_unit_sources": 0
+  },
+  "sources": [
+    {
+      "council": "Mid Ulster District Council",
+      "source_family": "public toilets",
+      "authority_url": "https://ckan.publishing.service.gov.uk/dataset/mid-ulster-council-public-toilets1",
+      "resource_url": "https://data-midulster.opendata.arcgis.com/datasets/242836dd7f484165b2fa8455a2fb5a02_0.geojson?outSR=%7B%22latestWkid%22%3A29902%2C%22wkid%22%3A29900%7D",
+      "licence": "Open Government Licence / OpenDataNI terms as recorded by the publisher catalogue",
+      "licence_status": "PRODUCTION_REUSE_PROVEN",
+      "format": "GeoJSON",
+      "sha256": "927c30cf5d4a4d59bf74d9f21efc340d6848ec6ee77caf6a2852e19287002778",
+      "byte_size": 13387,
+      "record_metrics": {
+        "records": 27,
+        "valid_coordinates": 27,
+        "meaningful_names": 27,
+        "postcodes": 27,
+        "duplicate_source_ids": 0,
+        "direct_toilet_evidence": 27,
+        "accessible_or_disabled": 21,
+        "radar": 10
+      },
+      "stable_identity": "OBJECTID plus publisher name/postcode",
+      "comparison": {
+        "within_25m": 8,
+        "within_100m": 10,
+        "within_250m": 10,
+        "beyond_250m": 17,
+        "exact_normalised_name_matches": 0
+      },
+      "ready_net_new": 17,
+      "review_required": 10,
+      "rejected_source_quality": 0,
+      "classification": "READY_FOR_NEXT_INGEST_BATCH",
+      "qualification": "Measured next-manifest candidates under direct-toilet evidence, stable identity, valid geometry and conservative overlap gates; not production-authorised."
+    },
+    {
+      "council": "Calderdale Council",
+      "source_family": "public toilets",
+      "authority_url": "https://dataworks.calderdale.gov.uk/dataset/public-toilets-20qn9",
+      "resource_url": "https://dataworks.calderdale.gov.uk/download/20qn9/3ge/public-conveniences.csv",
+      "licence": "Open Government Licence stated by the council open-data page",
+      "licence_status": "PRODUCTION_REUSE_PROVEN",
+      "format": "CSV",
+      "sha256": "73eee57cd0f1f3dd3f4bef400e4f0fb8beaefd1f104d4c1f18d9a1156467f175",
+      "byte_size": 6721,
+      "record_metrics": {
+        "records": 16,
+        "valid_direct_toilet_records": 15,
+        "valid_coordinates": 15,
+        "meaningful_names": 15,
+        "stable_publisher_ids": 0,
+        "postcodes": 0,
+        "duplicate_source_ids": 0,
+        "changing_places_records": 1
+      },
+      "coordinate_note": "OSGB36/easting-northing fields transformed read-only for comparison",
+      "comparison": {
+        "within_25m": 7,
+        "within_100m": 8,
+        "within_250m": 9,
+        "beyond_250m": 6
+      },
+      "ready_net_new": 0,
+      "review_required": 15,
+      "rejected_source_quality": 1,
+      "classification": "REVIEW_REQUIRED",
+      "qualification": "Direct toilet evidence is useful, but the absence of stable publisher identifiers/postcodes makes automatic net-new decisions unsafe."
+    },
+    {
+      "council": "Sheffield City Council",
+      "source_family": "public toilets",
+      "authority_url": "https://www.data.gov.uk/dataset/1e172d53-a4d2-4da3-8fe7-206537f0611d/public-toilets-sheffield",
+      "resource_url": "https://sheffieldcitycouncil.cloud.esriuk.com/server/rest/services/AGOL/OpenData1/FeatureServer/6/query?outFields=*&where=1%3D1&f=geojson",
+      "licence": "Open Government Licence stated by the data catalogue",
+      "licence_status": "PRODUCTION_REUSE_PROVEN",
+      "format": "GeoJSON/ArcGIS FeatureServer",
+      "sha256": "fd6950b582e5a5ab4515ac255540622ea7e0e0a261faa9a0b8f8b329930f21cb",
+      "byte_size": 7901,
+      "record_metrics": {
+        "records": 41,
+        "valid_coordinates": 41,
+        "meaningful_names": 0,
+        "stable_source_ids": 41,
+        "duplicate_source_ids": 0,
+        "direct_toilet_evidence": "not represented in current payload"
+      },
+      "ready_net_new": 0,
+      "review_required": 0,
+      "rejected_source_quality": 41,
+      "classification": "ZERO_OR_NEGLIGIBLE_YIELD",
+      "qualification": "Current machine-readable payload contains only objectid/UPRN/state/geometry and no usable names or direct toilet field; names must not be invented from coordinates."
+    },
+    {
+      "council": "Dover District Council",
+      "source_family": "public toilets",
+      "authority_url": "https://www.dover.gov.uk/Corporate-Information/Transparency-Open-Data/Other-Transparency-and-Open-Data-Information.aspx",
+      "resource_url": "https://www.dover.gov.uk/Corporate-Information/Freedom-of-Information/CSV/Public-Toilets.csv",
+      "licence": "Open Government Licence; commercial and non-commercial reuse with Dover District Council attribution",
+      "licence_status": "PRODUCTION_REUSE_PROVEN",
+      "format": "CSV",
+      "sha256": "b872ab5062390a20d6d08301b2327b0e9edd7909ed2267eec54cddcb190ddd68",
+      "byte_size": 10106,
+      "record_metrics": {
+        "records": 17,
+        "valid_coordinates": 17,
+        "meaningful_names": 17,
+        "uprns": 17,
+        "postcodes": 16,
+        "duplicate_uprns": 0,
+        "direct_toilet_evidence": 17,
+        "changing_place_records": 1
+      },
+      "coordinate_note": "OSGB36/easting-northing fields transformed read-only for comparison",
+      "comparison": {
+        "within_25m": 9,
+        "within_100m": 10,
+        "within_250m": 11,
+        "beyond_250m": 6,
+        "exact_normalised_name_matches": 1
+      },
+      "ready_net_new": 6,
+      "review_required": 11,
+      "rejected_source_quality": 0,
+      "classification": "READY_FOR_NEXT_INGEST_BATCH",
+      "qualification": "Measured next-manifest candidates under direct-toilet evidence, UPRN/name/address identity, valid geometry and conservative overlap gates; not production-authorised."
+    },
+    {
+      "council": "Rother District Council",
+      "source_family": "public toilets",
+      "authority_url": "https://www.rother.gov.uk/transport-roads-and-parking/street-care-and-cleaning/public-toilets/",
+      "resource_url": null,
+      "licence": "Not separately stated on the current HTML listing in the bounded pass",
+      "licence_status": "LICENCE_UNCLEAR",
+      "format": "HTML listing",
+      "record_metrics": {
+        "listed_locations": 15,
+        "direct_toilet_evidence": 15,
+        "stable_machine_ids": 0,
+        "machine_coordinates": 0
+      },
+      "ready_net_new": 0,
+      "review_required": 15,
+      "rejected_source_quality": 0,
+      "classification": "REVIEW_REQUIRED",
+      "qualification": "Useful current human-readable evidence, but no bounded machine-readable resource or stable record identity was established."
+    },
+    {
+      "council": "North Somerset Council",
+      "source_family": "public toilets",
+      "authority_url": "https://n-somerset.gov.uk/council-democracy/north-somerset-insight-data-statistics/open-data",
+      "resource_url": "https://n-somerset.gov.uk/directories/public-toilets",
+      "licence": "Council open-data pages state OGL reuse, but the current public-toilets directory resource was not rebound to a downloadable structured feed",
+      "licence_status": "PRODUCTION_REUSE_PROVEN_FOR_OPEN_DATA_PORTAL; RESOURCE_REBIND_REQUIRED",
+      "format": "HTML directory",
+      "record_metrics": {
+        "listed_locations": 22,
+        "direct_toilet_evidence": 22,
+        "stable_machine_ids": 0,
+        "machine_coordinates": 0
+      },
+      "ready_net_new": 0,
+      "review_required": 22,
+      "rejected_source_quality": 0,
+      "classification": "REVIEW_REQUIRED",
+      "qualification": "The directory is useful for discovery but not yet suitable for automatic comparison without a resource-level structured export and stable identity."
+    },
+    {
+      "council": "Belfast City Council",
+      "source_family": "public toilets",
+      "authority_url": "https://www.belfastcity.gov.uk/publictoilets",
+      "resource_url": "https://www.data.gov.uk/dataset/8a553138-eba0-42f2-b8ea-26c6ca240393/public-toilets7",
+      "licence": "OGL on the historical catalogue resource; current HTML listing needs resource-level rebinding",
+      "licence_status": "PRODUCTION_REUSE_PROVEN_FOR_HISTORICAL_RESOURCE; CURRENT_FEED_REBIND_REQUIRED",
+      "format": "HTML listing; historical CSV catalogue resource",
+      "record_metrics": {
+        "current_listed_locations": 14,
+        "direct_toilet_evidence": 14,
+        "stable_current_machine_ids": 0
+      },
+      "historical_r4_context": {
+        "strict_net_new_in_r4": 0,
+        "existing_or_review_overlap": 14,
+        "review_candidates_not_reopened": true
+      },
+      "ready_net_new": 0,
+      "review_required": 14,
+      "rejected_source_quality": 0,
+      "classification": "REVIEW_REQUIRED",
+      "qualification": "Belfast was not in the 89 strict R4 set because the bounded prior comparison found existing/overlap or review states rather than a clean strict net-new set; R5A does not reopen those cases."
+    }
+  ],
+  "totals": {
+    "ready_net_new": 23,
+    "ready_net_new_definition": "17 Mid Ulster + 6 Dover; bounded preparation count only, not a sealed manifest and not production-authorised",
+    "review_or_quality_limited_records": 117,
+    "rejected_source_quality_records": 42,
+    "blocked_by_licensing_records": 0
+  },
+  "next_gate": "Prepare a new bounded manifest only for the 23 Mid Ulster/Dover records after a second exact source-identity and current-production collision check."
+}

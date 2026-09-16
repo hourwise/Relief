@@ -1,0 +1,24 @@
+{
+  "batch": "R5A",
+  "scope": "metadata/sample-level commercial venue feasibility; no bulk extraction and no production writes",
+  "source_access_policy": "A public locator is not treated as reuse permission. No undocumented API, bulk crawl, rate-limit bypass or copied commercial dataset was used.",
+  "operators": [
+    {"operator":"Tesco","family":"supermarket","facility_fields_seen":["accessible toilet","baby changing","Changing Places","step-free standard toilet"],"scale":"not enumerated","access_semantics":"customer/visitor access; exact restrictions need operator confirmation","reuse_status":"PERMISSION_REQUIRED","suitability":"high-value partnership target"},
+    {"operator":"Asda","family":"supermarket","facility_fields_seen":["accessible toilet","baby changing","Changing Places Facility"],"scale":"not enumerated","access_semantics":"customer/visitor access; exact restrictions need operator confirmation","reuse_status":"PERMISSION_REQUIRED","suitability":"high-value partnership target"},
+    {"operator":"Sainsbury's","family":"supermarket","facility_fields_seen":["toilets","accessible toilets","baby change"],"scale":"not enumerated","access_semantics":"customer/visitor access; exact restrictions need operator confirmation","reuse_status":"PERMISSION_REQUIRED","suitability":"high-value partnership target"},
+    {"operator":"IKEA UK","family":"large-format retail","facility_fields_seen":["accessible toilets","enhanced changing facilities","registered Changing Places"],"scale":"22 UK stores listed; 8 registered Changing Places stores identified in official guidance","access_semantics":"visitor/store access; some facilities may require request or RADAR key","reuse_status":"PERMISSION_REQUIRED","suitability":"high-value specialist partnership target"},
+    {"operator":"Marks & Spencer","family":"department/high-street","facility_fields_seen":["toilets","baby changing"],"scale":"not enumerated","access_semantics":"customer/visitor access","reuse_status":"PERMISSION_REQUIRED","suitability":"partnership candidate"},
+    {"operator":"John Lewis","family":"department/high-street","facility_fields_seen":["toilets","wheelchair-accessible toilets","baby changing/parent room"],"scale":"not enumerated","access_semantics":"customer/visitor access; stores may share shopping-centre facilities","reuse_status":"PERMISSION_REQUIRED","suitability":"partnership candidate"},
+    {"operator":"Lidl","family":"supermarket","facility_fields_seen":["Customer Toilet","wheelchair accessible store"],"scale":"not enumerated","access_semantics":"customer/visitor access","reuse_status":"PERMISSION_REQUIRED","suitability":"partnership candidate"},
+    {"operator":"Waitrose, Morrisons, Aldi","family":"supermarket","facility_fields_seen":[],"scale":"not enumerated","access_semantics":"unknown","reuse_status":"NO_USEFUL_TOILET_DATA","suitability":"metadata pass did not establish a reusable per-site toilet field"},
+    {"operator":"Primark, B&Q, Wickes, Homebase, Dobbies","family":"department/large-format/garden","facility_fields_seen":[],"scale":"not enumerated","access_semantics":"unknown","reuse_status":"NO_USEFUL_TOILET_DATA","suitability":"metadata pass did not establish a reusable per-site toilet field"}
+  ],
+  "open_reusable_operator_count": 0,
+  "public_api_reuse_permitted_count": 0,
+  "permission_required_operator_count": 7,
+  "commercial_ready_net_new": 0,
+  "national_overlap": "not performed; no lawful structured facility feed was obtained",
+  "top_three_partnership_targets": ["Tesco", "Asda", "Sainsbury's"],
+  "partnership_export_request": ["stable branch ID","branch name","address/postcode","latitude/longitude","ordinary toilet yes/no","accessible toilet yes/no","Changing Places yes/no","baby-changing yes/no","store opening hours","facility-specific opening hours","customer/access restrictions","last-updated timestamp","explicit reuse licence and attribution"],
+  "qualification": "Commercial sample pages prove useful fields exist, not that a bulk reuse right exists or that every branch has a toilet. No speculative commercial count is included in the council total."
+}

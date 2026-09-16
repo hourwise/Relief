@@ -1,0 +1,45 @@
+{
+  "batch": "R5A",
+  "production_access": "read_only",
+  "project": "Relief",
+  "project_ref": "bgwxrxkmyaihplaloely",
+  "status": "ACTIVE_HEALTHY",
+  "database": {
+    "facilities": 15709,
+    "facility_sources": 15723,
+    "facility_source_observations": 14,
+    "import_runs": 6,
+    "toilet_units": 0,
+    "toilet_unit_sources": 0,
+    "source_graph_total": 706745
+  },
+  "method": {
+    "identity_precedence": [
+      "exact source identity where available",
+      "stable official record identifier",
+      "name/postcode/address evidence",
+      "coordinate/name comparison",
+      "distance only as supporting evidence"
+    ],
+    "comparison_transform": "OSGB36 council coordinates transformed read-only to WGS84/geography where required",
+    "preliminary_ready_gate": "direct toilet evidence + valid named record + stable identity + valid geometry + no current facility within 250m; records remain subject to manifest-level collision review",
+    "warning": "The 250m band is a conservative screening gate, not identity proof or production authorization."
+  },
+  "per_council": {
+    "Mid Ulster District Council": {"valid_records": 27, "ready_net_new": 17, "review_required": 10, "rejected": 0},
+    "Calderdale Council": {"valid_records": 15, "ready_net_new": 0, "review_required": 15, "rejected": 1},
+    "Sheffield City Council": {"valid_records": 0, "ready_net_new": 0, "review_required": 0, "rejected": 41},
+    "Dover District Council": {"valid_records": 17, "ready_net_new": 6, "review_required": 11, "rejected": 0},
+    "Rother District Council": {"valid_records": 15, "ready_net_new": 0, "review_required": 15, "rejected": 0},
+    "North Somerset Council": {"valid_records": 22, "ready_net_new": 0, "review_required": 22, "rejected": 0},
+    "Belfast City Council": {"valid_records": 14, "ready_net_new": 0, "review_required": 14, "rejected": 0}
+  },
+  "read_only_result": {
+    "ready_net_new": 23,
+    "production_rows_inserted": 0,
+    "production_rows_updated": 0,
+    "production_rows_deleted": 0,
+    "canonical_baseline_unchanged": true,
+    "source_graph_unchanged": true
+  }
+}

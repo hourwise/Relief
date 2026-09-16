@@ -1,0 +1,45 @@
+{
+  "batch": "R5A",
+  "scope": "bounded motorway-service-area feasibility; no production writes",
+  "sources": [
+    {
+      "source": "National Highways accessible services guidance",
+      "url": "https://nationalhighways.co.uk/roads-and-travel/disabled-road-users/accessible-services/",
+      "direct_evidence": "access guides cover parking, toilets, layout and staff training",
+      "structured_reusable_feed": false,
+      "licence_status": "PERMISSION_REQUIRED",
+      "role": "discoverable service/access evidence, not an open import feed"
+    },
+    {
+      "source": "National Highways open data services",
+      "url": "https://nationalhighways.co.uk/our-contribution/innovation-and-technology/digital-data-and-technology/open-data-services/",
+      "direct_evidence": "current published services do not provide the required facility-level toilet dataset",
+      "structured_reusable_feed": false,
+      "licence_status": "NO_SAFE_SOURCE"
+    },
+    {
+      "source": "GOV.UK motorway service-area information",
+      "url": "https://www.gov.uk/government/publications/motorway-service-areas",
+      "direct_evidence": "official list/document exists, but a current reusable facility-level data contract was not established",
+      "structured_reusable_feed": false,
+      "licence_status": "PERMISSION_REQUIRED"
+    },
+    {
+      "source": "General motorway-service requirements",
+      "url": "https://www.gov.uk/government/publications/know-your-traffic-signs/motorway-signs-signals-and-road-markings",
+      "direct_evidence": "general policy describes toilets and disabled access at official service areas",
+      "structured_reusable_feed": false,
+      "licence_status": "NOT_FACILITY_RECORD_EVIDENCE"
+    }
+  ],
+  "metrics": {
+    "authoritative_service_areas_identified": "not safely enumerated from a reusable structured feed in this pass",
+    "lawful_direct_toilet_records": 0,
+    "usable_coordinates": 0,
+    "estimated_relief_overlap": "not measured",
+    "ready_net_new": 0,
+    "exact_blocker": "no explicit reusable facility-level dataset with stable service-area identity, coordinates and direct toilet fields"
+  },
+  "recommendation": "PERMISSION_REQUIRED",
+  "next_request": "Seek a licensed National Highways/operator export or partnership containing stable service-area ID, road/junction, coordinates, operating status, toilet/accessibility/Changing Places fields and update timestamp."
+}

@@ -1,0 +1,99 @@
+{
+  "batch": "R5A",
+  "scope": "bounded heritage/visitor toilet feasibility; no production writes",
+  "sources": [
+    {
+      "source": "Wikidata P912",
+      "licence": "CC0 for structured data in the relevant Wikidata entity/property namespaces",
+      "licence_status": "PRODUCTION_REUSE_PROVEN_FOR_STATEMENTS",
+      "query_url": "https://query.wikidata.org/sparql",
+      "query_contract": "UK country or one-level UK-admin qualification; item has P625 and P912; English facility label contains toilet, lavatory or changing place",
+      "retrieval_utc": "2026-09-16T14:52:34.7922322Z",
+      "response_sha256": "1375F44BC49732E63A869894EBEA7249563DF785C48E350B7A35620F5F7859F3",
+      "response_byte_size": 2235577,
+      "metrics": {
+        "bindings": 2906,
+        "unique_items": 1258,
+        "items_with_coordinates": 1258,
+        "items_with_references_measured": false,
+        "facility_label_bindings": {
+          "accessible toilet": 2516,
+          "Changing Places toilet": 306,
+          "public toilet": 63,
+          "toilet": 13,
+          "other_explicit_toilet_labels": 8
+        },
+        "facility_label_unique_item_counts_overlap": true
+      },
+      "location_precision": "VENUE_LEVEL_OR_BUILDING_LEVEL_NOT_ESTABLISHED_AS_TOILET_SPECIFIC",
+      "access_scope": "unknown for most items",
+      "production_ready": 0,
+      "coarse_location_review": 1258,
+      "access_unknown_review": 1258,
+      "qualification": "P912 is direct structured facility evidence, but the bounded query does not establish toilet-specific coordinates, current access semantics, or a facility-level source identity contract sufficient for automatic Relief creation."
+    },
+    {
+      "source": "VocalEyes Heritage Access 2022",
+      "licence": "Published research/report; raw database reuse licence/download not established",
+      "licence_status": "PERMISSION_REQUIRED",
+      "published_scale": 1883,
+      "direct_evidence": "toilet/accessibility information was part of the survey/project",
+      "machine_readable_raw_source": "not established",
+      "wikidata_projection": "lawful CC0 projection is the current practical route",
+      "production_ready": 0
+    },
+    {
+      "source": "Historic England NHLE",
+      "licence": "Open Government Licence for published open data, subject to third-party rights",
+      "licence_status": "PRODUCTION_REUSE_PROVEN_FOR_IDENTITY_GEOMETRY",
+      "direct_toilet_evidence": false,
+      "role": "OPEN_IDENTITY_BACKBONE_ONLY",
+      "production_ready": 0
+    },
+    {
+      "source": "National Trust",
+      "licence": "No open structured facility feed established",
+      "licence_status": "PERMISSION_REQUIRED",
+      "direct_toilet_evidence": "visible on property pages where available",
+      "production_ready": 0,
+      "next_action": "partnership request; do not scrape"
+    },
+    {
+      "source": "English Heritage",
+      "licence": "No open structured facility feed established",
+      "licence_status": "PERMISSION_REQUIRED",
+      "direct_toilet_evidence": "visible in site facilities material",
+      "production_ready": 0,
+      "next_action": "partnership request; do not scrape"
+    },
+    {
+      "source": "Mapping Museums / other identity catalogues",
+      "licence": "varies by dataset; no bounded direct-toilet reusable feed established",
+      "licence_status": "OPEN_IDENTITY_BACKBONE_ONLY_OR_REVIEW_REQUIRED",
+      "direct_toilet_evidence": "not_verified",
+      "production_ready": 0
+    }
+  ],
+  "wikidata_production_sample": {
+    "sample_method": "first 100 unique QIDs in stable lexical order",
+    "sample_size": 100,
+    "within_25m": 4,
+    "within_100m": 16,
+    "within_250m": 33,
+    "beyond_250m": 47,
+    "no_canonical_geometry": 0,
+    "minimum_distance_m": 10.3507,
+    "median_nearest_distance_m": 241.5761,
+    "p95_nearest_distance_m": 5951.9642,
+    "comparison_is_read_only": true,
+    "interpretation": "venue-level feasibility sample only; distance does not establish toilet identity"
+  },
+  "opportunity_buckets": {
+    "ready": 0,
+    "coarse_location": 1258,
+    "access_unknown": 1258,
+    "review_required": 1258,
+    "production_overlap_full_cohort": "not run because no item passed the location/access precision gate"
+  },
+  "recommendation": "Do not ingest heritage records in R5A. Use Wikidata as a lawful discovery/identity projection and define a separate precision/access review before any manifest."
+}
