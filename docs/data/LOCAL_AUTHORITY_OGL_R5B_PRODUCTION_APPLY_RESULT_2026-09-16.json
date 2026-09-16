@@ -1,0 +1,106 @@
+{
+  "batch": "R5B",
+  "classification": "R5B_PRODUCTION_APPLY_COMPLETE",
+  "production_project": {
+    "name": "Relief",
+    "ref": "bgwxrxkmyaihplaloely",
+    "region": "eu-central-1",
+    "status": "ACTIVE_HEALTHY",
+    "postgresql": "17.6.1.127",
+    "postgis": "3.3.7",
+    "pgcrypto": "1.3"
+  },
+  "manifest": {
+    "path": "docs/data/LOCAL_AUTHORITY_OGL_R5B_PRODUCTION_APPLY_MANIFEST_2026-09-16.json",
+    "sha256": "76492D8641B40456C6C43401172D61DF7A92B545EEEE9961BFD9FB86EF0B1F9B",
+    "candidate_count": 23,
+    "mid_ulster_count": 17,
+    "dover_count": 6,
+    "review_count": 0,
+    "source_revalidation": {
+      "mid_ulster_sha256": "927c30cf5d4a4d59bf74d9f21efc340d6848ec6ee77caf6a2852e19287002778",
+      "dover_sha256": "b872ab5062390a20d6d08301b2327b0e9edd7909ed2267eec54cddcb190ddd68",
+      "classification": "BYTE_IDENTICAL"
+    }
+  },
+  "sealed_n4a": {
+    "path": "supabase/migrations/20260822170000_naptan_transport_source_graph.sql",
+    "sha256_before": "087A389B8CEAC021B12708BC55C39022CB38D5459510EFFB6CF057CEF232C44E",
+    "sha256_after": "087A389B8CEAC021B12708BC55C39022CB38D5459510EFFB6CF057CEF232C44E",
+    "unchanged": true
+  },
+  "preflight": {
+    "manifest_candidates": 23,
+    "distinct_candidate_ids": 23,
+    "distinct_source_identities": 23,
+    "exact_existing_source_links": 0,
+    "invalid_coordinates": 0,
+    "candidate_pairs_under_10m": 0,
+    "candidate_pairs_under_25m": 0,
+    "review_candidates": 0
+  },
+  "transaction": {
+    "atomic": true,
+    "audit_run_kind": "governed_source_apply",
+    "audit_run_id": "8e9c4516-6f5d-4ce6-b28f-f45d2db5b5bc",
+    "audit_started_at": "2026-09-16T16:15:04.440783Z",
+    "audit_completed_at": "2026-09-16T16:15:04.440783Z",
+    "facilities_inserted": 23,
+    "facility_sources_inserted": 23,
+    "import_runs_inserted": 1,
+    "facility_source_observations_inserted": 0,
+    "toilet_units_inserted": 0,
+    "toilet_unit_sources_inserted": 0,
+    "facility_updates": 0,
+    "facility_deletes": 0,
+    "review_candidates_inserted": 0
+  },
+  "counts": {
+    "facilities": {"before": 15709, "after": 15732, "delta": 23},
+    "facility_sources": {"before": 15723, "after": 15746, "delta": 23},
+    "facility_source_observations": {"before": 14, "after": 14, "delta": 0},
+    "import_runs": {"before": 6, "after": 7, "delta": 1},
+    "toilet_units": {"before": 0, "after": 0, "delta": 0},
+    "toilet_unit_sources": {"before": 0, "after": 0, "delta": 0},
+    "naptan_source_graph_total": {"before": 706745, "after": 706745, "delta": 0}
+  },
+  "provenance": {
+    "mid_ulster_public_toilets": 17,
+    "dover_public_toilets": 6,
+    "total": 23,
+    "candidates_verified": 23,
+    "distinct_facilities_verified": 23,
+    "exact_name_coordinate_matches": 23,
+    "missing": 0,
+    "duplicate_identity_groups": 0
+  },
+  "replay": {
+    "classification": "ALREADY_APPLIED",
+    "manifest_candidates": 23,
+    "already_applied_source_links": 23,
+    "exact_replay_matches": 23,
+    "proposed_facility_inserts": 0,
+    "proposed_facility_source_inserts": 0,
+    "proposed_import_run_inserts": 0,
+    "matching_audit_rows": 1
+  },
+  "security": {
+    "source_graph_unchanged": true,
+    "source_tables_rls_enabled": true,
+    "source_table_policy_count": 0,
+    "direct_public_insert": false,
+    "direct_anon_insert": false,
+    "direct_authenticated_insert": false,
+    "service_role_insert": true,
+    "schema_mutations_during_data_apply": 0,
+    "auth_mutations": 0
+  },
+  "out_of_scope_mutations": {
+    "naptan": 0,
+    "tfl": 0,
+    "rail": 0,
+    "commercial": 0,
+    "heritage": 0,
+    "auth": 0
+  }
+}

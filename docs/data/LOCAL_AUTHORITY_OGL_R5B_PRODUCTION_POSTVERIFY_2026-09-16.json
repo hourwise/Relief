@@ -1,0 +1,50 @@
+{
+  "batch": "R5B",
+  "postverify": "PASS",
+  "manifest_sha256": "76492D8641B40456C6C43401172D61DF7A92B545EEEE9961BFD9FB86EF0B1F9B",
+  "candidate_completeness": {
+    "manifest_candidates": 23,
+    "provenance_links": 23,
+    "distinct_facilities": 23,
+    "exact_identity_coordinate_matches": 23,
+    "missing_candidates": 0,
+    "facility_collision_groups": 0
+  },
+  "source_group_counts": {
+    "mid-ulster-public-toilets": 17,
+    "dover-public-toilets": 6,
+    "total": 23
+  },
+  "final_counts": {
+    "facilities": 15732,
+    "facility_sources": 15746,
+    "facility_source_observations": 14,
+    "import_runs": 7,
+    "toilet_units": 0,
+    "toilet_unit_sources": 0,
+    "transport_source_snapshots": 1,
+    "transport_source_places": 97270,
+    "transport_source_nodes": 436428,
+    "transport_source_memberships": 169527,
+    "transport_source_place_parents": 3519,
+    "transport_source_graph_total": 706745
+  },
+  "replay": {
+    "classification": "ALREADY_APPLIED",
+    "proposed_mutations": {
+      "facilities": 0,
+      "facility_sources": 0,
+      "import_runs": 0
+    }
+  },
+  "n4a_sha256": "087A389B8CEAC021B12708BC55C39022CB38D5459510EFFB6CF057CEF232C44E",
+  "production_mutations": {
+    "authorized_facility_inserts": 23,
+    "authorized_facility_source_inserts": 23,
+    "authorized_import_run_inserts": 1,
+    "facility_updates": 0,
+    "facility_deletes": 0,
+    "review_candidate_inserts": 0,
+    "unrelated_mutations": 0
+  }
+}
