@@ -1,0 +1,19 @@
+{
+  "batch": "R5B",
+  "manifest_path": "docs/data/LOCAL_AUTHORITY_OGL_R5B_PRODUCTION_APPLY_MANIFEST_2026-09-16.json",
+  "manifest_sha256": "76492D8641B40456C6C43401172D61DF7A92B545EEEE9961BFD9FB86EF0B1F9B",
+  "candidate_count": 23,
+  "mid_ulster_count": 17,
+  "dover_count": 6,
+  "review_candidates_included": 0,
+  "excluded_from_r5b_count": 21,
+  "production_project_ref": "bgwxrxkmyaihplaloely",
+  "engine_version": "relief.local-authority-ogl-r5b.v1",
+  "source_hashes": {
+    "mid-ulster-public-toilets": "927c30cf5d4a4d59bf74d9f21efc340d6848ec6ee77caf6a2852e19287002778",
+    "dover-public-toilets": "b872ab5062390a20d6d08301b2327b0e9edd7909ed2267eec54cddcb190ddd68"
+  },
+  "source_revalidation": "BYTE_IDENTICAL",
+  "sealed_input": true,
+  "production_mutations_at_seal": 0
+}
