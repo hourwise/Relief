@@ -1,24 +1,241 @@
 {
   "batch": "R5A",
-  "scope": "metadata/sample-level commercial venue feasibility; no bulk extraction and no production writes",
-  "source_access_policy": "A public locator is not treated as reuse permission. No undocumented API, bulk crawl, rate-limit bypass or copied commercial dataset was used.",
-  "operators": [
-    {"operator":"Tesco","family":"supermarket","facility_fields_seen":["accessible toilet","baby changing","Changing Places","step-free standard toilet"],"scale":"not enumerated","access_semantics":"customer/visitor access; exact restrictions need operator confirmation","reuse_status":"PERMISSION_REQUIRED","suitability":"high-value partnership target"},
-    {"operator":"Asda","family":"supermarket","facility_fields_seen":["accessible toilet","baby changing","Changing Places Facility"],"scale":"not enumerated","access_semantics":"customer/visitor access; exact restrictions need operator confirmation","reuse_status":"PERMISSION_REQUIRED","suitability":"high-value partnership target"},
-    {"operator":"Sainsbury's","family":"supermarket","facility_fields_seen":["toilets","accessible toilets","baby change"],"scale":"not enumerated","access_semantics":"customer/visitor access; exact restrictions need operator confirmation","reuse_status":"PERMISSION_REQUIRED","suitability":"high-value partnership target"},
-    {"operator":"IKEA UK","family":"large-format retail","facility_fields_seen":["accessible toilets","enhanced changing facilities","registered Changing Places"],"scale":"22 UK stores listed; 8 registered Changing Places stores identified in official guidance","access_semantics":"visitor/store access; some facilities may require request or RADAR key","reuse_status":"PERMISSION_REQUIRED","suitability":"high-value specialist partnership target"},
-    {"operator":"Marks & Spencer","family":"department/high-street","facility_fields_seen":["toilets","baby changing"],"scale":"not enumerated","access_semantics":"customer/visitor access","reuse_status":"PERMISSION_REQUIRED","suitability":"partnership candidate"},
-    {"operator":"John Lewis","family":"department/high-street","facility_fields_seen":["toilets","wheelchair-accessible toilets","baby changing/parent room"],"scale":"not enumerated","access_semantics":"customer/visitor access; stores may share shopping-centre facilities","reuse_status":"PERMISSION_REQUIRED","suitability":"partnership candidate"},
-    {"operator":"Lidl","family":"supermarket","facility_fields_seen":["Customer Toilet","wheelchair accessible store"],"scale":"not enumerated","access_semantics":"customer/visitor access","reuse_status":"PERMISSION_REQUIRED","suitability":"partnership candidate"},
-    {"operator":"Waitrose, Morrisons, Aldi","family":"supermarket","facility_fields_seen":[],"scale":"not enumerated","access_semantics":"unknown","reuse_status":"NO_USEFUL_TOILET_DATA","suitability":"metadata pass did not establish a reusable per-site toilet field"},
-    {"operator":"Primark, B&Q, Wickes, Homebase, Dobbies","family":"department/large-format/garden","facility_fields_seen":[],"scale":"not enumerated","access_semantics":"unknown","reuse_status":"NO_USEFUL_TOILET_DATA","suitability":"metadata pass did not establish a reusable per-site toilet field"}
+  "scope": "metadata/sample-level commercial, hospitality, destination and leisure feasibility; no bulk extraction and no production writes",
+  "production_baseline": {
+    "facilities": 15709,
+    "facility_sources": 15723,
+    "commercial_production_comparison": "not performed; no lawful structured commercial feed was obtained"
+  },
+  "source_access_policy": "A public locator, search form, JavaScript request or undocumented JSON response is not treated as reuse permission. No bulk crawl, undocumented API use, rate-limit bypass or copied commercial dataset was performed.",
+  "access_semantics": ["public_without_purchase", "customer_only", "purchase_expected", "patrons_only", "hotel_guests_only", "unknown"],
+  "operator_fields_requested": ["ordinary toilet", "accessible toilet", "Changing Places", "baby changing", "RADAR", "wheelchair access", "opening hours", "coordinates", "stable site ID", "access restrictions"],
+  "individual_premises": {
+    "hospitality": [
+      {
+        "operator": "McDonald's UK",
+        "family": "fast food",
+        "scale_evidence": "official material says more than 600 restaurants are open 24 hours; total UK estate not enumerated in this bounded pass",
+        "direct_fields_seen": ["disabled toilets via locator/FAQ", "wheelchair access via locator", "baby-changing facilities in restaurant guidance", "opening hours/restaurant identity"],
+        "stable_id": "locator identity observed but not acquired as a reusable dataset",
+        "location_precision": "CENTRE_OR_PREMISES_LEVEL_NOT_ACQUIRED",
+        "access_scope": "customer_only_or_unknown",
+        "reuse_status": "PERMISSION_REQUIRED",
+        "planning_score": {"scale": 5, "coverage": 4, "richness": 4, "uniqueness": 3, "permission_ease": 2, "total": 18},
+        "feasibility": "high-value partnership target; no production count",
+        "evidence_url": "https://www.mcdonalds.com/gb/en-gb/help/faq/do-you-have-disabled-toilets.html"
+      },
+      {
+        "operator": "KFC UK",
+        "family": "fast food",
+        "scale_evidence": "official regional pages show more than 145 London restaurants and more than 90 in the North West; not a UK total",
+        "direct_fields_seen": ["some locations have toilets", "baby changing", "disability access", "opening hours", "address", "restaurant features"],
+        "stable_id": "location slug/page identity",
+        "location_precision": "PREMISES_LEVEL_PAGE",
+        "access_scope": "customer_only_or_unknown",
+        "reuse_status": "PERMISSION_REQUIRED",
+        "planning_score": {"scale": 4, "coverage": 3, "richness": 3, "uniqueness": 3, "permission_ease": 2, "total": 15},
+        "feasibility": "useful partnership candidate; do not infer toilets at every branch",
+        "evidence_url": "https://www.kfc.co.uk/kfc-near-me/london"
+      },
+      {
+        "operator": "Harvester / Mitchells & Butlers",
+        "family": "pub restaurant",
+        "scale_evidence": "national managed restaurant family; exact estate count not used",
+        "direct_fields_seen": ["Disabled Toilets", "Baby Changing", "opening hours", "address", "telephone", "site slug"],
+        "stable_id": "restaurant page slug",
+        "location_precision": "PREMISES_LEVEL_PAGE",
+        "access_scope": "customer_only_or_unknown",
+        "reuse_status": "PERMISSION_REQUIRED",
+        "planning_score": {"scale": 4, "coverage": 4, "richness": 4, "uniqueness": 3, "permission_ease": 2, "total": 17},
+        "feasibility": "strong direct-field partnership candidate",
+        "evidence_url": "https://www.harvester.co.uk/restaurants/london/themandevillearmsnortholt"
+      },
+      {
+        "operator": "Greggs",
+        "family": "bakery/cafe",
+        "scale_evidence": "national chain; not enumerated",
+        "direct_fields_seen": [],
+        "stable_id": "locator likely exists; not acquired",
+        "location_precision": "UNKNOWN",
+        "access_scope": "unknown",
+        "reuse_status": "NO_STRUCTURED_FACILITY_DATA",
+        "planning_score": {"scale": 5, "coverage": 1, "richness": 1, "uniqueness": 2, "permission_ease": 2, "total": 11},
+        "feasibility": "do not pursue before a direct facility feed is shown"
+      },
+      {
+        "operator": "Wetherspoon / Greene King / Marston's / Stonegate",
+        "family": "pub groups",
+        "scale_evidence": "large national/regional estates; not enumerated in this pass",
+        "direct_fields_seen": [],
+        "stable_id": "locator identity not acquired",
+        "location_precision": "UNKNOWN",
+        "access_scope": "patrons_only_or_unknown",
+        "reuse_status": "NO_STRUCTURED_FACILITY_DATA",
+        "planning_score": {"scale": 5, "coverage": 2, "richness": 1, "uniqueness": 2, "permission_ease": 2, "total": 12},
+        "feasibility": "large theoretical yield but insufficient direct evidence"
+      },
+      {
+        "operator": "Starbucks / Costa / Caffe Nero / Coffee#1",
+        "family": "coffee/cafe chains",
+        "scale_evidence": "national or regional estates; not enumerated",
+        "direct_fields_seen": ["store locator and opening-hours/address patterns; toilet fields not established"],
+        "stable_id": "locator identity not acquired as reusable data",
+        "location_precision": "UNKNOWN",
+        "access_scope": "customer_only_or_unknown",
+        "reuse_status": "NO_STRUCTURED_FACILITY_DATA",
+        "planning_score": {"scale": 5, "coverage": 1, "richness": 1, "uniqueness": 2, "permission_ease": 2, "total": 11},
+        "feasibility": "do not count venues as toilets"
+      },
+      {
+        "operator": "Burger King / Subway / Taco Bell / Five Guys / Pret / Nando's / Pizza Hut / PizzaExpress / Wagamama / Zizzi / ASK Italian / TGI Fridays",
+        "family": "fast food and casual restaurants",
+        "scale_evidence": "large or national estates; not enumerated",
+        "direct_fields_seen": ["location/address/opening-hours examples for some operators; no reusable direct toilet field established in this pass"],
+        "stable_id": "varies; not acquired",
+        "location_precision": "UNKNOWN",
+        "access_scope": "customer_only_or_unknown",
+        "reuse_status": "NO_STRUCTURED_FACILITY_DATA",
+        "planning_score": {"scale": 4, "coverage": 1, "richness": 1, "uniqueness": 2, "permission_ease": 2, "total": 10},
+        "feasibility": "metadata-only; no production opportunity counted"
+      }
+    ],
+    "retail_baseline_from_prior_r5a": ["Tesco", "Asda", "Sainsbury's", "IKEA UK", "Marks & Spencer", "John Lewis", "Lidl"],
+    "retail_conclusion": "The prior retail sample remains permission-gated; no retail operator has been promoted to open reusable data."
+  },
+  "destination_venues": {
+    "shopping_centres_and_malls": [
+      {
+        "operator": "Westfield UK",
+        "centres_or_scale": "2 UK centres identified on official UK pages",
+        "direct_fields_seen": ["accessible toilets", "RADAR key", "hoist/changing table", "parent rooms", "centre services", "facility descriptions"],
+        "location_precision": "WASHROOM_BLOCK_LOCATION for described facilities; centre maps/guides also available",
+        "access_scope": "public visitor/centre access; RADAR or staff assistance for some accessible toilets",
+        "reuse_status": "PERMISSION_REQUIRED",
+        "planning_score": {"scale": 3, "coverage": 5, "richness": 5, "uniqueness": 4, "permission_ease": 2, "total": 19},
+        "feasibility": "very strong centre-level partnership target",
+        "evidence_url": "https://www.westfield.com/en/united-kingdom/london/services/accessible-toilets"
+      },
+      {
+        "operator": "Landsec-managed centres",
+        "centres_or_scale": "multiple UK centres evidenced through official centre maps",
+        "direct_fields_seen": ["toilets", "accessible toilets", "Changing Places", "baby changing", "stoma-friendly toilets", "centre maps and opening times"],
+        "location_precision": "WASHROOM_BLOCK_LOCATION where maps identify blocks; map coordinate is not automatically a toilet coordinate",
+        "access_scope": "public visitor/centre access; exact restrictions vary",
+        "reuse_status": "PERMISSION_REQUIRED",
+        "planning_score": {"scale": 4, "coverage": 5, "richness": 5, "uniqueness": 4, "permission_ease": 2, "total": 20},
+        "feasibility": "highest-richness centre-map partnership target",
+        "evidence_url": "https://content.landsec.com/media/nmobhrc2/65412-land-sec-large-print-guide-ss25_v4.pdf"
+      },
+      {
+        "operator": "McArthurGlen Designer Outlets",
+        "centres_or_scale": "multi-centre UK outlet family; exact estate count not enumerated",
+        "direct_fields_seen": ["disabled toilets", "Changing Places", "baby changing", "opening hours", "guest services", "centre address", "AccessAble guide link"],
+        "location_precision": "CENTRE_LEVEL_OR_WASHROOM_BLOCK_LOCATION; no toilet-specific coordinates acquired",
+        "access_scope": "visitor/guest access; exact restrictions unknown",
+        "reuse_status": "PERMISSION_REQUIRED",
+        "planning_score": {"scale": 4, "coverage": 5, "richness": 5, "uniqueness": 4, "permission_ease": 2, "total": 20},
+        "feasibility": "highest-priority outlet partnership target",
+        "evidence_url": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/services/"
+      },
+      {
+        "operator": "Clarks Village / outlet-centre maps",
+        "centres_or_scale": "individual destination outlet example",
+        "direct_fields_seen": ["toilets", "baby changing", "disabled facilities"],
+        "location_precision": "CENTRE_LEVEL_OR_WASHROOM_BLOCK_LOCATION",
+        "access_scope": "visitor/guest access; unknown outside centre opening times",
+        "reuse_status": "PERMISSION_REQUIRED",
+        "planning_score": {"scale": 2, "coverage": 4, "richness": 3, "uniqueness": 4, "permission_ease": 2, "total": 15},
+        "feasibility": "good single-centre pilot, not a national feed",
+        "evidence_url": "https://content.landsec.com/media/wpeeww1q/cv_centre-map_oct25.pdf"
+      },
+      {
+        "operator": "Bicester Village / The Bicester Collection",
+        "centres_or_scale": "major destination outlet; not enumerated",
+        "direct_fields_seen": ["not established in a reusable structured source during bounded pass"],
+        "location_precision": "UNKNOWN",
+        "access_scope": "visitor/guest access likely, but not assumed",
+        "reuse_status": "PERMISSION_REQUIRED",
+        "planning_score": {"scale": 3, "coverage": 2, "richness": 1, "uniqueness": 4, "permission_ease": 2, "total": 12},
+        "feasibility": "request-specific centre data rather than scrape"
+      },
+      {
+        "operator": "Hammerson / British Land / NewRiver / Capital & Regional / Savills-managed centres",
+        "centres_or_scale": "large portfolios; not enumerated",
+        "direct_fields_seen": ["centre maps/facilities vary; no common reusable feed established"],
+        "location_precision": "UNKNOWN_OR_CENTRE_LEVEL",
+        "access_scope": "public visitor/centre access; varies",
+        "reuse_status": "PERMISSION_REQUIRED",
+        "planning_score": {"scale": 5, "coverage": 3, "richness": 3, "uniqueness": 4, "permission_ease": 2, "total": 17},
+        "feasibility": "portfolio partnership only; no automatic ingestion"
+      }
+    ],
+    "factory_and_destination_retail": [
+      {"family":"large furniture/garden/farm-shop destinations","direct_toilet_evidence":"not established as a reusable national feed","reuse_status":"NO_STRUCTURED_FACILITY_DATA","ready_count":0},
+      {"family":"retail parks with shared facilities","direct_toilet_evidence":"must be proven centre-by-centre; tenant presence is not evidence","reuse_status":"LICENCE_UNCLEAR","ready_count":0}
+    ]
+  },
+  "leisure_and_entertainment": [
+    {
+      "operator": "ODEON",
+      "family": "cinema",
+      "scale_evidence": "official help says AccessAble guides are produced for all ODEON cinemas; no UK total used",
+      "direct_fields_seen": ["cinema accessibility section", "AccessAble factual measurements/photos including toilets", "wheelchair/accessibility information"],
+      "location_precision": "PREMISES_LEVEL_GUIDE; toilet block detail depends on AccessAble guide",
+      "access_scope": "patrons_only_or_unknown",
+      "reuse_status": "PERMISSION_REQUIRED",
+      "planning_score": {"scale": 4, "coverage": 5, "richness": 5, "uniqueness": 4, "permission_ease": 2, "total": 20},
+      "feasibility": "high-value accessibility partnership target",
+      "evidence_url": "https://help.odeon.co.uk/hc/en-gb/articles/360010323759-Who-are-AccessAble"
+    },
+    {
+      "operator": "Vue / Cineworld / Showcase",
+      "family": "cinema",
+      "scale_evidence": "national or regional estates; not enumerated",
+      "direct_fields_seen": ["accessibility/location pages may exist; no reusable toilet data contract established"],
+      "location_precision": "UNKNOWN",
+      "access_scope": "patrons_only_or_unknown",
+      "reuse_status": "PERMISSION_REQUIRED",
+      "planning_score": {"scale": 4, "coverage": 3, "richness": 3, "uniqueness": 4, "permission_ease": 2, "total": 16},
+      "feasibility": "partnership candidates only"
+    },
+    {
+      "operator": "Tenpin / Hollywood Bowl",
+      "family": "bowling/leisure",
+      "scale_evidence": "large leisure estates; not enumerated",
+      "direct_fields_seen": ["toilets evidenced in operational safety material for Tenpin; branch-level structured facility feed not established"],
+      "location_precision": "UNKNOWN_OR_PREMISES_LEVEL",
+      "access_scope": "customer_only_or_unknown",
+      "reuse_status": "NO_STRUCTURED_FACILITY_DATA",
+      "planning_score": {"scale": 3, "coverage": 2, "richness": 2, "uniqueness": 3, "permission_ease": 2, "total": 12},
+      "feasibility": "do not count without a branch facility export"
+    }
   ],
-  "open_reusable_operator_count": 0,
-  "public_api_reuse_permitted_count": 0,
-  "permission_required_operator_count": 7,
-  "commercial_ready_net_new": 0,
-  "national_overlap": "not performed; no lawful structured facility feed was obtained",
-  "top_three_partnership_targets": ["Tesco", "Asda", "Sainsbury's"],
-  "partnership_export_request": ["stable branch ID","branch name","address/postcode","latitude/longitude","ordinary toilet yes/no","accessible toilet yes/no","Changing Places yes/no","baby-changing yes/no","store opening hours","facility-specific opening hours","customer/access restrictions","last-updated timestamp","explicit reuse licence and attribution"],
-  "qualification": "Commercial sample pages prove useful fields exist, not that a bulk reuse right exists or that every branch has a toilet. No speculative commercial count is included in the council total."
+  "planning_rankings": {
+    "top_five_hospitality_or_restaurant_partnership_targets": [
+      {"operator":"McDonald's UK","reason":"largest apparent premises opportunity with explicit accessibility locator fields","score":18},
+      {"operator":"Harvester / Mitchells & Butlers","reason":"direct per-site toilets, disabled toilets, baby changing, hours and addresses","score":17},
+      {"operator":"KFC UK","reason":"large estate and direct location-level toilet/accessibility examples","score":15},
+      {"operator":"ODEON","reason":"all-cinema AccessAble programme with rich accessibility measurements","score":20},
+      {"operator":"Wetherspoon / Greene King / Marston's / Stonegate","reason":"large pub estates but direct structured facility coverage still unproven","score":12}
+    ],
+    "top_five_retail_centre_or_outlet_targets": [
+      {"operator":"McArthurGlen Designer Outlets","reason":"multi-centre family with direct toilets, Changing Places, baby changing and access guides","score":20},
+      {"operator":"Landsec-managed centres","reason":"centre maps expose toilets, accessible, Changing Places, baby and stoma-friendly facilities","score":20},
+      {"operator":"Westfield UK","reason":"precise RADAR and accessible-toilet descriptions at major centres","score":19},
+      {"operator":"Hammerson / British Land / NewRiver portfolio partnership","reason":"large portfolio leverage, but common data contract unproven","score":17},
+      {"operator":"Clarks Village","reason":"direct centre-map facility symbols, useful bounded pilot","score":15}
+    ],
+    "score_note": "Planning score is a 5-point assessment per dimension (scale, coverage, richness, uniqueness, permission ease), maximum 25. It is not a toilet count, confidence probability or authorization."
+  },
+  "common_partnership_export": {
+    "required": ["operator","site_id","site_name","site_type","address","postcode","latitude","longitude","toilet_available","accessible_toilet","changing_places","baby_changing","radar_key","stoma_friendly","access_scope","opening_hours","toilet_opening_hours","last_verified","source_updated_at"],
+    "optional_complex_fields": ["toilet_block_id","toilet_block_name","internal_map_location_description","toilet_block_latitude","toilet_block_longitude"],
+    "required_semantics": "unknown must remain unknown; customer-only/patrons-only must not be represented as public_without_purchase"
+  },
+  "production_result": {
+    "commercial_ready_net_new": 0,
+    "commercial_production_comparison": "not performed",
+    "council_ready_net_new_unchanged": 23,
+    "production_mutations": 0
+  }
 }

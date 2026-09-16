@@ -75,6 +75,29 @@ Therefore no commercial operator contributes to the council `READY_NET_NEW` tota
 
 IKEA is a strong specialist alternative if the product prioritises high-quality accessibility/Changing Places evidence over raw site count. The minimum partnership export should request a stable branch ID, name, address/postcode, latitude/longitude, ordinary/accessibility/Changing Places/baby-changing flags, store and facility opening hours, access restrictions and last-updated timestamp, with explicit reuse terms and attribution.
 
+### Expanded hospitality and premises track
+
+The extension covered fast food, coffee/café, pub/restaurant and casual-dining families at official metadata/sample level. The strongest direct evidence was:
+
+- McDonald's: official help material says the restaurant locator identifies disabled toilets and wheelchair access; restaurant guidance mentions baby-changing facilities. The published material confirms more than 600 restaurants open 24 hours, but not a total UK estate. [McDonald's accessibility FAQ](https://www.mcdonalds.com/gb/en-gb/help/faq/do-you-have-disabled-toilets.html)
+- KFC: official regional pages state that some restaurants have toilets, and location pages expose baby changing, disability access, address and opening hours. [KFC regional locator](https://www.kfc.co.uk/kfc-near-me/london)
+- Harvester/Mitchells & Butlers: sample official pages expose `Disabled Toilets`, `Baby Changing`, address, hours and a stable restaurant slug. [Harvester sample location](https://www.harvester.co.uk/restaurants/london/themandevillearmsnortholt)
+- ODEON: the operator states that AccessAble guides are produced for all ODEON cinemas and contain factual accessibility information, including toilets. [ODEON AccessAble guidance](https://help.odeon.co.uk/hc/en-gb/articles/360010323759-Who-are-AccessAble)
+
+For other chains, a location system or dining venue was not treated as toilet evidence. No hospitality premises were counted as ready. Access is conservatively `customer_only`, `patrons_only` or `unknown`; no restaurant was treated as `public_without_purchase`.
+
+### Destination venues and centres
+
+The destination-venue track is more promising than individual tenants because a single agreement can describe common washrooms. Westfield publishes accessible-toilet/RADAR and hoist/changing-table location information; Landsec centre maps expose toilets, accessible toilets, Changing Places, baby changing and stoma-friendly facilities; McArthurGlen outlet pages expose toilets, Changing Places, baby changing and AccessAble links. These are `PERMISSION_REQUIRED` and generally `WASHROOM_BLOCK_LOCATION` or centre-level evidence, not automatic Relief facility points. [Westfield](https://www.westfield.com/en/united-kingdom/london/services/accessible-toilets), [Landsec centre map](https://content.landsec.com/media/nmobhrc2/65412-land-sec-large-print-guide-ss25_v4.pdf), [McArthurGlen](https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/services/)
+
+The best retail-centre/outlet partnership targets are McArthurGlen, Landsec and Westfield. Clarks Village is a useful bounded centre pilot. Bicester Village and other listed outlet families remain permission-gated because no reusable structured facility feed was established.
+
+### Commercial data-reuse result
+
+No commercial operator currently qualifies as `OPEN_REUSABLE_DATA` or `PUBLIC_API_REUSE_PERMITTED` on this evidence pass. The commercial `READY_NET_NEW` count is **0**, and no commercial records were compared nationally with Relief. The common partnership request must include stable site identity, coordinates, toilet/accessibility/Changing Places/baby-changing/RADAR/stoma flags, access scope, store and toilet opening hours, verification timestamps, and explicit reuse rights.
+
+The commercial planning score is a 1–5 assessment across scale, apparent toilet coverage, richness, likely uniqueness and permission ease. It is not a count or authorization. The leading hospitality targets are McDonald's, Harvester/Mitchells & Butlers, KFC and ODEON; the leading destination targets are McArthurGlen, Landsec and Westfield. The full scorecard is in `COMMERCIAL_VENUE_TOILET_FEASIBILITY_2026-09-16.json`.
+
 ## Final source-ranking table
 
 | Source/family | Classification | Direct toilet evidence | Reusable scale measured | Ready count | Next action |
@@ -91,7 +114,9 @@ IKEA is a strong specialist alternative if the product prioritises high-quality 
 | Historic England NHLE | `OPEN_IDENTITY_BACKBONE_ONLY` | none | national heritage identity | 0 | identity join only |
 | National Trust / English Heritage | `PERMISSION_REQUIRED` | visible site facilities | not safely counted | 0 | partnership request |
 | Motorway services | `PERMISSION_REQUIRED` | general/service-guide evidence | no lawful structured cohort | 0 | request licensed export |
-| Retail/commercial operators | `PERMISSION_REQUIRED` | per-site samples | not safely counted | 0 | partnership requests |
+| Hospitality premises | `PERMISSION_REQUIRED` | direct sample fields | not safely counted | 0 | partnership requests |
+| Shopping centres/outlets | `PERMISSION_REQUIRED` | washroom/block-level samples | not safely counted | 0 | partnership requests |
+| Leisure chains | `PERMISSION_REQUIRED` or `NO_STRUCTURED_FACILITY_DATA` | ODEON/AccessAble and limited samples | not safely counted | 0 | partnership requests |
 
 ## Validation and safety
 
@@ -100,12 +125,13 @@ IKEA is a strong specialist alternative if the product prioritises high-quality 
 - Council files were acquired only from identified official resources; no raw downloads were added to Git.
 - Wikidata was queried through its public SPARQL endpoint; only compact hash/metrics were retained.
 - No prohibited commercial bulk crawl or undocumented API extraction was performed.
+- Hospitality, destination-centre and leisure pages were inspected only at metadata/sample level; no commercial dataset was copied or committed.
 - No production DML or DDL occurred: `TOTAL PRODUCTION MUTATIONS: 0`.
 - Source-graph RLS remained enabled with no policies and no public/anon/authenticated insert privileges.
 
 ## Single next slice
 
-Prepare a new versioned production-manifest candidate for the **23 Mid Ulster/Dover records only**, including exact source hashes, stable source identities, licence/attribution, current collision checks and a dry-run report. Keep heritage, motorway and commercial work separate until a lawful structured source and location/access contract are established.
+Prepare a new versioned production-manifest candidate for the **23 Mid Ulster/Dover records only**, including exact source hashes, stable source identities, licence/attribution, current collision checks and a dry-run report. Keep heritage, motorway and commercial work separate until a lawful structured source and location/access contract are established. The commercial follow-up should be three targeted permission requests rather than a crawl.
 
 **Final classification: `R5A_COUNCIL_NEXT_BATCH_IDENTIFIED / HERITAGE_AND_MOTORWAY_FEASIBILITY_NOT_PRODUCTION_READY / COMMERCIAL_DATA_PARTNERSHIP_REQUIRED / PRODUCTION_UNCHANGED`**
 
