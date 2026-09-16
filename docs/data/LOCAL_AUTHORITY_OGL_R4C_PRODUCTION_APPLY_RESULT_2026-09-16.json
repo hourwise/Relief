@@ -1,0 +1,144 @@
+{
+  "batch": "R4C",
+  "classification": "R4C_PRODUCTION_APPLY_COMPLETE",
+  "repository": "hourwise/Relief",
+  "branch": "codex/toilet-map-apply-1a-production-deploy",
+  "starting_commit": "a493998bd9f94443e4f2212521fe0a43b2b627a2",
+  "audit_contract_commit": "ee7fec587740eade90715254b0a1e795d15bee3c",
+  "production_project": {
+    "name": "Relief",
+    "ref": "bgwxrxkmyaihplaloely",
+    "region": "eu-central-1",
+    "status": "ACTIVE_HEALTHY"
+  },
+  "sealed_inputs": {
+    "manifest_path": "docs/data/LOCAL_AUTHORITY_OGL_R4_PRODUCTION_APPLY_MANIFEST_2026-09-16.json",
+    "manifest_sha256": "0DB20D9C6EA254125E5550DE94E2303C50F5A3D12A7D4954F34589E30B101685",
+    "manifest_candidate_count": 89,
+    "review_candidates_in_apply_manifest": 0,
+    "review_candidates_excluded": 7,
+    "n4a_migration_path": "supabase/migrations/20260822170000_naptan_transport_source_graph.sql",
+    "n4a_migration_sha256": "087A389B8CEAC021B12708BC55C39022CB38D5459510EFFB6CF057CEF232C44E",
+    "r4c_audit_migration_path": "supabase/migrations/20260916140000_r4b_audit_contract.sql",
+    "r4c_audit_migration_sha256": "911C7E1F3794A403200D1BB81CFD43885F9A84FD4E6D91C4EE85233EF98F3E92"
+  },
+  "audit_contract_decision": {
+    "existing_apply_1a_reused": false,
+    "reason": "apply_1a is constrained to the historical 48-operation Apply 1A identity and committed counts; using it for the 89-candidate R4 batch would be false.",
+    "new_run_kind": "apply_r4b",
+    "migration_required": true,
+    "preserved_apply_1a_rows": true,
+    "arbitrary_committed_run_kinds_rejected": true,
+    "live_ledger_version": "20260916134537",
+    "live_ledger_name": "20260916140000_r4b_audit_contract"
+  },
+  "runtime": {
+    "postgresql": "PostgreSQL 17.6 on aarch64-unknown-linux-gnu, compiled by gcc (GCC) 15.2.0, 64-bit",
+    "postgis": "POSTGIS=\"3.3.7 a0c7967\" [EXTENSION] PGSQL=\"170\"",
+    "pgcrypto": "1.3"
+  },
+  "pre_apply_counts": {
+    "facilities": 15620,
+    "facility_sources": 15634,
+    "facility_source_observations": 14,
+    "import_runs": 5,
+    "toilet_units": 0,
+    "toilet_unit_sources": 0,
+    "transport_source_snapshots": 1,
+    "transport_source_places": 97270,
+    "transport_source_nodes": 436428,
+    "transport_source_memberships": 169527,
+    "transport_source_place_parents": 3519
+  },
+  "transaction": {
+    "first_attempt": {
+      "result": "rolled_back",
+      "failure": "facilities.location is a generated column; explicit insert rejected",
+      "net_rows_persisted": 0
+    },
+    "corrected_attempt": {
+      "result": "committed",
+      "audit_row_id": "caec9180-1268-4a6c-83cc-2a3f21b61a8a",
+      "audit_run_kind": "apply_r4b",
+      "audit_transaction_outcome": "committed",
+      "audit_requested_ready_applied": 89,
+      "facility_inserts": 89,
+      "facility_source_inserts": 89,
+      "import_run_inserts": 1,
+      "facility_source_observation_inserts": 0,
+      "toilet_unit_inserts": 0,
+      "toilet_unit_source_inserts": 0,
+      "facility_updates": 0,
+      "facility_deletes": 0,
+      "review_candidate_inserts": 0,
+      "production_start_utc": "2026-09-16T13:52:41.329529Z"
+    }
+  },
+  "per_source_facility_source_inserts": {
+    "adur-public-toilets": 15,
+    "causeway-coast-and-glens-public-toilets": 5,
+    "city-of-york-public-toilets": 4,
+    "perth-kinross-public-toilets-and-comfort-schemes": 41,
+    "worthing-public-toilets": 24,
+    "belfast-public-toilets": 0,
+    "total": 89
+  },
+  "post_apply_counts": {
+    "facilities": 15709,
+    "facility_sources": 15723,
+    "facility_source_observations": 14,
+    "import_runs": 6,
+    "toilet_units": 0,
+    "toilet_unit_sources": 0,
+    "transport_source_snapshots": 1,
+    "transport_source_places": 97270,
+    "transport_source_nodes": 436428,
+    "transport_source_memberships": 169527,
+    "transport_source_place_parents": 3519
+  },
+  "post_apply_verification": {
+    "candidate_links": 89,
+    "distinct_candidate_ids": 89,
+    "distinct_facilities": 89,
+    "missing_candidate_links": 0,
+    "coordinate_or_name_mismatches": 0,
+    "audit_rows_matching_manifest": 1,
+    "replay_classification": "ALREADY_APPLIED",
+    "replay_would_insert_facilities": 0,
+    "replay_would_insert_facility_sources": 0,
+    "replay_would_insert_import_runs": 0
+  },
+  "security_and_schema": {
+    "source_graph_rls_enabled": true,
+    "source_graph_policy_count": 0,
+    "source_graph_public_anon_authenticated_insert": false,
+    "source_graph_service_role_insert": true,
+    "postgis_active": true,
+    "schema_mutations": 1,
+    "rls_mutations": 0,
+    "auth_mutations": 0,
+    "n4a_migration_changed": false
+  },
+  "production_mutation_accounting": {
+    "canonical_facility_inserts": 89,
+    "canonical_facility_updates": 0,
+    "canonical_facility_deletes": 0,
+    "facility_source_inserts": 89,
+    "facility_source_observation_mutations": 0,
+    "import_run_inserts": 1,
+    "toilet_unit_mutations": 0,
+    "toilet_unit_source_mutations": 0,
+    "naptan_source_graph_mutations": 0,
+    "schema_mutations": 1,
+    "auth_mutations": 0,
+    "review_candidate_inserts": 0
+  },
+  "production_safety": {
+    "rail_work": false,
+    "naptan_ingestion": false,
+    "review_candidates_applied": 0,
+    "unrelated_table_mutations": 0,
+    "manifest_re_fetched": false,
+    "secrets_recorded": false
+  }
+}

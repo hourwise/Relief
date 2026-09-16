@@ -1,0 +1,47 @@
+{
+  "production_project_ref": "bgwxrxkmyaihplaloely",
+  "migration_head_after": {
+    "version": "20260916134537",
+    "name": "20260916140000_r4b_audit_contract"
+  },
+  "counts": {
+    "facilities": {"before": 15620, "after": 15709, "delta": 89},
+    "facility_sources": {"before": 15634, "after": 15723, "delta": 89},
+    "facility_source_observations": {"before": 14, "after": 14, "delta": 0},
+    "import_runs": {"before": 5, "after": 6, "delta": 1},
+    "toilet_units": {"before": 0, "after": 0, "delta": 0},
+    "toilet_unit_sources": {"before": 0, "after": 0, "delta": 0},
+    "transport_source_total": {"before": 706745, "after": 706745, "delta": 0}
+  },
+  "candidate_verification": {
+    "manifest_candidates": 89,
+    "verified_canonical_facilities": 89,
+    "verified_facility_sources": 89,
+    "missing": 0,
+    "identity_or_coordinate_mismatches": 0,
+    "review_candidates_inserted": 0
+  },
+  "source_counts": {
+    "adur-public-toilets": 15,
+    "causeway-coast-and-glens-public-toilets": 5,
+    "city-of-york-public-toilets": 4,
+    "perth-kinross-public-toilets-and-comfort-schemes": 41,
+    "worthing-public-toilets": 24
+  },
+  "replay": {
+    "classification": "ALREADY_APPLIED",
+    "new_facilities": 0,
+    "new_facility_sources": 0,
+    "new_import_runs": 0,
+    "conflicts": 0,
+    "gratuitous_updates": 0
+  },
+  "immutability": {
+    "naptan_graph_unchanged": true,
+    "tfl_observations_unchanged": true,
+    "toilet_tables_unchanged": true,
+    "n4a_hash_unchanged": true,
+    "source_graph_security_unchanged": true,
+    "auth_unchanged": true
+  }
+}
